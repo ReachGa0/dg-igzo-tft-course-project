@@ -16,6 +16,42 @@
 
 ---
 
+## 2026-07-30 | Codex GPT-5 | Git/GitHub 版本库初始化
+
+### 用户目标
+
+从零建立 Git 版本控制并上传到 GitHub 私有仓库，便于后续按阶段保存、比较和恢复工程版本。
+
+### 本次操作
+
+- 验证 WSL Git、提交署名和现有 Ed25519 SSH 密钥。
+- 验证 GitHub SSH 身份为 `ReachGa0`，远端仓库为空。
+- 在项目根目录初始化 `main` 分支并绑定 `origin`：`git@github.com:ReachGa0/dg-igzo-tft-course-project.git`。
+- 扩充 `.gitignore`，排除缓存、虚拟环境、本地编辑器文件和常见凭据文件。
+- 新增 `.gitattributes`，统一 Windows/WSL 文本换行并标记二进制文件。
+- 创建并推送首个架构基线提交 `c03d9b8`，包含 91 个文件。
+
+### 上传前验证
+
+```text
+SSH authentication: PASS, account=ReachGa0
+secret/large-file scan: PASS
+PROJECT_CHECK_PASS checks=116
+local main == origin/main == c03d9b8
+```
+
+没有上传密码、Token、SSH 私钥、虚拟环境或缓存目录。
+
+### 后续版本流程
+
+```bash
+git status
+git diff
+git add <本次相关文件>
+git commit -m "说明本次完成的内容"
+git push
+```
+
 ## 2026-07-30 | Codex GPT-5 | IGZO-only 架构冻结
 
 ### 用户目标
