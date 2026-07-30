@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "audit_id": "S00_DATA_UNIT_AUDIT_V1",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "source_inventory": {
+    "records": 50,
+    "hash_pass": 50,
+    "hash_fail": 0
+  },
+  "unit_table": {
+    "records": 23,
+    "parameter_records": 9,
+    "data_field_records": 14,
+    "units_complete": true,
+    "source_value_pass": 9
+  },
+  "dataset_boundary": {
+    "records": 8
+  },
+  "conflict_register": {
+    "records": 6,
+    "open_external_inputs": 2
+  },
+  "g0_decision": {
+    "status": "TEACHING_BASELINE_ONLY",
+    "t01_permitted": true,
+    "quantitative_fitting_permitted": false,
+    "required_primary_fields": [
+      "dataset_id",
+      "device_id",
+      "sweep_id",
+      "VGS_V",
+      "VDS_V",
+      "ID_A",
+      "W_um",
+      "L_um",
+      "temperature_K",
+      "sweep_direction",
+      "source",
+      "source_status"
+    ],
+    "missing_primary_inputs": [
+      "condition-complete raw Id-Vg",
+      "condition-complete raw Id-Vd",
+      "device batch identity",
+      "measurement or simulation condition metadata"
+    ],
+    "allowed_claim": "Teaching-parameter two-dimensional IGZO simulation",
+    "prohibited_claim": "Accurate experimental fit or calibrated dual-gate prediction"
+  },
+  "outputs": {
+    "source_inventory": "data/processed/s00/source_inventory.csv",
+    "unit_table": "data/processed/s00/unit_table.csv",
+    "dataset_boundary": "data/processed/s00/dataset_boundary.csv",
+    "conflict_register": "data/processed/s00/conflict_register.csv",
+    "report": "results/reports/s00_data_audit.json"
+  },
+  "evidence_boundary": "S00 verifies source identity, hashes, units, and scope separation. It does not create condition-complete experimental IGZO I-V data. T01 is permitted only as an E2 teaching-parameter simulation until the listed primary data fields are supplied.",
+  "errors": []
+}

@@ -72,8 +72,21 @@
       "purpose": "Freeze source identity, units, conditions and incompatible dataset scopes.",
       "changed_variables": ["dataset_id"],
       "controls": ["raw_files_are_immutable"],
-      "required_outputs": ["source_manifest", "unit_table", "dataset_boundary"],
-      "acceptance": ["all sources hashed", "all numeric fields have units", "conflicting scopes remain separate"]
+      "required_outputs": [
+        "data/processed/s00/source_inventory.csv",
+        "data/processed/s00/unit_table.csv",
+        "data/processed/s00/dataset_boundary.csv",
+        "data/processed/s00/conflict_register.csv",
+        "results/reports/s00_data_audit.json"
+      ],
+      "acceptance": [
+        "all sources hashed",
+        "all numeric fields have units",
+        "conflicting scopes remain separate",
+        "G0 decision explicitly records whether only teaching-parameter T01 is permitted"
+      ],
+      "current_gate_decision": "TEACHING_BASELINE_ONLY",
+      "quantitative_fitting_permitted": false
     },
     {
       "id": "T00",

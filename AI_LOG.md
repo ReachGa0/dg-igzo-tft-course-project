@@ -16,6 +16,54 @@
 
 ---
 
+## 2026-07-30 | Codex GPT-5 | 完成 S00 数据口径审计
+
+### 用户目标
+
+执行 S00：冻结活动 IGZO 数据来源、单位、数据集边界和冲突口径，为 T01 最小单栅漂移扩散案例建立可追溯输入。
+
+### 读取的关键输入
+
+- `config/project.json`、`config/tcad_baseline.json` 与 `config/experiments.json`。
+- 冻结的 7 个 IGZO 外部基线副本及其 manifest。
+- 老师要求、23 个学长参考文件和 13 篇本地文献索引。
+- 已规范化的学长 IGZO 转移曲线和反相器 VTC 参考 CSV。
+
+### 本次修改
+
+- 新增 `config/s00_data_audit.json`，固定 8 个数据集边界、9 个活动参数、14 个参考数据字段的单位和 6 项冲突及 G0 决策。
+- 新增 `scripts/audit_s00_data.py` 与 `make s00-audit` / `make s00-audit-check`。
+- 生成 `data/processed/s00/` 的来源库存、单位表、数据集边界和冲突登记，以及 `results/reports/s00_data_audit.json`。
+- 将 S00 输出纳入项目检查器，并更新机器实验合同、状态、计划、架构入口、ADR、汇报稿、报告第 6 章和证据矩阵。
+
+### 验证
+
+```text
+make s00-audit
+S00_AUDIT_PASS sources=50 parameters=9 fields=14 datasets=8 conflicts=6 g0=TEACHING_BASELINE_ONLY
+
+make s00-audit-check
+S00_AUDIT_PASS sources=50 parameters=9 fields=14 datasets=8 conflicts=6 g0=TEACHING_BASELINE_ONLY
+
+make check
+PROJECT_CHECK_PASS checks=145
+
+make report-check
+REPORT_STRUCTURE_PASS chapters=12 appendices=5 placeholders=21 images=0
+```
+
+本次没有运行 TCAD、SPICE、KLayout、DRC 或 LVS。结构/来源检查 PASS 不代表器件或电路仿真 PASS。
+
+### 决策和边界
+
+- G0 为 `TEACHING_BASELINE_ONLY`：允许以 35.5 cm2/(V*s)、0.21 V 和冻结几何做 E2 教学参数 T01。
+- 主 IGZO 原始 Id-Vg/Id-Vd、批次、温度、扫压方向和接触条件仍缺失；禁止实验拟合、模型精度或校准双栅预测。
+- 30 nm 物理 Al2O3 与 10 nm SPICE 有效 TOX 分栏保存；旧 SnO 资产继续排除在活动基线之外。
+
+### 下一步
+
+仅启动一个单栅 T01 最小漂移扩散案例：先定义单位体系、单栅几何、载流子和理想欧姆接触，再按零偏压、低 VDS、分步 VGS 的顺序求解。T01 未通过收敛、守恒和网格门前，不启动 T02 或电路工作。
+
 ## 2026-07-30 | Codex GPT-5 | 报告改为分章写作、单文件提交
 
 ### 用户目标

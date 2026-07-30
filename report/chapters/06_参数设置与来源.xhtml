@@ -1,4 +1,16 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-06" class="report-chapter">
   <h2>6. 参数设置与来源</h2>
-  <p>[待填写参数主表：名称、符号、数值、单位、来源类型、来源、用途和拟合状态]</p>
+  <p>S00 数据审计已生成可复现的来源库存、单位表、数据集边界和冲突登记。50 条来源文件的 SHA-256 均匹配；9 个活动数值参数和 14 个参考数据字段均有单位声明。审计证据等级为 E3，代表来源和口径检查，不代表器件或电路仿真已经完成。</p>
+  <table>
+    <thead>
+      <tr><th>参数或数据集</th><th>当前口径</th><th>允许用途</th><th>限制</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>IGZO 几何</td><td>W/L = 60/10 um，沟道厚度 24 nm</td><td>T01 教学参数几何</td><td>单一课程基线</td></tr>
+      <tr><td>Al2O3</td><td>物理厚度 30 nm；SPICE 有效 TOX 10 nm；k = 6.8</td><td>分别用于 TCAD 几何和紧凑模型口径</td><td>两个厚度不得互换</td></tr>
+      <tr><td>IGZO 教学参数</td><td>mu_n = 35.5 cm2/(V*s)，VTH = 0.21 V</td><td>T01 初始假设和量级检查</td><td>不是实验拟合目标</td></tr>
+      <tr><td>学长 IGZO/VTC 表</td><td>已保留来源行和质量标记</td><td>导入、对数作图和数据质量参考</td><td>缺少完整条件，仅 reference_only</td></tr>
+    </tbody>
+  </table>
+  <p>G0 决策为 <code>TEACHING_BASELINE_ONLY</code>：允许下一阶段开展“教学参数二维 IGZO 仿真”，但没有条件完整的原始 Id-Vg/Id-Vd、批次、温度和接触信息前，不得声称实验拟合、模型精度或校准双栅预测。完整表见 <code>data/processed/s00/</code>，验收报告见 <code>results/reports/s00_data_audit.json</code>。</p>
 </section>

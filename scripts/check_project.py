@@ -30,6 +30,7 @@ REQUIRED_FILES = [
     "Makefile",
     "config/project.json",
     "config/experiments.json",
+    "config/s00_data_audit.json",
     "config/tcad_baseline.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
@@ -46,12 +47,18 @@ REQUIRED_FILES = [
     "docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
     "docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
     "scripts/import_senior_reference.py",
+    "scripts/audit_s00_data.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
+    "data/processed/s00/source_inventory.csv",
+    "data/processed/s00/unit_table.csv",
+    "data/processed/s00/dataset_boundary.csv",
+    "data/processed/s00/conflict_register.csv",
+    "results/reports/s00_data_audit.json",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -196,6 +203,15 @@ def main() -> int:
             "config:active_load_logic",
             logic_style.get("primary") == "dual_gate_igzo_active_load",
             str(logic_style.get("primary")),
+        )
+        teaching_baseline = config.get("teaching_baseline", {})
+        add_check(
+            checks,
+            "config:teaching_baseline",
+            teaching_baseline.get("mobility_cm2_vs") == 35.5
+            and teaching_baseline.get("vth_v") == 0.21
+            and teaching_baseline.get("evidence_level") == "E1",
+            json.dumps(teaching_baseline, sort_keys=True),
         )
 
         for key in ("papers_wsl", "ngspice", "aimspice", "klayout_pdk", "senior_reference"):
@@ -384,6 +400,80 @@ def main() -> int:
             add_check(checks, f"senior_csv:{Path(relative).name}", valid, f"rows={len(rows)}")
         except Exception as error:  # noqa: BLE001
             add_check(checks, f"senior_csv:{Path(relative).name}", False, str(error))
+
+    s00_report_path = ROOT / "results" / "reports" / "s00_data_audit.json"
+    try:
+        s00_config = json.loads((ROOT / "config" / "s00_data_audit.json").read_text(encoding="utf-8"))
+        s00_report = json.loads(s00_report_path.read_text(encoding="utf-8"))
+        source_inventory_path = ROOT / "data" / "processed" / "s00" / "source_inventory.csv"
+        unit_table_path = ROOT / "data" / "processed" / "s00" / "unit_table.csv"
+        boundary_path = ROOT / "data" / "processed" / "s00" / "dataset_boundary.csv"
+        conflict_path = ROOT / "data" / "processed" / "s00" / "conflict_register.csv"
+        with source_inventory_path.open("r", encoding="utf-8", newline="") as stream:
+            source_inventory = list(csv.DictReader(stream))
+        with unit_table_path.open("r", encoding="utf-8", newline="") as stream:
+            unit_rows = list(csv.DictReader(stream))
+        with boundary_path.open("r", encoding="utf-8", newline="") as stream:
+            boundary_rows = list(csv.DictReader(stream))
+        with conflict_path.open("r", encoding="utf-8", newline="") as stream:
+            conflict_rows = list(csv.DictReader(stream))
+        add_check(
+            checks,
+            "s00:audit_config",
+            s00_config.get("project_id") == config.get("project_id")
+            and s00_config.get("audit_id") == "S00_DATA_UNIT_AUDIT_V1",
+            str(s00_config.get("audit_id")),
+        )
+        add_check(
+            checks,
+            "s00:source_inventory_hashes",
+            bool(source_inventory)
+            and all(
+                row.get("hash_status") == "PASS"
+                and Path(row.get("source_path", "")).is_file()
+                and sha256(Path(row["source_path"])) == row.get("sha256")
+                for row in source_inventory
+            ),
+            f"records={len(source_inventory)}",
+        )
+        add_check(
+            checks,
+            "s00:unit_table",
+            bool(unit_rows)
+            and all(row.get("unit", "").strip() for row in unit_rows)
+            and all(
+                row.get("source_value_status") in {"PASS", "DECLARED"}
+                for row in unit_rows
+            )
+            and s00_report.get("unit_table", {}).get("source_value_pass")
+            == s00_report.get("unit_table", {}).get("parameter_records"),
+            f"records={len(unit_rows)}",
+        )
+        add_check(
+            checks,
+            "s00:scope_registers",
+            len(boundary_rows) == len(s00_config.get("datasets", []))
+            and len(conflict_rows) == len(s00_config.get("conflicts", [])),
+            f"datasets={len(boundary_rows)} conflicts={len(conflict_rows)}",
+        )
+        g0 = s00_report.get("g0_decision", {})
+        add_check(
+            checks,
+            "s00:teaching_only_gate",
+            g0.get("status") == "TEACHING_BASELINE_ONLY"
+            and g0.get("t01_permitted") is True
+            and g0.get("quantitative_fitting_permitted") is False,
+            str(g0.get("status")),
+        )
+        add_check(
+            checks,
+            "s00:audit_report",
+            s00_report.get("status") == "PASS"
+            and s00_report.get("source_inventory", {}).get("hash_fail") == 0,
+            str(s00_report.get("status")),
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "s00:audit", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

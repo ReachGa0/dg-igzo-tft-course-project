@@ -55,6 +55,14 @@
       "spice_dielectric_k": 6.8
     }
   },
+  "teaching_baseline": {
+    "mobility_cm2_vs": 35.5,
+    "vth_v": 0.21,
+    "source_type": "course_parameter_summary",
+    "evidence_level": "E1",
+    "allowed_use": "T01 teaching-parameter initialization and sanity checks",
+    "prohibited_use": "experimental fitting or calibrated dual-gate prediction"
+  },
   "baseline_process": {
     "substrate": "Si with 300 nm thermal SiO2",
     "bottom_gate": "50 nm Al",

@@ -1,0 +1,447 @@
+{
+  "schema_version": 1,
+  "audit_id": "S00_DATA_UNIT_AUDIT_V1",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "audit_scope": "IGZO-only source, unit, condition, and conflict audit before T01",
+  "datasets": [
+    {
+      "dataset_id": "COURSE_REQUIREMENT_CONTRACT_V1",
+      "material_scope": "project_requirement",
+      "source_type": "teacher_requirement",
+      "use_status": "authoritative_requirement",
+      "evidence_level": "E3",
+      "allowed_uses": "Scope, report format, parameter-group, and delivery constraints",
+      "prohibited_uses": "Not a device I-V dataset",
+      "metadata_status": "complete",
+      "missing_fields": []
+    },
+    {
+      "dataset_id": "SENIOR_REFERENCE_INDEX_V1",
+      "material_scope": "mixed_historical_reference",
+      "source_type": "hashed_source_index",
+      "use_status": "reference_only",
+      "evidence_level": "E3",
+      "allowed_uses": "Source identity, hash verification, and reference-asset inventory",
+      "prohibited_uses": "Device or circuit numerical evidence",
+      "metadata_status": "content_scope_varies_by_file",
+      "missing_fields": ["condition_complete_IGZO_device_metadata"]
+    },
+    {
+      "dataset_id": "IGZO_T01_TEACHING_BASELINE_V1",
+      "material_scope": "n_type_IGZO_only",
+      "source_type": "course_parameter_summary",
+      "use_status": "teaching_baseline",
+      "evidence_level": "E1",
+      "allowed_uses": "T01 teaching-parameter geometry and initial transport assumptions",
+      "prohibited_uses": "Experimental fitting, model-accuracy claims, or batch-to-batch comparison",
+      "metadata_status": "partial_for_quantitative_validation",
+      "missing_fields": [
+        "raw_IdVg_points",
+        "raw_IdVd_points",
+        "batch_id",
+        "temperature_K",
+        "sweep_direction",
+        "contact_condition"
+      ]
+    },
+    {
+      "dataset_id": "T00_DG_ELECTROSTATIC_V0",
+      "material_scope": "IGZO_teaching_geometry",
+      "source_type": "project_simulation",
+      "use_status": "verified",
+      "evidence_level": "E2",
+      "allowed_uses": "Mesh, boundary-condition, and electrostatic-coupling baseline",
+      "prohibited_uses": "Drain-current, mobility, SS, trap, or contact conclusions",
+      "metadata_status": "complete_for_electrostatics",
+      "missing_fields": ["mobile_charge", "transport_model", "contact_transport"]
+    },
+    {
+      "dataset_id": "IGZO_FROZEN_BASELINE_V1",
+      "material_scope": "IGZO_only_import_subset",
+      "source_type": "frozen_course_assets",
+      "use_status": "reference_only",
+      "evidence_level": "E1",
+      "allowed_uses": "Syntax, sweep shape, import-regression, and external-GDS reference",
+      "prohibited_uses": "Current-project device validation, dual-gate calibration, or active-load evidence",
+      "metadata_status": "not_a_condition_complete_measurement",
+      "missing_fields": ["measurement_provenance", "batch_id", "dual_gate_bias"]
+    },
+    {
+      "dataset_id": "SENIOR_IGZO_TRANSFER_REFERENCE_V1",
+      "material_scope": "IGZO_reference",
+      "source_type": "senior_xlsx_import",
+      "use_status": "reference_only",
+      "evidence_level": "E1",
+      "allowed_uses": "CSV import, logarithmic plotting, and data-quality checks",
+      "prohibited_uses": "Parameter extraction or accuracy scoring",
+      "metadata_status": "incomplete",
+      "missing_fields": ["VDS_V", "W_um", "L_um", "material_parameters", "temperature_K", "solver_settings"]
+    },
+    {
+      "dataset_id": "SENIOR_INVERTER_VTC_REFERENCE_V1",
+      "material_scope": "historical_reference",
+      "source_type": "senior_xlsx_import",
+      "use_status": "reference_only",
+      "evidence_level": "E1",
+      "allowed_uses": "CSV import and metadata-completeness example",
+      "prohibited_uses": "Current IGZO active-load circuit validation",
+      "metadata_status": "incomplete",
+      "missing_fields": ["circuit_topology", "VDD_V", "load_definition", "device_parameters", "bias_protocol"]
+    },
+    {
+      "dataset_id": "HZO_LITERATURE_MATRIX_V1",
+      "material_scope": "optional_HZO_extension",
+      "source_type": "literature_index",
+      "use_status": "reference_only",
+      "evidence_level": "E1",
+      "allowed_uses": "Optional HZO extension motivation and parameter provenance",
+      "prohibited_uses": "IGZO T01 transport fitting",
+      "metadata_status": "not_an_IGZO_IV_dataset",
+      "missing_fields": ["IGZO_IdVg", "IGZO_IdVd"]
+    }
+  ],
+  "parameters": [
+    {
+      "parameter_id": "IGZO_WIDTH",
+      "symbol": "W",
+      "value": 60.0,
+      "unit": "um",
+      "source_document": "project",
+      "source_key": "baseline_devices.IGZO_TFT.w_um",
+      "source_type": "course_parameter",
+      "layer_or_model": "device_geometry",
+      "fitted_or_fixed": "fixed_teaching",
+      "allowed_use": "T01 width normalization",
+      "valid_range": "single course baseline"
+    },
+    {
+      "parameter_id": "IGZO_LENGTH",
+      "symbol": "L",
+      "value": 10.0,
+      "unit": "um",
+      "source_document": "project",
+      "source_key": "baseline_devices.IGZO_TFT.l_um",
+      "source_type": "course_parameter",
+      "layer_or_model": "device_geometry",
+      "fitted_or_fixed": "fixed_teaching",
+      "allowed_use": "T01 channel length",
+      "valid_range": "single course baseline"
+    },
+    {
+      "parameter_id": "IGZO_ACTIVE_THICKNESS",
+      "symbol": "t_ch",
+      "value": 24.0,
+      "unit": "nm",
+      "source_document": "project",
+      "source_key": "baseline_devices.IGZO_TFT.active_thickness_nm",
+      "source_type": "course_process",
+      "layer_or_model": "device_geometry",
+      "fitted_or_fixed": "fixed_teaching",
+      "allowed_use": "T01 channel geometry",
+      "valid_range": "single course baseline"
+    },
+    {
+      "parameter_id": "AL2O3_PHYSICAL_THICKNESS",
+      "symbol": "t_ox_physical",
+      "value": 30.0,
+      "unit": "nm",
+      "source_document": "project",
+      "source_key": "baseline_devices.IGZO_TFT.physical_gate_dielectric_nm",
+      "source_type": "course_process",
+      "layer_or_model": "device_geometry",
+      "fitted_or_fixed": "fixed_teaching",
+      "allowed_use": "TCAD physical dielectric geometry",
+      "valid_range": "single course baseline"
+    },
+    {
+      "parameter_id": "AL2O3_SPICE_EFFECTIVE_TOX",
+      "symbol": "TOX_eff",
+      "value": 10.0,
+      "unit": "nm",
+      "source_document": "project",
+      "source_key": "baseline_devices.IGZO_TFT.spice_effective_tox_nm",
+      "source_type": "course_spice_effective_parameter",
+      "layer_or_model": "compact_model",
+      "fitted_or_fixed": "fixed_teaching",
+      "allowed_use": "Future compact-model effective oxide parameter",
+      "valid_range": "single course baseline"
+    },
+    {
+      "parameter_id": "AL2O3_RELATIVE_PERMITTIVITY",
+      "symbol": "k_ox",
+      "value": 6.8,
+      "unit": "1",
+      "source_document": "project",
+      "source_key": "baseline_devices.IGZO_TFT.spice_dielectric_k",
+      "source_type": "course_parameter",
+      "layer_or_model": "dielectric",
+      "fitted_or_fixed": "fixed_teaching",
+      "allowed_use": "T01 dielectric and future compact-model parameter",
+      "valid_range": "single course baseline"
+    },
+    {
+      "parameter_id": "IGZO_MOBILITY_TEACHING",
+      "symbol": "mu_n",
+      "value": 35.5,
+      "unit": "cm2/(V*s)",
+      "source_document": "project",
+      "source_key": "teaching_baseline.mobility_cm2_vs",
+      "source_type": "course_parameter_summary",
+      "layer_or_model": "transport",
+      "fitted_or_fixed": "fixed_teaching",
+      "allowed_use": "T01 initial mobility assumption only",
+      "valid_range": "not a fitted transport claim"
+    },
+    {
+      "parameter_id": "IGZO_THRESHOLD_TEACHING",
+      "symbol": "VTH",
+      "value": 0.21,
+      "unit": "V",
+      "source_document": "project",
+      "source_key": "teaching_baseline.vth_v",
+      "source_type": "course_parameter_summary",
+      "layer_or_model": "terminal_target",
+      "fitted_or_fixed": "fixed_teaching",
+      "allowed_use": "T01 target-scale sanity check only",
+      "valid_range": "not an experimental validation target"
+    },
+    {
+      "parameter_id": "T00_IGZO_RELATIVE_PERMITTIVITY",
+      "symbol": "k_ch",
+      "value": 10.0,
+      "unit": "1",
+      "source_document": "tcad",
+      "source_key": "materials.channel.relative_permittivity",
+      "source_type": "teaching_assumption",
+      "layer_or_model": "T00_electrostatics",
+      "fitted_or_fixed": "fixed_teaching",
+      "allowed_use": "T00 electrostatic baseline only",
+      "valid_range": "replace with cited or fitted value before quantitative claims"
+    }
+  ],
+  "data_field_units": [
+    {
+      "field_id": "NGSPICE_TRANSFER_VG",
+      "dataset_id": "IGZO_FROZEN_BASELINE_V1",
+      "field_name": "vg",
+      "canonical_name": "VGS_V",
+      "unit": "V",
+      "source_reference": "data/raw/baseline/ngspice/data/igzo_transfer.csv and igzo_transfer.cir",
+      "unit_basis": "DC gate source and netlist sweep",
+      "allowed_use": "Reference sweep shape only"
+    },
+    {
+      "field_id": "NGSPICE_TRANSFER_VD",
+      "dataset_id": "IGZO_FROZEN_BASELINE_V1",
+      "field_name": "vd",
+      "canonical_name": "VDS_V",
+      "unit": "V",
+      "source_reference": "data/raw/baseline/ngspice/data/igzo_transfer.csv and igzo_transfer.cir",
+      "unit_basis": "DC drain source and netlist sweep",
+      "allowed_use": "Reference sweep shape only"
+    },
+    {
+      "field_id": "NGSPICE_TRANSFER_ID_RAW",
+      "dataset_id": "IGZO_FROZEN_BASELINE_V1",
+      "field_name": "id_raw",
+      "canonical_name": "ID_A",
+      "unit": "A",
+      "source_reference": "data/raw/baseline/ngspice/data/igzo_transfer.csv",
+      "unit_basis": "ngspice voltage-source current",
+      "allowed_use": "Reference sweep shape only"
+    },
+    {
+      "field_id": "NGSPICE_TRANSFER_ID_ABS",
+      "dataset_id": "IGZO_FROZEN_BASELINE_V1",
+      "field_name": "id_abs",
+      "canonical_name": "abs(ID_A)",
+      "unit": "A",
+      "source_reference": "data/raw/baseline/ngspice/data/igzo_transfer.csv",
+      "unit_basis": "absolute value of ngspice current",
+      "allowed_use": "Reference logarithmic plot only"
+    },
+    {
+      "field_id": "NGSPICE_OUTPUT_VD",
+      "dataset_id": "IGZO_FROZEN_BASELINE_V1",
+      "field_name": "vd",
+      "canonical_name": "VDS_V",
+      "unit": "V",
+      "source_reference": "data/raw/baseline/ngspice/data/igzo_output.csv and igzo_output.cir",
+      "unit_basis": "DC drain source and netlist sweep",
+      "allowed_use": "Reference sweep shape only"
+    },
+    {
+      "field_id": "NGSPICE_OUTPUT_VG",
+      "dataset_id": "IGZO_FROZEN_BASELINE_V1",
+      "field_name": "vg",
+      "canonical_name": "VGS_V",
+      "unit": "V",
+      "source_reference": "data/raw/baseline/ngspice/data/igzo_output.csv and igzo_output.cir",
+      "unit_basis": "DC gate source and netlist sweep",
+      "allowed_use": "Reference sweep shape only"
+    },
+    {
+      "field_id": "NGSPICE_OUTPUT_ID_RAW",
+      "dataset_id": "IGZO_FROZEN_BASELINE_V1",
+      "field_name": "id_raw",
+      "canonical_name": "ID_A",
+      "unit": "A",
+      "source_reference": "data/raw/baseline/ngspice/data/igzo_output.csv",
+      "unit_basis": "ngspice voltage-source current",
+      "allowed_use": "Reference sweep shape only"
+    },
+    {
+      "field_id": "NGSPICE_OUTPUT_ID_ABS",
+      "dataset_id": "IGZO_FROZEN_BASELINE_V1",
+      "field_name": "id_abs",
+      "canonical_name": "abs(ID_A)",
+      "unit": "A",
+      "source_reference": "data/raw/baseline/ngspice/data/igzo_output.csv",
+      "unit_basis": "absolute value of ngspice current",
+      "allowed_use": "Reference logarithmic plot only"
+    },
+    {
+      "field_id": "SENIOR_TRANSFER_VG",
+      "dataset_id": "SENIOR_IGZO_TRANSFER_REFERENCE_V1",
+      "field_name": "v_gate_v",
+      "canonical_name": "VGS_V",
+      "unit": "V",
+      "source_reference": "data/processed/senior_reference/igzo_tcad_transfer_reference.csv",
+      "unit_basis": "normalized XLSX gate-voltage column",
+      "allowed_use": "Import and data-quality reference only"
+    },
+    {
+      "field_id": "SENIOR_TRANSFER_ID",
+      "dataset_id": "SENIOR_IGZO_TRANSFER_REFERENCE_V1",
+      "field_name": "drain_current_a",
+      "canonical_name": "ID_A",
+      "unit": "A",
+      "source_reference": "data/processed/senior_reference/igzo_tcad_transfer_reference.csv",
+      "unit_basis": "normalized XLSX drain-current column",
+      "allowed_use": "Import and data-quality reference only"
+    },
+    {
+      "field_id": "SENIOR_TRANSFER_ID_ABS",
+      "dataset_id": "SENIOR_IGZO_TRANSFER_REFERENCE_V1",
+      "field_name": "abs_drain_current_a",
+      "canonical_name": "abs(ID_A)",
+      "unit": "A",
+      "source_reference": "data/processed/senior_reference/igzo_tcad_transfer_reference.csv",
+      "unit_basis": "absolute normalized drain current",
+      "allowed_use": "Import and data-quality reference only"
+    },
+    {
+      "field_id": "SENIOR_VTC_VIN",
+      "dataset_id": "SENIOR_INVERTER_VTC_REFERENCE_V1",
+      "field_name": "vin_v",
+      "canonical_name": "VIN_V",
+      "unit": "V",
+      "source_reference": "data/processed/senior_reference/inverter_vtc_reference.csv",
+      "unit_basis": "normalized XLSX input-voltage column",
+      "allowed_use": "Import and metadata-completeness reference only"
+    },
+    {
+      "field_id": "SENIOR_VTC_VOUT_1",
+      "dataset_id": "SENIOR_INVERTER_VTC_REFERENCE_V1",
+      "field_name": "vout_case_1_v",
+      "canonical_name": "VOUT_CASE_1_V",
+      "unit": "V",
+      "source_reference": "data/processed/senior_reference/inverter_vtc_reference.csv",
+      "unit_basis": "normalized XLSX output-voltage column",
+      "allowed_use": "Import and metadata-completeness reference only"
+    },
+    {
+      "field_id": "SENIOR_VTC_VOUT_2",
+      "dataset_id": "SENIOR_INVERTER_VTC_REFERENCE_V1",
+      "field_name": "vout_case_2_v",
+      "canonical_name": "VOUT_CASE_2_V",
+      "unit": "V",
+      "source_reference": "data/processed/senior_reference/inverter_vtc_reference.csv",
+      "unit_basis": "normalized XLSX output-voltage column",
+      "allowed_use": "Import and metadata-completeness reference only"
+    }
+  ],
+  "conflicts": [
+    {
+      "conflict_id": "C01",
+      "subject": "Al2O3 thickness definitions",
+      "record_a": "30 nm physical process dielectric",
+      "record_b": "10 nm SPICE effective TOX",
+      "resolution": "Keep separate fields; never substitute one for the other.",
+      "impact": "Use 30 nm in physical TCAD geometry and 10 nm only in the compact-model effective-TOX context.",
+      "status": "resolved_by_scope"
+    },
+    {
+      "conflict_id": "C02",
+      "subject": "IGZO parameter sets",
+      "record_a": "Course teaching values: mobility about 35.5 cm2/(V*s), VTH 0.21 V",
+      "record_b": "Older paper values: mobility 10.05 cm2/(V*s), VTH 5.00 V",
+      "resolution": "Do not merge the two batches or use the older values in the active teaching baseline.",
+      "impact": "No cross-batch calibration claim.",
+      "status": "resolved_by_dataset_separation"
+    },
+    {
+      "conflict_id": "C03",
+      "subject": "Top-gate physical scope",
+      "record_a": "Fabricated baseline lists a bottom gate and 30 nm Al2O3",
+      "record_b": "T00 uses a symmetric top-gate teaching extension",
+      "resolution": "Keep T00 as a research electrostatic extension, not as the stated fabricated baseline.",
+      "impact": "T01 starts with an explicitly single-gate geometry.",
+      "status": "resolved_by_scope"
+    },
+    {
+      "conflict_id": "C04",
+      "subject": "Primary I-V availability",
+      "record_a": "Teacher raw Id-Vg/Id-Vd, batch, and full conditions are unavailable",
+      "record_b": "Existing behavioral and senior curves have incomplete provenance or metadata",
+      "resolution": "Use only a teaching baseline for T01 and prohibit quantitative experimental fitting.",
+      "impact": "G0 permits E2 teaching simulation but blocks E3+ calibration claims.",
+      "status": "open_external_input"
+    },
+    {
+      "conflict_id": "C05",
+      "subject": "Senior reference data metadata",
+      "record_a": "Senior IGZO transfer XLSX",
+      "record_b": "Senior inverter VTC XLSX",
+      "resolution": "Retain source rows and quality flags; both stay reference_only until conditions are recovered.",
+      "impact": "No fitting, no circuit validation, and no renamed operating conditions.",
+      "status": "open_external_input"
+    },
+    {
+      "conflict_id": "C06",
+      "subject": "Historical SnO assets",
+      "record_a": "Older external simulation folders contain SnO and complementary-logic files",
+      "record_b": "Current project scope is n-type IGZO only",
+      "resolution": "Only the IGZO whitelist is imported into data/raw/baseline; historical SnO references remain excluded.",
+      "impact": "No SnO device, model, netlist, or layout may enter active implementation.",
+      "status": "resolved_by_scope"
+    }
+  ],
+  "g0_decision": {
+    "status": "TEACHING_BASELINE_ONLY",
+    "t01_permitted": true,
+    "quantitative_fitting_permitted": false,
+    "required_primary_fields": [
+      "dataset_id",
+      "device_id",
+      "sweep_id",
+      "VGS_V",
+      "VDS_V",
+      "ID_A",
+      "W_um",
+      "L_um",
+      "temperature_K",
+      "sweep_direction",
+      "source",
+      "source_status"
+    ],
+    "missing_primary_inputs": [
+      "condition-complete raw Id-Vg",
+      "condition-complete raw Id-Vd",
+      "device batch identity",
+      "measurement or simulation condition metadata"
+    ],
+    "allowed_claim": "Teaching-parameter two-dimensional IGZO simulation",
+    "prohibited_claim": "Accurate experimental fit or calibrated dual-gate prediction"
+  }
+}

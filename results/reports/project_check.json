@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 131,
+  "checks": 145,
   "failures": 0,
   "results": [
     {
@@ -222,52 +222,57 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=6807"
+      "detail": "bytes=6988"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=11592"
+      "detail": "bytes=11613"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=3748"
+      "detail": "bytes=3936"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=12273"
+      "detail": "bytes=14567"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=3346"
+      "detail": "bytes=3505"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=6396"
+      "detail": "bytes=7159"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=2419"
+      "detail": "bytes=2860"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=878"
+      "detail": "bytes=1025"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=4091"
+      "detail": "bytes=4402"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=13445"
+      "detail": "bytes=13873"
+    },
+    {
+      "name": "file:config/s00_data_audit.json",
+      "status": "PASS",
+      "detail": "bytes=17721"
     },
     {
       "name": "file:config/tcad_baseline.json",
@@ -312,7 +317,7 @@
     {
       "name": "file:docs/06_\u660e\u65e5\u6c47\u62a5\u7a3f.md",
       "status": "PASS",
-      "detail": "bytes=1710"
+      "detail": "bytes=1943"
     },
     {
       "name": "file:docs/07_PPT\u4e0e\u62a5\u544a\u63d0\u7eb2.md",
@@ -342,12 +347,17 @@
     {
       "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
       "status": "PASS",
-      "detail": "bytes=8521"
+      "detail": "bytes=8519"
     },
     {
       "name": "file:scripts/import_senior_reference.py",
       "status": "PASS",
       "detail": "bytes=19542"
+    },
+    {
+      "name": "file:scripts/audit_s00_data.py",
+      "status": "PASS",
+      "detail": "bytes=16336"
     },
     {
       "name": "file:scripts/build_self_contained_report.py",
@@ -377,7 +387,32 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=238"
+      "detail": "bytes=585"
+    },
+    {
+      "name": "file:data/processed/s00/source_inventory.csv",
+      "status": "PASS",
+      "detail": "bytes=22740"
+    },
+    {
+      "name": "file:data/processed/s00/unit_table.csv",
+      "status": "PASS",
+      "detail": "bytes=7069"
+    },
+    {
+      "name": "file:data/processed/s00/dataset_boundary.csv",
+      "status": "PASS",
+      "detail": "bytes=2303"
+    },
+    {
+      "name": "file:data/processed/s00/conflict_register.csv",
+      "status": "PASS",
+      "detail": "bytes=1893"
+    },
+    {
+      "name": "file:results/reports/s00_data_audit.json",
+      "status": "PASS",
+      "detail": "bytes=1834"
     },
     {
       "name": "file:models/level61/README.md",
@@ -458,6 +493,11 @@
       "name": "config:active_load_logic",
       "status": "PASS",
       "detail": "dual_gate_igzo_active_load"
+    },
+    {
+      "name": "config:teaching_baseline",
+      "status": "PASS",
+      "detail": "{\"allowed_use\": \"T01 teaching-parameter initialization and sanity checks\", \"evidence_level\": \"E1\", \"mobility_cm2_vs\": 35.5, \"prohibited_use\": \"experimental fitting or calibrated dual-gate prediction\", \"source_type\": \"course_parameter_summary\", \"vth_v\": 0.21}"
     },
     {
       "name": "source:papers_wsl",
@@ -593,6 +633,36 @@
       "name": "senior_csv:igzo_tcad_transfer_reference.csv",
       "status": "PASS",
       "detail": "rows=123"
+    },
+    {
+      "name": "s00:audit_config",
+      "status": "PASS",
+      "detail": "S00_DATA_UNIT_AUDIT_V1"
+    },
+    {
+      "name": "s00:source_inventory_hashes",
+      "status": "PASS",
+      "detail": "records=50"
+    },
+    {
+      "name": "s00:unit_table",
+      "status": "PASS",
+      "detail": "records=23"
+    },
+    {
+      "name": "s00:scope_registers",
+      "status": "PASS",
+      "detail": "datasets=8 conflicts=6"
+    },
+    {
+      "name": "s00:teaching_only_gate",
+      "status": "PASS",
+      "detail": "TEACHING_BASELINE_ONLY"
+    },
+    {
+      "name": "s00:audit_report",
+      "status": "PASS",
+      "detail": "PASS"
     },
     {
       "name": "tcad:mesh_levels",
