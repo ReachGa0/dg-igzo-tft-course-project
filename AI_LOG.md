@@ -16,6 +16,47 @@
 
 ---
 
+## 2026-07-30 | Codex GPT-5 | 完成 T01-A 单栅漂移扩散输入合同
+
+### 用户目标
+
+完成 T01-A：只冻结最小单栅 IGZO 漂移扩散案例的输入和求解顺序，不运行器件仿真。
+
+### 读取的关键输入
+
+- `AGENTS.md`、`STATUS.md`、`PROJECT_PLAN.md`、`ARCHITECTURE.md` 和 `config/experiments.json`。
+- `config/project.json`、`config/tcad_baseline.json`、`tcad/run_dg_electrostatic.py` 及 DEVSIM 2.10.0 的 `simple_dd`/`simple_physics` 实现。
+- S00 审计报告和 T01/T02 阶段门；T00 仅作为静电参考，不直接产生输运结果。
+
+### 本次修改
+
+- 新增 `config/tcad_t01_baseline.json`：冻结单栅几何、厘米制单位、IGZO 教学参数、电子-only 漂移扩散、理想欧姆接触、两档网格和四级 continuation 偏压协议。
+- 新增 `scripts/check_t01_a_contract.py` 与 `make t01-a-check`，生成 `results/reports/tcad_t01_input_contract.json`。
+- 将 T01 输入合同接入 `scripts/check_project.py` 和 `config/experiments.json`，更新状态、计划、架构、AI 上下文、汇报稿、ADR、报告第 5 章和证据矩阵。
+
+### 验证
+
+```text
+python3 -m json.tool config/tcad_t01_baseline.json
+python3 -m py_compile scripts/check_t01_a_contract.py
+make t01-a-check
+T01_A_CONTRACT_PASS checks=15 simulation=NOT_RUN
+```
+
+后续还要运行 `make check`、`make report-check` 和 `git diff --check`。本次没有运行 DEVSIM、SPICE、KLayout、DRC 或 LVS。
+
+### 决策和边界
+
+- T01-A 的输入合同证据为 E3，器件仿真证据仍为 E0；`Id-Vg`、`Id-Vd`、守恒、收敛、网格独立性和迁移率提取都未产生。
+- 单栅结构不包含顶栅/顶介质；30 nm 物理 Al2O3 用于 TCAD 几何，10 nm 有效 TOX 延后到紧凑模型。
+- 背景施主浓度、电子亲和势、带隙和有效态密度是明示的 T01-A 初始化假设，不是实验拟合值。
+
+### 下一步
+
+等用户授权 T01-B 后，先运行零偏压平衡态和低 VDS 单点，检查收敛和接触电流接口；通过后才进入分步 VGS。
+
+---
+
 ## 2026-07-30 | Codex GPT-5 | 完成 S00 数据口径审计
 
 ### 用户目标

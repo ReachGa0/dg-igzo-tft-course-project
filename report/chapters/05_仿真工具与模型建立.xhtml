@@ -1,4 +1,18 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-05" class="report-chapter">
   <h2>5. 仿真工具与模型建立</h2>
-  <p>[待填写软件版本、二维结构、网格、边界、物理模型、求解顺序、SPICE和版图流程]</p>
+  <p>T01-A 已冻结单栅 IGZO 漂移扩散输入合同，采用 DEVSIM 2.10.0、二维结构化网格和厘米制物理单位。当前合同阶段定义了底栅单栅结构：W = 60 um，L = 10 um，IGZO 厚度 24 nm，物理 Al2O3 厚度 30 nm；顶部为自然零法向通量边界，不加入顶栅或顶介质。</p>
+  <table>
+    <thead>
+      <tr><th>项目</th><th>T01-A 冻结口径</th><th>来源或状态</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>坐标/输出单位</td><td>几何 cm，电势/偏压 V，密度 cm^-3，迁移率 cm2/(V*s)，二维电流密度 A/cm；端电流按 W_cm 换算</td><td>输入合同 E3</td></tr>
+      <tr><td>输运方程</td><td>Poisson + 电子连续性；Scharfetter-Gummel 边通量；Einstein 扩散</td><td>教学参数，陷阱/复合关闭</td></tr>
+      <tr><td>材料/迁移率</td><td>n 型 IGZO，mu_n = 35.5 cm2/(V*s)，300 K，k_IGZO = 10</td><td>S00 教学基线；其余能带闭合值为 T01-A 明示假设</td></tr>
+      <tr><td>接触</td><td>源/漏理想欧姆、零串联电阻；底栅 Dirichlet；顶边自然边界</td><td>最小输运基线，非理想接触留给 T02/T03</td></tr>
+      <tr><td>求解阶梯</td><td>零偏压平衡态 -> 低 VDS -> 分步 VGS -> 输出曲线点</td><td>全部 stage 仍为 planned，simulation = NOT_RUN</td></tr>
+      <tr><td>网格</td><td>coarse/fine 两档结构化网格，沟道 y 向分别 6e-7/3e-7 cm</td><td>待 T01-B/C 运行后比较</td></tr>
+    </tbody>
+  </table>
+  <p>合同检查命令为 <code>make t01-a-check</code>，当前 15 项检查 PASS；报告为 E3 的输入合同证据，而非 E2 器件仿真证据。T01-A 没有生成 <code>Id-Vg</code>、<code>Id-Vd</code> 或状态图，T01-B 才开始求解。</p>
 </section>

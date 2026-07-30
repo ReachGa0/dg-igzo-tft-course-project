@@ -19,7 +19,7 @@
 - 题目：基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK。
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
-- S00 数据审计已完成，G0 为 `TEACHING_BASELINE_ONLY`；除既有 T00 外，T01/M00/C00/L00/V01 均未实现。
+- S00 数据审计已完成，T01-A 输入合同已冻结但未运行仿真，G0 为 `TEACHING_BASELINE_ONLY`；除既有 T00 外，T01/M00/C00/L00/V01 均未实现。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
@@ -67,7 +67,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. 用户已授权完成 S00。T01 只能以 `IGZO_T01_TEACHING_BASELINE_V1` 做 E2 教学参数仿真；未经新指令不得启动 T02、SPICE、KLayout 或批量扫描。
+8. 用户已授权完成 T01-A 输入合同。T01-B 才能以 `IGZO_T01_TEACHING_BASELINE_V1` 做 E2 教学参数仿真；未经新指令不得启动 T02、SPICE、KLayout 或批量扫描。
 
 ## 原始资产路径
 

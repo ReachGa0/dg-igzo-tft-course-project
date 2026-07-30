@@ -32,6 +32,7 @@ REQUIRED_FILES = [
     "config/experiments.json",
     "config/s00_data_audit.json",
     "config/tcad_baseline.json",
+    "config/tcad_t01_baseline.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -48,6 +49,7 @@ REQUIRED_FILES = [
     "docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
     "scripts/import_senior_reference.py",
     "scripts/audit_s00_data.py",
+    "scripts/check_t01_a_contract.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
@@ -59,6 +61,7 @@ REQUIRED_FILES = [
     "data/processed/s00/dataset_boundary.csv",
     "data/processed/s00/conflict_register.csv",
     "results/reports/s00_data_audit.json",
+    "results/reports/tcad_t01_input_contract.json",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -474,6 +477,39 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "s00:audit", False, str(error))
+
+    t01_contract_path = ROOT / "results" / "reports" / "tcad_t01_input_contract.json"
+    try:
+        t01_config = json.loads((ROOT / "config" / "tcad_t01_baseline.json").read_text(encoding="utf-8"))
+        t01_report = json.loads(t01_contract_path.read_text(encoding="utf-8"))
+        add_check(
+            checks,
+            "t01_a:contract_status",
+            t01_report.get("status") == "PASS"
+            and t01_report.get("stage") == "T01-A"
+            and t01_report.get("case_id") == t01_config.get("case_id"),
+            str(t01_report.get("status")),
+        )
+        add_check(
+            checks,
+            "t01_a:simulation_not_run",
+            t01_config.get("execution_boundary", {}).get("simulation_run") is False
+            and t01_config.get("execution_boundary", {}).get("simulation_status") == "NOT_RUN"
+            and t01_report.get("simulation_run") is False
+            and t01_report.get("simulation_status") == "NOT_RUN",
+            str(t01_report.get("simulation_status")),
+        )
+        add_check(
+            checks,
+            "t01_a:single_gate_contract",
+            t01_config.get("device", {}).get("single_gate") is True
+            and t01_config.get("device", {}).get("top_gate_present") is False
+            and t01_config.get("device", {}).get("top_oxide_present") is False
+            and t01_config.get("physics", {}).get("equations", {}).get("drift_diffusion") == "electron_only",
+            "single gate, electron-only transport",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t01_a:contract", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

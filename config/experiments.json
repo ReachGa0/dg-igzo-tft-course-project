@@ -2,7 +2,7 @@
   "schema_version": 2,
   "project_id": "DG-IGZO-TFT-PDK",
   "principle": "Each experiment has dependencies, one declared variable group, controls, outputs, acceptance criteria and an evidence boundary.",
-  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional"],
+  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready"],
   "parameter_groups": [
     {
       "id": "P1",
@@ -105,14 +105,19 @@
       "id": "T01",
       "track": "tcad",
       "name": "single_gate_igzo_drift_diffusion_baseline",
-      "status": "planned",
+      "status": "input_contract_ready",
       "current_evidence": "E0",
       "depends_on": ["S00", "T00"],
       "purpose": "Establish the smallest current-carrying IGZO device case.",
       "changed_variables": ["VGS", "VDS"],
       "controls": ["geometry", "temperature", "mobility_model", "contact_model"],
       "required_outputs": ["IdVg", "IdVd", "2d_state_maps", "mesh_independence", "current_conservation"],
-      "acceptance": ["at least one complete bias sweep converges", "terminal current conservation passes", "mesh metrics are reported"]
+      "input_contract_outputs": [
+        "config/tcad_t01_baseline.json",
+        "results/reports/tcad_t01_input_contract.json"
+      ],
+      "acceptance": ["at least one complete bias sweep converges", "terminal current conservation passes", "mesh metrics are reported"],
+      "simulation_status": "NOT_RUN"
     },
     {
       "id": "T02",

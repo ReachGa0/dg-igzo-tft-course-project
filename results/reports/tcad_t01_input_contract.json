@@ -1,0 +1,109 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_A_V1",
+  "stage": "T01-A",
+  "contract_status": "PASS",
+  "simulation_status": "NOT_RUN",
+  "simulation_run": false,
+  "evidence_level": "E0",
+  "contract_evidence_level": "E3",
+  "checks": [
+    {
+      "name": "units:physical_coordinate_system",
+      "status": "PASS",
+      "detail": "{\"coordinate_unit\": \"cm\", \"current_density_2d_unit\": \"A/cm\", \"density_unit\": \"cm^-3\", \"diffusion_coefficient_unit\": \"cm^2/s\", \"length_unit\": \"cm\", \"mobility_unit\": \"cm^2/(V*s)\", \"out_of_plane_convention\": \"2D current per unit depth; multiply by physical W_cm for terminal current\", \"potential_unit\": \"V\", \"temperature_unit\": \"K\", \"terminal_current_unit\": \"A\", \"voltage_unit\": \"V\"}"
+    },
+    {
+      "name": "geometry:single_gate_scope",
+      "status": "PASS",
+      "detail": "regions=['bottom_oxide', 'channel', 'ambient'] contacts=['source', 'drain', 'bottom_gate']"
+    },
+    {
+      "name": "geometry:unit_conversion",
+      "status": "PASS",
+      "detail": "um/nm values convert to cm without rounding loss"
+    },
+    {
+      "name": "geometry:project_baseline_match",
+      "status": "PASS",
+      "detail": "W/L/tch/physical tox match config/project.json"
+    },
+    {
+      "name": "materials:igzo_only",
+      "status": "PASS",
+      "detail": "active material is n-type IGZO and config contains no SnO"
+    },
+    {
+      "name": "materials:teaching_sources",
+      "status": "PASS",
+      "detail": "mobility/VTH/IGZO permittivity are traced; remaining closure values are explicit assumptions"
+    },
+    {
+      "name": "materials:physical_vs_effective_tox",
+      "status": "PASS",
+      "detail": "30 nm physical oxide remains separate from 10 nm compact-model effective TOX"
+    },
+    {
+      "name": "physics:minimal_electron_transport",
+      "status": "PASS",
+      "detail": "{\"bulk_traps\": \"inactive\", \"drift_diffusion\": \"electron_only\", \"electron_continuity\": \"active\", \"ferroelectric_polarization\": \"inactive\", \"hole_continuity\": \"inactive\", \"interface_traps\": \"inactive\", \"poisson\": \"active\", \"quantum_correction\": \"inactive\", \"recombination_generation\": \"inactive\"}"
+    },
+    {
+      "name": "physics:temperature_and_mobility",
+      "status": "PASS",
+      "detail": "300 K constant teaching mobility with Einstein diffusion"
+    },
+    {
+      "name": "contacts:ideal_ohmic_baseline",
+      "status": "PASS",
+      "detail": "source/drain are ideal ohmic; non-ideal contact resistance is deferred"
+    },
+    {
+      "name": "mesh:two_structured_levels",
+      "status": "PASS",
+      "detail": "coarse and fine structured meshes are defined in cm"
+    },
+    {
+      "name": "solver:continuation_order",
+      "status": "PASS",
+      "detail": "equilibrium -> low VDS -> stepped VGS/VDS continuation"
+    },
+    {
+      "name": "bias:staged_protocol",
+      "status": "PASS",
+      "detail": "four ordered stages are frozen but not executed"
+    },
+    {
+      "name": "mesh:spacing_consistent",
+      "status": "PASS",
+      "detail": "fine mesh is strictly finer in x and channel y"
+    },
+    {
+      "name": "gate:source_audit",
+      "status": "PASS",
+      "detail": "T01 is permitted only as an E2 teaching-parameter simulation"
+    }
+  ],
+  "outputs": {
+    "idvg_csv": "results/tcad/t01_single_gate/idvg.csv",
+    "idvd_csv": "results/tcad/t01_single_gate/idvd.csv",
+    "state_maps_directory": "results/tcad/t01_single_gate/state_maps",
+    "mesh_comparison_csv": "results/tables/tcad_t01_mesh_comparison.csv",
+    "raw_solver_log": "results/tcad/t01_single_gate/solver.log",
+    "report": "results/reports/tcad_t01_single_gate.json"
+  },
+  "evidence_boundary": {
+    "simulation_run": false,
+    "simulation_status": "NOT_RUN",
+    "allowed_claim": "T01-A reproducible input contract only",
+    "prohibited_claims": [
+      "Id-Vg result",
+      "Id-Vd result",
+      "mobility extraction",
+      "threshold validation",
+      "experimental fit",
+      "dual-gate current prediction"
+    ]
+  },
+  "failures": []
+}

@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`S00_DATA_AUDIT_COMPLETE`：已冻结来源、单位、数据集边界和冲突登记。G0 为 `TEACHING_BASELINE_ONLY`，T01 可作为 E2 教学参数仿真启动，但定量实验拟合仍被阻止。
+`T01_A_INPUT_CONTRACT_READY`：S00 来源审计完成，T01-A 已冻结单栅电子漂移扩散输入合同；仿真尚未运行。G0 为 `TEACHING_BASELINE_ONLY`，T01 只能作为 E2 教学参数仿真，定量实验拟合仍被阻止。
 
 ## 截止日期
 
@@ -42,7 +42,7 @@
 | A00 | 范围与总体架构 | DONE，待老师确认 | `ARCHITECTURE.md` |
 | S00 | 来源、单位和数据冲突审计 | DONE，G0 教学参数限定 | `data/processed/s00/` 与 `results/reports/s00_data_audit.json`，E3 审计 |
 | T00 | 二维双栅静电基准 | DONE，E2 | 既有 JSON/CSV/VTK/PNG |
-| T01 | 单栅漂移扩散 | TODO | 架构合同已定 |
+| T01 | 单栅漂移扩散 | T01-A DONE，T01-B TODO | `config/tcad_t01_baseline.json` 与输入合同报告，仿真仍为 E0 |
 | T02 | 双栅电流与阈值耦合 | TODO | 依赖 T01 |
 | T03 | 五组器件参数 | TODO | 依赖 T02 |
 | M00 | IGZO 多曲线标定 | TODO | 等主数据集 |
@@ -60,4 +60,4 @@
 
 ## 架构确认后第一件事
 
-不是先画大电路，而是只实现 T01 的一个最小可收敛条件。它必须使用 S00 的教学参数边界；收到主 IGZO 原始数据和双栅边界后，再升级为定量标定路线。
+不是先画大电路，而是从 T01-B 的零偏压/低 VDS 单点开始。它必须使用 S00 的教学参数边界；收到主 IGZO 原始数据和双栅边界后，再升级为定量标定路线。

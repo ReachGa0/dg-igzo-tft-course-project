@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 145,
+  "checks": 151,
   "failures": 0,
   "results": [
     {
@@ -222,42 +222,42 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=6988"
+      "detail": "bytes=7222"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=11613"
+      "detail": "bytes=11736"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=3936"
+      "detail": "bytes=4001"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=14567"
+      "detail": "bytes=16613"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=3505"
+      "detail": "bytes=3613"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=7159"
+      "detail": "bytes=8016"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=2860"
+      "detail": "bytes=3172"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=1025"
+      "detail": "bytes=1096"
     },
     {
       "name": "file:config/project.json",
@@ -267,7 +267,7 @@
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=13873"
+      "detail": "bytes=14087"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -278,6 +278,11 @@
       "name": "file:config/tcad_baseline.json",
       "status": "PASS",
       "detail": "bytes=1780"
+    },
+    {
+      "name": "file:config/tcad_t01_baseline.json",
+      "status": "PASS",
+      "detail": "bytes=8681"
     },
     {
       "name": "file:references/papers_manifest.csv",
@@ -317,7 +322,7 @@
     {
       "name": "file:docs/06_\u660e\u65e5\u6c47\u62a5\u7a3f.md",
       "status": "PASS",
-      "detail": "bytes=1943"
+      "detail": "bytes=2124"
     },
     {
       "name": "file:docs/07_PPT\u4e0e\u62a5\u544a\u63d0\u7eb2.md",
@@ -360,6 +365,11 @@
       "detail": "bytes=16336"
     },
     {
+      "name": "file:scripts/check_t01_a_contract.py",
+      "status": "PASS",
+      "detail": "bytes=10478"
+    },
+    {
       "name": "file:scripts/build_self_contained_report.py",
       "status": "PASS",
       "detail": "bytes=11722"
@@ -387,7 +397,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=585"
+      "detail": "bytes=943"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -413,6 +423,11 @@
       "name": "file:results/reports/s00_data_audit.json",
       "status": "PASS",
       "detail": "bytes=1834"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=4090"
     },
     {
       "name": "file:models/level61/README.md",
@@ -663,6 +678,21 @@
       "name": "s00:audit_report",
       "status": "PASS",
       "detail": "PASS"
+    },
+    {
+      "name": "t01_a:contract_status",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_a:simulation_not_run",
+      "status": "PASS",
+      "detail": "NOT_RUN"
+    },
+    {
+      "name": "t01_a:single_gate_contract",
+      "status": "PASS",
+      "detail": "single gate, electron-only transport"
     },
     {
       "name": "tcad:mesh_levels",
