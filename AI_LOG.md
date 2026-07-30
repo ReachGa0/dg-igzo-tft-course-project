@@ -16,6 +16,40 @@
 
 ---
 
+## 2026-07-30 | Codex GPT-5 | 建立多 AI 自动接手入口
+
+### 用户目标
+
+把项目交接要求直接加入工程，使获得仓库访问权限的其他编码 AI 能自行读取范围、状态、证据边界和协作规则。
+
+### 本次修改
+
+- 新增根目录 `AGENTS.md`，作为唯一完整的 AI 协作合同。
+- 新增 `CLAUDE.md` 和 `.github/copilot-instructions.md`，只负责把兼容工具引导到 `AGENTS.md`，不复制项目事实。
+- 在 `README.md` 和 `AI_CONTEXT.md` 增加 AI 第一入口。
+- 在 `STATUS.md` 记录交接入口完成。
+- 更新 `scripts/check_project.py`，强制检查三个入口及关键合同标记。
+
+### 合同内容
+
+- 固定 IGZO-only 范围、单极性有源负载拓扑和器件数。
+- 固定证据边界、阶段门、数据纪律、验证要求和 Git 安全规则。
+- 当前进度只从 `STATUS.md` 读取，避免入口文件复制易过期状态。
+- 禁止覆盖未提交修改、强制推送、上传凭据和把结构检查冒充领域结果。
+
+### 验证
+
+```text
+make check
+PROJECT_CHECK_PASS checks=122
+```
+
+本次只增加交接与检查基础设施，没有运行 TCAD、SPICE、KLayout、DRC 或 LVS。
+
+### 使用方法
+
+让新的仓库型 AI 先读根目录 `AGENTS.md`。普通网页聊天 AI 若没有本机或私有仓库访问权限，仍需上传文件或授权仓库读取，不能向其发送 Token 或 SSH 私钥。
+
 ## 2026-07-30 | Codex GPT-5 | Git/GitHub 版本库初始化
 
 ### 用户目标

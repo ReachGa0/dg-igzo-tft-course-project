@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 116,
+  "checks": 122,
   "failures": 0,
   "results": [
     {
@@ -195,9 +195,24 @@
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/final"
     },
     {
+      "name": "file:AGENTS.md",
+      "status": "PASS",
+      "detail": "bytes=6495"
+    },
+    {
+      "name": "file:CLAUDE.md",
+      "status": "PASS",
+      "detail": "bytes=252"
+    },
+    {
+      "name": "file:.github/copilot-instructions.md",
+      "status": "PASS",
+      "detail": "bytes=207"
+    },
+    {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=6684"
+      "detail": "bytes=6792"
     },
     {
       "name": "file:ARCHITECTURE.md",
@@ -207,12 +222,12 @@
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=3563"
+      "detail": "bytes=3706"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=9158"
+      "detail": "bytes=10563"
     },
     {
       "name": "file:PROJECT_PLAN.md",
@@ -227,7 +242,7 @@
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=2247"
+      "detail": "bytes=2335"
     },
     {
       "name": "file:Makefile",
@@ -388,6 +403,21 @@
       "name": "file:pdk/drc/README.md",
       "status": "PASS",
       "detail": "bytes=193"
+    },
+    {
+      "name": "handoff:agents_contract",
+      "status": "PASS",
+      "detail": "markers=6/6"
+    },
+    {
+      "name": "handoff:claude_pointer",
+      "status": "PASS",
+      "detail": "points to AGENTS.md"
+    },
+    {
+      "name": "handoff:copilot_pointer",
+      "status": "PASS",
+      "detail": "points to AGENTS.md"
     },
     {
       "name": "config:json",

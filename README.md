@@ -110,6 +110,7 @@ VTH = 0.21 V
 ## 9. 工程目录
 
 ```text
+AGENTS.md                所有仓库型 AI 的强制第一入口
 ARCHITECTURE.md          总体依赖、接口和验收门
 PROJECT_PLAN.md          阶段与里程碑
 STATUS.md                当前完成/待完成
@@ -150,6 +151,7 @@ report/                  12 章工作稿和最终单 HTML
 
 ## 12. 快速入口
 
+- AI 接手规范：[AGENTS.md](AGENTS.md)
 - 总体架构：[ARCHITECTURE.md](ARCHITECTURE.md)
 - 项目计划：[PROJECT_PLAN.md](PROJECT_PLAN.md)
 - 当前状态：[STATUS.md](STATUS.md)
@@ -160,4 +162,3 @@ report/                  12 章工作稿和最终单 HTML
 ## 13. 证据边界
 
 本项目是课程研究和教学 PDK，不是流片签核 PDK。架构检查通过只表示文件、范围和依赖一致，不表示器件模型、电路、DRC/LVS 或 HZO 扩展已经实现。
-

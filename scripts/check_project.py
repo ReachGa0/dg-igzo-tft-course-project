@@ -17,6 +17,9 @@ ROOT = Path(__file__).resolve().parents[1]
 REPORT_PATH = ROOT / "results" / "reports" / "project_check.json"
 
 REQUIRED_FILES = [
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".github/copilot-instructions.md",
     "README.md",
     "ARCHITECTURE.md",
     "AI_CONTEXT.md",
@@ -123,6 +126,29 @@ def main() -> int:
         path = ROOT / relative
         valid = path.is_file() and path.stat().st_size > 0
         add_check(checks, f"file:{relative}", valid, f"bytes={path.stat().st_size if path.exists() else 0}")
+
+    try:
+        agents_text = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+        required_markers = {
+            "DG-IGZO-TFT-PDK",
+            "git status --short --branch",
+            "make check",
+            "AI_LOG.md",
+            "STATUS.md",
+            "不得称为原生 HSPICE Level 61",
+        }
+        add_check(
+            checks,
+            "handoff:agents_contract",
+            all(marker in agents_text for marker in required_markers),
+            f"markers={sum(marker in agents_text for marker in required_markers)}/{len(required_markers)}",
+        )
+        claude_text = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+        copilot_text = (ROOT / ".github" / "copilot-instructions.md").read_text(encoding="utf-8")
+        add_check(checks, "handoff:claude_pointer", "AGENTS.md" in claude_text, "points to AGENTS.md")
+        add_check(checks, "handoff:copilot_pointer", "AGENTS.md" in copilot_text, "points to AGENTS.md")
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "handoff:agent_entries", False, str(error))
 
     config_path = ROOT / "config" / "project.json"
     try:

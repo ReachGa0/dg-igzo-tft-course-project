@@ -1,14 +1,17 @@
 # AI 工作上下文
 
+> 仓库型 AI 必须先读取根目录 `AGENTS.md`。本文件提供详细项目事实，当前进度以 `STATUS.md` 为准。
+
 ## 必读顺序
 
-1. `README.md`
-2. `ARCHITECTURE.md`
-3. `STATUS.md`
-4. `PROJECT_PLAN.md`
-5. `DECISIONS.md`
-6. `AI_LOG.md`
-7. 与任务对应的 `docs/*.md`
+1. `AGENTS.md`
+2. `README.md`
+3. `ARCHITECTURE.md`
+4. `STATUS.md`
+5. `PROJECT_PLAN.md`
+6. `DECISIONS.md`
+7. `AI_LOG.md`
+8. 与任务对应的 `docs/*.md`
 
 ## 当前权威范围
 
@@ -78,4 +81,3 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 ## 完成定义
 
 架构任务完成需要：范围一致、DAG 完整、接口明确、器件数固定、旧结果边界清楚、自动结构检查通过。它不等于任何新模型或电路已经实现。
-
