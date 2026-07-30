@@ -276,15 +276,15 @@
     {
       "id": "R00",
       "track": "report",
-      "name": "single_file_html_delivery",
+      "name": "chapter_authored_single_file_html_delivery",
       "status": "scaffolded",
       "current_evidence": "E2",
       "depends_on": ["S00"],
-      "purpose": "Assemble a reproducible 12-section report without overstating incomplete stages.",
+      "purpose": "Author and review 12 independent chapter sources, then assemble one reproducible self-contained HTML without overstating incomplete stages.",
       "changed_variables": ["report_revision"],
-      "controls": ["evidence_matrix", "source_hashes", "placeholder_guard"],
-      "required_outputs": ["12_sections", "embedded_images", "evidence_index", "reproduction_commands"],
-      "acceptance": ["no unresolved placeholders in final", "no external images", "all quantitative claims have evidence rows"]
+      "controls": ["chapter_manifest", "evidence_matrix", "source_hashes", "placeholder_guard"],
+      "required_outputs": ["12_chapter_sources", "5_appendix_sources", "assembled_single_html", "embedded_images", "evidence_index", "reproduction_commands"],
+      "acceptance": ["chapter IDs and order match manifest", "print layout starts each chapter on a new page", "no unresolved placeholders in final", "no external images", "all quantitative claims have evidence rows"]
     }
   ]
 }

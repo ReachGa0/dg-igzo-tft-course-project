@@ -49,6 +49,7 @@ REQUIRED_FILES = [
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
+    "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
     "models/level61/README.md",
@@ -98,6 +99,8 @@ REQUIRED_DIRS = [
     "ppt",
     "report",
     "report/src",
+    "report/chapters",
+    "report/appendices",
     "report/assets",
     "report/final",
 ]
@@ -207,6 +210,12 @@ def main() -> int:
             "config:final_report_format",
             course_requirements.get("final_report_format") == "single_self_contained_html",
             str(course_requirements.get("final_report_format")),
+        )
+        add_check(
+            checks,
+            "config:report_authoring_mode",
+            course_requirements.get("report_authoring_mode") == "chapter_sources",
+            str(course_requirements.get("report_authoring_mode")),
         )
         add_check(
             checks,
@@ -405,34 +414,96 @@ def main() -> int:
     except Exception as error:  # noqa: BLE001
         add_check(checks, "tcad:smoke_report", False, str(error))
 
-    report_template_path = ROOT / "report" / "src" / "\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml"
+    report_manifest_path = ROOT / "report" / "manifest.json"
     try:
-        report_text = report_template_path.read_text(encoding="utf-8")
-        report_root = ET.fromstring(report_text)
-        namespace = {"h": "http://www.w3.org/1999/xhtml"}
-        section_ids = [node.attrib.get("id", "") for node in report_root.findall(".//h:section", namespace)]
-        required_sections = {f"section-{index:02d}" for index in range(1, 13)}
+        report_manifest = json.loads(report_manifest_path.read_text(encoding="utf-8"))
+        chapters = report_manifest["chapters"]
+        appendices = report_manifest["appendices"]
+        required_sections = [f"section-{index:02d}" for index in range(1, 13)]
+        required_appendices = [f"appendix-{letter}" for letter in "abcde"]
+        add_check(
+            checks,
+            "report:authoring_and_submission_modes",
+            report_manifest.get("authoring_mode") == "chapter_sources"
+            and report_manifest.get("submission_mode") == "single_self_contained_html",
+            f"{report_manifest.get('authoring_mode')} -> {report_manifest.get('submission_mode')}",
+        )
         add_check(
             checks,
             "report:required_sections",
-            required_sections <= set(section_ids),
-            f"main_sections={len(required_sections & set(section_ids))}",
+            [item.get("id") for item in chapters] == required_sections,
+            f"chapters={len(chapters)}",
         )
+        add_check(
+            checks,
+            "report:required_appendices",
+            [item.get("id") for item in appendices] == required_appendices,
+            f"appendices={len(appendices)}",
+        )
+
+        section_tag = "{http://www.w3.org/1999/xhtml}section"
+        fragment_texts: list[str] = []
+        fragments_valid = True
+        fragment_specs = [
+            *((item, "report-chapter") for item in chapters),
+            *((item, "report-appendix") for item in appendices),
+        ]
+        for record, required_class in fragment_specs:
+            fragment_path = ROOT / record["source"]
+            if not fragment_path.is_file():
+                fragments_valid = False
+                continue
+            fragment_text = fragment_path.read_text(encoding="utf-8")
+            fragment_texts.append(fragment_text)
+            fragment_root = ET.fromstring(fragment_text)
+            classes = set(fragment_root.attrib.get("class", "").split())
+            if (
+                fragment_root.tag != section_tag
+                or fragment_root.attrib.get("id") != record["id"]
+                or required_class not in classes
+            ):
+                fragments_valid = False
+        add_check(
+            checks,
+            "report:chapter_and_appendix_sources",
+            fragments_valid and len(fragment_texts) == 17,
+            f"valid_sources={len(fragment_texts)}/17",
+        )
+
+        shell_path = ROOT / report_manifest["shell"]
+        report_text = shell_path.read_text(encoding="utf-8")
+        report_root = ET.fromstring(report_text)
+        namespace = {"h": "http://www.w3.org/1999/xhtml"}
+        content = report_root.find(".//h:div[@id='report-content']", namespace)
+        toc = report_root.find(".//h:nav[@id='report-toc']/h:ol", namespace)
+        add_check(
+            checks,
+            "report:shell_contract",
+            content is not None and toc is not None and not list(content) and not list(toc),
+            "empty content and TOC containers",
+        )
+        add_check(
+            checks,
+            "report:print_chapter_breaks",
+            "report-chapter" in report_text and "page-break-before" in report_text,
+            "chapter print pagination declared",
+        )
+        combined_text = "\n".join([report_text, *fragment_texts])
         forbidden_images = re.findall(
-            r'<img[^>]+src=["\'](?:https?://|file://|[A-Za-z]:[\\/]|/)', report_text, re.IGNORECASE
+            r'<img[^>]+src=["\'](?:https?://|file://|[A-Za-z]:[\\/]|/)', combined_text, re.IGNORECASE
         )
         add_check(checks, "report:no_forbidden_image_sources", not forbidden_images, f"count={len(forbidden_images)}")
         add_check(
             checks,
             "report:placeholder_guard",
-            "[\u5f85\u586b\u5199" in report_text,
-            "draft intentionally remains non-final until placeholders are resolved",
+            "[\u5f85\u586b\u5199" in combined_text,
+            "chapter drafts intentionally remain non-final until placeholders are resolved",
         )
         add_check(
             checks,
             "report:current_scope_title",
-            "双栅 IGZO" in report_text and "单极性逻辑" in report_text,
-            "report title and theory placeholder use current scope",
+            "双栅 IGZO" in combined_text and "单极性逻辑" in combined_text,
+            "report shell and chapter placeholders use current scope",
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "report:template", False, str(error))

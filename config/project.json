@@ -29,7 +29,9 @@
     "project_level": "high_difficulty",
     "minimum_parameter_groups": 5,
     "final_report_format": "single_self_contained_html",
+    "report_authoring_mode": "chapter_sources",
     "report_section_count": 12,
+    "report_appendix_count": 5,
     "embedded_images_required": true,
     "reproducible_inputs_and_scripts_required": true
   },

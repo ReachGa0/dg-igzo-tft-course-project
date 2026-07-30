@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 122,
+  "checks": 131,
   "failures": 0,
   "results": [
     {
@@ -185,6 +185,16 @@
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/src"
     },
     {
+      "name": "directory:report/chapters",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/chapters"
+    },
+    {
+      "name": "directory:report/appendices",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/appendices"
+    },
+    {
       "name": "directory:report/assets",
       "status": "PASS",
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/assets"
@@ -197,42 +207,42 @@
     {
       "name": "file:AGENTS.md",
       "status": "PASS",
-      "detail": "bytes=6495"
+      "detail": "bytes=6740"
     },
     {
       "name": "file:CLAUDE.md",
       "status": "PASS",
-      "detail": "bytes=252"
+      "detail": "bytes=251"
     },
     {
       "name": "file:.github/copilot-instructions.md",
       "status": "PASS",
-      "detail": "bytes=207"
+      "detail": "bytes=206"
     },
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=6792"
+      "detail": "bytes=6807"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=11478"
+      "detail": "bytes=11592"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=3706"
+      "detail": "bytes=3748"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=10563"
+      "detail": "bytes=12273"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=3264"
+      "detail": "bytes=3346"
     },
     {
       "name": "file:DECISIONS.md",
@@ -242,7 +252,7 @@
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=2335"
+      "detail": "bytes=2419"
     },
     {
       "name": "file:Makefile",
@@ -252,12 +262,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=4011"
+      "detail": "bytes=4091"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=13205"
+      "detail": "bytes=13445"
     },
     {
       "name": "file:config/tcad_baseline.json",
@@ -297,12 +307,12 @@
     {
       "name": "file:docs/05_\u9a8c\u8bc1\u4e0e\u9a8c\u6536\u6807\u51c6.md",
       "status": "PASS",
-      "detail": "bytes=5933"
+      "detail": "bytes=6186"
     },
     {
       "name": "file:docs/06_\u660e\u65e5\u6c47\u62a5\u7a3f.md",
       "status": "PASS",
-      "detail": "bytes=1652"
+      "detail": "bytes=1710"
     },
     {
       "name": "file:docs/07_PPT\u4e0e\u62a5\u544a\u63d0\u7eb2.md",
@@ -332,7 +342,7 @@
     {
       "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
       "status": "PASS",
-      "detail": "bytes=7973"
+      "detail": "bytes=8521"
     },
     {
       "name": "file:scripts/import_senior_reference.py",
@@ -342,7 +352,7 @@
     {
       "name": "file:scripts/build_self_contained_report.py",
       "status": "PASS",
-      "detail": "bytes=5708"
+      "detail": "bytes=11722"
     },
     {
       "name": "file:tcad/README.md",
@@ -355,9 +365,14 @@
       "detail": "bytes=19065"
     },
     {
+      "name": "file:report/manifest.json",
+      "status": "PASS",
+      "detail": "bytes=2539"
+    },
+    {
       "name": "file:report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
       "status": "PASS",
-      "detail": "bytes=5206"
+      "detail": "bytes=2698"
     },
     {
       "name": "file:report/evidence_matrix.csv",
@@ -480,6 +495,11 @@
       "detail": "single_self_contained_html"
     },
     {
+      "name": "config:report_authoring_mode",
+      "status": "PASS",
+      "detail": "chapter_sources"
+    },
+    {
       "name": "config:parameter_groups_minimum",
       "status": "PASS",
       "detail": "5"
@@ -595,9 +615,34 @@
       "detail": "files=5"
     },
     {
+      "name": "report:authoring_and_submission_modes",
+      "status": "PASS",
+      "detail": "chapter_sources -> single_self_contained_html"
+    },
+    {
       "name": "report:required_sections",
       "status": "PASS",
-      "detail": "main_sections=12"
+      "detail": "chapters=12"
+    },
+    {
+      "name": "report:required_appendices",
+      "status": "PASS",
+      "detail": "appendices=5"
+    },
+    {
+      "name": "report:chapter_and_appendix_sources",
+      "status": "PASS",
+      "detail": "valid_sources=17/17"
+    },
+    {
+      "name": "report:shell_contract",
+      "status": "PASS",
+      "detail": "empty content and TOC containers"
+    },
+    {
+      "name": "report:print_chapter_breaks",
+      "status": "PASS",
+      "detail": "chapter print pagination declared"
     },
     {
       "name": "report:no_forbidden_image_sources",
@@ -607,12 +652,12 @@
     {
       "name": "report:placeholder_guard",
       "status": "PASS",
-      "detail": "draft intentionally remains non-final until placeholders are resolved"
+      "detail": "chapter drafts intentionally remain non-final until placeholders are resolved"
     },
     {
       "name": "report:current_scope_title",
       "status": "PASS",
-      "detail": "report title and theory placeholder use current scope"
+      "detail": "report shell and chapter placeholders use current scope"
     }
   ]
 }

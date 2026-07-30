@@ -35,6 +35,7 @@
 - 固定器件数：`INV=2`、`NAND2=3`、`NOR2=3`、`XOR2=12`、`RING5=10`、`FULL_ADDER_1BIT=33`。
 - HZO/铁电顶栅是可选扩展，基础器件、电路和版图闭环未通过前不得占用主线交付时间。
 - 本项目是课程研究和教学 PDK，不得称为代工厂签核或可直接流片 PDK。
+- 报告正文必须在 `report/chapters/` 按 12 章分别维护，附录在 `report/appendices/`；正式提交仍是自动组装的单个自包含 HTML。
 
 ## 3. 证据与表述规则
 
@@ -85,6 +86,8 @@ make check
 git status --short
 git diff --check
 ```
+
+涉及报告源、清单、图片或构建器时，额外执行 `make report-check`。
 
 涉及领域实现时还要运行对应的最小测试，并在最终说明中明确哪些测试没有运行。
 

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "authoring_mode": "chapter_sources",
+  "submission_mode": "single_self_contained_html",
+  "shell": "report/src/实验报告_草稿.xhtml",
+  "output": "report/final/实验报告.html",
+  "chapters": [
+    {"id": "section-01", "number": 1, "title": "项目名称与基本信息", "source": "report/chapters/01_项目名称与基本信息.xhtml"},
+    {"id": "section-02", "number": 2, "title": "摘要", "source": "report/chapters/02_摘要.xhtml"},
+    {"id": "section-03", "number": 3, "title": "研究背景与项目目标", "source": "report/chapters/03_研究背景与项目目标.xhtml"},
+    {"id": "section-04", "number": 4, "title": "理论基础与模型原理", "source": "report/chapters/04_理论基础与模型原理.xhtml"},
+    {"id": "section-05", "number": 5, "title": "仿真工具与模型建立", "source": "report/chapters/05_仿真工具与模型建立.xhtml"},
+    {"id": "section-06", "number": 6, "title": "参数设置与来源", "source": "report/chapters/06_参数设置与来源.xhtml"},
+    {"id": "section-07", "number": 7, "title": "基准仿真结果", "source": "report/chapters/07_基准仿真结果.xhtml"},
+    {"id": "section-08", "number": 8, "title": "参数分析与讨论", "source": "report/chapters/08_参数分析与讨论.xhtml"},
+    {"id": "section-09", "number": 9, "title": "模型验证或结果对比", "source": "report/chapters/09_模型验证或结果对比.xhtml"},
+    {"id": "section-10", "number": 10, "title": "电路或系统设计结果", "source": "report/chapters/10_电路或系统设计结果.xhtml"},
+    {"id": "section-11", "number": 11, "title": "结论", "source": "report/chapters/11_结论.xhtml"},
+    {"id": "section-12", "number": 12, "title": "参考文献", "source": "report/chapters/12_参考文献.xhtml"}
+  ],
+  "appendices": [
+    {"id": "appendix-a", "label": "A", "title": "完整参数表", "source": "report/appendices/A_完整参数表.xhtml"},
+    {"id": "appendix-b", "label": "B", "title": "原始数据索引", "source": "report/appendices/B_原始数据索引.xhtml"},
+    {"id": "appendix-c", "label": "C", "title": "仿真代码与输入文件", "source": "report/appendices/C_仿真代码与输入文件.xhtml"},
+    {"id": "appendix-d", "label": "D", "title": "补充结果与失败案例", "source": "report/appendices/D_补充结果与失败案例.xhtml"},
+    {"id": "appendix-e", "label": "E", "title": "运行说明与AI使用声明", "source": "report/appendices/E_运行说明与AI使用声明.xhtml"}
+  ]
+}

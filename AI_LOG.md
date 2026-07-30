@@ -16,6 +16,46 @@
 
 ---
 
+## 2026-07-30 | Codex GPT-5 | 报告改为分章写作、单文件提交
+
+### 用户目标
+
+老师最新口头建议最终报告最好分章节。调整工程报告结构，同时保持老师书面要求中的单个自包含 HTML 提交格式。
+
+### 要求解释
+
+- 写作、修改和审阅：12 个主章节与 5 个附录分别维护。
+- 最终提交：仍由构建器合并为唯一 `report/final/实验报告.html`。
+- 阅读/打印：自动生成目录，打印时每章另起一页。
+- 不维护“章节版正文”和“合并版正文”两套内容，防止不一致。
+
+### 本次修改
+
+- 新增 `report/manifest.json`，固定外壳、12 章、5 附录和最终输出顺序。
+- 新增 `report/chapters/*.xhtml` 与 `report/appendices/*.xhtml`，从旧长草稿迁移全部占位内容。
+- 将 `report/src/实验报告_草稿.xhtml` 改为只含标题、CSS、目录和内容容器的外壳。
+- 重写 `scripts/build_self_contained_report.py`，按清单组装、生成目录、校验片段并嵌入图片。
+- 更新项目检查器、机器配置、R00 合同、报告说明、架构、计划、状态和 AI 交接规范。
+
+### 验证
+
+```text
+make report-check
+REPORT_STRUCTURE_PASS chapters=12 appendices=5 placeholders=22 images=0
+
+make report
+REPORT_BUILD_FAIL Unresolved placeholders: 22
+
+make check
+PROJECT_CHECK_PASS checks=131
+```
+
+`make report` 当前失败是预期的防误交保护，正式正文填完前不会生成最终报告。本次未运行 TCAD、SPICE、KLayout、DRC 或 LVS。
+
+### 下一步
+
+后续每完成一个实验，同步填写对应章节并运行 `make report-check`。全部 22 个占位符解决后，才运行 `make report` 生成正式提交文件。
+
 ## 2026-07-30 | Codex GPT-5 | 建立多 AI 自动接手入口
 
 ### 用户目标

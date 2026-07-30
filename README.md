@@ -126,7 +126,7 @@ pdk/                     技术层、PCell、DRC、LVS
 layout/                  单元、模块和 GDS
 verification/            仿真、DRC/LVS 与故障注入
 results/                 图、表和机器报告
-report/                  12 章工作稿和最终单 HTML
+report/                  12 章独立源、组装清单和最终单 HTML
 ```
 
 ## 10. 当前阶段怎么验收

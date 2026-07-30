@@ -7,7 +7,7 @@
     <style>
       body { margin: 0; color: #17202a; background: #eef2f5; font-family: "Microsoft YaHei", Arial, sans-serif; line-height: 1.75; }
       main { width: min(1040px, calc(100% - 40px)); margin: 24px auto; padding: 48px 58px; background: #fff; box-sizing: border-box; }
-      h1 { text-align: center; color: #123c5a; }
+      h1 { margin: 0; text-align: center; color: #123c5a; }
       h2 { margin-top: 38px; padding-bottom: 6px; color: #164f73; border-bottom: 2px solid #d8e2e8; }
       h3 { color: #286a63; }
       table { width: 100%; border-collapse: collapse; margin: 14px 0; }
@@ -18,89 +18,35 @@
       figcaption { margin-top: 8px; color: #4e5f69; text-align: center; }
       code, pre { font-family: Consolas, "Courier New", monospace; }
       pre { overflow-x: auto; padding: 12px 14px; background: #f3f5f7; border-left: 4px solid #557f91; }
+      .report-header { padding-bottom: 28px; border-bottom: 3px solid #123c5a; }
+      .toc { margin: 32px 0 44px; padding: 20px 26px; border: 1px solid #cbd5dc; }
+      .toc h2 { margin-top: 0; }
+      .toc ol { columns: 2; column-gap: 36px; }
+      .toc li { break-inside: avoid; margin: 5px 0; }
+      .toc a { color: #164f73; text-decoration: none; }
       .meta td:first-child { width: 24%; font-weight: 700; }
       .boundary { padding: 12px 16px; background: #fff5da; border-left: 5px solid #c98b16; }
-      @media print { body { background: #fff; } main { width: auto; margin: 0; padding: 15mm; } }
+      .report-chapter, .report-appendix { scroll-margin-top: 20px; }
+      @media (max-width: 720px) { main { width: 100%; margin: 0; padding: 28px 22px; } .toc ol { columns: 1; } }
+      @media print {
+        body { background: #fff; }
+        main { width: auto; margin: 0; padding: 15mm; }
+        .toc { break-after: page; }
+        .report-chapter, .report-appendix { break-before: page; page-break-before: always; }
+        #section-01 { break-before: auto; page-break-before: auto; }
+      }
     </style>
   </head>
   <body>
     <main>
-      <h1>基于双栅 IGZO TFT 的二维器件模型、紧凑模型与单极性逻辑教学 PDK</h1>
-
-      <section id="section-01">
-        <h2>1. 项目名称与基本信息</h2>
-        <table class="meta">
-          <tbody>
-            <tr><td>姓名</td><td>[待填写姓名]</td></tr>
-            <tr><td>学号/班级</td><td>[待填写学号与班级]</td></tr>
-            <tr><td>指导教师</td><td>[待填写指导教师]</td></tr>
-            <tr><td>完成日期</td><td>[待填写日期]</td></tr>
-            <tr><td>主要软件</td><td>DEVSIM、AIM-Spice/ngspice、KLayout、Python；[待填写实际版本核对]</td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section id="section-02">
-        <h2>2. 摘要</h2>
-        <p>[待填写300至500字摘要：问题、方法、主要定量结果、结论和证据边界]</p>
-      </section>
-
-      <section id="section-03">
-        <h2>3. 研究背景与项目目标</h2>
-        <p>[待填写研究意义、科学问题、任务和预期目标]</p>
-      </section>
-
-      <section id="section-04">
-        <h2>4. 理论基础与模型原理</h2>
-        <p>[待填写Poisson/漂移扩散、TFT紧凑模型、双栅耦合和有源负载单极性逻辑原理；逐项解释符号与单位]</p>
-      </section>
-
-      <section id="section-05">
-        <h2>5. 仿真工具与模型建立</h2>
-        <p>[待填写软件版本、二维结构、网格、边界、物理模型、求解顺序、SPICE和版图流程]</p>
-      </section>
-
-      <section id="section-06">
-        <h2>6. 参数设置与来源</h2>
-        <p>[待填写参数主表：名称、符号、数值、单位、来源类型、来源、用途和拟合状态]</p>
-      </section>
-
-      <section id="section-07">
-        <h2>7. 基准仿真结果</h2>
-        <p>[待填写二维TCAD、IGZO单管和有源负载反相器基准结果及关键指标]</p>
-      </section>
-
-      <section id="section-08">
-        <h2>8. 参数分析与讨论</h2>
-        <p>[待填写双栅、陷阱、接触、几何/介质和温度五组参数的定量比较与物理解释]</p>
-      </section>
-
-      <section id="section-09">
-        <h2>9. 模型验证或结果对比</h2>
-        <p>[待填写拟合/验证集、误差指标、文献或其他软件对比及适用范围]</p>
-      </section>
-
-      <section id="section-10">
-        <h2>10. 电路或系统设计结果</h2>
-        <p>[待填写INV/NAND/NOR/XOR、五级环振、全加器、版图、DRC/LVS、延迟和功耗]</p>
-      </section>
-
-      <section id="section-11">
-        <h2>11. 结论</h2>
-        <p>[待填写三至五条有数值支撑的结论及模型局限]</p>
-        <p class="boundary">当前静电基准不能预测漏电流；行为 ngspice 模型不是原生 Level61；教学 DRC/LVS 不是代工厂签核。[待填写最终边界核对]</p>
-      </section>
-
-      <section id="section-12">
-        <h2>12. 参考文献</h2>
-        <p>[待填写正文对应的论文、软件手册、老师数据和学长参考资料]</p>
-      </section>
-
-      <section id="appendix-a"><h2>附录A：完整参数表</h2><p>[待填写]</p></section>
-      <section id="appendix-b"><h2>附录B：原始数据索引</h2><p>[待填写]</p></section>
-      <section id="appendix-c"><h2>附录C：仿真代码与输入文件</h2><p>[待填写]</p></section>
-      <section id="appendix-d"><h2>附录D：补充结果与失败案例</h2><p>[待填写]</p></section>
-      <section id="appendix-e"><h2>附录E：运行说明与AI使用声明</h2><p>[待填写]</p></section>
+      <header class="report-header">
+        <h1>基于双栅 IGZO TFT 的二维器件模型、紧凑模型与单极性逻辑教学 PDK</h1>
+      </header>
+      <nav id="report-toc" class="toc" aria-label="目录">
+        <h2>目录</h2>
+        <ol></ol>
+      </nav>
+      <div id="report-content"></div>
     </main>
   </body>
 </html>
