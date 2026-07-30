@@ -1,0 +1,112 @@
+{
+  "status": "PASS",
+  "files_indexed": 23,
+  "datasets": {
+    "inverter_vtc_reference": {
+      "output": "data/processed/senior_reference/inverter_vtc_reference.csv",
+      "rows": 181,
+      "vin_min_v": -3.0,
+      "vin_max_v": 6.0,
+      "case_1": {
+        "vout_min_v": -1.58231e-15,
+        "vout_max_v": 2.0,
+        "max_abs_slope_v_per_v": 2.178899999999968,
+        "steepest_interval_v": [
+          4.1,
+          4.15
+        ],
+        "transition_midpoint_v": 4.125
+      },
+      "case_2": {
+        "vout_min_v": -3.77354e-12,
+        "vout_max_v": 2.0,
+        "max_abs_slope_v_per_v": 20.757640000000006,
+        "steepest_interval_v": [
+          -0.3,
+          -0.25
+        ],
+        "transition_midpoint_v": -0.275
+      },
+      "inferred_output_ceiling_v": 2.0,
+      "inference_warning": "The output ceiling may suggest VDD, but the workbook does not confirm VDD or circuit conditions.",
+      "metadata_status": "UNRESOLVED"
+    },
+    "igzo_tcad_transfer_reference": {
+      "output": "data/processed/senior_reference/igzo_tcad_transfer_reference.csv",
+      "rows": 123,
+      "v_gate_min_v": -5.0,
+      "v_gate_max_v": 5.0,
+      "current_min_a": 8.25532e-39,
+      "current_max_a": 0.00152729,
+      "review_rows": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ],
+      "flagged_rows": 53,
+      "quality_flag_counts": {
+        "near_solver_floor": 53,
+        "strong_nonmonotonic_drop": 1
+      },
+      "dynamic_range_warning": "Do not report the full numerical dynamic range as physical Ion/Ioff because the low-current tail includes solver-floor values.",
+      "metadata_status": "UNRESOLVED"
+    }
+  },
+  "office_structure": {
+    "output": "data/processed/senior_reference/office_structure_summary.json",
+    "files": 6,
+    "docx_files": 3,
+    "pptx_files": 3
+  },
+  "evidence_boundary": "Both XLSX files are senior-reference data with incomplete conditions. They are not condition-complete teacher-provided IGZO measurements and cannot establish model accuracy."
+}

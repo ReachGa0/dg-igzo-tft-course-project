@@ -1,0 +1,201 @@
+# AI_LOG
+
+## 记录规则
+
+每次 AI 对项目做实质修改后，在文件顶部追加一条记录。每条必须包含：
+
+- 日期和 AI/工具。
+- 用户目标。
+- 读取的关键输入。
+- 修改的文件。
+- 执行的验证命令和结果。
+- 新决策、假设和未解决问题。
+- 下一步建议。
+
+不允许只写“已优化”、“已完成”而不列出可验证产物。
+
+---
+
+## 2026-07-30 | Codex GPT-5 | IGZO-only 架构冻结
+
+### 用户目标
+
+继续原高难度双栅氧化物 TFT 项目，只移除旧材料分支；当前只确定完整总体架构，不开始新的实现。
+
+### 关键决策
+
+- 正式范围为双栅 IGZO 二维器件模型、紧凑模型、单极性逻辑和教学 PDK。
+- 电路固定为双栅 IGZO 有源负载有比例逻辑，器件数为 2/3/3/12/10/33。
+- 旧范围电路结果失效；T01/M00/C00/L00/V01 均维持 E0。
+- 当前只做文档、配置、接口和清理，不运行新的领域仿真。
+
+### 本次架构文件
+
+- 新增 `ARCHITECTURE.md`。
+- 重写 `README.md`、`PROJECT_PLAN.md`、`STATUS.md` 和 `AI_CONTEXT.md`。
+- 更新 `config/project.json`、`config/experiments.json`、`docs/01` 至 `docs/12` 和报告标题。
+- 新增模型、网表和 DRC 目录合同 README；没有保留刚生成的实现模板。
+- 在 `DECISIONS.md` 增加 ADR-008 至 ADR-010。
+- 删除临时的新方向交接文件；活动冻结基线重建为 7 个 IGZO 来源副本。
+- 更新基线/学长资料导入规则和项目检查规则，但没有新增器件、模型、网表或版图实现。
+
+### 验证
+
+```text
+make import-baseline
+make import-senior
+make check
+rg -i "sno" <活动配置、模型、网表、PDK、版图、验证和报告目录>
+```
+
+结果：
+
+- `BASELINE_IMPORT_PASS files=7`。
+- `SENIOR_REFERENCE_IMPORT_PASS files=23 inverter_rows=181 igzo_rows=123 office_files=6`。
+- `PROJECT_CHECK_PASS checks=116`，0 失败。
+- 活动目录无 SnO 文件；相关文字只保留在决策和 AI 历史中。
+- 本轮未运行 TCAD、SPICE、KLayout、DRC 或 LVS。
+
+### 下一步
+
+本轮在架构冻结处停止。用户明确要求开始实现后，先确认数据和工具边界，再进入 T01 的单个最小漂移扩散案例。
+
+## 2026-07-30 | Codex GPT-5 | 紧急换方向交接
+
+### 用户目标
+
+老师确认 SnO 部分可以不做。暂停旧方案，把此前获得的老师要求、论文、数据、工具、学长参考和证据边界汇总到一个文件，供新对话重新选题。
+
+### 读取的关键输入
+
+- 老师 `实验课程项目与报告要求(1).html` 的方向、五组参数、12 章和单文件 HTML 要求。
+- `references/papers_manifest.csv` 中 13 篇 HfO2/HZO/ZrO2 铁电/反铁电论文。
+- 旧选题论证、文献矩阵、项目配置、现有 TCAD/SPICE/KLayout 资产和学长资料审计结果。
+
+### 本次修改
+
+- 新增 `新方向选题_新对话交接.md`，作为新对话的自包含入口。
+- 在 `README.md`、`AI_CONTEXT.md` 和 `STATUS.md` 标记原 IGZO/SnO 方向暂停。
+- 保留全部旧资产，不提前决定纯 IGZO、HZO/AFE 或其他新方向。
+- 完成 `scripts/import_senior_reference.py` 的 Office/XLSX 审计回归并生成 6 个 Office 文件结构摘要。
+- 删除两个 Python 字节码缓存和一个 Matplotlib 字体缓存；在 `.gitignore` 增加 `results/.cache/`。
+
+### 验证
+
+```text
+make import-senior
+make check
+```
+
+结果：
+
+- `SENIOR_REFERENCE_IMPORT_PASS files=23 inverter_rows=181 igzo_rows=123 office_files=6`。
+- `PROJECT_CHECK_PASS checks=99`。
+- `scripts/__pycache__` 和 `results/.cache` 已清空并移除。
+
+### 证据边界
+
+- “SnO 可以不做”来自用户转述的老师口头意见，尚无书面范围细则。
+- 旧工程配置仍含 SnO 和互补标准单元，只能作为历史范围和可复用资产。
+- 新方向确认前不声称旧题目仍有效。
+
+### 下一步
+
+在新对话中先读交接文件和用户追加论文，输出候选方向评分与推荐；确认方向后再统一迁移工程。
+
+## 2026-07-30 | Codex GPT-5
+
+### 用户目标
+
+系统讲清完成本项目需要掌握的知识，并解释每个实验为什么这样设计，生成可供学习、汇报和后续 AI 接手的中文 Markdown 文档。
+
+### 读取的关键输入
+
+- 项目 `README.md`、计划、状态、决策、AI 上下文和既有知识/验证文档。
+- AIM-Spice Level15 模型卡、ngspice 行为模型、仿真摘要和教学 PDK 参数。
+- 两组 IGZO/SnO 参数口径及 13 篇 HZO/ZrO2 文献调研矩阵。
+
+### 本次修改
+
+- 新增 `docs/09_知识点详解与实验设计原理.md`。
+- 在 `README.md` 增加文档入口。
+- 在 `STATUS.md` 记录学习与实验设计文档完成。
+
+### 文档范围
+
+- 从 TFT 器件物理、I-V 指标、Level15/ngspice 模型，到互补逻辑、环振、全加器、PDK、DRC/LVS/PEX。
+- 解释双栅电容耦合、HZO 极化、Landau/LK、NLS 和可靠性效应的适用层次。
+- 为 E00-E15 写明研究问题、设计原因、变量、控制条件、判据、诊断方式和证据边界。
+- 明确当前混合参数目标、物理厚度/有效 TOX 差异及已完成/未完成事项。
+
+### 验证
+
+```bash
+make check
+awk '/^```/{n++} END{exit n % 2}' docs/09_知识点详解与实验设计原理.md
+```
+
+结果：
+
+- `PROJECT_CHECK_PASS checks=59`，报告更新为 `results/reports/project_check.json`。
+- Markdown 代码围栏共 102 行，为偶数；主章节编号从 0 到 36 连续，文件非空。
+
+### 下一步
+
+按 E00 完成数据口径冻结，然后从 E05 反相器建立首个“网表 -> GDS -> DRC -> 几何 LVS”最小闭环。
+
+## 2026-07-29 | Codex GPT-5
+
+### 用户目标
+
+根据本地论文和已有氧化物 TFT 工程，选择一个难度较高、可获得完整经验且有评分亮点的课程项目，建立独立工程目录、AI 交接文档和面向人的中文手把手说明。
+
+### 读取的关键输入
+
+- `C:\Users\ReachGao\Desktop\SDU\科研\论文` 中 13 篇 PDF。
+- `C:\Users\ReachGao\Desktop\SDU\科研\论文_翻译` 中 HfO2 综述中文摘要。
+- 已有 `ngspice_results`：器件、反相器、5 级环振和全加器前仿真。
+- 已有 `AIMSPICE_improved`：Level15/HSPICE Level61 方向的课程网表。
+- 已有 `klayout_oxide_pdk`：IGZO/SnO 器件 PCell、GDS、层表和教学 DRC。
+- KLayout 官方 LVS 文档：内置 `mos3/mos4/dmos3/dmos4`、`extract_devices`、`connect`、`schematic`和 `compare`。
+
+### 论文判断
+
+论文主题集中在 HfO2/HZO/ZrO2 铁电与反铁电，关键变量是极化、相组成、应变、界面层、唤醒/疲劳和 NLS 开关动力学。它们适合支撑 HZO 铁电顶栅扩展，但不能代替 IGZO/SnO TFT 原始 I-V 数据。
+
+### 决策
+
+选择“基础 PDK/数字逻辑闭环 + 双栅 HZO 铁电扩展”的两层范围。不选 CFET/OISC 作为本次主线，因为它与现有 TFT 工艺和数据衔接弱；不选 COGENDA Te TFT 作为主线，因为当前无 Te TFT 数据、模型和已验证环境。
+
+### 本次产物
+
+- 独立工程目录 `氧化物TFT_铁电双栅课程项目`。
+- 人类入口 `README.md`。
+- AI 入口 `AI_CONTEXT.md` 与本 `AI_LOG.md`。
+- 项目计划、状态、决策、文献矩阵、IC 流程、验收、汇报和风险文档。
+- 基线导入脚本与项目完整性检查脚本。
+
+### 验证
+
+```bash
+python -m py_compile scripts/import_baseline.py scripts/check_project.py
+python scripts/import_baseline.py
+make check
+```
+
+结果：
+
+- Python 语法检查 PASS。
+- 基线导入 PASS：44 个文件，每个源/目标 SHA-256 一致。
+- 项目检查 PASS：59 项，0 失败。
+- 报告：`results/reports/project_check.json`。
+
+### 证据边界
+
+当前只完成选题与工程骨架。基础门、环振、全加器版图和几何 LVS 仍未实现；HZO 扩展仍处于文献约束的研究计划阶段。
+
+### 下一步
+
+1. 2026-07-30 向老师确认选题和数据/工艺/LVS 边界。
+2. 运行基线导入并锁定输入哈希。
+3. 从 INV 开始建立“网表 -> PCell -> GDS -> DRC -> 几何 LVS”最小闭环。

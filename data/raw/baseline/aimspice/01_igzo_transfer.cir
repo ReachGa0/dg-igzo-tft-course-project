@@ -1,0 +1,15 @@
+* 01_igzo_transfer.cir
+* IGZO N-type TFT transfer characteristic.
+* Target raw data: N/transfer raw data.csv
+* Sweep: VGS=-3..3.0 V, VDS=0.1/0.9/1.7/2.5/3.3 V.
+
+.include models_tft.inc
+
+* Reverse VDS source polarity so i(VDS) is positive for N-channel drain current.
+VDS 0 d DC -0.1
+VGS g 0 DC 0
+
+M1 d g 0 0 IGZO_N L={LN} W={WN}
+
+.dc VGS -3 3 0.1 VDS -0.1 -3.3 -0.8
+.plot dc i(VDS)

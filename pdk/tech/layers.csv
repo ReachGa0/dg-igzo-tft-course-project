@@ -1,0 +1,13 @@
+name,layer,datatype,mask,purpose
+BOUNDARY,1,0,no,Cell or test-key outline
+GATE_AL,10,0,yes,50 nm bottom Al gate
+AL2O3,11,0,yes,Gate dielectric keep region
+DIEL_OPEN,12,0,yes,Al2O3 wet-etch opening to bottom gate
+IGZO,20,0,yes,24 nm n-type IGZO active island
+TI,30,0,yes,50 nm Ti source drain electrodes pads and interconnect
+PASS_OPEN,60,0,optional,Optional passivation opening
+CHANNEL,80,0,no,Derived channel marker for DRC and documentation
+PIN,90,0,no,Electrical pin marker
+TEXT,91,0,no,Human-readable labels
+DEVICE_ID,92,0,no,Device recognition marker and identifier
+DRC_MARKER,99,0,no,DRC result marker

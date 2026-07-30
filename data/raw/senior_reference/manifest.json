@@ -1,0 +1,239 @@
+{
+  "project_id": "DG-IGZO-TFT-PDK",
+  "indexed_on": "2026-07-29",
+  "policy": "Source Office/PDF files remain in place; this project stores paths, hashes and normalized CSV only.",
+  "source_root": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f",
+  "teacher_requirements": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b9e\u9a8c\u8bfe\u7a0b\u9879\u76ee\u4e0e\u62a5\u544a\u8981\u6c42(1).html",
+  "files": [
+    {
+      "relative_path": "../\u5b9e\u9a8c\u8bfe\u7a0b\u9879\u76ee\u4e0e\u62a5\u544a\u8981\u6c42(1).html",
+      "category": "teacher_requirement",
+      "role": "\u8bfe\u7a0b\u9879\u76ee\u4e0e\u62a5\u544a\u6743\u5a01\u8981\u6c42",
+      "use_status": "authoritative_requirement",
+      "evidence_boundary": "\u7528\u4e8e\u7ea6\u675f\u9879\u76ee\u65b9\u5411\u3001\u62a5\u544a\u5341\u4e8c\u7ae0\u7ed3\u6784\u3001\u53c2\u6570\u7ec4\u6570\u91cf\u548c\u5355\u6587\u4ef6HTML\u4ea4\u4ed8\u683c\u5f0f",
+      "bytes": 16370,
+      "sha256": "26dc9ce853fb72e382bea3d346ed437292e4724a9b29ba150540eea22c636162",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b9e\u9a8c\u8bfe\u7a0b\u9879\u76ee\u4e0e\u62a5\u544a\u8981\u6c42(1).html"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/1.xlsx",
+      "category": "reference_dataset",
+      "role": "VisualTCAD\u5bfc\u51fa\u7684IGZO Id-Vg\u53c2\u8003\u6570\u636e",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u7f3a\u5c11VDS\u3001\u51e0\u4f55\u3001\u6750\u6599\u53c2\u6570\u548c\u6c42\u89e3\u8bbe\u7f6e\uff0c\u53ea\u80fd\u4f5c\u66f2\u7ebf\u5f62\u72b6\u4e0e\u5bfc\u5165\u6d41\u7a0b\u53c2\u8003",
+      "bytes": 11189,
+      "sha256": "f08bda1bb5a5292d2dfe31c5b6798d86584471217d4945d9f4c4fd24216e0954",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/1.xlsx"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/41928_2021_671_MOESM1_ESM.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 2521004,
+      "sha256": "2980a36c6f1dce348aa9736a979da0d4d6fdf3002bba0de04373c63f433cc8b7",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/41928_2021_671_MOESM1_ESM.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/Adv Elect Materials - 2017 - Nakamura - Material Design of Transparent Oxide Semiconductors for Organic Electronics  Why Do.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 3265893,
+      "sha256": "831d8b32ced738bbe60f1e2314800ec2ae4ba78035d4ab39f92e907f86d6a45f",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/Adv Elect Materials - 2017 - Nakamura - Material Design of Transparent Oxide Semiconductors for Organic Electronics  Why Do.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/Advanced Materials - 2012 - Fortunato - Oxide Semiconductor Thin\u2010Film Transistors  A Review of Recent Advances.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 7675475,
+      "sha256": "86f5f8dfe6408822d60c405aca91c0377555bc143d0dd20c41d44e8b695379b9",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/Advanced Materials - 2012 - Fortunato - Oxide Semiconductor Thin\u2010Film Transistors  A Review of Recent Advances.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/First_Demonstration_of_Dual-Gate_IGZO_2T0C_DRAM_with_Novel_Read_Operation_One_Bit_Line_in_Single_Cell_ION1500_A_mVDS1V_and_Retention_Timegt300s.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 703254,
+      "sha256": "96cf85563f3940cb3a70092f31ae5ede3a8b250a9be63d0aa67ad505e55baa96",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/First_Demonstration_of_Dual-Gate_IGZO_2T0C_DRAM_with_Novel_Read_Operation_One_Bit_Line_in_Single_Cell_ION1500_A_mVDS1V_and_Retention_Timegt300s.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/First_Demonstration_of_Dual-Gate_IGZO_2T0C_DRAM_with_Novel_Read_Operation_One_Bit_Line_in_Single_Cell_ION1500_A_mVDS1V_and_Retention_Timegt300s\u7684\u5168\u6587\u7ffb\u8bd1.docx",
+      "category": "reference",
+      "role": "\u5b66\u957f\u9879\u76ee\u8f85\u52a9\u6587\u4ef6",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u7528\u9014\u9700\u4eba\u5de5\u786e\u8ba4",
+      "bytes": 927037,
+      "sha256": "25bcf45cf4fd628c277c9c284110728b0cd8547b2f17ec7539a5b71619242e6c",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/First_Demonstration_of_Dual-Gate_IGZO_2T0C_DRAM_with_Novel_Read_Operation_One_Bit_Line_in_Single_Cell_ION1500_A_mVDS1V_and_Retention_Timegt300s\u7684\u5168\u6587\u7ffb\u8bd1.docx"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/Physica Status Solidi  a - 2009 - Ogo - Tin monoxide as an s\u2010orbital\u2010based p\u2010type oxide semiconductor  Electronic.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 501053,
+      "sha256": "ce5007c1f4d35f6d12bef5069b5b0bf1aaabed58dc8127ad1fc0413db0d916db",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/Physica Status Solidi  a - 2009 - Ogo - Tin monoxide as an s\u2010orbital\u2010based p\u2010type oxide semiconductor  Electronic.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/Physica Status Solidi  a - 2010 - Kamiya - Subgap states  doping and defect formation energies in amorphous oxide.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 515500,
+      "sha256": "2f9adbcb1d5888a76e56f3f43c0ed3963457ba470caad84f36d9a2b94f204cdf",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/Physica Status Solidi  a - 2010 - Kamiya - Subgap states  doping and defect formation energies in amorphous oxide.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/Resilience_of_Fluorinated_Indium-Gallium-Zinc_Oxide_Thin-Film_Transistor_Against_Hydrogen-Induced_Degradation.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 1097065,
+      "sha256": "a01a3566f699b2c14271e4c66872110048aa83d0c4958df8ee724c88a802bc9a",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/Resilience_of_Fluorinated_Indium-Gallium-Zinc_Oxide_Thin-Film_Transistor_Against_Hydrogen-Induced_Degradation.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/Unintended_Carbon-Related_Impurity_and_Negative_Bias_Instability_in_High-Mobility_Oxide_TFTs.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 2557078,
+      "sha256": "7715c05f784d17645f465af1f882e95ca3b0bf2ae4fa49497d468e6da2707fa5",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/Unintended_Carbon-Related_Impurity_and_Negative_Bias_Instability_in_High-Mobility_Oxide_TFTs.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/VisualTCAD_Inverter.pptx",
+      "category": "method_reference",
+      "role": "VisualTCAD\u4e8c\u7ef4\u7845CMOS\u53cd\u76f8\u5668\u64cd\u4f5c\u6d41\u7a0b",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u53ea\u53c2\u8003\u5efa\u6a21\u3001\u8fb9\u754c\u8bbe\u7f6e\u548c\u62a5\u544a\u622a\u56fe\u987a\u5e8f\uff1b\u4e0d\u80fd\u5f53\u4f5c\u6c27\u5316\u7269TFT\u7ed3\u679c",
+      "bytes": 2173350,
+      "sha256": "31d4cd0ece12bdc7d860b3bd030fe3ec1ad646cb8554c52dd14f59067242e78e",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/VisualTCAD_Inverter.pptx"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/Yamazaki_2014_ECS_Trans._64_155.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 347469,
+      "sha256": "0792abb0b34f68aa947543ef94811937c2d839c3d36202595c3c022a7ebb366e",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/Yamazaki_2014_ECS_Trans._64_155.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/genius_ug_en.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 2613187,
+      "sha256": "ad65c450b274c1f6057d5c7f8c16a46a347e73180479095b93dd928913417181",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/genius_ug_en.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/p-Type_hboxCu_xhboxO_Films_Deposited_at_Room_Temperature_for_Thin-Film_Transistors.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 1243509,
+      "sha256": "0c62f0c384f9108117977f0649b3742997f753b31d89f58f222afeeefc6091ba",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/p-Type_hboxCu_xhboxO_Films_Deposited_at_Room_Temperature_for_Thin-Film_Transistors.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/s11664-016-4816-7.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 2549842,
+      "sha256": "85be20ac5011e23f4e53a2603c3e3d68ce43530ee9f62c9df6d30e3373e81a88",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/s11664-016-4816-7.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/s41586-021-03625-w.pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 4617064,
+      "sha256": "d6c89f2dc7b0a24ef13360349f957870c620d8867da77f851bc0cb04c51c17c4",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/s41586-021-03625-w.pdf"
+    },
+    {
+      "relative_path": "2026_07_30_s41928-021-00671-0 (1)/s41928-021-00671-0 (1).pdf",
+      "category": "literature",
+      "role": "\u5b66\u957f\u8d44\u6599\u4e2d\u7684\u80cc\u666f\u8bba\u6587\u6216\u8f6f\u4ef6\u624b\u518c",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5f15\u7528\u524d\u6838\u5bf9\u539f\u8bba\u6587\u9898\u76ee\u3001\u56fe\u53f7\u3001\u6761\u4ef6\u548c\u8bb8\u53ef\uff1b\u4e0d\u81ea\u52a8\u7ee7\u627f\u8bba\u6587\u7ed3\u8bba",
+      "bytes": 1775046,
+      "sha256": "d28d82e76836dc5fe37fa808c25799947f0d1bf66e851251db959fdad1b7ebe8",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/s41928-021-00671-0 (1).pdf"
+    },
+    {
+      "relative_path": "\u5c0f\u7ec4\u5468\u56db\u8bba\u6587\u6c47\u62a5(1).pptx",
+      "category": "report_structure",
+      "role": "\u8bba\u6587\u6c47\u62a5PPT\u7ae0\u8282\u7ed3\u6784",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u80cc\u666f\u6750\u6599\uff1b\u4f5c\u8005\u4ecb\u7ecd\u548c\u8bba\u6587\u7ed3\u679c\u4e0d\u80fd\u4f5c\u4e3a\u672c\u9879\u76ee\u8d21\u732e",
+      "bytes": 2176356,
+      "sha256": "1ef7ae4fdce9c578e705cc9642e13d62b904321f63abdbabe9a35688c7edaf03",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/\u5c0f\u7ec4\u5468\u56db\u8bba\u6587\u6c47\u62a5(1).pptx"
+    },
+    {
+      "relative_path": "\u5c0f\u7ec4\uff1a\u674e\u5ef6\u987a\u3001\u97e9\u4f73\u8fb0\u3001\u738b\u9053\u73ba\u3001\u738b\u6cd5\u694a\u3001\u5b59\u91d1\u826f\u3001\u8d75\u539f\u767b.docx",
+      "category": "report_structure",
+      "role": "\u4e8c\u6781\u7ba1\u53c2\u6570\u8c03\u8282\u62a5\u544a\u793a\u4f8b",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5b9e\u9a8c\u5bf9\u8c61\u4e0e\u672c\u9879\u76ee\u65e0\u5173\uff0c\u53ea\u53c2\u8003\u5206\u7ec4\u6bd4\u8f83\u65b9\u5f0f\uff1b\u5176\u540c\u65f6\u6539\u53d8\u91cf\u65b9\u6848\u4e0d\u4f5c\u4e3a\u63a7\u5236\u53d8\u91cf\u8303\u4f8b",
+      "bytes": 795692,
+      "sha256": "f37025ef01365b7484bdd704572a4da80cdb9e83635fa2beb2efacf4e930477d",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/\u5c0f\u7ec4\uff1a\u674e\u5ef6\u987a\u3001\u97e9\u4f73\u8fb0\u3001\u738b\u9053\u73ba\u3001\u738b\u6cd5\u694a\u3001\u5b59\u91d1\u826f\u3001\u8d75\u539f\u767b.docx"
+    },
+    {
+      "relative_path": "\u738b\u9053\u73ba\u7684\u5b9e\u9a8c\u6570\u636e1(4).xlsx",
+      "category": "reference_dataset",
+      "role": "\u4e24\u7ec4\u53cd\u76f8\u5668VTC\u53c2\u8003\u6570\u636e",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u4e24\u5217\u5de5\u51b5\u542b\u4e49\u548c\u7535\u8def\u6761\u4ef6\u672a\u5199\u5165\u8868\u683c\uff0c\u672a\u6f84\u6e05\u524d\u4e0d\u5f97\u7528\u4e8e\u5b9a\u91cf\u9a8c\u8bc1",
+      "bytes": 13723,
+      "sha256": "a03ea5f35be99465675943aeb08439509f12341d574621df7b6fce542c0dcb74",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/\u738b\u9053\u73ba\u7684\u5b9e\u9a8c\u6570\u636e1(4).xlsx"
+    },
+    {
+      "relative_path": "\u7814\u7a76\u65b9\u6cd5\u4ee5\u53ca\u7ed3\u679c(1).docx",
+      "category": "report_structure",
+      "role": "a-IGZO\u7f3a\u9677\u6587\u732e\u7684\u7814\u7a76\u65b9\u6cd5\u6458\u8981",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u5c5e\u4e8e\u6587\u732e\u5f52\u7eb3\uff0c\u4e0d\u662f\u672c\u9879\u76eeDFT\u6216\u5b9e\u6d4b\u7ed3\u679c",
+      "bytes": 12733,
+      "sha256": "2adf756c93c91d9cd42c3e8c0a4639ee151a01ae4e9b4e13c6f6d1e54e23eb7c",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/\u7814\u7a76\u65b9\u6cd5\u4ee5\u53ca\u7ed3\u679c(1).docx"
+    },
+    {
+      "relative_path": "\u7ed3\u679c\u5206\u6790\u4e0e\u8ba8\u8bba\uff08\u6392\u7248\u540e\uff09.pptx",
+      "category": "report_structure",
+      "role": "\u53cc\u6805IGZO 2T0C DRAM\u7ed3\u679c\u5206\u6790PPT\u6a21\u677f",
+      "use_status": "reference_only",
+      "evidence_boundary": "\u53ef\u53c2\u8003\u7ae0\u8282\u4e0e\u56fe\u6ce8\u7ed3\u6784\uff1b\u56fe\u4e2d\u6570\u503c\u5c5e\u4e8e\u88ab\u6c47\u62a5\u8bba\u6587\uff0c\u4e0d\u5c5e\u4e8e\u672c\u9879\u76ee\u5b9e\u6d4b",
+      "bytes": 1765363,
+      "sha256": "48f66098b5155d3c3922950993c23d1e7ecf08064ea6788a9e0384916ccb4fa9",
+      "source_path": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/\u7ed3\u679c\u5206\u6790\u4e0e\u8ba8\u8bba\uff08\u6392\u7248\u540e\uff09.pptx"
+    }
+  ]
+}

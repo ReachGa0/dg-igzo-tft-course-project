@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "case_id": "DG_IGZO_ELECTROSTATIC_V0",
+  "model_scope": "2D electrostatic Poisson/Laplace benchmark",
+  "mesh": [
+    {
+      "mesh_level": "coarse",
+      "node_count_with_interface_duplicates": 273,
+      "element_count": 400,
+      "center_channel_potential_v": 0.5,
+      "solve_seconds": 0.006668348999482987
+    },
+    {
+      "mesh_level": "fine",
+      "node_count_with_interface_duplicates": 943,
+      "element_count": 1600,
+      "center_channel_potential_v": 0.5,
+      "solve_seconds": 0.008014289000129793
+    }
+  ],
+  "mesh_center_potential_difference_v": 0.0,
+  "top_gate_coupling_v_per_v": 0.5,
+  "bottom_gate_coupling_v_per_v": 0.5,
+  "checks": {
+    "mesh_difference": true,
+    "top_coupling_range": true,
+    "finite_outputs": true
+  },
+  "outputs": {
+    "mesh_csv": "results/tables/tcad_dg_mesh_comparison.csv",
+    "coupling_csv": "results/tables/tcad_dg_coupling.csv",
+    "potential_csv": "results/tables/tcad_dg_potential_nodes.csv",
+    "potential_figure": "results/figures/tcad_dg_potential.png",
+    "coupling_figure": "results/figures/tcad_dg_coupling.png",
+    "vtk_directory": "results/tcad/dg_electrostatic"
+  },
+  "evidence_boundary": "Two-dimensional electrostatic Laplace/Poisson benchmark only. No mobile charge, traps, contact transport or drain-current prediction is included."
+}

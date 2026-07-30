@@ -1,0 +1,56 @@
+{
+  "project_id": "DG-IGZO-TFT-PDK",
+  "imported_on": "2026-07-29",
+  "policy": "IGZO-only whitelisted copies of existing course assets; papers and excluded material assets are not copied.",
+  "files": [
+    {
+      "asset": "ngspice",
+      "source": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/ngspice_results/data/igzo_output.csv",
+      "destination": "data/raw/baseline/ngspice/data/igzo_output.csv",
+      "bytes": 39724,
+      "sha256": "90f770f523202e99988aaf255107afc5054420e4d7c1cf0d1611d791661c29f5"
+    },
+    {
+      "asset": "ngspice",
+      "source": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/ngspice_results/data/igzo_transfer.csv",
+      "destination": "data/raw/baseline/ngspice/data/igzo_transfer.csv",
+      "bytes": 25342,
+      "sha256": "91a390a58775b6c8c534fb66e4d74fc477afaeb9aadcdf3aed54f4f96e702483"
+    },
+    {
+      "asset": "ngspice",
+      "source": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/ngspice_results/spice/netlists/igzo_output.cir",
+      "destination": "data/raw/baseline/ngspice/spice/netlists/igzo_output.cir",
+      "bytes": 277,
+      "sha256": "66fa155b7bc72bad6777c71c190330fcac820c8324479a4ea91e8ee96265f51f"
+    },
+    {
+      "asset": "ngspice",
+      "source": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/ngspice_results/spice/netlists/igzo_transfer.cir",
+      "destination": "data/raw/baseline/ngspice/spice/netlists/igzo_transfer.cir",
+      "bytes": 280,
+      "sha256": "6ce5a476d312ea4c247f3d3ea10b6f389fa7d4798804ede4fddd56dfeb1890ba"
+    },
+    {
+      "asset": "aimspice",
+      "source": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/AIMSPICE_improved/01_igzo_transfer.cir",
+      "destination": "data/raw/baseline/aimspice/01_igzo_transfer.cir",
+      "bytes": 397,
+      "sha256": "77c3b90c1fb334fee83fd49dd01efd8ae0fb2bca92bd64b34248dcb8a8cba7f1"
+    },
+    {
+      "asset": "aimspice",
+      "source": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/AIMSPICE_improved/02_igzo_output.cir",
+      "destination": "data/raw/baseline/aimspice/02_igzo_output.cir",
+      "bytes": 363,
+      "sha256": "d161b8886e217c9777dd295e6e1327f2938898c2d3ec90e8f807bd892d67022c"
+    },
+    {
+      "asset": "klayout_pdk",
+      "source": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/klayout_oxide_pdk/layouts/igzo_tft_W60_L10.gds",
+      "destination": "data/raw/baseline/klayout_pdk/layouts/igzo_tft_W60_L10.gds",
+      "bytes": 1498,
+      "sha256": "c90660dc68c4a698688735b92d2e1e4418b13808db900cdcd3569a49ed1051d1"
+    }
+  ]
+}

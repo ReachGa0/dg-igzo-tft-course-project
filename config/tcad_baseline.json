@@ -1,0 +1,59 @@
+{
+  "case_id": "DG_IGZO_ELECTROSTATIC_V0",
+  "coordinate_unit": "um",
+  "geometry": {
+    "channel_length_um": 10.0,
+    "bottom_oxide_thickness_um": 0.03,
+    "channel_thickness_um": 0.024,
+    "top_oxide_thickness_um": 0.03
+  },
+  "materials": {
+    "bottom_oxide": {
+      "name": "Al2O3",
+      "relative_permittivity": 6.8,
+      "source": "course process and later effective dielectric constant; physical thickness uses the 30 nm process value"
+    },
+    "channel": {
+      "name": "IGZO",
+      "relative_permittivity": 10.0,
+      "source": "teaching assumption; replace with a cited or fitted value before quantitative claims"
+    },
+    "top_oxide": {
+      "name": "Al2O3",
+      "relative_permittivity": 6.8,
+      "source": "symmetric teaching baseline; this top gate is not present in the stated fabricated single-bottom-gate process"
+    }
+  },
+  "bias": {
+    "source_v": 0.0,
+    "drain_v": 0.1,
+    "bottom_gate_v": 0.0,
+    "top_gate_v": 1.0,
+    "coupling_sweep_v": [-2.0, -1.0, 0.0, 1.0, 2.0]
+  },
+  "mesh_levels": {
+    "coarse": {
+      "x_spacing_um": 0.5,
+      "oxide_y_spacing_um": 0.01,
+      "channel_y_spacing_um": 0.006
+    },
+    "fine": {
+      "x_spacing_um": 0.25,
+      "oxide_y_spacing_um": 0.005,
+      "channel_y_spacing_um": 0.003
+    }
+  },
+  "solver": {
+    "type": "dc",
+    "absolute_error": 1e-12,
+    "relative_error": 1e-10,
+    "maximum_iterations": 50,
+    "solver_type": "direct"
+  },
+  "acceptance": {
+    "maximum_center_potential_mesh_difference_v": 0.005,
+    "minimum_top_gate_coupling_v_per_v": 0.0,
+    "maximum_top_gate_coupling_v_per_v": 1.0
+  },
+  "evidence_boundary": "Two-dimensional electrostatic Laplace/Poisson benchmark only. No mobile charge, traps, contact transport or drain-current prediction is included."
+}

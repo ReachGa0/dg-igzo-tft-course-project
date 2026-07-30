@@ -1,0 +1,92 @@
+{
+  "project_id": "DG-IGZO-TFT-PDK",
+  "title_cn": "基于双栅IGZO TFT的二维器件模型、紧凑模型与可编程单极性逻辑教学PDK",
+  "version": "0.2.0-igzo-only",
+  "created": "2026-07-29",
+  "scope_revised": "2026-07-30",
+  "deadlines": {
+    "teacher_briefing": "2026-07-30",
+    "ppt": "2026-08-06",
+    "report": "2026-08-13"
+  },
+  "source_roots": {
+    "papers_wsl": "/mnt/c/Users/ReachGao/Desktop/SDU/科研/论文",
+    "papers_windows": "C:\\Users\\ReachGao\\Desktop\\SDU\\科研\\论文",
+    "ngspice": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/数据/ngspice_results",
+    "aimspice": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/数据/AIMSPICE_improved",
+    "klayout_pdk": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/数据/klayout_oxide_pdk",
+    "teacher_requirements": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/实验/实验课程项目与报告要求(1).html",
+    "senior_reference": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/实验/学长"
+  },
+  "tools": {
+    "python": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/发送版本/课程3/.venv/bin/python",
+    "tcad_python": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/发送版本/课程0/.venv/bin/python",
+    "devsim_math_libs": "liblapack.so.3:libblas.so.3",
+    "ngspice": "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+    "klayout_python_expected": "0.30.10"
+  },
+  "course_requirements": {
+    "project_level": "high_difficulty",
+    "minimum_parameter_groups": 5,
+    "final_report_format": "single_self_contained_html",
+    "report_section_count": 12,
+    "embedded_images_required": true,
+    "reproducible_inputs_and_scripts_required": true
+  },
+  "tcad_track": {
+    "dimension": "2D",
+    "tool": "DEVSIM 2.10.0",
+    "mesh": "DEVSIM structured mesh; Gmsh optional for later irregular geometry",
+    "baseline_scope": "dual-gate IGZO electrostatic Poisson benchmark",
+    "next_scope": "IGZO drift-diffusion with traps and contact resistance",
+    "laptop_target": true,
+    "evidence_boundary": "The electrostatic benchmark does not predict drain current and is not a calibrated full TFT TCAD model."
+  },
+  "baseline_devices": {
+    "IGZO_TFT": {
+      "polarity": "n",
+      "w_um": 60.0,
+      "l_um": 10.0,
+      "active_thickness_nm": 24.0,
+      "physical_gate_dielectric_nm": 30.0,
+      "spice_effective_tox_nm": 10.0,
+      "spice_dielectric_k": 6.8
+    }
+  },
+  "baseline_process": {
+    "substrate": "Si with 300 nm thermal SiO2",
+    "bottom_gate": "50 nm Al",
+    "gate_dielectric": "30 nm Al2O3",
+    "active_layer": "24 nm IGZO",
+    "source_drain_interconnect": "50 nm Ti",
+    "top_gate_status": "research extension; not present in the stated fabricated baseline"
+  },
+  "logic_style": {
+    "primary": "dual_gate_igzo_active_load",
+    "principle": "Use a second gate to tune the load-device effective threshold while the driver network implements n-type ratioed logic.",
+    "fallback": "resistive_load_for_functional_and_solver_smoke_only",
+    "limitations": [
+      "ratioed logic has static current in the low-output state",
+      "noise margin and output swing require load/driver sizing",
+      "active-load claims require a calibrated dual-gate threshold shift"
+    ]
+  },
+  "required_cells": {
+    "INV": 2,
+    "NAND2": 3,
+    "NOR2": 3,
+    "XOR2": 12,
+    "RING5": 10,
+    "FULL_ADDER_1BIT": 33
+  },
+  "verification_targets": {
+    "drc_violations": 0,
+    "full_adder_truth_table_pass": 8,
+    "lvs_fault_injection_required": true,
+    "ring_stage_count": 5,
+    "tcad_mesh_levels_minimum": 2,
+    "parameter_groups_minimum": 5,
+    "final_html_external_images": 0
+  },
+  "evidence_boundary": "Teaching and research PDK only; not foundry sign-off. The ngspice model is a behavioral equivalent, not native HSPICE Level61. Active-load logic remains planned until dual-gate threshold control is calibrated."
+}

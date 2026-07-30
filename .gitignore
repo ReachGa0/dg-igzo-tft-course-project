@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+*.log
+*.raw
+*.tmp
+.venv/
+.pytest_cache/
+.mypy_cache/
+results/.cache/
+results/.work/
+verification/**/.work/
+
+# Local editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+
+# Local credentials and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key

@@ -1,0 +1,588 @@
+{
+  "project": "DG-IGZO-TFT-PDK",
+  "status": "PASS",
+  "checks": 116,
+  "failures": 0,
+  "results": [
+    {
+      "name": "directory:config",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/config"
+    },
+    {
+      "name": "directory:docs",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/docs"
+    },
+    {
+      "name": "directory:references",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/references"
+    },
+    {
+      "name": "directory:data/raw",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/raw"
+    },
+    {
+      "name": "directory:data/processed",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/processed"
+    },
+    {
+      "name": "directory:data/raw/senior_reference",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/raw/senior_reference"
+    },
+    {
+      "name": "directory:data/processed/senior_reference",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/processed/senior_reference"
+    },
+    {
+      "name": "directory:models/level61",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/models/level61"
+    },
+    {
+      "name": "directory:models/dual_gate",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/models/dual_gate"
+    },
+    {
+      "name": "directory:models/ferroelectric",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/models/ferroelectric"
+    },
+    {
+      "name": "directory:spice/models",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/models"
+    },
+    {
+      "name": "directory:spice/netlists/devices",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/netlists/devices"
+    },
+    {
+      "name": "directory:spice/netlists/cells",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/netlists/cells"
+    },
+    {
+      "name": "directory:spice/netlists/blocks",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/netlists/blocks"
+    },
+    {
+      "name": "directory:pdk/tech",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/tech"
+    },
+    {
+      "name": "directory:pdk/drc",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/drc"
+    },
+    {
+      "name": "directory:pdk/lvs",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/lvs"
+    },
+    {
+      "name": "directory:pdk/pcells",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/pcells"
+    },
+    {
+      "name": "directory:layout/cells",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/layout/cells"
+    },
+    {
+      "name": "directory:layout/blocks",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/layout/blocks"
+    },
+    {
+      "name": "directory:layout/gds",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/layout/gds"
+    },
+    {
+      "name": "directory:verification/drc",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/verification/drc"
+    },
+    {
+      "name": "directory:verification/lvs",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/verification/lvs"
+    },
+    {
+      "name": "directory:verification/simulation",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/verification/simulation"
+    },
+    {
+      "name": "directory:scripts",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/scripts"
+    },
+    {
+      "name": "directory:tests",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tests"
+    },
+    {
+      "name": "directory:results/figures",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/figures"
+    },
+    {
+      "name": "directory:results/tables",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tables"
+    },
+    {
+      "name": "directory:results/reports",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/reports"
+    },
+    {
+      "name": "directory:results/tcad/dg_electrostatic",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/dg_electrostatic"
+    },
+    {
+      "name": "directory:tcad/structures",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/structures"
+    },
+    {
+      "name": "directory:tcad/physics",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/physics"
+    },
+    {
+      "name": "directory:tcad/tests",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/tests"
+    },
+    {
+      "name": "directory:ppt",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/ppt"
+    },
+    {
+      "name": "directory:report",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report"
+    },
+    {
+      "name": "directory:report/src",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/src"
+    },
+    {
+      "name": "directory:report/assets",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/assets"
+    },
+    {
+      "name": "directory:report/final",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/final"
+    },
+    {
+      "name": "file:README.md",
+      "status": "PASS",
+      "detail": "bytes=6684"
+    },
+    {
+      "name": "file:ARCHITECTURE.md",
+      "status": "PASS",
+      "detail": "bytes=11478"
+    },
+    {
+      "name": "file:AI_CONTEXT.md",
+      "status": "PASS",
+      "detail": "bytes=3563"
+    },
+    {
+      "name": "file:AI_LOG.md",
+      "status": "PASS",
+      "detail": "bytes=8032"
+    },
+    {
+      "name": "file:PROJECT_PLAN.md",
+      "status": "PASS",
+      "detail": "bytes=3264"
+    },
+    {
+      "name": "file:DECISIONS.md",
+      "status": "PASS",
+      "detail": "bytes=6396"
+    },
+    {
+      "name": "file:STATUS.md",
+      "status": "PASS",
+      "detail": "bytes=2247"
+    },
+    {
+      "name": "file:Makefile",
+      "status": "PASS",
+      "detail": "bytes=878"
+    },
+    {
+      "name": "file:config/project.json",
+      "status": "PASS",
+      "detail": "bytes=4011"
+    },
+    {
+      "name": "file:config/experiments.json",
+      "status": "PASS",
+      "detail": "bytes=13205"
+    },
+    {
+      "name": "file:config/tcad_baseline.json",
+      "status": "PASS",
+      "detail": "bytes=1780"
+    },
+    {
+      "name": "file:references/papers_manifest.csv",
+      "status": "PASS",
+      "detail": "bytes=2493"
+    },
+    {
+      "name": "file:references/senior_work_manifest.csv",
+      "status": "PASS",
+      "detail": "bytes=11469"
+    },
+    {
+      "name": "file:docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
+      "status": "PASS",
+      "detail": "bytes=2074"
+    },
+    {
+      "name": "file:docs/02_\u6587\u732e\u8c03\u7814\u77e9\u9635.md",
+      "status": "PASS",
+      "detail": "bytes=6167"
+    },
+    {
+      "name": "file:docs/03_\u96c6\u6210\u7535\u8def\u8bbe\u8ba1\u5168\u6d41\u7a0b.md",
+      "status": "PASS",
+      "detail": "bytes=4676"
+    },
+    {
+      "name": "file:docs/04_\u57fa\u7840\u77e5\u8bc6\u901f\u67e5.md",
+      "status": "PASS",
+      "detail": "bytes=1460"
+    },
+    {
+      "name": "file:docs/05_\u9a8c\u8bc1\u4e0e\u9a8c\u6536\u6807\u51c6.md",
+      "status": "PASS",
+      "detail": "bytes=5933"
+    },
+    {
+      "name": "file:docs/06_\u660e\u65e5\u6c47\u62a5\u7a3f.md",
+      "status": "PASS",
+      "detail": "bytes=1652"
+    },
+    {
+      "name": "file:docs/07_PPT\u4e0e\u62a5\u544a\u63d0\u7eb2.md",
+      "status": "PASS",
+      "detail": "bytes=3719"
+    },
+    {
+      "name": "file:docs/08_\u98ce\u9669\u4e0e\u964d\u7ea7\u7b56\u7565.md",
+      "status": "PASS",
+      "detail": "bytes=3750"
+    },
+    {
+      "name": "file:docs/09_\u77e5\u8bc6\u70b9\u8be6\u89e3\u4e0e\u5b9e\u9a8c\u8bbe\u8ba1\u539f\u7406.md",
+      "status": "PASS",
+      "detail": "bytes=12684"
+    },
+    {
+      "name": "file:docs/10_\u5b66\u957f\u8d44\u6599\u5bf9\u7167\u4e0e\u6570\u636e\u7ee7\u627f\u8bf4\u660e.md",
+      "status": "PASS",
+      "detail": "bytes=6383"
+    },
+    {
+      "name": "file:docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
+      "status": "PASS",
+      "detail": "bytes=8191"
+    },
+    {
+      "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
+      "status": "PASS",
+      "detail": "bytes=7973"
+    },
+    {
+      "name": "file:scripts/import_senior_reference.py",
+      "status": "PASS",
+      "detail": "bytes=19542"
+    },
+    {
+      "name": "file:scripts/build_self_contained_report.py",
+      "status": "PASS",
+      "detail": "bytes=5708"
+    },
+    {
+      "name": "file:tcad/README.md",
+      "status": "PASS",
+      "detail": "bytes=2686"
+    },
+    {
+      "name": "file:tcad/run_dg_electrostatic.py",
+      "status": "PASS",
+      "detail": "bytes=19065"
+    },
+    {
+      "name": "file:report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
+      "status": "PASS",
+      "detail": "bytes=5206"
+    },
+    {
+      "name": "file:report/evidence_matrix.csv",
+      "status": "PASS",
+      "detail": "bytes=238"
+    },
+    {
+      "name": "file:models/level61/README.md",
+      "status": "PASS",
+      "detail": "bytes=354"
+    },
+    {
+      "name": "file:spice/models/README.md",
+      "status": "PASS",
+      "detail": "bytes=263"
+    },
+    {
+      "name": "file:spice/netlists/devices/README.md",
+      "status": "PASS",
+      "detail": "bytes=199"
+    },
+    {
+      "name": "file:spice/netlists/cells/README.md",
+      "status": "PASS",
+      "detail": "bytes=664"
+    },
+    {
+      "name": "file:spice/netlists/blocks/README.md",
+      "status": "PASS",
+      "detail": "bytes=334"
+    },
+    {
+      "name": "file:pdk/tech/README.md",
+      "status": "PASS",
+      "detail": "bytes=193"
+    },
+    {
+      "name": "file:pdk/tech/layers.csv",
+      "status": "PASS",
+      "detail": "bytes=608"
+    },
+    {
+      "name": "file:pdk/drc/README.md",
+      "status": "PASS",
+      "detail": "bytes=193"
+    },
+    {
+      "name": "config:json",
+      "status": "PASS",
+      "detail": "DG-IGZO-TFT-PDK"
+    },
+    {
+      "name": "config:deadline_order",
+      "status": "PASS",
+      "detail": "2026-07-30 < 2026-08-06 < 2026-08-13"
+    },
+    {
+      "name": "config:device_counts",
+      "status": "PASS",
+      "detail": "{\"FULL_ADDER_1BIT\": 33, \"INV\": 2, \"NAND2\": 3, \"NOR2\": 3, \"RING5\": 10, \"XOR2\": 12}"
+    },
+    {
+      "name": "config:igzo_only_devices",
+      "status": "PASS",
+      "detail": "IGZO_TFT"
+    },
+    {
+      "name": "config:active_load_logic",
+      "status": "PASS",
+      "detail": "dual_gate_igzo_active_load"
+    },
+    {
+      "name": "source:papers_wsl",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u8bba\u6587"
+    },
+    {
+      "name": "source:ngspice",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/ngspice_results"
+    },
+    {
+      "name": "source:aimspice",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/AIMSPICE_improved"
+    },
+    {
+      "name": "source:klayout_pdk",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/klayout_oxide_pdk"
+    },
+    {
+      "name": "source:senior_reference",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f"
+    },
+    {
+      "name": "source:teacher_requirements",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b9e\u9a8c\u8bfe\u7a0b\u9879\u76ee\u4e0e\u62a5\u544a\u8981\u6c42(1).html"
+    },
+    {
+      "name": "config:final_report_format",
+      "status": "PASS",
+      "detail": "single_self_contained_html"
+    },
+    {
+      "name": "config:parameter_groups_minimum",
+      "status": "PASS",
+      "detail": "5"
+    },
+    {
+      "name": "papers:count",
+      "status": "PASS",
+      "detail": "rows=13"
+    },
+    {
+      "name": "papers:unique",
+      "status": "PASS",
+      "detail": "unique=13"
+    },
+    {
+      "name": "papers:sources",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u8bba\u6587"
+    },
+    {
+      "name": "papers:doi",
+      "status": "PASS",
+      "detail": "all 13 DOI fields populated"
+    },
+    {
+      "name": "baseline:manifest",
+      "status": "PASS",
+      "detail": "files=7"
+    },
+    {
+      "name": "baseline:hashes",
+      "status": "PASS",
+      "detail": "all imported files match manifest"
+    },
+    {
+      "name": "baseline:igzo_only_selection",
+      "status": "PASS",
+      "detail": "destinations=7"
+    },
+    {
+      "name": "experiments:parameter_groups",
+      "status": "PASS",
+      "detail": "groups=7"
+    },
+    {
+      "name": "experiments:ids_unique",
+      "status": "PASS",
+      "detail": "experiments=17"
+    },
+    {
+      "name": "experiments:complete_stage_set",
+      "status": "PASS",
+      "detail": "stages=17"
+    },
+    {
+      "name": "experiments:project_id",
+      "status": "PASS",
+      "detail": "DG-IGZO-TFT-PDK"
+    },
+    {
+      "name": "experiments:dependencies_exist",
+      "status": "PASS",
+      "detail": "all dependencies reference known stages"
+    },
+    {
+      "name": "experiments:dependency_dag",
+      "status": "PASS",
+      "detail": "dependency graph is acyclic"
+    },
+    {
+      "name": "experiments:high_difficulty_five_groups",
+      "status": "PASS",
+      "detail": "P1,P2,P3,P4,P5"
+    },
+    {
+      "name": "senior:manifest",
+      "status": "PASS",
+      "detail": "files=23"
+    },
+    {
+      "name": "senior:source_hashes",
+      "status": "PASS",
+      "detail": "all referenced source files match"
+    },
+    {
+      "name": "senior_csv:inverter_vtc_reference.csv",
+      "status": "PASS",
+      "detail": "rows=181"
+    },
+    {
+      "name": "senior_csv:igzo_tcad_transfer_reference.csv",
+      "status": "PASS",
+      "detail": "rows=123"
+    },
+    {
+      "name": "tcad:mesh_levels",
+      "status": "PASS",
+      "detail": "coarse,fine"
+    },
+    {
+      "name": "tcad:evidence_boundary",
+      "status": "PASS",
+      "detail": "Two-dimensional electrostatic Laplace/Poisson benchmark only. No mobile charge, traps, contact transport or drain-current prediction is included."
+    },
+    {
+      "name": "tcad:smoke_status",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "tcad:smoke_outputs",
+      "status": "PASS",
+      "detail": "files=5"
+    },
+    {
+      "name": "report:required_sections",
+      "status": "PASS",
+      "detail": "main_sections=12"
+    },
+    {
+      "name": "report:no_forbidden_image_sources",
+      "status": "PASS",
+      "detail": "count=0"
+    },
+    {
+      "name": "report:placeholder_guard",
+      "status": "PASS",
+      "detail": "draft intentionally remains non-final until placeholders are resolved"
+    },
+    {
+      "name": "report:current_scope_title",
+      "status": "PASS",
+      "detail": "report title and theory placeholder use current scope"
+    }
+  ]
+}

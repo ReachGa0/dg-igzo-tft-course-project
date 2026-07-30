@@ -1,0 +1,2 @@
+claim_id,report_section,figure_or_table,claim,evidence_file,generating_script,command,evidence_level,status,known_limit
+EXAMPLE,7,Fig07,[待填写结论],[待填写CSV],[待填写脚本],[待填写命令],E0,PLACEHOLDER,[待填写边界]
