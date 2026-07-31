@@ -36,6 +36,7 @@ REQUIRED_FILES = [
     "config/tcad_t01_b_smoke.json",
     "config/tcad_t01_c_transfer.json",
     "config/tcad_t01_d_mesh_refinement.json",
+    "config/tcad_t01_d_idvd.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -56,12 +57,14 @@ REQUIRED_FILES = [
     "scripts/check_t01_b_smoke.py",
     "scripts/check_t01_c_transfer.py",
     "scripts/check_t01_d_mesh_refinement.py",
+    "scripts/check_t01_d_idvd.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
     "tcad/run_t01_single_gate_smoke.py",
     "tcad/run_t01_single_gate_transfer.py",
     "tcad/run_t01_single_gate_mesh_refinement.py",
+    "tcad/run_t01_single_gate_idvd.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
@@ -87,6 +90,14 @@ REQUIRED_FILES = [
     "results/tables/tcad_t01_d_mesh_comparison.csv",
     "results/tables/tcad_t01_d_t01_c_reproduction.csv",
     "results/tcad/t01_single_gate/t01_d_mesh_refinement/state_manifest.json",
+    "results/reports/tcad_t01_d_idvd.json",
+    "results/reports/tcad_t01_d_idvd_check.json",
+    "results/tables/tcad_t01_d_idvd_points.csv",
+    "results/tables/tcad_t01_d_idvd_curve_metrics.csv",
+    "results/tables/tcad_t01_d_idvd_mesh_summary.csv",
+    "results/tables/tcad_t01_d_idvd_mesh_comparison.csv",
+    "results/tables/tcad_t01_d_idvd_da_reproduction.csv",
+    "report/assets/tcad_t01_d_idvd.png",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -131,6 +142,7 @@ REQUIRED_DIRS = [
     "results/tcad/t01_single_gate/t01_b_smoke",
     "results/tcad/t01_single_gate/t01_c_transfer",
     "results/tcad/t01_single_gate/t01_d_mesh_refinement",
+    "results/tcad/t01_single_gate/t01_d_idvd",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -794,6 +806,86 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t01_d_a:mesh_refinement", False, str(error))
+
+    t01_db_report_path = ROOT / "results" / "reports" / "tcad_t01_d_idvd.json"
+    t01_db_check_path = ROOT / "results" / "reports" / "tcad_t01_d_idvd_check.json"
+    try:
+        t01_db_config = json.loads(
+            (ROOT / "config" / "tcad_t01_d_idvd.json").read_text(encoding="utf-8")
+        )
+        t01_db_report = json.loads(t01_db_report_path.read_text(encoding="utf-8"))
+        t01_db_check = json.loads(t01_db_check_path.read_text(encoding="utf-8"))
+        add_check(
+            checks,
+            "t01_d_b:idvd_status",
+            t01_db_report.get("status") == "PASS"
+            and t01_db_report.get("case_id") == t01_db_config.get("case_id")
+            and t01_db_report.get("stage") == "T01-D-B"
+            and t01_db_report.get("evidence_level") == "E2",
+            str(t01_db_report.get("status")),
+        )
+        add_check(
+            checks,
+            "t01_d_b:independent_check",
+            t01_db_check.get("status") == "PASS"
+            and t01_db_check.get("case_id") == t01_db_config.get("case_id")
+            and t01_db_check.get("stage") == "T01-D-B"
+            and len(t01_db_check.get("checks", [])) == 16,
+            f"status={t01_db_check.get('status')} checks={len(t01_db_check.get('checks', []))}",
+        )
+        completion = t01_db_report.get("idvd_completion", {})
+        summary_metrics = t01_db_report.get("summary_metrics", {})
+        acceptance = t01_db_config["acceptance"]
+        add_check(
+            checks,
+            "t01_d_b:limited_idvd_gate",
+            completion.get("status") == "PASS"
+            and completion.get("production_mesh") == t01_db_config["mesh"]["production_level"]
+            and completion.get("reference_mesh") == t01_db_config["mesh"]["reference_level"]
+            and completion.get("sampled_bias_point_count")
+            == acceptance["required_total_reported_bias_points"]
+            and completion.get("continuous_curve_validation_permitted") is False
+            and completion.get("experimental_quantitative_use_permitted") is False
+            and completion.get("t01_dc_stage_permitted_next") is True
+            and summary_metrics.get(
+                "maximum_reference_relative_current_difference", float("inf")
+            )
+            <= acceptance["maximum_reference_relative_current_difference"]
+            and summary_metrics.get(
+                "maximum_reference_center_potential_difference_v", float("inf")
+            )
+            <= acceptance["maximum_reference_center_potential_difference_v"],
+            (
+                f"points={completion.get('sampled_bias_point_count')} "
+                f"mesh_current={summary_metrics.get('maximum_reference_relative_current_difference')}"
+            ),
+        )
+        runner_checks = t01_db_report.get("checks", {})
+        add_check(
+            checks,
+            "t01_d_b:acceptance_checks",
+            bool(runner_checks)
+            and all(result.get("status") == "PASS" for result in runner_checks.values()),
+            f"checks={len(runner_checks)}",
+        )
+        output_paths = [
+            ROOT / value
+            for key, value in t01_db_report.get("outputs", {}).items()
+            if key != "run_directory"
+        ]
+        run_directory = ROOT / t01_db_report.get("outputs", {}).get("run_directory", "")
+        figure_path = ROOT / t01_db_report.get("figure", {}).get("path", "")
+        add_check(
+            checks,
+            "t01_d_b:raw_outputs",
+            all(path.is_file() and path.stat().st_size > 0 for path in output_paths)
+            and run_directory.is_dir()
+            and figure_path.is_file()
+            and figure_path.stat().st_size > 0,
+            f"files={len(output_paths)} figure={figure_path}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t01_d_b:idvd", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

@@ -16,6 +16,63 @@
 
 ---
 
+## 2026-07-31 | Codex GPT-5 | 完成 T01-D-B 单栅离散 Id-Vd 曲线族
+
+### 用户目标
+
+按阶段门继续 T01，在 T01-D-A 通过的界面网格口径上完成下一小阶段：运行冻结的多 VGS Id-Vd 点，完成收敛、守恒、趋势、网格复核和报告闭环；通过后提交并推送，不提前启动 T01-D-C、T02、SPICE 或版图。
+
+### 读取的关键输入
+
+- `AGENTS.md`、`STATUS.md`、`PROJECT_PLAN.md`、`ARCHITECTURE.md`、`DECISIONS.md`、实验矩阵和 T01 技术路线。
+- `config/tcad_t01_baseline.json` 的 T01-A Stage 3 正式网格：VGS=0/0.3/0.5/1.0 V，VDS=0/0.01/0.05/0.1/0.2 V。
+- T01-A 合同与 T01-D-A 配置/PASS 报告；每次正式运行锁定这些输入的 SHA-256。
+
+### 本次修改
+
+- 新增 `config/tcad_t01_d_idvd.json`、`tcad/run_t01_single_gate_idvd.py`、`scripts/check_t01_d_idvd.py` 与 `make t01-d-idvd`/`make t01-d-idvd-check`。
+- 以 `interface_4x` 运行 4 条正式曲线，以 `interface_8x` 只复核 VGS=0.5/1.0 V；每条曲线均新建器件，从零偏压 Poisson/耦合平衡态开始，在 VDS=0 分步升 VGS，再逐点升 VDS。
+- 保存输入快照、65 条完整 DC 求解记录、30 点端口表、6 条曲线指标、2 档网格摘要、10 点网格对比、4 个 T01-D-A 回归锚点、机器报告、独立验收报告和报告用 PNG。
+- 将 T01-D-B 接入总项目检查、状态、计划、架构、ADR、实验矩阵、TCAD 说明、验收标准、汇报稿、报告第 5/7 章和证据矩阵。
+
+### 实际结果与失败记录
+
+- 首次运行的 65 次 DEVSIM 求解全部完成，但结果整理代码对长度天然相差 1 的相邻点数组使用严格 `zip`，在分段斜率计算处报错；修正只涉及后处理数组配对，随后完整重跑。
+- 第二次运行生成 30 点后，阶段门因把 VDS=0 的 `10^-19 A/cm` 舍入残差代入相对守恒比值而正确返回 FAIL，最大无意义比值约 1.27。合同改为 VDS=0 使用 `1e-16 A/cm` 绝对端口电流门，只有非零 VDS 使用 `1e-5` 相对守恒门；没有改变仿真输入或数值阈值。
+- 第三次完整运行 PASS：6 条独立曲线、65 次 DC、30 个正式点全部收敛；VDS=0 最大绝对端口电流 3.38e-19 A/cm，非零 VDS 最大源漏相对不平衡 7.28e-14。
+- 所有采样曲线随 VDS 单调不减，正式网格在相同非零 VDS 下随 VGS 有序；高栅压 4x/8x 最大电流差 0.01639%、最大中心势差 0.03289 mV，T01-D-A 锚点最大电流回归差 1.50e-14。
+
+### 验证
+
+```text
+make t01-d-idvd
+T01_D_IDVD_PASS curves=6 bias_points=30
+
+make t01-d-idvd-check
+T01_D_IDVD_CHECK_PASS checks=16
+
+make check
+PROJECT_CHECK_PASS checks=213
+
+make report-check
+REPORT_STRUCTURE_PASS chapters=12 appendices=5 placeholders=19 images=1
+
+图像人工检查
+PASS：PNG 非空，4 条正式曲线和 2 条复核曲线可辨认，无坐标或图例遮挡
+```
+
+### 决策和边界
+
+- T01-D-B 形成 E2 教学参数离散 Id-Vd 证据，只证明冻结的 30 个点通过收敛、守恒、单调趋势和选定网格复核。
+- 图中点间连线只用于辨认采样趋势，不证明连续输出行为、真实饱和机理或沟道长度调制。
+- 本阶段不包含状态图集合、VTH/SS/迁移率验证、物理 Ion/Ioff、实验精度、双栅、紧凑模型、电路或版图结论。
+
+### 下一步
+
+进入 T01-D-C：沿用 `interface_4x` 正式网格和已验证偏压口径，补齐关态/中间态/开态状态图，限定可提取与不可提取指标，并关闭完整 T01 阶段门；此前不启动 T02 或其他领域工作。
+
+---
+
 ## 2026-07-31 | Codex GPT-5 | 完成 T01-D-A 单栅界面法向网格收敛
 
 ### 用户目标

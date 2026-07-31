@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_DB_IDVD_V1",
+  "stage": "T01-D-B",
+  "status": "planned",
+  "evidence_level_before_run": "E0",
+  "input_contract": {
+    "path": "config/tcad_t01_baseline.json",
+    "report": "results/reports/tcad_t01_input_contract.json",
+    "case_id": "IGZO_T01_SINGLE_GATE_DD_A_V1",
+    "required_contract_status": "PASS",
+    "source_gate": "S00 G0=TEACHING_BASELINE_ONLY"
+  },
+  "dependency": {
+    "mesh_config": "config/tcad_t01_d_mesh_refinement.json",
+    "mesh_report": "results/reports/tcad_t01_d_mesh_refinement.json",
+    "required_stage": "T01-D-A",
+    "required_status": "PASS",
+    "required_mesh_convergence_status": "PASS",
+    "require_idvd_stage_permitted_next": true
+  },
+  "scope": {
+    "device": "2D single-bottom-gate n-IGZO TFT",
+    "active_equations": ["Poisson", "electron_continuity"],
+    "transport": "electron-only Scharfetter-Gummel drift-diffusion",
+    "changed_variable": "drain bias at each frozen positive VGS output-curve point",
+    "fixed_variables": [
+      "geometry",
+      "materials",
+      "temperature",
+      "mobility model",
+      "contacts",
+      "equations",
+      "production interface mesh",
+      "independent zero-bias initialization per curve"
+    ],
+    "executed_bias_stage_ids": ["T01_A_STAGE_0", "T01_A_STAGE_3"],
+    "reported_bias_stage_id": "T01_A_STAGE_3",
+    "prohibited_work": [
+      "state-map set or parameter extraction reserved for T01-D-C",
+      "threshold, subthreshold-swing, or mobility validation",
+      "physical saturation-model validation",
+      "experimental fit",
+      "dual-gate current simulation",
+      "trap, ferroelectric, or non-ideal-contact physics",
+      "T02, SPICE, or layout work"
+    ]
+  },
+  "mesh": {
+    "source_mesh_ladder": "T01-D-A",
+    "production_level": "interface_4x",
+    "reference_level": "interface_8x",
+    "reference_purpose": "selected high-positive-gate numerical mesh verification only"
+  },
+  "bias_protocol": {
+    "source_v": 0.0,
+    "production_vgs_values_v": [0.0, 0.3, 0.5, 1.0],
+    "reference_vgs_values_v": [0.5, 1.0],
+    "vds_values_v": [0.0, 0.01, 0.05, 0.1, 0.2],
+    "gate_preconditioning_ladder_v": [0.1, 0.2, 0.3, 0.5, 0.75, 1.0],
+    "curve_initialization": "Each VGS curve starts from a fresh zero-bias Poisson and coupled equilibrium, ramps VGS at VDS=0, then ramps VDS through the frozen Stage 3 grid.",
+    "execution_order": [
+      "create a fresh device for one mesh and one target VGS",
+      "solve zero-bias Poisson initialization",
+      "solve zero-bias coupled equilibrium",
+      "ramp VGS at VDS=0 through the configured positive ladder",
+      "ramp VDS through all configured Stage 3 values and record terminal data",
+      "delete the device before starting the next curve"
+    ]
+  },
+  "acceptance": {
+    "required_mesh_levels": ["interface_4x", "interface_8x"],
+    "required_mesh_roles": ["production", "reference"],
+    "required_production_vgs_values_v": [0.0, 0.3, 0.5, 1.0],
+    "required_reference_vgs_values_v": [0.5, 1.0],
+    "required_vds_values_v": [0.0, 0.01, 0.05, 0.1, 0.2],
+    "required_total_reported_bias_points": 30,
+    "required_total_dc_solve_count": 65,
+    "maximum_zero_vds_abs_terminal_current_a_per_cm": 1e-16,
+    "minimum_nonzero_vds_abs_drain_current_a_per_cm": 1e-18,
+    "maximum_relative_terminal_current_imbalance": 1e-5,
+    "relative_terminal_current_imbalance_domain": "VDS > 0; VDS = 0 uses the absolute terminal-current threshold",
+    "maximum_monotonic_relative_current_drop": 1e-6,
+    "maximum_gate_order_relative_current_drop": 1e-6,
+    "maximum_reference_relative_current_difference": 0.05,
+    "maximum_reference_center_potential_difference_v": 0.001,
+    "maximum_t01_da_anchor_relative_current_difference": 1e-8,
+    "maximum_t01_da_anchor_potential_difference_v": 1e-10,
+    "require_nonnegative_curve_segment_conductance": true,
+    "require_all_dc_solves_converged": true,
+    "require_figure_png": true
+  },
+  "outputs": {
+    "run_directory": "results/tcad/t01_single_gate/t01_d_idvd",
+    "config_snapshot": "results/tcad/t01_single_gate/t01_d_idvd/input_snapshot.json",
+    "solver_log": "results/tcad/t01_single_gate/t01_d_idvd/solver_log.json",
+    "bias_csv": "results/tables/tcad_t01_d_idvd_points.csv",
+    "curve_metrics_csv": "results/tables/tcad_t01_d_idvd_curve_metrics.csv",
+    "mesh_summary_csv": "results/tables/tcad_t01_d_idvd_mesh_summary.csv",
+    "mesh_comparison_csv": "results/tables/tcad_t01_d_idvd_mesh_comparison.csv",
+    "t01_da_reproduction_csv": "results/tables/tcad_t01_d_idvd_da_reproduction.csv",
+    "figure_png": "report/assets/tcad_t01_d_idvd.png",
+    "report": "results/reports/tcad_t01_d_idvd.json",
+    "check_report": "results/reports/tcad_t01_d_idvd_check.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T01-D-B may verify convergence, terminal-current conservation, monotonic sampled Id-Vd trends, and selected 4x/8x mesh agreement for the frozen E2 teaching model and configured bias points.",
+    "prohibited_claims": [
+      "complete T01 passed",
+      "continuous or experimentally validated output characteristics",
+      "validated saturation physics or channel-length modulation",
+      "validated VTH, SS, mobility, or physical Ion/Ioff",
+      "experimental calibration or model accuracy",
+      "quantitative dual-gate prediction",
+      "circuit-ready compact model"
+    ]
+  }
+}

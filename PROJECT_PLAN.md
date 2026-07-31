@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`T01_DA_MESH_REFINEMENT_VERIFIED`：T01-A/B/C/D-A 已通过；界面窗口 1x/2x/4x/8x 加密的 48 次 DC 和 28 个正式点全部收敛，4x/8x 在 VDS=0.01 V、VGS=0.5/1.0 V 的最大电流差 0.01639%。这只打开 T01-D-B Id-Vd，完整 T01 尚待 T01-D-B/C；G0 仍为 `TEACHING_BASELINE_ONLY`，定量实验拟合继续被阻止。
+`T01_DB_IDVD_VERIFIED`：T01-A/B/C/D-A/D-B 已通过；interface_4x 的 4 条正式 Id-Vd 曲线及 interface_8x 的 2 条高栅压复核曲线共 65 次 DC、30 个正式点全部收敛，最大网格电流差 0.01639%。这只打开 T01-D-C 状态图与受限参数提取，完整 T01 尚未关闭；G0 仍为 `TEACHING_BASELINE_ONLY`，定量实验拟合继续被阻止。
 
 ## 截止日期
 
@@ -42,7 +42,7 @@
 | A00 | 范围与总体架构 | DONE，待老师确认 | `ARCHITECTURE.md` |
 | S00 | 来源、单位和数据冲突审计 | DONE，G0 教学参数限定 | `data/processed/s00/` 与 `results/reports/s00_data_audit.json`，E3 审计 |
 | T00 | 二维双栅静电基准 | DONE，E2 | 既有 JSON/CSV/VTK/PNG |
-| T01 | 单栅漂移扩散 | T01-A/B/C/D-A DONE，T01-D-B/C TODO | 低 VDS 正栅压网格收敛 E2：`results/reports/tcad_t01_d_mesh_refinement.json`；完整 Id-Vd/状态/提取仍为 E0 |
+| T01 | 单栅漂移扩散 | T01-A/B/C/D-A/D-B DONE，T01-D-C TODO | 离散 Id-Vd 曲线族 E2：`results/reports/tcad_t01_d_idvd.json`；状态图、受限提取与完整 T01 门仍为 E0 |
 | T02 | 双栅电流与阈值耦合 | TODO | 依赖 T01 |
 | T03 | 五组器件参数 | TODO | 依赖 T02 |
 | M00 | IGZO 多曲线标定 | TODO | 等主数据集 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-不是先画大电路，而是进入 T01-D-B 的完整单栅输出。继承 T01-D-A 通过的界面网格，先做冻结的多 VGS Id-Vd，再由 T01-D-C 补齐状态图与受限参数提取；收到主 IGZO 原始数据和双栅边界后，才升级为定量标定路线。
+不是先画大电路，而是进入 T01-D-C。继承 T01-D-B 通过的 interface_4x 正式网格和冻结偏压点，补齐关态/中间态/开态状态图，限定可提取指标并关闭完整 T01 门；收到主 IGZO 原始数据和双栅边界后，才升级为定量标定路线。

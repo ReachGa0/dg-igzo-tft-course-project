@@ -141,11 +141,22 @@
         "results/tables/tcad_t01_d_t01_c_reproduction.csv",
         "results/tcad/t01_single_gate/t01_d_mesh_refinement/state_manifest.json"
       ],
-      "completed_substages": ["T01-A input contract", "T01-B zero-bias and VGS=0 low-VDS smoke", "T01-C low-VDS VGS continuation with mesh-sensitivity warning", "T01-D-A low-VDS positive-bias interface-normal mesh convergence"],
-      "remaining_substages": ["T01-D-B Id-Vd family", "T01-D-C state-map set, parameter extraction, and complete T01 gate"],
+      "idvd_outputs": [
+        "config/tcad_t01_d_idvd.json",
+        "results/reports/tcad_t01_d_idvd.json",
+        "results/reports/tcad_t01_d_idvd_check.json",
+        "results/tables/tcad_t01_d_idvd_points.csv",
+        "results/tables/tcad_t01_d_idvd_curve_metrics.csv",
+        "results/tables/tcad_t01_d_idvd_mesh_summary.csv",
+        "results/tables/tcad_t01_d_idvd_mesh_comparison.csv",
+        "results/tables/tcad_t01_d_idvd_da_reproduction.csv",
+        "report/assets/tcad_t01_d_idvd.png"
+      ],
+      "completed_substages": ["T01-A input contract", "T01-B zero-bias and VGS=0 low-VDS smoke", "T01-C low-VDS VGS continuation with mesh-sensitivity warning", "T01-D-A low-VDS positive-bias interface-normal mesh convergence", "T01-D-B sampled Id-Vd family with selected reference-mesh checks"],
+      "remaining_substages": ["T01-D-C state-map set, limited parameter extraction, and complete T01 gate"],
       "acceptance": ["at least one complete bias sweep converges", "terminal current conservation passes", "mesh metrics are reported"],
-      "simulation_status": "T01_DA_MESH_REFINEMENT_PASS",
-      "evidence_boundary": "T01-D-A provides E2 numerical mesh-convergence evidence only at VDS=0.01 V and VGS=0.5/1.0 V: the maximum 4x/8x current difference is 0.01639%. Complete Id-Vd, full-state coverage, extraction, physical Ion/Ioff, experimental fitting, and dual-gate prediction remain blocked."
+      "simulation_status": "T01_DB_IDVD_PASS",
+      "evidence_boundary": "T01-D-B provides E2 numerical evidence for 30 frozen sampled Id-Vd points: all six independent curves converge and the maximum selected 4x/8x current difference is 0.01639%. Continuous output behavior, saturation-physics validation, full-state coverage, extraction, physical Ion/Ioff, experimental fitting, and dual-gate prediction remain blocked."
     },
     {
       "id": "T02",

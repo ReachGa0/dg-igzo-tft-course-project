@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-07" class="report-chapter">
   <h2>7. 基准仿真结果</h2>
-  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 在同一方程和输入下扩展到低漏压栅压续算，T01-D-A 再以界面窗口加密验证高正栅压目标点。模型为单底栅 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
+  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 在同一方程和输入下扩展到低漏压栅压续算，T01-D-A 以界面窗口加密验证高正栅压目标点，T01-D-B 再生成冻结的离散 Id-Vd 曲线族。模型为单底栅 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
   <table>
     <thead><tr><th>条件</th><th>coarse</th><th>fine</th><th>验收</th></tr></thead>
     <tbody>
@@ -27,5 +27,29 @@
       <tr><td>目标点中心沟道势差</td><td colspan="3">4x/8x 最大 0.03265 mV</td><td>低于 1 mV</td></tr>
     </tbody>
   </table>
-  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、<code>results/reports/tcad_t01_d_mesh_refinement.json</code> 及对应 CSV/节点状态/VTK。T01-D-A 四档网格共 48 次 DC、28 个正式点全部收敛，最大源漏相对不平衡为 8.45e-14，独立 14 项检查 PASS。负栅压端到正栅压端约 17 decade 的数值跨度仍不能称为物理 <code>Ion/Ioff</code>；本次网格结论仅覆盖 VDS=10 mV、VGS=0.5/1.0 V，完整 <code>Id-Vd</code>、VTH、SS、迁移率、实验精度和双栅趋势仍未完成。</p>
+  <table>
+    <thead><tr><th>T01-D-B 正式 4x 曲线</th><th>VDS=10 mV</th><th>VDS=200 mV</th><th>采样趋势</th></tr></thead>
+    <tbody>
+      <tr><td>VGS=0 V</td><td>1.2325e-6 A/cm</td><td>5.1908e-6 A/cm</td><td>5 点单调不减</td></tr>
+      <tr><td>VGS=0.3 V</td><td>1.3645e-5 A/cm</td><td>1.8944e-4 A/cm</td><td>5 点单调不减</td></tr>
+      <tr><td>VGS=0.5 V</td><td>2.1855e-5 A/cm</td><td>3.5617e-4 A/cm</td><td>5 点单调不减</td></tr>
+      <tr><td>VGS=1.0 V</td><td>3.8003e-5 A/cm</td><td>6.6527e-4 A/cm</td><td>5 点单调不减</td></tr>
+    </tbody>
+  </table>
+  <table>
+    <thead><tr><th>T01-D-B 数值门</th><th>结果</th><th>阈值或边界</th></tr></thead>
+    <tbody>
+      <tr><td>独立曲线/正式点/DC 求解</td><td>6/30/65，全部收敛</td><td>每条曲线从独立零偏压平衡态开始</td></tr>
+      <tr><td>VDS=0 最大绝对端口电流</td><td>3.38e-19 A/cm</td><td>低于 1e-16 A/cm</td></tr>
+      <tr><td>非零 VDS 最大源漏相对不平衡</td><td>7.28e-14</td><td>低于 1e-5</td></tr>
+      <tr><td>高栅压 4x/8x 最大电流差</td><td>0.01639%</td><td>低于 5%</td></tr>
+      <tr><td>高栅压 4x/8x 最大中心势差</td><td>0.03289 mV</td><td>低于 1 mV</td></tr>
+      <tr><td>T01-D-A 锚点最大电流回归差</td><td>1.50e-14</td><td>低于 1e-8</td></tr>
+    </tbody>
+  </table>
+  <figure>
+    <img src="assets/tcad_t01_d_idvd.png" alt="T01-D-B 单栅 IGZO 离散 Id-Vd 曲线及高栅压加密网格复核" />
+    <figcaption>图 7-1 T01-D-B 冻结偏压点。实线圆点为 interface_4x 正式结果，虚线叉点为 interface_8x 高栅压复核；点间连线只用于辨认采样趋势，不代表连续模型验证。</figcaption>
+  </figure>
+  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、<code>results/reports/tcad_t01_d_mesh_refinement.json</code>、<code>results/reports/tcad_t01_d_idvd.json</code> 及对应 CSV、求解日志、节点状态、VTK 和图。T01-D-B 的运行器 11 项检查与独立 16 项复算均 PASS，但结论只覆盖 VDS=0/0.01/0.05/0.1/0.2 V 的离散教学模型点。负栅压端到正栅压端约 17 decade 的数值跨度仍不能称为物理 <code>Ion/Ioff</code>；连续输出特性、真实饱和机理、VTH、SS、迁移率、实验精度、状态图集合和双栅趋势仍未完成。</p>
 </section>

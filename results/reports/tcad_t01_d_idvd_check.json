@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_DB_IDVD_V1",
+  "stage": "T01-D-B",
+  "checks": [
+    {
+      "name": "identity:report",
+      "status": "PASS",
+      "detail": "status=PASS stage=T01-D-B"
+    },
+    {
+      "name": "scope:authorized_stage_and_reproduction",
+      "status": "PASS",
+      "detail": "['T01_A_STAGE_0', 'T01_A_STAGE_3']"
+    },
+    {
+      "name": "inputs:hash_locked",
+      "status": "PASS",
+      "detail": "results/tcad/t01_single_gate/t01_d_idvd/input_snapshot.json"
+    },
+    {
+      "name": "dependencies:stage_gates",
+      "status": "PASS",
+      "detail": "T01-A=PASS T01-D-A=PASS"
+    },
+    {
+      "name": "contract:frozen_stage3_and_da_meshes",
+      "status": "PASS",
+      "detail": "VGS=[0.0, 0.3, 0.5, 1.0] VDS=[0.0, 0.01, 0.05, 0.1, 0.2] meshes=['interface_4x', 'interface_8x']"
+    },
+    {
+      "name": "solver:fresh_curve_runs_and_convergence",
+      "status": "PASS",
+      "detail": "curves=6 records=65 counts=[7, 10, 11, 13, 11, 13]"
+    },
+    {
+      "name": "bias:configured_grid",
+      "status": "PASS",
+      "detail": "curves=6 rows=30 VDS=[0.0, 0.01, 0.05, 0.1, 0.2]"
+    },
+    {
+      "name": "current:zero_resolved_directional_and_conserved",
+      "status": "PASS",
+      "detail": "max_zero=3.379166e-19 nonzero=24 max_imbalance=7.276087e-14"
+    },
+    {
+      "name": "trend:idvd_and_gate_order",
+      "status": "PASS",
+      "detail": "curve_drop=0.000000e+00 gate_drop=0.000000e+00"
+    },
+    {
+      "name": "metrics:independently_recomputed",
+      "status": "PASS",
+      "detail": "metrics=6 minimum_segment=2.005702e-06 S/cm"
+    },
+    {
+      "name": "mesh:selected_reference_comparison_recomputed",
+      "status": "PASS",
+      "detail": "rows=10 max_current=1.638650e-04 max_potential=3.288538e-05"
+    },
+    {
+      "name": "regression:t01_da_anchors_recomputed",
+      "status": "PASS",
+      "detail": "rows=4 max_current=1.497804e-14 max_potential=6.938894e-17"
+    },
+    {
+      "name": "mesh:summary_counts",
+      "status": "PASS",
+      "detail": "rows=2 nodes=['1394', '2378']"
+    },
+    {
+      "name": "outputs:json_csv_consistency",
+      "status": "PASS",
+      "detail": "report_bias=30 csv_bias=30"
+    },
+    {
+      "name": "outputs:raw_tables_and_figure",
+      "status": "PASS",
+      "detail": "files=9 figure_bytes=112217"
+    },
+    {
+      "name": "runner:acceptance_and_next_gate",
+      "status": "PASS",
+      "detail": "runner_checks=11 next=True"
+    }
+  ],
+  "failures": [],
+  "recomputed_maximum_zero_vds_abs_terminal_current_a_per_cm": 3.379165716833452e-19,
+  "recomputed_maximum_relative_terminal_current_imbalance": 7.276086585158951e-14,
+  "recomputed_maximum_curve_relative_current_drop": 0.0,
+  "recomputed_maximum_gate_order_relative_current_drop": 0.0,
+  "recomputed_minimum_segment_conductance_s_per_cm": 2.0057019589650202e-06,
+  "recomputed_maximum_reference_relative_current_difference": 0.00016386503623099576,
+  "recomputed_maximum_reference_center_potential_difference_v": 3.288537722785645e-05,
+  "recomputed_maximum_t01_da_anchor_relative_current_difference": 1.4978041430746847e-14,
+  "recomputed_maximum_t01_da_anchor_potential_difference_v": 6.938893903907228e-17
+}
