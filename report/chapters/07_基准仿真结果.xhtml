@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-07" class="report-chapter">
   <h2>7. 基准仿真结果</h2>
-  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 扩展到低漏压栅压续算，T01-D-A 以界面窗口加密验证高正栅压目标点，T01-D-B 生成冻结的离散 Id-Vd 曲线族，T01-D-C 最后补齐三状态和受限数值代理。T02-A 再以独立拓扑区分“移除顶栈”与“启用顶栈但 VTG=0 V”，验证了 T01 退化极限和启用拓扑全零偏压平衡；T02-B 在同一启用拓扑上固定 VDS/VBG，生成四个正向顶栅偏压点及两个端点状态。模型为 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
+  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 扩展到低漏压栅压续算，T01-D-A 以界面窗口加密验证高正栅压目标点，T01-D-B 生成冻结的离散 Id-Vd 曲线族，T01-D-C 最后补齐三状态和受限数值代理。T02-A 再以独立拓扑区分“移除顶栈”与“启用顶栈但 VTG=0 V”，验证了 T01 退化极限和启用拓扑全零偏压平衡；T02-B 在同一启用拓扑上固定 VDS/VBG，生成四个正向顶栅偏压点及两个端点状态；T02-C 最后补齐上下栅各三条正向曲线、零第二栅回程、受限参数提取和 6 个二维状态。模型为 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
   <table>
     <thead><tr><th>条件</th><th>coarse</th><th>fine</th><th>验收</th></tr></thead>
     <tbody>
@@ -106,5 +106,26 @@
     <img src="assets/tcad_t02_b_minimal_bias.png" alt="T02-B 固定漏压和底栅时的顶栅电流、沟道中心电势和电子浓度响应" />
     <figcaption>图 7-4 T02-B 最小正向顶栅偏压族。三张图分别给出漏端电流绝对值、沟道中心电势和中心电子浓度；点间连线只用于辨认四个离散偏压点的顺序，不代表连续或反向扫描验证。</figcaption>
   </figure>
-  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、<code>results/reports/tcad_t01_d_mesh_refinement.json</code>、<code>results/reports/tcad_t01_d_idvd.json</code>、<code>results/reports/tcad_t01_d_extraction.json</code>、<code>results/reports/tcad_t02_a_limit_regression.json</code> 和 <code>results/reports/tcad_t02_b_minimal_bias.json</code> 及对应 CSV、求解日志、节点/单元状态、VTK 和图。T01-D-C 的运行器 12 项检查与独立 17 项复算均 PASS，关闭了冻结教学模型的完整 T01 数值阶段门。T02-A/B 的运行器均为 10 项，独立检查均为 14 项且全部 PASS；T02-B 只允许进入 T02-C 双向偏压合同与曲线族。这里的 VTH、SS、迁移率和约 17.42 decade 电流跨度仍只能称为数值代理；T02-B 的 9.6802 倍端点电流响应也只属于四点正向教学模型证据，不是物理 Ion/Ioff、<code>Delta VTH</code>、gm、耦合斜率、实验精度或参数不确定度验证。</p>
+  <table>
+    <thead><tr><th>T02-C 完整双栅数值门</th><th>结果</th><th>验收或边界</th></tr></thead>
+    <tbody>
+      <tr><td>偏压合同</td><td>VDS=0.01 V；上下栅各 3 条 31 点正向族，零第二栅各 1 条 31 点回程</td><td>第二栅 -0.3/0/+0.3 V，主栅 -0.5 至 1.0 V</td></tr>
+      <tr><td>DC 求解/落盘点</td><td>318/248，全部收敛</td><td>186 个正向点 + 62 个回程点</td></tr>
+      <tr><td>恒流 VTH 代理</td><td>0.520814/0.263857/-0.040395 V</td><td>对应第二栅 -0.3/0/+0.3 V；上下栅主扫一致</td></tr>
+      <tr><td>Delta VTH 代理</td><td>+0.256957/0/-0.304252 V</td><td>以第二栅 0 V 的 VTH 为参考</td></tr>
+      <tr><td>gm 代理</td><td>3.5061e-5/3.9376e-5/3.8992e-5 S/cm</td><td>在 VTH+0.2 V 由中心差分及插值得到</td></tr>
+      <tr><td>耦合斜率代理</td><td>-0.93535 V/V，R2=0.99764</td><td>三点 OLS；不是已验证的物理电容比</td></tr>
+      <tr><td>数值一致性</td><td>守恒 3.72e-8；正反向 8.19e-11；上下栅互易 3.70e-8</td><td>均为最大相对差；当前路径无关模型不代表真实无回滞</td></tr>
+      <tr><td>状态/独立复算</td><td>6 个状态，14514 节点行、3564 单元行、36 个 VTK；17/17 PASS</td><td>覆盖双负、非对称、阈值附近和双正偏压</td></tr>
+    </tbody>
+  </table>
+  <figure>
+    <img src="assets/tcad_t02_c_bidirectional_families.png" alt="T02-C 顶栅和底栅主扫曲线、阈值位移及跨导数值代理" />
+    <figcaption>图 7-5 T02-C 双向双栅曲线与受限提取。上排分别为顶栅主扫和底栅主扫的三条转移曲线；下排为三点 Delta VTH 和 gm 数值代理。正向/回程路径在当前无陷阱、无动态极化模型中近乎重合。</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/tcad_t02_c_state_maps.png" alt="T02-C 六个代表双栅偏压状态的电势、电子浓度和局部电流密度" />
+    <figcaption>图 7-6 T02-C 六个代表状态。列方向覆盖双负关态代理、上下栅非对称状态、两种阈值附近状态和双正开态代理；横坐标为 um，纵坐标为 nm，局部电流密度单位为 A/cm2。</figcaption>
+  </figure>
+  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、<code>results/reports/tcad_t01_d_mesh_refinement.json</code>、<code>results/reports/tcad_t01_d_idvd.json</code>、<code>results/reports/tcad_t01_d_extraction.json</code>、<code>results/reports/tcad_t02_a_limit_regression.json</code>、<code>results/reports/tcad_t02_b_minimal_bias.json</code> 和 <code>results/reports/tcad_t02_c_bidirectional.json</code> 及对应 CSV、求解日志、节点/单元状态、VTK 和图。T01-D-C 的运行器 12 项检查与独立 17 项复算均 PASS，关闭完整 T01 数值门；T02-C 的运行器 15 项检查与独立 17 项复算均 PASS，关闭完整 T02 数值门。这里的 VTH、SS、迁移率、Delta VTH、gm、耦合斜率和电流跨度仍只能称为冻结教学模型的数值代理，不是物理 Ion/Ioff、实验参数、电容比、真实回滞、实验精度或参数不确定度验证。</p>
 </section>

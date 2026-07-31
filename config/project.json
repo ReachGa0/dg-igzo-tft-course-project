@@ -39,10 +39,10 @@
     "dimension": "2D",
     "tool": "DEVSIM 2.10.0",
     "mesh": "DEVSIM structured mesh; Gmsh optional for later irregular geometry",
-    "baseline_scope": "complete T01 single-gate drift-diffusion numerical gate plus T02-A limit regression and T02-B minimal enabled top-gate response",
-    "next_scope": "T02-C bidirectional top-gate and bottom-gate families with limited coupling extraction",
+    "baseline_scope": "complete T01 single-gate drift-diffusion numerical gate plus complete T02 dual-gate numerical gate through T02-C bidirectional families",
+    "next_scope": "T03 controlled five-group device sensitivity beginning with one frozen parameter group",
     "laptop_target": true,
-    "evidence_boundary": "T02-B verifies monotonic current and internal-state response only for VTG=0/0.1/0.2/0.3 V at VDS=0.01 V and VBG=0 V on the frozen teaching model. Bidirectional families, Delta VTH, gm, experimental calibration, traps, and nonideal contacts remain unverified."
+    "evidence_boundary": "T02-C closes only the frozen teaching-model numerical gate: six forward families, two central reverse paths, limited VTH/Delta VTH/gm/coupling proxies, and six internal states pass. Experimental calibration, physical parameter validation, traps, nonideal contacts, uncertainty, compact models, and circuits remain unverified."
   },
   "baseline_devices": {
     "IGZO_TFT": {

@@ -40,6 +40,7 @@ REQUIRED_FILES = [
     "config/tcad_t01_d_extraction.json",
     "config/tcad_t02_a_dual_gate_contract.json",
     "config/tcad_t02_b_minimal_bias.json",
+    "config/tcad_t02_c_bidirectional.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -66,6 +67,8 @@ REQUIRED_FILES = [
     "scripts/check_t02_a_limit_regression.py",
     "scripts/check_t02_b_contract.py",
     "scripts/check_t02_b_minimal_bias.py",
+    "scripts/check_t02_c_contract.py",
+    "scripts/check_t02_c_bidirectional.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
@@ -76,6 +79,7 @@ REQUIRED_FILES = [
     "tcad/run_t01_single_gate_extraction.py",
     "tcad/run_t02_dual_gate_limit_regression.py",
     "tcad/run_t02_dual_gate_minimal_bias.py",
+    "tcad/run_t02_dual_gate_bidirectional.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
@@ -133,6 +137,17 @@ REQUIRED_FILES = [
     "results/tables/tcad_t02_b_state_summary.csv",
     "results/tcad/t02_dual_gate/t02_b_minimal_bias/state_manifest.json",
     "report/assets/tcad_t02_b_minimal_bias.png",
+    "results/reports/tcad_t02_c_input_contract.json",
+    "results/reports/tcad_t02_c_bidirectional.json",
+    "results/reports/tcad_t02_c_bidirectional_check.json",
+    "results/tables/tcad_t02_c_bidirectional_families.csv",
+    "results/tables/tcad_t02_c_coupling_metrics.csv",
+    "results/tables/tcad_t02_c_reverse_comparison.csv",
+    "results/tables/tcad_t02_c_reciprocal_comparison.csv",
+    "results/tables/tcad_t02_c_state_summary.csv",
+    "results/tcad/t02_dual_gate/t02_c_bidirectional/state_manifest.json",
+    "report/assets/tcad_t02_c_bidirectional_families.png",
+    "report/assets/tcad_t02_c_state_maps.png",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -180,6 +195,7 @@ REQUIRED_DIRS = [
     "results/tcad/t01_single_gate/t01_d_idvd",
     "results/tcad/t02_dual_gate/t02_a_limit_regression",
     "results/tcad/t02_dual_gate/t02_b_minimal_bias",
+    "results/tcad/t02_dual_gate/t02_c_bidirectional",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -1269,6 +1285,149 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t02_b:minimal_bias", False, str(error))
+
+    t02_c_contract_path = ROOT / "results" / "reports" / "tcad_t02_c_input_contract.json"
+    t02_c_report_path = ROOT / "results" / "reports" / "tcad_t02_c_bidirectional.json"
+    t02_c_check_path = ROOT / "results" / "reports" / "tcad_t02_c_bidirectional_check.json"
+    try:
+        t02_c_config = json.loads(
+            (ROOT / "config" / "tcad_t02_c_bidirectional.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        t02_c_contract = json.loads(t02_c_contract_path.read_text(encoding="utf-8"))
+        t02_c_report = json.loads(t02_c_report_path.read_text(encoding="utf-8"))
+        t02_c_check = json.loads(t02_c_check_path.read_text(encoding="utf-8"))
+        contract_checks = t02_c_contract.get("checks", [])
+        add_check(
+            checks,
+            "t02_c:input_contract",
+            t02_c_contract.get("status") == "PASS"
+            and t02_c_contract.get("contract_status") == "PASS"
+            and t02_c_contract.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and t02_c_contract.get("case_id") == t02_c_config.get("case_id")
+            and len(contract_checks) == 21
+            and all(result.get("status") == "PASS" for result in contract_checks),
+            f"status={t02_c_contract.get('status')} checks={len(contract_checks)}",
+        )
+        add_check(
+            checks,
+            "t02_c:simulation_and_independent_check",
+            t02_c_report.get("status") == "PASS"
+            and t02_c_report.get("case_id") == t02_c_config.get("case_id")
+            and t02_c_report.get("stage") == "T02-C"
+            and t02_c_report.get("evidence_level") == "E2"
+            and t02_c_check.get("status") == "PASS"
+            and t02_c_check.get("case_id") == t02_c_config.get("case_id")
+            and t02_c_check.get("stage") == "T02-C"
+            and len(t02_c_check.get("checks", [])) == 17
+            and all(
+                result.get("status") == "PASS"
+                for result in t02_c_check.get("checks", [])
+            )
+            and not t02_c_check.get("failures"),
+            (
+                f"simulation={t02_c_report.get('status')} independent="
+                f"{t02_c_check.get('status')} checks={len(t02_c_check.get('checks', []))}"
+            ),
+        )
+        completion = t02_c_report.get("t02_c_completion", {})
+        metrics = t02_c_report.get("summary_metrics", {})
+        acceptance = t02_c_config["acceptance"]
+        add_check(
+            checks,
+            "t02_c:complete_numerical_gate",
+            completion.get("status") == "PASS"
+            and completion.get("complete_t02_numerical_stage_gate") == "PASS"
+            and completion.get("t02_complete") is True
+            and completion.get("t03_controlled_sensitivity_permitted_next") is True
+            and completion.get("experimental_calibration_permitted") is False
+            and completion.get("physical_parameter_validation_permitted") is False
+            and metrics.get("maximum_relative_terminal_current_imbalance", float("inf"))
+            <= acceptance["maximum_relative_terminal_current_imbalance"]
+            and metrics.get(
+                "maximum_forward_reverse_relative_current_difference", float("inf")
+            )
+            <= acceptance["maximum_forward_reverse_relative_current_difference"]
+            and metrics.get(
+                "maximum_reciprocal_top_bottom_relative_current_difference", float("inf")
+            )
+            <= acceptance["maximum_reciprocal_top_bottom_relative_current_difference"],
+            f"completion={completion} metrics={metrics}",
+        )
+        family_points = t02_c_report.get("family_points", [])
+        forward_points = [
+            row for row in family_points if row.get("sweep_direction") == "forward"
+        ]
+        reverse_points = [
+            row for row in family_points if row.get("sweep_direction") == "reverse"
+        ]
+        coupling_metrics = t02_c_report.get("coupling_metrics", [])
+        add_check(
+            checks,
+            "t02_c:families_and_limited_extraction",
+            len(family_points) == acceptance["required_total_reported_point_count"]
+            and len(forward_points) == acceptance["required_forward_reported_point_count"]
+            and len(reverse_points) == acceptance["required_reverse_reported_point_count"]
+            and len(coupling_metrics) == acceptance["required_forward_family_count"]
+            and all(float(row.get("gm_proxy_s_per_cm", 0.0)) > 0.0 for row in coupling_metrics)
+            and all(
+                float(row.get("coupling_slope_v_per_v", 0.0)) < 0.0
+                and float(row.get("coupling_fit_r_squared", 0.0))
+                >= acceptance["minimum_coupling_fit_r_squared"]
+                for row in coupling_metrics
+            )
+            and len(t02_c_report.get("reverse_path_summaries", []))
+            == acceptance["required_reverse_family_count"]
+            and t02_c_report.get("reciprocal_symmetry_summary", {}).get("point_count")
+            == acceptance["required_primary_gate_point_count"]
+            * len(acceptance["required_fixed_secondary_gate_values_v"]),
+            (
+                f"points={len(family_points)} forward={len(forward_points)} "
+                f"reverse={len(reverse_points)} metrics={len(coupling_metrics)}"
+            ),
+        )
+        runner_checks = t02_c_report.get("checks", {})
+        state_entries = t02_c_report.get("state_outputs", [])
+        state_paths = [
+            ROOT / entry[key]
+            for entry in state_entries
+            for key in ("node_csv", "element_csv")
+        ]
+        vtk_paths = [
+            ROOT / item["path"]
+            for entry in state_entries
+            for item in entry.get("vtk_files", [])
+        ]
+        figure_paths = [ROOT / item["path"] for item in t02_c_report.get("figures", [])]
+        output_paths = [
+            ROOT / value
+            for key, value in t02_c_report.get("outputs", {}).items()
+            if key != "run_directory"
+        ]
+        run_directory = ROOT / t02_c_report.get("outputs", {}).get("run_directory", "")
+        add_check(
+            checks,
+            "t02_c:checks_and_raw_outputs",
+            len(runner_checks) == 15
+            and all(result.get("status") == "PASS" for result in runner_checks.values())
+            and [entry.get("state_id") for entry in state_entries]
+            == acceptance["required_state_ids"]
+            and len(state_paths) == 12
+            and len(vtk_paths) == 36
+            and len(figure_paths) == 2
+            and all(
+                path.is_file() and path.stat().st_size > 0
+                for path in output_paths + state_paths + vtk_paths + figure_paths + [t02_c_check_path]
+            )
+            and run_directory.is_dir(),
+            (
+                f"checks={len(runner_checks)} states={len(state_entries)} "
+                f"state_csv={len(state_paths)} vtk={len(vtk_paths)} figures={len(figure_paths)}"
+            ),
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t02_c:bidirectional", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

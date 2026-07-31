@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-05" class="report-chapter">
   <h2>5. 仿真工具与模型建立</h2>
-  <p>T01-A 已冻结单栅 IGZO 漂移扩散输入合同，T01-B/C/D-A/D-B/D-C 已在 DEVSIM 2.10.0 上运行低漏压烟雾、栅压续算、界面法向网格收敛、离散 Id-Vd 曲线族，以及状态/受限数值代理提取。结构采用二维、厘米制物理单位：底栅单栅，W = 60 um，L = 10 um，IGZO 厚度 24 nm，物理 Al2O3 厚度 30 nm；顶部为自然零法向通量边界，不加入顶栅或顶介质。T02-A 在不改动这一 T01 参考域的前提下，额外建立含对称教学顶栈的独立双栅拓扑，用于验证退化极限和零偏压平衡；T02-B 继承该启用拓扑，只运行固定 VDS/VBG 的四点正向顶栅偏压族。</p>
+  <p>T01-A 已冻结单栅 IGZO 漂移扩散输入合同，T01-B/C/D-A/D-B/D-C 已在 DEVSIM 2.10.0 上运行低漏压烟雾、栅压续算、界面法向网格收敛、离散 Id-Vd 曲线族，以及状态/受限数值代理提取。结构采用二维、厘米制物理单位：底栅单栅，W = 60 um，L = 10 um，IGZO 厚度 24 nm，物理 Al2O3 厚度 30 nm；顶部为自然零法向通量边界，不加入顶栅或顶介质。T02-A 在不改动这一 T01 参考域的前提下，额外建立含对称教学顶栈的独立双栅拓扑，用于验证退化极限和零偏压平衡；T02-B 继承该启用拓扑，运行固定 VDS/VBG 的四点正向顶栅偏压族；T02-C 再冻结上下栅双向曲线、回程路径、受限参数提取和 6 个内部状态，关闭完整 T02 教学模型数值门。</p>
   <table>
     <thead>
       <tr><th>项目</th><th>T01-A 冻结口径</th><th>来源或状态</th></tr>
@@ -17,7 +17,7 @@
     </tbody>
   </table>
   <table>
-    <thead><tr><th>T02-A/B 拓扑与偏压合同</th><th>实现</th><th>证据边界</th></tr></thead>
+    <thead><tr><th>T02-A/B/C 拓扑与偏压合同</th><th>实现</th><th>证据边界</th></tr></thead>
     <tbody>
       <tr><td>禁用顶栅耦合</td><td>完整移除顶介质/顶栅，恢复 T01 自然顶边界和 interface_4x 域</td><td>与 T01-D-C 七个冻结点做端口电流与内部状态回归</td></tr>
       <tr><td>启用教学顶栈</td><td>30 nm Al2O3，相对介电常数 6.8，理想静电 Dirichlet 顶栅，上下界面镜像加密</td><td>T00 延续的教学假设，不是已制造工艺事实</td></tr>
@@ -25,7 +25,10 @@
       <tr><td>求解与产物</td><td>两种拓扑分别新建器件；保存输入快照、求解日志、CSV、JSON、节点状态和 VTK</td><td>14 次 DC 只构成 E2 教学模型证据</td></tr>
       <tr><td>T02-B 固定条件</td><td>VDS=0.01 V，VBG=0 V，几何、材料、接触、方程、网格与温度不变</td><td>只改变 VTG，禁止把其他变量混入响应归因</td></tr>
       <tr><td>T02-B 偏压与状态</td><td>VTG=0/0.1/0.2/0.3 V 单向增加；只在 0/0.3 V 保存节点状态和 VTK</td><td>不含负偏压、回程扫描、底栅族、Delta VTH 或 gm 提取</td></tr>
+      <tr><td>T02-C 曲线合同</td><td>VDS=0.01 V；顶栅主扫和底栅主扫各取第二栅 -0.3/0/+0.3 V，主栅 -0.5 至 1.0 V、步长 0.05 V；每条正向族新建设备</td><td>6 条正向族共 186 点；只对零第二栅的两条族执行 62 点回程</td></tr>
+      <tr><td>T02-C 提取合同</td><td>沿用 T01-D-C 的 60 nA 恒流判据；gm 在 VTH+0.2 V 由中心差分及插值得到；Delta VTH 对第二栅电压作三点 OLS</td><td>VTH、Delta VTH、gm 和斜率均为离散教学模型数值代理</td></tr>
+      <tr><td>T02-C 状态合同</td><td>保存双负、上下栅非对称、两种阈值附近和双正共 6 个状态的节点/沟道单元 CSV 与 VTK</td><td>覆盖电势、电子浓度和局部电流密度；不含陷阱、动态极化或非理想接触</td></tr>
     </tbody>
   </table>
-  <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>，T01-D-C 使用 <code>make t01-d-extract</code>/<code>make t01-d-extract-check</code>。T02-A 依次使用 <code>make t02-a-contract-check</code>、<code>make t02-a-regression</code> 和 <code>make t02-a-regression-check</code>；T02-B 依次使用 <code>make t02-b-contract-check</code>、<code>make t02-b-minimal</code> 和 <code>make t02-b-minimal-check</code>。各运行器保存输入快照、DC 求解记录、CSV、JSON 及阶段所需状态或图，独立检查器复算哈希、偏压点、守恒、单调性、上游回归、网格指标和提取公式。完整 T01 与 T02-A/B 均是 E2 教学参数数值证据；T02-B 只验证四个非负顶栅点的响应方向，负偏压、反向扫描、双向曲线族、阈值位移、gm、实验拟合和物理 Ion/Ioff 尚未验证。</p>
+  <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>，T01-D-C 使用 <code>make t01-d-extract</code>/<code>make t01-d-extract-check</code>。T02-A 依次使用 <code>make t02-a-contract-check</code>、<code>make t02-a-regression</code> 和 <code>make t02-a-regression-check</code>；T02-B 使用对应的 <code>t02-b-contract-check</code>、<code>t02-b-minimal</code> 和 <code>t02-b-minimal-check</code> 目标；T02-C 使用 <code>make t02-c-contract-check</code>、<code>make t02-c-bidirectional</code> 和 <code>make t02-c-bidirectional-check</code>。各运行器保存输入快照、DC 求解记录、CSV、JSON 及阶段所需状态或图，独立检查器复算哈希、偏压点、守恒、单调性、上游回归、正反路径、上下栅互易性和提取公式。完整 T01 与完整 T02 均是 E2 教学参数数值证据；实验拟合、物理 Ion/Ioff、电容比、真实回滞、参数不确定度和电路可用性尚未验证。</p>
 </section>

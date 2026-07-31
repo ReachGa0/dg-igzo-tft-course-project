@@ -1,0 +1,216 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T02_DUAL_GATE_DD_C_BIDIRECTIONAL_V1",
+  "stage": "T02-C",
+  "checks": [
+    {
+      "name": "identity:report",
+      "status": "PASS",
+      "detail": "status=PASS case=IGZO_T02_DUAL_GATE_DD_C_BIDIRECTIONAL_V1 stage=T02-C"
+    },
+    {
+      "name": "contract:static_gate_passed_before_simulation",
+      "status": "PASS",
+      "detail": "checks=21 simulation=NOT_RUN_BY_CONTRACT_CHECK"
+    },
+    {
+      "name": "inputs:snapshot_hashes_match",
+      "status": "PASS",
+      "detail": "snapshot=results/tcad/t02_dual_gate/t02_c_bidirectional/input_snapshot.json inputs=9"
+    },
+    {
+      "name": "dependencies:t02_a_and_t02_b_evidence_remains_pass",
+      "status": "PASS",
+      "detail": "T02-A=PASS T02-B=PASS independent=PASS"
+    },
+    {
+      "name": "solver:six_fresh_families_and_all_dc_converged",
+      "status": "PASS",
+      "detail": "runs=6 counts=[44, 71, 44, 44, 71, 44] records=318"
+    },
+    {
+      "name": "topology:all_families_match_t02_a_enabled_domain",
+      "status": "PASS",
+      "detail": "families=6 nodes=2419 elements=4480"
+    },
+    {
+      "name": "bias:persisted_family_grid_and_report_match",
+      "status": "PASS",
+      "detail": "rows=248 forward=186 reverse=62 fields=23"
+    },
+    {
+      "name": "current:finite_directional_and_conserved",
+      "status": "PASS",
+      "detail": "maximum_relative_imbalance=3.712092e-08"
+    },
+    {
+      "name": "current:primary_and_secondary_ordering_recomputed",
+      "status": "PASS",
+      "detail": "primary=True secondary=True max_drop=0.000000e+00"
+    },
+    {
+      "name": "extraction:vth_delta_vth_gm_and_coupling_recomputed",
+      "status": "PASS",
+      "detail": "top_primary sec=-0.3 VTH=0.520814 gm=3.506061e-05; top_primary sec=+0.0 VTH=0.263857 gm=3.937600e-05; top_primary sec=+0.3 VTH=-0.0403947 gm=3.899197e-05; bottom_primary sec=-0.3 VTH=0.520814 gm=3.506061e-05; bottom_primary sec=+0.0 VTH=0.263857 gm=3.937600e-05; bottom_primary sec=+0.3 VTH=-0.0403947 gm=3.899197e-05"
+    },
+    {
+      "name": "path:forward_reverse_agreement_recomputed",
+      "status": "PASS",
+      "detail": "rows=62 max_current_relative=8.188150e-11 max_dVTH=3.885781e-16 V"
+    },
+    {
+      "name": "symmetry:top_bottom_reciprocity_recomputed",
+      "status": "PASS",
+      "detail": "rows=93 current=3.695178e-08 potential=6.938894e-17 density=3.231980e-11 dVTH=2.220446e-16 dgm=2.763801e-14"
+    },
+    {
+      "name": "regression:t02_b_four_anchors_reproduced",
+      "status": "PASS",
+      "detail": "max_current_relative=2.484807e-15 max_potential=6.938894e-18 V"
+    },
+    {
+      "name": "state:six_node_element_vtk_outputs_recomputed",
+      "status": "PASS",
+      "detail": "states=['dual_negative_off_proxy', 'top_positive_bottom_negative_asymmetry', 'bottom_positive_top_negative_asymmetry', 'top_threshold_region_proxy', 'bottom_threshold_region_proxy', 'dual_positive_on_proxy'] summaries=6"
+    },
+    {
+      "name": "state:representative_current_and_density_ordering",
+      "status": "PASS",
+      "detail": "currents=[1.6264038843614528e-11, 2.0345721951130565e-06, 1.154944554137312e-05, 2.3157084286939043e-05] densities=[116709410776.62202, 6790762243916134.0, 7.364012706240109e+16, 1.6031206462487552e+17]"
+    },
+    {
+      "name": "outputs:artifact_hashes_and_png_dimensions_match",
+      "status": "PASS",
+      "detail": "artifacts=7 figures=[(1944, 1440, 329111), (2016, 1476, 828743)]"
+    },
+    {
+      "name": "runner:t02_gate_and_evidence_boundary_pass",
+      "status": "PASS",
+      "detail": "runner_checks=15 complete=True next=True"
+    }
+  ],
+  "failures": [],
+  "recomputed_metrics": {
+    "maximum_relative_terminal_current_imbalance": 3.7120922806537963e-08,
+    "maximum_monotonic_relative_current_drop": 0.0,
+    "maximum_forward_reverse_relative_current_difference": 8.188149530303124e-11,
+    "maximum_forward_reverse_vth_difference_v": 3.885780586188048e-16,
+    "maximum_reciprocal_top_bottom_relative_current_difference": 3.69517802320258e-08,
+    "maximum_reciprocal_top_bottom_center_potential_difference_v": 6.938893903907228e-17,
+    "maximum_reciprocal_top_bottom_center_density_relative_difference": 3.23197998781002e-11,
+    "maximum_reciprocal_top_bottom_vth_difference_v": 2.220446049250313e-16,
+    "maximum_reciprocal_top_bottom_gm_relative_difference": 2.763801466329719e-14,
+    "maximum_t02_b_anchor_relative_current_difference": 2.484807250940542e-15,
+    "maximum_t02_b_anchor_potential_difference_v": 6.938893903907228e-18,
+    "coupling_metrics": [
+      {
+        "family_id": "top_primary",
+        "fixed_secondary_gate_v": -0.3,
+        "vth_proxy_v": 0.5208140027924738,
+        "vth_bracket_lower_primary_gate_v": 0.5,
+        "vth_bracket_upper_primary_gate_v": 0.55,
+        "vth_bracket_lower_current_a_per_cm": 9.222050396344935e-06,
+        "vth_bracket_upper_current_a_per_cm": 1.1202627874488718e-05,
+        "gm_evaluation_primary_gate_v": 0.7208140027924739,
+        "gm_proxy_s_per_cm": 3.5060611388478005e-05,
+        "gm_proxy_terminal_s": 2.1036366833086804e-07,
+        "maximum_sampled_gm_s_per_cm": 3.967221161067354e-05,
+        "maximum_sampled_gm_primary_gate_v": 0.5,
+        "delta_vth_proxy_v": 0.25695714479487125,
+        "coupling_slope_v_per_v": -0.935347761062,
+        "coupling_fit_intercept_v": 0.24809206898178338,
+        "coupling_fit_r_squared": 0.9976383149643229
+      },
+      {
+        "family_id": "top_primary",
+        "fixed_secondary_gate_v": 0.0,
+        "vth_proxy_v": 0.26385685799760256,
+        "vth_bracket_lower_primary_gate_v": 0.25,
+        "vth_bracket_upper_primary_gate_v": 0.3,
+        "vth_bracket_lower_current_a_per_cm": 9.462693911699367e-06,
+        "vth_bracket_upper_current_a_per_cm": 1.1549445541373129e-05,
+        "gm_evaluation_primary_gate_v": 0.46385685799760257,
+        "gm_proxy_s_per_cm": 3.937599666287622e-05,
+        "gm_proxy_terminal_s": 2.3625597997725733e-07,
+        "maximum_sampled_gm_s_per_cm": 4.170461174228463e-05,
+        "maximum_sampled_gm_primary_gate_v": 0.3,
+        "delta_vth_proxy_v": 0.0,
+        "coupling_slope_v_per_v": -0.935347761062,
+        "coupling_fit_intercept_v": 0.24809206898178338,
+        "coupling_fit_r_squared": 0.9976383149643229
+      },
+      {
+        "family_id": "top_primary",
+        "fixed_secondary_gate_v": 0.3,
+        "vth_proxy_v": -0.040394653844726194,
+        "vth_bracket_lower_primary_gate_v": -0.05,
+        "vth_bracket_upper_primary_gate_v": 0.0,
+        "vth_bracket_lower_current_a_per_cm": 9.663261678951728e-06,
+        "vth_bracket_upper_current_a_per_cm": 1.154944554137311e-05,
+        "gm_evaluation_primary_gate_v": 0.15960534615527383,
+        "gm_proxy_s_per_cm": 3.899196816942476e-05,
+        "gm_proxy_terminal_s": 2.3395180901654856e-07,
+        "maximum_sampled_gm_s_per_cm": 3.912178309143659e-05,
+        "maximum_sampled_gm_primary_gate_v": 0.1,
+        "delta_vth_proxy_v": -0.30425151184232874,
+        "coupling_slope_v_per_v": -0.935347761062,
+        "coupling_fit_intercept_v": 0.24809206898178338,
+        "coupling_fit_r_squared": 0.9976383149643229
+      },
+      {
+        "family_id": "bottom_primary",
+        "fixed_secondary_gate_v": -0.3,
+        "vth_proxy_v": 0.5208140027924739,
+        "vth_bracket_lower_primary_gate_v": 0.5,
+        "vth_bracket_upper_primary_gate_v": 0.55,
+        "vth_bracket_lower_current_a_per_cm": 9.22205039634492e-06,
+        "vth_bracket_upper_current_a_per_cm": 1.1202627874488731e-05,
+        "gm_evaluation_primary_gate_v": 0.7208140027924739,
+        "gm_proxy_s_per_cm": 3.5060611388477036e-05,
+        "gm_proxy_terminal_s": 2.1036366833086222e-07,
+        "maximum_sampled_gm_s_per_cm": 3.967221161067358e-05,
+        "maximum_sampled_gm_primary_gate_v": 0.5,
+        "delta_vth_proxy_v": 0.2569571447948716,
+        "coupling_slope_v_per_v": -0.9353477610620005,
+        "coupling_fit_intercept_v": 0.2480920689817833,
+        "coupling_fit_r_squared": 0.9976383149643229
+      },
+      {
+        "family_id": "bottom_primary",
+        "fixed_secondary_gate_v": 0.0,
+        "vth_proxy_v": 0.26385685799760233,
+        "vth_bracket_lower_primary_gate_v": 0.25,
+        "vth_bracket_upper_primary_gate_v": 0.3,
+        "vth_bracket_lower_current_a_per_cm": 9.46269391169939e-06,
+        "vth_bracket_upper_current_a_per_cm": 1.1549445541373112e-05,
+        "gm_evaluation_primary_gate_v": 0.46385685799760235,
+        "gm_proxy_s_per_cm": 3.937599666287647e-05,
+        "gm_proxy_terminal_s": 2.3625597997725883e-07,
+        "maximum_sampled_gm_s_per_cm": 4.170461174228471e-05,
+        "maximum_sampled_gm_primary_gate_v": 0.3,
+        "delta_vth_proxy_v": 0.0,
+        "coupling_slope_v_per_v": -0.9353477610620005,
+        "coupling_fit_intercept_v": 0.2480920689817833,
+        "coupling_fit_r_squared": 0.9976383149643229
+      },
+      {
+        "family_id": "bottom_primary",
+        "fixed_secondary_gate_v": 0.3,
+        "vth_proxy_v": -0.040394653844726305,
+        "vth_bracket_lower_primary_gate_v": -0.05,
+        "vth_bracket_upper_primary_gate_v": 0.0,
+        "vth_bracket_lower_current_a_per_cm": 9.663261678951727e-06,
+        "vth_bracket_upper_current_a_per_cm": 1.154944554137314e-05,
+        "gm_evaluation_primary_gate_v": 0.15960534615527372,
+        "gm_proxy_s_per_cm": 3.8991968169424494e-05,
+        "gm_proxy_terminal_s": 2.3395180901654697e-07,
+        "maximum_sampled_gm_s_per_cm": 3.9121783091436796e-05,
+        "maximum_sampled_gm_primary_gate_v": 0.1,
+        "delta_vth_proxy_v": -0.3042515118423286,
+        "coupling_slope_v_per_v": -0.9353477610620005,
+        "coupling_fit_intercept_v": 0.2480920689817833,
+        "coupling_fit_r_squared": 0.9976383149643229
+      }
+    ]
+  }
+}

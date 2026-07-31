@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 265,
+  "checks": 286,
   "failures": 0,
   "results": [
     {
@@ -185,6 +185,11 @@
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_b_minimal_bias"
     },
     {
+      "name": "directory:results/tcad/t02_dual_gate/t02_c_bidirectional",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_c_bidirectional"
+    },
+    {
       "name": "directory:tcad/structures",
       "status": "PASS",
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/structures"
@@ -252,52 +257,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=11372"
+      "detail": "bytes=12278"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=13410"
+      "detail": "bytes=13701"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=6648"
+      "detail": "bytes=7197"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=41583"
+      "detail": "bytes=46152"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4071"
+      "detail": "bytes=4078"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=17949"
+      "detail": "bytes=19140"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=8524"
+      "detail": "bytes=9683"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=2729"
+      "detail": "bytes=3061"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=4670"
+      "detail": "bytes=4745"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=19557"
+      "detail": "bytes=20492"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -350,6 +355,11 @@
       "detail": "bytes=6232"
     },
     {
+      "name": "file:config/tcad_t02_c_bidirectional.json",
+      "status": "PASS",
+      "detail": "bytes=13446"
+    },
+    {
       "name": "file:references/papers_manifest.csv",
       "status": "PASS",
       "detail": "bytes=2493"
@@ -382,12 +392,12 @@
     {
       "name": "file:docs/05_\u9a8c\u8bc1\u4e0e\u9a8c\u6536\u6807\u51c6.md",
       "status": "PASS",
-      "detail": "bytes=9080"
+      "detail": "bytes=9956"
     },
     {
       "name": "file:docs/06_\u660e\u65e5\u6c47\u62a5\u7a3f.md",
       "status": "PASS",
-      "detail": "bytes=3726"
+      "detail": "bytes=4120"
     },
     {
       "name": "file:docs/07_PPT\u4e0e\u62a5\u544a\u63d0\u7eb2.md",
@@ -412,12 +422,12 @@
     {
       "name": "file:docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
       "status": "PASS",
-      "detail": "bytes=18074"
+      "detail": "bytes=19346"
     },
     {
       "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
       "status": "PASS",
-      "detail": "bytes=9492"
+      "detail": "bytes=9515"
     },
     {
       "name": "file:scripts/import_senior_reference.py",
@@ -480,6 +490,16 @@
       "detail": "bytes=17259"
     },
     {
+      "name": "file:scripts/check_t02_c_contract.py",
+      "status": "PASS",
+      "detail": "bytes=19296"
+    },
+    {
+      "name": "file:scripts/check_t02_c_bidirectional.py",
+      "status": "PASS",
+      "detail": "bytes=37123"
+    },
+    {
       "name": "file:scripts/build_self_contained_report.py",
       "status": "PASS",
       "detail": "bytes=11722"
@@ -487,7 +507,7 @@
     {
       "name": "file:tcad/README.md",
       "status": "PASS",
-      "detail": "bytes=9657"
+      "detail": "bytes=10704"
     },
     {
       "name": "file:tcad/run_dg_electrostatic.py",
@@ -530,6 +550,11 @@
       "detail": "bytes=28886"
     },
     {
+      "name": "file:tcad/run_t02_dual_gate_bidirectional.py",
+      "status": "PASS",
+      "detail": "bytes=81080"
+    },
+    {
       "name": "file:report/manifest.json",
       "status": "PASS",
       "detail": "bytes=2539"
@@ -542,7 +567,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=4850"
+      "detail": "bytes=5467"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -813,6 +838,61 @@
       "name": "file:report/assets/tcad_t02_b_minimal_bias.png",
       "status": "PASS",
       "detail": "bytes=111482"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_c_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=19944"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_c_bidirectional.json",
+      "status": "PASS",
+      "detail": "bytes=292720"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_c_bidirectional_check.json",
+      "status": "PASS",
+      "detail": "bytes=9749"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_c_bidirectional_families.csv",
+      "status": "PASS",
+      "detail": "bytes=85118"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_c_coupling_metrics.csv",
+      "status": "PASS",
+      "detail": "bytes=2494"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_c_reverse_comparison.csv",
+      "status": "PASS",
+      "detail": "bytes=12851"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_c_reciprocal_comparison.csv",
+      "status": "PASS",
+      "detail": "bytes=20538"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_c_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=3821"
+    },
+    {
+      "name": "file:results/tcad/t02_dual_gate/t02_c_bidirectional/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=19276"
+    },
+    {
+      "name": "file:report/assets/tcad_t02_c_bidirectional_families.png",
+      "status": "PASS",
+      "detail": "bytes=329111"
+    },
+    {
+      "name": "file:report/assets/tcad_t02_c_state_maps.png",
+      "status": "PASS",
+      "detail": "bytes=828743"
     },
     {
       "name": "file:models/level61/README.md",
@@ -1263,6 +1343,31 @@
       "name": "t02_b:checks_and_raw_outputs",
       "status": "PASS",
       "detail": "checks=10 states=2 vtk=12"
+    },
+    {
+      "name": "t02_c:input_contract",
+      "status": "PASS",
+      "detail": "status=PASS checks=21"
+    },
+    {
+      "name": "t02_c:simulation_and_independent_check",
+      "status": "PASS",
+      "detail": "simulation=PASS independent=PASS checks=17"
+    },
+    {
+      "name": "t02_c:complete_numerical_gate",
+      "status": "PASS",
+      "detail": "completion={'status': 'PASS', 'bidirectional_gate_families_completed': True, 'negative_primary_gate_paths_verified': True, 'reverse_path_numerical_independence_verified': True, 'delta_vth_numerical_proxy_verified': True, 'gm_numerical_proxy_verified': True, 'representative_internal_states_verified': True, 'complete_t02_numerical_stage_gate': 'PASS', 't02_complete': True, 't03_controlled_sensitivity_permitted_next': True, 'experimental_calibration_permitted': False, 'physical_parameter_validation_permitted': False, 'compact_model_calibrated': False} metrics={'maximum_relative_terminal_current_imbalance': 3.7120922806537963e-08, 'maximum_monotonic_relative_current_drop': 0.0, 'maximum_forward_reverse_relative_current_difference': 8.188149530303124e-11, 'maximum_forward_reverse_vth_difference_v': 3.885780586188048e-16, 'maximum_reciprocal_top_bottom_relative_current_difference': 3.69517802320258e-08, 'maximum_reciprocal_top_bottom_vth_difference_v': 2.220446049250313e-16, 'maximum_reciprocal_top_bottom_gm_relative_difference': 2.763801466329719e-14, 'maximum_t02_b_anchor_relative_current_difference': 2.484807250940542e-15, 'maximum_t02_b_anchor_potential_difference_v': 6.938893903907228e-18, 'maximum_zero_equilibrium_absolute_terminal_current_a_per_cm': 0.0, 'maximum_zero_equilibrium_absolute_potential_v': 0.0, 'coupling_proxies': {'top_primary': {'slope_v_per_v': -0.935347761062, 'r_squared': 0.9976383149643229}, 'bottom_primary': {'slope_v_per_v': -0.9353477610620005, 'r_squared': 0.9976383149643229}}}"
+    },
+    {
+      "name": "t02_c:families_and_limited_extraction",
+      "status": "PASS",
+      "detail": "points=248 forward=186 reverse=62 metrics=6"
+    },
+    {
+      "name": "t02_c:checks_and_raw_outputs",
+      "status": "PASS",
+      "detail": "checks=15 states=6 state_csv=12 vtk=36 figures=2"
     },
     {
       "name": "tcad:mesh_levels",

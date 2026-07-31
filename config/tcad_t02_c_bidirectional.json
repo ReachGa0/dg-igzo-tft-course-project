@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "case_id": "IGZO_T02_DUAL_GATE_DD_C_BIDIRECTIONAL_V1",
+  "stage": "T02-C",
+  "status": "planned",
+  "evidence_level_before_run": "E0",
+  "contract_evidence_level_after_check": "E3",
+  "dependencies": {
+    "s00_report": "results/reports/s00_data_audit.json",
+    "t01_baseline_config": "config/tcad_t01_baseline.json",
+    "t01_mesh_config": "config/tcad_t01_d_mesh_refinement.json",
+    "t01_extraction_config": "config/tcad_t01_d_extraction.json",
+    "t01_extraction_report": "results/reports/tcad_t01_d_extraction.json",
+    "t01_extraction_check_report": "results/reports/tcad_t01_d_extraction_check.json",
+    "t02_a_config": "config/tcad_t02_a_dual_gate_contract.json",
+    "t02_a_report": "results/reports/tcad_t02_a_limit_regression.json",
+    "t02_b_config": "config/tcad_t02_b_minimal_bias.json",
+    "t02_b_contract_report": "results/reports/tcad_t02_b_input_contract.json",
+    "t02_b_report": "results/reports/tcad_t02_b_minimal_bias.json",
+    "t02_b_check_report": "results/reports/tcad_t02_b_minimal_bias_check.json",
+    "required_g0_status": "TEACHING_BASELINE_ONLY",
+    "required_t01_extraction_status": "PASS",
+    "required_t01_extraction_check_status": "PASS",
+    "required_t02_a_status": "PASS",
+    "required_t02_b_contract_status": "PASS",
+    "required_t02_b_status": "PASS",
+    "required_t02_b_check_status": "PASS",
+    "require_t02_c_permitted_by_t02_b": true
+  },
+  "scope": {
+    "device": "2D n-IGZO electron-only drift-diffusion teaching model with the T02-A enabled symmetric top stack",
+    "purpose": "Close the frozen-model T02 numerical gate with matched top-primary and bottom-primary transfer families, central reverse paths, limited coupling extraction, and representative internal states.",
+    "changed_variables": [
+      "primary gate voltage",
+      "fixed secondary gate voltage",
+      "primary gate identity"
+    ],
+    "fixed_variables": [
+      "source voltage = 0 V",
+      "drain voltage = 0.01 V at every reported point",
+      "30 nm Al2O3 symmetric teaching top and bottom dielectrics",
+      "T02-A enabled topology and interface_4x mesh",
+      "10 um channel length and 24 nm channel thickness",
+      "300 K constant teaching mobility",
+      "ideal ohmic source and drain",
+      "Poisson plus electron continuity",
+      "no traps, recombination, ferroelectric polarization, or non-ideal contacts"
+    ],
+    "executed_case": "six independently initialized forward transfer families and two zero-secondary reverse paths",
+    "prohibited_work": [
+      "trap, contact, geometry, dielectric, mobility, or temperature parameter scans",
+      "T03 parameter scans",
+      "experimental fitting or calibrated dual-gate prediction",
+      "physical Ion/Ioff, physical mobility, or parameter uncertainty claims",
+      "compact-model, SPICE, circuit, layout, or HZO work"
+    ]
+  },
+  "inheritance": {
+    "top_stack_source": "config/tcad_t02_a_dual_gate_contract.json top_stack_contract.enabled_mode",
+    "mesh_source": "config/tcad_t02_a_dual_gate_contract.json mesh",
+    "transport_source": "config/tcad_t01_baseline.json",
+    "topology_reference": "results/reports/tcad_t02_a_limit_regression.json enabled topology",
+    "minimal_family_reference": "results/reports/tcad_t02_b_minimal_bias.json",
+    "required_mesh_level": "interface_4x",
+    "require_exact_t02_a_enabled_topology": true
+  },
+  "bias_protocol": {
+    "source_v": 0.0,
+    "drain_v": 0.01,
+    "low_vds_values_v": [0.0, 0.001, 0.005, 0.01],
+    "primary_gate_grid": {
+      "start_v": -0.5,
+      "stop_v": 1.0,
+      "step_v": 0.05,
+      "point_count": 31
+    },
+    "fixed_secondary_gate_values_v": [-0.3, 0.0, 0.3],
+    "fixed_secondary_ramp_step_v": 0.1,
+    "primary_negative_preconditioning_v": [-0.1, -0.2, -0.3, -0.4, -0.5],
+    "families": [
+      {
+        "family_id": "top_primary",
+        "primary_gate": "top_gate",
+        "secondary_gate": "bottom_gate",
+        "fixed_secondary_values_v": [-0.3, 0.0, 0.3]
+      },
+      {
+        "family_id": "bottom_primary",
+        "primary_gate": "bottom_gate",
+        "secondary_gate": "top_gate",
+        "fixed_secondary_values_v": [-0.3, 0.0, 0.3]
+      }
+    ],
+    "reverse_paths": [
+      {"family_id": "top_primary", "fixed_secondary_v": 0.0},
+      {"family_id": "bottom_primary", "fixed_secondary_v": 0.0}
+    ],
+    "state_points": [
+      {
+        "state_id": "dual_negative_off_proxy",
+        "label": "dual-negative off proxy",
+        "source_family": "top_primary",
+        "vbg_v": -0.3,
+        "vtg_v": -0.3
+      },
+      {
+        "state_id": "top_positive_bottom_negative_asymmetry",
+        "label": "top-positive bottom-negative asymmetry",
+        "source_family": "top_primary",
+        "vbg_v": -0.3,
+        "vtg_v": 0.3
+      },
+      {
+        "state_id": "bottom_positive_top_negative_asymmetry",
+        "label": "bottom-positive top-negative asymmetry",
+        "source_family": "bottom_primary",
+        "vbg_v": 0.3,
+        "vtg_v": -0.3
+      },
+      {
+        "state_id": "top_threshold_region_proxy",
+        "label": "top-primary threshold-region proxy",
+        "source_family": "top_primary",
+        "vbg_v": 0.0,
+        "vtg_v": 0.3
+      },
+      {
+        "state_id": "bottom_threshold_region_proxy",
+        "label": "bottom-primary threshold-region proxy",
+        "source_family": "bottom_primary",
+        "vbg_v": 0.3,
+        "vtg_v": 0.0
+      },
+      {
+        "state_id": "dual_positive_on_proxy",
+        "label": "dual-positive on proxy",
+        "source_family": "top_primary",
+        "vbg_v": 0.3,
+        "vtg_v": 0.3
+      }
+    ],
+    "execution_order": [
+      "create a fresh T02-A enabled-top-stack device for each of the six forward families",
+      "solve all-zero-bias Poisson initialization and coupled electron equilibrium",
+      "repeat the low-VDS ladder with both gates at 0 V",
+      "ramp the fixed secondary gate from 0 V to its target in 0.1 V increments",
+      "precondition the primary gate from 0 V down to -0.5 V",
+      "sweep the exact primary grid upward from -0.5 V to 1.0 V",
+      "for the two zero-secondary families only, sweep the same grid backward from 1.0 V to -0.5 V",
+      "save the configured representative states while traversing forward paths",
+      "delete each device before creating the next family"
+    ]
+  },
+  "extraction_methods": {
+    "constant_current_vth_proxy": {
+      "name": "constant_current_log_interpolation",
+      "criterion_formula": "10 nA * (W/L) terminal current",
+      "criterion_prefactor_a": 1e-8,
+      "expected_terminal_current_a": 6e-8,
+      "expected_current_per_width_a_per_cm": 1e-5,
+      "interpolation": "linear primary-gate-voltage interpolation in log10(abs(drain current per unit width))"
+    },
+    "delta_vth_proxy": {
+      "name": "fixed-secondary constant-current threshold shift",
+      "reference_secondary_gate_v": 0.0,
+      "definition": "VTH(fixed secondary gate) minus VTH(fixed secondary gate = 0 V) within one primary-gate orientation"
+    },
+    "gm_proxy": {
+      "name": "central_difference_then_linear_interpolation",
+      "evaluation_overdrive_v": 0.2,
+      "definition": "central-difference derivative of abs(drain current) versus primary-gate voltage, linearly interpolated at VTH + 0.2 V",
+      "reported_units": ["S/cm", "S terminal"]
+    },
+    "coupling_slope_proxy": {
+      "name": "ordinary_least_squares_delta_vth_vs_secondary_bias",
+      "definition": "slope of constant-current VTH versus fixed secondary-gate voltage",
+      "reported_unit": "V/V"
+    },
+    "reverse_path_comparison": {
+      "name": "same-grid forward_reverse_pointwise_comparison",
+      "purpose": "numerical path-independence diagnostic only; no hysteresis model is active"
+    }
+  },
+  "state_output_contract": {
+    "potential": {"location": "bottom_oxide, channel, and top_oxide nodes", "unit": "V"},
+    "electron_density": {"location": "channel nodes", "unit": "cm^-3"},
+    "electron_current_density": {
+      "location": "channel triangular elements",
+      "unit": "A/cm^2",
+      "source_model": "DEVSIM ElectronCurrent edge model projected by element_from_edge_model",
+      "storage": "Jx and Jy at all three element nodes plus arithmetic cell-center averages"
+    },
+    "terminal_current": {
+      "unit": "A/cm",
+      "relationship": "local A/cm^2 current density integrated over a 2D contact gives current per unit out-of-plane width in A/cm"
+    },
+    "plot_note": "x is shown in um and y in nm with an expanded vertical display scale"
+  },
+  "acceptance": {
+    "required_family_ids": ["top_primary", "bottom_primary"],
+    "required_fixed_secondary_gate_values_v": [-0.3, 0.0, 0.3],
+    "required_primary_gate_point_count": 31,
+    "required_forward_family_count": 6,
+    "required_forward_reported_point_count": 186,
+    "required_reverse_family_count": 2,
+    "required_reverse_reported_point_count": 62,
+    "required_total_reported_point_count": 248,
+    "required_total_dc_solve_count": 318,
+    "maximum_relative_terminal_current_imbalance": 1e-5,
+    "maximum_zero_equilibrium_absolute_terminal_current_a_per_cm": 1e-18,
+    "maximum_zero_equilibrium_absolute_potential_v": 1e-10,
+    "maximum_monotonic_relative_current_drop": 1e-6,
+    "maximum_forward_reverse_relative_current_difference": 1e-6,
+    "maximum_forward_reverse_vth_difference_v": 1e-4,
+    "maximum_reciprocal_top_bottom_relative_current_difference": 1e-6,
+    "maximum_reciprocal_top_bottom_center_potential_difference_v": 1e-7,
+    "maximum_reciprocal_top_bottom_center_density_relative_difference": 1e-6,
+    "maximum_reciprocal_top_bottom_vth_difference_v": 1e-4,
+    "maximum_reciprocal_top_bottom_gm_relative_difference": 1e-4,
+    "minimum_absolute_coupling_slope_v_per_v": 0.5,
+    "maximum_absolute_coupling_slope_v_per_v": 1.5,
+    "minimum_coupling_fit_r_squared": 0.99,
+    "maximum_t02_b_anchor_relative_current_difference": 1e-6,
+    "maximum_t02_b_anchor_potential_difference_v": 1e-7,
+    "required_t02_b_anchor_vtg_values_v": [0.0, 0.1, 0.2, 0.3],
+    "require_positive_drain_and_negative_source_current": true,
+    "require_strict_primary_gate_current_increase": true,
+    "require_strict_secondary_gate_current_ordering": true,
+    "require_vth_bracket_for_every_forward_family": true,
+    "require_delta_vth_strictly_decreases_with_secondary_bias": true,
+    "require_positive_finite_gm": true,
+    "required_regions": ["bottom_oxide", "channel", "top_oxide"],
+    "required_contacts": ["source", "drain", "bottom_gate", "top_gate"],
+    "required_interfaces": ["bottom_oxide_channel", "channel_top_oxide"],
+    "required_state_ids": [
+      "dual_negative_off_proxy",
+      "top_positive_bottom_negative_asymmetry",
+      "bottom_positive_top_negative_asymmetry",
+      "top_threshold_region_proxy",
+      "bottom_threshold_region_proxy",
+      "dual_positive_on_proxy"
+    ],
+    "required_state_fields": [
+      "potential_v",
+      "electron_density_cm3",
+      "electron_current_density_x_a_per_cm2",
+      "electron_current_density_y_a_per_cm2",
+      "electron_current_density_magnitude_a_per_cm2"
+    ],
+    "required_vtk_file_count_per_state": 6,
+    "require_state_current_and_density_ordering": true,
+    "require_all_dc_solves_converged": true,
+    "require_finite_numerical_proxies": true,
+    "require_exact_t02_a_topology_count_match": true,
+    "require_two_png_figures": true
+  },
+  "outputs": {
+    "contract_report": "results/reports/tcad_t02_c_input_contract.json",
+    "run_directory": "results/tcad/t02_dual_gate/t02_c_bidirectional",
+    "config_snapshot": "results/tcad/t02_dual_gate/t02_c_bidirectional/input_snapshot.json",
+    "solver_log": "results/tcad/t02_dual_gate/t02_c_bidirectional/solver_log.json",
+    "state_manifest": "results/tcad/t02_dual_gate/t02_c_bidirectional/state_manifest.json",
+    "family_csv": "results/tables/tcad_t02_c_bidirectional_families.csv",
+    "metric_csv": "results/tables/tcad_t02_c_coupling_metrics.csv",
+    "reverse_comparison_csv": "results/tables/tcad_t02_c_reverse_comparison.csv",
+    "reciprocal_comparison_csv": "results/tables/tcad_t02_c_reciprocal_comparison.csv",
+    "state_summary_csv": "results/tables/tcad_t02_c_state_summary.csv",
+    "family_figure_png": "report/assets/tcad_t02_c_bidirectional_families.png",
+    "state_figure_png": "report/assets/tcad_t02_c_state_maps.png",
+    "report": "results/reports/tcad_t02_c_bidirectional.json",
+    "check_report": "results/reports/tcad_t02_c_bidirectional_check.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T02-C may close the complete T02 numerical stage gate only for the frozen E2 teaching model when all configured families, reverse comparisons, limited numerical proxies, state fields, and independent checks pass.",
+    "allowed_parameter_label": "numerical proxy extracted from the frozen teaching model",
+    "prohibited_claims": [
+      "experimentally validated or calibrated dual-gate VTH, Delta VTH, gm, coupling slope, or hysteresis",
+      "physical Ion/Ioff, mobility, capacitance ratio, or parameter uncertainty",
+      "trap, contact, ferroelectric, temperature, geometry, or dielectric sensitivity validation",
+      "compact-model or circuit-ready parameter set",
+      "T03, compact-model, SPICE, circuit, layout, or HZO evidence"
+    ],
+    "next_gate": "Only a T02-C simulation PASS plus an independent persisted-evidence PASS closes T02 and permits T03 controlled sensitivity work."
+  }
+}

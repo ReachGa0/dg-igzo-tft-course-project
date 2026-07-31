@@ -1,0 +1,384 @@
+{
+  "case_id": "IGZO_T02_DUAL_GATE_DD_C_BIDIRECTIONAL_V1",
+  "stage": "T02-C",
+  "entries": [
+    {
+      "state_id": "dual_negative_off_proxy",
+      "state_label": "dual-negative off proxy",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T02_C_BIDIRECTIONAL",
+      "vbg_v": -0.3,
+      "vtg_v": -0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 1.6264038843614528e-11,
+      "drain_current_terminal_a": 9.758423306168717e-14,
+      "relative_current_imbalance": 3.675392350496908e-13,
+      "center_channel_potential_v": -0.28911750205974934,
+      "center_channel_electron_density_cm3": 116709410776.62202,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": -0.3,
+      "maximum_potential_v": 0.01,
+      "minimum_electron_density_cm3": 91038546322.07681,
+      "maximum_electron_density_cm3": 1e+16,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 6.519023826303573e-06,
+      "median_cell_current_density_magnitude_a_per_cm2": 6.807993944699272e-06,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 6.908098240441074e-06,
+      "node_csv": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_negative_off_proxy_nodes.csv",
+      "element_csv": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_negative_off_proxy_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "6af51d498ddcb15e3319fe19db022357522bb4141eb228846ab580a3495face8",
+      "element_csv_sha256": "5a3eaed9fe3020b746028852268816735fee3c22ab32849c1a9df25bd50b8f95",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_negative_off_proxy.visit",
+          "sha256": "c74c4e13ce9f890f7ef48ac8a589ba813c169eda890c5bddced546fc0cf979ed"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_negative_off_proxy.vtm",
+          "sha256": "b4aa6fe935a04d39a89e732aea3c53ddb0d11c84036bb73f15ec78bd73453d03"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_negative_off_proxy_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_negative_off_proxy_1.vtu",
+          "sha256": "fe9102fd3330b0ef042cce349ac34d5826c565c2c03fde0bc3288408785a0dac"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_negative_off_proxy_2.vtu",
+          "sha256": "594d9b3b752f6ce5825418b3bcbe4f143f56f6f681331501f9a53a3a6e1a655f"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_negative_off_proxy_3.vtu",
+          "sha256": "2beaf7d2518b68f5c1f2a35d7cee901eab62de3b12fc3ea401ee2073c0ef2893"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "top_positive_bottom_negative_asymmetry",
+      "state_label": "top-positive bottom-negative asymmetry",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T02_C_BIDIRECTIONAL",
+      "vbg_v": -0.3,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 2.0345721951130514e-06,
+      "drain_current_terminal_a": 1.2207433170678309e-08,
+      "relative_current_imbalance": 3.746879340826284e-15,
+      "center_channel_potential_v": -0.005273306769229157,
+      "center_channel_electron_density_cm3": 6790762243916133.0,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": -0.3,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 533636404571540.3,
+      "maximum_electron_density_cm3": 8.44205952767241e+16,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 0.03390954255049085,
+      "median_cell_current_density_magnitude_a_per_cm2": 0.3835333722724906,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 4.066291076176612,
+      "node_csv": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_positive_bottom_negative_asymmetry_nodes.csv",
+      "element_csv": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_positive_bottom_negative_asymmetry_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "4356590e31c13c74211378c2b852862e24020821344f8cf85db3fd03a8917481",
+      "element_csv_sha256": "e6d125574bb248a063bbb48a4067111396301d0b728d8602a776d5f80af3d09f",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_positive_bottom_negative_asymmetry.visit",
+          "sha256": "00ee41e2e5567f39874a60c099570a91b21808d98a609f1640c597f58d7923fd"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_positive_bottom_negative_asymmetry.vtm",
+          "sha256": "eb7a09d7bc5c69b40e5a94db5d38c703182147b869a77a1f2227183bf94f5ddb"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_positive_bottom_negative_asymmetry_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_positive_bottom_negative_asymmetry_1.vtu",
+          "sha256": "af39c41d3a8d33b9655037b4c255b57a4b9d7c15738654c74ef0df6b112aede8"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_positive_bottom_negative_asymmetry_2.vtu",
+          "sha256": "fad8c1ec33528ad55dc546fcf55ed1a25c9f6e789f717801993d3115e2d116a9"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_positive_bottom_negative_asymmetry_3.vtu",
+          "sha256": "6368e0cc92e6423578d7840c164321d437c015d860571f19fbb5b54b1fb33619"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "bottom_positive_top_negative_asymmetry",
+      "state_label": "bottom-positive top-negative asymmetry",
+      "source_family": "bottom_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T02_C_BIDIRECTIONAL",
+      "vbg_v": 0.3,
+      "vtg_v": -0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 2.0345721951130615e-06,
+      "drain_current_terminal_a": 1.220743317067837e-08,
+      "relative_current_imbalance": 2.4979195605508524e-15,
+      "center_channel_potential_v": -0.005273306769229149,
+      "center_channel_electron_density_cm3": 6790762243916134.0,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": -0.3,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 533636404571541.1,
+      "maximum_electron_density_cm3": 8.442059527672421e+16,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 0.03391026040755605,
+      "median_cell_current_density_magnitude_a_per_cm2": 0.3834740192369535,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 4.065931904180982,
+      "node_csv": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_positive_top_negative_asymmetry_nodes.csv",
+      "element_csv": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_positive_top_negative_asymmetry_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "58c24407339d9214b55a16cd769e4ffae98b9bb043cb492039f9a903db446313",
+      "element_csv_sha256": "8a4fd6747afc3718cb6fe541ecfee3cc15b72ea873ec7880eddbb463ba253261",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_positive_top_negative_asymmetry.visit",
+          "sha256": "10f191a448e43a3a7b74b86657bb8c5211bf010888eb409dc59e5f34e29905a7"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_positive_top_negative_asymmetry.vtm",
+          "sha256": "7f8a4ab20c23cea508acb3b911365f95244dce61c978c20812751c0b0edea5d3"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_positive_top_negative_asymmetry_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_positive_top_negative_asymmetry_1.vtu",
+          "sha256": "4403a95b7e2a94507a6993c26df1f3990411fe61f3e22d09217780fcc5977ae2"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_positive_top_negative_asymmetry_2.vtu",
+          "sha256": "f922e24c42b4a193f52045bfc4bbd99e0d3ee01b1f7fd6f1dbd8124179546367"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_positive_top_negative_asymmetry_3.vtu",
+          "sha256": "0c46afcd84b1a1ddbe6d48d23b92da3bf6b4041a0669436f2aa17f28bbe7c05d"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "top_threshold_region_proxy",
+      "state_label": "top-primary threshold-region proxy",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T02_C_BIDIRECTIONAL",
+      "vbg_v": 0.0,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 1.1549445541373129e-05,
+      "drain_current_terminal_a": 6.929667324823877e-08,
+      "relative_current_imbalance": 2.053511784454081e-15,
+      "center_channel_potential_v": 0.056544883007083165,
+      "center_channel_electron_density_cm3": 7.36401270624011e+16,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 2.991755623840461e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 1.936010309908176,
+      "median_cell_current_density_magnitude_a_per_cm2": 3.803321115138429,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 13.983423972212625,
+      "node_csv": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_threshold_region_proxy_nodes.csv",
+      "element_csv": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_threshold_region_proxy_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "2878fe00dd6f092a4f2eb532924c0a4507e8f6ecc6c400aca488caa682c5127d",
+      "element_csv_sha256": "89fb489118346bbb55818beea5200a7e24e8b8b2293a47972b2b43d4239f3a5a",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_threshold_region_proxy.visit",
+          "sha256": "6795266d9c44b69bc10d986d217aeeea195807e13d145be1f18c9b79fd1f5f0e"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_threshold_region_proxy.vtm",
+          "sha256": "2661d0a5054c97b19d57d242a857494f1375526e5174dd93c6f084b871633b8e"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_threshold_region_proxy_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_threshold_region_proxy_1.vtu",
+          "sha256": "b5315a6f8ce2b86e308aa962c306fe6b20d4fe7cc632cecc2a5fb6fc3b1a2d36"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_threshold_region_proxy_2.vtu",
+          "sha256": "f5c361ac7159e2b958b6a36ed21a3cd0d8e44619ff07d11001c5c4181e8b7803"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_top_threshold_region_proxy_3.vtu",
+          "sha256": "48007bb5aca85067583147b337ee73bc5ce88e77724c93287c9e80765b6828dc"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "bottom_threshold_region_proxy",
+      "state_label": "bottom-primary threshold-region proxy",
+      "source_family": "bottom_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T02_C_BIDIRECTIONAL",
+      "vbg_v": 0.3,
+      "vtg_v": 0.0,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 1.1549445541373112e-05,
+      "drain_current_terminal_a": 6.929667324823867e-08,
+      "relative_current_imbalance": 1.0414238335445624e-14,
+      "center_channel_potential_v": 0.05654488300708315,
+      "center_channel_electron_density_cm3": 7.364012706240107e+16,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 2.991755623840462e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 1.9360481540385317,
+      "median_cell_current_density_magnitude_a_per_cm2": 3.803291894798543,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 13.981374196241337,
+      "node_csv": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_threshold_region_proxy_nodes.csv",
+      "element_csv": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_threshold_region_proxy_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "33df71a5db05622b678ae7600e6a8e70fa2f3eba0d7b59fb5e22612021e74e99",
+      "element_csv_sha256": "512dc08eb01bd671c21d1acb28263c38cdeb94cf3fe2b14e1e17fb41d635d29c",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_threshold_region_proxy.visit",
+          "sha256": "ed58fb9971ff47859e3ca22b8cb76dc614c46468d40a529e74f980777c2a8f5b"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_threshold_region_proxy.vtm",
+          "sha256": "ab49883812402d189d47ef2c9e4946a18ea9bf7eb3269cda8d8b15f783f86a27"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_threshold_region_proxy_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_threshold_region_proxy_1.vtu",
+          "sha256": "6b559cf2eee0ce7c3acbe06ee241e1b086c6ad92588a4e2193a6fbd59b818f01"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_threshold_region_proxy_2.vtu",
+          "sha256": "d72871aeb7eaf22f67c04c8c83dd2c7d460ca38088d07e7935a617922129bea2"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_bottom_threshold_region_proxy_3.vtu",
+          "sha256": "1859728f8bd9dee033a0f443d01fcfdad3e06b0e9fe0312c6f2e1398228abf20"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "dual_positive_on_proxy",
+      "state_label": "dual-positive on proxy",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T02_C_BIDIRECTIONAL",
+      "vbg_v": 0.3,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 2.3157084286939043e-05,
+      "drain_current_terminal_a": 1.3894250572163425e-07,
+      "relative_current_imbalance": 5.5598108288300086e-15,
+      "center_channel_potential_v": 0.0767101008455341,
+      "center_channel_electron_density_cm3": 1.6031206462487552e+17,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 3.987610859447558e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 7.027276340321419,
+      "median_cell_current_density_magnitude_a_per_cm2": 8.67613768285922,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 16.910490180674074,
+      "node_csv": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_positive_on_proxy_nodes.csv",
+      "element_csv": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_positive_on_proxy_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "da5b067a4d76d5d33ad7ee49f2df78ad61ee16c14c2a9d2fa328361bbe6147b2",
+      "element_csv_sha256": "601447f7942fa6e62dd811d32c0d3f2a27aa967352e9f80b5a1b07ea71d2279b",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_positive_on_proxy.visit",
+          "sha256": "262ae763e0d0a5d333e2a5a322c280332e8b1d7b12d326e8a73fb288f9c56fbf"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_positive_on_proxy.vtm",
+          "sha256": "6063d456cdf661c0640af8d349eedc8a0cffd85655db281db9a0e598f12b5885"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_positive_on_proxy_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_positive_on_proxy_1.vtu",
+          "sha256": "120ad273d706575e98fedbb19fd6dd64391422ff19fadb0b95daee3835782d02"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_positive_on_proxy_2.vtu",
+          "sha256": "741e0b84ef3790e103d5fac28d9cbe297654fd8a4d321b1d89e7384f9d04d05e"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_c_bidirectional/t02_c_dual_positive_on_proxy_3.vtu",
+          "sha256": "3047f73853442208900db614b01f9dc8b26d74b35b00cbcdb5da6e1d694fc1b8"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    }
+  ]
+}
