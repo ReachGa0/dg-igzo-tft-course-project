@@ -1,0 +1,230 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_B_SMOKE_V1",
+  "stage": "T01-B",
+  "evidence_level": "E2",
+  "model_scope": "2D single-bottom-gate n-IGZO, electron-only drift-diffusion low-bias smoke",
+  "executed_bias_stage_ids": [
+    "T01_A_STAGE_0",
+    "T01_A_STAGE_1"
+  ],
+  "baseline_case_id": "IGZO_T01_SINGLE_GATE_DD_A_V1",
+  "input_snapshot": "results/tcad/t01_single_gate/t01_b_smoke/input_snapshot.json",
+  "reproduction": {
+    "command": "make t01-b-smoke",
+    "validation_command": "make t01-b-check",
+    "python_executable": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u53d1\u9001\u7248\u672c/\u8bfe\u7a0b0/.venv/bin/python",
+    "devsim_version": "2.10.0"
+  },
+  "mesh": [
+    {
+      "mesh_level": "coarse",
+      "node_count_with_interface_duplicates": 189,
+      "element_count": 280,
+      "dc_solve_count": 6,
+      "final_drain_current_a_per_cm": 1.2354583905166028e-06,
+      "state_csv": "results/tcad/t01_single_gate/t01_b_smoke/t01_b_coarse_final_nodes.csv",
+      "vtk_base": "results/tcad/t01_single_gate/t01_b_smoke/t01_b_coarse_final"
+    },
+    {
+      "mesh_level": "fine",
+      "node_count_with_interface_duplicates": 656,
+      "element_count": 1120,
+      "dc_solve_count": 6,
+      "final_drain_current_a_per_cm": 1.2324883699791802e-06,
+      "state_csv": "results/tcad/t01_single_gate/t01_b_smoke/t01_b_fine_final_nodes.csv",
+      "vtk_base": "results/tcad/t01_single_gate/t01_b_smoke/t01_b_fine_final"
+    }
+  ],
+  "bias_points": [
+    {
+      "mesh_level": "coarse",
+      "stage_id": "T01_A_STAGE_1",
+      "vgs_v": 0.0,
+      "vds_v": 0.0,
+      "source_current_a_per_cm": 0.0,
+      "drain_current_a_per_cm": 0.0,
+      "source_current_terminal_a": 0.0,
+      "drain_current_terminal_a": 0.0,
+      "current_imbalance_a_per_cm": 0.0,
+      "relative_current_imbalance": 0.0,
+      "center_channel_potential_v": 0.0,
+      "center_channel_electron_density_cm3": 1e+16,
+      "solve_seconds": 0.001128570998844225,
+      "converged": true
+    },
+    {
+      "mesh_level": "coarse",
+      "stage_id": "T01_A_STAGE_1",
+      "vgs_v": 0.0,
+      "vds_v": 0.001,
+      "source_current_a_per_cm": -1.351685131294834e-07,
+      "drain_current_a_per_cm": 1.3516851312948272e-07,
+      "source_current_terminal_a": -8.110110787769005e-10,
+      "drain_current_terminal_a": 8.110110787768963e-10,
+      "current_imbalance_a_per_cm": -6.88214269644119e-22,
+      "relative_current_imbalance": 5.091528002419104e-15,
+      "center_channel_potential_v": 0.00023575750472103508,
+      "center_channel_electron_density_cm3": 9899202817338082.0,
+      "solve_seconds": 0.00315062500158092,
+      "converged": true
+    },
+    {
+      "mesh_level": "coarse",
+      "stage_id": "T01_A_STAGE_1",
+      "vgs_v": 0.0,
+      "vds_v": 0.005,
+      "source_current_a_per_cm": -6.49553212717558e-07,
+      "drain_current_a_per_cm": 6.495532127175491e-07,
+      "source_current_terminal_a": -3.897319276305349e-09,
+      "drain_current_terminal_a": 3.897319276305295e-09,
+      "current_imbalance_a_per_cm": -8.893845946170154e-21,
+      "relative_current_imbalance": 1.3692251492315258e-14,
+      "center_channel_potential_v": 0.0011435483427994463,
+      "center_channel_electron_density_cm3": 9510779895198490.0,
+      "solve_seconds": 0.003143504000036046,
+      "converged": true
+    },
+    {
+      "mesh_level": "coarse",
+      "stage_id": "T01_A_STAGE_1",
+      "vgs_v": 0.0,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.2354583905166032e-06,
+      "drain_current_a_per_cm": 1.2354583905166028e-06,
+      "source_current_terminal_a": -7.412750343099619e-09,
+      "drain_current_terminal_a": 7.412750343099617e-09,
+      "current_imbalance_a_per_cm": -4.235164736271502e-22,
+      "relative_current_imbalance": 3.4280108247923917e-16,
+      "center_channel_potential_v": 0.002198991124526312,
+      "center_channel_electron_density_cm3": 9058585907033768.0,
+      "solve_seconds": 0.003021066997462185,
+      "converged": true
+    },
+    {
+      "mesh_level": "fine",
+      "stage_id": "T01_A_STAGE_1",
+      "vgs_v": 0.0,
+      "vds_v": 0.0,
+      "source_current_a_per_cm": 0.0,
+      "drain_current_a_per_cm": 0.0,
+      "source_current_terminal_a": 0.0,
+      "drain_current_terminal_a": 0.0,
+      "current_imbalance_a_per_cm": 0.0,
+      "relative_current_imbalance": 0.0,
+      "center_channel_potential_v": 0.0,
+      "center_channel_electron_density_cm3": 1e+16,
+      "solve_seconds": 0.0023613939993083477,
+      "converged": true
+    },
+    {
+      "mesh_level": "fine",
+      "stage_id": "T01_A_STAGE_1",
+      "vgs_v": 0.0,
+      "vds_v": 0.001,
+      "source_current_a_per_cm": -1.35135356758903e-07,
+      "drain_current_a_per_cm": 1.351353567589031e-07,
+      "source_current_terminal_a": -8.10812140553418e-10,
+      "drain_current_terminal_a": 8.108121405534186e-10,
+      "current_imbalance_a_per_cm": 1.0587911840678754e-22,
+      "relative_current_imbalance": 7.835041912509098e-16,
+      "center_channel_potential_v": 0.00023557189982039586,
+      "center_channel_electron_density_cm3": 9899179762911866.0,
+      "solve_seconds": 0.007696859000134282,
+      "converged": true
+    },
+    {
+      "mesh_level": "fine",
+      "stage_id": "T01_A_STAGE_1",
+      "vgs_v": 0.0,
+      "vds_v": 0.005,
+      "source_current_a_per_cm": -6.487633651423171e-07,
+      "drain_current_a_per_cm": 6.487633651423211e-07,
+      "source_current_terminal_a": -3.892580190853903e-09,
+      "drain_current_terminal_a": 3.892580190853927e-09,
+      "current_imbalance_a_per_cm": 4.0234064994579266e-21,
+      "relative_current_imbalance": 6.201654895503078e-15,
+      "center_channel_potential_v": 0.0011415153667272268,
+      "center_channel_electron_density_cm3": 9511175627300612.0,
+      "solve_seconds": 0.006565043000591686,
+      "converged": true
+    },
+    {
+      "mesh_level": "fine",
+      "stage_id": "T01_A_STAGE_1",
+      "vgs_v": 0.0,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.2324883699791643e-06,
+      "drain_current_a_per_cm": 1.2324883699791802e-06,
+      "source_current_terminal_a": -7.394930219874986e-09,
+      "drain_current_terminal_a": 7.394930219875081e-09,
+      "current_imbalance_a_per_cm": 1.588186776101813e-20,
+      "relative_current_imbalance": 1.2886018357549626e-14,
+      "center_channel_potential_v": 0.0021923645933357556,
+      "center_channel_electron_density_cm3": 9060563197780662.0,
+      "solve_seconds": 0.00702913000350236,
+      "converged": true
+    }
+  ],
+  "checks": {
+    "configured_meshes_completed": {
+      "status": "PASS",
+      "detail": "meshes=coarse,fine"
+    },
+    "only_authorized_stages_executed": {
+      "status": "PASS",
+      "detail": "T01-B records only the VGS=0 V low-VDS continuation after the internal zero-bias equilibrium solve"
+    },
+    "required_vds_continuation": {
+      "status": "PASS",
+      "detail": "VDS values=[0.0, 0.001, 0.005, 0.01]"
+    },
+    "all_dc_solves_converged": {
+      "status": "PASS",
+      "detail": "solver_records=12"
+    },
+    "zero_bias_current_small": {
+      "status": "PASS",
+      "detail": "limit_a_per_cm=1.000e-16"
+    },
+    "low_vds_current_resolved": {
+      "status": "PASS",
+      "detail": "floor_a_per_cm=1.000e-12"
+    },
+    "terminal_current_conservation": {
+      "status": "PASS",
+      "detail": "limit=1.000e-05"
+    },
+    "low_vds_current_direction_consistent": {
+      "status": "PASS",
+      "detail": "drain_current_signs=[1.0]"
+    },
+    "low_vds_mesh_current_smoke": {
+      "status": "PASS",
+      "detail": "relative_delta=2.403983e-03 limit=5.000000e-02"
+    },
+    "state_outputs_present": {
+      "status": "PASS",
+      "detail": "results/tcad/t01_single_gate/t01_b_smoke/t01_b_coarse_final_nodes.csv, results/tcad/t01_single_gate/t01_b_smoke/t01_b_fine_final_nodes.csv"
+    }
+  },
+  "failures": [],
+  "mesh_current_relative_difference_at_0p01v": 0.0024039826514761866,
+  "outputs": {
+    "solver_log": "results/tcad/t01_single_gate/t01_b_smoke/solver_log.json",
+    "bias_points_csv": "results/tables/tcad_t01_b_bias_points.csv",
+    "mesh_summary_csv": "results/tables/tcad_t01_b_mesh_summary.csv",
+    "run_directory": "results/tcad/t01_single_gate/t01_b_smoke"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T01-B verifies a reproducible teaching-parameter low-bias convergence and terminal-current smoke only.",
+    "prohibited_claims": [
+      "complete T01 passed",
+      "Id-Vg result",
+      "full Id-Vd result",
+      "mesh independence of extracted device parameters",
+      "experimental calibration",
+      "quantitative dual-gate prediction"
+    ]
+  }
+}

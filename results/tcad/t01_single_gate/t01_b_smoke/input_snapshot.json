@@ -1,0 +1,404 @@
+{
+  "smoke_config_path": "config/tcad_t01_b_smoke.json",
+  "smoke_config_sha256": "48474ee437d7b2855b39a638c058e7b87e33ff09bd584f46fa91fe665b73354b",
+  "baseline_config_path": "config/tcad_t01_baseline.json",
+  "baseline_config_sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9",
+  "baseline_case_id": "IGZO_T01_SINGLE_GATE_DD_A_V1",
+  "smoke_case_id": "IGZO_T01_SINGLE_GATE_DD_B_SMOKE_V1",
+  "baseline": {
+    "schema_version": 1,
+    "case_id": "IGZO_T01_SINGLE_GATE_DD_A_V1",
+    "stage": "T01-A",
+    "status": "input_contract",
+    "project_id": "DG-IGZO-TFT-PDK",
+    "evidence_level": "E0",
+    "contract_evidence_level": "E3",
+    "coordinate_system": {
+      "coordinate_unit": "cm",
+      "length_unit": "cm",
+      "voltage_unit": "V",
+      "temperature_unit": "K",
+      "potential_unit": "V",
+      "density_unit": "cm^-3",
+      "mobility_unit": "cm^2/(V*s)",
+      "diffusion_coefficient_unit": "cm^2/s",
+      "current_density_2d_unit": "A/cm",
+      "terminal_current_unit": "A",
+      "out_of_plane_convention": "2D current per unit depth; multiply by physical W_cm for terminal current"
+    },
+    "device": {
+      "material": "IGZO",
+      "polarity": "n",
+      "width_um": 60.0,
+      "width_cm": 0.006,
+      "channel_length_um": 10.0,
+      "channel_length_cm": 0.001,
+      "channel_thickness_nm": 24.0,
+      "channel_thickness_cm": 2.4e-06,
+      "single_gate": true,
+      "active_gate": "bottom_gate",
+      "top_gate_present": false,
+      "top_oxide_present": false,
+      "geometry_source": "config/project.json:baseline_devices.IGZO_TFT"
+    },
+    "geometry": {
+      "coordinate_origin": "bottom_gate_bottom_oxide_interface",
+      "channel_length_cm": 0.001,
+      "bottom_oxide_thickness_cm": 3e-06,
+      "channel_thickness_cm": 2.4e-06,
+      "top_boundary": "natural_zero_normal_flux",
+      "regions": [
+        "bottom_oxide",
+        "channel",
+        "ambient"
+      ],
+      "boundary_environment": {
+        "name": "ambient",
+        "mesh_region": true,
+        "solve_equations": false,
+        "model": "contact_topology_buffer_below_and_beside_active_stack; natural_zero_normal_flux_at_channel_top"
+      },
+      "interfaces": [
+        "bottom_oxide_channel"
+      ],
+      "contacts": [
+        "source",
+        "drain",
+        "bottom_gate"
+      ],
+      "forbidden_regions": [
+        "top_oxide"
+      ],
+      "forbidden_contacts": [
+        "top_gate"
+      ]
+    },
+    "materials": {
+      "bottom_oxide": {
+        "name": "Al2O3",
+        "relative_permittivity": 6.8,
+        "physical_thickness_nm": 30.0,
+        "physical_thickness_cm": 3e-06,
+        "source_type": "course_process",
+        "source_reference": "config/project.json:baseline_devices.IGZO_TFT.physical_gate_dielectric_nm",
+        "evidence_level": "E1"
+      },
+      "channel": {
+        "name": "IGZO",
+        "relative_permittivity": 10.0,
+        "mobility_cm2_vs": 35.5,
+        "threshold_target_v": 0.21,
+        "background_donor_density_cm3": 1e+16,
+        "electron_affinity_ev": 4.1,
+        "bandgap_ev": 3.0,
+        "effective_density_of_states_cm3": 1e+19,
+        "source_types": {
+          "relative_permittivity": "teaching_assumption",
+          "mobility_cm2_vs": "course_parameter_summary",
+          "threshold_target_v": "course_parameter_summary",
+          "background_donor_density_cm3": "assumed_initialization",
+          "electron_affinity_ev": "assumed_initialization",
+          "bandgap_ev": "assumed_initialization",
+          "effective_density_of_states_cm3": "assumed_initialization"
+        },
+        "source_references": {
+          "relative_permittivity": "config/tcad_baseline.json:materials.channel.relative_permittivity",
+          "mobility_cm2_vs": "config/project.json:teaching_baseline.mobility_cm2_vs",
+          "threshold_target_v": "config/project.json:teaching_baseline.vth_v",
+          "background_donor_density_cm3": "T01-A teaching assumption; not fitted",
+          "electron_affinity_ev": "T01-A teaching assumption; not fitted",
+          "bandgap_ev": "T01-A teaching assumption; not fitted",
+          "effective_density_of_states_cm3": "T01-A teaching assumption; not fitted"
+        }
+      },
+      "ambient": {
+        "name": "Air",
+        "relative_permittivity": 1.0,
+        "source_type": "solver_boundary_assumption",
+        "source_reference": "T01-A natural top boundary scaffold",
+        "evidence_level": "E0"
+      }
+    },
+    "spice_effective_parameters": {
+      "spice_effective_tox_not_used_in_t01": true,
+      "effective_tox_nm": 10.0,
+      "source_reference": "config/project.json:baseline_devices.IGZO_TFT.spice_effective_tox_nm",
+      "use_status": "deferred_to_compact_model"
+    },
+    "physics": {
+      "equations": {
+        "poisson": "active",
+        "electron_continuity": "active",
+        "hole_continuity": "inactive",
+        "drift_diffusion": "electron_only",
+        "recombination_generation": "inactive",
+        "bulk_traps": "inactive",
+        "interface_traps": "inactive",
+        "ferroelectric_polarization": "inactive",
+        "quantum_correction": "inactive"
+      },
+      "discretization": "Scharfetter-Gummel edge flux",
+      "mobility_model": "constant_teaching_mobility",
+      "mobility_cm2_vs": 35.5,
+      "diffusion_model": "Einstein_relation",
+      "temperature_k": 300.0,
+      "thermal_voltage_v": 0.025851999786,
+      "recombination_model": "none",
+      "contact_resistance": "ideal_ohmic_zero_series_resistance",
+      "model_boundary": "T01-A freezes the smallest electron-only transport closure; traps, non-ideal contacts, temperature scans, and dual-gate transport are deferred."
+    },
+    "contacts": {
+      "source": {
+        "kind": "ohmic",
+        "potential_v": 0.0,
+        "electron_density_cm3": 1e+16,
+        "series_resistance_ohm_cm": 0.0,
+        "source_type": "ideal_teaching_contact"
+      },
+      "drain": {
+        "kind": "ohmic",
+        "potential_v": 0.0,
+        "electron_density_cm3": 1e+16,
+        "series_resistance_ohm_cm": 0.0,
+        "source_type": "ideal_teaching_contact"
+      },
+      "bottom_gate": {
+        "kind": "electrostatic_dirichlet",
+        "potential_v": 0.0,
+        "oxide_interface": "bottom_oxide_channel",
+        "source_type": "course_process_gate"
+      },
+      "top_boundary": {
+        "kind": "natural_zero_normal_flux",
+        "potential_v": null,
+        "source_type": "single_gate_scope"
+      }
+    },
+    "mesh": {
+      "type": "structured_2d",
+      "coordinate_unit": "cm",
+      "levels": {
+        "coarse": {
+          "x_spacing_cm": 5e-05,
+          "oxide_y_spacing_cm": 1e-06,
+          "channel_y_spacing_cm": 6e-07
+        },
+        "fine": {
+          "x_spacing_cm": 2.5e-05,
+          "oxide_y_spacing_cm": 5e-07,
+          "channel_y_spacing_cm": 3e-07
+        }
+      },
+      "required_levels": [
+        "coarse",
+        "fine"
+      ],
+      "mesh_comparison_metric": "same-bias terminal current and extracted VTH after T01-C"
+    },
+    "solver": {
+      "type": "dc",
+      "solver_type": "direct",
+      "poisson_absolute_error": 1e-12,
+      "coupled_absolute_error": 10000000000.0,
+      "relative_error": 1e-10,
+      "maximum_iterations": 80,
+      "absolute_error_rationale": "Poisson residual uses voltage/charge-scale tolerance; coupled carrier continuity residual is density-scaled in DEVSIM and therefore uses the documented 1e10 absolute tolerance together with the common relative tolerance.",
+      "continuation": "use_previous_converged_solution",
+      "initialization": "equilibrium_poisson_then_carrier",
+      "electron_update": "positive_log_damp",
+      "never_jump_directly_to_maximum_bias": true
+    },
+    "bias_protocol": {
+      "source_reference": "VGS and VDS are terminal voltages relative to source; source remains 0 V.",
+      "stages": [
+        {
+          "id": "T01_A_STAGE_0",
+          "name": "zero_bias_equilibrium",
+          "execution_status": "planned",
+          "source_v": 0.0,
+          "drain_v": 0.0,
+          "bottom_gate_v": 0.0
+        },
+        {
+          "id": "T01_A_STAGE_1",
+          "name": "low_vds_ramp",
+          "execution_status": "planned",
+          "ramp_variable": "VDS",
+          "vds_values_v": [
+            0.0,
+            0.001,
+            0.005,
+            0.01
+          ],
+          "vgs_v": 0.0
+        },
+        {
+          "id": "T01_A_STAGE_2",
+          "name": "small_vds_gate_ramp",
+          "execution_status": "planned",
+          "ramp_variable": "VGS",
+          "vds_v": 0.01,
+          "vgs_values_v": [
+            -1.0,
+            -0.5,
+            0.0,
+            0.1,
+            0.2,
+            0.3,
+            0.5,
+            1.0
+          ]
+        },
+        {
+          "id": "T01_A_STAGE_3",
+          "name": "output_curve_points",
+          "execution_status": "planned",
+          "ramp_variable": "VDS",
+          "vgs_values_v": [
+            0.0,
+            0.3,
+            0.5,
+            1.0
+          ],
+          "vds_values_v": [
+            0.0,
+            0.01,
+            0.05,
+            0.1,
+            0.2
+          ]
+        }
+      ]
+    },
+    "future_outputs": {
+      "idvg_csv": "results/tcad/t01_single_gate/idvg.csv",
+      "idvd_csv": "results/tcad/t01_single_gate/idvd.csv",
+      "state_maps_directory": "results/tcad/t01_single_gate/state_maps",
+      "mesh_comparison_csv": "results/tables/tcad_t01_mesh_comparison.csv",
+      "raw_solver_log": "results/tcad/t01_single_gate/solver.log",
+      "report": "results/reports/tcad_t01_single_gate.json"
+    },
+    "acceptance": {
+      "input_contract": [
+        "single_gate_geometry_is_explicit",
+        "all_active_units_are_explicit",
+        "course_values_match_S00_sources",
+        "contact_and_transport_scope_are_explicit",
+        "continuation_stages_are_ordered",
+        "two_mesh_levels_are_defined"
+      ],
+      "T01_gate_after_future_simulation": [
+        "at_least_one_complete_bias_sweep_converges",
+        "terminal_current_conservation_passes",
+        "mesh_metrics_are_reported",
+        "state_maps_include_potential_electron_density_and_current_density"
+      ]
+    },
+    "execution_boundary": {
+      "simulation_run": false,
+      "simulation_status": "NOT_RUN",
+      "allowed_claim": "T01-A reproducible input contract only",
+      "prohibited_claims": [
+        "Id-Vg result",
+        "Id-Vd result",
+        "mobility extraction",
+        "threshold validation",
+        "experimental fit",
+        "dual-gate current prediction"
+      ]
+    }
+  },
+  "smoke": {
+    "schema_version": 1,
+    "case_id": "IGZO_T01_SINGLE_GATE_DD_B_SMOKE_V1",
+    "stage": "T01-B",
+    "status": "planned",
+    "evidence_level_before_run": "E0",
+    "input_contract": {
+      "path": "config/tcad_t01_baseline.json",
+      "case_id": "IGZO_T01_SINGLE_GATE_DD_A_V1",
+      "required_contract_status": "PASS",
+      "source_gate": "S00 G0=TEACHING_BASELINE_ONLY"
+    },
+    "scope": {
+      "device": "2D single-bottom-gate n-IGZO TFT",
+      "active_regions": [
+        "bottom_oxide",
+        "channel"
+      ],
+      "contact_topology_support": "ambient mesh buffer with no electrical equations",
+      "active_contacts": [
+        "source",
+        "drain",
+        "bottom_gate"
+      ],
+      "active_equations": [
+        "Poisson",
+        "electron_continuity"
+      ],
+      "transport": "electron-only Scharfetter-Gummel drift-diffusion",
+      "mesh_levels": [
+        "coarse",
+        "fine"
+      ],
+      "allowed_bias_stage_ids": [
+        "T01_A_STAGE_0",
+        "T01_A_STAGE_1"
+      ],
+      "prohibited_work": [
+        "VGS sweep",
+        "Id-Vg extraction",
+        "full Id-Vd family",
+        "mobility extraction",
+        "threshold validation",
+        "experimental fit",
+        "dual-gate current simulation",
+        "trap, ferroelectric, or non-ideal-contact physics"
+      ]
+    },
+    "execution_order": [
+      "build each configured mesh",
+      "zero-bias Poisson initialization",
+      "zero-bias coupled electron-continuity equilibrium",
+      "VGS=0 V continuation at VDS=0, 0.001, 0.005, 0.010 V",
+      "write solver records, terminal currents, node states, VTK, and JSON report"
+    ],
+    "acceptance": {
+      "required_mesh_levels": [
+        "coarse",
+        "fine"
+      ],
+      "required_vds_values_v": [
+        0.0,
+        0.001,
+        0.005,
+        0.01
+      ],
+      "zero_bias_abs_terminal_current_a_per_cm_max": 1e-16,
+      "minimum_low_vds_abs_terminal_current_a_per_cm": 1e-12,
+      "maximum_relative_terminal_current_imbalance": 1e-05,
+      "maximum_relative_mesh_current_difference_at_0p01v": 0.05,
+      "require_all_dc_solves_converged": true,
+      "require_state_files": true
+    },
+    "outputs": {
+      "run_directory": "results/tcad/t01_single_gate/t01_b_smoke",
+      "config_snapshot": "results/tcad/t01_single_gate/t01_b_smoke/input_snapshot.json",
+      "solver_log": "results/tcad/t01_single_gate/t01_b_smoke/solver_log.json",
+      "bias_points_csv": "results/tables/tcad_t01_b_bias_points.csv",
+      "mesh_summary_csv": "results/tables/tcad_t01_b_mesh_summary.csv",
+      "report": "results/reports/tcad_t01_b_smoke.json"
+    },
+    "evidence_boundary": {
+      "allowed_claim": "T01-B verifies a reproducible teaching-parameter low-bias convergence and terminal-current smoke only.",
+      "prohibited_claims": [
+        "complete T01 passed",
+        "Id-Vg result",
+        "full Id-Vd result",
+        "mesh independence of extracted device parameters",
+        "experimental calibration",
+        "quantitative dual-gate prediction"
+      ]
+    }
+  }
+}

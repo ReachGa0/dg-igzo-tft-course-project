@@ -2,7 +2,7 @@
   "schema_version": 2,
   "project_id": "DG-IGZO-TFT-PDK",
   "principle": "Each experiment has dependencies, one declared variable group, controls, outputs, acceptance criteria and an evidence boundary.",
-  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready"],
+  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified"],
   "parameter_groups": [
     {
       "id": "P1",
@@ -105,8 +105,8 @@
       "id": "T01",
       "track": "tcad",
       "name": "single_gate_igzo_drift_diffusion_baseline",
-      "status": "input_contract_ready",
-      "current_evidence": "E0",
+      "status": "smoke_verified",
+      "current_evidence": "E2",
       "depends_on": ["S00", "T00"],
       "purpose": "Establish the smallest current-carrying IGZO device case.",
       "changed_variables": ["VGS", "VDS"],
@@ -116,8 +116,18 @@
         "config/tcad_t01_baseline.json",
         "results/reports/tcad_t01_input_contract.json"
       ],
+      "smoke_outputs": [
+        "config/tcad_t01_b_smoke.json",
+        "results/reports/tcad_t01_b_smoke.json",
+        "results/reports/tcad_t01_b_smoke_check.json",
+        "results/tables/tcad_t01_b_bias_points.csv",
+        "results/tables/tcad_t01_b_mesh_summary.csv"
+      ],
+      "completed_substages": ["T01-A input contract", "T01-B zero-bias and VGS=0 low-VDS smoke"],
+      "remaining_substages": ["T01-C VGS continuation", "T01-D Id-Vd family, state-map set, and full mesh metrics"],
       "acceptance": ["at least one complete bias sweep converges", "terminal current conservation passes", "mesh metrics are reported"],
-      "simulation_status": "NOT_RUN"
+      "simulation_status": "T01_B_SMOKE_PASS",
+      "evidence_boundary": "The E2 result covers only zero-bias equilibrium and VGS=0 V, VDS<=0.01 V continuation. It is not a complete Id-Vg/Id-Vd result, parameter extraction, experimental fit, or dual-gate prediction."
     },
     {
       "id": "T02",

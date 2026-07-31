@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_B_SMOKE_V1",
+  "stage": "T01-B",
+  "checks": [
+    {
+      "name": "identity:report",
+      "status": "PASS",
+      "detail": "status=PASS stage=T01-B"
+    },
+    {
+      "name": "scope:only_stage_0_and_1",
+      "status": "PASS",
+      "detail": "['T01_A_STAGE_0', 'T01_A_STAGE_1']"
+    },
+    {
+      "name": "reproduction:command_and_tool",
+      "status": "PASS",
+      "detail": "make t01-b-smoke"
+    },
+    {
+      "name": "inputs:hash_locked",
+      "status": "PASS",
+      "detail": "snapshot=results/tcad/t01_single_gate/t01_b_smoke/input_snapshot.json"
+    },
+    {
+      "name": "bias:configured_meshes",
+      "status": "PASS",
+      "detail": "rows=8 meshes=coarse,fine"
+    },
+    {
+      "name": "bias:low_vds_sequence",
+      "status": "PASS",
+      "detail": "expected_vds=[0.0, 0.001, 0.005, 0.01]"
+    },
+    {
+      "name": "current:zero_bias_small",
+      "status": "PASS",
+      "detail": "limit_a_per_cm=1.000e-16"
+    },
+    {
+      "name": "current:nonzero_conserved_directional",
+      "status": "PASS",
+      "detail": "floor=1.000e-12 imbalance_limit=1.000e-05 signs=[1.0]"
+    },
+    {
+      "name": "mesh:low_vds_current_smoke",
+      "status": "PASS",
+      "detail": "relative_delta=2.403983e-03"
+    },
+    {
+      "name": "outputs:state_files",
+      "status": "PASS",
+      "detail": "results/tcad/t01_single_gate/t01_b_smoke/t01_b_coarse_final_nodes.csv, results/tcad/t01_single_gate/t01_b_smoke/t01_b_fine_final_nodes.csv"
+    },
+    {
+      "name": "runner:all_acceptance_checks_pass",
+      "status": "PASS",
+      "detail": "checks=10"
+    }
+  ],
+  "failures": [],
+  "recomputed_mesh_current_relative_difference_at_0p01v": 0.0024039826514761866
+}

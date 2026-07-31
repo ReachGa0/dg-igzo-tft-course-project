@@ -69,6 +69,11 @@
       "detail": "equilibrium -> low VDS -> stepped VGS/VDS continuation"
     },
     {
+      "name": "solver:residual_scales_explicit",
+      "status": "PASS",
+      "detail": "Poisson and carrier-continuity residual scales are separated for DEVSIM"
+    },
+    {
       "name": "bias:staged_protocol",
       "status": "PASS",
       "detail": "four ordered stages are frozen but not executed"

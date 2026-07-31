@@ -1,0 +1,3 @@
+mesh_level,node_count_with_interface_duplicates,element_count,dc_solve_count,final_drain_current_a_per_cm,state_csv,vtk_base
+coarse,189,280,6,1.2354583905166028e-06,results/tcad/t01_single_gate/t01_b_smoke/t01_b_coarse_final_nodes.csv,results/tcad/t01_single_gate/t01_b_smoke/t01_b_coarse_final
+fine,656,1120,6,1.2324883699791802e-06,results/tcad/t01_single_gate/t01_b_smoke/t01_b_fine_final_nodes.csv,results/tcad/t01_single_gate/t01_b_smoke/t01_b_fine_final

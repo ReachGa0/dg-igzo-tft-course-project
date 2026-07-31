@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_B_SMOKE_V1",
+  "stage": "T01-B",
+  "status": "planned",
+  "evidence_level_before_run": "E0",
+  "input_contract": {
+    "path": "config/tcad_t01_baseline.json",
+    "case_id": "IGZO_T01_SINGLE_GATE_DD_A_V1",
+    "required_contract_status": "PASS",
+    "source_gate": "S00 G0=TEACHING_BASELINE_ONLY"
+  },
+  "scope": {
+    "device": "2D single-bottom-gate n-IGZO TFT",
+    "active_regions": ["bottom_oxide", "channel"],
+    "contact_topology_support": "ambient mesh buffer with no electrical equations",
+    "active_contacts": ["source", "drain", "bottom_gate"],
+    "active_equations": ["Poisson", "electron_continuity"],
+    "transport": "electron-only Scharfetter-Gummel drift-diffusion",
+    "mesh_levels": ["coarse", "fine"],
+    "allowed_bias_stage_ids": ["T01_A_STAGE_0", "T01_A_STAGE_1"],
+    "prohibited_work": [
+      "VGS sweep",
+      "Id-Vg extraction",
+      "full Id-Vd family",
+      "mobility extraction",
+      "threshold validation",
+      "experimental fit",
+      "dual-gate current simulation",
+      "trap, ferroelectric, or non-ideal-contact physics"
+    ]
+  },
+  "execution_order": [
+    "build each configured mesh",
+    "zero-bias Poisson initialization",
+    "zero-bias coupled electron-continuity equilibrium",
+    "VGS=0 V continuation at VDS=0, 0.001, 0.005, 0.010 V",
+    "write solver records, terminal currents, node states, VTK, and JSON report"
+  ],
+  "acceptance": {
+    "required_mesh_levels": ["coarse", "fine"],
+    "required_vds_values_v": [0.0, 0.001, 0.005, 0.01],
+    "zero_bias_abs_terminal_current_a_per_cm_max": 1e-16,
+    "minimum_low_vds_abs_terminal_current_a_per_cm": 1e-12,
+    "maximum_relative_terminal_current_imbalance": 1e-05,
+    "maximum_relative_mesh_current_difference_at_0p01v": 0.05,
+    "require_all_dc_solves_converged": true,
+    "require_state_files": true
+  },
+  "outputs": {
+    "run_directory": "results/tcad/t01_single_gate/t01_b_smoke",
+    "config_snapshot": "results/tcad/t01_single_gate/t01_b_smoke/input_snapshot.json",
+    "solver_log": "results/tcad/t01_single_gate/t01_b_smoke/solver_log.json",
+    "bias_points_csv": "results/tables/tcad_t01_b_bias_points.csv",
+    "mesh_summary_csv": "results/tables/tcad_t01_b_mesh_summary.csv",
+    "report": "results/reports/tcad_t01_b_smoke.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T01-B verifies a reproducible teaching-parameter low-bias convergence and terminal-current smoke only.",
+    "prohibited_claims": [
+      "complete T01 passed",
+      "Id-Vg result",
+      "full Id-Vd result",
+      "mesh independence of extracted device parameters",
+      "experimental calibration",
+      "quantitative dual-gate prediction"
+    ]
+  }
+}

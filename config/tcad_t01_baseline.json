@@ -41,6 +41,12 @@
     "channel_thickness_cm": 2.4e-06,
     "top_boundary": "natural_zero_normal_flux",
     "regions": ["bottom_oxide", "channel", "ambient"],
+    "boundary_environment": {
+      "name": "ambient",
+      "mesh_region": true,
+      "solve_equations": false,
+      "model": "contact_topology_buffer_below_and_beside_active_stack; natural_zero_normal_flux_at_channel_top"
+    },
     "interfaces": ["bottom_oxide_channel"],
     "contacts": ["source", "drain", "bottom_gate"],
     "forbidden_regions": ["top_oxide"],
@@ -93,7 +99,7 @@
     }
   },
   "spice_effective_parameters": {
-    "physical_tox_not_used_in_t01": true,
+    "spice_effective_tox_not_used_in_t01": true,
     "effective_tox_nm": 10.0,
     "source_reference": "config/project.json:baseline_devices.IGZO_TFT.spice_effective_tox_nm",
     "use_status": "deferred_to_compact_model"
@@ -168,9 +174,11 @@
   "solver": {
     "type": "dc",
     "solver_type": "direct",
-    "absolute_error": 1.0e-12,
+    "poisson_absolute_error": 1.0e-12,
+    "coupled_absolute_error": 10000000000.0,
     "relative_error": 1.0e-10,
     "maximum_iterations": 80,
+    "absolute_error_rationale": "Poisson residual uses voltage/charge-scale tolerance; coupled carrier continuity residual is density-scaled in DEVSIM and therefore uses the documented 1e10 absolute tolerance together with the common relative tolerance.",
     "continuation": "use_previous_converged_solution",
     "initialization": "equilibrium_poisson_then_carrier",
     "electron_update": "positive_log_damp",

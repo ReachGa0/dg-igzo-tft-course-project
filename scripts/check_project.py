@@ -33,6 +33,7 @@ REQUIRED_FILES = [
     "config/s00_data_audit.json",
     "config/tcad_baseline.json",
     "config/tcad_t01_baseline.json",
+    "config/tcad_t01_b_smoke.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -50,9 +51,11 @@ REQUIRED_FILES = [
     "scripts/import_senior_reference.py",
     "scripts/audit_s00_data.py",
     "scripts/check_t01_a_contract.py",
+    "scripts/check_t01_b_smoke.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
+    "tcad/run_t01_single_gate_smoke.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
@@ -62,6 +65,10 @@ REQUIRED_FILES = [
     "data/processed/s00/conflict_register.csv",
     "results/reports/s00_data_audit.json",
     "results/reports/tcad_t01_input_contract.json",
+    "results/reports/tcad_t01_b_smoke.json",
+    "results/reports/tcad_t01_b_smoke_check.json",
+    "results/tables/tcad_t01_b_bias_points.csv",
+    "results/tables/tcad_t01_b_mesh_summary.csv",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -103,6 +110,7 @@ REQUIRED_DIRS = [
     "results/tables",
     "results/reports",
     "results/tcad/dg_electrostatic",
+    "results/tcad/t01_single_gate/t01_b_smoke",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -510,6 +518,61 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t01_a:contract", False, str(error))
+
+    t01_b_report_path = ROOT / "results" / "reports" / "tcad_t01_b_smoke.json"
+    t01_b_check_path = ROOT / "results" / "reports" / "tcad_t01_b_smoke_check.json"
+    try:
+        t01_b_config = json.loads((ROOT / "config" / "tcad_t01_b_smoke.json").read_text(encoding="utf-8"))
+        t01_b_report = json.loads(t01_b_report_path.read_text(encoding="utf-8"))
+        t01_b_check = json.loads(t01_b_check_path.read_text(encoding="utf-8"))
+        t01_b_checks = t01_b_report.get("checks", {})
+        add_check(
+            checks,
+            "t01_b:smoke_status",
+            t01_b_report.get("status") == "PASS"
+            and t01_b_report.get("case_id") == t01_b_config.get("case_id")
+            and t01_b_report.get("stage") == "T01-B"
+            and t01_b_report.get("evidence_level") == "E2",
+            str(t01_b_report.get("status")),
+        )
+        add_check(
+            checks,
+            "t01_b:independent_check",
+            t01_b_check.get("status") == "PASS"
+            and t01_b_check.get("case_id") == t01_b_config.get("case_id")
+            and t01_b_check.get("stage") == "T01-B",
+            str(t01_b_check.get("status")),
+        )
+        add_check(
+            checks,
+            "t01_b:authorized_scope",
+            t01_b_report.get("executed_bias_stage_ids") == ["T01_A_STAGE_0", "T01_A_STAGE_1"]
+            and t01_b_config.get("scope", {}).get("allowed_bias_stage_ids") == ["T01_A_STAGE_0", "T01_A_STAGE_1"],
+            str(t01_b_report.get("executed_bias_stage_ids")),
+        )
+        add_check(
+            checks,
+            "t01_b:acceptance_checks",
+            bool(t01_b_checks) and all(result.get("status") == "PASS" for result in t01_b_checks.values()),
+            f"checks={len(t01_b_checks)}",
+        )
+        output_paths = [
+            ROOT / value
+            for key, value in t01_b_report.get("outputs", {}).items()
+            if key != "run_directory"
+        ]
+        state_paths = [ROOT / item["state_csv"] for item in t01_b_report.get("mesh", [])]
+        run_directory = ROOT / t01_b_report.get("outputs", {}).get("run_directory", "")
+        add_check(
+            checks,
+            "t01_b:raw_outputs",
+            all(path.is_file() and path.stat().st_size > 0 for path in output_paths + state_paths)
+            and run_directory.is_dir()
+            and any(run_directory.glob("*.vtm")),
+            f"files={len(output_paths) + len(state_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t01_b:smoke", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

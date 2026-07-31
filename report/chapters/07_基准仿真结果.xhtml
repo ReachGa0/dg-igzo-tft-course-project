@@ -1,4 +1,13 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-07" class="report-chapter">
   <h2>7. 基准仿真结果</h2>
-  <p>[待填写二维TCAD、IGZO单管和有源负载反相器基准结果及关键指标]</p>
+  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果。模型为单底栅 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
+  <table>
+    <thead><tr><th>条件</th><th>coarse</th><th>fine</th><th>验收</th></tr></thead>
+    <tbody>
+      <tr><td>零偏压，VGS = 0 V</td><td>0 A/cm</td><td>0 A/cm</td><td>两档均收敛，满足零偏压电流阈值</td></tr>
+      <tr><td>VGS = 0 V，VDS = 10 mV 漏端二维电流</td><td>1.235e-6 A/cm</td><td>1.232e-6 A/cm</td><td>粗细网格相对差 0.240%，低于 5% 烟雾阈值</td></tr>
+      <tr><td>非零 VDS 源漏相对电流不平衡最大值</td><td>1.37e-14</td><td>1.29e-14</td><td>低于 1e-5 阈值</td></tr>
+    </tbody>
+  </table>
+  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/tables/tcad_t01_b_bias_points.csv</code> 和两档 VTK/节点 CSV。T01-B 仅覆盖零偏压和 VGS=0 V 的 0/1/5/10 mV continuation；不能据此写出完整 <code>Id-Vg</code>、完整 <code>Id-Vd</code>、VTH、SS、迁移率、实验精度或双栅趋势。T01-C 将先在 10 mV 继承解上做分步 VGS。</p>
 </section>

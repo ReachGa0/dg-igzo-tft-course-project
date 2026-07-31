@@ -16,6 +16,68 @@
 
 ---
 
+## 2026-07-31 | Codex GPT-5 | 完成 T01-B 单栅低偏压漂移扩散烟雾
+
+### 用户目标
+
+在不启动 T02、SPICE、KLayout 或完整 I-V 扫描的前提下，执行 T01-B：先验证单栅 IGZO 的零偏压平衡态、低 VDS continuation、接触电流接口和两档网格基础一致性。
+
+### 读取的关键输入
+
+- `AGENTS.md`、`STATUS.md`、`PROJECT_PLAN.md`、`ARCHITECTURE.md`、`DECISIONS.md` 和 T01-A 输入合同。
+- `config/tcad_t01_baseline.json`、S00 G0 教学参数边界、既有 T00 网格/接触实现。
+- DEVSIM 2.10.0 的 `simple_dd`、`simple_physics` 与二维 MOS/diode 示例，确认 Scharfetter-Gummel 电流、欧姆接触和混合残差口径。
+
+### 本次修改
+
+- 新增 `config/tcad_t01_b_smoke.json`、`tcad/run_t01_single_gate_smoke.py`、`scripts/check_t01_b_smoke.py` 与 `make t01-b-smoke`/`make t01-b-check`。
+- 运行器保存输入快照、DEVSIM 求解记录、偏压点 CSV、两档网格节点 CSV、VTK、机器可读结果和独立验收报告。
+- 修正 T01-A 合同元数据：明确 10 nm 是未用于 T01 的 SPICE 有效 TOX；环境空气是无方程的接触拓扑缓冲区，沟道顶边仍为自然零法向通量；Poisson 与载流子连续性残差采用独立且有理由的绝对阈值。
+- 将 T01-B 接入实验矩阵、项目检查、状态、架构、计划、汇报稿、TCAD 路线、报告第 5/7 章和证据矩阵。
+
+### 实际结果与失败记录
+
+- 首次运行发现最小两区域网格无法让 DEVSIM 识别 `bottom_gate`；加入无电学方程的环境接触缓冲区后，底栅、源、漏分别识别为 21/5/5 个粗网格接触节点。
+- 第二次运行显示通用 `1e-12` 绝对残差不适用于以 `cm^-3` 计的载流子连续性残差；相对残差已低于 1e-10 但被绝对门阻止。配置中分离 Poisson `1e-12` 与耦合载流子 `1e10` 的 DEVSIM 残差阈值后重跑。
+- 两档网格各完成 6 次 DC 求解：零偏压 Poisson、零偏压耦合平衡态和 VGS=0 V、VDS=0/1/5/10 mV continuation，均收敛。
+- VDS=10 mV 漏端二维电流：coarse `1.235458e-6 A/cm`，fine `1.232488e-6 A/cm`；相对网格差 `0.240398%`。非零点源漏相对电流不平衡最大值为 `1.37e-14`（coarse）和 `1.29e-14`（fine）。
+
+### 验证
+
+```text
+make t01-b-smoke
+T01_B_SMOKE_PASS meshes=2 bias_points=8
+
+make t01-b-check
+T01_B_SMOKE_CHECK_PASS checks=11
+```
+
+```text
+make t01-a-check
+T01_A_CONTRACT_PASS checks=16 simulation=NOT_RUN
+
+make check
+PROJECT_CHECK_PASS checks=164
+
+make report-check
+REPORT_STRUCTURE_PASS chapters=12 appendices=5 placeholders=19 images=0
+
+git diff --check
+PASS
+```
+
+### 决策和边界
+
+- T01-B 形成 E2 教学参数器件数值证据，只覆盖零偏压和 VGS=0 V、VDS<=0.01 V；它不关闭完整 T01 阶段门。
+- 不得将本次结果写成完整 `Id-Vg`、完整 `Id-Vd`、VTH/SS/迁移率提取、实验拟合、模型精度或双栅预测。
+- 常数迁移率、背景施主浓度和理想欧姆接触仍是教学闭合假设；完整状态集和参数提取留给 T01-C/D，定量标定仍受 G0 限制。
+
+### 下一步
+
+从 T01-C 开始：继承 T01-B 的 VDS=0.01 V 收敛解，按冻结 VGS 阶梯逐点续算；不通过前不启动 T02 或电路工作。
+
+---
+
 ## 2026-07-30 | Codex GPT-5 | 完成 T01-A 单栅漂移扩散输入合同
 
 ### 用户目标

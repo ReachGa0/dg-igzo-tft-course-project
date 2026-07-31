@@ -112,7 +112,7 @@ def check_contract() -> dict[str, Any]:
     add_check(
         checks,
         "materials:physical_vs_effective_tox",
-        config["spice_effective_parameters"]["physical_tox_not_used_in_t01"] is True
+        config["spice_effective_parameters"]["spice_effective_tox_not_used_in_t01"] is True
         and config["spice_effective_parameters"]["use_status"] == "deferred_to_compact_model"
         and close(config["spice_effective_parameters"]["effective_tox_nm"], project_device["spice_effective_tox_nm"]),
         "30 nm physical oxide remains separate from 10 nm compact-model effective TOX",
@@ -166,6 +166,14 @@ def check_contract() -> dict[str, Any]:
         and config["solver"]["continuation"] == "use_previous_converged_solution"
         and config["solver"]["never_jump_directly_to_maximum_bias"] is True,
         "equilibrium -> low VDS -> stepped VGS/VDS continuation",
+    )
+    add_check(
+        checks,
+        "solver:residual_scales_explicit",
+        close(config["solver"]["poisson_absolute_error"], 1.0e-12)
+        and close(config["solver"]["coupled_absolute_error"], 1.0e10)
+        and close(config["solver"]["relative_error"], 1.0e-10),
+        "Poisson and carrier-continuity residual scales are separated for DEVSIM",
     )
     stage_ids = [stage["id"] for stage in stages]
     add_check(
