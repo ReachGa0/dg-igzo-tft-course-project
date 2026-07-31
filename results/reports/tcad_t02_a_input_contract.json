@@ -1,0 +1,156 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T02_DUAL_GATE_DD_A_LIMIT_V1",
+  "stage": "T02-A",
+  "contract_status": "PASS",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "contract_evidence_level": "E3",
+  "checks": [
+    {
+      "name": "identity:t02_a_contract",
+      "status": "PASS",
+      "detail": "case=IGZO_T02_DUAL_GATE_DD_A_LIMIT_V1 stage=T02-A"
+    },
+    {
+      "name": "dependencies:t01_complete_and_independently_checked",
+      "status": "PASS",
+      "detail": "T01 contract=PASS D-C=PASS independent=PASS next=True"
+    },
+    {
+      "name": "gate:g0_remains_teaching_only",
+      "status": "PASS",
+      "detail": "{\"allowed_claim\": \"Teaching-parameter two-dimensional IGZO simulation\", \"missing_primary_inputs\": [\"condition-complete raw Id-Vg\", \"condition-complete raw Id-Vd\", \"device batch identity\", \"measurement or simulation condition metadata\"], \"prohibited_claim\": \"Accurate experimental fit or calibrated dual-gate prediction\", \"quantitative_fitting_permitted\": false, \"required_primary_fields\": [\"dataset_id\", \"device_id\", \"sweep_id\", \"VGS_V\", \"VDS_V\", \"ID_A\", \"W_um\", \"L_um\", \"temperature_K\", \"sweep_direction\", \"source\", \"source_status\"], \"status\": \"TEACHING_BASELINE_ONLY\", \"t01_permitted\": true}"
+    },
+    {
+      "name": "units:inherit_t01_centimeter_transport_convention",
+      "status": "PASS",
+      "detail": "{\"coordinate_unit\": \"cm\", \"density_unit\": \"cm^-3\", \"inheritance\": \"All active transport units and out-of-plane conventions are inherited unchanged from config/tcad_t01_baseline.json.\", \"mobility_unit\": \"cm^2/(V*s)\", \"temperature_unit\": \"K\", \"terminal_current_2d_unit\": \"A/cm\", \"voltage_unit\": \"V\"}"
+    },
+    {
+      "name": "materials:igzo_only",
+      "status": "PASS",
+      "detail": "device=2D n-IGZO electron-only drift-diffusion teaching model"
+    },
+    {
+      "name": "top_stack:symmetric_teaching_geometry_and_source",
+      "status": "PASS",
+      "detail": "tox=30.0 nm er=6.8 source=symmetric teaching extension inherited from the T00 electrostatic baseline"
+    },
+    {
+      "name": "limit:disabled_means_exact_t01_topology",
+      "status": "PASS",
+      "detail": "{\"channel_top_boundary\": \"natural_zero_normal_flux\", \"implementation\": \"omit the complete top stack and reuse the exact T01 single-gate domain, equations, contacts, and mesh\", \"mode_id\": \"disabled_exact_t01_limit\", \"required_reference\": \"IGZO_T01_SINGLE_GATE_DD_DC_EXTRACTION_V1\", \"top_gate_present\": false, \"top_oxide_present\": false}"
+    },
+    {
+      "name": "limit:zero_volt_top_gate_is_not_disabled",
+      "status": "PASS",
+      "detail": "VTG=0 V with a finite top dielectric remains capacitively coupled and is not the disabled limit."
+    },
+    {
+      "name": "physics:only_top_electrostatic_stack_changes",
+      "status": "PASS",
+      "detail": "{\"active_equations\": [\"Poisson\", \"electron_continuity\"], \"inactive_models\": [\"hole_continuity\", \"recombination_generation\", \"bulk_traps\", \"interface_traps\", \"contact_resistance_or_barrier\", \"ferroelectric_polarization\", \"quantum_correction\"], \"isolation_rationale\": \"Only the top electrostatic stack changes so that the later enabled-bias response can be attributed to dual-gate coupling within the frozen teaching model.\", \"mobility_model\": \"constant_teaching_mobility\", \"temperature_k\": 300.0, \"transport\": \"electron-only Scharfetter-Gummel drift-diffusion\"}"
+    },
+    {
+      "name": "mesh:inherits_t01_interface_4x_and_mirrors_top_interface",
+      "status": "PASS",
+      "detail": "source=interface_4x factor=4.0"
+    },
+    {
+      "name": "bias:ordered_disabled_regression_with_t01_reference_points",
+      "status": "PASS",
+      "detail": "VBG=[0.0, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0] VDS=0.01"
+    },
+    {
+      "name": "bias:enabled_case_is_zero_bias_topology_smoke_only",
+      "status": "PASS",
+      "detail": "{\"bottom_gate_v\": 0.0, \"drain_v\": 0.0, \"execution_order\": [\"fresh enabled-top-stack device\", \"all-zero-bias Poisson initialization\", \"add electron transport and solve coupled equilibrium\", \"save a topology/state manifest and VTK output\", \"delete the enabled device\"], \"source_v\": 0.0, \"top_gate_v\": 0.0}"
+    },
+    {
+      "name": "acceptance:solve_and_point_counts_are_derived",
+      "status": "PASS",
+      "detail": "disabled=12 enabled=2 total=14"
+    },
+    {
+      "name": "acceptance:strict_regression_and_conservation_limits",
+      "status": "PASS",
+      "detail": "{\"maximum_disabled_t01_center_density_relative_difference\": 1e-08, \"maximum_disabled_t01_center_potential_difference_v\": 1e-10, \"maximum_disabled_t01_relative_current_difference\": 1e-08, \"maximum_enabled_zero_bias_absolute_potential_v\": 1e-10, \"maximum_enabled_zero_bias_absolute_terminal_current_a_per_cm\": 1e-18, \"maximum_relative_terminal_current_imbalance\": 1e-05, \"require_all_dc_solves_converged\": true, \"require_disabled_current_monotonic_with_bottom_gate\": true, \"require_enabled_state_csv_and_vtk\": true, \"required_disabled_bottom_gate_values_v\": [0.0, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0], \"required_disabled_contacts\": [\"source\", \"drain\", \"bottom_gate\"], \"required_disabled_dc_solve_count\": 12, \"required_disabled_regions\": [\"bottom_oxide\", \"channel\"], \"required_disabled_reported_point_count\": 7, \"required_enabled_contacts\": [\"source\", \"drain\", \"bottom_gate\", \"top_gate\"], \"required_enabled_regions\": [\"bottom_oxide\", \"channel\", \"top_oxide\"], \"required_enabled_zero_bias_dc_solve_count\": 2, \"required_total_dc_solve_count\": 14}"
+    },
+    {
+      "name": "outputs:separate_raw_processed_and_reports",
+      "status": "PASS",
+      "detail": "{\"check_report\": \"results/reports/tcad_t02_a_limit_regression_check.json\", \"config_snapshot\": \"results/tcad/t02_dual_gate/t02_a_limit_regression/input_snapshot.json\", \"contract_report\": \"results/reports/tcad_t02_a_input_contract.json\", \"disabled_regression_csv\": \"results/tables/tcad_t02_a_disabled_regression.csv\", \"report\": \"results/reports/tcad_t02_a_limit_regression.json\", \"run_directory\": \"results/tcad/t02_dual_gate/t02_a_limit_regression\", \"solver_log\": \"results/tcad/t02_dual_gate/t02_a_limit_regression/solver_log.json\", \"state_manifest\": \"results/tcad/t02_dual_gate/t02_a_limit_regression/state_manifest.json\", \"topology_summary_csv\": \"results/tables/tcad_t02_a_topology_summary.csv\"}"
+    },
+    {
+      "name": "scope:evidence_boundary_blocks_dual_gate_claims",
+      "status": "PASS",
+      "detail": "Only a PASS result permits T02-B to run one minimal nonzero enabled dual-gate bias family."
+    }
+  ],
+  "failures": [],
+  "config": {
+    "path": "config/tcad_t02_a_dual_gate_contract.json",
+    "sha256": "59f19996be43c22972bf223cfebf1f95fcaec5cdd9bf2edef76d45e9f1b4ccb3"
+  },
+  "inputs": {
+    "project": {
+      "path": "config/project.json",
+      "sha256": "71003173189e8a804b0a29c5ede5407ca85a017456c4aba0104ceb6a84108b07"
+    },
+    "s00_report": {
+      "path": "results/reports/s00_data_audit.json",
+      "sha256": "44ea42ff7fd9923cd4c9c2d0156ce3d0029cd59655e3c4086ab7250f78b48e31"
+    },
+    "t00_config": {
+      "path": "config/tcad_baseline.json",
+      "sha256": "c9f128a1ae201d2bc0df0db2ad30bb8b3361369be81de74d2c3e7afca566442e"
+    },
+    "t01_baseline_config": {
+      "path": "config/tcad_t01_baseline.json",
+      "sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9"
+    },
+    "t01_contract_report": {
+      "path": "results/reports/tcad_t01_input_contract.json",
+      "sha256": "8a18d938b128aa3b9455f4a7e172070b2b4ee2cc942364361492a376678121ff"
+    },
+    "t01_mesh_config": {
+      "path": "config/tcad_t01_d_mesh_refinement.json",
+      "sha256": "6ba9815ab063708b9fa560092974ac65a748b95c981d16056af3dec1e0f74e23"
+    },
+    "t01_extraction_config": {
+      "path": "config/tcad_t01_d_extraction.json",
+      "sha256": "6d9f8e9db23c9c02f7fa7968ff2194d7e76e4e9936394cb4fa23ec11fccd4238"
+    },
+    "t01_extraction_report": {
+      "path": "results/reports/tcad_t01_d_extraction.json",
+      "sha256": "8151fd7b5d05445514848a05f4241bce7570f3d280fa521e36410d4958fd15db"
+    },
+    "t01_extraction_check_report": {
+      "path": "results/reports/tcad_t01_d_extraction_check.json",
+      "sha256": "a5dc63a5978a1a0be57d67603ec5d289b696eea39ab4c225b8470f5236eb6055"
+    }
+  },
+  "outputs": {
+    "contract_report": "results/reports/tcad_t02_a_input_contract.json",
+    "run_directory": "results/tcad/t02_dual_gate/t02_a_limit_regression",
+    "config_snapshot": "results/tcad/t02_dual_gate/t02_a_limit_regression/input_snapshot.json",
+    "solver_log": "results/tcad/t02_dual_gate/t02_a_limit_regression/solver_log.json",
+    "state_manifest": "results/tcad/t02_dual_gate/t02_a_limit_regression/state_manifest.json",
+    "disabled_regression_csv": "results/tables/tcad_t02_a_disabled_regression.csv",
+    "topology_summary_csv": "results/tables/tcad_t02_a_topology_summary.csv",
+    "report": "results/reports/tcad_t02_a_limit_regression.json",
+    "check_report": "results/reports/tcad_t02_a_limit_regression_check.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T02-A may freeze the dual-gate teaching input contract, verify the enabled topology at all-zero-bias equilibrium, and prove that the explicitly omitted-top-stack limit reproduces T01.",
+    "prohibited_claims": [
+      "nonzero dual-gate current or threshold coupling verified",
+      "Delta VTH, dual-gate gm, or capacitance ratio extracted under mobile charge",
+      "experimental validation or calibrated prediction",
+      "physical Ion/Ioff or parameter uncertainty",
+      "T02 complete",
+      "T03, compact-model, circuit, layout, or ferroelectric evidence"
+    ],
+    "next_gate": "Only a PASS result permits T02-B to run one minimal nonzero enabled dual-gate bias family."
+  }
+}

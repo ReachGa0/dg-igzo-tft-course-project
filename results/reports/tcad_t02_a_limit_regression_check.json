@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T02_DUAL_GATE_DD_A_LIMIT_V1",
+  "stage": "T02-A",
+  "checks": [
+    {
+      "name": "identity:report",
+      "status": "PASS",
+      "detail": "status=PASS case=IGZO_T02_DUAL_GATE_DD_A_LIMIT_V1 stage=T02-A"
+    },
+    {
+      "name": "contract:static_gate_passed_before_simulation",
+      "status": "PASS",
+      "detail": "checks=16 simulation=NOT_RUN_BY_CONTRACT_CHECK"
+    },
+    {
+      "name": "inputs:snapshot_hashes_match",
+      "status": "PASS",
+      "detail": "snapshot=results/tcad/t02_dual_gate/t02_a_limit_regression/input_snapshot.json inputs=6"
+    },
+    {
+      "name": "dependencies:complete_t01_evidence_is_still_pass",
+      "status": "PASS",
+      "detail": "T01=PASS independent=PASS next=True"
+    },
+    {
+      "name": "solver:two_fresh_runs_and_all_dc_converged",
+      "status": "PASS",
+      "detail": "runs=2 counts=[12, 2] records=14"
+    },
+    {
+      "name": "topology:disabled_and_enabled_domains_are_distinct",
+      "status": "PASS",
+      "detail": "disabled_nodes=1394 enabled_nodes=2419"
+    },
+    {
+      "name": "outputs:topology_csv_matches_json",
+      "status": "PASS",
+      "detail": "rows=2"
+    },
+    {
+      "name": "bias:disabled_regression_grid_and_csv",
+      "status": "PASS",
+      "detail": "rows=7 VBG=[0.0, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0]"
+    },
+    {
+      "name": "current:disabled_limit_is_conserved_and_monotonic",
+      "status": "PASS",
+      "detail": "max_imbalance=6.098203e-14 currents=[1.2325117540658265e-06, 4.844135552338172e-06, 9.232616560278904e-06, 1.364545498197355e-05, 2.1855115458542737e-05, 2.902725974192925e-05, 3.8002708377240146e-05]"
+    },
+    {
+      "name": "regression:t01_terminal_and_internal_state_recomputed",
+      "status": "PASS",
+      "detail": "max_current_rel=7.132401e-15 max_potential_v=4.163336e-17 max_density_rel=2.207375e-16"
+    },
+    {
+      "name": "state:enabled_zero_bias_nodes_and_vtk_are_hash_locked",
+      "status": "PASS",
+      "detail": "rows=2419 regions=['bottom_oxide', 'channel', 'top_oxide'] vtk=6"
+    },
+    {
+      "name": "state:enabled_zero_bias_equilibrium_recomputed",
+      "status": "PASS",
+      "detail": "max_current=0.000000e+00 max_potential=0.000000e+00 channel_nodes=1353"
+    },
+    {
+      "name": "outputs:required_evidence_files_exist",
+      "status": "PASS",
+      "detail": "files=7"
+    },
+    {
+      "name": "runner:stage_gate_and_evidence_boundary",
+      "status": "PASS",
+      "detail": "runner_checks=10 next=True complete=False"
+    }
+  ],
+  "failures": [],
+  "recomputed_maximum_relative_terminal_current_imbalance": 6.098202582518323e-14,
+  "recomputed_maximum_disabled_t01_relative_current_difference": 7.13240068130798e-15,
+  "recomputed_maximum_disabled_t01_center_potential_difference_v": 4.163336342344337e-17,
+  "recomputed_maximum_disabled_t01_center_density_relative_difference": 2.2073752570506506e-16,
+  "recomputed_enabled_zero_bias_maximum_absolute_terminal_current_a_per_cm": 0.0,
+  "recomputed_enabled_zero_bias_maximum_absolute_potential_v": 0.0
+}

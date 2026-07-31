@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-05" class="report-chapter">
   <h2>5. 仿真工具与模型建立</h2>
-  <p>T01-A 已冻结单栅 IGZO 漂移扩散输入合同，T01-B/C/D-A/D-B/D-C 已在 DEVSIM 2.10.0 上运行低漏压烟雾、栅压续算、界面法向网格收敛、离散 Id-Vd 曲线族，以及状态/受限数值代理提取。结构采用二维、厘米制物理单位：底栅单栅，W = 60 um，L = 10 um，IGZO 厚度 24 nm，物理 Al2O3 厚度 30 nm；顶部为自然零法向通量边界，不加入顶栅或顶介质。</p>
+  <p>T01-A 已冻结单栅 IGZO 漂移扩散输入合同，T01-B/C/D-A/D-B/D-C 已在 DEVSIM 2.10.0 上运行低漏压烟雾、栅压续算、界面法向网格收敛、离散 Id-Vd 曲线族，以及状态/受限数值代理提取。结构采用二维、厘米制物理单位：底栅单栅，W = 60 um，L = 10 um，IGZO 厚度 24 nm，物理 Al2O3 厚度 30 nm；顶部为自然零法向通量边界，不加入顶栅或顶介质。T02-A 在不改动这一 T01 参考域的前提下，额外建立一个含对称教学顶栈的独立双栅拓扑，用于验证退化极限和零偏压平衡。</p>
   <table>
     <thead>
       <tr><th>项目</th><th>T01-A 冻结口径</th><th>来源或状态</th></tr>
@@ -16,5 +16,14 @@
       <tr><td>T01-D-C 提取/状态</td><td>两档均在 VDS=0.01 V 取 51 个 VGS 点；VTH 用 60 nA 恒流对数插值，SS 用固定电流窗口 OLS，迁移率用物理氧化层电容和中心差分；4x 保存 VGS=-0.5/0.2/1.0 V 三状态</td><td>只生成可复算教学模型数值代理，不以课程目标匹配作为 PASS 条件</td></tr>
     </tbody>
   </table>
-  <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>，T01-D-C 使用 <code>make t01-d-extract</code>/<code>make t01-d-extract-check</code>。各运行器保存输入快照、DC 求解记录、CSV、JSON 及阶段所需状态或图，独立检查器复算哈希、偏压点、守恒、单调性、上游回归、网格指标和提取公式。完整 T01 是 E2 教学参数数值证据；VTH/SS/迁移率仍是配置方法下的数值代理，连续饱和机理、实验拟合和物理 Ion/Ioff 尚未验证。</p>
+  <table>
+    <thead><tr><th>T02-A 拓扑合同</th><th>实现</th><th>证据边界</th></tr></thead>
+    <tbody>
+      <tr><td>禁用顶栅耦合</td><td>完整移除顶介质/顶栅，恢复 T01 自然顶边界和 interface_4x 域</td><td>与 T01-D-C 七个冻结点做端口电流与内部状态回归</td></tr>
+      <tr><td>启用教学顶栈</td><td>30 nm Al2O3，相对介电常数 6.8，理想静电 Dirichlet 顶栅，上下界面镜像加密</td><td>T00 延续的教学假设，不是已制造工艺事实</td></tr>
+      <tr><td>启用拓扑偏压</td><td>T02-A 只保存 VS=VD=VBG=VTG=0 V 平衡态</td><td><code>VTG=0 V</code> 仍是有限耦合，不等于禁用顶栅</td></tr>
+      <tr><td>求解与产物</td><td>两种拓扑分别新建器件；保存输入快照、求解日志、CSV、JSON、节点状态和 VTK</td><td>14 次 DC 只构成 E2 教学模型证据</td></tr>
+    </tbody>
+  </table>
+  <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>，T01-D-C 使用 <code>make t01-d-extract</code>/<code>make t01-d-extract-check</code>。T02-A 依次使用 <code>make t02-a-contract-check</code>、<code>make t02-a-regression</code> 和 <code>make t02-a-regression-check</code>。各运行器保存输入快照、DC 求解记录、CSV、JSON 及阶段所需状态或图，独立检查器复算哈希、偏压点、守恒、单调性、上游回归、网格指标和提取公式。完整 T01 与 T02-A 均是 E2 教学参数数值证据；T02-A 未运行非零顶栅，双栅电流趋势、阈值位移、gm、实验拟合和物理 Ion/Ioff 尚未验证。</p>
 </section>

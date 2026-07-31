@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "case_id": "IGZO_T02_DUAL_GATE_DD_A_LIMIT_V1",
+  "stage": "T02-A",
+  "status": "planned",
+  "evidence_level_before_run": "E0",
+  "contract_evidence_level_after_check": "E3",
+  "dependencies": {
+    "s00_report": "results/reports/s00_data_audit.json",
+    "t00_config": "config/tcad_baseline.json",
+    "t01_baseline_config": "config/tcad_t01_baseline.json",
+    "t01_contract_report": "results/reports/tcad_t01_input_contract.json",
+    "t01_mesh_config": "config/tcad_t01_d_mesh_refinement.json",
+    "t01_extraction_config": "config/tcad_t01_d_extraction.json",
+    "t01_extraction_report": "results/reports/tcad_t01_d_extraction.json",
+    "t01_extraction_check_report": "results/reports/tcad_t01_d_extraction_check.json",
+    "required_g0_status": "TEACHING_BASELINE_ONLY",
+    "required_t01_contract_status": "PASS",
+    "required_t01_extraction_status": "PASS",
+    "required_t01_extraction_check_status": "PASS",
+    "required_t01_complete_gate": "PASS",
+    "require_t02_stage_permitted_next": true
+  },
+  "scope": {
+    "device": "2D n-IGZO electron-only drift-diffusion teaching model",
+    "purpose": "Freeze the dual-gate mobile-charge input contract and prove that the explicitly disabled top-coupling limit reproduces T01 before any nonzero dual-gate family is run.",
+    "changed_structure_when_enabled": [
+      "add a 30 nm Al2O3 teaching top dielectric",
+      "add an ideal electrostatic Dirichlet top-gate contact",
+      "add the channel/top-dielectric potential-continuity interface"
+    ],
+    "fixed_variables": [
+      "n-type IGZO only",
+      "10 um channel length and 24 nm channel thickness",
+      "30 nm physical bottom Al2O3",
+      "300 K constant teaching mobility",
+      "ideal ohmic source and drain",
+      "Poisson plus electron continuity",
+      "no traps, recombination, ferroelectric polarization, or non-ideal contacts",
+      "T01 interface_4x production mesh below the channel top interface"
+    ],
+    "executed_cases": [
+      "disabled-top-coupling T01 reproduction at low VDS",
+      "enabled-topology all-zero-bias equilibrium smoke"
+    ],
+    "prohibited_work": [
+      "nonzero enabled-top-gate bias family",
+      "Delta VTH or dual-gate gm extraction",
+      "T03 parameter scans",
+      "experimental fitting or calibrated dual-gate prediction",
+      "compact-model, SPICE, circuit, layout, or HZO work"
+    ]
+  },
+  "coordinate_system": {
+    "coordinate_unit": "cm",
+    "voltage_unit": "V",
+    "temperature_unit": "K",
+    "density_unit": "cm^-3",
+    "mobility_unit": "cm^2/(V*s)",
+    "terminal_current_2d_unit": "A/cm",
+    "inheritance": "All active transport units and out-of-plane conventions are inherited unchanged from config/tcad_t01_baseline.json."
+  },
+  "top_stack_contract": {
+    "enabled_mode": {
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "top_oxide_present": true,
+      "top_gate_present": true,
+      "top_oxide_material": "Al2O3",
+      "top_oxide_thickness_nm": 30.0,
+      "top_oxide_thickness_cm": 3e-06,
+      "top_oxide_relative_permittivity": 6.8,
+      "top_gate_boundary": "ideal_electrostatic_dirichlet",
+      "top_gate_work_function_offset_model": "none",
+      "source_type": "symmetric teaching extension inherited from the T00 electrostatic baseline",
+      "fabrication_status": "not present in the stated fabricated single-bottom-gate process",
+      "evidence_level": "E1_teaching_assumption"
+    },
+    "disabled_mode": {
+      "mode_id": "disabled_exact_t01_limit",
+      "top_oxide_present": false,
+      "top_gate_present": false,
+      "channel_top_boundary": "natural_zero_normal_flux",
+      "implementation": "omit the complete top stack and reuse the exact T01 single-gate domain, equations, contacts, and mesh",
+      "required_reference": "IGZO_T01_SINGLE_GATE_DD_DC_EXTRACTION_V1"
+    },
+    "zero_bias_is_not_disabled": true,
+    "boundary_note": "VTG=0 V with a finite top dielectric remains capacitively coupled and is not the disabled limit."
+  },
+  "physics": {
+    "active_equations": ["Poisson", "electron_continuity"],
+    "transport": "electron-only Scharfetter-Gummel drift-diffusion",
+    "mobility_model": "constant_teaching_mobility",
+    "temperature_k": 300.0,
+    "inactive_models": [
+      "hole_continuity",
+      "recombination_generation",
+      "bulk_traps",
+      "interface_traps",
+      "contact_resistance_or_barrier",
+      "ferroelectric_polarization",
+      "quantum_correction"
+    ],
+    "isolation_rationale": "Only the top electrostatic stack changes so that the later enabled-bias response can be attributed to dual-gate coupling within the frozen teaching model."
+  },
+  "mesh": {
+    "source_stage": "T01-D-A",
+    "source_level": "interface_4x",
+    "refinement_factor": 4.0,
+    "disabled_mode_mesh": "exact T01 interface_4x runtime mesh",
+    "enabled_mode_extension": "mirror the 10 nm oxide and 12 nm channel interface-normal refinement windows at the channel/top-oxide interface",
+    "top_oxide_interface_window_cm": 1e-06,
+    "channel_top_interface_window_cm": 1.2e-06,
+    "require_enabled_node_count_greater_than_disabled": true
+  },
+  "bias_protocol": {
+    "source_v": 0.0,
+    "disabled_regression": {
+      "vds_v": 0.01,
+      "low_vds_values_v": [0.0, 0.001, 0.005, 0.01],
+      "bottom_gate_continuation_v": [0.0, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0],
+      "reference_stage": "T01-D-C interface_4x",
+      "execution_order": [
+        "fresh exact-T01 disabled-limit device",
+        "zero-bias Poisson initialization",
+        "zero-bias coupled equilibrium",
+        "repeat the T01 low-VDS ladder at VBG=0 V",
+        "continue VBG upward through the configured values",
+        "compare every reported point with persisted T01-D-C interface_4x data",
+        "delete the disabled-limit device"
+      ]
+    },
+    "enabled_zero_bias_smoke": {
+      "source_v": 0.0,
+      "drain_v": 0.0,
+      "bottom_gate_v": 0.0,
+      "top_gate_v": 0.0,
+      "execution_order": [
+        "fresh enabled-top-stack device",
+        "all-zero-bias Poisson initialization",
+        "add electron transport and solve coupled equilibrium",
+        "save a topology/state manifest and VTK output",
+        "delete the enabled device"
+      ]
+    }
+  },
+  "acceptance": {
+    "required_disabled_bottom_gate_values_v": [0.0, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0],
+    "required_disabled_reported_point_count": 7,
+    "required_disabled_dc_solve_count": 12,
+    "required_enabled_zero_bias_dc_solve_count": 2,
+    "required_total_dc_solve_count": 14,
+    "maximum_disabled_t01_relative_current_difference": 1e-08,
+    "maximum_disabled_t01_center_potential_difference_v": 1e-10,
+    "maximum_disabled_t01_center_density_relative_difference": 1e-08,
+    "maximum_relative_terminal_current_imbalance": 1e-05,
+    "maximum_enabled_zero_bias_absolute_terminal_current_a_per_cm": 1e-18,
+    "maximum_enabled_zero_bias_absolute_potential_v": 1e-10,
+    "require_disabled_current_monotonic_with_bottom_gate": true,
+    "required_disabled_regions": ["bottom_oxide", "channel"],
+    "required_disabled_contacts": ["source", "drain", "bottom_gate"],
+    "required_enabled_regions": ["bottom_oxide", "channel", "top_oxide"],
+    "required_enabled_contacts": ["source", "drain", "bottom_gate", "top_gate"],
+    "require_all_dc_solves_converged": true,
+    "require_enabled_state_csv_and_vtk": true
+  },
+  "outputs": {
+    "contract_report": "results/reports/tcad_t02_a_input_contract.json",
+    "run_directory": "results/tcad/t02_dual_gate/t02_a_limit_regression",
+    "config_snapshot": "results/tcad/t02_dual_gate/t02_a_limit_regression/input_snapshot.json",
+    "solver_log": "results/tcad/t02_dual_gate/t02_a_limit_regression/solver_log.json",
+    "state_manifest": "results/tcad/t02_dual_gate/t02_a_limit_regression/state_manifest.json",
+    "disabled_regression_csv": "results/tables/tcad_t02_a_disabled_regression.csv",
+    "topology_summary_csv": "results/tables/tcad_t02_a_topology_summary.csv",
+    "report": "results/reports/tcad_t02_a_limit_regression.json",
+    "check_report": "results/reports/tcad_t02_a_limit_regression_check.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T02-A may freeze the dual-gate teaching input contract, verify the enabled topology at all-zero-bias equilibrium, and prove that the explicitly omitted-top-stack limit reproduces T01.",
+    "prohibited_claims": [
+      "nonzero dual-gate current or threshold coupling verified",
+      "Delta VTH, dual-gate gm, or capacitance ratio extracted under mobile charge",
+      "experimental validation or calibrated prediction",
+      "physical Ion/Ioff or parameter uncertainty",
+      "T02 complete",
+      "T03, compact-model, circuit, layout, or ferroelectric evidence"
+    ],
+    "next_gate": "Only a PASS result permits T02-B to run one minimal nonzero enabled dual-gate bias family."
+  }
+}

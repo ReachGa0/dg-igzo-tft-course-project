@@ -2,7 +2,7 @@ PYTHON ?= /mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/发
 TCAD_PYTHON ?= /mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/发送版本/课程0/.venv/bin/python
 DEVSIM_MATH_LIBS ?= liblapack.so.3:libblas.so.3
 
-.PHONY: all import-baseline import-senior s00-audit s00-audit-check t01-a-check t01-b-smoke t01-b-check t01-c-transfer t01-c-check t01-d-mesh t01-d-mesh-check t01-d-idvd t01-d-idvd-check t01-d-extract t01-d-extract-check tcad-smoke report-check report check status
+.PHONY: all import-baseline import-senior s00-audit s00-audit-check t01-a-check t01-b-smoke t01-b-check t01-c-transfer t01-c-check t01-d-mesh t01-d-mesh-check t01-d-idvd t01-d-idvd-check t01-d-extract t01-d-extract-check t02-a-contract-check t02-a-regression t02-a-regression-check tcad-smoke report-check report check status
 
 all: import-baseline import-senior check
 
@@ -50,6 +50,15 @@ t01-d-extract:
 
 t01-d-extract-check:
 	"$(PYTHON)" scripts/check_t01_d_extraction.py
+
+t02-a-contract-check:
+	"$(PYTHON)" scripts/check_t02_a_contract.py
+
+t02-a-regression:
+	DEVSIM_MATH_LIBS="$(DEVSIM_MATH_LIBS)" "$(TCAD_PYTHON)" tcad/run_t02_dual_gate_limit_regression.py
+
+t02-a-regression-check:
+	"$(PYTHON)" scripts/check_t02_a_limit_regression.py
 
 tcad-smoke:
 	DEVSIM_MATH_LIBS="$(DEVSIM_MATH_LIBS)" "$(TCAD_PYTHON)" tcad/run_dg_electrostatic.py

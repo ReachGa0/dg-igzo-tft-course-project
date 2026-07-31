@@ -38,6 +38,7 @@ REQUIRED_FILES = [
     "config/tcad_t01_d_mesh_refinement.json",
     "config/tcad_t01_d_idvd.json",
     "config/tcad_t01_d_extraction.json",
+    "config/tcad_t02_a_dual_gate_contract.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -60,6 +61,8 @@ REQUIRED_FILES = [
     "scripts/check_t01_d_mesh_refinement.py",
     "scripts/check_t01_d_idvd.py",
     "scripts/check_t01_d_extraction.py",
+    "scripts/check_t02_a_contract.py",
+    "scripts/check_t02_a_limit_regression.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
@@ -68,6 +71,7 @@ REQUIRED_FILES = [
     "tcad/run_t01_single_gate_mesh_refinement.py",
     "tcad/run_t01_single_gate_idvd.py",
     "tcad/run_t01_single_gate_extraction.py",
+    "tcad/run_t02_dual_gate_limit_regression.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
@@ -112,6 +116,12 @@ REQUIRED_FILES = [
     "results/tcad/t01_single_gate/t01_d_extraction/state_manifest.json",
     "report/assets/tcad_t01_dc_extraction.png",
     "report/assets/tcad_t01_dc_state_maps.png",
+    "results/reports/tcad_t02_a_input_contract.json",
+    "results/reports/tcad_t02_a_limit_regression.json",
+    "results/reports/tcad_t02_a_limit_regression_check.json",
+    "results/tables/tcad_t02_a_disabled_regression.csv",
+    "results/tables/tcad_t02_a_topology_summary.csv",
+    "results/tcad/t02_dual_gate/t02_a_limit_regression/state_manifest.json",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -157,6 +167,7 @@ REQUIRED_DIRS = [
     "results/tcad/t01_single_gate/t01_c_transfer",
     "results/tcad/t01_single_gate/t01_d_mesh_refinement",
     "results/tcad/t01_single_gate/t01_d_idvd",
+    "results/tcad/t02_dual_gate/t02_a_limit_regression",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -1009,6 +1020,132 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t01_d_c:extraction", False, str(error))
+
+    t02_a_contract_path = ROOT / "results" / "reports" / "tcad_t02_a_input_contract.json"
+    t02_a_report_path = ROOT / "results" / "reports" / "tcad_t02_a_limit_regression.json"
+    t02_a_check_path = ROOT / "results" / "reports" / "tcad_t02_a_limit_regression_check.json"
+    try:
+        t02_a_config = json.loads(
+            (ROOT / "config" / "tcad_t02_a_dual_gate_contract.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        t02_a_contract = json.loads(t02_a_contract_path.read_text(encoding="utf-8"))
+        t02_a_report = json.loads(t02_a_report_path.read_text(encoding="utf-8"))
+        t02_a_check = json.loads(t02_a_check_path.read_text(encoding="utf-8"))
+        contract_checks = t02_a_contract.get("checks", [])
+        add_check(
+            checks,
+            "t02_a:input_contract",
+            t02_a_contract.get("status") == "PASS"
+            and t02_a_contract.get("contract_status") == "PASS"
+            and t02_a_contract.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and t02_a_contract.get("case_id") == t02_a_config.get("case_id")
+            and len(contract_checks) == 16
+            and all(result.get("status") == "PASS" for result in contract_checks),
+            f"status={t02_a_contract.get('status')} checks={len(contract_checks)}",
+        )
+        add_check(
+            checks,
+            "t02_a:simulation_and_independent_check",
+            t02_a_report.get("status") == "PASS"
+            and t02_a_report.get("case_id") == t02_a_config.get("case_id")
+            and t02_a_report.get("stage") == "T02-A"
+            and t02_a_report.get("evidence_level") == "E2"
+            and t02_a_check.get("status") == "PASS"
+            and t02_a_check.get("case_id") == t02_a_config.get("case_id")
+            and t02_a_check.get("stage") == "T02-A"
+            and len(t02_a_check.get("checks", [])) == 14,
+            (
+                f"simulation={t02_a_report.get('status')} independent="
+                f"{t02_a_check.get('status')} checks={len(t02_a_check.get('checks', []))}"
+            ),
+        )
+        completion = t02_a_report.get("t02_a_completion", {})
+        metrics = t02_a_report.get("summary_metrics", {})
+        acceptance = t02_a_config["acceptance"]
+        add_check(
+            checks,
+            "t02_a:disabled_limit_gate",
+            completion.get("status") == "PASS"
+            and completion.get("input_contract_frozen") is True
+            and completion.get("disabled_top_stack_returns_t01") is True
+            and completion.get("enabled_zero_bias_topology_smoke") is True
+            and completion.get("t02_b_minimal_bias_family_permitted_next") is True
+            and completion.get("t02_complete") is False
+            and completion.get("nonzero_dual_gate_coupling_verified") is False
+            and metrics.get(
+                "maximum_disabled_t01_relative_current_difference", float("inf")
+            )
+            <= acceptance["maximum_disabled_t01_relative_current_difference"]
+            and metrics.get(
+                "maximum_disabled_t01_center_potential_difference_v", float("inf")
+            )
+            <= acceptance["maximum_disabled_t01_center_potential_difference_v"]
+            and metrics.get(
+                "maximum_disabled_t01_center_density_relative_difference", float("inf")
+            )
+            <= acceptance["maximum_disabled_t01_center_density_relative_difference"],
+            f"completion={completion} metrics={metrics}",
+        )
+        topology = {
+            bool(item["top_coupling_enabled"]): item
+            for item in t02_a_report.get("topology", [])
+        }
+        disabled_topology = topology.get(False, {})
+        enabled_topology = topology.get(True, {})
+        add_check(
+            checks,
+            "t02_a:topology_modes",
+            disabled_topology.get("regions")
+            == sorted(acceptance["required_disabled_regions"])
+            and disabled_topology.get("contacts")
+            == sorted(acceptance["required_disabled_contacts"])
+            and enabled_topology.get("regions")
+            == sorted(acceptance["required_enabled_regions"])
+            and enabled_topology.get("contacts")
+            == sorted(acceptance["required_enabled_contacts"])
+            and enabled_topology.get("node_count_with_interface_duplicates", 0)
+            > disabled_topology.get("node_count_with_interface_duplicates", 0)
+            and disabled_topology.get("dc_solve_count")
+            == acceptance["required_disabled_dc_solve_count"]
+            and enabled_topology.get("dc_solve_count")
+            == acceptance["required_enabled_zero_bias_dc_solve_count"],
+            (
+                f"disabled_nodes={disabled_topology.get('node_count_with_interface_duplicates')} "
+                f"enabled_nodes={enabled_topology.get('node_count_with_interface_duplicates')}"
+            ),
+        )
+        runner_checks = t02_a_report.get("checks", {})
+        state_entries = t02_a_report.get("state_outputs", [])
+        state_paths = [ROOT / entry["state_csv"] for entry in state_entries]
+        vtk_paths = [
+            ROOT / item["path"]
+            for entry in state_entries
+            for item in entry.get("vtk_files", [])
+        ]
+        output_paths = [
+            ROOT / value
+            for key, value in t02_a_report.get("outputs", {}).items()
+            if key != "run_directory"
+        ]
+        run_directory = ROOT / t02_a_report.get("outputs", {}).get("run_directory", "")
+        add_check(
+            checks,
+            "t02_a:checks_and_raw_outputs",
+            len(runner_checks) == 10
+            and all(result.get("status") == "PASS" for result in runner_checks.values())
+            and len(state_entries) == 1
+            and len(vtk_paths) == 6
+            and all(
+                path.is_file() and path.stat().st_size > 0
+                for path in output_paths + state_paths + vtk_paths
+            )
+            and run_directory.is_dir(),
+            f"checks={len(runner_checks)} states={len(state_entries)} vtk={len(vtk_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t02_a:limit_regression", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

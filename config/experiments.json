@@ -2,7 +2,7 @@
   "schema_version": 2,
   "project_id": "DG-IGZO-TFT-PDK",
   "principle": "Each experiment has dependencies, one declared variable group, controls, outputs, acceptance criteria and an evidence boundary.",
-  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified"],
+  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified", "limit_regression_verified"],
   "parameter_groups": [
     {
       "id": "P1",
@@ -176,14 +176,36 @@
       "id": "T02",
       "track": "tcad",
       "name": "dual_gate_current_and_threshold_coupling",
-      "status": "planned",
-      "current_evidence": "E0",
+      "status": "limit_regression_verified",
+      "current_evidence": "E2",
       "depends_on": ["T01"],
       "purpose": "Quantify top/bottom gate control under mobile charge.",
       "changed_variables": ["V_top_gate", "V_bottom_gate"],
       "controls": ["geometry", "trap_model", "contact_model", "temperature"],
       "required_outputs": ["IdVg_families", "Delta_VTH_coupling", "gm", "2d_state_maps"],
-      "acceptance": ["coupling trend is monotonic", "disabled top coupling returns the single-gate baseline"]
+      "input_contract_outputs": [
+        "config/tcad_t02_a_dual_gate_contract.json",
+        "results/reports/tcad_t02_a_input_contract.json"
+      ],
+      "limit_regression_outputs": [
+        "results/reports/tcad_t02_a_limit_regression.json",
+        "results/reports/tcad_t02_a_limit_regression_check.json",
+        "results/tables/tcad_t02_a_disabled_regression.csv",
+        "results/tables/tcad_t02_a_topology_summary.csv",
+        "results/tcad/t02_dual_gate/t02_a_limit_regression/state_manifest.json"
+      ],
+      "completed_substages": [
+        "T02-A top-stack input contract",
+        "T02-A exact-T01 disabled-top-stack regression",
+        "T02-A enabled-topology all-zero-bias equilibrium smoke"
+      ],
+      "remaining_substages": [
+        "T02-B minimal nonzero enabled dual-gate bias family",
+        "T02-C bidirectional gate families, Delta VTH, gm, and representative states"
+      ],
+      "acceptance": ["coupling trend is monotonic", "disabled top coupling returns the single-gate baseline"],
+      "simulation_status": "T02_A_LIMIT_REGRESSION_PASS",
+      "evidence_boundary": "T02-A freezes the symmetric teaching top stack, proves that omitting the complete top stack reproduces T01, and closes an enabled all-zero-bias equilibrium smoke. It does not verify nonzero dual-gate current or threshold coupling, Delta VTH, gm, experimental accuracy, or complete T02."
     },
     {
       "id": "T03",

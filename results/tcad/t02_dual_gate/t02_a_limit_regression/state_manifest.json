@@ -1,0 +1,63 @@
+{
+  "case_id": "IGZO_T02_DUAL_GATE_DD_A_LIMIT_V1",
+  "stage": "T02-A",
+  "entries": [
+    {
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "bias": {
+        "source_v": 0.0,
+        "drain_v": 0.0,
+        "bottom_gate_v": 0.0,
+        "top_gate_v": 0.0
+      },
+      "regions": [
+        "bottom_oxide",
+        "channel",
+        "top_oxide"
+      ],
+      "contacts": [
+        "bottom_gate",
+        "drain",
+        "source",
+        "top_gate"
+      ],
+      "interfaces": [
+        "bottom_oxide_channel",
+        "channel_top_oxide"
+      ],
+      "node_count_with_interface_duplicates": 2419,
+      "state_csv": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_nodes.csv",
+      "state_csv_sha256": "a5f7b13991db05c23ef2f6886a055ce156409838837f18029b2dee32a444e30b",
+      "vtk_base": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias.visit",
+          "sha256": "0a7d3405093e65bd39cccebc00c10dbebb4caa953d3514ccb99191e4fd0444db"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias.vtm",
+          "sha256": "a8a9b054c52392c75fa83ca8803094e9b12ff87d7c69978a555301288ebb9511"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_1.vtu",
+          "sha256": "4e2e79f3623027e3e917411aced4b43a1690bd366ecf3329f5a6484cb8c3cce6"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_2.vtu",
+          "sha256": "cbb2535dca632920793579947970202d872252c550f90a218ff90abf8ea5ba76"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_3.vtu",
+          "sha256": "077bcf34a55844b68dbd424e3789dbb61dc49353a490ef42326dafa3916a1678"
+        }
+      ],
+      "source_current_a_per_cm": 0.0,
+      "drain_current_a_per_cm": 0.0,
+      "maximum_absolute_potential_v": 0.0
+    }
+  ]
+}

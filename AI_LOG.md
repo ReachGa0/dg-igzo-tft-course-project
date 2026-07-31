@@ -16,6 +16,72 @@
 
 ---
 
+## 2026-07-31 | Codex GPT-5 | 完成 T02-A 顶栅输入合同与 T01 极限回归
+
+### 用户目标
+
+在完整 T01 数值门关闭后继续下一阶段，但严格先冻结双栅输入合同并验证“关闭顶栅耦合返回 T01”，不启动大批量双栅扫描、T03、SPICE 或版图。
+
+### 读取的关键输入
+
+- `AGENTS.md`、README、AI_CONTEXT、ARCHITECTURE、STATUS、PROJECT_PLAN、DECISIONS、AI_LOG、`config/project.json`、`config/experiments.json`。
+- `config/tcad_baseline.json` 的 T00 对称双栅静电结构。
+- `config/tcad_t01_baseline.json`、T01-D-A 网格合同、T01-D-C 报告和独立 17 项检查报告。
+- T01 DEVSIM 核心运行器的网格、方程、接触、求解和状态导出函数。
+
+### 本次修改
+
+- 新增 `config/tcad_t02_a_dual_gate_contract.json`，冻结 30 nm Al2O3 教学顶介质、理想顶栅 Dirichlet 边界、对称界面加密、偏压顺序、回归容差和证据边界。
+- 新增 `scripts/check_t02_a_contract.py` 与 `make t02-a-contract-check`；合同 16 项检查通过。第一次检查正确拒绝了不在 T01-D-C 冻结参考网格中的 `VBG=0.75 V`，随后改为参考网格已有的 `0.7 V`，没有放宽容差。
+- 新增 `tcad/run_t02_dual_gate_limit_regression.py` 与 `make t02-a-regression`。禁用模式移除整个顶栈并复用 exact T01 `interface_4x` 域；启用模式加入顶介质/顶栅并只跑全零偏压平衡。
+- 新增 `scripts/check_t02_a_limit_regression.py` 与 `make t02-a-regression-check`；独立读取 CSV、JSON、节点状态、VTK 和输入哈希，不导入运行器。
+- 共享 CSV 写入器显式固定 `lineterminator="\n"`，与 `.gitattributes` 的 `*.csv eol=lf` 一致，保证状态清单的 SHA-256 在提交与干净检出后不变。
+- 更新 `scripts/check_project.py`、`config/experiments.json`、状态/计划/架构/上下文、ADR-017、TCAD 文档、报告第 5/7 章和证据矩阵。
+
+### 实际结果
+
+- T02-A 共 14 次 DC（禁用回归 12 次、启用零偏压 2 次）全部收敛。
+- 禁用顶栈的 7 个 `VBG=0/0.1/0.2/0.3/0.5/0.7/1.0 V` 点对 T01-D-C 的最大电流相对差为 `7.132e-15`，中心电势差为 `4.163e-17 V`，中心电子浓度相对差为 `2.207e-16`；最大端口相对不平衡为 `6.098e-14`。
+- 禁用拓扑为 1394 节点/2560 三角形；启用拓扑为 2419 节点/4480 三角形、3 个活动区域、2 个介质接口和 4 个接触。
+- 启用顶栈全零偏压状态的最大端口电流和最大结点电势均为 `0`，保存 2419 行节点 CSV 和 6 个 VTK 关联文件。
+
+### 验证
+
+```text
+make t02-a-contract-check
+T02_A_CONTRACT_PASS checks=16 simulation=NOT_RUN_BY_CONTRACT_CHECK
+
+make t02-a-regression
+T02_A_LIMIT_REGRESSION_PASS disabled_points=7 dc_solves=14
+
+make t02-a-regression-check
+T02_A_LIMIT_REGRESSION_CHECK_PASS checks=14
+
+make check
+PROJECT_CHECK_PASS checks=248
+
+make report-check
+REPORT_STRUCTURE_PASS chapters=12 appendices=5 placeholders=19 images=3
+```
+
+验证过程中两个阶段门曾正确触发，且已按证据规则关闭：
+
+- 第一次独立回归检查拒绝了修改 `config/project.json` 后的旧输入快照哈希；重跑 14 次 T02-A DC 后刷新快照，独立 14 项复算恢复 PASS。
+- 第一次 `make check` 发现总检查集成代码把运行器检查数误写为 9，而报告实际含 10 项 PASS；仅修正期望数为 10，未改阈值或仿真数据，复查 248 项全部 PASS。
+- 首次暂存时 Git 指出新 CSV 的 CRLF 将按属性转为 LF，这会使未提交工作区哈希与干净检出字节不同；修正生成端换行符后重跑 T02-A 及独立验收，没有人工改写哈希。
+
+### 决策和边界
+
+- `VTG=0 V` 不再被称为“关闭顶栅”；只有移除整个顶介质/顶栅域并恢复 T01 自然顶边界才是禁用极限。
+- 对称 30 nm Al2O3 顶栅是 T00 继承的教学扩展，不是已制造单底栅工艺的实测层。
+- T02-A 只打开 T02-B 最小非零顶栅偏压族；未验证非零双栅电流、Delta VTH、gm、耦合斜率、实验标定或完整 T02。
+
+### 下一步
+
+在冻结合同上只运行 T02-B 的一个最小非零顶栅偏压族，固定 VDS、底栅、几何、陷阱、接触和温度，先检查端口守恒、方向和内部状态，再决定是否进入双向曲线族。
+
+---
+
 ## 2026-07-31 | Codex GPT-5 | 完成 T01-D-C 状态、受限数值代理与完整 T01 数值门
 
 ### 用户目标

@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-07" class="report-chapter">
   <h2>7. 基准仿真结果</h2>
-  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 扩展到低漏压栅压续算，T01-D-A 以界面窗口加密验证高正栅压目标点，T01-D-B 生成冻结的离散 Id-Vd 曲线族，T01-D-C 最后补齐三状态和受限数值代理。模型为单底栅 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
+  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 扩展到低漏压栅压续算，T01-D-A 以界面窗口加密验证高正栅压目标点，T01-D-B 生成冻结的离散 Id-Vd 曲线族，T01-D-C 最后补齐三状态和受限数值代理。T02-A 再以独立拓扑区分“移除顶栈”与“启用顶栈但 VTG=0 V”，验证了 T01 退化极限和启用拓扑全零偏压平衡。模型为 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
   <table>
     <thead><tr><th>条件</th><th>coarse</th><th>fine</th><th>验收</th></tr></thead>
     <tbody>
@@ -78,5 +78,17 @@
     <img src="assets/tcad_t01_dc_state_maps.png" alt="T01-D-C 关态代理、课程目标附近代理和开态代理的电势、电子浓度及电流密度" />
     <figcaption>图 7-3 T01-D-C 三种代表状态。横坐标为 um、纵坐标为 nm，纵向显示比例已放大；局部电流密度为 A/cm2，不是接触积分后的 A/cm 端口量。</figcaption>
   </figure>
-  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、<code>results/reports/tcad_t01_d_mesh_refinement.json</code>、<code>results/reports/tcad_t01_d_idvd.json</code>、<code>results/reports/tcad_t01_d_extraction.json</code> 及对应 CSV、求解日志、节点/单元状态、VTK 和图。T01-D-C 的运行器 12 项检查与独立 17 项复算均 PASS，因而关闭冻结教学模型的完整 T01 数值阶段门并允许进入 T02。这里的 VTH、SS、迁移率和约 17.42 decade 电流跨度仍只能称为数值代理；连续输出特性、真实饱和机理、物理 <code>Ion/Ioff</code>、实验精度、参数不确定度和双栅趋势仍未验证。</p>
+  <table>
+    <thead><tr><th>T02-A 极限回归</th><th>结果</th><th>验收或边界</th></tr></thead>
+    <tbody>
+      <tr><td>拓扑/DC 求解</td><td>2 种/14 次，全部收敛</td><td>禁用 12 次；启用零偏压 2 次</td></tr>
+      <tr><td>禁用模式正式点</td><td>VBG=0/0.1/0.2/0.3/0.5/0.7/1.0 V，VDS=0.01 V</td><td>7 点漏端电流随 VBG 单调增加</td></tr>
+      <tr><td>对 T01 最大差异</td><td>电流 7.132e-15；中心电势 4.163e-17 V；中心密度 2.207e-16</td><td>均低于冻结合同阈值</td></tr>
+      <tr><td>端口守恒</td><td>最大相对不平衡 6.098e-14</td><td>低于 1e-5</td></tr>
+      <tr><td>禁用/启用拓扑</td><td>1394/2419 活动节点，2560/4480 三角形</td><td>禁用是移除整个顶栈，不是将 VTG 设为 0 V</td></tr>
+      <tr><td>启用拓扑全零偏压</td><td>最大端口电流 0 A/cm；最大结点电势 0 V</td><td>2419 行节点状态与 6 个 VTK 已哈希锁定</td></tr>
+      <tr><td>独立复算</td><td>14/14 PASS</td><td>包含输入哈希、拓扑、回归、状态和产物检查</td></tr>
+    </tbody>
+  </table>
+  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、<code>results/reports/tcad_t01_d_mesh_refinement.json</code>、<code>results/reports/tcad_t01_d_idvd.json</code>、<code>results/reports/tcad_t01_d_extraction.json</code> 和 <code>results/reports/tcad_t02_a_limit_regression.json</code> 及对应 CSV、求解日志、节点/单元状态、VTK 和图。T01-D-C 的运行器 12 项检查与独立 17 项复算均 PASS，关闭了冻结教学模型的完整 T01 数值阶段门。T02-A 的运行器 10 项检查与独立 14 项复算均 PASS，只允许进入 T02-B 最小非零顶栅偏压族。这里的 VTH、SS、迁移率和约 17.42 decade 电流跨度仍只能称为数值代理；T02-A 没有运行非零 VTG，因而双栅电流趋势、<code>Delta VTH</code>、gm、耦合斜率、实验精度与参数不确定度均未验证。</p>
 </section>

@@ -1,0 +1,390 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T02_DUAL_GATE_DD_A_LIMIT_V1",
+  "stage": "T02-A",
+  "evidence_level": "E2",
+  "model_scope": "2D n-IGZO electron-only drift-diffusion teaching model; exact-T01 disabled-top-stack regression plus enabled-topology all-zero-bias smoke",
+  "input_snapshot": "results/tcad/t02_dual_gate/t02_a_limit_regression/input_snapshot.json",
+  "reproduction": {
+    "contract_command": "make t02-a-contract-check",
+    "command": "make t02-a-regression",
+    "validation_command": "make t02-a-regression-check",
+    "python_executable": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u53d1\u9001\u7248\u672c/\u8bfe\u7a0b0/.venv/bin/python",
+    "devsim_version": "2.10.0"
+  },
+  "disabled_regression_points": [
+    {
+      "stage_id": "T02_A_DISABLED_LIMIT",
+      "mode_id": "disabled_exact_t01_limit",
+      "mesh_level": "interface_4x",
+      "vbg_v": 0.0,
+      "vtg_v": null,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.2325117540658379e-06,
+      "drain_current_a_per_cm": 1.2325117540658265e-06,
+      "source_current_terminal_a": -7.395070524395027e-09,
+      "drain_current_terminal_a": 7.395070524394959e-09,
+      "current_imbalance_a_per_cm": -1.1434944787933055e-20,
+      "relative_current_imbalance": 9.277757189910115e-15,
+      "center_channel_potential_v": 0.002192329954178967,
+      "center_channel_electron_density_cm3": 9060534649066728.0,
+      "t01_reference_abs_drain_current_a_per_cm": 1.2325117540658298e-06,
+      "t01_reference_center_channel_potential_v": 0.0021923299541789674,
+      "t01_reference_center_channel_electron_density_cm3": 9060534649066730.0,
+      "relative_current_difference": 2.7489650933067186e-15,
+      "center_potential_difference_v": 4.336808689942018e-19,
+      "center_density_relative_difference": 2.2073752570506506e-16,
+      "solve_seconds": 0.02018900599796325,
+      "converged": true
+    },
+    {
+      "stage_id": "T02_A_DISABLED_LIMIT",
+      "mode_id": "disabled_exact_t01_limit",
+      "mesh_level": "interface_4x",
+      "vbg_v": 0.1,
+      "vtg_v": null,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -4.844135552338147e-06,
+      "drain_current_a_per_cm": 4.844135552338172e-06,
+      "source_current_terminal_a": -2.906481331402888e-08,
+      "drain_current_terminal_a": 2.9064813314029034e-08,
+      "current_imbalance_a_per_cm": 2.541098841762901e-20,
+      "relative_current_imbalance": 5.245721995818967e-15,
+      "center_channel_potential_v": 0.03760935514542215,
+      "center_channel_electron_density_cm3": 3.544133103662631e+16,
+      "t01_reference_abs_drain_current_a_per_cm": 4.844135552338161e-06,
+      "t01_reference_center_channel_potential_v": 0.03760935514542215,
+      "t01_reference_center_channel_electron_density_cm3": 3.5441331036626316e+16,
+      "relative_current_difference": 2.273146198188219e-15,
+      "center_potential_difference_v": 0.0,
+      "center_density_relative_difference": 1.1286257832320855e-16,
+      "solve_seconds": 0.030143982003210112,
+      "converged": true
+    },
+    {
+      "stage_id": "T02_A_DISABLED_LIMIT",
+      "mode_id": "disabled_exact_t01_limit",
+      "mesh_level": "interface_4x",
+      "vbg_v": 0.2,
+      "vtg_v": null,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -9.23261656027907e-06,
+      "drain_current_a_per_cm": 9.232616560278904e-06,
+      "source_current_terminal_a": -5.539569936167442e-08,
+      "drain_current_terminal_a": 5.539569936167342e-08,
+      "current_imbalance_a_per_cm": -1.6601845766184287e-19,
+      "relative_current_imbalance": 1.7981734276293253e-14,
+      "center_channel_potential_v": 0.05335089065871351,
+      "center_channel_electron_density_cm3": 6.502986521729127e+16,
+      "t01_reference_abs_drain_current_a_per_cm": 9.232616560278914e-06,
+      "t01_reference_center_channel_potential_v": 0.05335089065871351,
+      "t01_reference_center_channel_electron_density_cm3": 6.502986521729127e+16,
+      "relative_current_difference": 1.1009225067118505e-15,
+      "center_potential_difference_v": 0.0,
+      "center_density_relative_difference": 0.0,
+      "solve_seconds": 0.026852928000153042,
+      "converged": true
+    },
+    {
+      "stage_id": "T02_A_DISABLED_LIMIT",
+      "mode_id": "disabled_exact_t01_limit",
+      "mesh_level": "interface_4x",
+      "vbg_v": 0.3,
+      "vtg_v": null,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.3645454981973447e-05,
+      "drain_current_a_per_cm": 1.364545498197355e-05,
+      "source_current_terminal_a": -8.187272989184068e-08,
+      "drain_current_terminal_a": 8.18727298918413e-08,
+      "current_imbalance_a_per_cm": 1.0333801956502464e-19,
+      "relative_current_imbalance": 7.573072477358963e-15,
+      "center_channel_potential_v": 0.062034847234010225,
+      "center_channel_electron_density_cm3": 9.090887421217733e+16,
+      "t01_reference_abs_drain_current_a_per_cm": 1.3645454981973562e-05,
+      "t01_reference_center_channel_potential_v": 0.062034847234010225,
+      "t01_reference_center_channel_electron_density_cm3": 9.090887421217733e+16,
+      "relative_current_difference": 8.690411039592246e-16,
+      "center_potential_difference_v": 0.0,
+      "center_density_relative_difference": 0.0,
+      "solve_seconds": 0.024387768000451615,
+      "converged": true
+    },
+    {
+      "stage_id": "T02_A_DISABLED_LIMIT",
+      "mode_id": "disabled_exact_t01_limit",
+      "mesh_level": "interface_4x",
+      "vbg_v": 0.5,
+      "vtg_v": null,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -2.1855115458542497e-05,
+      "drain_current_a_per_cm": 2.1855115458542737e-05,
+      "source_current_terminal_a": -1.31130692751255e-07,
+      "drain_current_terminal_a": 1.3113069275125642e-07,
+      "current_imbalance_a_per_cm": 2.405573570202213e-19,
+      "relative_current_imbalance": 1.1006913117276263e-14,
+      "center_channel_potential_v": 0.07112400196252015,
+      "center_channel_electron_density_cm3": 1.2908543012205066e+17,
+      "t01_reference_abs_drain_current_a_per_cm": 2.185511545854263e-05,
+      "t01_reference_center_channel_potential_v": 0.07112400196252018,
+      "t01_reference_center_channel_electron_density_cm3": 1.2908543012205066e+17,
+      "relative_current_difference": 4.960862250040006e-15,
+      "center_potential_difference_v": 2.7755575615628914e-17,
+      "center_density_relative_difference": 0.0,
+      "solve_seconds": 0.02845611100201495,
+      "converged": true
+    },
+    {
+      "stage_id": "T02_A_DISABLED_LIMIT",
+      "mode_id": "disabled_exact_t01_limit",
+      "mesh_level": "interface_4x",
+      "vbg_v": 0.7,
+      "vtg_v": null,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -2.9027259741928742e-05,
+      "drain_current_a_per_cm": 2.902725974192925e-05,
+      "source_current_terminal_a": -1.7416355845157246e-07,
+      "drain_current_terminal_a": 1.741635584515755e-07,
+      "current_imbalance_a_per_cm": 5.082197683525802e-19,
+      "relative_current_imbalance": 1.7508361893991244e-14,
+      "center_channel_potential_v": 0.07570260185647976,
+      "center_channel_electron_density_cm3": 1.5399965967408957e+17,
+      "t01_reference_abs_drain_current_a_per_cm": 2.902725974192924e-05,
+      "t01_reference_center_channel_potential_v": 0.07570260185647976,
+      "t01_reference_center_channel_electron_density_cm3": 1.539996596740896e+17,
+      "relative_current_difference": 3.5016723787982487e-16,
+      "center_potential_difference_v": 0.0,
+      "center_density_relative_difference": 2.077926669949907e-16,
+      "solve_seconds": 0.023945865003042854,
+      "converged": true
+    },
+    {
+      "stage_id": "T02_A_DISABLED_LIMIT",
+      "mode_id": "disabled_exact_t01_limit",
+      "mesh_level": "interface_4x",
+      "vbg_v": 1.0,
+      "vtg_v": null,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -3.800270837723783e-05,
+      "drain_current_a_per_cm": 3.8002708377240146e-05,
+      "source_current_terminal_a": -2.2801625026342698e-07,
+      "drain_current_terminal_a": 2.2801625026344088e-07,
+      "current_imbalance_a_per_cm": 2.3174821436877657e-18,
+      "relative_current_imbalance": 6.098202582518323e-14,
+      "center_channel_potential_v": 0.07938253506837777,
+      "center_channel_electron_density_cm3": 1.7742484231065878e+17,
+      "t01_reference_abs_drain_current_a_per_cm": 3.8002708377239875e-05,
+      "t01_reference_center_channel_potential_v": 0.07938253506837781,
+      "t01_reference_center_channel_electron_density_cm3": 1.7742484231065875e+17,
+      "relative_current_difference": 7.13240068130798e-15,
+      "center_potential_difference_v": 4.163336342344337e-17,
+      "center_density_relative_difference": 1.803580579993989e-16,
+      "solve_seconds": 0.023400883001158945,
+      "converged": true
+    }
+  ],
+  "topology": [
+    {
+      "mode_id": "disabled_exact_t01_limit",
+      "top_coupling_enabled": false,
+      "mesh_level": "interface_4x",
+      "regions": [
+        "bottom_oxide",
+        "channel"
+      ],
+      "contacts": [
+        "bottom_gate",
+        "drain",
+        "source"
+      ],
+      "interfaces": [
+        "bottom_oxide_channel"
+      ],
+      "node_count_with_interface_duplicates": 1394,
+      "element_count": 2560,
+      "dc_solve_count": 12,
+      "reported_bias_point_count": 7,
+      "maximum_absolute_terminal_current_a_per_cm": 3.8002708377240146e-05,
+      "maximum_absolute_potential_v": 0.07938253506837777,
+      "state_csv": "",
+      "vtk_file_count": 0,
+      "total_solve_seconds": 0.24641312001040205,
+      "wall_seconds": 0.2694520149998425
+    },
+    {
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "top_coupling_enabled": true,
+      "mesh_level": "interface_4x",
+      "regions": [
+        "bottom_oxide",
+        "channel",
+        "top_oxide"
+      ],
+      "contacts": [
+        "bottom_gate",
+        "drain",
+        "source",
+        "top_gate"
+      ],
+      "interfaces": [
+        "bottom_oxide_channel",
+        "channel_top_oxide"
+      ],
+      "node_count_with_interface_duplicates": 2419,
+      "element_count": 4480,
+      "dc_solve_count": 2,
+      "reported_bias_point_count": 1,
+      "maximum_absolute_terminal_current_a_per_cm": 0.0,
+      "maximum_absolute_potential_v": 0.0,
+      "state_csv": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_nodes.csv",
+      "vtk_file_count": 6,
+      "total_solve_seconds": 0.02796563599622459,
+      "wall_seconds": 0.13076047800132073
+    }
+  ],
+  "state_outputs": [
+    {
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "bias": {
+        "source_v": 0.0,
+        "drain_v": 0.0,
+        "bottom_gate_v": 0.0,
+        "top_gate_v": 0.0
+      },
+      "regions": [
+        "bottom_oxide",
+        "channel",
+        "top_oxide"
+      ],
+      "contacts": [
+        "bottom_gate",
+        "drain",
+        "source",
+        "top_gate"
+      ],
+      "interfaces": [
+        "bottom_oxide_channel",
+        "channel_top_oxide"
+      ],
+      "node_count_with_interface_duplicates": 2419,
+      "state_csv": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_nodes.csv",
+      "state_csv_sha256": "a5f7b13991db05c23ef2f6886a055ce156409838837f18029b2dee32a444e30b",
+      "vtk_base": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias.visit",
+          "sha256": "0a7d3405093e65bd39cccebc00c10dbebb4caa953d3514ccb99191e4fd0444db"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias.vtm",
+          "sha256": "a8a9b054c52392c75fa83ca8803094e9b12ff87d7c69978a555301288ebb9511"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_1.vtu",
+          "sha256": "4e2e79f3623027e3e917411aced4b43a1690bd366ecf3329f5a6484cb8c3cce6"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_2.vtu",
+          "sha256": "cbb2535dca632920793579947970202d872252c550f90a218ff90abf8ea5ba76"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_3.vtu",
+          "sha256": "077bcf34a55844b68dbd424e3789dbb61dc49353a490ef42326dafa3916a1678"
+        }
+      ],
+      "source_current_a_per_cm": 0.0,
+      "drain_current_a_per_cm": 0.0,
+      "maximum_absolute_potential_v": 0.0
+    }
+  ],
+  "checks": {
+    "t02_a_contract_and_t01_gate_passed": {
+      "status": "PASS",
+      "detail": "contract=PASS t01=PASS next=True"
+    },
+    "all_configured_dc_solves_converged": {
+      "status": "PASS",
+      "detail": "records=14 expected=14"
+    },
+    "disabled_limit_uses_exact_t01_topology": {
+      "status": "PASS",
+      "detail": "topology={'mode_id': 'disabled_exact_t01_limit', 'top_coupling_enabled': False, 'mesh_level': 'interface_4x', 'regions': ['bottom_oxide', 'channel'], 'contacts': ['bottom_gate', 'drain', 'source'], 'interfaces': ['bottom_oxide_channel'], 'node_count_with_interface_duplicates': 1394, 'element_count': 2560, 'dc_solve_count': 12, 'reported_bias_point_count': 7, 'maximum_absolute_terminal_current_a_per_cm': 3.8002708377240146e-05, 'maximum_absolute_potential_v': 0.07938253506837777, 'state_csv': '', 'vtk_file_count': 0, 'total_solve_seconds': 0.24641312001040205, 'wall_seconds': 0.2694520149998425}"
+    },
+    "enabled_zero_bias_topology_contains_top_stack": {
+      "status": "PASS",
+      "detail": "topology={'mode_id': 'enabled_symmetric_teaching_top_stack', 'top_coupling_enabled': True, 'mesh_level': 'interface_4x', 'regions': ['bottom_oxide', 'channel', 'top_oxide'], 'contacts': ['bottom_gate', 'drain', 'source', 'top_gate'], 'interfaces': ['bottom_oxide_channel', 'channel_top_oxide'], 'node_count_with_interface_duplicates': 2419, 'element_count': 4480, 'dc_solve_count': 2, 'reported_bias_point_count': 1, 'maximum_absolute_terminal_current_a_per_cm': 0.0, 'maximum_absolute_potential_v': 0.0, 'state_csv': 'results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_nodes.csv', 'vtk_file_count': 6, 'total_solve_seconds': 0.02796563599622459, 'wall_seconds': 0.13076047800132073}"
+    },
+    "disabled_regression_grid_completed": {
+      "status": "PASS",
+      "detail": "rows=7 VBG=[0.0, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0]"
+    },
+    "disabled_current_conservation_and_monotonicity": {
+      "status": "PASS",
+      "detail": "max_imbalance=6.098203e-14 currents=[1.2325117540658265e-06, 4.844135552338172e-06, 9.232616560278904e-06, 1.364545498197355e-05, 2.1855115458542737e-05, 2.902725974192925e-05, 3.8002708377240146e-05]"
+    },
+    "disabled_limit_reproduces_t01_terminal_and_internal_state": {
+      "status": "PASS",
+      "detail": "max_current_rel=7.132401e-15 max_potential_v=4.163336e-17 max_density_rel=2.207375e-16"
+    },
+    "enabled_zero_bias_equilibrium_is_finite_and_current_free": {
+      "status": "PASS",
+      "detail": "max_current=0.0 max_potential=0.0"
+    },
+    "enabled_zero_bias_state_and_vtk_are_persisted": {
+      "status": "PASS",
+      "detail": "state=/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_a_limit_regression/t02_a_enabled_zero_bias_nodes.csv vtk_files=6"
+    },
+    "evidence_boundary_keeps_t02_incomplete": {
+      "status": "PASS",
+      "detail": "Only a PASS result permits T02-B to run one minimal nonzero enabled dual-gate bias family."
+    }
+  },
+  "failures": [],
+  "summary_metrics": {
+    "maximum_relative_terminal_current_imbalance": 6.098202582518323e-14,
+    "maximum_disabled_t01_relative_current_difference": 7.13240068130798e-15,
+    "maximum_disabled_t01_center_potential_difference_v": 4.163336342344337e-17,
+    "maximum_disabled_t01_center_density_relative_difference": 2.2073752570506506e-16
+  },
+  "t02_a_completion": {
+    "status": "PASS",
+    "input_contract_frozen": true,
+    "disabled_top_stack_returns_t01": true,
+    "enabled_zero_bias_topology_smoke": true,
+    "t02_b_minimal_bias_family_permitted_next": true,
+    "t02_complete": false,
+    "nonzero_dual_gate_coupling_verified": false,
+    "experimental_calibration_permitted": false
+  },
+  "limitations": [
+    "The disabled limit omits the entire top stack and restores the exact T01 natural top boundary; VTG=0 V on an enabled top stack is not equivalent to disabling coupling.",
+    "The enabled top stack is exercised only at all-zero-bias equilibrium in T02-A, so no nonzero dual-gate current, Delta VTH, gm, or coupling slope is established.",
+    "The symmetric 30 nm Al2O3 top dielectric is a teaching extension from T00 and is not documented as part of the stated fabricated baseline.",
+    "Traps, non-ideal contacts, recombination, ferroelectric polarization, experimental calibration, and uncertainty remain absent."
+  ],
+  "outputs": {
+    "contract_report": "results/reports/tcad_t02_a_input_contract.json",
+    "run_directory": "results/tcad/t02_dual_gate/t02_a_limit_regression",
+    "config_snapshot": "results/tcad/t02_dual_gate/t02_a_limit_regression/input_snapshot.json",
+    "solver_log": "results/tcad/t02_dual_gate/t02_a_limit_regression/solver_log.json",
+    "state_manifest": "results/tcad/t02_dual_gate/t02_a_limit_regression/state_manifest.json",
+    "disabled_regression_csv": "results/tables/tcad_t02_a_disabled_regression.csv",
+    "topology_summary_csv": "results/tables/tcad_t02_a_topology_summary.csv",
+    "report": "results/reports/tcad_t02_a_limit_regression.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T02-A may freeze the dual-gate teaching input contract, verify the enabled topology at all-zero-bias equilibrium, and prove that the explicitly omitted-top-stack limit reproduces T01.",
+    "prohibited_claims": [
+      "nonzero dual-gate current or threshold coupling verified",
+      "Delta VTH, dual-gate gm, or capacitance ratio extracted under mobile charge",
+      "experimental validation or calibrated prediction",
+      "physical Ion/Ioff or parameter uncertainty",
+      "T02 complete",
+      "T03, compact-model, circuit, layout, or ferroelectric evidence"
+    ],
+    "next_gate": "Only a PASS result permits T02-B to run one minimal nonzero enabled dual-gate bias family."
+  }
+}
