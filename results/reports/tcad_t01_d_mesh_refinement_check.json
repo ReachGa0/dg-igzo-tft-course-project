@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_DA_MESH_V1",
+  "stage": "T01-D-A",
+  "checks": [
+    {
+      "name": "identity:report",
+      "status": "PASS",
+      "detail": "status=PASS stage=T01-D-A"
+    },
+    {
+      "name": "scope:mesh_only",
+      "status": "PASS",
+      "detail": "['T01_A_STAGE_0', 'T01_A_STAGE_1', 'T01_A_STAGE_2']"
+    },
+    {
+      "name": "reproduction:command_and_tool",
+      "status": "PASS",
+      "detail": "make t01-d-mesh"
+    },
+    {
+      "name": "inputs:hash_locked",
+      "status": "PASS",
+      "detail": "snapshot=results/tcad/t01_single_gate/t01_d_mesh_refinement/input_snapshot.json"
+    },
+    {
+      "name": "dependencies:stage_gates",
+      "status": "PASS",
+      "detail": "T01-A=PASS T01-B=PASS T01-C=PASS mesh=WARNING"
+    },
+    {
+      "name": "mesh:configured_ladder_and_only_y_interface_changed",
+      "status": "PASS",
+      "detail": "meshes=['fine_1x', 'interface_2x', 'interface_4x', 'interface_8x'] factors=[1.0, 2.0, 4.0, 8.0] nodes=[656, 902, 1394, 2378]"
+    },
+    {
+      "name": "bias:configured_grid",
+      "status": "PASS",
+      "detail": "rows=28 VGS=[0.0, 0.1, 0.2, 0.3, 0.5, 0.75, 1.0]"
+    },
+    {
+      "name": "current:resolved_conserved_monotonic",
+      "status": "PASS",
+      "detail": "floor=1.000e-18 signs=[1.0] max_imbalance=8.451895e-14"
+    },
+    {
+      "name": "mesh:adjacent_comparisons_recomputed",
+      "status": "PASS",
+      "detail": "rows=21 expected=21"
+    },
+    {
+      "name": "mesh:finest_pair_gate",
+      "status": "PASS",
+      "detail": "pair=['interface_4x', 'interface_8x'] max_current_relative=1.638650e-04 limit=5.000000e-02 max_potential_v=3.264798e-05"
+    },
+    {
+      "name": "continuation:fine_1x_reproduces_t01_c",
+      "status": "PASS",
+      "detail": "max_current_relative=7.828528e-15 max_potential_v=2.775558e-17"
+    },
+    {
+      "name": "solver:all_records_converged",
+      "status": "PASS",
+      "detail": "mesh_runs=4 solver_records=48"
+    },
+    {
+      "name": "outputs:state_artifacts",
+      "status": "PASS",
+      "detail": "state_files=4 vtk_files=20"
+    },
+    {
+      "name": "runner:all_acceptance_checks_pass",
+      "status": "PASS",
+      "detail": "checks=10"
+    }
+  ],
+  "failures": [],
+  "recomputed_maximum_relative_terminal_current_imbalance": 8.451894807349418e-14,
+  "recomputed_maximum_finest_pair_relative_current_difference": 0.00016386503623487094,
+  "recomputed_maximum_finest_pair_center_potential_difference_v": 3.264798378088685e-05
+}

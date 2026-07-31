@@ -1,0 +1,130 @@
+{
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_DA_MESH_V1",
+  "stage": "T01-D-A",
+  "entries": [
+    {
+      "mesh_level": "fine_1x",
+      "vgs_v": 1.0,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 656,
+      "state_csv": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_fine_1x_vgs_1p000_nodes.csv",
+      "state_csv_sha256": "10ef29956655b3f7f890f18936ae7d42e2e9488676588a362875e0a29836bdf9",
+      "vtk_base": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_fine_1x_vgs_1p000",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_fine_1x_vgs_1p000.visit",
+          "sha256": "0f6a04fea33c42a9fb6c33390b9bf2c9c490bf9bcfadf6a2ff45e20394040315"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_fine_1x_vgs_1p000.vtm",
+          "sha256": "e4b91d9c20945c85f48067fcf5faf2c3a8ae5d0ac61c36b9001d6b01c04b3a3b"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_fine_1x_vgs_1p000_0.vtu",
+          "sha256": "7caa30a94619073634d9d3be97660988396d31b7bce2896d8197ac3c4f504b39"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_fine_1x_vgs_1p000_1.vtu",
+          "sha256": "4a12b39cab1fa0d3cbe9df7acd8cb6fcf4fb50483c5b770465d7b58a14cd1a4f"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_fine_1x_vgs_1p000_2.vtu",
+          "sha256": "793fc3f727ce0822f23df982fc0d9cc1435b9c92b8eb1cda024f4be895625c0b"
+        }
+      ]
+    },
+    {
+      "mesh_level": "interface_2x",
+      "vgs_v": 1.0,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 902,
+      "state_csv": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_2x_vgs_1p000_nodes.csv",
+      "state_csv_sha256": "0f3ddd73c98bb5caab8fed7c8e9b3b9b46133dcc1b2718137877828240dfd7d4",
+      "vtk_base": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_2x_vgs_1p000",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_2x_vgs_1p000.visit",
+          "sha256": "48fe55f9e737e98c67c0a57bc9257089e7837fd9f9676ffabb8274f3ac27c2f0"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_2x_vgs_1p000.vtm",
+          "sha256": "56ceaec703dcd0bf003405cefb8f636801120f15a52b3498885315163b713026"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_2x_vgs_1p000_0.vtu",
+          "sha256": "8d7f6ce01ddfd45a1de38fd17f0882015ae3abc86cec46eef0d8482d3a681be5"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_2x_vgs_1p000_1.vtu",
+          "sha256": "290529f56d3b45da44a1697e1251bfff4145a8f88a6cea1fb95af2f02748e6f3"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_2x_vgs_1p000_2.vtu",
+          "sha256": "e70e256f509844f39d250c9f24610337decbdd1f93d83666cea7d1a485fe2cab"
+        }
+      ]
+    },
+    {
+      "mesh_level": "interface_4x",
+      "vgs_v": 1.0,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 1394,
+      "state_csv": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_4x_vgs_1p000_nodes.csv",
+      "state_csv_sha256": "223e4e7f4690ceba718100a2996566b3b9844b89a5c3a8053d48b8ba91190236",
+      "vtk_base": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_4x_vgs_1p000",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_4x_vgs_1p000.visit",
+          "sha256": "652488d1927a2d141ae2621182f4624dfb881de7db621d7d590ecdc4cc419032"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_4x_vgs_1p000.vtm",
+          "sha256": "8bd8a98b8b6c62bd07aea393826d4edcf57b1db03bb144b6111d288d6bcbf429"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_4x_vgs_1p000_0.vtu",
+          "sha256": "ef4b966b42dee0672ec138d0671852f6127c81cd4ebd7ff886ff7a9d689765c7"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_4x_vgs_1p000_1.vtu",
+          "sha256": "663c81ccec52df09517f9dda27a1319b237d4b15a093657fa6dfbfcb4591ca3b"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_4x_vgs_1p000_2.vtu",
+          "sha256": "b25d6543e60a97da285d0bc8876c2e5073a6491e954d47f7325064e969c76571"
+        }
+      ]
+    },
+    {
+      "mesh_level": "interface_8x",
+      "vgs_v": 1.0,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 2378,
+      "state_csv": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_8x_vgs_1p000_nodes.csv",
+      "state_csv_sha256": "1d45655deb2cf5df3073784e458aff42ea3d98345a18fbebf3869db8832b2d2c",
+      "vtk_base": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_8x_vgs_1p000",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_8x_vgs_1p000.visit",
+          "sha256": "48d3029a38dc4d05a780f29c8fadeb30e92367a55d613f7636fd9cf16612e9c3"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_8x_vgs_1p000.vtm",
+          "sha256": "fa115321604bdd697e596df7834fbcd05b066e34f19be2b9c24c21068de9a654"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_8x_vgs_1p000_0.vtu",
+          "sha256": "008b1c0b5cd46604c8ed356da4ffbd69a55bb94f5bea1c4a1a2825a5942de322"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_8x_vgs_1p000_1.vtu",
+          "sha256": "6bf6c58f0b7ad50e03b86bf0487c37688a8637764b2c17cc76c5358af5b0d830"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_mesh_refinement/t01_d_mesh_interface_8x_vgs_1p000_2.vtu",
+          "sha256": "dd78307c3c8553a9fc9edc656495264dd310506c3e8a3e9e2c99779886b2102d"
+        }
+      ]
+    }
+  ]
+}

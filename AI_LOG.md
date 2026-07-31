@@ -16,6 +16,64 @@
 
 ---
 
+## 2026-07-31 | Codex GPT-5 | 完成 T01-D-A 单栅界面法向网格收敛
+
+### 用户目标
+
+按阶段门继续 T01，在不启动完整 Id-Vd、T02、SPICE 或版图工作的前提下，先解决 T01-C 暴露的高正栅压绝对电流网格敏感性；通过后更新状态、报告、Git 并推送。
+
+### 读取的关键输入
+
+- `AGENTS.md` 规定的项目入口、`STATUS.md`、`PROJECT_PLAN.md`、`ARCHITECTURE.md`、`DECISIONS.md`、实验矩阵和 T01 技术路线。
+- `config/tcad_t01_baseline.json` 冻结的几何、材料、方程、接触、求解器和偏压协议。
+- T01-A/B/C 的 PASS 报告及 T01-C `WARNING`；每次运行锁定配置和三份依赖报告 SHA-256。
+
+### 本次修改
+
+- 新增 `config/tcad_t01_d_mesh_refinement.json`、`tcad/run_t01_single_gate_mesh_refinement.py`、`scripts/check_t01_d_mesh_refinement.py` 与 `make t01-d-mesh`/`make t01-d-mesh-check`。
+- 扩展已有结构化网格构造器：只有新配置声明时才启用界面窗口分段加密；T01-B/C 原路径保持不变。
+- 固定 T01-C fine 的 x 向 250 nm、氧化层体区 5 nm、沟道体区 3 nm 网格及全部物理输入，仅在 Al2O3/IGZO 界面两侧 10 nm/12 nm 窗口按 1x/2x/4x/8x 加密。
+- 保存输入快照、完整 DEVSIM 求解记录、28 点偏压表、网格规模表、相邻网格比较、T01-C 回归表、4 份 VGS=1 V 节点状态、20 个 VTK 关联文件、机器报告和独立验收报告。
+- 将 T01-D-A 接入总项目检查、实验矩阵、状态、计划、架构、ADR、汇报稿、TCAD 路线、报告第 5/7 章和证据矩阵。
+
+### 实际结果与失败记录
+
+- 首次运行的 4 档、48 次 DC 和 28 个正式点全部收敛，4x/8x 数值门也通过；但分段长度/间距的浮点商略高于整数，直接 `ceil` 使 `fine_1x` 多插入一层节点，对 T01-C fine 的最大电流回归差约 0.098%，因此阶段报告正确返回 FAIL。
+- 将分段计数修正为“接近整数时使用该整数”，未改变物理输入、网格目标间距或 5%/1 mV 验收阈值；完整重跑后 `fine_1x` 恢复 656 个活动节点，对 T01-C fine 的最大电流回归差为 7.83e-15。
+- 四档活动节点数为 656/902/1394/2378，48 次 DC 和 28 个正式点全部收敛，漏电流随 VGS 单调，最大源漏相对不平衡为 8.45e-14。
+- 4x/8x 在 VDS=0.01 V、VGS=0.5/1.0 V 的最大电流相对差为 0.01639%，最大中心沟道势差为 0.03265 mV，低于冻结的 5%/1 mV 门；独立 14 项检查 PASS。
+
+### 验证
+
+```text
+make t01-d-mesh
+T01_D_MESH_PASS meshes=4 bias_points=28
+
+make t01-d-mesh-check
+T01_D_MESH_CHECK_PASS checks=14
+
+make check
+PROJECT_CHECK_PASS checks=196
+
+make report-check
+REPORT_STRUCTURE_PASS chapters=12 appendices=5 placeholders=19 images=0
+
+git diff --check
+PASS
+```
+
+### 决策和边界
+
+- T01-D-A 形成 E2 教学参数网格证据，只证明 VDS=0.01 V、VGS=0.5/1.0 V 目标点的数值绝对电流已随界面法向网格收敛。
+- 本阶段不包含完整 Id-Vd、全工作区 Id-Vg 网格指标、VTH/SS/迁移率、物理 Ion/Ioff、实验精度、双栅、紧凑模型、电路或版图结论。
+- T01-D-A 只打开 T01-D-B；完整 T01 仍需 T01-D-B Id-Vd 与 T01-D-C 状态/提取阶段门。
+
+### 下一步
+
+以 `interface_4x` 作为 T01-D-B 生产网格、`interface_8x` 作为选点复核网格，按冻结的 VGS=0/0.3/0.5/1.0 V 和 VDS=0/0.01/0.05/0.1/0.2 V 运行 Id-Vd；先做最小偏压族和守恒检查，不同时启动 T01-D-C 或 T02。
+
+---
+
 ## 2026-07-31 | Codex GPT-5 | 完成 T01-C 单栅低漏压栅压续算并登记网格警告
 
 ### 用户目标

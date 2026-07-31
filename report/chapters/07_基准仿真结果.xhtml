@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-07" class="report-chapter">
   <h2>7. 基准仿真结果</h2>
-  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 在同一方程和输入下扩展到低漏压栅压续算。模型为单底栅 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
+  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 在同一方程和输入下扩展到低漏压栅压续算，T01-D-A 再以界面窗口加密验证高正栅压目标点。模型为单底栅 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
   <table>
     <thead><tr><th>条件</th><th>coarse</th><th>fine</th><th>验收</th></tr></thead>
     <tbody>
@@ -18,5 +18,14 @@
       <tr><td>源漏相对电流不平衡最大值</td><td>7.31e-13</td><td>1.61e-12</td><td>低于 1e-5 阈值</td></tr>
     </tbody>
   </table>
-  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、对应规范 CSV、16 份节点状态和 6 组选定偏压 VTK。T01-C 两档网格共 30 次 DC 求解，独立 14 项检查 PASS。负栅压端到正栅压端约 17 decade 的数值跨度不能称为物理 <code>Ion/Ioff</code>；高正栅压绝对电流未达到网格独立，完整 <code>Id-Vd</code>、VTH、SS、迁移率、实验精度和双栅趋势仍未完成。</p>
+  <table>
+    <thead><tr><th>T01-D-A 条件</th><th>fine 1x</th><th>interface 4x</th><th>interface 8x</th><th>验收</th></tr></thead>
+    <tbody>
+      <tr><td>活动节点（含界面重复计数）</td><td>656</td><td>1394</td><td>2378</td><td>随加密严格增加</td></tr>
+      <tr><td>VGS=0.5 V，VDS=10 mV 漏端二维电流</td><td>2.1916e-5 A/cm</td><td>2.1855e-5 A/cm</td><td>2.1852e-5 A/cm</td><td>4x/8x 相对差 0.01639%</td></tr>
+      <tr><td>VGS=1.0 V，VDS=10 mV 漏端二维电流</td><td>3.8086e-5 A/cm</td><td>3.8003e-5 A/cm</td><td>3.7997e-5 A/cm</td><td>4x/8x 相对差 0.01426%</td></tr>
+      <tr><td>目标点中心沟道势差</td><td colspan="3">4x/8x 最大 0.03265 mV</td><td>低于 1 mV</td></tr>
+    </tbody>
+  </table>
+  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、<code>results/reports/tcad_t01_d_mesh_refinement.json</code> 及对应 CSV/节点状态/VTK。T01-D-A 四档网格共 48 次 DC、28 个正式点全部收敛，最大源漏相对不平衡为 8.45e-14，独立 14 项检查 PASS。负栅压端到正栅压端约 17 decade 的数值跨度仍不能称为物理 <code>Ion/Ioff</code>；本次网格结论仅覆盖 VDS=10 mV、VGS=0.5/1.0 V，完整 <code>Id-Vd</code>、VTH、SS、迁移率、实验精度和双栅趋势仍未完成。</p>
 </section>

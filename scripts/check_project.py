@@ -35,6 +35,7 @@ REQUIRED_FILES = [
     "config/tcad_t01_baseline.json",
     "config/tcad_t01_b_smoke.json",
     "config/tcad_t01_c_transfer.json",
+    "config/tcad_t01_d_mesh_refinement.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -54,11 +55,13 @@ REQUIRED_FILES = [
     "scripts/check_t01_a_contract.py",
     "scripts/check_t01_b_smoke.py",
     "scripts/check_t01_c_transfer.py",
+    "scripts/check_t01_d_mesh_refinement.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
     "tcad/run_t01_single_gate_smoke.py",
     "tcad/run_t01_single_gate_transfer.py",
+    "tcad/run_t01_single_gate_mesh_refinement.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
@@ -77,6 +80,13 @@ REQUIRED_FILES = [
     "results/tables/tcad_t01_c_idvg.csv",
     "results/tables/tcad_t01_c_mesh_comparison.csv",
     "results/tcad/t01_single_gate/t01_c_transfer/state_manifest.json",
+    "results/reports/tcad_t01_d_mesh_refinement.json",
+    "results/reports/tcad_t01_d_mesh_refinement_check.json",
+    "results/tables/tcad_t01_d_mesh_bias_points.csv",
+    "results/tables/tcad_t01_d_mesh_summary.csv",
+    "results/tables/tcad_t01_d_mesh_comparison.csv",
+    "results/tables/tcad_t01_d_t01_c_reproduction.csv",
+    "results/tcad/t01_single_gate/t01_d_mesh_refinement/state_manifest.json",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -120,6 +130,7 @@ REQUIRED_DIRS = [
     "results/tcad/dg_electrostatic",
     "results/tcad/t01_single_gate/t01_b_smoke",
     "results/tcad/t01_single_gate/t01_c_transfer",
+    "results/tcad/t01_single_gate/t01_d_mesh_refinement",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -671,6 +682,118 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t01_c:transfer", False, str(error))
+
+    t01_d_report_path = ROOT / "results" / "reports" / "tcad_t01_d_mesh_refinement.json"
+    t01_d_check_path = ROOT / "results" / "reports" / "tcad_t01_d_mesh_refinement_check.json"
+    try:
+        t01_d_config = json.loads(
+            (ROOT / "config" / "tcad_t01_d_mesh_refinement.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        t01_d_report = json.loads(t01_d_report_path.read_text(encoding="utf-8"))
+        t01_d_check = json.loads(t01_d_check_path.read_text(encoding="utf-8"))
+        t01_d_checks = t01_d_report.get("checks", {})
+        add_check(
+            checks,
+            "t01_d_a:mesh_refinement_status",
+            t01_d_report.get("status") == "PASS"
+            and t01_d_report.get("case_id") == t01_d_config.get("case_id")
+            and t01_d_report.get("stage") == "T01-D-A"
+            and t01_d_report.get("evidence_level") == "E2",
+            str(t01_d_report.get("status")),
+        )
+        add_check(
+            checks,
+            "t01_d_a:independent_check",
+            t01_d_check.get("status") == "PASS"
+            and t01_d_check.get("case_id") == t01_d_config.get("case_id")
+            and t01_d_check.get("stage") == "T01-D-A",
+            str(t01_d_check.get("status")),
+        )
+        mesh_convergence = t01_d_report.get("mesh_convergence", {})
+        current_limit = t01_d_config["acceptance"][
+            "maximum_finest_pair_relative_current_difference"
+        ]
+        potential_limit = t01_d_config["acceptance"][
+            "maximum_finest_pair_center_potential_difference_v"
+        ]
+        add_check(
+            checks,
+            "t01_d_a:limited_mesh_convergence_gate",
+            mesh_convergence.get("status") == "PASS"
+            and mesh_convergence.get("pair")
+            == t01_d_config["mesh_ladder"]["convergence_pair"]
+            and mesh_convergence.get("maximum_relative_current_difference", float("inf"))
+            <= current_limit
+            and mesh_convergence.get(
+                "maximum_center_channel_potential_difference_v", float("inf")
+            )
+            <= potential_limit
+            and mesh_convergence.get(
+                "numerical_low_vds_positive_bias_absolute_current_converged"
+            )
+            is True
+            and mesh_convergence.get("experimental_quantitative_use_permitted") is False
+            and mesh_convergence.get("idvd_stage_permitted_next") is True,
+            (
+                f"current={mesh_convergence.get('maximum_relative_current_difference')} "
+                f"potential={mesh_convergence.get('maximum_center_channel_potential_difference_v')}"
+            ),
+        )
+        reproduction_rows = t01_d_report.get("t01_c_fine_reproduction", [])
+        node_counts = [
+            int(row["node_count_with_interface_duplicates"])
+            for row in t01_d_report.get("mesh", [])
+        ]
+        add_check(
+            checks,
+            "t01_d_a:baseline_reproduction_and_node_growth",
+            len(reproduction_rows) == 3
+            and max(float(row["relative_current_difference"]) for row in reproduction_rows)
+            <= t01_d_config["acceptance"][
+                "maximum_t01_c_fine_reproduction_relative_current_difference"
+            ]
+            and len(node_counts) == 4
+            and all(higher > lower for lower, higher in zip(node_counts, node_counts[1:])),
+            f"reproduction_rows={len(reproduction_rows)} node_counts={node_counts}",
+        )
+        add_check(
+            checks,
+            "t01_d_a:acceptance_checks",
+            bool(t01_d_checks)
+            and all(result.get("status") == "PASS" for result in t01_d_checks.values()),
+            f"checks={len(t01_d_checks)}",
+        )
+        output_paths = [
+            ROOT / value
+            for key, value in t01_d_report.get("outputs", {}).items()
+            if key != "run_directory"
+        ]
+        state_manifest = json.loads(
+            (ROOT / t01_d_report["outputs"]["state_manifest"]).read_text(encoding="utf-8")
+        )
+        state_paths = [ROOT / entry["state_csv"] for entry in state_manifest.get("entries", [])]
+        vtk_paths = [
+            ROOT / item["path"]
+            for entry in state_manifest.get("entries", [])
+            for item in entry.get("vtk_files", [])
+        ]
+        run_directory = ROOT / t01_d_report.get("outputs", {}).get("run_directory", "")
+        add_check(
+            checks,
+            "t01_d_a:raw_outputs",
+            all(
+                path.is_file() and path.stat().st_size > 0
+                for path in output_paths + state_paths + vtk_paths
+            )
+            and len(state_paths) == 4
+            and len(vtk_paths) >= 4
+            and run_directory.is_dir(),
+            f"files={len(output_paths) + len(state_paths) + len(vtk_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t01_d_a:mesh_refinement", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

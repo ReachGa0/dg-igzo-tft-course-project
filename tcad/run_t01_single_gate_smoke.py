@@ -75,6 +75,37 @@ def add_axis_lines(mesh: str, direction: str, start: float, stop: float, spacing
         devsim.add_2d_mesh_line(mesh=mesh, dir=direction, pos=position, ps=spacing)
 
 
+def add_piecewise_axis_lines(
+    mesh: str,
+    direction: str,
+    segments: list[tuple[float, float, float]],
+) -> None:
+    lines: dict[float, tuple[float, float]] = {}
+    for start, stop, spacing in segments:
+        if stop <= start or spacing <= 0.0:
+            raise ValueError(f"invalid {direction}-axis segment: {(start, stop, spacing)}")
+        interval_ratio = (stop - start) / spacing
+        nearest_integer = round(interval_ratio)
+        count = max(
+            1,
+            int(nearest_integer)
+            if math.isclose(interval_ratio, nearest_integer, rel_tol=0.0, abs_tol=1.0e-12)
+            else math.ceil(interval_ratio),
+        )
+        for index in range(count + 1):
+            position = start + (stop - start) * index / count
+            key = round(position, 18)
+            if key not in lines or spacing < lines[key][1]:
+                lines[key] = (position, spacing)
+    for position, spacing in (lines[key] for key in sorted(lines)):
+        devsim.add_2d_mesh_line(
+            mesh=mesh,
+            dir=direction,
+            pos=position,
+            ps=spacing,
+        )
+
+
 def create_mesh(device: str, baseline: dict[str, Any], mesh_level: str) -> None:
     geometry = baseline["geometry"]
     mesh_config = baseline["mesh"]["levels"][mesh_level]
@@ -92,8 +123,39 @@ def create_mesh(device: str, baseline: dict[str, Any], mesh_level: str) -> None:
     add_axis_lines(mesh, "x", 0.0, length, float(mesh_config["x_spacing_cm"]))
     add_axis_lines(mesh, "x", length, length + ambient_thickness, ambient_thickness)
     add_axis_lines(mesh, "y", -ambient_thickness, 0.0, ambient_thickness)
-    add_axis_lines(mesh, "y", 0.0, oxide_top, float(mesh_config["oxide_y_spacing_cm"]))
-    add_axis_lines(mesh, "y", oxide_top, channel_top, float(mesh_config["channel_y_spacing_cm"]))
+    interface_refinement = mesh_config.get("interface_refinement")
+    if interface_refinement is None:
+        add_axis_lines(mesh, "y", 0.0, oxide_top, float(mesh_config["oxide_y_spacing_cm"]))
+        add_axis_lines(mesh, "y", oxide_top, channel_top, float(mesh_config["channel_y_spacing_cm"]))
+    else:
+        oxide_window = float(interface_refinement["oxide_window_cm"])
+        channel_window = float(interface_refinement["channel_window_cm"])
+        if not 0.0 < oxide_window < oxide_top:
+            raise ValueError("oxide interface-refinement window must lie inside the oxide")
+        if not 0.0 < channel_window < channel_top - oxide_top:
+            raise ValueError("channel interface-refinement window must lie inside the channel")
+        add_piecewise_axis_lines(
+            mesh,
+            "y",
+            [
+                (0.0, oxide_top - oxide_window, float(mesh_config["oxide_y_spacing_cm"])),
+                (
+                    oxide_top - oxide_window,
+                    oxide_top,
+                    float(interface_refinement["oxide_spacing_cm"]),
+                ),
+                (
+                    oxide_top,
+                    oxide_top + channel_window,
+                    float(interface_refinement["channel_spacing_cm"]),
+                ),
+                (
+                    oxide_top + channel_window,
+                    channel_top,
+                    float(mesh_config["channel_y_spacing_cm"]),
+                ),
+            ],
+        )
 
     # DEVSIM attaches contacts at region interfaces. This buffer has no equations.
     devsim.add_2d_region(

@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 179,
+  "checks": 196,
   "failures": 0,
   "results": [
     {
@@ -165,6 +165,11 @@
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_c_transfer"
     },
     {
+      "name": "directory:results/tcad/t01_single_gate/t01_d_mesh_refinement",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_d_mesh_refinement"
+    },
+    {
       "name": "directory:tcad/structures",
       "status": "PASS",
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/structures"
@@ -232,42 +237,42 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=8276"
+      "detail": "bytes=8769"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=12202"
+      "detail": "bytes=12400"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=4470"
+      "detail": "bytes=4826"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=23257"
+      "detail": "bytes=26748"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=3860"
+      "detail": "bytes=3841"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=9425"
+      "detail": "bytes=10930"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=4619"
+      "detail": "bytes=5380"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=1478"
+      "detail": "bytes=1691"
     },
     {
       "name": "file:config/project.json",
@@ -277,7 +282,7 @@
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=15446"
+      "detail": "bytes=15988"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -303,6 +308,11 @@
       "name": "file:config/tcad_t01_c_transfer.json",
       "status": "PASS",
       "detail": "bytes=3915"
+    },
+    {
+      "name": "file:config/tcad_t01_d_mesh_refinement.json",
+      "status": "PASS",
+      "detail": "bytes=5213"
     },
     {
       "name": "file:references/papers_manifest.csv",
@@ -337,12 +347,12 @@
     {
       "name": "file:docs/05_\u9a8c\u8bc1\u4e0e\u9a8c\u6536\u6807\u51c6.md",
       "status": "PASS",
-      "detail": "bytes=6186"
+      "detail": "bytes=6540"
     },
     {
       "name": "file:docs/06_\u660e\u65e5\u6c47\u62a5\u7a3f.md",
       "status": "PASS",
-      "detail": "bytes=2448"
+      "detail": "bytes=2563"
     },
     {
       "name": "file:docs/07_PPT\u4e0e\u62a5\u544a\u63d0\u7eb2.md",
@@ -367,12 +377,12 @@
     {
       "name": "file:docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
       "status": "PASS",
-      "detail": "bytes=10133"
+      "detail": "bytes=11462"
     },
     {
       "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
       "status": "PASS",
-      "detail": "bytes=8519"
+      "detail": "bytes=8676"
     },
     {
       "name": "file:scripts/import_senior_reference.py",
@@ -400,6 +410,11 @@
       "detail": "bytes=12609"
     },
     {
+      "name": "file:scripts/check_t01_d_mesh_refinement.py",
+      "status": "PASS",
+      "detail": "bytes=19187"
+    },
+    {
       "name": "file:scripts/build_self_contained_report.py",
       "status": "PASS",
       "detail": "bytes=11722"
@@ -407,7 +422,7 @@
     {
       "name": "file:tcad/README.md",
       "status": "PASS",
-      "detail": "bytes=4241"
+      "detail": "bytes=5317"
     },
     {
       "name": "file:tcad/run_dg_electrostatic.py",
@@ -417,12 +432,17 @@
     {
       "name": "file:tcad/run_t01_single_gate_smoke.py",
       "status": "PASS",
-      "detail": "bytes=30073"
+      "detail": "bytes=32512"
     },
     {
       "name": "file:tcad/run_t01_single_gate_transfer.py",
       "status": "PASS",
       "detail": "bytes=25730"
+    },
+    {
+      "name": "file:tcad/run_t01_single_gate_mesh_refinement.py",
+      "status": "PASS",
+      "detail": "bytes=32038"
     },
     {
       "name": "file:report/manifest.json",
@@ -437,7 +457,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=1858"
+      "detail": "bytes=2436"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -513,6 +533,41 @@
       "name": "file:results/tcad/t01_single_gate/t01_c_transfer/state_manifest.json",
       "status": "PASS",
       "detail": "bytes=6084"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_d_mesh_refinement.json",
+      "status": "PASS",
+      "detail": "bytes=41405"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_d_mesh_refinement_check.json",
+      "status": "PASS",
+      "detail": "bytes=2519"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_mesh_bias_points.csv",
+      "status": "PASS",
+      "detail": "bytes=7026"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_mesh_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=808"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_mesh_comparison.csv",
+      "status": "PASS",
+      "detail": "bytes=4428"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_t01_c_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=659"
+    },
+    {
+      "name": "file:results/tcad/t01_single_gate/t01_d_mesh_refinement/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=6393"
     },
     {
       "name": "file:models/level61/README.md",
@@ -833,6 +888,36 @@
       "name": "t01_c:raw_outputs",
       "status": "PASS",
       "detail": "files=26"
+    },
+    {
+      "name": "t01_d_a:mesh_refinement_status",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_d_a:independent_check",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_d_a:limited_mesh_convergence_gate",
+      "status": "PASS",
+      "detail": "current=0.00016386503623487094 potential=3.264798378088685e-05"
+    },
+    {
+      "name": "t01_d_a:baseline_reproduction_and_node_growth",
+      "status": "PASS",
+      "detail": "reproduction_rows=3 node_counts=[656, 902, 1394, 2378]"
+    },
+    {
+      "name": "t01_d_a:acceptance_checks",
+      "status": "PASS",
+      "detail": "checks=10"
+    },
+    {
+      "name": "t01_d_a:raw_outputs",
+      "status": "PASS",
+      "detail": "files=32"
     },
     {
       "name": "tcad:mesh_levels",

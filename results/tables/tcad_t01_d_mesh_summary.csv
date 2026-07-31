@@ -1,0 +1,5 @@
+mesh_level,refinement_factor,x_spacing_cm,bulk_oxide_y_spacing_cm,bulk_channel_y_spacing_cm,oxide_interface_window_cm,channel_interface_window_cm,oxide_interface_spacing_cm,channel_interface_spacing_cm,node_count_with_interface_duplicates,element_count,dc_solve_count,reported_bias_point_count,total_solve_seconds,wall_seconds
+fine_1x,1.0,2.5e-05,5e-07,3e-07,1e-06,1.2e-06,5e-07,3e-07,656,1120,12,7,0.10048475800431333,0.19172863499989035
+interface_2x,2.0,2.5e-05,5e-07,3e-07,1e-06,1.2e-06,2.5e-07,1.5e-07,902,1600,12,7,0.1256369349976012,0.21392297000056715
+interface_4x,4.0,2.5e-05,5e-07,3e-07,1e-06,1.2e-06,1.25e-07,7.5e-08,1394,2560,12,7,0.2063772970032005,0.29299905999869225
+interface_8x,8.0,2.5e-05,5e-07,3e-07,1e-06,1.2e-06,6.25e-08,3.75e-08,2378,4480,12,7,0.3792073170043295,0.4906067429983523

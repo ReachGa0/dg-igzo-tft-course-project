@@ -2,7 +2,7 @@ PYTHON ?= /mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/发
 TCAD_PYTHON ?= /mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/发送版本/课程0/.venv/bin/python
 DEVSIM_MATH_LIBS ?= liblapack.so.3:libblas.so.3
 
-.PHONY: all import-baseline import-senior s00-audit s00-audit-check t01-a-check t01-b-smoke t01-b-check t01-c-transfer t01-c-check tcad-smoke report-check report check status
+.PHONY: all import-baseline import-senior s00-audit s00-audit-check t01-a-check t01-b-smoke t01-b-check t01-c-transfer t01-c-check t01-d-mesh t01-d-mesh-check tcad-smoke report-check report check status
 
 all: import-baseline import-senior check
 
@@ -32,6 +32,12 @@ t01-c-transfer:
 
 t01-c-check:
 	"$(PYTHON)" scripts/check_t01_c_transfer.py
+
+t01-d-mesh:
+	DEVSIM_MATH_LIBS="$(DEVSIM_MATH_LIBS)" "$(TCAD_PYTHON)" tcad/run_t01_single_gate_mesh_refinement.py
+
+t01-d-mesh-check:
+	"$(PYTHON)" scripts/check_t01_d_mesh_refinement.py
 
 tcad-smoke:
 	DEVSIM_MATH_LIBS="$(DEVSIM_MATH_LIBS)" "$(TCAD_PYTHON)" tcad/run_dg_electrostatic.py
