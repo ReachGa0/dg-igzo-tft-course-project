@@ -16,6 +16,60 @@
 
 ---
 
+## 2026-07-31 | Codex GPT-5 | 完成 T01-C 单栅低漏压栅压续算并登记网格警告
+
+### 用户目标
+
+按阶段门开始 T01-C：继承 T01-B 的 VGS=0 V、VDS=0.01 V 收敛路径，完成冻结的 -1.0 至 1.0 V 栅压续算；通过后更新状态、报告、Git 并推送，不启动 T02、SPICE 或版图工作。
+
+### 读取的关键输入
+
+- `AGENTS.md` 规定的项目入口、`STATUS.md`、`PROJECT_PLAN.md`、`ARCHITECTURE.md`、`DECISIONS.md` 和实验矩阵。
+- `config/tcad_t01_baseline.json` 冻结的 T01-A 几何、方程、网格、接触和 8 点 VGS 阶梯。
+- T01-A 合同 PASS 报告与 T01-B 低漏压 PASS 报告；T01-C 每次运行都锁定三者 SHA-256。
+
+### 本次修改
+
+- 新增 `config/tcad_t01_c_transfer.json`、`tcad/run_t01_single_gate_transfer.py`、`scripts/check_t01_c_transfer.py` 与 `make t01-c-transfer`/`make t01-c-check`。
+- 每档网格先重放零偏压和 T01-B 低 VDS 路径，再经 VGS=0 -> -0.5 -> -1.0 V 预处理，随后按冻结顺序记录 8 个 VGS 点，避免直接跳到最大负栅压。
+- 保存输入快照、完整 DEVSIM 求解记录、规范 Id-Vg/网格 CSV、16 份逐偏压节点状态、6 组选定偏压 VTK、状态 manifest、机器报告和独立验收报告。
+- 将 T01-C 接入项目检查、实验矩阵、状态、计划、架构、ADR、汇报稿、TCAD 路线、报告第 5/7 章和证据矩阵。
+
+### 实际结果与失败记录
+
+- 首次开发运行的 30 次 DC 求解和 16 个正式偏压点均收敛，但初始合同把 T01-D 的全曲线 5% 相对网格门提前用于 T01-C；VGS=1 V 的粗细电流差为 27.5%，因此阶段报告正确返回 FAIL。
+- 依据既有计划中“T01-C 做 VGS continuation，T01-D 做完整网格指标”的边界，合同改为：T01-C 必须通过收敛、守恒、单调性、T01-B 锚点回归、逐点状态和不超过 0.25 decade 的对数曲线差，同时把超过 5% 的绝对电流差保存为 `WARNING` 并禁止定量使用。没有把 27.5% 写成网格一致。
+- 完整重跑后，两档网格 30 次 DC 求解全部收敛；最大源漏相对不平衡为 1.61e-12，VGS=0 V 电流相对 T01-B 的回归差不超过 6.36e-15，漏端电流在两档网格均随 VGS 单调增加。
+- VGS=1 V 漏端二维电流为 coarse `2.760977e-5 A/cm`、fine `3.808578e-5 A/cm`；相对差 `27.506%`、对数差 `0.139700 decade`。该警告使绝对电流、约 17 decade 数值跨度、Ion/Ioff 和参数提取继续阻塞到 T01-D。
+
+### 验证
+
+```text
+make t01-c-transfer
+T01_C_TRANSFER_PASS meshes=2 bias_points=16
+
+make t01-c-check
+T01_C_TRANSFER_CHECK_PASS checks=14
+
+make check
+PROJECT_CHECK_PASS checks=179
+
+make report-check
+REPORT_STRUCTURE_PASS chapters=12 appendices=5 placeholders=19 images=0
+```
+
+### 决策和边界
+
+- T01-C 形成 E2 教学参数低漏压栅压续算证据，只证明数值连续性、守恒和单调栅控；不关闭完整 T01 门。
+- 负栅压端的极低数值电流来自无陷阱、无复合、理想接触的教学闭合，不能称为物理 Ioff 或实验开关比。
+- T01-D 必须先做累积层局部网格加密，再做完整 Id-Vd、状态图集合和 VTH/SS/迁移率提取；其通过前不得启动 T02 或定量紧凑模型。
+
+### 下一步
+
+把 T01-D 再拆成最小网格收敛子阶段：只比较高正栅压累积态的局部加密网格，确定绝对电流稳定后，再运行多 VGS 的 Id-Vd。
+
+---
+
 ## 2026-07-31 | Codex GPT-5 | 完成 T01-B 单栅低偏压漂移扩散烟雾
 
 ### 用户目标

@@ -1,0 +1,477 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_C_TRANSFER_V1",
+  "stage": "T01-C",
+  "evidence_level": "E2",
+  "model_scope": "2D single-bottom-gate n-IGZO, electron-only drift-diffusion Id-Vg continuation at VDS=0.01 V",
+  "executed_bias_stage_ids": [
+    "T01_A_STAGE_0",
+    "T01_A_STAGE_1",
+    "T01_A_STAGE_2"
+  ],
+  "reported_bias_stage_id": "T01_A_STAGE_2",
+  "baseline_case_id": "IGZO_T01_SINGLE_GATE_DD_A_V1",
+  "t01_b_case_id": "IGZO_T01_SINGLE_GATE_DD_B_SMOKE_V1",
+  "input_snapshot": "results/tcad/t01_single_gate/t01_c_transfer/input_snapshot.json",
+  "reproduction": {
+    "command": "make t01-c-transfer",
+    "validation_command": "make t01-c-check",
+    "python_executable": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u53d1\u9001\u7248\u672c/\u8bfe\u7a0b0/.venv/bin/python",
+    "devsim_version": "2.10.0"
+  },
+  "mesh": [
+    {
+      "mesh_level": "coarse",
+      "node_count_with_interface_duplicates": 189,
+      "element_count": 280,
+      "dc_solve_count": 15,
+      "reported_bias_point_count": 8,
+      "state_file_count": 8,
+      "minimum_abs_drain_current_a_per_cm": 1.5052437967109648e-22,
+      "maximum_abs_drain_current_a_per_cm": 2.7609767940764428e-05,
+      "numerical_current_span_ratio": 1.8342389452853546e+17
+    },
+    {
+      "mesh_level": "fine",
+      "node_count_with_interface_duplicates": 656,
+      "element_count": 1120,
+      "dc_solve_count": 15,
+      "reported_bias_point_count": 8,
+      "state_file_count": 8,
+      "minimum_abs_drain_current_a_per_cm": 1.4393730277021347e-22,
+      "maximum_abs_drain_current_a_per_cm": 3.808578147525413e-05,
+      "numerical_current_span_ratio": 2.6459979965065485e+17
+    }
+  ],
+  "bias_points": [
+    {
+      "mesh_level": "coarse",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": -1.0,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.5052437967098639e-22,
+      "drain_current_a_per_cm": 1.5052437967109648e-22,
+      "source_current_terminal_a": -9.031462780259183e-25,
+      "drain_current_terminal_a": 9.03146278026579e-25,
+      "current_imbalance_a_per_cm": 1.1009680089801545e-34,
+      "relative_current_imbalance": 7.314217214419526e-13,
+      "center_channel_potential_v": -0.9769319048287611,
+      "center_channel_electron_density_cm3": 0.19373542017521142,
+      "solve_seconds": 0.008470280001347419,
+      "converged": true
+    },
+    {
+      "mesh_level": "coarse",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": -0.5,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.2022348185197688e-14,
+      "drain_current_a_per_cm": 1.202234818519294e-14,
+      "source_current_terminal_a": -7.213408911118613e-17,
+      "drain_current_terminal_a": 7.213408911115763e-17,
+      "current_imbalance_a_per_cm": -4.748942649430491e-27,
+      "relative_current_imbalance": 3.9500957519077227e-13,
+      "center_channel_potential_v": -0.476931905014861,
+      "center_channel_electron_density_cm3": 81651403.92151769,
+      "solve_seconds": 0.009349523999844678,
+      "converged": true
+    },
+    {
+      "mesh_level": "coarse",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": 0.0,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.235458390516602e-06,
+      "drain_current_a_per_cm": 1.235458390516603e-06,
+      "source_current_terminal_a": -7.412750343099612e-09,
+      "drain_current_terminal_a": 7.412750343099618e-09,
+      "current_imbalance_a_per_cm": 1.0587911840678754e-21,
+      "relative_current_imbalance": 8.570027061980981e-16,
+      "center_channel_potential_v": 0.002198991124526311,
+      "center_channel_electron_density_cm3": 9058585907033768.0,
+      "solve_seconds": 0.008804663000773871,
+      "converged": true
+    },
+    {
+      "mesh_level": "coarse",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": 0.1,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -4.619338754154459e-06,
+      "drain_current_a_per_cm": 4.619338754154418e-06,
+      "source_current_terminal_a": -2.7716032524926754e-08,
+      "drain_current_terminal_a": 2.771603252492651e-08,
+      "current_imbalance_a_per_cm": -4.0657581468206416e-20,
+      "relative_current_imbalance": 8.801602054328776e-15,
+      "center_channel_potential_v": 0.03754230670684667,
+      "center_channel_electron_density_cm3": 3.5329777602559572e+16,
+      "solve_seconds": 0.004243595998559613,
+      "converged": true
+    },
+    {
+      "mesh_level": "coarse",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": 0.2,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -8.41492978533561e-06,
+      "drain_current_a_per_cm": 8.414929785335686e-06,
+      "source_current_terminal_a": -5.048957871201366e-08,
+      "drain_current_terminal_a": 5.048957871201412e-08,
+      "current_imbalance_a_per_cm": 7.623296525288703e-20,
+      "relative_current_imbalance": 9.059251496754582e-15,
+      "center_channel_potential_v": 0.05311521723650709,
+      "center_channel_electron_density_cm3": 6.439648484852269e+16,
+      "solve_seconds": 0.0043042190009146,
+      "converged": true
+    },
+    {
+      "mesh_level": "coarse",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": 0.3,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.194897344652782e-05,
+      "drain_current_a_per_cm": 1.1948973446527943e-05,
+      "source_current_terminal_a": -7.169384067916692e-08,
+      "drain_current_terminal_a": 7.169384067916766e-08,
+      "current_imbalance_a_per_cm": 1.2197274440461925e-19,
+      "relative_current_imbalance": 1.0207801109480357e-14,
+      "center_channel_potential_v": 0.0616070069938306,
+      "center_channel_electron_density_cm3": 8.934226800087203e+16,
+      "solve_seconds": 0.0036056210010428913,
+      "converged": true
+    },
+    {
+      "mesh_level": "coarse",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": 0.5,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.7875978850994906e-05,
+      "drain_current_a_per_cm": 1.7875978850995357e-05,
+      "source_current_terminal_a": -1.0725587310596944e-07,
+      "drain_current_terminal_a": 1.0725587310597214e-07,
+      "current_imbalance_a_per_cm": 4.506215279392878e-19,
+      "relative_current_imbalance": 2.5208215544190836e-14,
+      "center_channel_potential_v": 0.07042982773589626,
+      "center_channel_electron_density_cm3": 1.2551700820423986e+17,
+      "solve_seconds": 0.003748625000298489,
+      "converged": true
+    },
+    {
+      "mesh_level": "coarse",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": 1.0,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -2.7609767940764577e-05,
+      "drain_current_a_per_cm": 2.7609767940764428e-05,
+      "source_current_terminal_a": -1.6565860764458746e-07,
+      "drain_current_terminal_a": 1.6565860764458659e-07,
+      "current_imbalance_a_per_cm": -1.4907779871675686e-19,
+      "relative_current_imbalance": 5.399458591488203e-15,
+      "center_channel_potential_v": 0.07876574861835714,
+      "center_channel_electron_density_cm3": 1.7293131180135882e+17,
+      "solve_seconds": 0.0035868960003426764,
+      "converged": true
+    },
+    {
+      "mesh_level": "fine",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": -1.0,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.4393730276998216e-22,
+      "drain_current_a_per_cm": 1.4393730277021347e-22,
+      "source_current_terminal_a": -8.63623816619893e-25,
+      "drain_current_terminal_a": 8.636238166212808e-25,
+      "current_imbalance_a_per_cm": 2.3131377835480974e-34,
+      "relative_current_imbalance": 1.607045386449176e-12,
+      "center_channel_potential_v": -0.9769319048287611,
+      "center_channel_electron_density_cm3": 0.193733654960877,
+      "solve_seconds": 0.019143771998642478,
+      "converged": true
+    },
+    {
+      "mesh_level": "fine",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": -0.5,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.1487748527895133e-14,
+      "drain_current_a_per_cm": 1.1487748527893323e-14,
+      "source_current_terminal_a": -6.89264911673708e-17,
+      "drain_current_terminal_a": 6.892649116735994e-17,
+      "current_imbalance_a_per_cm": -1.809646916577001e-27,
+      "relative_current_imbalance": 1.5752842362302106e-13,
+      "center_channel_potential_v": -0.4769319050150263,
+      "center_channel_electron_density_cm3": 81651433.18069263,
+      "solve_seconds": 0.026282053000613814,
+      "converged": true
+    },
+    {
+      "mesh_level": "fine",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": 0.0,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.2324883699791554e-06,
+      "drain_current_a_per_cm": 1.2324883699791723e-06,
+      "source_current_terminal_a": -7.394930219874933e-09,
+      "drain_current_terminal_a": 7.394930219875034e-09,
+      "current_imbalance_a_per_cm": 1.6940658945086007e-20,
+      "relative_current_imbalance": 1.3745086248053023e-14,
+      "center_channel_potential_v": 0.0021923645933357577,
+      "center_channel_electron_density_cm3": 9060563197780660.0,
+      "solve_seconds": 0.022525083000800805,
+      "converged": true
+    },
+    {
+      "mesh_level": "fine",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": 0.1,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -4.846967876267741e-06,
+      "drain_current_a_per_cm": 4.8469678762677804e-06,
+      "source_current_terminal_a": -2.9081807257606443e-08,
+      "drain_current_terminal_a": 2.9081807257606684e-08,
+      "current_imbalance_a_per_cm": 3.9810548520952116e-20,
+      "relative_current_imbalance": 8.213495434099449e-15,
+      "center_channel_potential_v": 0.03760075049716299,
+      "center_channel_electron_density_cm3": 3.5429644759056852e+16,
+      "solve_seconds": 0.011100612999143777,
+      "converged": true
+    },
+    {
+      "mesh_level": "fine",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": 0.2,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -9.245197537947134e-06,
+      "drain_current_a_per_cm": 9.245197537947333e-06,
+      "source_current_terminal_a": -5.5471185227682804e-08,
+      "drain_current_terminal_a": 5.5471185227683995e-08,
+      "current_imbalance_a_per_cm": 1.9820570965750628e-19,
+      "relative_current_imbalance": 2.1438774979546078e-14,
+      "center_channel_potential_v": 0.05331185247518088,
+      "center_channel_electron_density_cm3": 6.4931871807009176e+16,
+      "solve_seconds": 0.010928560001048027,
+      "converged": true
+    },
+    {
+      "mesh_level": "fine",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": 0.3,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.3673428971089159e-05,
+      "drain_current_a_per_cm": 1.3673428971089396e-05,
+      "source_current_terminal_a": -8.204057382653496e-08,
+      "drain_current_terminal_a": 8.204057382653638e-08,
+      "current_imbalance_a_per_cm": 2.371692252312041e-19,
+      "relative_current_imbalance": 1.734526326444275e-14,
+      "center_channel_potential_v": 0.06194863117812196,
+      "center_channel_electron_density_cm3": 9.060617632844821e+16,
+      "solve_seconds": 0.009437239001272246,
+      "converged": true
+    },
+    {
+      "mesh_level": "fine",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": 0.5,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -2.1916326440886433e-05,
+      "drain_current_a_per_cm": 2.191632644088681e-05,
+      "source_current_terminal_a": -1.314979586453186e-07,
+      "drain_current_terminal_a": 1.3149795864532085e-07,
+      "current_imbalance_a_per_cm": 3.7608262858090935e-19,
+      "relative_current_imbalance": 1.7159930045543335e-14,
+      "center_channel_potential_v": 0.07093583476999778,
+      "center_channel_electron_density_cm3": 1.2814847838503731e+17,
+      "solve_seconds": 0.009166960000584368,
+      "converged": true
+    },
+    {
+      "mesh_level": "fine",
+      "stage_id": "T01_A_STAGE_2",
+      "vgs_v": 1.0,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -3.8085781475254156e-05,
+      "drain_current_a_per_cm": 3.808578147525413e-05,
+      "source_current_terminal_a": -2.2851468885152493e-07,
+      "drain_current_terminal_a": 2.2851468885152477e-07,
+      "current_imbalance_a_per_cm": -2.710505431213761e-20,
+      "relative_current_imbalance": 7.116843415632377e-16,
+      "center_channel_potential_v": 0.07909518322772541,
+      "center_channel_electron_density_cm3": 1.7546044362260813e+17,
+      "solve_seconds": 0.012054667000484187,
+      "converged": true
+    }
+  ],
+  "mesh_comparison": [
+    {
+      "vgs_v": -1.0,
+      "vds_v": 0.01,
+      "coarse_abs_drain_current_a_per_cm": 1.5052437967109648e-22,
+      "fine_abs_drain_current_a_per_cm": 1.4393730277021347e-22,
+      "relative_current_difference": 0.043760863956231646,
+      "log10_current_difference_decades": 0.019433485885954838,
+      "coarse_center_channel_potential_v": -0.9769319048287611,
+      "fine_center_channel_potential_v": -0.9769319048287611,
+      "center_channel_potential_difference_v": 0.0
+    },
+    {
+      "vgs_v": -0.5,
+      "vds_v": 0.01,
+      "coarse_abs_drain_current_a_per_cm": 1.202234818519294e-14,
+      "fine_abs_drain_current_a_per_cm": 1.1487748527893323e-14,
+      "relative_current_difference": 0.04446715808464472,
+      "log10_current_difference_decades": 0.019754381536756682,
+      "coarse_center_channel_potential_v": -0.476931905014861,
+      "fine_center_channel_potential_v": -0.4769319050150263,
+      "center_channel_potential_difference_v": 1.653122083666858e-13
+    },
+    {
+      "vgs_v": 0.0,
+      "vds_v": 0.01,
+      "coarse_abs_drain_current_a_per_cm": 1.235458390516603e-06,
+      "fine_abs_drain_current_a_per_cm": 1.2324883699791723e-06,
+      "relative_current_difference": 0.0024039826514826996,
+      "log10_current_difference_decades": 0.0010452933376683404,
+      "coarse_center_channel_potential_v": 0.002198991124526311,
+      "fine_center_channel_potential_v": 0.0021923645933357577,
+      "center_channel_potential_difference_v": 6.626531190553377e-06
+    },
+    {
+      "vgs_v": 0.1,
+      "vds_v": 0.01,
+      "coarse_abs_drain_current_a_per_cm": 4.619338754154418e-06,
+      "fine_abs_drain_current_a_per_cm": 4.8469678762677804e-06,
+      "relative_current_difference": 0.04696320007151344,
+      "log10_current_difference_decades": 0.020890329479917646,
+      "coarse_center_channel_potential_v": 0.03754230670684667,
+      "fine_center_channel_potential_v": 0.03760075049716299,
+      "center_channel_potential_difference_v": 5.8443790316317634e-05
+    },
+    {
+      "vgs_v": 0.2,
+      "vds_v": 0.01,
+      "coarse_abs_drain_current_a_per_cm": 8.414929785335686e-06,
+      "fine_abs_drain_current_a_per_cm": 9.245197537947333e-06,
+      "relative_current_difference": 0.08980530153128416,
+      "log10_current_difference_decades": 0.04086569841926302,
+      "coarse_center_channel_potential_v": 0.05311521723650709,
+      "fine_center_channel_potential_v": 0.05331185247518088,
+      "center_channel_potential_difference_v": 0.00019663523867378963
+    },
+    {
+      "vgs_v": 0.3,
+      "vds_v": 0.01,
+      "coarse_abs_drain_current_a_per_cm": 1.1948973446527943e-05,
+      "fine_abs_drain_current_a_per_cm": 1.3673428971089396e-05,
+      "relative_current_difference": 0.12611726935559323,
+      "log10_current_difference_decades": 0.058546842938911325,
+      "coarse_center_channel_potential_v": 0.0616070069938306,
+      "fine_center_channel_potential_v": 0.06194863117812196,
+      "center_channel_potential_difference_v": 0.00034162418429135866
+    },
+    {
+      "vgs_v": 0.5,
+      "vds_v": 0.01,
+      "coarse_abs_drain_current_a_per_cm": 1.7875978850995357e-05,
+      "fine_abs_drain_current_a_per_cm": 2.191632644088681e-05,
+      "relative_current_difference": 0.18435332220430123,
+      "log10_current_difference_decades": 0.08849792839533421,
+      "coarse_center_channel_potential_v": 0.07042982773589626,
+      "fine_center_channel_potential_v": 0.07093583476999778,
+      "center_channel_potential_difference_v": 0.000506007034101516
+    },
+    {
+      "vgs_v": 1.0,
+      "vds_v": 0.01,
+      "coarse_abs_drain_current_a_per_cm": 2.7609767940764428e-05,
+      "fine_abs_drain_current_a_per_cm": 3.808578147525413e-05,
+      "relative_current_difference": 0.27506363605264056,
+      "log10_current_difference_decades": 0.13970011480759403,
+      "coarse_center_channel_potential_v": 0.07876574861835714,
+      "fine_center_channel_potential_v": 0.07909518322772541,
+      "center_channel_potential_difference_v": 0.00032943460936826763
+    }
+  ],
+  "checks": {
+    "configured_meshes_completed": {
+      "status": "PASS",
+      "detail": "meshes=coarse,fine"
+    },
+    "required_transfer_bias_grid": {
+      "status": "PASS",
+      "detail": "VGS=[-1.0, -0.5, 0.0, 0.1, 0.2, 0.3, 0.5, 1.0] VDS=0.01"
+    },
+    "all_dc_solves_converged": {
+      "status": "PASS",
+      "detail": "solver_records=30"
+    },
+    "finite_numerically_nonzero_directional_current": {
+      "status": "PASS",
+      "detail": "floor=1.000e-30 signs=[1.0]"
+    },
+    "terminal_current_conservation": {
+      "status": "PASS",
+      "detail": "maximum=1.607045e-12 limit=1.000000e-05"
+    },
+    "drain_current_monotonic_with_vgs": {
+      "status": "PASS",
+      "detail": "maximum_relative_drop=1.000e-06"
+    },
+    "gate_numerical_current_span_resolved": {
+      "status": "PASS",
+      "detail": "ratios={\"coarse\": 1.8342389452853546e+17, \"fine\": 2.6459979965065485e+17} limit=1.000000e+01"
+    },
+    "t01_b_zero_gate_reentry": {
+      "status": "PASS",
+      "detail": "relative_differences={\"coarse\": 1.714005412396196e-16, \"fine\": 6.357102389724483e-15} limit=1.000000e-08"
+    },
+    "mesh_transfer_log_agreement_and_sensitivity_recorded": {
+      "status": "PASS",
+      "detail": "max_relative=2.750636e-01 warning=5.000000e-02 max_log_decades=1.397001e-01 limit=2.500000e-01"
+    },
+    "state_outputs_present": {
+      "status": "PASS",
+      "detail": "state_files=16 selected_vtk=6"
+    }
+  },
+  "failures": [],
+  "numerical_current_span_ratio": {
+    "coarse": 1.8342389452853546e+17,
+    "fine": 2.6459979965065485e+17
+  },
+  "t01_b_reentry_relative_current_difference": {
+    "coarse": 1.714005412396196e-16,
+    "fine": 6.357102389724483e-15
+  },
+  "maximum_relative_mesh_current_difference": 0.27506363605264056,
+  "maximum_log10_mesh_current_difference_decades": 0.13970011480759403,
+  "mesh_sensitivity": {
+    "status": "WARNING",
+    "relative_current_difference_warning_threshold": 0.05,
+    "quantitative_absolute_current_use_permitted": false,
+    "required_followup": "T01-D mesh refinement and full mesh metrics"
+  },
+  "limitations": [
+    "The numerical current span is not a physical Ion/Ioff result.",
+    "The coarse/fine absolute-current difference above VGS=0.1 V requires T01-D mesh refinement before quantitative use."
+  ],
+  "outputs": {
+    "solver_log": "results/tcad/t01_single_gate/t01_c_transfer/solver_log.json",
+    "state_manifest": "results/tcad/t01_single_gate/t01_c_transfer/state_manifest.json",
+    "idvg_csv": "results/tables/tcad_t01_c_idvg.csv",
+    "mesh_comparison_csv": "results/tables/tcad_t01_c_mesh_comparison.csv",
+    "run_directory": "results/tcad/t01_single_gate/t01_c_transfer"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T01-C verifies a reproducible teaching-parameter Id-Vg continuation at VDS=0.01 V with two meshes, current conservation, monotonic gate control, persisted node states, and an explicit high-bias mesh-sensitivity warning.",
+    "prohibited_claims": [
+      "complete T01 passed",
+      "full Id-Vd result",
+      "validated VTH, SS, or mobility",
+      "physical Ion/Ioff from the numerical current span",
+      "mesh-independent absolute current above VGS=0.1 V",
+      "experimental calibration",
+      "quantitative dual-gate prediction",
+      "circuit-ready compact model"
+    ]
+  }
+}

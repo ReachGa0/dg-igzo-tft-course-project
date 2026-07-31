@@ -19,7 +19,7 @@
 - 题目：基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK。
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
-- S00 数据审计已完成，T01-A 输入合同和 T01-B 低偏压漂移扩散烟雾均已完成，G0 为 `TEACHING_BASELINE_ONLY`；T01-C/D、M00/C00/L00/V01 仍未实现。
+- S00 数据审计及 T01-A/B/C 已完成，G0 为 `TEACHING_BASELINE_ONLY`；T01-C 有高正栅压绝对电流网格警告，T01-D、M00/C00/L00/V01 仍未实现。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
@@ -55,6 +55,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 - S00 来源、单位和数据边界审计：E3；T01 仅允许使用教学参数，禁止实验拟合。
 - T00 二维双栅静电：E2；不含移动电荷、陷阱、接触和漏电流。
 - T01-B 单栅电子-only 漂移扩散：E2；仅 VGS=0 V、VDS<=0.01 V 的收敛/端口电流烟雾，不是完整 I-V 或实验标定。
+- T01-C 单栅低 VDS 转移续算：E2；两档网格 8 个 VGS 点全部收敛、守恒和单调性通过，但 VGS=1 V 的绝对电流网格差为 27.5%。只允许报告教学参数下的数值栅控趋势，禁止将约 17 decade 数值跨度称为物理 Ion/Ioff。
 - 学长 IGZO 曲线：E1/reference_only；元数据不完整。
 - IGZO 单管外部 GDS：E2 基线，可参考但尚未迁入新 PDK。
 - 其余领域任务：E0。
@@ -68,7 +69,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. 用户已授权并完成 T01-B。下一步只能以 `IGZO_T01_TEACHING_BASELINE_V1` 进入 T01-C 的分步 VGS continuation；未经新指令不得启动 T02、SPICE、KLayout 或批量扫描。
+8. 用户已授权并完成 T01-C。下一步只能以 `IGZO_T01_TEACHING_BASELINE_V1` 进入 T01-D，先处理高正栅压的网格加密，再做 Id-Vd 和完整状态/提取；未经新指令不得启动 T02、SPICE、KLayout 或大批量扫描。
 
 ## 原始资产路径
 

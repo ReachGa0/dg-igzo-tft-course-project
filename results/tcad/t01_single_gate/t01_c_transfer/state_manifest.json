@@ -1,0 +1,150 @@
+{
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_C_TRANSFER_V1",
+  "stage": "T01-C",
+  "entries": [
+    {
+      "mesh_level": "coarse",
+      "vgs_v": -1.0,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 189,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_coarse_vgs_m1p000_nodes.csv",
+      "state_csv_sha256": "d3ac4b49dde10b4c64b564dd4abe000a2319e8863fe3c712d7a9534bb5580319",
+      "vtk_base": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_coarse_vgs_m1p000"
+    },
+    {
+      "mesh_level": "coarse",
+      "vgs_v": -0.5,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 189,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_coarse_vgs_m0p500_nodes.csv",
+      "state_csv_sha256": "cc045e8e441e5afc3647ac9d76121e3fc84852befb63e09c88e76b94d2680b7b",
+      "vtk_base": null
+    },
+    {
+      "mesh_level": "coarse",
+      "vgs_v": 0.0,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 189,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_coarse_vgs_p0p000_nodes.csv",
+      "state_csv_sha256": "6db53eea6a81d1a619da0372105cec0e574f2ecbc9e0bc0f011c1afdd7dd7315",
+      "vtk_base": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_coarse_vgs_p0p000"
+    },
+    {
+      "mesh_level": "coarse",
+      "vgs_v": 0.1,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 189,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_coarse_vgs_p0p100_nodes.csv",
+      "state_csv_sha256": "b8ba68bc82a973624e006cc5edb2320de42655a3220859155855bf2213296afd",
+      "vtk_base": null
+    },
+    {
+      "mesh_level": "coarse",
+      "vgs_v": 0.2,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 189,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_coarse_vgs_p0p200_nodes.csv",
+      "state_csv_sha256": "46f814e5ff39a68d2ca26f48aed9a6b71ddd2ac2889e2359137aa00ab6e0ad17",
+      "vtk_base": null
+    },
+    {
+      "mesh_level": "coarse",
+      "vgs_v": 0.3,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 189,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_coarse_vgs_p0p300_nodes.csv",
+      "state_csv_sha256": "5d9d089afdfa8469c9e1a575e939ec92846efb47073acf68d047e924708ed827",
+      "vtk_base": null
+    },
+    {
+      "mesh_level": "coarse",
+      "vgs_v": 0.5,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 189,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_coarse_vgs_p0p500_nodes.csv",
+      "state_csv_sha256": "7a84b1a538d409ebbdf5241dbe5c0bd8bb3054d082a5bf1cc75656052cd7e84f",
+      "vtk_base": null
+    },
+    {
+      "mesh_level": "coarse",
+      "vgs_v": 1.0,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 189,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_coarse_vgs_p1p000_nodes.csv",
+      "state_csv_sha256": "cd6a27d35fbeffaaad29373178313dcd89f16352942c33f158d61813a505e58b",
+      "vtk_base": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_coarse_vgs_p1p000"
+    },
+    {
+      "mesh_level": "fine",
+      "vgs_v": -1.0,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 656,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_fine_vgs_m1p000_nodes.csv",
+      "state_csv_sha256": "0707a48968912904a8548d5a809e192f0a4fd72c375420ab40bb3a5f3732ddfc",
+      "vtk_base": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_fine_vgs_m1p000"
+    },
+    {
+      "mesh_level": "fine",
+      "vgs_v": -0.5,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 656,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_fine_vgs_m0p500_nodes.csv",
+      "state_csv_sha256": "f8fe41c487c9d270ccf5de10fcf62dc5a3b8529d547f02a1a272a15f52c9fdb5",
+      "vtk_base": null
+    },
+    {
+      "mesh_level": "fine",
+      "vgs_v": 0.0,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 656,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_fine_vgs_p0p000_nodes.csv",
+      "state_csv_sha256": "a46095571ed8c312bf377be8ba8c3e69804931abd9778e3e9bb598bd694f6b3f",
+      "vtk_base": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_fine_vgs_p0p000"
+    },
+    {
+      "mesh_level": "fine",
+      "vgs_v": 0.1,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 656,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_fine_vgs_p0p100_nodes.csv",
+      "state_csv_sha256": "1dcfdfcc0e654014dda8170b92aca32831ca326948950890a8820d623f44ca2f",
+      "vtk_base": null
+    },
+    {
+      "mesh_level": "fine",
+      "vgs_v": 0.2,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 656,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_fine_vgs_p0p200_nodes.csv",
+      "state_csv_sha256": "2d098e03f2943b3bbbc327762c599e0d98d287ce05c64f383807dfe516dc233e",
+      "vtk_base": null
+    },
+    {
+      "mesh_level": "fine",
+      "vgs_v": 0.3,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 656,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_fine_vgs_p0p300_nodes.csv",
+      "state_csv_sha256": "f62b95dc9e3473abf4c2aba20fd37bd189050c416a6f97c16654aee47cf7c2b0",
+      "vtk_base": null
+    },
+    {
+      "mesh_level": "fine",
+      "vgs_v": 0.5,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 656,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_fine_vgs_p0p500_nodes.csv",
+      "state_csv_sha256": "fac8f5957c94c805122d4c4f7c245e694ab01e0c61c90cb4a126b529159ac0cb",
+      "vtk_base": null
+    },
+    {
+      "mesh_level": "fine",
+      "vgs_v": 1.0,
+      "vds_v": 0.01,
+      "node_count_with_interface_duplicates": 656,
+      "state_csv": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_fine_vgs_p1p000_nodes.csv",
+      "state_csv_sha256": "7bb4e590c282476cce1f4241329f4c1f7d7e3fc08e217a812571cd4cb9e03810",
+      "vtk_base": "results/tcad/t01_single_gate/t01_c_transfer/t01_c_fine_vgs_p1p000"
+    }
+  ]
+}

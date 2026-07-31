@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_C_TRANSFER_V1",
+  "stage": "T01-C",
+  "checks": [
+    {
+      "name": "identity:report",
+      "status": "PASS",
+      "detail": "status=PASS stage=T01-C"
+    },
+    {
+      "name": "scope:authorized_stages",
+      "status": "PASS",
+      "detail": "['T01_A_STAGE_0', 'T01_A_STAGE_1', 'T01_A_STAGE_2']"
+    },
+    {
+      "name": "reproduction:command_and_tool",
+      "status": "PASS",
+      "detail": "make t01-c-transfer"
+    },
+    {
+      "name": "inputs:hash_locked",
+      "status": "PASS",
+      "detail": "snapshot=results/tcad/t01_single_gate/t01_c_transfer/input_snapshot.json"
+    },
+    {
+      "name": "dependencies:stage_gates",
+      "status": "PASS",
+      "detail": "T01-A=PASS T01-B=PASS"
+    },
+    {
+      "name": "bias:configured_grid",
+      "status": "PASS",
+      "detail": "rows=16 VGS=[-1.0, -0.5, 0.0, 0.1, 0.2, 0.3, 0.5, 1.0]"
+    },
+    {
+      "name": "current:finite_numerically_nonzero_directional",
+      "status": "PASS",
+      "detail": "floor=1.000e-30 signs=[1.0]"
+    },
+    {
+      "name": "current:terminal_conservation",
+      "status": "PASS",
+      "detail": "maximum=1.607045e-12 limit=1.000000e-05"
+    },
+    {
+      "name": "current:monotonic_gate_control",
+      "status": "PASS",
+      "detail": "maximum_relative_drop=1.000e-06"
+    },
+    {
+      "name": "current:modulation",
+      "status": "PASS",
+      "detail": "ratios={\"coarse\": 1.8342389452853546e+17, \"fine\": 2.6459979965065485e+17} limit=1.000000e+01"
+    },
+    {
+      "name": "continuation:t01_b_reentry",
+      "status": "PASS",
+      "detail": "relative_differences={\"coarse\": 1.714005412396196e-16, \"fine\": 6.357102389724483e-15} limit=1.000000e-08"
+    },
+    {
+      "name": "mesh:log_agreement_and_sensitivity_recorded",
+      "status": "PASS",
+      "detail": "max_relative=2.750636e-01 max_log_decades=1.397001e-01"
+    },
+    {
+      "name": "outputs:state_artifacts",
+      "status": "PASS",
+      "detail": "state_files=16 selected_vtk=6"
+    },
+    {
+      "name": "runner:all_acceptance_checks_pass",
+      "status": "PASS",
+      "detail": "checks=10"
+    }
+  ],
+  "failures": [],
+  "recomputed_numerical_current_span_ratio": {
+    "coarse": 1.8342389452853546e+17,
+    "fine": 2.6459979965065485e+17
+  },
+  "recomputed_t01_b_reentry_relative_current_difference": {
+    "coarse": 1.714005412396196e-16,
+    "fine": 6.357102389724483e-15
+  }
+}

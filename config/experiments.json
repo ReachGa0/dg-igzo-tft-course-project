@@ -2,7 +2,7 @@
   "schema_version": 2,
   "project_id": "DG-IGZO-TFT-PDK",
   "principle": "Each experiment has dependencies, one declared variable group, controls, outputs, acceptance criteria and an evidence boundary.",
-  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified"],
+  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified"],
   "parameter_groups": [
     {
       "id": "P1",
@@ -105,7 +105,7 @@
       "id": "T01",
       "track": "tcad",
       "name": "single_gate_igzo_drift_diffusion_baseline",
-      "status": "smoke_verified",
+      "status": "transfer_verified",
       "current_evidence": "E2",
       "depends_on": ["S00", "T00"],
       "purpose": "Establish the smallest current-carrying IGZO device case.",
@@ -123,11 +123,19 @@
         "results/tables/tcad_t01_b_bias_points.csv",
         "results/tables/tcad_t01_b_mesh_summary.csv"
       ],
-      "completed_substages": ["T01-A input contract", "T01-B zero-bias and VGS=0 low-VDS smoke"],
-      "remaining_substages": ["T01-C VGS continuation", "T01-D Id-Vd family, state-map set, and full mesh metrics"],
+      "transfer_outputs": [
+        "config/tcad_t01_c_transfer.json",
+        "results/reports/tcad_t01_c_transfer.json",
+        "results/reports/tcad_t01_c_transfer_check.json",
+        "results/tables/tcad_t01_c_idvg.csv",
+        "results/tables/tcad_t01_c_mesh_comparison.csv",
+        "results/tcad/t01_single_gate/t01_c_transfer/state_manifest.json"
+      ],
+      "completed_substages": ["T01-A input contract", "T01-B zero-bias and VGS=0 low-VDS smoke", "T01-C low-VDS VGS continuation with mesh-sensitivity warning"],
+      "remaining_substages": ["T01-D mesh refinement, Id-Vd family, state-map set, and parameter extraction"],
       "acceptance": ["at least one complete bias sweep converges", "terminal current conservation passes", "mesh metrics are reported"],
-      "simulation_status": "T01_B_SMOKE_PASS",
-      "evidence_boundary": "The E2 result covers only zero-bias equilibrium and VGS=0 V, VDS<=0.01 V continuation. It is not a complete Id-Vg/Id-Vd result, parameter extraction, experimental fit, or dual-gate prediction."
+      "simulation_status": "T01_C_TRANSFER_PASS_WITH_MESH_WARNING",
+      "evidence_boundary": "The E2 result now includes a monotonic low-VDS Id-Vg continuation from -1.0 V to 1.0 V, but the maximum coarse/fine absolute-current difference is 27.5% at high positive gate bias. The numerical span is not physical Ion/Ioff, and complete Id-Vd, mesh convergence, extraction, experimental fitting, and dual-gate prediction remain blocked."
     },
     {
       "id": "T02",

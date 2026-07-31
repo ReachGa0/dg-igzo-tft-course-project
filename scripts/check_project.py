@@ -34,6 +34,7 @@ REQUIRED_FILES = [
     "config/tcad_baseline.json",
     "config/tcad_t01_baseline.json",
     "config/tcad_t01_b_smoke.json",
+    "config/tcad_t01_c_transfer.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -52,10 +53,12 @@ REQUIRED_FILES = [
     "scripts/audit_s00_data.py",
     "scripts/check_t01_a_contract.py",
     "scripts/check_t01_b_smoke.py",
+    "scripts/check_t01_c_transfer.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
     "tcad/run_t01_single_gate_smoke.py",
+    "tcad/run_t01_single_gate_transfer.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
@@ -69,6 +72,11 @@ REQUIRED_FILES = [
     "results/reports/tcad_t01_b_smoke_check.json",
     "results/tables/tcad_t01_b_bias_points.csv",
     "results/tables/tcad_t01_b_mesh_summary.csv",
+    "results/reports/tcad_t01_c_transfer.json",
+    "results/reports/tcad_t01_c_transfer_check.json",
+    "results/tables/tcad_t01_c_idvg.csv",
+    "results/tables/tcad_t01_c_mesh_comparison.csv",
+    "results/tcad/t01_single_gate/t01_c_transfer/state_manifest.json",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -111,6 +119,7 @@ REQUIRED_DIRS = [
     "results/reports",
     "results/tcad/dg_electrostatic",
     "results/tcad/t01_single_gate/t01_b_smoke",
+    "results/tcad/t01_single_gate/t01_c_transfer",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -573,6 +582,95 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t01_b:smoke", False, str(error))
+
+    t01_c_report_path = ROOT / "results" / "reports" / "tcad_t01_c_transfer.json"
+    t01_c_check_path = ROOT / "results" / "reports" / "tcad_t01_c_transfer_check.json"
+    try:
+        t01_c_config = json.loads(
+            (ROOT / "config" / "tcad_t01_c_transfer.json").read_text(encoding="utf-8")
+        )
+        t01_c_report = json.loads(t01_c_report_path.read_text(encoding="utf-8"))
+        t01_c_check = json.loads(t01_c_check_path.read_text(encoding="utf-8"))
+        t01_c_checks = t01_c_report.get("checks", {})
+        add_check(
+            checks,
+            "t01_c:transfer_status",
+            t01_c_report.get("status") == "PASS"
+            and t01_c_report.get("case_id") == t01_c_config.get("case_id")
+            and t01_c_report.get("stage") == "T01-C"
+            and t01_c_report.get("evidence_level") == "E2",
+            str(t01_c_report.get("status")),
+        )
+        add_check(
+            checks,
+            "t01_c:independent_check",
+            t01_c_check.get("status") == "PASS"
+            and t01_c_check.get("case_id") == t01_c_config.get("case_id")
+            and t01_c_check.get("stage") == "T01-C",
+            str(t01_c_check.get("status")),
+        )
+        add_check(
+            checks,
+            "t01_c:authorized_scope",
+            t01_c_report.get("executed_bias_stage_ids")
+            == ["T01_A_STAGE_0", "T01_A_STAGE_1", "T01_A_STAGE_2"]
+            and t01_c_report.get("reported_bias_stage_id") == "T01_A_STAGE_2",
+            str(t01_c_report.get("executed_bias_stage_ids")),
+        )
+        add_check(
+            checks,
+            "t01_c:acceptance_checks",
+            bool(t01_c_checks)
+            and all(result.get("status") == "PASS" for result in t01_c_checks.values()),
+            f"checks={len(t01_c_checks)}",
+        )
+        warning_threshold = t01_c_config.get("acceptance", {}).get(
+            "mesh_relative_current_difference_warning_threshold"
+        )
+        log_limit = t01_c_config.get("acceptance", {}).get(
+            "maximum_log10_mesh_current_difference_decades"
+        )
+        mesh_sensitivity = t01_c_report.get("mesh_sensitivity", {})
+        add_check(
+            checks,
+            "t01_c:mesh_warning_boundary",
+            t01_c_report.get("maximum_relative_mesh_current_difference", 0.0)
+            > warning_threshold
+            and t01_c_report.get("maximum_log10_mesh_current_difference_decades", float("inf"))
+            <= log_limit
+            and mesh_sensitivity.get("status") == "WARNING"
+            and mesh_sensitivity.get("quantitative_absolute_current_use_permitted") is False,
+            (
+                f"relative={t01_c_report.get('maximum_relative_mesh_current_difference')} "
+                f"log_decades={t01_c_report.get('maximum_log10_mesh_current_difference_decades')}"
+            ),
+        )
+        output_paths = [
+            ROOT / value
+            for key, value in t01_c_report.get("outputs", {}).items()
+            if key != "run_directory"
+        ]
+        state_manifest = json.loads(
+            (ROOT / t01_c_report["outputs"]["state_manifest"]).read_text(encoding="utf-8")
+        )
+        state_paths = [ROOT / entry["state_csv"] for entry in state_manifest.get("entries", [])]
+        vtk_paths = [
+            ROOT / f"{entry['vtk_base']}.vtm"
+            for entry in state_manifest.get("entries", [])
+            if entry.get("vtk_base")
+        ]
+        run_directory = ROOT / t01_c_report.get("outputs", {}).get("run_directory", "")
+        add_check(
+            checks,
+            "t01_c:raw_outputs",
+            all(path.is_file() and path.stat().st_size > 0 for path in output_paths + state_paths + vtk_paths)
+            and len(state_paths) == 16
+            and len(vtk_paths) == 6
+            and run_directory.is_dir(),
+            f"files={len(output_paths) + len(state_paths) + len(vtk_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t01_c:transfer", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

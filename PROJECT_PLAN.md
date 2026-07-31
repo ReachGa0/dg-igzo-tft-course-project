@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`T01_B_LOW_VDS_SMOKE_VERIFIED`：S00 来源审计完成；T01-A 输入合同和 T01-B 的零偏压/VGS=0 V、VDS<=0.01 V 单栅电子漂移扩散烟雾已通过。G0 为 `TEACHING_BASELINE_ONLY`，T01 只能作为 E2 教学参数仿真，定量实验拟合仍被阻止。
+`T01_C_TRANSFER_VERIFIED_WITH_MESH_WARNING`：T01-A/B/C 已通过；VDS=0.01 V 的 8 点 VGS 续算在两档网格全部收敛并保持电流守恒和单调栅控。高正栅压绝对电流的粗细网格差最高 27.5%，因此 T01-D 必须先完成局部加密和完整网格指标。G0 仍为 `TEACHING_BASELINE_ONLY`，定量实验拟合继续被阻止。
 
 ## 截止日期
 
@@ -42,7 +42,7 @@
 | A00 | 范围与总体架构 | DONE，待老师确认 | `ARCHITECTURE.md` |
 | S00 | 来源、单位和数据冲突审计 | DONE，G0 教学参数限定 | `data/processed/s00/` 与 `results/reports/s00_data_audit.json`，E3 审计 |
 | T00 | 二维双栅静电基准 | DONE，E2 | 既有 JSON/CSV/VTK/PNG |
-| T01 | 单栅漂移扩散 | T01-A/B DONE，T01-C TODO | 低偏压烟雾 E2：`results/reports/tcad_t01_b_smoke.json`；完整 I-V/提取仍为 E0 |
+| T01 | 单栅漂移扩散 | T01-A/B/C DONE，T01-D TODO | 低 VDS 转移续算 E2：`results/reports/tcad_t01_c_transfer.json`；高栅压网格警告、完整 Id-Vd/提取仍为 E0 |
 | T02 | 双栅电流与阈值耦合 | TODO | 依赖 T01 |
 | T03 | 五组器件参数 | TODO | 依赖 T02 |
 | M00 | IGZO 多曲线标定 | TODO | 等主数据集 |
@@ -60,4 +60,4 @@
 
 ## 架构确认后第一件事
 
-不是先画大电路，而是从 T01-C 的低 VDS 分步 VGS continuation 开始。它必须继承 T01-B 的教学参数和收敛顺序；收到主 IGZO 原始数据和双栅边界后，再升级为定量标定路线。
+不是先画大电路，而是进入 T01-D 的网格加密和完整单栅输出。先解决 T01-C 暴露的高正栅压绝对电流网格敏感性，再做多 VGS 的 Id-Vd 与参数提取；收到主 IGZO 原始数据和双栅边界后，才升级为定量标定路线。

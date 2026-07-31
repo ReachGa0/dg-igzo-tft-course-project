@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-07" class="report-chapter">
   <h2>7. 基准仿真结果</h2>
-  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果。模型为单底栅 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
+  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 在同一方程和输入下扩展到低漏压栅压续算。模型为单底栅 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
   <table>
     <thead><tr><th>条件</th><th>coarse</th><th>fine</th><th>验收</th></tr></thead>
     <tbody>
@@ -9,5 +9,14 @@
       <tr><td>非零 VDS 源漏相对电流不平衡最大值</td><td>1.37e-14</td><td>1.29e-14</td><td>低于 1e-5 阈值</td></tr>
     </tbody>
   </table>
-  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/tables/tcad_t01_b_bias_points.csv</code> 和两档 VTK/节点 CSV。T01-B 仅覆盖零偏压和 VGS=0 V 的 0/1/5/10 mV continuation；不能据此写出完整 <code>Id-Vg</code>、完整 <code>Id-Vd</code>、VTH、SS、迁移率、实验精度或双栅趋势。T01-C 将先在 10 mV 继承解上做分步 VGS。</p>
+  <table>
+    <thead><tr><th>T01-C 条件</th><th>coarse</th><th>fine</th><th>结论边界</th></tr></thead>
+    <tbody>
+      <tr><td>VGS = 0 V，VDS = 10 mV</td><td>1.235e-6 A/cm</td><td>1.232e-6 A/cm</td><td>复现 T01-B 锚点</td></tr>
+      <tr><td>VGS = 1 V，VDS = 10 mV</td><td>2.761e-5 A/cm</td><td>3.809e-5 A/cm</td><td>相对差 27.5%、对数差 0.140 decade；绝对电流标记网格警告</td></tr>
+      <tr><td>VGS=-1 至 1 V 的 8 点续算</td><td>8/8 收敛且单调</td><td>8/8 收敛且单调</td><td>只证明教学方程下的数值栅控趋势</td></tr>
+      <tr><td>源漏相对电流不平衡最大值</td><td>7.31e-13</td><td>1.61e-12</td><td>低于 1e-5 阈值</td></tr>
+    </tbody>
+  </table>
+  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、对应规范 CSV、16 份节点状态和 6 组选定偏压 VTK。T01-C 两档网格共 30 次 DC 求解，独立 14 项检查 PASS。负栅压端到正栅压端约 17 decade 的数值跨度不能称为物理 <code>Ion/Ioff</code>；高正栅压绝对电流未达到网格独立，完整 <code>Id-Vd</code>、VTH、SS、迁移率、实验精度和双栅趋势仍未完成。</p>
 </section>

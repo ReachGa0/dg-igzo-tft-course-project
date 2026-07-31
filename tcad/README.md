@@ -5,7 +5,8 @@
 本项目**涉及二维 TCAD**，但分成两个证据层次：
 
 1. `T00` 已搭建的双栅静电基准：求解二维电势，检查网格、边界条件和上下栅耦合。
-2. `T01-B` 已运行的单栅 IGZO 低偏压烟雾：电子连续性、Scharfetter-Gummel 漂移扩散和理想欧姆接触已用于零偏压与 VGS=0 V、VDS<=0.01 V；`T01-C/D` 才生成完整 `Id-Vg` 与 `Id-Vd`。
+2. `T01-B` 已运行的单栅 IGZO 低偏压烟雾：验证零偏压与 VGS=0 V、VDS<=0.01 V 的输运闭合。
+3. `T01-C` 已运行的单栅低漏压栅压续算：在 VDS=0.01 V 保存 VGS=-1.0 至 1.0 V 的端口与节点状态；高正栅压绝对电流仍需 T01-D 网格加密。
 
 `T00` 不能被写成“IGZO TFT 电流仿真已完成”。它只证明二维结构、Poisson 方程、边界条件、扫描和数据导出链路能运行。
 
@@ -25,6 +26,7 @@ tcad/
 |-- README.md
 |-- run_dg_electrostatic.py   # T00 二维双栅静电基准
 |-- run_t01_single_gate_smoke.py # T01-B 单栅低偏压漂移扩散烟雾
+|-- run_t01_single_gate_transfer.py # T01-C 单栅低漏压 Id-Vg 续算
 |-- structures/README.md      # 后续 Gmsh/DEVSIM 结构与网格
 |-- physics/README.md         # 方程、材料、陷阱和接触模型
 `-- tests/README.md           # 网格、极限条件和故障测试
@@ -48,6 +50,16 @@ results/reports/tcad_t01_b_smoke.json
 results/reports/tcad_t01_b_smoke_check.json
 ```
 
+T01-C 使用 `config/tcad_t01_c_transfer.json`，结果写入：
+
+```text
+results/tcad/t01_single_gate/t01_c_transfer/
+results/tables/tcad_t01_c_idvg.csv
+results/tables/tcad_t01_c_mesh_comparison.csv
+results/reports/tcad_t01_c_transfer.json
+results/reports/tcad_t01_c_transfer_check.json
+```
+
 ## 运行 T00
 
 在项目根目录执行：
@@ -66,6 +78,15 @@ make t01-b-check
 ```
 
 T01-B 的 PASS 仅表示两个结构化网格上零偏压和 `VGS=0 V, VDS=0/1/5/10 mV` 续算收敛、端口电流守恒和低偏压网格比较通过。它不表示完成了 `Id-Vg`、完整 `Id-Vd`、参数提取、实验拟合或双栅电流预测。
+
+## 运行 T01-C
+
+```bash
+make t01-c-transfer
+make t01-c-check
+```
+
+T01-C 的 PASS 表示冻结的 8 个 VGS 点在两档网格完成续算、守恒、单调性、T01-B 锚点回归和状态文件检查。VGS=1 V 的粗细网格绝对电流相差 27.5%，已作为 `WARNING` 保存；约 17 decade 的数值跨度不是物理 Ion/Ioff，完整网格收敛和 Id-Vd 留给 T01-D。
 
 ## T00 的模型
 

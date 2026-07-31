@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_C_TRANSFER_V1",
+  "stage": "T01-C",
+  "status": "planned",
+  "evidence_level_before_run": "E0",
+  "input_contract": {
+    "path": "config/tcad_t01_baseline.json",
+    "case_id": "IGZO_T01_SINGLE_GATE_DD_A_V1",
+    "required_contract_status": "PASS",
+    "source_gate": "S00 G0=TEACHING_BASELINE_ONLY"
+  },
+  "dependency_reports": {
+    "t01_a_contract": "results/reports/tcad_t01_input_contract.json",
+    "t01_b_smoke": "results/reports/tcad_t01_b_smoke.json",
+    "required_t01_b_status": "PASS"
+  },
+  "scope": {
+    "device": "2D single-bottom-gate n-IGZO TFT",
+    "active_equations": ["Poisson", "electron_continuity"],
+    "transport": "electron-only Scharfetter-Gummel drift-diffusion",
+    "mesh_levels": ["coarse", "fine"],
+    "executed_bias_stage_ids": [
+      "T01_A_STAGE_0",
+      "T01_A_STAGE_1",
+      "T01_A_STAGE_2"
+    ],
+    "reported_bias_stage_id": "T01_A_STAGE_2",
+    "prohibited_work": [
+      "full Id-Vd family",
+      "threshold, subthreshold-swing, or mobility extraction",
+      "experimental fit",
+      "dual-gate current simulation",
+      "trap, ferroelectric, or non-ideal-contact physics",
+      "T02, SPICE, or layout work"
+    ]
+  },
+  "continuation": {
+    "source_v": 0.0,
+    "vds_v": 0.01,
+    "vgs_values_v": [-1.0, -0.5, 0.0, 0.1, 0.2, 0.3, 0.5, 1.0],
+    "negative_preconditioning_vgs_values_v": [-0.5, -1.0],
+    "selected_vtk_vgs_values_v": [-1.0, 0.0, 1.0],
+    "execution_order": [
+      "zero-bias Poisson initialization",
+      "zero-bias coupled equilibrium",
+      "repeat the T01-B low-VDS continuation to VDS=0.01 V at VGS=0 V",
+      "precondition from VGS=0 V to -0.5 V and -1.0 V without a direct maximum-bias jump",
+      "record the ordered -1.0 V to 1.0 V transfer sweep",
+      "write terminal data and a full node-state CSV at every configured VGS"
+    ]
+  },
+  "acceptance": {
+    "required_mesh_levels": ["coarse", "fine"],
+    "required_vgs_values_v": [-1.0, -0.5, 0.0, 0.1, 0.2, 0.3, 0.5, 1.0],
+    "fixed_vds_v": 0.01,
+    "minimum_numerically_nonzero_abs_drain_current_a_per_cm": 1e-30,
+    "maximum_relative_terminal_current_imbalance": 1e-5,
+    "maximum_monotonic_relative_current_drop": 1e-6,
+    "minimum_numerical_current_span_ratio": 10.0,
+    "maximum_t01_b_reentry_relative_current_difference": 1e-8,
+    "mesh_relative_comparison_current_floor_a_per_cm": 1e-18,
+    "mesh_relative_current_difference_warning_threshold": 0.05,
+    "maximum_log10_mesh_current_difference_decades": 0.25,
+    "require_all_dc_solves_converged": true,
+    "require_state_file_per_bias_point": true,
+    "required_vtk_vgs_values_v": [-1.0, 0.0, 1.0]
+  },
+  "outputs": {
+    "run_directory": "results/tcad/t01_single_gate/t01_c_transfer",
+    "config_snapshot": "results/tcad/t01_single_gate/t01_c_transfer/input_snapshot.json",
+    "solver_log": "results/tcad/t01_single_gate/t01_c_transfer/solver_log.json",
+    "state_manifest": "results/tcad/t01_single_gate/t01_c_transfer/state_manifest.json",
+    "idvg_csv": "results/tables/tcad_t01_c_idvg.csv",
+    "mesh_comparison_csv": "results/tables/tcad_t01_c_mesh_comparison.csv",
+    "report": "results/reports/tcad_t01_c_transfer.json",
+    "check_report": "results/reports/tcad_t01_c_transfer_check.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T01-C verifies a reproducible teaching-parameter Id-Vg continuation at VDS=0.01 V with two meshes, current conservation, monotonic gate control, persisted node states, and an explicit high-bias mesh-sensitivity warning.",
+    "prohibited_claims": [
+      "complete T01 passed",
+      "full Id-Vd result",
+      "validated VTH, SS, or mobility",
+      "physical Ion/Ioff from the numerical current span",
+      "mesh-independent absolute current above VGS=0.1 V",
+      "experimental calibration",
+      "quantitative dual-gate prediction",
+      "circuit-ready compact model"
+    ]
+  }
+}
