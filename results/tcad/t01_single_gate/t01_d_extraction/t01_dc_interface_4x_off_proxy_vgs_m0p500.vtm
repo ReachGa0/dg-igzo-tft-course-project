@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<VTKFile type="vtkMultiBlockDataSet" version="0.1" byte_order="LittleEndian" compressor="vtkZLibDataCompressor">
+  <vtkMultiBlockDataSet>
+    <DataSet group="0" dataset="0" file="/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目/results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_off_proxy_vgs_m0p500_0.vtu"/>
+    <DataSet group="1" dataset="0" file="/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目/results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_off_proxy_vgs_m0p500_1.vtu"/>
+    <DataSet group="2" dataset="0" file="/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目/results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_off_proxy_vgs_m0p500_2.vtu"/>
+  </vtkMultiBlockDataSet>
+</VTKFile>

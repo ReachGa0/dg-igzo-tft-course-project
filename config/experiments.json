@@ -105,7 +105,7 @@
       "id": "T01",
       "track": "tcad",
       "name": "single_gate_igzo_drift_diffusion_baseline",
-      "status": "mesh_refinement_verified",
+      "status": "complete_e2",
       "current_evidence": "E2",
       "depends_on": ["S00", "T00"],
       "purpose": "Establish the smallest current-carrying IGZO device case.",
@@ -152,11 +152,25 @@
         "results/tables/tcad_t01_d_idvd_da_reproduction.csv",
         "report/assets/tcad_t01_d_idvd.png"
       ],
-      "completed_substages": ["T01-A input contract", "T01-B zero-bias and VGS=0 low-VDS smoke", "T01-C low-VDS VGS continuation with mesh-sensitivity warning", "T01-D-A low-VDS positive-bias interface-normal mesh convergence", "T01-D-B sampled Id-Vd family with selected reference-mesh checks"],
-      "remaining_substages": ["T01-D-C state-map set, limited parameter extraction, and complete T01 gate"],
-      "acceptance": ["at least one complete bias sweep converges", "terminal current conservation passes", "mesh metrics are reported"],
-      "simulation_status": "T01_DB_IDVD_PASS",
-      "evidence_boundary": "T01-D-B provides E2 numerical evidence for 30 frozen sampled Id-Vd points: all six independent curves converge and the maximum selected 4x/8x current difference is 0.01639%. Continuous output behavior, saturation-physics validation, full-state coverage, extraction, physical Ion/Ioff, experimental fitting, and dual-gate prediction remain blocked."
+      "extraction_outputs": [
+        "config/tcad_t01_d_extraction.json",
+        "results/reports/tcad_t01_d_extraction.json",
+        "results/reports/tcad_t01_d_extraction_check.json",
+        "results/tables/tcad_t01_d_extraction_idvg.csv",
+        "results/tables/tcad_t01_d_extraction_mesh_summary.csv",
+        "results/tables/tcad_t01_d_extraction_mesh_comparison.csv",
+        "results/tables/tcad_t01_d_extraction_parameter_proxies.csv",
+        "results/tables/tcad_t01_d_extraction_state_summary.csv",
+        "results/tables/tcad_t01_d_extraction_db_reproduction.csv",
+        "results/tcad/t01_single_gate/t01_d_extraction/state_manifest.json",
+        "report/assets/tcad_t01_dc_extraction.png",
+        "report/assets/tcad_t01_dc_state_maps.png"
+      ],
+      "completed_substages": ["T01-A input contract", "T01-B zero-bias and VGS=0 low-VDS smoke", "T01-C low-VDS VGS continuation with mesh-sensitivity warning", "T01-D-A low-VDS positive-bias interface-normal mesh convergence", "T01-D-B sampled Id-Vd family with selected reference-mesh checks", "T01-D-C state-map set, limited numerical-proxy extraction, and complete teaching-model T01 gate"],
+      "remaining_substages": [],
+      "acceptance": ["at least one complete bias sweep converges", "terminal current conservation passes", "mesh metrics and numerical-proxy comparisons are reported", "state maps include potential, electron density, and local current density"],
+      "simulation_status": "T01_DC_COMPLETE_PASS",
+      "evidence_boundary": "T01-D-C closes the complete T01 numerical stage gate for the frozen E2 teaching model: 120 DC solves and 102 formal low-VDS points converge, two-mesh proxy comparisons pass, and three representative states include potential, electron density, and local current density. VTH, SS, mobility, and current span remain numerical proxies rather than experimentally validated parameters or physical Ion/Ioff; experimental fitting, dual-gate prediction, and compact-model calibration remain blocked."
     },
     {
       "id": "T02",

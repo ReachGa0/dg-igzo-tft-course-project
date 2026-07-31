@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_DC_EXTRACTION_V1",
+  "stage": "T01-D-C",
+  "status": "planned",
+  "evidence_level_before_run": "E0",
+  "input_contract": {
+    "path": "config/tcad_t01_baseline.json",
+    "report": "results/reports/tcad_t01_input_contract.json",
+    "case_id": "IGZO_T01_SINGLE_GATE_DD_A_V1",
+    "required_contract_status": "PASS",
+    "source_gate": "S00 G0=TEACHING_BASELINE_ONLY"
+  },
+  "dependencies": {
+    "mesh_config": "config/tcad_t01_d_mesh_refinement.json",
+    "mesh_report": "results/reports/tcad_t01_d_mesh_refinement.json",
+    "required_mesh_stage": "T01-D-A",
+    "required_mesh_status": "PASS",
+    "required_mesh_convergence_status": "PASS",
+    "idvd_config": "config/tcad_t01_d_idvd.json",
+    "idvd_report": "results/reports/tcad_t01_d_idvd.json",
+    "required_idvd_stage": "T01-D-B",
+    "required_idvd_status": "PASS",
+    "require_t01_dc_stage_permitted_next": true
+  },
+  "scope": {
+    "device": "2D single-bottom-gate n-IGZO TFT",
+    "active_equations": ["Poisson", "electron_continuity"],
+    "transport": "electron-only Scharfetter-Gummel drift-diffusion",
+    "changed_variable": "bottom-gate bias on a targeted low-VDS extraction grid",
+    "fixed_variables": [
+      "geometry",
+      "materials",
+      "temperature",
+      "constant teaching mobility model",
+      "ideal ohmic contacts",
+      "equations",
+      "VDS=0.01 V",
+      "interface_4x production mesh and interface_8x reference mesh"
+    ],
+    "executed_bias_stage_ids": [
+      "T01_A_STAGE_0",
+      "T01_A_STAGE_1",
+      "T01_DC_EXTRACTION"
+    ],
+    "reported_bias_stage_id": "T01_DC_EXTRACTION",
+    "prohibited_work": [
+      "experimental fit or physical parameter validation",
+      "physical Ion/Ioff extraction",
+      "trap, ferroelectric, temperature-dependent, or non-ideal-contact physics",
+      "dual-gate current simulation",
+      "compact-model calibration",
+      "T02, SPICE, or layout work"
+    ]
+  },
+  "mesh": {
+    "source_mesh_ladder": "T01-D-A",
+    "production_level": "interface_4x",
+    "reference_level": "interface_8x",
+    "reference_purpose": "repeat the same low-VDS grid and quantify numerical-proxy mesh sensitivity"
+  },
+  "bias_protocol": {
+    "source_v": 0.0,
+    "vds_v": 0.01,
+    "low_vds_values_v": [0.0, 0.001, 0.005, 0.01],
+    "negative_gate_preconditioning_v": [-0.25, -0.5, -0.75, -1.0],
+    "extraction_grid": {
+      "dense_start_v": -0.5,
+      "dense_stop_v": 0.6,
+      "dense_step_v": 0.025,
+      "outer_anchor_values_v": [-1.0, -0.75, 0.7, 0.8, 0.9, 1.0],
+      "ordering": "sorted ascending after the negative-gate preconditioning reaches -1.0 V"
+    },
+    "state_points": [
+      {"state_id": "off_proxy", "label": "off proxy", "vgs_v": -0.5, "vds_v": 0.01},
+      {"state_id": "near_target_proxy", "label": "near course-target proxy", "vgs_v": 0.2, "vds_v": 0.01},
+      {"state_id": "on_proxy", "label": "on proxy", "vgs_v": 1.0, "vds_v": 0.01}
+    ],
+    "execution_order": [
+      "create a fresh device for each mesh",
+      "solve zero-bias Poisson initialization and coupled equilibrium",
+      "repeat the frozen Stage 1 low-VDS ladder at VGS=0 V",
+      "precondition VGS from 0 V down to -1 V at VDS=0.01 V",
+      "sweep the exact extraction grid upward from -1 V to 1 V",
+      "record terminal data at every extraction point",
+      "write node state, three-node element current vectors, and VTK at the three production-mesh state points",
+      "delete the device before the next mesh"
+    ]
+  },
+  "extraction_methods": {
+    "constant_current_vth_proxy": {
+      "name": "constant_current_log_interpolation",
+      "criterion_formula": "10 nA * (W/L) terminal current",
+      "criterion_prefactor_a": 1e-8,
+      "expected_terminal_current_a": 6e-8,
+      "expected_current_per_width_a_per_cm": 1e-5,
+      "interpolation": "linear VGS interpolation in log10(abs(drain current per unit width))"
+    },
+    "subthreshold_swing_proxy": {
+      "name": "ordinary_least_squares_log_current_window",
+      "minimum_abs_drain_current_a_per_cm": 1e-13,
+      "maximum_abs_drain_current_a_per_cm": 1e-8,
+      "definition": "inverse slope of log10(abs(drain current per unit width)) versus VGS",
+      "reported_unit": "mV/dec"
+    },
+    "field_effect_mobility_proxy": {
+      "name": "physical_oxide_capacitance_linear_region_central_difference",
+      "vgs_center_v": 0.5,
+      "vgs_lower_v": 0.475,
+      "vgs_upper_v": 0.525,
+      "epsilon0_f_per_cm": 8.8541878128e-14,
+      "formula": "mu_FE_proxy = L * d(abs(Id/W))/dVGS / (Cox_physical * VDS)",
+      "oxide_capacitance_source": "30 nm physical Al2O3 and relative permittivity 6.8 from the frozen T01-A contract"
+    },
+    "numerical_current_span": {
+      "name": "configured_grid_max_to_min_current_ratio",
+      "allowed_label": "numerical current span only",
+      "forbidden_label": "physical Ion/Ioff"
+    }
+  },
+  "state_output_contract": {
+    "potential": {"location": "bottom_oxide and channel nodes", "unit": "V"},
+    "electron_density": {"location": "channel nodes", "unit": "cm^-3"},
+    "electron_current_density": {
+      "location": "channel triangular elements",
+      "unit": "A/cm^2",
+      "source_model": "DEVSIM ElectronCurrent edge model projected by element_from_edge_model",
+      "storage": "Jx and Jy at all three element nodes plus their arithmetic cell-center averages"
+    },
+    "terminal_current": {
+      "unit": "A/cm",
+      "relationship": "local A/cm^2 current density integrated over a 2D contact gives current per unit out-of-plane width in A/cm"
+    },
+    "plot_note": "x is shown in um and y in nm with an expanded vertical display scale"
+  },
+  "acceptance": {
+    "required_mesh_levels": ["interface_4x", "interface_8x"],
+    "required_mesh_roles": ["production", "reference"],
+    "required_reported_bias_points_per_mesh": 51,
+    "required_total_reported_bias_points": 102,
+    "required_total_dc_solve_count": 120,
+    "maximum_relative_terminal_current_imbalance": 1e-5,
+    "maximum_monotonic_relative_current_drop": 1e-6,
+    "minimum_ss_fit_point_count": 5,
+    "minimum_ss_fit_r_squared": 0.995,
+    "maximum_vth_proxy_mesh_difference_v": 0.01,
+    "maximum_ss_proxy_mesh_relative_difference": 0.05,
+    "maximum_mobility_proxy_mesh_relative_difference": 0.05,
+    "maximum_t01_db_anchor_relative_current_difference": 1e-8,
+    "maximum_t01_db_anchor_potential_difference_v": 1e-10,
+    "required_t01_db_anchor_vgs_values_v": [0.5, 1.0],
+    "required_state_ids": ["off_proxy", "near_target_proxy", "on_proxy"],
+    "required_state_fields": ["potential_v", "electron_density_cm3", "electron_current_density_x_a_per_cm2", "electron_current_density_y_a_per_cm2", "electron_current_density_magnitude_a_per_cm2"],
+    "require_state_terminal_current_strictly_increases": true,
+    "require_state_center_electron_density_strictly_increases": true,
+    "require_all_dc_solves_converged": true,
+    "require_finite_positive_numerical_proxies": true,
+    "require_two_png_figures": true
+  },
+  "outputs": {
+    "run_directory": "results/tcad/t01_single_gate/t01_d_extraction",
+    "config_snapshot": "results/tcad/t01_single_gate/t01_d_extraction/input_snapshot.json",
+    "solver_log": "results/tcad/t01_single_gate/t01_d_extraction/solver_log.json",
+    "state_manifest": "results/tcad/t01_single_gate/t01_d_extraction/state_manifest.json",
+    "transfer_csv": "results/tables/tcad_t01_d_extraction_idvg.csv",
+    "mesh_summary_csv": "results/tables/tcad_t01_d_extraction_mesh_summary.csv",
+    "mesh_comparison_csv": "results/tables/tcad_t01_d_extraction_mesh_comparison.csv",
+    "parameter_metrics_csv": "results/tables/tcad_t01_d_extraction_parameter_proxies.csv",
+    "state_summary_csv": "results/tables/tcad_t01_d_extraction_state_summary.csv",
+    "t01_db_reproduction_csv": "results/tables/tcad_t01_d_extraction_db_reproduction.csv",
+    "extraction_figure_png": "report/assets/tcad_t01_dc_extraction.png",
+    "state_figure_png": "report/assets/tcad_t01_dc_state_maps.png",
+    "report": "results/reports/tcad_t01_d_extraction.json",
+    "check_report": "results/reports/tcad_t01_d_extraction_check.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T01-D-C may close the complete T01 numerical stage gate for the frozen E2 teaching model when the configured sweep, conservation, mesh-proxy comparison, state-field set, and independent checks pass.",
+    "allowed_parameter_label": "numerical proxy extracted from the frozen teaching model",
+    "prohibited_claims": [
+      "experimentally validated VTH, SS, mobility, or Ion/Ioff",
+      "parameter uncertainty or predictive accuracy",
+      "continuous output-characteristic or saturation-physics validation",
+      "trap, contact, or temperature physics validation",
+      "quantitative dual-gate prediction",
+      "calibrated or circuit-ready compact model"
+    ]
+  }
+}

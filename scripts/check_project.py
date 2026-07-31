@@ -37,6 +37,7 @@ REQUIRED_FILES = [
     "config/tcad_t01_c_transfer.json",
     "config/tcad_t01_d_mesh_refinement.json",
     "config/tcad_t01_d_idvd.json",
+    "config/tcad_t01_d_extraction.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -58,6 +59,7 @@ REQUIRED_FILES = [
     "scripts/check_t01_c_transfer.py",
     "scripts/check_t01_d_mesh_refinement.py",
     "scripts/check_t01_d_idvd.py",
+    "scripts/check_t01_d_extraction.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
@@ -65,6 +67,7 @@ REQUIRED_FILES = [
     "tcad/run_t01_single_gate_transfer.py",
     "tcad/run_t01_single_gate_mesh_refinement.py",
     "tcad/run_t01_single_gate_idvd.py",
+    "tcad/run_t01_single_gate_extraction.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
@@ -98,6 +101,17 @@ REQUIRED_FILES = [
     "results/tables/tcad_t01_d_idvd_mesh_comparison.csv",
     "results/tables/tcad_t01_d_idvd_da_reproduction.csv",
     "report/assets/tcad_t01_d_idvd.png",
+    "results/reports/tcad_t01_d_extraction.json",
+    "results/reports/tcad_t01_d_extraction_check.json",
+    "results/tables/tcad_t01_d_extraction_idvg.csv",
+    "results/tables/tcad_t01_d_extraction_mesh_summary.csv",
+    "results/tables/tcad_t01_d_extraction_mesh_comparison.csv",
+    "results/tables/tcad_t01_d_extraction_parameter_proxies.csv",
+    "results/tables/tcad_t01_d_extraction_state_summary.csv",
+    "results/tables/tcad_t01_d_extraction_db_reproduction.csv",
+    "results/tcad/t01_single_gate/t01_d_extraction/state_manifest.json",
+    "report/assets/tcad_t01_dc_extraction.png",
+    "report/assets/tcad_t01_dc_state_maps.png",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -886,6 +900,115 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t01_d_b:idvd", False, str(error))
+
+    t01_dc_report_path = ROOT / "results" / "reports" / "tcad_t01_d_extraction.json"
+    t01_dc_check_path = ROOT / "results" / "reports" / "tcad_t01_d_extraction_check.json"
+    try:
+        t01_dc_config = json.loads(
+            (ROOT / "config" / "tcad_t01_d_extraction.json").read_text(encoding="utf-8")
+        )
+        t01_dc_report = json.loads(t01_dc_report_path.read_text(encoding="utf-8"))
+        t01_dc_check = json.loads(t01_dc_check_path.read_text(encoding="utf-8"))
+        add_check(
+            checks,
+            "t01_d_c:completion_status",
+            t01_dc_report.get("status") == "PASS"
+            and t01_dc_report.get("case_id") == t01_dc_config.get("case_id")
+            and t01_dc_report.get("stage") == "T01-D-C"
+            and t01_dc_report.get("evidence_level") == "E2",
+            str(t01_dc_report.get("status")),
+        )
+        add_check(
+            checks,
+            "t01_d_c:independent_check",
+            t01_dc_check.get("status") == "PASS"
+            and t01_dc_check.get("case_id") == t01_dc_config.get("case_id")
+            and t01_dc_check.get("stage") == "T01-D-C"
+            and len(t01_dc_check.get("checks", [])) == 17,
+            f"status={t01_dc_check.get('status')} checks={len(t01_dc_check.get('checks', []))}",
+        )
+        completion = t01_dc_report.get("t01_completion", {})
+        requirements = completion.get("requirements", {})
+        add_check(
+            checks,
+            "t01_d_c:complete_teaching_model_gate",
+            completion.get("status") == "PASS"
+            and completion.get("complete_t01_numerical_stage_gate") == "PASS"
+            and set(requirements.values()) == {"PASS"}
+            and completion.get("t02_stage_permitted_next") is True
+            and completion.get("experimental_calibration_permitted") is False
+            and completion.get("physical_parameter_validation_permitted") is False
+            and completion.get("physical_ion_ioff_claim_permitted") is False
+            and completion.get("compact_model_calibrated") is False,
+            f"requirements={requirements} next={completion.get('t02_stage_permitted_next')}",
+        )
+        parameter_proxies = t01_dc_report.get("parameter_proxies", [])
+        summary_metrics = t01_dc_report.get("summary_metrics", {})
+        acceptance = t01_dc_config["acceptance"]
+        add_check(
+            checks,
+            "t01_d_c:numerical_proxy_boundary",
+            len(parameter_proxies) == 2
+            and all(
+                row.get("parameter_claim_status")
+                == "NUMERICAL_PROXY_NOT_PHYSICALLY_VALIDATED"
+                for row in parameter_proxies
+            )
+            and summary_metrics.get("vth_proxy_mesh_difference_v", float("inf"))
+            <= acceptance["maximum_vth_proxy_mesh_difference_v"]
+            and summary_metrics.get("ss_proxy_mesh_relative_difference", float("inf"))
+            <= acceptance["maximum_ss_proxy_mesh_relative_difference"]
+            and summary_metrics.get("mobility_proxy_mesh_relative_difference", float("inf"))
+            <= acceptance["maximum_mobility_proxy_mesh_relative_difference"]
+            and t01_dc_report.get("teaching_target_diagnostic_only", {}).get(
+                "acceptance_depends_on_target_match"
+            )
+            is False,
+            f"proxies={len(parameter_proxies)} metrics={summary_metrics}",
+        )
+        runner_checks = t01_dc_report.get("checks", {})
+        state_outputs = t01_dc_report.get("state_outputs", [])
+        state_manifest = json.loads(
+            (ROOT / t01_dc_report["outputs"]["state_manifest"]).read_text(encoding="utf-8")
+        )
+        state_entries = state_manifest.get("entries", [])
+        state_paths = [
+            ROOT / path
+            for entry in state_entries
+            for path in (entry["node_csv"], entry["element_csv"])
+        ]
+        vtk_paths = [
+            ROOT / item["path"]
+            for entry in state_entries
+            for item in entry.get("vtk_files", [])
+        ]
+        output_paths = [
+            ROOT / value
+            for key, value in t01_dc_report.get("outputs", {}).items()
+            if key != "run_directory"
+        ]
+        run_directory = ROOT / t01_dc_report.get("outputs", {}).get("run_directory", "")
+        add_check(
+            checks,
+            "t01_d_c:checks_and_raw_outputs",
+            bool(runner_checks)
+            and len(runner_checks) == 12
+            and all(result.get("status") == "PASS" for result in runner_checks.values())
+            and [entry.get("state_id") for entry in state_outputs]
+            == acceptance["required_state_ids"]
+            and [entry.get("state_id") for entry in state_entries]
+            == acceptance["required_state_ids"]
+            and all(
+                path.is_file() and path.stat().st_size > 0
+                for path in output_paths + state_paths + vtk_paths
+            )
+            and len(state_paths) == 6
+            and len(vtk_paths) == 15
+            and run_directory.is_dir(),
+            f"checks={len(runner_checks)} states={len(state_entries)} vtk={len(vtk_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t01_d_c:extraction", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

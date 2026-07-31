@@ -1,19 +1,20 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-05" class="report-chapter">
   <h2>5. 仿真工具与模型建立</h2>
-  <p>T01-A 已冻结单栅 IGZO 漂移扩散输入合同，T01-B/C/D-A/D-B 已在 DEVSIM 2.10.0 上运行低漏压烟雾、栅压续算、界面法向网格收敛与离散 Id-Vd 曲线族。结构采用二维、厘米制物理单位：底栅单栅，W = 60 um，L = 10 um，IGZO 厚度 24 nm，物理 Al2O3 厚度 30 nm；顶部为自然零法向通量边界，不加入顶栅或顶介质。</p>
+  <p>T01-A 已冻结单栅 IGZO 漂移扩散输入合同，T01-B/C/D-A/D-B/D-C 已在 DEVSIM 2.10.0 上运行低漏压烟雾、栅压续算、界面法向网格收敛、离散 Id-Vd 曲线族，以及状态/受限数值代理提取。结构采用二维、厘米制物理单位：底栅单栅，W = 60 um，L = 10 um，IGZO 厚度 24 nm，物理 Al2O3 厚度 30 nm；顶部为自然零法向通量边界，不加入顶栅或顶介质。</p>
   <table>
     <thead>
       <tr><th>项目</th><th>T01-A 冻结口径</th><th>来源或状态</th></tr>
     </thead>
     <tbody>
-      <tr><td>坐标/输出单位</td><td>几何 cm，电势/偏压 V，密度 cm^-3，迁移率 cm2/(V*s)，二维电流密度 A/cm；端电流按 W_cm 换算</td><td>输入合同 E3</td></tr>
+      <tr><td>坐标/输出单位</td><td>几何 cm，电势/偏压 V，密度 cm^-3，迁移率 cm2/(V*s)；局部电流密度 A/cm2，二维端口电流每单位宽度 A/cm，端电流再按 W_cm 换算</td><td>输入合同 E3；D-C 明确区分局部场量与接触积分量</td></tr>
       <tr><td>输运方程</td><td>Poisson + 电子连续性；Scharfetter-Gummel 边通量；Einstein 扩散</td><td>教学参数，陷阱/复合关闭</td></tr>
       <tr><td>材料/迁移率</td><td>n 型 IGZO，mu_n = 35.5 cm2/(V*s)，300 K，k_IGZO = 10</td><td>S00 教学基线；其余能带闭合值为 T01-A 明示假设</td></tr>
       <tr><td>接触</td><td>源/漏理想欧姆、零串联电阻；底栅 Dirichlet；顶边自然边界</td><td>最小输运基线，非理想接触留给 T02/T03</td></tr>
       <tr><td>求解阶梯</td><td>每条曲线独立执行：零偏压 Poisson -> 零偏压耦合平衡 -> VDS=0 分步升 VGS -> 分步升 VDS</td><td>T01-D-B 的 6 条曲线不共享上一条曲线终态，避免路径污染</td></tr>
       <tr><td>网格</td><td>T01-C coarse/fine；T01-D-A 固定 fine 横向/体区网格，在界面两侧 10 nm/12 nm 窗口按 1x/2x/4x/8x 加密</td><td>4x/8x 在 VDS=0.01 V、VGS=0.5/1.0 V 的最大电流差 0.01639%，中心势差 0.03265 mV</td></tr>
       <tr><td>T01-D-B 偏压点</td><td>interface_4x：VGS=0/0.3/0.5/1.0 V；interface_8x：VGS=0.5/1.0 V；两者均取 VDS=0/0.01/0.05/0.1/0.2 V</td><td>与 T01-A Stage 3 正式网格一致；8x 仅作高栅压复核</td></tr>
+      <tr><td>T01-D-C 提取/状态</td><td>两档均在 VDS=0.01 V 取 51 个 VGS 点；VTH 用 60 nA 恒流对数插值，SS 用固定电流窗口 OLS，迁移率用物理氧化层电容和中心差分；4x 保存 VGS=-0.5/0.2/1.0 V 三状态</td><td>只生成可复算教学模型数值代理，不以课程目标匹配作为 PASS 条件</td></tr>
     </tbody>
   </table>
-  <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>。各运行器保存输入快照、DC 求解记录、CSV、JSON 及阶段所需状态或图，独立检查器复算哈希、偏压点、守恒、单调性、上游回归和网格指标。T01-D-B 是 E2 教学参数数值证据，只覆盖冻结的 30 个离散偏压点；连续输出行为、饱和机理验证、VTH/SS/迁移率验证或实验拟合尚未生成。</p>
+  <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>，T01-D-C 使用 <code>make t01-d-extract</code>/<code>make t01-d-extract-check</code>。各运行器保存输入快照、DC 求解记录、CSV、JSON 及阶段所需状态或图，独立检查器复算哈希、偏压点、守恒、单调性、上游回归、网格指标和提取公式。完整 T01 是 E2 教学参数数值证据；VTH/SS/迁移率仍是配置方法下的数值代理，连续饱和机理、实验拟合和物理 Ion/Ioff 尚未验证。</p>
 </section>

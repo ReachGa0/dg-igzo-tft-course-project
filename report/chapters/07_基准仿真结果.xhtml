@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-07" class="report-chapter">
   <h2>7. 基准仿真结果</h2>
-  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 在同一方程和输入下扩展到低漏压栅压续算，T01-D-A 以界面窗口加密验证高正栅压目标点，T01-D-B 再生成冻结的离散 Id-Vd 曲线族。模型为单底栅 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
+  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 扩展到低漏压栅压续算，T01-D-A 以界面窗口加密验证高正栅压目标点，T01-D-B 生成冻结的离散 Id-Vd 曲线族，T01-D-C 最后补齐三状态和受限数值代理。模型为单底栅 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
   <table>
     <thead><tr><th>条件</th><th>coarse</th><th>fine</th><th>验收</th></tr></thead>
     <tbody>
@@ -51,5 +51,32 @@
     <img src="assets/tcad_t01_d_idvd.png" alt="T01-D-B 单栅 IGZO 离散 Id-Vd 曲线及高栅压加密网格复核" />
     <figcaption>图 7-1 T01-D-B 冻结偏压点。实线圆点为 interface_4x 正式结果，虚线叉点为 interface_8x 高栅压复核；点间连线只用于辨认采样趋势，不代表连续模型验证。</figcaption>
   </figure>
-  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、<code>results/reports/tcad_t01_d_mesh_refinement.json</code>、<code>results/reports/tcad_t01_d_idvd.json</code> 及对应 CSV、求解日志、节点状态、VTK 和图。T01-D-B 的运行器 11 项检查与独立 16 项复算均 PASS，但结论只覆盖 VDS=0/0.01/0.05/0.1/0.2 V 的离散教学模型点。负栅压端到正栅压端约 17 decade 的数值跨度仍不能称为物理 <code>Ion/Ioff</code>；连续输出特性、真实饱和机理、VTH、SS、迁移率、实验精度、状态图集合和双栅趋势仍未完成。</p>
+  <table>
+    <thead><tr><th>T01-D-C 数值代理</th><th>interface 4x</th><th>interface 8x</th><th>两档差异</th></tr></thead>
+    <tbody>
+      <tr><td>恒流 VTH 代理</td><td>0.217535 V</td><td>0.217552 V</td><td>0.017 mV</td></tr>
+      <tr><td>固定窗口 SS 代理</td><td>59.6081 mV/dec</td><td>59.6081 mV/dec</td><td>2.49e-9 相对值</td></tr>
+      <tr><td>场效应迁移率代理</td><td>19.1739 cm2/(V*s)</td><td>19.1688 cm2/(V*s)</td><td>0.0265%</td></tr>
+      <tr><td>数值电流跨度</td><td>17.4216 decade</td><td>17.4215 decade</td><td>只作数值诊断，不称 Ion/Ioff</td></tr>
+    </tbody>
+  </table>
+  <table>
+    <thead><tr><th>T01-D-C 完整数值门</th><th>结果</th><th>验收或边界</th></tr></thead>
+    <tbody>
+      <tr><td>网格/正式点/DC 求解</td><td>2/102/120，全部收敛</td><td>两档各 51 个相同 VGS 点</td></tr>
+      <tr><td>最大源漏相对不平衡</td><td>6.76e-8</td><td>低于 1e-5</td></tr>
+      <tr><td>代表内部状态</td><td>VGS=-0.5/0.2/1.0 V</td><td>每点含电势、电子浓度、局部电流密度和 VTK</td></tr>
+      <tr><td>T01-D-B 锚点最大电流回归差</td><td>5.89e-15</td><td>低于 1e-8</td></tr>
+      <tr><td>独立复算</td><td>17/17 PASS</td><td>含公式、4800 个三角形状态行和输出哈希</td></tr>
+    </tbody>
+  </table>
+  <figure>
+    <img src="assets/tcad_t01_dc_extraction.png" alt="T01-D-C 低漏压转移曲线、恒流阈值代理、亚阈值拟合和跨导" />
+    <figcaption>图 7-2 T01-D-C 受限数值代理。实线为 interface_4x，虚线为 interface_8x；恒流线、VTH 竖线、SS 拟合段和 VGS=0.5 V 跨导点均由冻结方法生成。</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/tcad_t01_dc_state_maps.png" alt="T01-D-C 关态代理、课程目标附近代理和开态代理的电势、电子浓度及电流密度" />
+    <figcaption>图 7-3 T01-D-C 三种代表状态。横坐标为 um、纵坐标为 nm，纵向显示比例已放大；局部电流密度为 A/cm2，不是接触积分后的 A/cm 端口量。</figcaption>
+  </figure>
+  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、<code>results/reports/tcad_t01_d_mesh_refinement.json</code>、<code>results/reports/tcad_t01_d_idvd.json</code>、<code>results/reports/tcad_t01_d_extraction.json</code> 及对应 CSV、求解日志、节点/单元状态、VTK 和图。T01-D-C 的运行器 12 项检查与独立 17 项复算均 PASS，因而关闭冻结教学模型的完整 T01 数值阶段门并允许进入 T02。这里的 VTH、SS、迁移率和约 17.42 decade 电流跨度仍只能称为数值代理；连续输出特性、真实饱和机理、物理 <code>Ion/Ioff</code>、实验精度、参数不确定度和双栅趋势仍未验证。</p>
 </section>

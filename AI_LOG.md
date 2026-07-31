@@ -16,6 +16,65 @@
 
 ---
 
+## 2026-07-31 | Codex GPT-5 | 完成 T01-D-C 状态、受限数值代理与完整 T01 数值门
+
+### 用户目标
+
+按阶段门继续 T01 的最后一个小阶段：补齐关态/目标附近/开态内部状态，在普通笔记本可运行的二维教学模型边界内做可审计提取，独立验证后更新状态、分章报告、Git 并推送；不提前进入 T02、SPICE 或版图。
+
+### 读取的关键输入
+
+- `AGENTS.md`、全部权威状态/计划/决策文件、T01 验收标准和二维 TCAD 路线。
+- `config/tcad_t01_baseline.json` 的冻结单栅几何、材料、方程、接触、求解器和偏压边界。
+- T01-A 合同、T01-D-A 网格配置/PASS 报告、T01-D-B 配置/PASS 报告及其输入哈希。
+- DEVSIM 2.10.0 本地 API 与示例；探针确认 `element_from_edge_model` 对每个三角形返回三个单元节点矢量值。
+
+### 本次修改
+
+- 新增 `config/tcad_t01_d_extraction.json`、`tcad/run_t01_single_gate_extraction.py`、`scripts/check_t01_d_extraction.py` 与 `make t01-d-extract`/`make t01-d-extract-check`。
+- 在 `interface_4x/interface_8x` 上固定同一 VDS=0.01 V、51 点 VGS 网格；每档从新建器件的零偏压 Poisson/耦合平衡开始，重放低 VDS 阶梯、负栅压预处理，再从 -1 V 向 1 V 续算。
+- 固定三种数值代理方法：`10 nA*(W/L)=60 nA` 恒流 VTH 对数插值、`1e-13~1e-8 A/cm` 窗口 SS 回归、30 nm 物理 Al2O3 电容与 VGS=0.475/0.525 V 中心差分场效应迁移率。PASS 不依赖代理值接近课程目标或常数输运迁移率。
+- 在 VGS=-0.5/0.2/1.0 V 保存节点电势、沟道电子浓度、三角形三个单元节点的 `Jx/Jy` 原值、单元中心平均矢量、VTK 和状态摘要；明确局部 A/cm2 与二维端口 A/cm 的区别。
+- 更新状态、计划、架构、ADR、实验矩阵、TCAD 说明、验收/汇报文档、报告第 5/7 章、证据矩阵和总项目检查规则。
+
+### 实际结果
+
+- 两档各 51 个正式点，共 120 次 DC、102 个正式点全部收敛；最大源漏相对不平衡为 `6.764e-8`，两档漏端电流均随 VGS 单调增加。
+- interface_4x 数值代理为 VTH=`0.217535 V`、SS=`59.6081 mV/dec`、场效应迁移率=`19.1739 cm2/(V*s)`；interface_8x 对应为 `0.217552 V`、`59.6081 mV/dec`、`19.1688 cm2/(V*s)`。
+- 4x/8x 的 VTH 差为 `0.017 mV`，SS 相对差 `2.49e-9`，迁移率相对差 `0.0265%`；T01-D-B 四个低漏压锚点最大电流回归差 `5.89e-15`。
+- 三状态共写出 3 份节点 CSV、3 份各含 1600 个三角形的电流密度 CSV 和 15 个 VTK 关联文件；状态端口电流与中心电子浓度从关态代理到开态代理严格增加。
+
+### 验证
+
+```text
+make t01-d-extract
+T01_D_EXTRACTION_PASS meshes=2 bias_points=102 states=3
+
+make t01-d-extract-check
+T01_D_EXTRACTION_CHECK_PASS checks=17
+
+make check
+PROJECT_CHECK_PASS checks=232
+
+make report-check
+REPORT_STRUCTURE_PASS chapters=12 appendices=5 placeholders=19 images=3
+
+图像人工检查
+PASS：提取图和三状态图非空，坐标/图例/色标无重叠，三种状态与 4x/8x 曲线可辨认
+```
+
+### 决策和边界
+
+- T01-D-C 形成 E2 教学参数证据并关闭冻结模型的完整 T01 数值阶段门，只允许进入 T02 的最小双栅移动电荷基线。
+- VTH、SS、gm、迁移率和约 `17.42 decade` 电流跨度必须称为数值代理；没有实验标定、置信区间、物理 Ion/Ioff 或紧凑模型预测精度。
+- 连续 Id-Vd、真实饱和机理、陷阱、非理想接触、温度、双栅电流、SPICE 和版图均不属于本阶段结果。
+
+### 下一步
+
+进入 T02 前先冻结顶栅/顶介质结构、上下栅边界、偏压路径和“关闭顶栅耦合返回 T01”的回归门；只做一个最小双栅移动电荷案例，通过后再扩展偏压族。
+
+---
+
 ## 2026-07-31 | Codex GPT-5 | 完成 T01-D-B 单栅离散 Id-Vd 曲线族
 
 ### 用户目标

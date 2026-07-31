@@ -9,6 +9,7 @@
 3. `T01-C` 已运行的单栅低漏压栅压续算：在 VDS=0.01 V 保存 VGS=-1.0 至 1.0 V 的端口与节点状态，并暴露高正栅压网格警告。
 4. `T01-D-A` 已运行的界面法向网格收敛：固定横向和体区网格，只在氧化层/沟道界面窗口做 1x/2x/4x/8x 加密，验证 VGS=0.5/1.0 V 目标点。
 5. `T01-D-B` 已运行的离散 Id-Vd 曲线族：interface_4x 完成 4 条正式曲线，interface_8x 复核 2 条高栅压曲线。
+6. `T01-D-C` 已运行的状态与受限提取：两档网格完成同一 51 点低漏压网格，interface_4x 保存关态/目标附近/开态的电势、电子浓度和局部电流密度。
 
 `T00` 不能被写成“IGZO TFT 电流仿真已完成”。它只证明二维结构、Poisson 方程、边界条件、扫描和数据导出链路能运行。
 
@@ -31,6 +32,7 @@ tcad/
 |-- run_t01_single_gate_transfer.py # T01-C 单栅低漏压 Id-Vg 续算
 |-- run_t01_single_gate_mesh_refinement.py # T01-D-A 界面法向网格收敛
 |-- run_t01_single_gate_idvd.py # T01-D-B 离散 Id-Vd 曲线族
+|-- run_t01_single_gate_extraction.py # T01-D-C 状态与数值代理提取
 |-- structures/README.md      # 后续 Gmsh/DEVSIM 结构与网格
 |-- physics/README.md         # 方程、材料、陷阱和接触模型
 `-- tests/README.md           # 网格、极限条件和故障测试
@@ -84,6 +86,17 @@ results/reports/tcad_t01_d_idvd_check.json
 report/assets/tcad_t01_d_idvd.png
 ```
 
+T01-D-C 使用 `config/tcad_t01_d_extraction.json`，结果写入：
+
+```text
+results/tcad/t01_single_gate/t01_d_extraction/
+results/tables/tcad_t01_d_extraction_*.csv
+results/reports/tcad_t01_d_extraction.json
+results/reports/tcad_t01_d_extraction_check.json
+report/assets/tcad_t01_dc_extraction.png
+report/assets/tcad_t01_dc_state_maps.png
+```
+
 ## 运行 T00
 
 在项目根目录执行：
@@ -130,6 +143,15 @@ make t01-d-idvd-check
 
 T01-D-B 的 PASS 表示 6 条独立初始化曲线的 65 次 DC 和 30 个冻结偏压点全部收敛，端口守恒、VDS/VGS 次序和选定 4x/8x 网格复核通过。它只验证离散教学模型点；连续输出行为、饱和机理、状态图、参数提取、实验精度和双栅预测仍未完成。
 
+## 运行 T01-D-C
+
+```bash
+make t01-d-extract
+make t01-d-extract-check
+```
+
+T01-D-C 的 PASS 表示 interface_4x/interface_8x 各 51 个低漏压正式点、共 120 次 DC 全部收敛，并补齐 3 组电势/电子浓度/电流密度状态。恒流 VTH、窗口 SS 和物理氧化层电容场效应迁移率均为冻结方法下的数值代理；它们可用于检查教学模型内部一致性，不能写成实测验证参数或物理 Ion/Ioff。该阶段关闭 T01 教学模型数值门并打开 T02。
+
 ## T00 的模型
 
 三个区域均求解：
@@ -147,11 +169,11 @@ div(epsilon * grad(Potential)) = 0
 - 其余外边界：自然零通量边界；
 - 两个介质/IGZO 界面：电势连续、电位移通量由区域方程共同守恒。
 
-## 后续 T01-D-C 与 T02 必须增加什么
+## 后续 T02 必须增加什么
 
-1. 补齐关态、阈值附近和开态的电势、电子浓度与电流密度；
-2. 在教学边界内提取 VTH/SS/迁移率并明确适用域；
-3. T02 再加入顶栅移动电荷与上下栅耦合；
+1. 冻结顶栅、顶介质、上下栅边界与偏压协议；
+2. 加入顶栅移动电荷控制并验证关闭顶栅耦合时返回 T01；
+3. 只运行最小上下栅偏压族，再决定是否扩展扫描；
 4. 后续受控加入带尾态、深能级、界面陷阱和非理想接触；
 5. 与老师数据或条件完整的文献/实验数据定量对比。
 

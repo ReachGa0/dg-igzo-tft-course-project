@@ -1,0 +1,3 @@
+mesh_role,mesh_level,refinement_factor,node_count_with_interface_duplicates,element_count,dc_solve_count,reported_bias_point_count,total_solve_seconds,wall_seconds
+production,interface_4x,4.0,1394,2560,60,51,1.3714871600095648,1.7227527489994827
+reference,interface_8x,8.0,2378,4480,60,51,2.497189805002563,2.522283962000074

@@ -1,0 +1,174 @@
+{
+  "case_id": "IGZO_T01_SINGLE_GATE_DD_DC_EXTRACTION_V1",
+  "stage": "T01-D-C",
+  "entries": [
+    {
+      "state_id": "off_proxy",
+      "state_label": "off proxy",
+      "mesh_level": "interface_4x",
+      "stage_id": "T01_DC_EXTRACTION",
+      "vgs_v": -0.5,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 1.1489829793277076e-14,
+      "drain_current_terminal_a": 6.893897875966245e-17,
+      "relative_current_imbalance": 3.710241499231898e-13,
+      "center_channel_potential_v": -0.4769319050150289,
+      "center_channel_electron_density_cm3": 81651433.19362915,
+      "node_row_count": 1394,
+      "channel_node_count": 861,
+      "channel_element_count": 1600,
+      "minimum_potential_v": -0.5,
+      "maximum_potential_v": 0.01,
+      "minimum_electron_density_cm3": 57819491.656306475,
+      "maximum_electron_density_cm3": 1e+16,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 3.994706533607141e-09,
+      "median_cell_current_density_magnitude_a_per_cm2": 4.641020038783195e-09,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 5.221757073012041e-09,
+      "node_csv": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_off_proxy_vgs_m0p500_nodes.csv",
+      "element_csv": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_off_proxy_vgs_m0p500_current_elements.csv",
+      "node_csv_sha256": "6411f819f7b51c9fd695ea6a01c77da5107ba46721012b79a28e5ec0fb00ca45",
+      "element_csv_sha256": "b350729da6eefbe5913df4e0a32ae3ec33d2d150826b77139eb464fd76a68e5c",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_off_proxy_vgs_m0p500.visit",
+          "sha256": "b421e20d970ca05196cd45814afc9c68194664acd6392c5100e03107a31c03f2"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_off_proxy_vgs_m0p500.vtm",
+          "sha256": "aa43924b521be9f847e6ac319b09803ed70806da3687b09afc3a7c89c79f1b92"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_off_proxy_vgs_m0p500_0.vtu",
+          "sha256": "ef4b966b42dee0672ec138d0671852f6127c81cd4ebd7ff886ff7a9d689765c7"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_off_proxy_vgs_m0p500_1.vtu",
+          "sha256": "3e42721e8e8352ab0836c9c41b6ecd0b6cd4f7f441ce9e0860b712dc231cc228"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_off_proxy_vgs_m0p500_2.vtu",
+          "sha256": "aa82ef37e7d9a00717bb82e909b2a52b584b3ef4e71101b6ad0c83057fbb380c"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "near_target_proxy",
+      "state_label": "near course-target proxy",
+      "mesh_level": "interface_4x",
+      "stage_id": "T01_DC_EXTRACTION",
+      "vgs_v": 0.2,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 9.232616560278914e-06,
+      "drain_current_terminal_a": 5.539569936167348e-08,
+      "relative_current_imbalance": 0.0,
+      "center_channel_potential_v": 0.05335089065871351,
+      "center_channel_electron_density_cm3": 6.502986521729127e+16,
+      "node_row_count": 1394,
+      "channel_node_count": 861,
+      "channel_element_count": 1600,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.2,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 1.5422262482893162e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 2.6418441774283155,
+      "median_cell_current_density_magnitude_a_per_cm2": 4.094431886308145,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 7.591454525983274,
+      "node_csv": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_near_target_proxy_vgs_0p200_nodes.csv",
+      "element_csv": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_near_target_proxy_vgs_0p200_current_elements.csv",
+      "node_csv_sha256": "75f2cefa9d1d9d46b80a81e7fadeacbd026b6aa5a9de6919cebf21aa13c24f6d",
+      "element_csv_sha256": "75bace313f98e6e41f41667cccf3c2792d2be8a4d57c74007b26081b734d4178",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_near_target_proxy_vgs_0p200.visit",
+          "sha256": "fe2dfcd081058b5659f55dd3f3770b107f2ddec75bb919562b5e7e41d56a1584"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_near_target_proxy_vgs_0p200.vtm",
+          "sha256": "ee5aaadfa672283094e8db007dec09d6fe5859c32f959c1f036251b99fddc565"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_near_target_proxy_vgs_0p200_0.vtu",
+          "sha256": "ef4b966b42dee0672ec138d0671852f6127c81cd4ebd7ff886ff7a9d689765c7"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_near_target_proxy_vgs_0p200_1.vtu",
+          "sha256": "140741af93ba5102105acee3eca2d973e173ee090392d05a4ce7b84fb78bc84e"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_near_target_proxy_vgs_0p200_2.vtu",
+          "sha256": "86ef13c4f2ef7967a3b4757ee7fac37cf1772d4d238ec10badbb59f9fb29ca62"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "on_proxy",
+      "state_label": "on proxy",
+      "mesh_level": "interface_4x",
+      "stage_id": "T01_DC_EXTRACTION",
+      "vgs_v": 1.0,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 3.8002708377239875e-05,
+      "drain_current_terminal_a": 2.2801625026343927e-07,
+      "relative_current_imbalance": 2.959946282742833e-14,
+      "center_channel_potential_v": 0.07938253506837781,
+      "center_channel_electron_density_cm3": 1.7742484231065875e+17,
+      "node_row_count": 1394,
+      "channel_node_count": 861,
+      "channel_element_count": 1600,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 1.0,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 3.956082098445331e+18,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 3.7165897176683513,
+      "median_cell_current_density_magnitude_a_per_cm2": 12.173469266887487,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 128.5658015438122,
+      "node_csv": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_on_proxy_vgs_1p000_nodes.csv",
+      "element_csv": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_on_proxy_vgs_1p000_current_elements.csv",
+      "node_csv_sha256": "25e8facbbbc722f0467941a61c94b039c08275aca01afa1f66a31e7a5830898a",
+      "element_csv_sha256": "9da34457db5d3c4fcfc79aabe567975c208f29c6f75f9683a719178a55a17336",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_on_proxy_vgs_1p000.visit",
+          "sha256": "3dcb2b140020bf092d4821ade52d77e43206cd7266c0ea51b51a96aa02cad57e"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_on_proxy_vgs_1p000.vtm",
+          "sha256": "059b2af944e2a53e7aadee9c5e640986d435d9577d4d5e8cad4b95776a4ca70b"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_on_proxy_vgs_1p000_0.vtu",
+          "sha256": "ef4b966b42dee0672ec138d0671852f6127c81cd4ebd7ff886ff7a9d689765c7"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_on_proxy_vgs_1p000_1.vtu",
+          "sha256": "326dbb45d39222013ad9952583b510c332358778c79813db8194fe2fdd59d17f"
+        },
+        {
+          "path": "results/tcad/t01_single_gate/t01_d_extraction/t01_dc_interface_4x_on_proxy_vgs_1p000_2.vtu",
+          "sha256": "a80d7eba392687629d7d565b15439433daee14c75a9c71d5184cae97efc14d57"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    }
+  ]
+}
