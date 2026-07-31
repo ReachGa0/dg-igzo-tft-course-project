@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "case_id": "IGZO_T02_DUAL_GATE_DD_B_MINIMAL_V1",
+  "stage": "T02-B",
+  "status": "planned",
+  "evidence_level_before_run": "E0",
+  "contract_evidence_level_after_check": "E3",
+  "dependencies": {
+    "s00_report": "results/reports/s00_data_audit.json",
+    "t01_baseline_config": "config/tcad_t01_baseline.json",
+    "t01_mesh_config": "config/tcad_t01_d_mesh_refinement.json",
+    "t02_a_config": "config/tcad_t02_a_dual_gate_contract.json",
+    "t02_a_contract_report": "results/reports/tcad_t02_a_input_contract.json",
+    "t02_a_report": "results/reports/tcad_t02_a_limit_regression.json",
+    "t02_a_check_report": "results/reports/tcad_t02_a_limit_regression_check.json",
+    "required_g0_status": "TEACHING_BASELINE_ONLY",
+    "required_t02_a_contract_status": "PASS",
+    "required_t02_a_status": "PASS",
+    "required_t02_a_check_status": "PASS",
+    "require_t02_b_permitted_by_t02_a": true
+  },
+  "scope": {
+    "device": "2D n-IGZO electron-only drift-diffusion teaching model with the T02-A enabled symmetric top stack",
+    "purpose": "Run the first minimal nonzero enabled-top-gate family while holding drain voltage, bottom-gate voltage, geometry, physics, contacts, mesh, and temperature fixed.",
+    "changed_variable": "V_top_gate",
+    "fixed_variables": [
+      "source voltage = 0 V",
+      "drain voltage = 0.01 V at every reported point",
+      "bottom-gate voltage = 0 V at every reported point",
+      "30 nm Al2O3 symmetric teaching top and bottom dielectrics",
+      "T02-A enabled topology and interface_4x mesh",
+      "10 um channel length and 24 nm channel thickness",
+      "300 K constant teaching mobility",
+      "ideal ohmic source and drain",
+      "Poisson plus electron continuity",
+      "no traps, recombination, ferroelectric polarization, or non-ideal contacts"
+    ],
+    "executed_case": "one increasing nonnegative VTG family on one freshly initialized enabled-top-stack device",
+    "prohibited_work": [
+      "bottom-gate sweep",
+      "multiple fixed-bottom-gate families",
+      "negative or reverse-direction top-gate sweep",
+      "Delta VTH, gm, SS, mobility, or coupling-slope extraction",
+      "T03 parameter scans",
+      "experimental fitting or calibrated dual-gate prediction",
+      "compact-model, SPICE, circuit, layout, or HZO work"
+    ]
+  },
+  "inheritance": {
+    "top_stack_source": "config/tcad_t02_a_dual_gate_contract.json top_stack_contract.enabled_mode",
+    "mesh_source": "config/tcad_t02_a_dual_gate_contract.json mesh",
+    "transport_source": "config/tcad_t01_baseline.json",
+    "topology_reference": "results/reports/tcad_t02_a_limit_regression.json enabled topology",
+    "required_mesh_level": "interface_4x",
+    "require_exact_t02_a_enabled_topology": true
+  },
+  "bias_protocol": {
+    "source_v": 0.0,
+    "drain_v": 0.01,
+    "bottom_gate_v": 0.0,
+    "low_vds_values_v": [0.0, 0.001, 0.005, 0.01],
+    "top_gate_values_v": [0.0, 0.1, 0.2, 0.3],
+    "state_top_gate_values_v": [0.0, 0.3],
+    "execution_order": [
+      "fresh T02-A enabled-top-stack device",
+      "all-zero-bias Poisson initialization",
+      "all-zero-bias coupled electron equilibrium",
+      "repeat the low-VDS ladder with VBG=VTG=0 V",
+      "reuse the final low-VDS point as the VTG=0 V reported reference",
+      "increase VTG through 0.1, 0.2, and 0.3 V while VDS and VBG remain fixed",
+      "save VTG=0 V and VTG=0.3 V endpoint states",
+      "delete the device"
+    ]
+  },
+  "acceptance": {
+    "required_top_gate_values_v": [0.0, 0.1, 0.2, 0.3],
+    "required_reported_point_count": 4,
+    "required_total_dc_solve_count": 9,
+    "maximum_relative_terminal_current_imbalance": 1e-05,
+    "maximum_zero_equilibrium_absolute_terminal_current_a_per_cm": 1e-18,
+    "maximum_zero_equilibrium_absolute_potential_v": 1e-10,
+    "require_positive_drain_and_negative_source_current": true,
+    "require_strict_current_increase_with_top_gate": true,
+    "require_strict_center_potential_increase_with_top_gate": true,
+    "require_strict_center_density_increase_with_top_gate": true,
+    "minimum_endpoint_current_ratio": 1.01,
+    "minimum_endpoint_center_potential_increase_v": 0.0001,
+    "minimum_endpoint_center_density_ratio": 1.01,
+    "required_regions": ["bottom_oxide", "channel", "top_oxide"],
+    "required_contacts": ["source", "drain", "bottom_gate", "top_gate"],
+    "required_interfaces": ["bottom_oxide_channel", "channel_top_oxide"],
+    "required_state_ids": ["top_gate_zero_reference", "top_gate_positive_endpoint"],
+    "required_vtk_file_count_per_state": 6,
+    "require_all_dc_solves_converged": true,
+    "require_t02_a_topology_count_match": true
+  },
+  "outputs": {
+    "contract_report": "results/reports/tcad_t02_b_input_contract.json",
+    "run_directory": "results/tcad/t02_dual_gate/t02_b_minimal_bias",
+    "config_snapshot": "results/tcad/t02_dual_gate/t02_b_minimal_bias/input_snapshot.json",
+    "solver_log": "results/tcad/t02_dual_gate/t02_b_minimal_bias/solver_log.json",
+    "state_manifest": "results/tcad/t02_dual_gate/t02_b_minimal_bias/state_manifest.json",
+    "bias_csv": "results/tables/tcad_t02_b_minimal_bias.csv",
+    "state_summary_csv": "results/tables/tcad_t02_b_state_summary.csv",
+    "figure_png": "report/assets/tcad_t02_b_minimal_bias.png",
+    "report": "results/reports/tcad_t02_b_minimal_bias.json",
+    "check_report": "results/reports/tcad_t02_b_minimal_bias_check.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T02-B may establish the sign and numerical detectability of top-gate control for the four configured points on the frozen E2 teaching model, with current conservation and endpoint internal states.",
+    "prohibited_claims": [
+      "complete dual-gate transfer family verified",
+      "Delta VTH, gm, SS, mobility, capacitance ratio, or coupling slope extracted",
+      "negative-bias or reverse-sweep behavior verified",
+      "experimental validation or calibrated prediction",
+      "physical Ion/Ioff or parameter uncertainty",
+      "T02 complete",
+      "T03, compact-model, circuit, layout, or ferroelectric evidence"
+    ],
+    "next_gate": "Only a PASS result permits T02-C to freeze and run the bidirectional top/bottom-gate family contract."
+  }
+}

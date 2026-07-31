@@ -1,0 +1,339 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T02_DUAL_GATE_DD_B_MINIMAL_V1",
+  "stage": "T02-B",
+  "evidence_level": "E2",
+  "model_scope": "2D n-IGZO electron-only drift-diffusion teaching model with the frozen T02-A enabled symmetric top stack",
+  "input_snapshot": "results/tcad/t02_dual_gate/t02_b_minimal_bias/input_snapshot.json",
+  "reproduction": {
+    "contract_command": "make t02-b-contract-check",
+    "command": "make t02-b-minimal",
+    "validation_command": "make t02-b-minimal-check",
+    "python_executable": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u53d1\u9001\u7248\u672c/\u8bfe\u7a0b0/.venv/bin/python",
+    "devsim_version": "2.10.0"
+  },
+  "topology": {
+    "mode_id": "enabled_symmetric_teaching_top_stack",
+    "top_coupling_enabled": true,
+    "mesh_level": "interface_4x",
+    "regions": [
+      "bottom_oxide",
+      "channel",
+      "top_oxide"
+    ],
+    "contacts": [
+      "bottom_gate",
+      "drain",
+      "source",
+      "top_gate"
+    ],
+    "interfaces": [
+      "bottom_oxide_channel",
+      "channel_top_oxide"
+    ],
+    "node_count_with_interface_duplicates": 2419,
+    "element_count": 4480
+  },
+  "zero_equilibrium": {
+    "source_current_a_per_cm": 0.0,
+    "drain_current_a_per_cm": 0.0,
+    "maximum_absolute_terminal_current_a_per_cm": 0.0,
+    "maximum_absolute_potential_v": 0.0,
+    "node_count": 2419
+  },
+  "bias_points": [
+    {
+      "stage_id": "T02_B_MINIMAL_TOP_GATE",
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "mesh_level": "interface_4x",
+      "vbg_v": 0.0,
+      "vtg_v": 0.0,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.1930966936239753e-06,
+      "drain_current_a_per_cm": 1.1930966936239768e-06,
+      "source_current_terminal_a": -7.158580161743852e-09,
+      "drain_current_terminal_a": 7.158580161743861e-09,
+      "current_imbalance_a_per_cm": 1.4823076576950256e-21,
+      "relative_current_imbalance": 1.242403625470274e-15,
+      "center_channel_potential_v": 0.0013326913196697481,
+      "center_channel_electron_density_cm3": 8792236312879518.0,
+      "solve_seconds": 0.032148302998393774,
+      "converged": true
+    },
+    {
+      "stage_id": "T02_B_MINIMAL_TOP_GATE",
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "mesh_level": "interface_4x",
+      "vbg_v": 0.0,
+      "vtg_v": 0.1,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -3.700428574078727e-06,
+      "drain_current_a_per_cm": 3.7004285740787383e-06,
+      "source_current_terminal_a": -2.2202571444472362e-08,
+      "drain_current_terminal_a": 2.2202571444472432e-08,
+      "current_imbalance_a_per_cm": 1.1434944787933055e-20,
+      "relative_current_imbalance": 3.0901676816664153e-15,
+      "center_channel_potential_v": 0.03024953173827528,
+      "center_channel_electron_density_cm3": 2.676615586916425e+16,
+      "solve_seconds": 0.05211851400235901,
+      "converged": true
+    },
+    {
+      "stage_id": "T02_B_MINIMAL_TOP_GATE",
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "mesh_level": "interface_4x",
+      "vbg_v": 0.0,
+      "vtg_v": 0.2,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -7.4129566389147605e-06,
+      "drain_current_a_per_cm": 7.412956638914865e-06,
+      "source_current_terminal_a": -4.447773983348856e-08,
+      "drain_current_terminal_a": 4.447773983348919e-08,
+      "current_imbalance_a_per_cm": 1.0418505251227894e-19,
+      "relative_current_imbalance": 1.4054453248161712e-14,
+      "center_channel_potential_v": 0.04685755866596012,
+      "center_channel_electron_density_cm3": 5.071597384095385e+16,
+      "solve_seconds": 0.05080522500065854,
+      "converged": true
+    },
+    {
+      "stage_id": "T02_B_MINIMAL_TOP_GATE",
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "mesh_level": "interface_4x",
+      "vbg_v": 0.0,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "source_current_a_per_cm": -1.1549445541373237e-05,
+      "drain_current_a_per_cm": 1.154944554137314e-05,
+      "source_current_terminal_a": -6.929667324823942e-08,
+      "drain_current_terminal_a": 6.929667324823884e-08,
+      "current_imbalance_a_per_cm": -9.656175598699024e-20,
+      "relative_current_imbalance": 8.360726550991553e-15,
+      "center_channel_potential_v": 0.056544883007083165,
+      "center_channel_electron_density_cm3": 7.364012706240109e+16,
+      "solve_seconds": 0.04554897599882679,
+      "converged": true
+    }
+  ],
+  "state_outputs": [
+    {
+      "state_id": "top_gate_zero_reference",
+      "state_label": "VTG=0 V reference at fixed VDS and VBG",
+      "bias": {
+        "source_v": 0.0,
+        "drain_v": 0.01,
+        "bottom_gate_v": 0.0,
+        "top_gate_v": 0.0
+      },
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "regions": [
+        "bottom_oxide",
+        "channel",
+        "top_oxide"
+      ],
+      "contacts": [
+        "source",
+        "drain",
+        "bottom_gate",
+        "top_gate"
+      ],
+      "interfaces": [
+        "bottom_oxide_channel",
+        "channel_top_oxide"
+      ],
+      "node_count_with_interface_duplicates": 2419,
+      "state_csv": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference_nodes.csv",
+      "state_csv_sha256": "bbe31adad1c7d5a96cc6fceed53a480132fa395a7b731dac41c93221ba8dfbc1",
+      "vtk_base": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference.visit",
+          "sha256": "36d47732d163b641b3343f782f379ad9a5494c667ddfd8eb95e325a25d7717e1"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference.vtm",
+          "sha256": "f18ea6b75bcf18283c9658147b308343bf641785ba73ea2ef40323dff4897fdf"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference_1.vtu",
+          "sha256": "4c109c541f656da3143f8d09f443d35d7d9ff7bc423ebc85178942e2af0bed9a"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference_2.vtu",
+          "sha256": "590d68791b3466ab0adb76c2745ea7dea7c8a4859025c0577e43dee135bbc035"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference_3.vtu",
+          "sha256": "afd83abf41cbdd56adbcc685fe7fbd5e2342c8911075f556cba96d32e5721d4c"
+        }
+      ],
+      "vtk_file_count": 6,
+      "source_current_a_per_cm": -1.1930966936239753e-06,
+      "drain_current_a_per_cm": 1.1930966936239768e-06,
+      "relative_current_imbalance": 1.242403625470274e-15,
+      "center_channel_potential_v": 0.0013326913196697481,
+      "center_channel_electron_density_cm3": 8792236312879518.0,
+      "maximum_absolute_potential_v": 0.01
+    },
+    {
+      "state_id": "top_gate_positive_endpoint",
+      "state_label": "VTG=0.3 V positive endpoint at fixed VDS and VBG",
+      "bias": {
+        "source_v": 0.0,
+        "drain_v": 0.01,
+        "bottom_gate_v": 0.0,
+        "top_gate_v": 0.3
+      },
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "regions": [
+        "bottom_oxide",
+        "channel",
+        "top_oxide"
+      ],
+      "contacts": [
+        "source",
+        "drain",
+        "bottom_gate",
+        "top_gate"
+      ],
+      "interfaces": [
+        "bottom_oxide_channel",
+        "channel_top_oxide"
+      ],
+      "node_count_with_interface_duplicates": 2419,
+      "state_csv": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint_nodes.csv",
+      "state_csv_sha256": "6c6e07779adbc2c53f6a28fd9c8c33a5e8e0624fc4c8b34ea6395b453a55bb7d",
+      "vtk_base": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint.visit",
+          "sha256": "767ac628e1780d0044a8ab43ea6c307d3838e0627ce3a9c4a70cf0c0c9d0b5bc"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint.vtm",
+          "sha256": "5397c24308caa61212ce273008a4c143167bb0c446866129ec8ca13206208556"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint_1.vtu",
+          "sha256": "6b6105e149d067d6a4d03de31bfc84f9025613135645882ccb18f9c92346ae83"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint_2.vtu",
+          "sha256": "03c64fadb4cdd33524c50b8218ca158f81338aeccbd4e7a1ae07d774b466a9f0"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint_3.vtu",
+          "sha256": "f45b9505f2ca11de53782577d82ecd95c57fcdcfb65e7d71b2980b9e4b4d9f65"
+        }
+      ],
+      "vtk_file_count": 6,
+      "source_current_a_per_cm": -1.1549445541373237e-05,
+      "drain_current_a_per_cm": 1.154944554137314e-05,
+      "relative_current_imbalance": 8.360726550991553e-15,
+      "center_channel_potential_v": 0.056544883007083165,
+      "center_channel_electron_density_cm3": 7.364012706240109e+16,
+      "maximum_absolute_potential_v": 0.3
+    }
+  ],
+  "figure": {
+    "path": "report/assets/tcad_t02_b_minimal_bias.png",
+    "sha256": "728ae99d70e72c0748d611be6d4a35a7f3a96744542f0c67bd9edce00dd7e3a8"
+  },
+  "checks": {
+    "t02_a_contract_and_gate_passed": {
+      "status": "PASS",
+      "detail": "contract=PASS t02_a=PASS"
+    },
+    "all_configured_dc_solves_converged": {
+      "status": "PASS",
+      "detail": "records=9 expected=9"
+    },
+    "enabled_topology_matches_t02_a": {
+      "status": "PASS",
+      "detail": "nodes=2419 elements=4480"
+    },
+    "minimal_top_gate_grid_completed": {
+      "status": "PASS",
+      "detail": "rows=4 VTG=[0.0, 0.1, 0.2, 0.3]"
+    },
+    "current_conservation_sign_and_strict_increase": {
+      "status": "PASS",
+      "detail": "max_imbalance=1.405445e-14 currents=[1.1930966936239768e-06, 3.7004285740787383e-06, 7.412956638914865e-06, 1.154944554137314e-05]"
+    },
+    "internal_state_strictly_increases": {
+      "status": "PASS",
+      "detail": "potentials=[0.0013326913196697481, 0.03024953173827528, 0.04685755866596012, 0.056544883007083165] densities=[8792236312879518.0, 2.676615586916425e+16, 5.071597384095385e+16, 7.364012706240109e+16]"
+    },
+    "endpoint_response_is_numerically_detectable": {
+      "status": "PASS",
+      "detail": "current_ratio=9.68023 density_ratio=8.37559 potential_delta=5.521219e-02"
+    },
+    "zero_equilibrium_is_current_free_before_bias_ramp": {
+      "status": "PASS",
+      "detail": "{\"drain_current_a_per_cm\": 0.0, \"maximum_absolute_potential_v\": 0.0, \"maximum_absolute_terminal_current_a_per_cm\": 0.0, \"node_count\": 2419, \"source_current_a_per_cm\": 0.0}"
+    },
+    "endpoint_states_and_vtk_are_persisted": {
+      "status": "PASS",
+      "detail": "states=['top_gate_zero_reference', 'top_gate_positive_endpoint'] vtk=[6, 6]"
+    },
+    "report_figure_written": {
+      "status": "PASS",
+      "detail": "path=report/assets/tcad_t02_b_minimal_bias.png bytes=111482"
+    }
+  },
+  "failures": [],
+  "summary_metrics": {
+    "maximum_relative_terminal_current_imbalance": 1.4054453248161712e-14,
+    "endpoint_current_ratio": 9.680225922252978,
+    "endpoint_center_potential_increase_v": 0.05521219168741342,
+    "endpoint_center_density_ratio": 8.375585509971744
+  },
+  "t02_b_completion": {
+    "status": "PASS",
+    "minimal_nonzero_top_gate_family_completed": true,
+    "top_gate_response_direction_verified": true,
+    "t02_c_bidirectional_family_permitted_next": true,
+    "t02_complete": false,
+    "delta_vth_verified": false,
+    "gm_verified": false,
+    "experimental_calibration_permitted": false
+  },
+  "limitations": [
+    "Only VTG=0/0.1/0.2/0.3 V was run at VDS=0.01 V and VBG=0 V on the frozen teaching model.",
+    "The family is a one-direction minimal response check; negative or reverse top-gate sweeps remain unverified.",
+    "No Delta VTH, gm, SS, mobility, capacitance ratio, coupling slope, experimental calibration, or physical Ion/Ioff claim is established.",
+    "Traps, non-ideal contacts, recombination, ferroelectric polarization, and uncertainty remain absent."
+  ],
+  "outputs": {
+    "contract_report": "results/reports/tcad_t02_b_input_contract.json",
+    "run_directory": "results/tcad/t02_dual_gate/t02_b_minimal_bias",
+    "config_snapshot": "results/tcad/t02_dual_gate/t02_b_minimal_bias/input_snapshot.json",
+    "solver_log": "results/tcad/t02_dual_gate/t02_b_minimal_bias/solver_log.json",
+    "state_manifest": "results/tcad/t02_dual_gate/t02_b_minimal_bias/state_manifest.json",
+    "bias_csv": "results/tables/tcad_t02_b_minimal_bias.csv",
+    "state_summary_csv": "results/tables/tcad_t02_b_state_summary.csv",
+    "figure_png": "report/assets/tcad_t02_b_minimal_bias.png",
+    "report": "results/reports/tcad_t02_b_minimal_bias.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T02-B may establish the sign and numerical detectability of top-gate control for the four configured points on the frozen E2 teaching model, with current conservation and endpoint internal states.",
+    "prohibited_claims": [
+      "complete dual-gate transfer family verified",
+      "Delta VTH, gm, SS, mobility, capacitance ratio, or coupling slope extracted",
+      "negative-bias or reverse-sweep behavior verified",
+      "experimental validation or calibrated prediction",
+      "physical Ion/Ioff or parameter uncertainty",
+      "T02 complete",
+      "T03, compact-model, circuit, layout, or ferroelectric evidence"
+    ],
+    "next_gate": "Only a PASS result permits T02-C to freeze and run the bidirectional top/bottom-gate family contract."
+  }
+}

@@ -1,0 +1,2262 @@
+{
+  "case_id": "IGZO_T02_DUAL_GATE_DD_B_MINIMAL_V1",
+  "stage": "T02-B",
+  "devsim_version": "2.10.0",
+  "python_executable": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u53d1\u9001\u7248\u672c/\u8bfe\u7a0b0/.venv/bin/python",
+  "reproduction_command": "make t02-b-minimal",
+  "validation_command": "make t02-b-minimal-check",
+  "runs": [
+    {
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "status": "PASS",
+      "solver_records": [
+        {
+          "label": "T02_B_POISSON_ZERO_BIAS",
+          "absolute_error": 1e-12,
+          "elapsed_seconds": 0.01976100199681241,
+          "converged": true,
+          "solver_info": {
+            "converged": true,
+            "iterations": [
+              {
+                "devices": [
+                  {
+                    "absolute_error": 0.0,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0,
+                            "absolute_error_node": 0,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0,
+                            "relative_error_node": 0
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0,
+                            "absolute_error_node": 0,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0,
+                            "relative_error_node": 0
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0,
+                            "absolute_error_node": 0,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0,
+                            "relative_error_node": 0
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.0
+                      }
+                    ],
+                    "relative_error": 0.0
+                  }
+                ],
+                "iteration": 0
+              }
+            ],
+            "number_of_equations": 2419
+          }
+        },
+        {
+          "label": "T02_B_COUPLED_ZERO_BIAS",
+          "absolute_error": 10000000000.0,
+          "elapsed_seconds": 0.014539017000060994,
+          "converged": true,
+          "solver_info": {
+            "converged": true,
+            "iterations": [
+              {
+                "devices": [
+                  {
+                    "absolute_error": 0.0,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0,
+                            "absolute_error_node": 0,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0,
+                            "relative_error_node": 0
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0,
+                            "absolute_error_node": 0,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.0,
+                            "relative_error_node": 0
+                          },
+                          {
+                            "absolute_error": 0.0,
+                            "absolute_error_node": 0,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0,
+                            "relative_error_node": 0
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0,
+                            "absolute_error_node": 0,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0,
+                            "relative_error_node": 0
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.0
+                      }
+                    ],
+                    "relative_error": 0.0
+                  }
+                ],
+                "iteration": 0
+              }
+            ],
+            "number_of_equations": 3772
+          }
+        },
+        {
+          "label": "T02_B_LOW_VDS_0_V",
+          "absolute_error": 10000000000.0,
+          "elapsed_seconds": 0.013035303003562149,
+          "converged": true,
+          "solver_info": {
+            "converged": true,
+            "iterations": [
+              {
+                "devices": [
+                  {
+                    "absolute_error": 0.0,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0,
+                            "absolute_error_node": 0,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0,
+                            "relative_error_node": 0
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0,
+                            "absolute_error_node": 0,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.0,
+                            "relative_error_node": 0
+                          },
+                          {
+                            "absolute_error": 0.0,
+                            "absolute_error_node": 0,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0,
+                            "relative_error_node": 0
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0,
+                            "absolute_error_node": 0,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0,
+                            "relative_error_node": 0
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.0
+                      }
+                    ],
+                    "relative_error": 0.0
+                  }
+                ],
+                "iteration": 0
+              }
+            ],
+            "number_of_equations": 3772
+          }
+        },
+        {
+          "label": "T02_B_LOW_VDS_0.001_V",
+          "absolute_error": 10000000000.0,
+          "elapsed_seconds": 0.03500760399765568,
+          "converged": true,
+          "solver_info": {
+            "converged": true,
+            "iterations": [
+              {
+                "devices": [
+                  {
+                    "absolute_error": 276321086929871.9,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0002606547319663607,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0002606547319663607,
+                            "absolute_error_node": 519,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.9999996163508682,
+                            "relative_error_node": 519
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.9999996163508682
+                      },
+                      {
+                        "absolute_error": 276321086929871.9,
+                        "equations": [
+                          {
+                            "absolute_error": 276321086929871.9,
+                            "absolute_error_node": 1319,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.02841733971269389,
+                            "relative_error_node": 1319
+                          },
+                          {
+                            "absolute_error": 0.001,
+                            "absolute_error_node": 1320,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.9999999000000099,
+                            "relative_error_node": 1320
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 1.0284172397127038
+                      },
+                      {
+                        "absolute_error": 0.000260654731966361,
+                        "equations": [
+                          {
+                            "absolute_error": 0.000260654731966361,
+                            "absolute_error_node": 507,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.9999996163508682,
+                            "relative_error_node": 507
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.9999996163508682
+                      }
+                    ],
+                    "relative_error": 3.02841647241444
+                  }
+                ],
+                "iteration": 0
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 2876016695437.6685,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 2.4211032594320445e-06,
+                        "equations": [
+                          {
+                            "absolute_error": 2.4211032594320445e-06,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.013424165183697401,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.013424165183697401
+                      },
+                      {
+                        "absolute_error": 2876016695437.6685,
+                        "equations": [
+                          {
+                            "absolute_error": 2876016695437.6685,
+                            "absolute_error_node": 1319,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.00029568708717578665,
+                            "relative_error_node": 1319
+                          },
+                          {
+                            "absolute_error": 2.7403573379234673e-06,
+                            "absolute_error_node": 1270,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.013424171706922639,
+                            "relative_error_node": 1270
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.013719858794098426
+                      },
+                      {
+                        "absolute_error": 2.4211032594324608e-06,
+                        "equations": [
+                          {
+                            "absolute_error": 2.4211032594324608e-06,
+                            "absolute_error_node": 494,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.013424165183724567,
+                            "relative_error_node": 494
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.013424165183724567
+                      }
+                    ],
+                    "relative_error": 0.04056818916152039
+                  }
+                ],
+                "iteration": 1
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 101453801.56737326,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 8.883317124306311e-11,
+                        "equations": [
+                          {
+                            "absolute_error": 8.883317124306311e-11,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 3.576706647876028e-07,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 3.576706647876028e-07
+                      },
+                      {
+                        "absolute_error": 101453801.56737326,
+                        "equations": [
+                          {
+                            "absolute_error": 101453801.56737326,
+                            "absolute_error_node": 1270,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 1.0410868004998678e-08,
+                            "relative_error_node": 1270
+                          },
+                          {
+                            "absolute_error": 1.0150230011439894e-10,
+                            "absolute_error_node": 1270,
+                            "name": "PotentialEquation",
+                            "relative_error": 3.601084437716306e-07,
+                            "relative_error_node": 1270
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 3.7051931177662926e-07
+                      },
+                      {
+                        "absolute_error": 8.8833170728412e-11,
+                        "equations": [
+                          {
+                            "absolute_error": 8.8833170728412e-11,
+                            "absolute_error_node": 494,
+                            "name": "PotentialEquation",
+                            "relative_error": 3.576706627154541e-07,
+                            "relative_error_node": 494
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 3.576706627154541e-07
+                      }
+                    ],
+                    "relative_error": 1.0858606392796861e-06
+                  }
+                ],
+                "iteration": 2
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 8.991173995827912,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 1.1583802623316132e-18,
+                        "equations": [
+                          {
+                            "absolute_error": 1.1583802623316132e-18,
+                            "absolute_error_node": 272,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.7900626753621355e-14,
+                            "relative_error_node": 272
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 1.7900626753621355e-14
+                      },
+                      {
+                        "absolute_error": 8.991173995827912,
+                        "equations": [
+                          {
+                            "absolute_error": 8.991173995827912,
+                            "absolute_error_node": 97,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 9.003747899358208e-16,
+                            "relative_error_node": 97
+                          },
+                          {
+                            "absolute_error": 1.2438321508497591e-18,
+                            "absolute_error_node": 636,
+                            "name": "PotentialEquation",
+                            "relative_error": 5.866770500612092e-14,
+                            "relative_error_node": 636
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 5.956807979605675e-14
+                      },
+                      {
+                        "absolute_error": 1.0875845761320865e-18,
+                        "equations": [
+                          {
+                            "absolute_error": 1.0875845761320865e-18,
+                            "absolute_error_node": 234,
+                            "name": "PotentialEquation",
+                            "relative_error": 5.873279765570312e-14,
+                            "relative_error_node": 234
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 5.873279765570312e-14
+                      }
+                    ],
+                    "relative_error": 1.362015042053812e-13
+                  }
+                ],
+                "iteration": 3
+              }
+            ],
+            "number_of_equations": 3772
+          }
+        },
+        {
+          "label": "T02_B_LOW_VDS_0.005_V",
+          "absolute_error": 10000000000.0,
+          "elapsed_seconds": 0.03439493599580601,
+          "converged": true,
+          "solver_info": {
+            "converged": true,
+            "iterations": [
+              {
+                "devices": [
+                  {
+                    "absolute_error": 1082307740858591.4,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0010233482499905071,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0010233482499905071,
+                            "absolute_error_node": 519,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.7984971824225519,
+                            "relative_error_node": 519
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.7984971824225519
+                      },
+                      {
+                        "absolute_error": 1082307740858591.4,
+                        "equations": [
+                          {
+                            "absolute_error": 1082307740858591.4,
+                            "absolute_error_node": 1287,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.12520555305505432,
+                            "relative_error_node": 1287
+                          },
+                          {
+                            "absolute_error": 0.004,
+                            "absolute_error_node": 1320,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.7999999840000004,
+                            "relative_error_node": 1320
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.9252055370550547
+                      },
+                      {
+                        "absolute_error": 0.0010233482499905086,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0010233482499905086,
+                            "absolute_error_node": 507,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.7984971824225521,
+                            "relative_error_node": 507
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.7984971824225521
+                      }
+                    ],
+                    "relative_error": 2.5221999019001586
+                  }
+                ],
+                "iteration": 0
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 45260334774099.664,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 3.843174080437889e-05,
+                        "equations": [
+                          {
+                            "absolute_error": 3.843174080437889e-05,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.04365599821106647,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.04365599821106647
+                      },
+                      {
+                        "absolute_error": 45260334774099.664,
+                        "equations": [
+                          {
+                            "absolute_error": 45260334774099.664,
+                            "absolute_error_node": 1287,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.0052086191343249455,
+                            "relative_error_node": 1287
+                          },
+                          {
+                            "absolute_error": 4.351189401003917e-05,
+                            "absolute_error_node": 1270,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.04365601023744657,
+                            "relative_error_node": 1270
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.048864629371771516
+                      },
+                      {
+                        "absolute_error": 3.843174080437112e-05,
+                        "equations": [
+                          {
+                            "absolute_error": 3.843174080437112e-05,
+                            "absolute_error_node": 494,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.043655998211074215,
+                            "relative_error_node": 494
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.043655998211074215
+                      }
+                    ],
+                    "relative_error": 0.1361766257939122
+                  }
+                ],
+                "iteration": 1
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 25764219462.002586,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 2.2491031142539624e-08,
+                        "equations": [
+                          {
+                            "absolute_error": 2.2491031142539624e-08,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.8840695038282972e-05,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 1.8840695038282972e-05
+                      },
+                      {
+                        "absolute_error": 25764219462.002586,
+                        "equations": [
+                          {
+                            "absolute_error": 25764219462.002586,
+                            "absolute_error_node": 1270,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 2.938988942025273e-06,
+                            "relative_error_node": 1270
+                          },
+                          {
+                            "absolute_error": 2.5703314310841368e-08,
+                            "absolute_error_node": 1270,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.8970704937387733e-05,
+                            "relative_error_node": 1270
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 2.1909693879413006e-05
+                      },
+                      {
+                        "absolute_error": 2.2491031142286516e-08,
+                        "equations": [
+                          {
+                            "absolute_error": 2.2491031142286516e-08,
+                            "absolute_error_node": 494,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.8840695038070947e-05,
+                            "relative_error_node": 494
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 1.8840695038070947e-05
+                      }
+                    ],
+                    "relative_error": 5.9591083955766925e-05
+                  }
+                ],
+                "iteration": 2
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 9034.583514774362,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 7.787501297342223e-15,
+                        "equations": [
+                          {
+                            "absolute_error": 7.787501297342223e-15,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 6.5235753808988436e-12,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 6.5235753808988436e-12
+                      },
+                      {
+                        "absolute_error": 9034.583514774362,
+                        "equations": [
+                          {
+                            "absolute_error": 9034.583514774362,
+                            "absolute_error_node": 1270,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 1.0298969194728205e-12,
+                            "relative_error_node": 1270
+                          },
+                          {
+                            "absolute_error": 8.902964758685076e-15,
+                            "absolute_error_node": 1270,
+                            "name": "PotentialEquation",
+                            "relative_error": 6.570962618335485e-12,
+                            "relative_error_node": 1270
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 7.600859537808306e-12
+                      },
+                      {
+                        "absolute_error": 7.787223562619582e-15,
+                        "equations": [
+                          {
+                            "absolute_error": 7.787223562619582e-15,
+                            "absolute_error_node": 494,
+                            "name": "PotentialEquation",
+                            "relative_error": 6.523342723037247e-12,
+                            "relative_error_node": 494
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 6.523342723037247e-12
+                      }
+                    ],
+                    "relative_error": 2.0647777641744398e-11
+                  }
+                ],
+                "iteration": 3
+              }
+            ],
+            "number_of_equations": 3772
+          }
+        },
+        {
+          "label": "T02_B_LOW_VDS_0.01_V",
+          "absolute_error": 10000000000.0,
+          "elapsed_seconds": 0.032148302998393774,
+          "converged": true,
+          "solver_info": {
+            "converged": true,
+            "iterations": [
+              {
+                "devices": [
+                  {
+                    "absolute_error": 1240459641036477.0,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0011838659897053204,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0011838659897053204,
+                            "absolute_error_node": 519,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.487747962006847,
+                            "relative_error_node": 519
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.487747962006847
+                      },
+                      {
+                        "absolute_error": 1240459641036477.0,
+                        "equations": [
+                          {
+                            "absolute_error": 1240459641036477.0,
+                            "absolute_error_node": 1319,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.16652634597697827,
+                            "relative_error_node": 1319
+                          },
+                          {
+                            "absolute_error": 0.005,
+                            "absolute_error_node": 1320,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.4999999950000001,
+                            "relative_error_node": 1320
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.6665263409769784
+                      },
+                      {
+                        "absolute_error": 0.001183865989705309,
+                        "equations": [
+                          {
+                            "absolute_error": 0.001183865989705309,
+                            "absolute_error_node": 507,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.4877479620068446,
+                            "relative_error_node": 507
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.4877479620068446
+                      }
+                    ],
+                    "relative_error": 1.64202226499067
+                  }
+                ],
+                "iteration": 0
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 67824049930440.03,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 5.8579346506621196e-05,
+                        "equations": [
+                          {
+                            "absolute_error": 5.8579346506621196e-05,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.033480669476719856,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.033480669476719856
+                      },
+                      {
+                        "absolute_error": 67824049930440.03,
+                        "equations": [
+                          {
+                            "absolute_error": 67824049930440.03,
+                            "absolute_error_node": 1319,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.009022931032037532,
+                            "relative_error_node": 1319
+                          },
+                          {
+                            "absolute_error": 6.636006763647464e-05,
+                            "absolute_error_node": 1270,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.03348067656385035,
+                            "relative_error_node": 1270
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.04250360759588788
+                      },
+                      {
+                        "absolute_error": 5.857934650662733e-05,
+                        "equations": [
+                          {
+                            "absolute_error": 5.857934650662733e-05,
+                            "absolute_error_node": 494,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.03348066947673814,
+                            "relative_error_node": 494
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.03348066947673814
+                      }
+                    ],
+                    "relative_error": 0.10946494654934588
+                  }
+                ],
+                "iteration": 1
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 60341916160.31732,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 5.247078682846731e-08,
+                        "equations": [
+                          {
+                            "absolute_error": 5.247078682846731e-08,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 2.3122480962612757e-05,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 2.3122480962612757e-05
+                      },
+                      {
+                        "absolute_error": 60341916160.31732,
+                        "equations": [
+                          {
+                            "absolute_error": 60341916160.31732,
+                            "absolute_error_node": 1270,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 7.92647597022737e-06,
+                            "relative_error_node": 1270
+                          },
+                          {
+                            "absolute_error": 5.99785526119892e-08,
+                            "absolute_error_node": 1270,
+                            "name": "PotentialEquation",
+                            "relative_error": 2.3284736777570156e-05,
+                            "relative_error_node": 1270
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 3.1211212747797525e-05
+                      },
+                      {
+                        "absolute_error": 5.247078682843517e-08,
+                        "equations": [
+                          {
+                            "absolute_error": 5.247078682843517e-08,
+                            "absolute_error_node": 494,
+                            "name": "PotentialEquation",
+                            "relative_error": 2.3122480962598595e-05,
+                            "relative_error_node": 494
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 2.3122480962598595e-05
+                      }
+                    ],
+                    "relative_error": 7.745617467300888e-05
+                  }
+                ],
+                "iteration": 2
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 49558.731961573045,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 4.257360818214832e-14,
+                        "equations": [
+                          {
+                            "absolute_error": 4.257360818214832e-14,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.8761057422316258e-11,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 1.8761057422316258e-11
+                      },
+                      {
+                        "absolute_error": 49558.731961573045,
+                        "equations": [
+                          {
+                            "absolute_error": 49558.731961573045,
+                            "absolute_error_node": 1270,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 6.468190773947749e-12,
+                            "relative_error_node": 1270
+                          },
+                          {
+                            "absolute_error": 4.8682967341678065e-14,
+                            "absolute_error_node": 1270,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.8899590448836588e-11,
+                            "relative_error_node": 1270
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 2.536778122278434e-11
+                      },
+                      {
+                        "absolute_error": 4.257345477983439e-14,
+                        "equations": [
+                          {
+                            "absolute_error": 4.257345477983439e-14,
+                            "absolute_error_node": 494,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.876098982199429e-11,
+                            "relative_error_node": 494
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 1.876098982199429e-11
+                      }
+                    ],
+                    "relative_error": 6.288982846709489e-11
+                  }
+                ],
+                "iteration": 3
+              }
+            ],
+            "number_of_equations": 3772
+          }
+        },
+        {
+          "label": "T02_B_VTG_0.1_V",
+          "absolute_error": 10000000000.0,
+          "elapsed_seconds": 0.05211851400235901,
+          "converged": true,
+          "solver_info": {
+            "converged": true,
+            "iterations": [
+              {
+                "devices": [
+                  {
+                    "absolute_error": 1.8079237095255668e+16,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.02867958927516299,
+                        "equations": [
+                          {
+                            "absolute_error": 0.02867958927516299,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.9978082674784603,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.9978082674784603
+                      },
+                      {
+                        "absolute_error": 1.8079237095255668e+16,
+                        "equations": [
+                          {
+                            "absolute_error": 1.8079237095255668e+16,
+                            "absolute_error_node": 65,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.6581697260158856,
+                            "relative_error_node": 65
+                          },
+                          {
+                            "absolute_error": 0.027725057246753348,
+                            "absolute_error_node": 1286,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.997856076775871,
+                            "relative_error_node": 1286
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 1.6560258027917567
+                      },
+                      {
+                        "absolute_error": 0.1,
+                        "equations": [
+                          {
+                            "absolute_error": 0.1,
+                            "absolute_error_node": 24,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.999999999,
+                            "relative_error_node": 24
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.999999999
+                      }
+                    ],
+                    "relative_error": 3.653834069270217
+                  }
+                ],
+                "iteration": 0
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 1.4924969207066562e+16,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.005722876838820136,
+                        "equations": [
+                          {
+                            "absolute_error": 0.005722876838820136,
+                            "absolute_error_node": 493,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.27086673386108623,
+                            "relative_error_node": 493
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.27086673386108623
+                      },
+                      {
+                        "absolute_error": 1.4924969207066562e+16,
+                        "equations": [
+                          {
+                            "absolute_error": 1.4924969207066562e+16,
+                            "absolute_error_node": 65,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.3775133847858518,
+                            "relative_error_node": 65
+                          },
+                          {
+                            "absolute_error": 0.01550666066163015,
+                            "absolute_error_node": 1319,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.3404005703872273,
+                            "relative_error_node": 1319
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.7179139551730791
+                      },
+                      {
+                        "absolute_error": 0.006519625158464666,
+                        "equations": [
+                          {
+                            "absolute_error": 0.006519625158464666,
+                            "absolute_error_node": 26,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.1591164073336478,
+                            "relative_error_node": 26
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.1591164073336478
+                      }
+                    ],
+                    "relative_error": 1.1478970963678132
+                  }
+                ],
+                "iteration": 1
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 3798822476351688.0,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.0005554992552023674,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0005554992552023674,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.02251631407302203,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.02251631407302203
+                      },
+                      {
+                        "absolute_error": 3798822476351688.0,
+                        "equations": [
+                          {
+                            "absolute_error": 3798822476351688.0,
+                            "absolute_error_node": 1319,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.09720074701035354,
+                            "relative_error_node": 1319
+                          },
+                          {
+                            "absolute_error": 0.0008053689376364392,
+                            "absolute_error_node": 1281,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0225198532759276,
+                            "relative_error_node": 1281
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.11972060028628115
+                      },
+                      {
+                        "absolute_error": 0.0007785796073461725,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0007785796073461725,
+                            "absolute_error_node": 494,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.01742339493454385,
+                            "relative_error_node": 494
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.01742339493454385
+                      }
+                    ],
+                    "relative_error": 0.15966030929384703
+                  }
+                ],
+                "iteration": 2
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 10144129509359.28,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 5.763177748444521e-06,
+                        "equations": [
+                          {
+                            "absolute_error": 5.763177748444521e-06,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0002335470528048829,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.0002335470528048829
+                      },
+                      {
+                        "absolute_error": 10144129509359.28,
+                        "equations": [
+                          {
+                            "absolute_error": 10144129509359.28,
+                            "absolute_error_node": 1316,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.000291851118669385,
+                            "relative_error_node": 1316
+                          },
+                          {
+                            "absolute_error": 6.7725411608126385e-06,
+                            "absolute_error_node": 1274,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0002335470528048829,
+                            "relative_error_node": 1274
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.0005253981714742679
+                      },
+                      {
+                        "absolute_error": 6.186349249316085e-06,
+                        "equations": [
+                          {
+                            "absolute_error": 6.186349249316085e-06,
+                            "absolute_error_node": 494,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.00013842166564904777,
+                            "relative_error_node": 494
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.00013842166564904777
+                      }
+                    ],
+                    "relative_error": 0.0008973668899281985
+                  }
+                ],
+                "iteration": 3
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 660746248.1389285,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 4.651257880992713e-10,
+                        "equations": [
+                          {
+                            "absolute_error": 4.651257880992713e-10,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.884876012646578e-08,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 1.884876012646578e-08
+                      },
+                      {
+                        "absolute_error": 660746248.1389285,
+                        "equations": [
+                          {
+                            "absolute_error": 660746248.1389285,
+                            "absolute_error_node": 1284,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 2.0873139355423683e-08,
+                            "relative_error_node": 1284
+                          },
+                          {
+                            "absolute_error": 5.476897848531908e-10,
+                            "absolute_error_node": 1273,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.884876012646578e-08,
+                            "relative_error_node": 1273
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 3.9721899481889465e-08
+                      },
+                      {
+                        "absolute_error": 4.940804764514361e-10,
+                        "equations": [
+                          {
+                            "absolute_error": 4.940804764514361e-10,
+                            "absolute_error_node": 494,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.1055218352982805e-08,
+                            "relative_error_node": 494
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 1.1055218352982805e-08
+                      }
+                    ],
+                    "relative_error": 6.962587796133805e-08
+                  }
+                ],
+                "iteration": 4
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 30.800309102785093,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 1.2613695297108549e-17,
+                        "equations": [
+                          {
+                            "absolute_error": 1.2613695297108549e-17,
+                            "absolute_error_node": 359,
+                            "name": "PotentialEquation",
+                            "relative_error": 6.473506884334871e-16,
+                            "relative_error_node": 359
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 6.473506884334871e-16
+                      },
+                      {
+                        "absolute_error": 30.800309102785093,
+                        "equations": [
+                          {
+                            "absolute_error": 30.800309102785093,
+                            "absolute_error_node": 923,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 1.0371922164537592e-15,
+                            "relative_error_node": 923
+                          },
+                          {
+                            "absolute_error": 1.921785171147111e-17,
+                            "absolute_error_node": 923,
+                            "name": "PotentialEquation",
+                            "relative_error": 5.864047525779053e-16,
+                            "relative_error_node": 923
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 1.6235969690316645e-15
+                      },
+                      {
+                        "absolute_error": 1.921785171147111e-17,
+                        "equations": [
+                          {
+                            "absolute_error": 1.921785171147111e-17,
+                            "absolute_error_node": 351,
+                            "name": "PotentialEquation",
+                            "relative_error": 4.435458520474637e-16,
+                            "relative_error_node": 351
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 4.435458520474637e-16
+                      }
+                    ],
+                    "relative_error": 2.7144935095126155e-15
+                  }
+                ],
+                "iteration": 5
+              }
+            ],
+            "number_of_equations": 3772
+          }
+        },
+        {
+          "label": "T02_B_VTG_0.2_V",
+          "absolute_error": 10000000000.0,
+          "elapsed_seconds": 0.05080522500065854,
+          "converged": true,
+          "solver_info": {
+            "converged": true,
+            "iterations": [
+              {
+                "devices": [
+                  {
+                    "absolute_error": 5.983312474238993e+16,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.016414869713972175,
+                        "equations": [
+                          {
+                            "absolute_error": 0.016414869713972175,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.4218095949825917,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.4218095949825917
+                      },
+                      {
+                        "absolute_error": 5.983312474238993e+16,
+                        "equations": [
+                          {
+                            "absolute_error": 5.983312474238993e+16,
+                            "absolute_error_node": 65,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.5784610680934619,
+                            "relative_error_node": 65
+                          },
+                          {
+                            "absolute_error": 0.025880990416404778,
+                            "absolute_error_node": 946,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.43791362792593513,
+                            "relative_error_node": 946
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 1.0163746960193971
+                      },
+                      {
+                        "absolute_error": 0.1,
+                        "equations": [
+                          {
+                            "absolute_error": 0.1,
+                            "absolute_error_node": 24,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.49999999975,
+                            "relative_error_node": 24
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.49999999975
+                      }
+                    ],
+                    "relative_error": 1.9381842907519888
+                  }
+                ],
+                "iteration": 0
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 2.6415143534241508e+16,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.004338096339460571,
+                        "equations": [
+                          {
+                            "absolute_error": 0.004338096339460571,
+                            "absolute_error_node": 506,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.1209015755128436,
+                            "relative_error_node": 506
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.1209015755128436
+                      },
+                      {
+                        "absolute_error": 2.6415143534241508e+16,
+                        "equations": [
+                          {
+                            "absolute_error": 2.6415143534241508e+16,
+                            "absolute_error_node": 65,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.21917665076058576,
+                            "relative_error_node": 65
+                          },
+                          {
+                            "absolute_error": 0.007346783491752134,
+                            "absolute_error_node": 1319,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.12090157551284356,
+                            "relative_error_node": 1319
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.3400782262734293
+                      },
+                      {
+                        "absolute_error": 0.005673353010118964,
+                        "equations": [
+                          {
+                            "absolute_error": 0.005673353010118964,
+                            "absolute_error_node": 494,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.07645356156360977,
+                            "relative_error_node": 494
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.07645356156360977
+                      }
+                    ],
+                    "relative_error": 0.5374333633498827
+                  }
+                ],
+                "iteration": 1
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 4340188516099672.5,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 3.9288834244280353e-05,
+                        "equations": [
+                          {
+                            "absolute_error": 3.9288834244280353e-05,
+                            "absolute_error_node": 194,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0011784373623126459,
+                            "relative_error_node": 194
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.0011784373623126459
+                      },
+                      {
+                        "absolute_error": 4340188516099672.5,
+                        "equations": [
+                          {
+                            "absolute_error": 4340188516099672.5,
+                            "absolute_error_node": 494,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.03446509329927889,
+                            "relative_error_node": 494
+                          },
+                          {
+                            "absolute_error": 0.00019004308146363378,
+                            "absolute_error_node": 1318,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.002680597286859514,
+                            "relative_error_node": 1318
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.037145690586138404
+                      },
+                      {
+                        "absolute_error": 0.00018897064544799028,
+                        "equations": [
+                          {
+                            "absolute_error": 0.00018897064544799028,
+                            "absolute_error_node": 507,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.002546587066763992,
+                            "relative_error_node": 507
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.002546587066763992
+                      }
+                    ],
+                    "relative_error": 0.04087071501521504
+                  }
+                ],
+                "iteration": 2
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 2084637585633.8594,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 4.543348470496397e-07,
+                        "equations": [
+                          {
+                            "absolute_error": 4.543348470496397e-07,
+                            "absolute_error_node": 519,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.234475981089757e-05,
+                            "relative_error_node": 519
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 1.234475981089757e-05
+                      },
+                      {
+                        "absolute_error": 2084637585633.8594,
+                        "equations": [
+                          {
+                            "absolute_error": 2084637585633.8594,
+                            "absolute_error_node": 486,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 3.978619314746894e-05,
+                            "relative_error_node": 486
+                          },
+                          {
+                            "absolute_error": 4.792801278523488e-07,
+                            "absolute_error_node": 1293,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.234475981089757e-05,
+                            "relative_error_node": 1293
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 5.213095295836651e-05
+                      },
+                      {
+                        "absolute_error": 3.477962717056298e-07,
+                        "equations": [
+                          {
+                            "absolute_error": 3.477962717056298e-07,
+                            "absolute_error_node": 507,
+                            "name": "PotentialEquation",
+                            "relative_error": 4.68691491276111e-06,
+                            "relative_error_node": 507
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 4.68691491276111e-06
+                      }
+                    ],
+                    "relative_error": 6.91626276820252e-05
+                  }
+                ],
+                "iteration": 3
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 6156521.241401449,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 2.3463337538330523e-12,
+                        "equations": [
+                          {
+                            "absolute_error": 2.3463337538330523e-12,
+                            "absolute_error_node": 519,
+                            "name": "PotentialEquation",
+                            "relative_error": 6.375237737874741e-11,
+                            "relative_error_node": 519
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 6.375237737874741e-11
+                      },
+                      {
+                        "absolute_error": 6156521.241401449,
+                        "equations": [
+                          {
+                            "absolute_error": 6156521.241401449,
+                            "absolute_error_node": 1319,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 7.160391559043719e-11,
+                            "relative_error_node": 1319
+                          },
+                          {
+                            "absolute_error": 2.7550640545780053e-12,
+                            "absolute_error_node": 1309,
+                            "name": "PotentialEquation",
+                            "relative_error": 6.375237737874741e-11,
+                            "relative_error_node": 1309
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 1.353562929691846e-10
+                      },
+                      {
+                        "absolute_error": 2.5670751341327356e-12,
+                        "equations": [
+                          {
+                            "absolute_error": 2.5670751341327356e-12,
+                            "absolute_error_node": 507,
+                            "name": "PotentialEquation",
+                            "relative_error": 3.4593995700195896e-11,
+                            "relative_error_node": 507
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 3.4593995700195896e-11
+                      }
+                    ],
+                    "relative_error": 2.337026660481279e-10
+                  }
+                ],
+                "iteration": 4
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 144.31264382948942,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 1.4869873773459762e-17,
+                        "equations": [
+                          {
+                            "absolute_error": 1.4869873773459762e-17,
+                            "absolute_error_node": 219,
+                            "name": "PotentialEquation",
+                            "relative_error": 5.819702837474983e-16,
+                            "relative_error_node": 219
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 5.819702837474983e-16
+                      },
+                      {
+                        "absolute_error": 144.31264382948942,
+                        "equations": [
+                          {
+                            "absolute_error": 144.31264382948942,
+                            "absolute_error_node": 692,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 1.133636688527346e-15,
+                            "relative_error_node": 692
+                          },
+                          {
+                            "absolute_error": 2.4497738357910613e-17,
+                            "absolute_error_node": 1318,
+                            "name": "PotentialEquation",
+                            "relative_error": 4.3994230700046885e-16,
+                            "relative_error_node": 1318
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 1.5735789955278148e-15
+                      },
+                      {
+                        "absolute_error": 2.783982966487319e-17,
+                        "equations": [
+                          {
+                            "absolute_error": 2.783982966487319e-17,
+                            "absolute_error_node": 516,
+                            "name": "PotentialEquation",
+                            "relative_error": 3.09117979905166e-16,
+                            "relative_error_node": 516
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 3.09117979905166e-16
+                      }
+                    ],
+                    "relative_error": 2.4646672591804792e-15
+                  }
+                ],
+                "iteration": 5
+              }
+            ],
+            "number_of_equations": 3772
+          }
+        },
+        {
+          "label": "T02_B_VTG_0.3_V",
+          "absolute_error": 10000000000.0,
+          "elapsed_seconds": 0.04554897599882679,
+          "converged": true,
+          "solver_info": {
+            "converged": true,
+            "iterations": [
+              {
+                "devices": [
+                  {
+                    "absolute_error": 1.2402606814670643e+17,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.00867012933400641,
+                        "equations": [
+                          {
+                            "absolute_error": 0.00867012933400641,
+                            "absolute_error_node": 519,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.20501806394461558,
+                            "relative_error_node": 519
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.20501806394461558
+                      },
+                      {
+                        "absolute_error": 1.2402606814670643e+17,
+                        "equations": [
+                          {
+                            "absolute_error": 1.2402606814670643e+17,
+                            "absolute_error_node": 65,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.4881628653762398,
+                            "relative_error_node": 65
+                          },
+                          {
+                            "absolute_error": 0.024433655203469327,
+                            "absolute_error_node": 1319,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.2568999691903452,
+                            "relative_error_node": 1319
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.7450628345665851
+                      },
+                      {
+                        "absolute_error": 0.09999999999999998,
+                        "equations": [
+                          {
+                            "absolute_error": 0.09999999999999998,
+                            "absolute_error_node": 24,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.33333333322222214,
+                            "relative_error_node": 24
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.33333333322222214
+                      }
+                    ],
+                    "relative_error": 1.2834142317334227
+                  }
+                ],
+                "iteration": 0
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 3.838285068018948e+16,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 0.002178763043396301,
+                        "equations": [
+                          {
+                            "absolute_error": 0.002178763043396301,
+                            "absolute_error_node": 519,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.05047950397223067,
+                            "relative_error_node": 519
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.05047950397223067
+                      },
+                      {
+                        "absolute_error": 3.838285068018948e+16,
+                        "equations": [
+                          {
+                            "absolute_error": 3.838285068018948e+16,
+                            "absolute_error_node": 1319,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.13777472446753677,
+                            "relative_error_node": 1319
+                          },
+                          {
+                            "absolute_error": 0.003663257326051593,
+                            "absolute_error_node": 1317,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.05047950397223067,
+                            "relative_error_node": 1317
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.18825422843976744
+                      },
+                      {
+                        "absolute_error": 0.0036080112603275667,
+                        "equations": [
+                          {
+                            "absolute_error": 0.0036080112603275667,
+                            "absolute_error_node": 507,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.03796649931682533,
+                            "relative_error_node": 507
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.03796649931682533
+                      }
+                    ],
+                    "relative_error": 0.27670023172882346
+                  }
+                ],
+                "iteration": 1
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 254042458754108.0,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 7.118121083808715e-05,
+                        "equations": [
+                          {
+                            "absolute_error": 7.118121083808715e-05,
+                            "absolute_error_node": 519,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0016413904275290963,
+                            "relative_error_node": 519
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 0.0016413904275290963
+                      },
+                      {
+                        "absolute_error": 254042458754108.0,
+                        "equations": [
+                          {
+                            "absolute_error": 254042458754108.0,
+                            "absolute_error_node": 1318,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 0.0018349122972886836,
+                            "relative_error_node": 1318
+                          },
+                          {
+                            "absolute_error": 8.416262031410679e-05,
+                            "absolute_error_node": 1310,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0016413904275290963,
+                            "relative_error_node": 1310
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 0.00347630272481778
+                      },
+                      {
+                        "absolute_error": 7.974018918704253e-05,
+                        "equations": [
+                          {
+                            "absolute_error": 7.974018918704253e-05,
+                            "absolute_error_node": 507,
+                            "name": "PotentialEquation",
+                            "relative_error": 0.0008383891938737989,
+                            "relative_error_node": 507
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 0.0008383891938737989
+                      }
+                    ],
+                    "relative_error": 0.005956082346220675
+                  }
+                ],
+                "iteration": 2
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 198357780800.24335,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 5.974716003528799e-08,
+                        "equations": [
+                          {
+                            "absolute_error": 5.974716003528799e-08,
+                            "absolute_error_node": 519,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.3777270755555096e-06,
+                            "relative_error_node": 519
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 1.3777270755555096e-06
+                      },
+                      {
+                        "absolute_error": 198357780800.24335,
+                        "equations": [
+                          {
+                            "absolute_error": 198357780800.24335,
+                            "absolute_error_node": 1319,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 7.776800947895109e-07,
+                            "relative_error_node": 1319
+                          },
+                          {
+                            "absolute_error": 7.324917684221972e-08,
+                            "absolute_error_node": 1310,
+                            "name": "PotentialEquation",
+                            "relative_error": 1.3777270755555096e-06,
+                            "relative_error_node": 1310
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 2.1554071703450203e-06
+                      },
+                      {
+                        "absolute_error": 6.865729421027025e-08,
+                        "equations": [
+                          {
+                            "absolute_error": 6.865729421027025e-08,
+                            "absolute_error_node": 507,
+                            "name": "PotentialEquation",
+                            "relative_error": 7.218629975901421e-07,
+                            "relative_error_node": 507
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 7.218629975901421e-07
+                      }
+                    ],
+                    "relative_error": 4.254997243490672e-06
+                  }
+                ],
+                "iteration": 3
+              },
+              {
+                "devices": [
+                  {
+                    "absolute_error": 145906.83574947843,
+                    "name": "t02_b_enabled_minimal_bias",
+                    "regions": [
+                      {
+                        "absolute_error": 0.0,
+                        "equations": [],
+                        "name": "ambient",
+                        "relative_error": 0.0
+                      },
+                      {
+                        "absolute_error": 4.3270040630226456e-14,
+                        "equations": [
+                          {
+                            "absolute_error": 4.3270040630226456e-14,
+                            "absolute_error_node": 519,
+                            "name": "PotentialEquation",
+                            "relative_error": 9.978892473617196e-13,
+                            "relative_error_node": 519
+                          }
+                        ],
+                        "name": "bottom_oxide",
+                        "relative_error": 9.978892473617196e-13
+                      },
+                      {
+                        "absolute_error": 145906.83574947843,
+                        "equations": [
+                          {
+                            "absolute_error": 145906.83574947843,
+                            "absolute_error_node": 1319,
+                            "name": "ElectronContinuityEquation",
+                            "relative_error": 5.270956020072592e-13,
+                            "relative_error_node": 1319
+                          },
+                          {
+                            "absolute_error": 5.319395689900149e-14,
+                            "absolute_error_node": 1310,
+                            "name": "PotentialEquation",
+                            "relative_error": 9.97776404792813e-13,
+                            "relative_error_node": 1310
+                          }
+                        ],
+                        "name": "channel",
+                        "relative_error": 1.5248720068000722e-12
+                      },
+                      {
+                        "absolute_error": 4.9885283976378765e-14,
+                        "equations": [
+                          {
+                            "absolute_error": 4.9885283976378765e-14,
+                            "absolute_error_node": 507,
+                            "name": "PotentialEquation",
+                            "relative_error": 5.244940255950064e-13,
+                            "relative_error_node": 507
+                          }
+                        ],
+                        "name": "top_oxide",
+                        "relative_error": 5.244940255950064e-13
+                      }
+                    ],
+                    "relative_error": 3.047255279756798e-12
+                  }
+                ],
+                "iteration": 4
+              }
+            ],
+            "number_of_equations": 3772
+          }
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

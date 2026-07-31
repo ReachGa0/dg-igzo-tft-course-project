@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 248,
+  "checks": 265,
   "failures": 0,
   "results": [
     {
@@ -180,6 +180,11 @@
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_a_limit_regression"
     },
     {
+      "name": "directory:results/tcad/t02_dual_gate/t02_b_minimal_bias",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_b_minimal_bias"
+    },
+    {
       "name": "directory:tcad/structures",
       "status": "PASS",
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/structures"
@@ -247,52 +252,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=10705"
+      "detail": "bytes=11372"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=13163"
+      "detail": "bytes=13410"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=6153"
+      "detail": "bytes=6648"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=38397"
+      "detail": "bytes=41583"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4061"
+      "detail": "bytes=4071"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=16240"
+      "detail": "bytes=17949"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=7830"
+      "detail": "bytes=8524"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=2423"
+      "detail": "bytes=2729"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=4562"
+      "detail": "bytes=4670"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=18991"
+      "detail": "bytes=19557"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -340,6 +345,11 @@
       "detail": "bytes=8857"
     },
     {
+      "name": "file:config/tcad_t02_b_minimal_bias.json",
+      "status": "PASS",
+      "detail": "bytes=6232"
+    },
+    {
       "name": "file:references/papers_manifest.csv",
       "status": "PASS",
       "detail": "bytes=2493"
@@ -372,12 +382,12 @@
     {
       "name": "file:docs/05_\u9a8c\u8bc1\u4e0e\u9a8c\u6536\u6807\u51c6.md",
       "status": "PASS",
-      "detail": "bytes=8428"
+      "detail": "bytes=9080"
     },
     {
       "name": "file:docs/06_\u660e\u65e5\u6c47\u62a5\u7a3f.md",
       "status": "PASS",
-      "detail": "bytes=3485"
+      "detail": "bytes=3726"
     },
     {
       "name": "file:docs/07_PPT\u4e0e\u62a5\u544a\u63d0\u7eb2.md",
@@ -402,12 +412,12 @@
     {
       "name": "file:docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
       "status": "PASS",
-      "detail": "bytes=17191"
+      "detail": "bytes=18074"
     },
     {
       "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
       "status": "PASS",
-      "detail": "bytes=9189"
+      "detail": "bytes=9492"
     },
     {
       "name": "file:scripts/import_senior_reference.py",
@@ -460,6 +470,16 @@
       "detail": "bytes=19601"
     },
     {
+      "name": "file:scripts/check_t02_b_contract.py",
+      "status": "PASS",
+      "detail": "bytes=13609"
+    },
+    {
+      "name": "file:scripts/check_t02_b_minimal_bias.py",
+      "status": "PASS",
+      "detail": "bytes=17259"
+    },
+    {
       "name": "file:scripts/build_self_contained_report.py",
       "status": "PASS",
       "detail": "bytes=11722"
@@ -467,7 +487,7 @@
     {
       "name": "file:tcad/README.md",
       "status": "PASS",
-      "detail": "bytes=8435"
+      "detail": "bytes=9657"
     },
     {
       "name": "file:tcad/run_dg_electrostatic.py",
@@ -505,6 +525,11 @@
       "detail": "bytes=40965"
     },
     {
+      "name": "file:tcad/run_t02_dual_gate_minimal_bias.py",
+      "status": "PASS",
+      "detail": "bytes=28886"
+    },
+    {
       "name": "file:report/manifest.json",
       "status": "PASS",
       "detail": "bytes=2539"
@@ -517,7 +542,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=4187"
+      "detail": "bytes=4850"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -753,6 +778,41 @@
       "name": "file:results/tcad/t02_dual_gate/t02_a_limit_regression/state_manifest.json",
       "status": "PASS",
       "detail": "bytes=2324"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_b_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=9741"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_b_minimal_bias.json",
+      "status": "PASS",
+      "detail": "bytes=14273"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_b_minimal_bias_check.json",
+      "status": "PASS",
+      "detail": "bytes=3171"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_b_minimal_bias.csv",
+      "status": "PASS",
+      "detail": "bytes=1447"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_b_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=938"
+    },
+    {
+      "name": "file:results/tcad/t02_dual_gate/t02_b_minimal_bias/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=5346"
+    },
+    {
+      "name": "file:report/assets/tcad_t02_b_minimal_bias.png",
+      "status": "PASS",
+      "detail": "bytes=111482"
     },
     {
       "name": "file:models/level61/README.md",
@@ -1178,6 +1238,31 @@
       "name": "t02_a:checks_and_raw_outputs",
       "status": "PASS",
       "detail": "checks=10 states=1 vtk=6"
+    },
+    {
+      "name": "t02_b:input_contract",
+      "status": "PASS",
+      "detail": "status=PASS checks=17"
+    },
+    {
+      "name": "t02_b:simulation_and_independent_check",
+      "status": "PASS",
+      "detail": "simulation=PASS independent=PASS checks=14"
+    },
+    {
+      "name": "t02_b:minimal_top_gate_response_gate",
+      "status": "PASS",
+      "detail": "completion={'status': 'PASS', 'minimal_nonzero_top_gate_family_completed': True, 'top_gate_response_direction_verified': True, 't02_c_bidirectional_family_permitted_next': True, 't02_complete': False, 'delta_vth_verified': False, 'gm_verified': False, 'experimental_calibration_permitted': False} metrics={'maximum_relative_terminal_current_imbalance': 1.4054453248161712e-14, 'endpoint_current_ratio': 9.680225922252978, 'endpoint_center_potential_increase_v': 0.05521219168741342, 'endpoint_center_density_ratio': 8.375585509971744}"
+    },
+    {
+      "name": "t02_b:topology_and_bias_grid",
+      "status": "PASS",
+      "detail": "nodes=2419 points=4"
+    },
+    {
+      "name": "t02_b:checks_and_raw_outputs",
+      "status": "PASS",
+      "detail": "checks=10 states=2 vtk=12"
     },
     {
       "name": "tcad:mesh_levels",

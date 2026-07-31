@@ -1,0 +1,132 @@
+{
+  "case_id": "IGZO_T02_DUAL_GATE_DD_B_MINIMAL_V1",
+  "stage": "T02-B",
+  "entries": [
+    {
+      "state_id": "top_gate_zero_reference",
+      "state_label": "VTG=0 V reference at fixed VDS and VBG",
+      "bias": {
+        "source_v": 0.0,
+        "drain_v": 0.01,
+        "bottom_gate_v": 0.0,
+        "top_gate_v": 0.0
+      },
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "regions": [
+        "bottom_oxide",
+        "channel",
+        "top_oxide"
+      ],
+      "contacts": [
+        "source",
+        "drain",
+        "bottom_gate",
+        "top_gate"
+      ],
+      "interfaces": [
+        "bottom_oxide_channel",
+        "channel_top_oxide"
+      ],
+      "node_count_with_interface_duplicates": 2419,
+      "state_csv": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference_nodes.csv",
+      "state_csv_sha256": "bbe31adad1c7d5a96cc6fceed53a480132fa395a7b731dac41c93221ba8dfbc1",
+      "vtk_base": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference.visit",
+          "sha256": "36d47732d163b641b3343f782f379ad9a5494c667ddfd8eb95e325a25d7717e1"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference.vtm",
+          "sha256": "f18ea6b75bcf18283c9658147b308343bf641785ba73ea2ef40323dff4897fdf"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference_1.vtu",
+          "sha256": "4c109c541f656da3143f8d09f443d35d7d9ff7bc423ebc85178942e2af0bed9a"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference_2.vtu",
+          "sha256": "590d68791b3466ab0adb76c2745ea7dea7c8a4859025c0577e43dee135bbc035"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_zero_reference_3.vtu",
+          "sha256": "afd83abf41cbdd56adbcc685fe7fbd5e2342c8911075f556cba96d32e5721d4c"
+        }
+      ],
+      "vtk_file_count": 6,
+      "source_current_a_per_cm": -1.1930966936239753e-06,
+      "drain_current_a_per_cm": 1.1930966936239768e-06,
+      "relative_current_imbalance": 1.242403625470274e-15,
+      "center_channel_potential_v": 0.0013326913196697481,
+      "center_channel_electron_density_cm3": 8792236312879518.0,
+      "maximum_absolute_potential_v": 0.01
+    },
+    {
+      "state_id": "top_gate_positive_endpoint",
+      "state_label": "VTG=0.3 V positive endpoint at fixed VDS and VBG",
+      "bias": {
+        "source_v": 0.0,
+        "drain_v": 0.01,
+        "bottom_gate_v": 0.0,
+        "top_gate_v": 0.3
+      },
+      "mode_id": "enabled_symmetric_teaching_top_stack",
+      "regions": [
+        "bottom_oxide",
+        "channel",
+        "top_oxide"
+      ],
+      "contacts": [
+        "source",
+        "drain",
+        "bottom_gate",
+        "top_gate"
+      ],
+      "interfaces": [
+        "bottom_oxide_channel",
+        "channel_top_oxide"
+      ],
+      "node_count_with_interface_duplicates": 2419,
+      "state_csv": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint_nodes.csv",
+      "state_csv_sha256": "6c6e07779adbc2c53f6a28fd9c8c33a5e8e0624fc4c8b34ea6395b453a55bb7d",
+      "vtk_base": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint.visit",
+          "sha256": "767ac628e1780d0044a8ab43ea6c307d3838e0627ce3a9c4a70cf0c0c9d0b5bc"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint.vtm",
+          "sha256": "5397c24308caa61212ce273008a4c143167bb0c446866129ec8ca13206208556"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint_1.vtu",
+          "sha256": "6b6105e149d067d6a4d03de31bfc84f9025613135645882ccb18f9c92346ae83"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint_2.vtu",
+          "sha256": "03c64fadb4cdd33524c50b8218ca158f81338aeccbd4e7a1ae07d774b466a9f0"
+        },
+        {
+          "path": "results/tcad/t02_dual_gate/t02_b_minimal_bias/t02_b_top_gate_positive_endpoint_3.vtu",
+          "sha256": "f45b9505f2ca11de53782577d82ecd95c57fcdcfb65e7d71b2980b9e4b4d9f65"
+        }
+      ],
+      "vtk_file_count": 6,
+      "source_current_a_per_cm": -1.1549445541373237e-05,
+      "drain_current_a_per_cm": 1.154944554137314e-05,
+      "relative_current_imbalance": 8.360726550991553e-15,
+      "center_channel_potential_v": 0.056544883007083165,
+      "center_channel_electron_density_cm3": 7.364012706240109e+16,
+      "maximum_absolute_potential_v": 0.3
+    }
+  ]
+}

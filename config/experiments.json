@@ -2,7 +2,7 @@
   "schema_version": 2,
   "project_id": "DG-IGZO-TFT-PDK",
   "principle": "Each experiment has dependencies, one declared variable group, controls, outputs, acceptance criteria and an evidence boundary.",
-  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified", "limit_regression_verified"],
+  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified", "limit_regression_verified", "minimal_bias_verified"],
   "parameter_groups": [
     {
       "id": "P1",
@@ -176,7 +176,7 @@
       "id": "T02",
       "track": "tcad",
       "name": "dual_gate_current_and_threshold_coupling",
-      "status": "limit_regression_verified",
+      "status": "minimal_bias_verified",
       "current_evidence": "E2",
       "depends_on": ["T01"],
       "purpose": "Quantify top/bottom gate control under mobile charge.",
@@ -194,18 +194,28 @@
         "results/tables/tcad_t02_a_topology_summary.csv",
         "results/tcad/t02_dual_gate/t02_a_limit_regression/state_manifest.json"
       ],
+      "minimal_bias_outputs": [
+        "config/tcad_t02_b_minimal_bias.json",
+        "results/reports/tcad_t02_b_input_contract.json",
+        "results/reports/tcad_t02_b_minimal_bias.json",
+        "results/reports/tcad_t02_b_minimal_bias_check.json",
+        "results/tables/tcad_t02_b_minimal_bias.csv",
+        "results/tables/tcad_t02_b_state_summary.csv",
+        "results/tcad/t02_dual_gate/t02_b_minimal_bias/state_manifest.json",
+        "report/assets/tcad_t02_b_minimal_bias.png"
+      ],
       "completed_substages": [
         "T02-A top-stack input contract",
         "T02-A exact-T01 disabled-top-stack regression",
-        "T02-A enabled-topology all-zero-bias equilibrium smoke"
+        "T02-A enabled-topology all-zero-bias equilibrium smoke",
+        "T02-B minimal nonzero enabled top-gate bias family with endpoint states"
       ],
       "remaining_substages": [
-        "T02-B minimal nonzero enabled dual-gate bias family",
         "T02-C bidirectional gate families, Delta VTH, gm, and representative states"
       ],
       "acceptance": ["coupling trend is monotonic", "disabled top coupling returns the single-gate baseline"],
-      "simulation_status": "T02_A_LIMIT_REGRESSION_PASS",
-      "evidence_boundary": "T02-A freezes the symmetric teaching top stack, proves that omitting the complete top stack reproduces T01, and closes an enabled all-zero-bias equilibrium smoke. It does not verify nonzero dual-gate current or threshold coupling, Delta VTH, gm, experimental accuracy, or complete T02."
+      "simulation_status": "T02_B_MINIMAL_PASS",
+      "evidence_boundary": "T02-B verifies the positive response direction and numerical detectability of VTG=0/0.1/0.2/0.3 V at fixed VDS=0.01 V and VBG=0 V, with endpoint internal states and current conservation. It does not verify negative or reverse sweeps, bidirectional gate families, Delta VTH, gm, experimental accuracy, or complete T02."
     },
     {
       "id": "T03",

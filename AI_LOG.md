@@ -16,6 +16,64 @@
 
 ---
 
+## 2026-07-31 | Codex GPT-5 | 完成 T02-B 最小正向顶栅偏压族
+
+### 用户目标
+
+按阶段门继续 T02，只完成下一个小阶段：在 T02-A 已冻结的启用顶栈拓扑上运行最小非零顶栅偏压族，通过后更新状态、分章报告、Git 并推送，不提前展开 T02-C、T03、SPICE 或版图。
+
+### 读取的关键输入
+
+- `AGENTS.md`、README、AI_CONTEXT、ARCHITECTURE、STATUS、PROJECT_PLAN、DECISIONS、AI_LOG、`config/project.json` 和 `config/experiments.json`。
+- T01 冻结教学基线、T01-D-A `interface_4x` 网格合同、T02-A 顶栈合同、回归报告和独立检查报告。
+- T02-A 已验证的启用拓扑初始化、网格、方程、接触、偏压和状态导出函数。
+
+### 本次修改
+
+- 新增 `config/tcad_t02_b_minimal_bias.json`，冻结 `VDS=0.01 V`、`VBG=0 V`、`VTG=0/0.1/0.2/0.3 V`、9 次 DC 路径、端点状态和结论边界。
+- 新增 `scripts/check_t02_b_contract.py` 与 `make t02-b-contract-check`；17 项静态检查通过，该命令不运行器件仿真。
+- 新增 `tcad/run_t02_dual_gate_minimal_bias.py` 与 `make t02-b-minimal`；复用 T02-A 已验证的启用拓扑，保存偏压表、输入快照、求解日志、2 份节点状态、12 个 VTK、JSON 报告和三面板图。
+- 新增 `scripts/check_t02_b_minimal_bias.py` 与 `make t02-b-minimal-check`；独立读取落盘 CSV/JSON/VTK，不导入运行器，复算 14 项证据。
+- 更新 `scripts/check_project.py`、`config/experiments.json`、状态/计划/架构/上下文、ADR-018、TCAD 文档、报告第 5/7 章和证据矩阵。
+
+### 实际结果
+
+- 9 次 DC 全部收敛；启用拓扑为 2419 个含界面重复计数的活动节点、4480 个三角形、3 个区域、4 个接触和 2 个介质界面。
+- VTG=0/0.1/0.2/0.3 V 的漏端电流为 `1.1931e-6/3.7004e-6/7.4130e-6/1.1549e-5 A/cm`，端点比为 `9.6802`。
+- 沟道中心电势增加 `0.0552122 V`，中心电子浓度端点比为 `8.3756`；三个观察量均随 VTG 严格增加。
+- 最大端口相对不平衡为 `1.405e-14`；零偏压平衡态的最大端口电流和最大节点电势均为 0。
+
+### 验证
+
+```text
+make t02-b-contract-check
+T02_B_CONTRACT_PASS checks=17 simulation=NOT_RUN_BY_CONTRACT_CHECK
+
+make t02-b-minimal
+T02_B_MINIMAL_PASS points=4 dc_solves=9
+
+make t02-b-minimal-check
+T02_B_MINIMAL_CHECK_PASS checks=14
+
+make check
+PROJECT_CHECK_PASS checks=265
+
+make report-check
+REPORT_STRUCTURE_PASS chapters=12 appendices=5 placeholders=19 images=4
+```
+
+### 决策和边界
+
+- T02-B 只允许声称冻结教学模型在四个单向非负顶栅点上具有正向、数值可检出的电流和内部状态响应。
+- 9.6802 倍电流增加不是物理 Ion/Ioff；未验证负偏压、回程扫描、底栅族、Delta VTH、gm、电容比、耦合斜率、实验精度或完整 T02。
+- 只打开 T02-C 合同；T02-C 通过前不启动 T03、SPICE、KLayout 或大批量扫描。
+
+### 下一步
+
+先冻结 T02-C 双向偏压合同：定义固定顶栅/扫底栅和固定底栅/扫顶栅的最小网格，明确负偏压与回程路径、Delta VTH/gm 提取、代表状态和笔记本运行上限，合同通过后再分块求解。
+
+---
+
 ## 2026-07-31 | Codex GPT-5 | 完成 T02-A 顶栅输入合同与 T01 极限回归
 
 ### 用户目标

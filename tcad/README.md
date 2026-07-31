@@ -11,6 +11,7 @@
 5. `T01-D-B` 已运行的离散 Id-Vd 曲线族：interface_4x 完成 4 条正式曲线，interface_8x 复核 2 条高栅压曲线。
 6. `T01-D-C` 已运行的状态与受限提取：两档网格完成同一 51 点低漏压网格，interface_4x 保存关态/目标附近/开态的电势、电子浓度和局部电流密度。
 7. `T02-A` 已运行的顶栅极限回归：先冻结对称 30 nm Al2O3 教学顶栈，再证明移除整个顶栈后 7 个低漏压点返回 T01，并对启用顶栈的结构只做全零偏压平衡烟雾。
+8. `T02-B` 已运行的最小正向顶栅族：固定 VDS=0.01 V、VBG=0 V，只将 VTG 从 0 V 增至 0.3 V，验证端口守恒、响应方向和端点内部状态。
 
 `T00` 不能被写成“IGZO TFT 电流仿真已完成”。它只证明二维结构、Poisson 方程、边界条件、扫描和数据导出链路能运行。
 
@@ -35,6 +36,7 @@ tcad/
 |-- run_t01_single_gate_idvd.py # T01-D-B 离散 Id-Vd 曲线族
 |-- run_t01_single_gate_extraction.py # T01-D-C 状态与数值代理提取
 |-- run_t02_dual_gate_limit_regression.py # T02-A 顶栅极限回归
+|-- run_t02_dual_gate_minimal_bias.py # T02-B 最小正向顶栅族
 |-- structures/README.md      # 后续 Gmsh/DEVSIM 结构与网格
 |-- physics/README.md         # 方程、材料、陷阱和接触模型
 `-- tests/README.md           # 网格、极限条件和故障测试
@@ -109,6 +111,18 @@ results/reports/tcad_t02_a_limit_regression.json
 results/reports/tcad_t02_a_limit_regression_check.json
 ```
 
+T02-B 使用 `config/tcad_t02_b_minimal_bias.json`，结果写入：
+
+```text
+results/tcad/t02_dual_gate/t02_b_minimal_bias/
+results/tables/tcad_t02_b_minimal_bias.csv
+results/tables/tcad_t02_b_state_summary.csv
+results/reports/tcad_t02_b_input_contract.json
+results/reports/tcad_t02_b_minimal_bias.json
+results/reports/tcad_t02_b_minimal_bias_check.json
+report/assets/tcad_t02_b_minimal_bias.png
+```
+
 ## 运行 T00
 
 在项目根目录执行：
@@ -174,6 +188,16 @@ make t02-a-regression-check
 
 T02-A 的合同检查不运行仿真；它固定顶栈教学结构、两种耦合模式和偏压顺序。正式回归共 14 次 DC：禁用模式移除顶介质/顶栅并复现 T01 `interface_4x` 的 7 个点；启用模式只验证全零偏压平衡与状态输出。`VTG=0 V` 仍属于有限电容耦合，不能当作禁用极限。T02-A 的 PASS 不是非零双栅电流、Delta VTH、gm 或完整 T02 验证；它只打开 T02-B 最小非零偏压族。
 
+## 运行 T02-B
+
+```bash
+make t02-b-contract-check
+make t02-b-minimal
+make t02-b-minimal-check
+```
+
+T02-B 合同检查不运行仿真；它固定启用拓扑、`VDS=0.01 V`、`VBG=0 V`、`VTG=0/0.1/0.2/0.3 V` 和端点状态。正式运行共 9 次 DC，四个正式点的电流、中心电势和中心电子浓度均严格增加，最大端口相对不平衡为 1.405e-14，端点电流比为 9.6802；独立 14 项检查 PASS。T02-B 只打开 T02-C，不验证负偏压、回程扫描、Delta VTH、gm 或完整 T02。
+
 ## T00 的模型
 
 三个区域均求解：
@@ -194,8 +218,8 @@ div(epsilon * grad(Potential)) = 0
 ## 后续 T02 必须增加什么
 
 1. T02-A 已完成顶栅、顶介质、上下栅边界与禁用极限合同；
-2. T02-B 只运行一个最小非零顶栅偏压族，检查电流方向、守恒与内部状态；
-3. T02-B 通过后再扩展固定顶栅/扫底栅和固定底栅/扫顶栅的双向曲线族；
+2. T02-B 已完成固定 VDS/VBG 的最小正向顶栅偏压族，电流方向、守恒与端点内部状态通过；
+3. T02-C 先冻结负偏压、回程路径和提取合同，再扩展固定顶栅/扫底栅和固定底栅/扫顶栅的双向曲线族；
 4. 后续受控加入带尾态、深能级、界面陷阱和非理想接触；
 5. 与老师数据或条件完整的文献/实验数据定量对比。
 

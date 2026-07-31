@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T02_DUAL_GATE_DD_B_MINIMAL_V1",
+  "stage": "T02-B",
+  "checks": [
+    {
+      "name": "identity:report",
+      "status": "PASS",
+      "detail": "status=PASS case=IGZO_T02_DUAL_GATE_DD_B_MINIMAL_V1 stage=T02-B"
+    },
+    {
+      "name": "contract:static_gate_passed_before_simulation",
+      "status": "PASS",
+      "detail": "checks=17 simulation=NOT_RUN_BY_CONTRACT_CHECK"
+    },
+    {
+      "name": "inputs:snapshot_hashes_match",
+      "status": "PASS",
+      "detail": "snapshot=results/tcad/t02_dual_gate/t02_b_minimal_bias/input_snapshot.json inputs=7"
+    },
+    {
+      "name": "dependencies:t02_a_evidence_is_still_pass",
+      "status": "PASS",
+      "detail": "T02_A=PASS independent=PASS next=True"
+    },
+    {
+      "name": "solver:fresh_enabled_run_and_all_dc_converged",
+      "status": "PASS",
+      "detail": "runs=1 records=9 labels=['T02_B_POISSON_ZERO_BIAS', 'T02_B_COUPLED_ZERO_BIAS', 'T02_B_LOW_VDS_0_V', 'T02_B_LOW_VDS_0.001_V', 'T02_B_LOW_VDS_0.005_V', 'T02_B_LOW_VDS_0.01_V', 'T02_B_VTG_0.1_V', 'T02_B_VTG_0.2_V', 'T02_B_VTG_0.3_V']"
+    },
+    {
+      "name": "topology:exact_t02_a_enabled_domain",
+      "status": "PASS",
+      "detail": "nodes=2419 elements=4480"
+    },
+    {
+      "name": "bias:grid_and_csv_match",
+      "status": "PASS",
+      "detail": "rows=4 VTG=[0.0, 0.1, 0.2, 0.3]"
+    },
+    {
+      "name": "current:conservation_sign_and_strict_top_gate_control",
+      "status": "PASS",
+      "detail": "max_imbalance=1.405445e-14 currents=[1.1930966936239768e-06, 3.7004285740787383e-06, 7.412956638914865e-06, 1.154944554137314e-05]"
+    },
+    {
+      "name": "state:internal_response_and_endpoint_thresholds",
+      "status": "PASS",
+      "detail": "potential_delta=5.521219e-02 density_ratio=8.37559 current_ratio=9.68023"
+    },
+    {
+      "name": "equilibrium:zero_bias_is_current_free",
+      "status": "PASS",
+      "detail": "{\"drain_current_a_per_cm\": 0.0, \"maximum_absolute_potential_v\": 0.0, \"maximum_absolute_terminal_current_a_per_cm\": 0.0, \"node_count\": 2419, \"source_current_a_per_cm\": 0.0}"
+    },
+    {
+      "name": "outputs:endpoint_state_and_vtk_hashes_match",
+      "status": "PASS",
+      "detail": "states=['top_gate_zero_reference', 'top_gate_positive_endpoint']"
+    },
+    {
+      "name": "outputs:endpoint_internal_state_recomputed_from_nodes",
+      "status": "PASS",
+      "detail": "entries=2"
+    },
+    {
+      "name": "outputs:reports_tables_and_figure_exist",
+      "status": "PASS",
+      "detail": "files=8 figure=/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/assets/tcad_t02_b_minimal_bias.png"
+    },
+    {
+      "name": "runner:stage_gate_and_boundary_pass",
+      "status": "PASS",
+      "detail": "runner_checks=10 next=True complete=False"
+    }
+  ],
+  "failures": [],
+  "recomputed_maximum_relative_terminal_current_imbalance": 1.4054453248161712e-14,
+  "recomputed_endpoint_current_ratio": 9.680225922252978,
+  "recomputed_endpoint_center_potential_increase_v": 0.05521219168741342,
+  "recomputed_endpoint_center_density_ratio": 8.375585509971744
+}

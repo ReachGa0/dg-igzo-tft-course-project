@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-07" class="report-chapter">
   <h2>7. 基准仿真结果</h2>
-  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 扩展到低漏压栅压续算，T01-D-A 以界面窗口加密验证高正栅压目标点，T01-D-B 生成冻结的离散 Id-Vd 曲线族，T01-D-C 最后补齐三状态和受限数值代理。T02-A 再以独立拓扑区分“移除顶栈”与“启用顶栈但 VTG=0 V”，验证了 T01 退化极限和启用拓扑全零偏压平衡。模型为 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
+  <p>T01-B 给出了第一个含移动电子的项目内二维器件结果，T01-C 扩展到低漏压栅压续算，T01-D-A 以界面窗口加密验证高正栅压目标点，T01-D-B 生成冻结的离散 Id-Vd 曲线族，T01-D-C 最后补齐三状态和受限数值代理。T02-A 再以独立拓扑区分“移除顶栈”与“启用顶栈但 VTG=0 V”，验证了 T01 退化极限和启用拓扑全零偏压平衡；T02-B 在同一启用拓扑上固定 VDS/VBG，生成四个正向顶栅偏压点及两个端点状态。模型为 n 型 IGZO、300 K、常数教学迁移率 35.5 cm2/(V*s)、理想欧姆源漏、无空穴/陷阱/复合；输入证据为 S00 教学参数基线，故本节证据等级为 E2，不是实验拟合。</p>
   <table>
     <thead><tr><th>条件</th><th>coarse</th><th>fine</th><th>验收</th></tr></thead>
     <tbody>
@@ -90,5 +90,21 @@
       <tr><td>独立复算</td><td>14/14 PASS</td><td>包含输入哈希、拓扑、回归、状态和产物检查</td></tr>
     </tbody>
   </table>
-  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、<code>results/reports/tcad_t01_d_mesh_refinement.json</code>、<code>results/reports/tcad_t01_d_idvd.json</code>、<code>results/reports/tcad_t01_d_extraction.json</code> 和 <code>results/reports/tcad_t02_a_limit_regression.json</code> 及对应 CSV、求解日志、节点/单元状态、VTK 和图。T01-D-C 的运行器 12 项检查与独立 17 项复算均 PASS，关闭了冻结教学模型的完整 T01 数值阶段门。T02-A 的运行器 10 项检查与独立 14 项复算均 PASS，只允许进入 T02-B 最小非零顶栅偏压族。这里的 VTH、SS、迁移率和约 17.42 decade 电流跨度仍只能称为数值代理；T02-A 没有运行非零 VTG，因而双栅电流趋势、<code>Delta VTH</code>、gm、耦合斜率、实验精度与参数不确定度均未验证。</p>
+  <table>
+    <thead><tr><th>T02-B 最小正向顶栅族</th><th>结果</th><th>验收或边界</th></tr></thead>
+    <tbody>
+      <tr><td>固定条件</td><td>VDS=0.01 V，VBG=0 V，VTG=0/0.1/0.2/0.3 V</td><td>只改变顶栅电压，单向非负偏压</td></tr>
+      <tr><td>DC 求解/正式点</td><td>9/4，全部收敛</td><td>含零偏压初始化和低 VDS 阶梯</td></tr>
+      <tr><td>漏端电流 A/cm</td><td>1.1931e-6 / 3.7004e-6 / 7.4130e-6 / 1.1549e-5</td><td>随 VTG 严格增加，端点比 9.6802</td></tr>
+      <tr><td>沟道中心电势</td><td>0.0013327 V -> 0.0565449 V</td><td>端点增量 0.0552122 V</td></tr>
+      <tr><td>沟道中心电子浓度</td><td>8.7922e15 -> 7.3640e16 cm^-3</td><td>端点比 8.3756</td></tr>
+      <tr><td>最大端口相对不平衡</td><td>1.405e-14</td><td>低于 1e-5</td></tr>
+      <tr><td>端点状态/独立复算</td><td>2 份 2419 行节点 CSV，12 个 VTK，14/14 PASS</td><td>只打开 T02-C，不关闭完整 T02</td></tr>
+    </tbody>
+  </table>
+  <figure>
+    <img src="assets/tcad_t02_b_minimal_bias.png" alt="T02-B 固定漏压和底栅时的顶栅电流、沟道中心电势和电子浓度响应" />
+    <figcaption>图 7-4 T02-B 最小正向顶栅偏压族。三张图分别给出漏端电流绝对值、沟道中心电势和中心电子浓度；点间连线只用于辨认四个离散偏压点的顺序，不代表连续或反向扫描验证。</figcaption>
+  </figure>
+  <p>结果可追溯到 <code>results/reports/tcad_t01_b_smoke.json</code>、<code>results/reports/tcad_t01_c_transfer.json</code>、<code>results/reports/tcad_t01_d_mesh_refinement.json</code>、<code>results/reports/tcad_t01_d_idvd.json</code>、<code>results/reports/tcad_t01_d_extraction.json</code>、<code>results/reports/tcad_t02_a_limit_regression.json</code> 和 <code>results/reports/tcad_t02_b_minimal_bias.json</code> 及对应 CSV、求解日志、节点/单元状态、VTK 和图。T01-D-C 的运行器 12 项检查与独立 17 项复算均 PASS，关闭了冻结教学模型的完整 T01 数值阶段门。T02-A/B 的运行器均为 10 项，独立检查均为 14 项且全部 PASS；T02-B 只允许进入 T02-C 双向偏压合同与曲线族。这里的 VTH、SS、迁移率和约 17.42 decade 电流跨度仍只能称为数值代理；T02-B 的 9.6802 倍端点电流响应也只属于四点正向教学模型证据，不是物理 Ion/Ioff、<code>Delta VTH</code>、gm、耦合斜率、实验精度或参数不确定度验证。</p>
 </section>

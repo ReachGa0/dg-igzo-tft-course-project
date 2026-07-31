@@ -39,6 +39,7 @@ REQUIRED_FILES = [
     "config/tcad_t01_d_idvd.json",
     "config/tcad_t01_d_extraction.json",
     "config/tcad_t02_a_dual_gate_contract.json",
+    "config/tcad_t02_b_minimal_bias.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -63,6 +64,8 @@ REQUIRED_FILES = [
     "scripts/check_t01_d_extraction.py",
     "scripts/check_t02_a_contract.py",
     "scripts/check_t02_a_limit_regression.py",
+    "scripts/check_t02_b_contract.py",
+    "scripts/check_t02_b_minimal_bias.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
@@ -72,6 +75,7 @@ REQUIRED_FILES = [
     "tcad/run_t01_single_gate_idvd.py",
     "tcad/run_t01_single_gate_extraction.py",
     "tcad/run_t02_dual_gate_limit_regression.py",
+    "tcad/run_t02_dual_gate_minimal_bias.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
@@ -122,6 +126,13 @@ REQUIRED_FILES = [
     "results/tables/tcad_t02_a_disabled_regression.csv",
     "results/tables/tcad_t02_a_topology_summary.csv",
     "results/tcad/t02_dual_gate/t02_a_limit_regression/state_manifest.json",
+    "results/reports/tcad_t02_b_input_contract.json",
+    "results/reports/tcad_t02_b_minimal_bias.json",
+    "results/reports/tcad_t02_b_minimal_bias_check.json",
+    "results/tables/tcad_t02_b_minimal_bias.csv",
+    "results/tables/tcad_t02_b_state_summary.csv",
+    "results/tcad/t02_dual_gate/t02_b_minimal_bias/state_manifest.json",
+    "report/assets/tcad_t02_b_minimal_bias.png",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -168,6 +179,7 @@ REQUIRED_DIRS = [
     "results/tcad/t01_single_gate/t01_d_mesh_refinement",
     "results/tcad/t01_single_gate/t01_d_idvd",
     "results/tcad/t02_dual_gate/t02_a_limit_regression",
+    "results/tcad/t02_dual_gate/t02_b_minimal_bias",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -1146,6 +1158,117 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t02_a:limit_regression", False, str(error))
+
+    t02_b_contract_path = ROOT / "results" / "reports" / "tcad_t02_b_input_contract.json"
+    t02_b_report_path = ROOT / "results" / "reports" / "tcad_t02_b_minimal_bias.json"
+    t02_b_check_path = ROOT / "results" / "reports" / "tcad_t02_b_minimal_bias_check.json"
+    try:
+        t02_b_config = json.loads(
+            (ROOT / "config" / "tcad_t02_b_minimal_bias.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        t02_b_contract = json.loads(t02_b_contract_path.read_text(encoding="utf-8"))
+        t02_b_report = json.loads(t02_b_report_path.read_text(encoding="utf-8"))
+        t02_b_check = json.loads(t02_b_check_path.read_text(encoding="utf-8"))
+        contract_checks = t02_b_contract.get("checks", [])
+        add_check(
+            checks,
+            "t02_b:input_contract",
+            t02_b_contract.get("status") == "PASS"
+            and t02_b_contract.get("contract_status") == "PASS"
+            and t02_b_contract.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and t02_b_contract.get("case_id") == t02_b_config.get("case_id")
+            and len(contract_checks) == 17
+            and all(result.get("status") == "PASS" for result in contract_checks),
+            f"status={t02_b_contract.get('status')} checks={len(contract_checks)}",
+        )
+        add_check(
+            checks,
+            "t02_b:simulation_and_independent_check",
+            t02_b_report.get("status") == "PASS"
+            and t02_b_report.get("case_id") == t02_b_config.get("case_id")
+            and t02_b_report.get("stage") == "T02-B"
+            and t02_b_report.get("evidence_level") == "E2"
+            and t02_b_check.get("status") == "PASS"
+            and t02_b_check.get("case_id") == t02_b_config.get("case_id")
+            and t02_b_check.get("stage") == "T02-B"
+            and len(t02_b_check.get("checks", [])) == 14,
+            (
+                f"simulation={t02_b_report.get('status')} independent="
+                f"{t02_b_check.get('status')} checks={len(t02_b_check.get('checks', []))}"
+            ),
+        )
+        completion = t02_b_report.get("t02_b_completion", {})
+        metrics = t02_b_report.get("summary_metrics", {})
+        acceptance = t02_b_config["acceptance"]
+        add_check(
+            checks,
+            "t02_b:minimal_top_gate_response_gate",
+            completion.get("status") == "PASS"
+            and completion.get("minimal_nonzero_top_gate_family_completed") is True
+            and completion.get("top_gate_response_direction_verified") is True
+            and completion.get("t02_c_bidirectional_family_permitted_next") is True
+            and completion.get("t02_complete") is False
+            and completion.get("delta_vth_verified") is False
+            and completion.get("gm_verified") is False
+            and metrics.get("maximum_relative_terminal_current_imbalance", float("inf"))
+            <= acceptance["maximum_relative_terminal_current_imbalance"]
+            and metrics.get("endpoint_current_ratio", 0.0)
+            >= acceptance["minimum_endpoint_current_ratio"]
+            and metrics.get("endpoint_center_potential_increase_v", 0.0)
+            >= acceptance["minimum_endpoint_center_potential_increase_v"]
+            and metrics.get("endpoint_center_density_ratio", 0.0)
+            >= acceptance["minimum_endpoint_center_density_ratio"],
+            f"completion={completion} metrics={metrics}",
+        )
+        topology = t02_b_report.get("topology", {})
+        bias_points = t02_b_report.get("bias_points", [])
+        add_check(
+            checks,
+            "t02_b:topology_and_bias_grid",
+            topology.get("regions") == sorted(acceptance["required_regions"])
+            and topology.get("contacts") == sorted(acceptance["required_contacts"])
+            and topology.get("interfaces") == sorted(acceptance["required_interfaces"])
+            and topology.get("mesh_level") == "interface_4x"
+            and [float(row["vtg_v"]) for row in bias_points]
+            == [float(value) for value in acceptance["required_top_gate_values_v"]]
+            and all(float(row["vbg_v"]) == 0.0 for row in bias_points)
+            and all(float(row["vds_v"]) == 0.01 for row in bias_points),
+            f"nodes={topology.get('node_count_with_interface_duplicates')} points={len(bias_points)}",
+        )
+        runner_checks = t02_b_report.get("checks", {})
+        state_entries = t02_b_report.get("state_outputs", [])
+        state_paths = [ROOT / entry["state_csv"] for entry in state_entries]
+        vtk_paths = [
+            ROOT / item["path"]
+            for entry in state_entries
+            for item in entry.get("vtk_files", [])
+        ]
+        output_paths = [
+            ROOT / value
+            for key, value in t02_b_report.get("outputs", {}).items()
+            if key != "run_directory"
+        ]
+        run_directory = ROOT / t02_b_report.get("outputs", {}).get("run_directory", "")
+        add_check(
+            checks,
+            "t02_b:checks_and_raw_outputs",
+            len(runner_checks) == 10
+            and all(result.get("status") == "PASS" for result in runner_checks.values())
+            and [entry.get("state_id") for entry in state_entries]
+            == acceptance["required_state_ids"]
+            and len(state_paths) == 2
+            and len(vtk_paths) == 12
+            and all(
+                path.is_file() and path.stat().st_size > 0
+                for path in output_paths + state_paths + vtk_paths
+            )
+            and run_directory.is_dir(),
+            f"checks={len(runner_checks)} states={len(state_entries)} vtk={len(vtk_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t02_b:minimal_bias", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:
