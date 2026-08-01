@@ -2,7 +2,7 @@
   "schema_version": 2,
   "project_id": "DG-IGZO-TFT-PDK",
   "principle": "Each experiment has dependencies, one declared variable group, controls, outputs, acceptance criteria and an evidence boundary.",
-  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified", "limit_regression_verified", "minimal_bias_verified", "bidirectional_verified"],
+  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified", "limit_regression_verified", "minimal_bias_verified", "bidirectional_verified", "partial_verified"],
   "parameter_groups": [
     {
       "id": "P1",
@@ -234,15 +234,32 @@
       "id": "T03",
       "track": "tcad",
       "name": "five_group_device_sensitivity",
-      "status": "planned",
-      "current_evidence": "E0",
+      "status": "partial_verified",
+      "current_evidence": "E3",
       "depends_on": ["T02"],
       "parameter_group_ids": ["P1", "P2", "P3", "P4", "P5"],
       "purpose": "Meet the high-difficulty parameter requirement with controlled physical scans.",
       "changed_variables": ["P1", "P2", "P3", "P4", "P5"],
       "controls": ["one active variable group per primary scan", "common extraction method"],
-      "required_outputs": ["normalized_sensitivity_table", "physical_explanations", "failure_log"],
-      "acceptance": ["five groups complete", "at least three points per group", "quantitative comparison uses common axes"]
+      "required_outputs": ["normalized_sensitivity_table", "physical_explanations", "failure_log", "group_contracts", "independent_checks"],
+      "completed_substages": ["T03-P4-L V2 channel-length-only sensitivity: L=8/10/12 um, 123 DC, 93 formal points, 3 states, independent 14/14 PASS"],
+      "completed_parameter_groups": ["P4"],
+      "remaining_substages": ["T03-P1", "T03-P2", "T03-P3", "T03-P5"],
+      "remaining_parameter_groups": ["P1", "P2", "P3", "P5"],
+      "first_group_outputs": [
+        "config/tcad_t03_p4_channel_length.json",
+        "results/reports/tcad_t03_p4_l_input_contract.json",
+        "results/reports/tcad_t03_p4_l_sensitivity.json",
+        "results/reports/tcad_t03_p4_l_sensitivity_check.json",
+        "results/tables/tcad_t03_p4_l_transfer_curves.csv",
+        "results/tables/tcad_t03_p4_l_metrics.csv",
+        "results/tables/tcad_t03_p4_l_t02_c_reproduction.csv",
+        "results/tables/tcad_t03_p4_l_state_summary.csv",
+        "results/tcad/t03_sensitivity/p4_channel_length/state_manifest.json",
+        "report/assets/tcad_t03_p4_l_sensitivity.png",
+        "report/assets/tcad_t03_p4_l_state_maps.png"
+      ],
+      "acceptance": ["five groups complete", "at least three points per group", "quantitative comparison uses common axes", "each completed group has an independent persisted-evidence check", "failed hypotheses remain visible and do not get silently relaxed"]
     },
     {
       "id": "M00",

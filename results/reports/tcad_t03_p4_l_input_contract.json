@@ -1,0 +1,214 @@
+{
+  "status": "PASS",
+  "contract_status": "PASS",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "case_id": "IGZO_T03_P4_CHANNEL_LENGTH_V2",
+  "stage": "T03-P4-L",
+  "parameter_group_id": "P4",
+  "config": {
+    "path": "config/tcad_t03_p4_channel_length.json",
+    "sha256": "c525afc6f7f45cdcbd2275b5434930390af4247f5f3566122e560443e5c9b63b"
+  },
+  "inputs": {
+    "project_config": {
+      "path": "config/project.json",
+      "sha256": "b2c40393191ebce412d102a3c65aa7d9625df0dfcd1d1837779e57227b8dbbeb"
+    },
+    "experiments_config": {
+      "path": "config/experiments.json",
+      "sha256": "8a7dc39c1c894bb94bcd1c84425b25c63d2b0afbf4612139c7dfe7c0b4987d31"
+    },
+    "s00_report": {
+      "path": "results/reports/s00_data_audit.json",
+      "sha256": "44ea42ff7fd9923cd4c9c2d0156ce3d0029cd59655e3c4086ab7250f78b48e31"
+    },
+    "t01_baseline_config": {
+      "path": "config/tcad_t01_baseline.json",
+      "sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9"
+    },
+    "t01_mesh_config": {
+      "path": "config/tcad_t01_d_mesh_refinement.json",
+      "sha256": "6ba9815ab063708b9fa560092974ac65a748b95c981d16056af3dec1e0f74e23"
+    },
+    "t02_a_config": {
+      "path": "config/tcad_t02_a_dual_gate_contract.json",
+      "sha256": "59f19996be43c22972bf223cfebf1f95fcaec5cdd9bf2edef76d45e9f1b4ccb3"
+    },
+    "t02_a_report": {
+      "path": "results/reports/tcad_t02_a_limit_regression.json",
+      "sha256": "addc197ad0657e1d19ac1787aa98c26fd698a4cd967f7e53ccedc8890a84bd33"
+    },
+    "t02_c_config": {
+      "path": "config/tcad_t02_c_bidirectional.json",
+      "sha256": "93c29fe977dd304315537d7dcbb0e2ea4b920cdab331a7996d7c9dd399b84228"
+    },
+    "t02_c_contract_report": {
+      "path": "results/reports/tcad_t02_c_input_contract.json",
+      "sha256": "3e27a29ae160d23332a7696d92b67646978a0f9dd5e8736fb6a2eda9a5589de1"
+    },
+    "t02_c_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional.json",
+      "sha256": "d214e9bf7c1938cf3120eaaf06fc53d0b1c1faf0708c0378fef6b3faeafecfed"
+    },
+    "t02_c_check_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional_check.json",
+      "sha256": "a13c6bebb0f10e8bce7dabff865863ee862e9d3ac572dfc692423a66ba868aa4"
+    }
+  },
+  "checks": [
+    {
+      "name": "identity:t03_p4_l_contract",
+      "status": "PASS",
+      "detail": "case=IGZO_T03_P4_CHANNEL_LENGTH_V2 stage=T03-P4-L group=P4"
+    },
+    {
+      "name": "remediation:v1_failure_is_preserved",
+      "status": "PASS",
+      "detail": "prior_status=FAIL failures=['vth_and_gm_numerical_proxies_are_valid', 'current_and_gm_length_products_are_stable', 'log_current_length_slope_matches_frozen_gate']"
+    },
+    {
+      "name": "remediation:simulation_protocol_is_unchanged_from_v1",
+      "status": "PASS",
+      "detail": "V2 changes acceptance semantics and audit metadata, not simulation inputs or extraction formulas"
+    },
+    {
+      "name": "dependencies:complete_t02_gate_passed",
+      "status": "PASS",
+      "detail": "contract=PASS run=PASS independent=PASS next=True"
+    },
+    {
+      "name": "dependencies:identities_and_hashes_match",
+      "status": "PASS",
+      "detail": "t02a=IGZO_T02_DUAL_GATE_DD_A_LIMIT_V1 t02c=IGZO_T02_DUAL_GATE_DD_C_BIDIRECTIONAL_V1"
+    },
+    {
+      "name": "gate:g0_remains_teaching_only",
+      "status": "PASS",
+      "detail": "{\"allowed_claim\": \"Teaching-parameter two-dimensional IGZO simulation\", \"missing_primary_inputs\": [\"condition-complete raw Id-Vg\", \"condition-complete raw Id-Vd\", \"device batch identity\", \"measurement or simulation condition metadata\"], \"prohibited_claim\": \"Accurate experimental fit or calibrated dual-gate prediction\", \"quantitative_fitting_permitted\": false, \"required_primary_fields\": [\"dataset_id\", \"device_id\", \"sweep_id\", \"VGS_V\", \"VDS_V\", \"ID_A\", \"W_um\", \"L_um\", \"temperature_K\", \"sweep_direction\", \"source\", \"source_status\"], \"status\": \"TEACHING_BASELINE_ONLY\", \"t01_permitted\": true}"
+    },
+    {
+      "name": "scope:igzo_2d_laptop_teaching_model_only",
+      "status": "PASS",
+      "detail": "2D n-IGZO electron-only drift-diffusion teaching model with the T02-A enabled dual-gate stack"
+    },
+    {
+      "name": "group:one_p4_channel_length_variable",
+      "status": "PASS",
+      "detail": "group=P4 variable=channel_length"
+    },
+    {
+      "name": "scan:three_ordered_lengths_include_reference",
+      "status": "PASS",
+      "detail": "lengths=[8.0, 10.0, 12.0] reference=10.0"
+    },
+    {
+      "name": "controls:geometry_except_length_is_frozen",
+      "status": "PASS",
+      "detail": "W=60 um tch=24 nm top/bottom Al2O3=30 nm k=6.8"
+    },
+    {
+      "name": "topology:inherits_t02_a_enabled_stack",
+      "status": "PASS",
+      "detail": "{\"evidence_level\": \"E1_teaching_assumption\", \"fabrication_status\": \"not present in the stated fabricated single-bottom-gate process\", \"mode_id\": \"enabled_symmetric_teaching_top_stack\", \"source_type\": \"symmetric teaching extension inherited from the T00 electrostatic baseline\", \"top_gate_boundary\": \"ideal_electrostatic_dirichlet\", \"top_gate_present\": true, \"top_gate_work_function_offset_model\": \"none\", \"top_oxide_material\": \"Al2O3\", \"top_oxide_present\": true, \"top_oxide_relative_permittivity\": 6.8, \"top_oxide_thickness_cm\": 3e-06, \"top_oxide_thickness_nm\": 30.0}"
+    },
+    {
+      "name": "physics:frozen_electron_only_transport",
+      "status": "PASS",
+      "detail": "{\"active_equations\": [\"Poisson\", \"electron_continuity\"], \"inactive_models\": [\"hole_continuity\", \"recombination_generation\", \"bulk_traps\", \"interface_traps\", \"contact_resistance_or_barrier\", \"ferroelectric_polarization\", \"quantum_correction\"], \"isolation_rationale\": \"Only the top electrostatic stack changes so that the later enabled-bias response can be attributed to dual-gate coupling within the frozen teaching model.\", \"mobility_model\": \"constant_teaching_mobility\", \"temperature_k\": 300.0, \"transport\": \"electron-only Scharfetter-Gummel drift-diffusion\"}"
+    },
+    {
+      "name": "bias:exact_t02_c_zero_secondary_top_primary_grid",
+      "status": "PASS",
+      "detail": "points=31 range=-0.5..1.0 V"
+    },
+    {
+      "name": "bias:preconditioning_and_state_are_frozen",
+      "status": "PASS",
+      "detail": "pre=[-0.1, -0.2, -0.3, -0.4, -0.5] state=1.0 V"
+    },
+    {
+      "name": "extraction:vth_and_gm_methods_inherit_t02_c",
+      "status": "PASS",
+      "detail": "{\"constant_current_vth_proxy\": {\"criterion_formula\": \"10 nA * (W/L) terminal current\", \"criterion_prefactor_a\": 1e-08, \"interpolation\": \"linear primary-gate-voltage interpolation in log10(abs(drain current per unit width))\", \"name\": \"constant_current_log_interpolation\", \"per_width_formula\": \"criterion_a_per_cm = 1e-8 / L_cm\"}, \"gm_proxy\": {\"definition\": \"central-difference derivative of abs(drain current per unit width) versus primary-gate voltage, linearly interpolated at VTH + 0.2 V\", \"evaluation_overdrive_v\": 0.2, \"name\": \"central_difference_then_linear_interpolation\"}, \"length_scaling\": {\"current_product\": \"abs(drain_current_a_per_cm at VTOP=1 V) * L_cm\", \"gm_product\": \"gm_proxy_s_per_cm * L_cm\", \"log_slope\": \"ordinary least squares slope of log(abs current at VTOP=1 V) versus log(L_cm)\", \"relative_spread_definition\": \"(max(values) - min(values)) / max(abs(values))\", \"role\": \"reported sensitivity diagnostics; ideal inverse-length agreement is not a V2 completion gate\"}, \"on_state_current_proxy\": {\"drain_v\": 0.01, \"label\": \"sampled low-VDS on-state current proxy; not physical Ion\", \"primary_gate_v\": 1.0, \"secondary_gate_v\": 0.0}}"
+    },
+    {
+      "name": "extraction:w_over_l_criterion_is_dynamic",
+      "status": "PASS",
+      "detail": "criteria_A_per_cm=[1.2499999999999999e-05, 1e-05, 8.333333333333332e-06]"
+    },
+    {
+      "name": "execution:three_fresh_devices_and_123_dc_solves",
+      "status": "PASS",
+      "detail": "{\"laptop_target\": true, \"maximum_wall_seconds\": 300.0, \"required_dc_solve_count_per_device\": 41, \"required_device_count\": 3, \"required_reported_point_count_per_device\": 31, \"required_total_dc_solve_count\": 123, \"required_total_reported_point_count\": 93}"
+    },
+    {
+      "name": "states:one_complete_on_proxy_per_length",
+      "status": "PASS",
+      "detail": "{\"bias\": \"VDS=0.01 V, VBG=0 V, VTG=1.0 V\", \"electron_current_density\": {\"location\": \"channel triangular elements\", \"source_model\": \"DEVSIM ElectronCurrent edge model projected by element_from_edge_model\", \"unit\": \"A/cm^2\"}, \"electron_density\": {\"location\": \"channel nodes\", \"unit\": \"cm^-3\"}, \"potential\": {\"location\": \"bottom_oxide, channel, and top_oxide nodes\", \"unit\": \"V\"}, \"required_state_count\": 3, \"required_vtk_file_count_per_state\": 6, \"state_id_template\": \"length_<L_um>um_on_proxy\"}"
+    },
+    {
+      "name": "acceptance:counts_and_conservation_are_frozen",
+      "status": "PASS",
+      "detail": "{\"maximum_monotonic_relative_current_drop\": 1e-06, \"maximum_relative_terminal_current_imbalance\": 1e-05, \"maximum_t02_c_reference_center_density_relative_difference\": 1e-06, \"maximum_t02_c_reference_center_potential_difference_v\": 1e-07, \"maximum_t02_c_reference_current_relative_difference\": 1e-06, \"maximum_t02_c_reference_gm_relative_difference\": 0.0001, \"maximum_t02_c_reference_vth_difference_v\": 0.0001, \"maximum_zero_equilibrium_absolute_potential_v\": 1e-10, \"maximum_zero_equilibrium_absolute_terminal_current_a_per_cm\": 1e-18, \"require_all_dc_solves_converged\": true, \"require_finite_vth_with_in_grid_brackets\": true, \"require_ideal_inverse_length_diagnostic_reported\": true, \"require_positive_finite_gm\": true, \"require_prior_v1_failure_preserved\": true, \"require_strict_gm_decrease_with_length\": true, \"require_strict_on_current_decrease_with_length\": true, \"require_strict_primary_gate_current_increase\": true, \"require_strictly_increasing_node_and_element_counts\": true, \"require_two_png_figures\": true, \"required_channel_lengths_um\": [8.0, 10.0, 12.0], \"required_contacts\": [\"source\", \"drain\", \"bottom_gate\", \"top_gate\"], \"required_interfaces\": [\"bottom_oxide_channel\", \"channel_top_oxide\"], \"required_primary_gate_point_count\": 31, \"required_reference_length_um\": 10.0, \"required_regions\": [\"bottom_oxide\", \"channel\", \"top_oxide\"], \"required_reported_point_count\": 93, \"required_state_count\": 3, \"required_total_dc_solve_count\": 123, \"required_vtk_file_count\": 18}"
+    },
+    {
+      "name": "acceptance:t02_c_reference_regression_is_mandatory",
+      "status": "PASS",
+      "detail": "10 um full curve, center state, VTH, and gm must reproduce T02-C"
+    },
+    {
+      "name": "acceptance:controlled_sensitivity_gates_are_prefrozen",
+      "status": "PASS",
+      "detail": "finite bracketed VTH, positive gm, directional I/gm response, mandatory diagnostic reporting"
+    },
+    {
+      "name": "diagnostic:failed_v1_ideal_scaling_gate_is_report_only",
+      "status": "PASS",
+      "detail": "V1 thresholds are retained verbatim as a non-gating falsifiable diagnostic"
+    },
+    {
+      "name": "outputs:paths_are_unique_and_stage_scoped",
+      "status": "PASS",
+      "detail": "outputs=13 unique=13"
+    },
+    {
+      "name": "boundary:no_experimental_short_channel_or_complete_t03_claim",
+      "status": "PASS",
+      "detail": "T03-P4-L may establish a reproducible three-point local channel-length sensitivity only for the frozen E2 teaching model when the V2 contract, numerical-quality and directional-response run checks, T02-C reference reproduction, states, and independent checks pass; the failed ideal 1/L diagnostic remains a reported limitation."
+    },
+    {
+      "name": "scope:no_other_t03_group_or_domain_work",
+      "status": "PASS",
+      "detail": "channel_length_um"
+    }
+  ],
+  "failures": [],
+  "planned_run": {
+    "changed_variable": "channel_length_um",
+    "values_um": [
+      8.0,
+      10.0,
+      12.0
+    ],
+    "reported_points": 93,
+    "dc_solves": 123,
+    "states": 3
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T03-P4-L may establish a reproducible three-point local channel-length sensitivity only for the frozen E2 teaching model when the V2 contract, numerical-quality and directional-response run checks, T02-C reference reproduction, states, and independent checks pass; the failed ideal 1/L diagnostic remains a reported limitation.",
+    "allowed_parameter_labels": [
+      "channel-length sensitivity numerical proxy",
+      "sampled low-VDS on-state current proxy",
+      "constant-current VTH numerical proxy",
+      "gm numerical proxy"
+    ],
+    "prohibited_claims": [
+      "experimentally calibrated channel-length dependence or process distribution",
+      "physical Ion, short-channel-effect validation, scaling-law proof, or parameter uncertainty",
+      "geometry/dielectric group variables other than the configured channel length",
+      "trap, contact, temperature, mobility, ferroelectric, compact-model, circuit, layout, or HZO evidence",
+      "complete T03 five-group sensitivity"
+    ],
+    "next_gate": "Only contract PASS permits the T03-P4-L run; only simulation plus independent persisted-evidence PASS completes this one channel-length sensitivity group."
+  }
+}

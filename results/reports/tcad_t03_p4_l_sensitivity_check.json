@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T03_P4_CHANNEL_LENGTH_V2",
+  "stage": "T03-P4-L",
+  "evidence_level": "E3",
+  "checks": [
+    {
+      "name": "identity:v2_report",
+      "status": "PASS",
+      "detail": "status=PASS case=IGZO_T03_P4_CHANNEL_LENGTH_V2"
+    },
+    {
+      "name": "contract:static_gate_and_config_hash_match",
+      "status": "PASS",
+      "detail": "checks=25 simulation=NOT_RUN_BY_CONTRACT_CHECK"
+    },
+    {
+      "name": "inputs:snapshot_hashes_match",
+      "status": "PASS",
+      "detail": "inputs=9"
+    },
+    {
+      "name": "remediation:v1_failed_evidence_is_complete_and_immutable",
+      "status": "PASS",
+      "detail": "case=IGZO_T03_P4_CHANNEL_LENGTH_V1 status=FAIL failures=['vth_and_gm_numerical_proxies_are_valid', 'current_and_gm_length_products_are_stable', 'log_current_length_slope_matches_frozen_gate']"
+    },
+    {
+      "name": "solver:three_fresh_devices_and_123_dc_solves_converged",
+      "status": "PASS",
+      "detail": "runs=3 solve_counts=[41, 41, 41] records=123"
+    },
+    {
+      "name": "topology:one_variable_meshes_are_ordered_and_valid",
+      "status": "PASS",
+      "detail": "nodes=[1947, 2419, 2891] elements=[3584, 4480, 5376]"
+    },
+    {
+      "name": "curves:93_persisted_points_match_report_and_grid",
+      "status": "PASS",
+      "detail": "rows=93 fields=21 grids=True"
+    },
+    {
+      "name": "current:direction_conservation_and_gate_order_recomputed",
+      "status": "PASS",
+      "detail": "imbalance=2.068656e-10 monotonic=True drop=0.000000e+00"
+    },
+    {
+      "name": "extraction:vth_gm_current_and_scaling_metrics_recomputed",
+      "status": "PASS",
+      "detail": "VTH=[0.27116215930228005, 0.26385685799760256, 0.2591041896264522] I=[4.1062900893966666e-05, 3.593724333278673e-05, 3.194873822982398e-05] gm=[4.453592317336661e-05, 3.937599666287622e-05, 3.5120451902349995e-05]"
+    },
+    {
+      "name": "diagnostic:ideal_inverse_length_remains_explicit_fail",
+      "status": "PASS",
+      "detail": "checks={'vth_range_within_2mv': False, 'current_length_product_spread_within_2percent': False, 'gm_length_product_spread_within_2percent': False, 'log_current_length_slope_near_minus_one': False} slope=-0.618183910 R2=0.999516742"
+    },
+    {
+      "name": "regression:t02_c_reference_curve_recomputed",
+      "status": "PASS",
+      "detail": "current=0.000e+00 potential=0.000e+00 density=0.000e+00"
+    },
+    {
+      "name": "states:node_element_and_vtk_evidence_recomputed",
+      "status": "PASS",
+      "detail": "states=['length_8p0um_on_proxy', 'length_10p0um_on_proxy', 'length_12p0um_on_proxy']"
+    },
+    {
+      "name": "outputs:artifact_hashes_and_png_dimensions_match",
+      "status": "PASS",
+      "detail": "artifacts=6 figures=[(1944, 1440, 308514), (2016, 1476, 873279)]"
+    },
+    {
+      "name": "runner:one_group_gate_and_evidence_boundary_pass",
+      "status": "PASS",
+      "detail": "runner_checks=16 group_complete=True"
+    }
+  ],
+  "failures": [],
+  "recomputed_metrics": {
+    "maximum_relative_terminal_current_imbalance": 2.0686558016192524e-10,
+    "maximum_monotonic_relative_current_drop": 0.0,
+    "vth_range_v": 0.01205796967582784,
+    "current_length_product_relative_spread": 0.14315028450513975,
+    "gm_length_product_relative_spread": 0.1546061100960833,
+    "log_current_vs_length_slope": -0.6181839095282504,
+    "log_current_vs_length_intercept": -14.507181581204472,
+    "log_current_vs_length_r_squared": 0.9995167421176355,
+    "on_state_current_proxy_a_per_cm": [
+      4.1062900893966666e-05,
+      3.593724333278673e-05,
+      3.194873822982398e-05
+    ],
+    "vth_proxy_v": [
+      0.27116215930228005,
+      0.26385685799760256,
+      0.2591041896264522
+    ],
+    "gm_proxy_s_per_cm": [
+      4.453592317336661e-05,
+      3.937599666287622e-05,
+      3.5120451902349995e-05
+    ],
+    "ideal_inverse_length_diagnostic": {
+      "status": "FAIL",
+      "completion_gate": false,
+      "checks": {
+        "vth_range_within_2mv": false,
+        "current_length_product_spread_within_2percent": false,
+        "gm_length_product_spread_within_2percent": false,
+        "log_current_length_slope_near_minus_one": false
+      }
+    },
+    "t02_c_reference": {
+      "maximum_current_relative_difference": 0.0,
+      "maximum_center_potential_difference_v": 0.0,
+      "maximum_center_density_relative_difference": 0.0
+    }
+  }
+}

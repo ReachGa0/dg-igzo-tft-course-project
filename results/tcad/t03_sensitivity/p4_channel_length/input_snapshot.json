@@ -1,0 +1,43 @@
+{
+  "case_id": "IGZO_T03_P4_CHANNEL_LENGTH_V2",
+  "stage": "T03-P4-L",
+  "parameter_group_id": "P4",
+  "inputs": {
+    "t03_config": {
+      "path": "config/tcad_t03_p4_channel_length.json",
+      "sha256": "c525afc6f7f45cdcbd2275b5434930390af4247f5f3566122e560443e5c9b63b"
+    },
+    "t03_contract_report": {
+      "path": "results/reports/tcad_t03_p4_l_input_contract.json",
+      "sha256": "afcf970e54cf770117aee83fd320a158cc7ff2b16bf83f3f5600ba85dadd155f"
+    },
+    "t01_baseline_config": {
+      "path": "config/tcad_t01_baseline.json",
+      "sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9"
+    },
+    "t01_mesh_config": {
+      "path": "config/tcad_t01_d_mesh_refinement.json",
+      "sha256": "6ba9815ab063708b9fa560092974ac65a748b95c981d16056af3dec1e0f74e23"
+    },
+    "t02_a_config": {
+      "path": "config/tcad_t02_a_dual_gate_contract.json",
+      "sha256": "59f19996be43c22972bf223cfebf1f95fcaec5cdd9bf2edef76d45e9f1b4ccb3"
+    },
+    "t02_a_report": {
+      "path": "results/reports/tcad_t02_a_limit_regression.json",
+      "sha256": "addc197ad0657e1d19ac1787aa98c26fd698a4cd967f7e53ccedc8890a84bd33"
+    },
+    "t02_c_config": {
+      "path": "config/tcad_t02_c_bidirectional.json",
+      "sha256": "93c29fe977dd304315537d7dcbb0e2ea4b920cdab331a7996d7c9dd399b84228"
+    },
+    "t02_c_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional.json",
+      "sha256": "d214e9bf7c1938cf3120eaaf06fc53d0b1c1faf0708c0378fef6b3faeafecfed"
+    },
+    "t02_c_check_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional_check.json",
+      "sha256": "a13c6bebb0f10e8bce7dabff865863ee862e9d3ac572dfc692423a66ba868aa4"
+    }
+  }
+}

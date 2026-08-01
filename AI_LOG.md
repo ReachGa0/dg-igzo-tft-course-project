@@ -16,6 +16,43 @@
 
 ---
 
+## 2026-08-01 | Codex GPT-5 | 完成 T03-P4-L V2 并保留 V1 理想缩放失败
+
+### 用户目标
+
+继续按阶段门推进 T03，但只完成一个可审计的最小参数组；不把失败的理想假设改写成通过，不提前启动其他参数组、SPICE 或版图。
+
+### 读取的关键输入
+
+- `AGENTS.md` 及项目规定顺序的 README、AI_CONTEXT、ARCHITECTURE、STATUS、PROJECT_PLAN、DECISIONS、AI_LOG、`config/project.json` 和 `config/experiments.json`。
+- T02-C 双向双栅合同、运行报告、独立复算、10 um 参考曲线和状态导出。
+- T03-P4-L V1 的配置、合同报告、运行报告、CSV、状态目录、求解日志和图像。
+
+### 本次修改
+
+- 将 `config/tcad_t03_p4_channel_length.json` 固定为 V2：保留 V1 输入、失败阈值和归档路径，把理想 1/L 变为报告诊断；完成门改为有限 VTH/gm、收敛、守恒、严格方向性、T02-C 参考复现和证据完整性。
+- 新增/更新 `tcad/run_t03_p4_channel_length.py`、`scripts/check_t03_p4_l_contract.py` 和 `scripts/check_t03_p4_channel_length.py`；合同、运行器和独立持久化证据分别复算静态合同、数值输出和输出哈希。
+- 保留 `config/tcad_t03_p4_channel_length_v1_failed.json`、V1 报告、CSV、状态目录和 PNG；更新 Makefile、`scripts/check_project.py`、项目配置、实验配置、状态/上下文/架构/计划、ADR-020、报告第 8 章、附录 D 和证据矩阵。
+
+### 实际结果
+
+- V2 在 L=8/10/12 um 三个新器件上完成 123 次 DC、93 个正式点和 3 个 `VTG=1 V` 状态；合同 25/25、运行器 16/16、独立持久化证据 14/14 PASS。
+- 开态电流代理为 `4.10629e-5/3.59372e-5/3.19487e-5 A/cm`，gm 代理为 `4.45359e-5/3.93760e-5/3.51205e-5 S/cm`，均随 L 严格下降；10 um T02-C 参考曲线、VTH 和 gm 复现差异为 0。
+- V1 理想诊断按原冻结阈值保留 FAIL：VTH 范围 `12.058 mV`、I*L spread `14.315%`、gm*L spread `15.461%`、log(I)-log(L) 斜率 `-0.61818`、R2 `0.999517`。没有放宽阈值、删除失败结果或改变仿真物理输入。
+
+### 验证与修正记录
+
+- `make t03-p4-l-contract-check`：V2 合同 25/25 PASS。
+- `make t03-p4-l-sensitivity`：123 次 DC、93 点、3 状态，运行器 16/16 PASS；理想诊断仍为报告级 FAIL。
+- `make t03-p4-l-sensitivity-check`：独立 14/14 PASS，证据等级 E3。
+- `make check`：项目总检查 312/312 PASS；`make report-check`：12 章、5 附录、8 张图结构 PASS，保留未完成章节占位符。
+- `git diff --check` 及 Python 语法/JSON 读取检查通过；报告第 8 章明确写出数值代理、失败诊断和未完成组。
+
+### 证据边界与下一步
+
+- 当前只关闭 T03-P4-L 一个局部敏感性子组。E3 表示落盘证据可独立复算，不代表实验验证；不能称为物理 Ion、短沟道效应、1/L 缩放定律、实验标定或电路预测。
+- P1 双栅、P2 陷阱、P3 接触和 P5 温度仍未实现。下一步必须从剩余组中只选择一个，重新冻结至少三个点的单变量合同。
+
 ## 2026-07-31 | Codex GPT-5 | 完成 T02-C 双向双栅数值门
 
 ### 用户目标

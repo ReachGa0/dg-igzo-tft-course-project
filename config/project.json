@@ -1,7 +1,7 @@
 {
   "project_id": "DG-IGZO-TFT-PDK",
   "title_cn": "基于双栅IGZO TFT的二维器件模型、紧凑模型与可编程单极性逻辑教学PDK",
-  "version": "0.2.0-igzo-only",
+  "version": "0.3.0-igzo-only",
   "created": "2026-07-29",
   "scope_revised": "2026-07-30",
   "deadlines": {
@@ -39,10 +39,10 @@
     "dimension": "2D",
     "tool": "DEVSIM 2.10.0",
     "mesh": "DEVSIM structured mesh; Gmsh optional for later irregular geometry",
-    "baseline_scope": "complete T01 single-gate drift-diffusion numerical gate plus complete T02 dual-gate numerical gate through T02-C bidirectional families",
-    "next_scope": "T03 controlled five-group device sensitivity beginning with one frozen parameter group",
+    "baseline_scope": "complete T01 single-gate drift-diffusion numerical gate plus complete T02 dual-gate numerical gate through T02-C bidirectional families and the T03-P4-L channel-length group",
+    "next_scope": "T03 controlled five-group device sensitivity, with P4-L complete and only one remaining group opened at a time",
     "laptop_target": true,
-    "evidence_boundary": "T02-C closes only the frozen teaching-model numerical gate: six forward families, two central reverse paths, limited VTH/Delta VTH/gm/coupling proxies, and six internal states pass. Experimental calibration, physical parameter validation, traps, nonideal contacts, uncertainty, compact models, and circuits remain unverified."
+    "evidence_boundary": "T02-C closes only the frozen teaching-model numerical gate. T03-P4-L adds one E3 independently checked three-point channel-length sensitivity for L=8/10/12 um. The ideal 1/L diagnostic fails and is reported as a limitation, not reclassified as a pass. Experimental calibration, physical parameter validation, traps, nonideal contacts, uncertainty, compact models, and circuits remain unverified."
   },
   "baseline_devices": {
     "IGZO_TFT": {

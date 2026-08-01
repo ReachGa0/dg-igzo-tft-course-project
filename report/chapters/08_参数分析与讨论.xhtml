@@ -1,4 +1,44 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-08" class="report-chapter">
   <h2>8. 参数分析与讨论</h2>
-  <p>[待填写双栅、陷阱、接触、几何/介质和温度五组参数的定量比较与物理解释]</p>
+  <p>本章只报告 T03 的第一个已关闭子组 T03-P4-L。研究变量是沟道长度 <code>L</code>，取 8、10 和 12 um；其余几何、材料、迁移率、接触、网格、偏压路径、方程和提取公式均继承 T02-C。模型仍是 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型，顶栅为主栅、底栅固定为 0 V、<code>VDS=0.01 V</code>，不含陷阱、复合、铁电极化或非理想接触。因此下列量是受限数值代理，不是实验参数。</p>
+
+  <h3>8.1 沟道长度方向性敏感性</h3>
+  <p>每个长度从独立的零偏压平衡态开始，随后执行与 T02-C 相同的低漏压阶梯、负向预处理和 31 点顶栅上扫。三个新器件共完成 123 次 DC 求解和 93 个正式点，并在 <code>VTG=1.0 V</code> 保存一个代表状态。VTH 采用 10 nA*(W/L) 的对数插值代理，gm 在 VTH+0.2 V 处由中心差分和线性插值得到。</p>
+  <table>
+    <thead><tr><th>L (um)</th><th>VTH 代理 (V)</th><th>gm 代理 (S/cm)</th><th>VTG=1 V 开态电流代理 (A/cm)</th><th>VTH 网格包围区间 (V)</th><th>方向性结果</th></tr></thead>
+    <tbody>
+      <tr><td>8</td><td>0.271162</td><td>4.45359e-5</td><td>4.10629e-5</td><td>0.25--0.30</td><td>通过；作为最短长度参考</td></tr>
+      <tr><td>10</td><td>0.263857</td><td>3.93760e-5</td><td>3.59372e-5</td><td>0.25--0.30</td><td>通过；复现 T02-C 参考长度</td></tr>
+      <tr><td>12</td><td>0.259104</td><td>3.51205e-5</td><td>3.19487e-5</td><td>0.25--0.30</td><td>通过；作为最长长度参考</td></tr>
+    </tbody>
+  </table>
+  <p>在这三个离散点上，开态电流代理和 gm 代理均随 <code>L</code> 增大而严格下降；主栅 31 点电流曲线均严格增加，三组端口守恒和求解收敛均通过。10 um 曲线对 T02-C 的参考复现差异为零（在落盘数值精度内），因此该组的解释范围是“冻结教学模型的局部方向性敏感性”。</p>
+
+  <h3>8.2 预先冻结的理想缩放诊断</h3>
+  <p>V1 曾把理想 <code>I∝1/L</code>、<code>gm∝1/L</code> 和不超过 2 mV 的 VTH 变化误当作完成门。首次运行按原阈值正确失败；V2 没有修改仿真输入或放宽这些阈值，而是把它们保留为必须公开的诊断。结果如下：</p>
+  <table>
+    <thead><tr><th>诊断量</th><th>冻结阈值</th><th>观测值</th><th>状态</th><th>解释</th></tr></thead>
+    <tbody>
+      <tr><td>VTH 范围</td><td>&lt;= 0.002 V</td><td>0.012058 V</td><td>FAIL</td><td>不满足理想化数值假设</td></tr>
+      <tr><td>I*L 相对 spread</td><td>&lt;= 2%</td><td>14.315%</td><td>FAIL</td><td>不能写成 1/L 缩放</td></tr>
+      <tr><td>gm*L 相对 spread</td><td>&lt;= 2%</td><td>15.461%</td><td>FAIL</td><td>不能写成 1/L 缩放</td></tr>
+      <tr><td>log(I)-log(L) 斜率</td><td>-1.05 至 -0.95</td><td>-0.61818</td><td>FAIL</td><td>局部二维教学模型偏离理想诊断</td></tr>
+      <tr><td>斜率 R2</td><td>&gt;= 0.999</td><td>0.999517</td><td>PASS（仅诊断子项）</td><td>高线性度不等于斜率正确</td></tr>
+    </tbody>
+  </table>
+  <p class="boundary">上述 FAIL 是公开的模型限制，不是物理短沟道效应、物理 Ion、实验缩放定律或参数不确定度的证据。T03-P4-L 的完成门只要求有限 VTH/gm、数值收敛、守恒、开态电流和 gm 的严格方向性、T02-C 参考复现、状态落盘及独立复算；理想 1/L 诊断的 <code>completion_gate</code> 明确为 false。</p>
+
+  <h3>8.3 图形与持久化证据</h3>
+  <figure>
+    <img src="assets/tcad_t03_p4_l_sensitivity.png" alt="T03-P4-L 三个沟道长度的顶栅转移曲线、VTH、gm 和开态电流代理" />
+    <figcaption>图 8-1 T03-P4-L 沟道长度敏感性。三条曲线只覆盖固定底栅、低漏压和 31 个离散顶栅点；右侧指标为数值代理，理想 1/L 诊断 FAIL。</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/tcad_t03_p4_l_state_maps.png" alt="T03-P4-L 在 L=8、10、12 um 和 VTG=1 V 的电势、电子浓度与局部电流密度状态图" />
+    <figcaption>图 8-2 三个长度的代表状态。每列为 <code>VTG=1 V, VBG=0 V, VDS=0.01 V</code>；局部电流密度单位为 A/cm2，不能替代接触积分电流或物理 Ion。</figcaption>
+  </figure>
+  <p>运行器报告为 E2，独立读取配置、快照、求解日志、CSV、状态 CSV、18 个 VTK 和两张 PNG 的持久化复算为 E3。对应命令为 <code>make t03-p4-l-contract-check</code>、<code>make t03-p4-l-sensitivity</code> 和 <code>make t03-p4-l-sensitivity-check</code>。V1 失败包保存在 <code>config/tcad_t03_p4_channel_length_v1_failed.json</code>、<code>results/reports/*_v1_failed.json</code> 及 <code>results/tcad/t03_sensitivity/p4_channel_length_v1_failed/</code>，用于审计而不参与 V2 结果混合。</p>
+
+  <h3>8.4 适用范围和未完成组</h3>
+  <p>本节不关闭 T03 的整体五组参数分析。P1 双栅偏置、P2 陷阱、P3 接触和 P5 温度仍未实现；也没有进行实验拟合、紧凑模型、SPICE、电路、版图或 HZO 工作。下一次只能从剩余四组中选择一个，重新冻结至少三个点的单变量合同并单独过阶段门。</p>
 </section>

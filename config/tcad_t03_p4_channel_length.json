@@ -1,0 +1,249 @@
+{
+  "schema_version": 2,
+  "case_id": "IGZO_T03_P4_CHANNEL_LENGTH_V2",
+  "stage": "T03-P4-L",
+  "parameter_group_id": "P4",
+  "status": "planned",
+  "evidence_level_before_run": "E0",
+  "contract_evidence_level_after_check": "E3",
+  "dependencies": {
+    "project_config": "config/project.json",
+    "experiments_config": "config/experiments.json",
+    "s00_report": "results/reports/s00_data_audit.json",
+    "t01_baseline_config": "config/tcad_t01_baseline.json",
+    "t01_mesh_config": "config/tcad_t01_d_mesh_refinement.json",
+    "t02_a_config": "config/tcad_t02_a_dual_gate_contract.json",
+    "t02_a_report": "results/reports/tcad_t02_a_limit_regression.json",
+    "t02_c_config": "config/tcad_t02_c_bidirectional.json",
+    "t02_c_contract_report": "results/reports/tcad_t02_c_input_contract.json",
+    "t02_c_report": "results/reports/tcad_t02_c_bidirectional.json",
+    "t02_c_check_report": "results/reports/tcad_t02_c_bidirectional_check.json",
+    "required_g0_status": "TEACHING_BASELINE_ONLY",
+    "required_t02_c_status": "PASS",
+    "required_t02_c_check_status": "PASS",
+    "require_complete_t02_numerical_gate": "PASS",
+    "require_t03_permitted_by_t02_c": true
+  },
+  "scope": {
+    "device": "2D n-IGZO electron-only drift-diffusion teaching model with the T02-A enabled dual-gate stack",
+    "purpose": "Run the first T03 controlled sensitivity as a three-point channel-length-only scan around the frozen 10 um T02-C reference, while reporting rather than assuming ideal inverse-length scaling.",
+    "changed_variable": "channel_length_um",
+    "changed_variable_count": 1,
+    "fixed_variables": [
+      "channel width = 60 um",
+      "channel thickness = 24 nm",
+      "top and bottom physical Al2O3 thickness = 30 nm",
+      "top and bottom dielectric relative permittivity = 6.8",
+      "interface_4x y mesh and fixed 0.25 um x spacing",
+      "source voltage = 0 V and drain voltage = 0.01 V",
+      "top gate is primary and bottom gate is fixed at 0 V",
+      "300 K constant teaching mobility = 35.5 cm2/(V*s)",
+      "ideal ohmic source and drain",
+      "Poisson plus electron continuity",
+      "no traps, recombination, ferroelectric polarization, or non-ideal contacts"
+    ],
+    "prohibited_work": [
+      "simultaneous trap, contact, dielectric, temperature, or mobility scans",
+      "any second T03 parameter group",
+      "experimental fitting or calibrated channel-length prediction",
+      "physical Ion, short-channel-effect, mobility, or uncertainty claims",
+      "compact-model, SPICE, circuit, layout, or HZO work"
+    ]
+  },
+  "sensitivity": {
+    "parameter_name": "channel_length",
+    "parameter_symbol": "L",
+    "unit": "um",
+    "values_um": [8.0, 10.0, 12.0],
+    "reference_value_um": 10.0,
+    "value_source_type": "controlled_design_sensitivity_around_course_baseline",
+    "value_source_reference": "config/project.json:baseline_devices.IGZO_TFT.l_um",
+    "interpretation": "Numerical local sensitivity over 8-12 um only; not a fitted process distribution or a short-channel validation.",
+    "conversion_to_cm": "L_cm = L_um * 1e-4"
+  },
+  "remediation": {
+    "protocol_version": 2,
+    "prior_case_id": "IGZO_T03_P4_CHANNEL_LENGTH_V1",
+    "prior_status": "FAIL",
+    "prior_config": "config/tcad_t03_p4_channel_length_v1_failed.json",
+    "prior_contract_report": "results/reports/tcad_t03_p4_l_input_contract_v1_failed.json",
+    "prior_run_report": "results/reports/tcad_t03_p4_l_sensitivity_v1_failed.json",
+    "prior_run_directory": "results/tcad/t03_sensitivity/p4_channel_length_v1_failed",
+    "prior_failed_checks": [
+      "vth_and_gm_numerical_proxies_are_valid",
+      "current_and_gm_length_products_are_stable",
+      "log_current_length_slope_matches_frozen_gate"
+    ],
+    "reason": "V1 correctly rejected the unvalidated assumption that this full 2D teaching model must reproduce ideal 1/L current and gm scaling with <=2 percent product spread and <=2 mV VTH variation. V2 preserves that failed hypothesis as a reported diagnostic and makes reproducible controlled sensitivity, convergence, conservation, extraction validity, directional response, and T02-C reproduction the completion gate.",
+    "unchanged_simulation_inputs": [
+      "channel-length values and reference",
+      "geometry other than channel length",
+      "materials, mobility, contacts, equations, and temperature",
+      "mesh spacing and enabled dual-gate topology",
+      "bias initialization, sweep grid, and representative states",
+      "VTH, gm, on-current, and length-scaling extraction formulas",
+      "resource budget and persisted output fields"
+    ],
+    "prohibited_interpretation": "The V2 completion gate does not convert the failed V1 ideal-scaling hypothesis into a pass and does not validate a physical scaling law."
+  },
+  "inheritance": {
+    "transport_source": "config/tcad_t01_baseline.json",
+    "mesh_source": "config/tcad_t01_d_mesh_refinement.json interface_4x",
+    "topology_source": "config/tcad_t02_a_dual_gate_contract.json enabled_mode",
+    "bias_and_extraction_source": "config/tcad_t02_c_bidirectional.json",
+    "reference_family": "top_primary at fixed secondary gate = 0 V",
+    "required_mesh_level": "interface_4x",
+    "require_exact_t02_a_y_stack": true,
+    "require_t02_c_reference_length_reproduction": true
+  },
+  "bias_protocol": {
+    "source_v": 0.0,
+    "drain_v": 0.01,
+    "low_vds_values_v": [0.0, 0.001, 0.005, 0.01],
+    "primary_gate": "top_gate",
+    "secondary_gate": "bottom_gate",
+    "fixed_secondary_gate_v": 0.0,
+    "primary_gate_grid": {
+      "start_v": -0.5,
+      "stop_v": 1.0,
+      "step_v": 0.05,
+      "point_count": 31
+    },
+    "primary_negative_preconditioning_v": [-0.1, -0.2, -0.3, -0.4, -0.5],
+    "state_primary_gate_v": 1.0,
+    "execution_order": [
+      "create one fresh enabled dual-gate device for each channel length",
+      "solve all-zero-bias Poisson initialization and coupled electron equilibrium",
+      "repeat the T02-C low-VDS ladder with both gates at 0 V",
+      "precondition the top primary gate from 0 V down to -0.5 V",
+      "sweep the exact 31-point top-gate grid upward with bottom gate fixed at 0 V",
+      "save the VTOP=1.0 V state for each length",
+      "delete the device before creating the next length"
+    ]
+  },
+  "extraction_methods": {
+    "constant_current_vth_proxy": {
+      "name": "constant_current_log_interpolation",
+      "criterion_formula": "10 nA * (W/L) terminal current",
+      "criterion_prefactor_a": 1e-8,
+      "per_width_formula": "criterion_a_per_cm = 1e-8 / L_cm",
+      "interpolation": "linear primary-gate-voltage interpolation in log10(abs(drain current per unit width))"
+    },
+    "gm_proxy": {
+      "name": "central_difference_then_linear_interpolation",
+      "evaluation_overdrive_v": 0.2,
+      "definition": "central-difference derivative of abs(drain current per unit width) versus primary-gate voltage, linearly interpolated at VTH + 0.2 V"
+    },
+    "on_state_current_proxy": {
+      "primary_gate_v": 1.0,
+      "secondary_gate_v": 0.0,
+      "drain_v": 0.01,
+      "label": "sampled low-VDS on-state current proxy; not physical Ion"
+    },
+    "length_scaling": {
+      "current_product": "abs(drain_current_a_per_cm at VTOP=1 V) * L_cm",
+      "gm_product": "gm_proxy_s_per_cm * L_cm",
+      "log_slope": "ordinary least squares slope of log(abs current at VTOP=1 V) versus log(L_cm)",
+      "relative_spread_definition": "(max(values) - min(values)) / max(abs(values))",
+      "role": "reported sensitivity diagnostics; ideal inverse-length agreement is not a V2 completion gate"
+    }
+  },
+  "diagnostic_hypotheses": {
+    "ideal_inverse_length": {
+      "completion_gate": false,
+      "required_reporting": true,
+      "maximum_vth_range_v": 0.002,
+      "maximum_current_length_product_relative_spread": 0.02,
+      "maximum_gm_length_product_relative_spread": 0.02,
+      "minimum_log_current_vs_length_slope": -1.05,
+      "maximum_log_current_vs_length_slope": -0.95,
+      "minimum_log_current_vs_length_r_squared": 0.999,
+      "interpretation": "PASS would only indicate agreement with an idealized internal scaling diagnostic; FAIL is a valid sensitivity result and remains explicitly reported."
+    }
+  },
+  "state_output_contract": {
+    "state_id_template": "length_<L_um>um_on_proxy",
+    "bias": "VDS=0.01 V, VBG=0 V, VTG=1.0 V",
+    "potential": {"location": "bottom_oxide, channel, and top_oxide nodes", "unit": "V"},
+    "electron_density": {"location": "channel nodes", "unit": "cm^-3"},
+    "electron_current_density": {
+      "location": "channel triangular elements",
+      "unit": "A/cm^2",
+      "source_model": "DEVSIM ElectronCurrent edge model projected by element_from_edge_model"
+    },
+    "required_state_count": 3,
+    "required_vtk_file_count_per_state": 6
+  },
+  "resource_budget": {
+    "required_device_count": 3,
+    "required_reported_point_count_per_device": 31,
+    "required_total_reported_point_count": 93,
+    "required_dc_solve_count_per_device": 41,
+    "required_total_dc_solve_count": 123,
+    "maximum_wall_seconds": 300.0,
+    "laptop_target": true
+  },
+  "acceptance": {
+    "required_channel_lengths_um": [8.0, 10.0, 12.0],
+    "required_reference_length_um": 10.0,
+    "required_primary_gate_point_count": 31,
+    "required_reported_point_count": 93,
+    "required_total_dc_solve_count": 123,
+    "maximum_relative_terminal_current_imbalance": 1e-5,
+    "maximum_monotonic_relative_current_drop": 1e-6,
+    "maximum_zero_equilibrium_absolute_terminal_current_a_per_cm": 1e-18,
+    "maximum_zero_equilibrium_absolute_potential_v": 1e-10,
+    "maximum_t02_c_reference_current_relative_difference": 1e-6,
+    "maximum_t02_c_reference_center_potential_difference_v": 1e-7,
+    "maximum_t02_c_reference_center_density_relative_difference": 1e-6,
+    "maximum_t02_c_reference_vth_difference_v": 1e-4,
+    "maximum_t02_c_reference_gm_relative_difference": 1e-4,
+    "require_strict_primary_gate_current_increase": true,
+    "require_positive_finite_gm": true,
+    "require_finite_vth_with_in_grid_brackets": true,
+    "require_strict_on_current_decrease_with_length": true,
+    "require_strict_gm_decrease_with_length": true,
+    "require_ideal_inverse_length_diagnostic_reported": true,
+    "require_prior_v1_failure_preserved": true,
+    "require_strictly_increasing_node_and_element_counts": true,
+    "required_regions": ["bottom_oxide", "channel", "top_oxide"],
+    "required_contacts": ["source", "drain", "bottom_gate", "top_gate"],
+    "required_interfaces": ["bottom_oxide_channel", "channel_top_oxide"],
+    "required_state_count": 3,
+    "required_vtk_file_count": 18,
+    "require_two_png_figures": true,
+    "require_all_dc_solves_converged": true
+  },
+  "outputs": {
+    "contract_report": "results/reports/tcad_t03_p4_l_input_contract.json",
+    "run_directory": "results/tcad/t03_sensitivity/p4_channel_length",
+    "config_snapshot": "results/tcad/t03_sensitivity/p4_channel_length/input_snapshot.json",
+    "solver_log": "results/tcad/t03_sensitivity/p4_channel_length/solver_log.json",
+    "state_manifest": "results/tcad/t03_sensitivity/p4_channel_length/state_manifest.json",
+    "curve_csv": "results/tables/tcad_t03_p4_l_transfer_curves.csv",
+    "metric_csv": "results/tables/tcad_t03_p4_l_metrics.csv",
+    "reference_comparison_csv": "results/tables/tcad_t03_p4_l_t02_c_reproduction.csv",
+    "state_summary_csv": "results/tables/tcad_t03_p4_l_state_summary.csv",
+    "sensitivity_figure_png": "report/assets/tcad_t03_p4_l_sensitivity.png",
+    "state_figure_png": "report/assets/tcad_t03_p4_l_state_maps.png",
+    "report": "results/reports/tcad_t03_p4_l_sensitivity.json",
+    "check_report": "results/reports/tcad_t03_p4_l_sensitivity_check.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T03-P4-L may establish a reproducible three-point local channel-length sensitivity only for the frozen E2 teaching model when the V2 contract, numerical-quality and directional-response run checks, T02-C reference reproduction, states, and independent checks pass; the failed ideal 1/L diagnostic remains a reported limitation.",
+    "allowed_parameter_labels": [
+      "channel-length sensitivity numerical proxy",
+      "sampled low-VDS on-state current proxy",
+      "constant-current VTH numerical proxy",
+      "gm numerical proxy"
+    ],
+    "prohibited_claims": [
+      "experimentally calibrated channel-length dependence or process distribution",
+      "physical Ion, short-channel-effect validation, scaling-law proof, or parameter uncertainty",
+      "geometry/dielectric group variables other than the configured channel length",
+      "trap, contact, temperature, mobility, ferroelectric, compact-model, circuit, layout, or HZO evidence",
+      "complete T03 five-group sensitivity"
+    ],
+    "next_gate": "Only contract PASS permits the T03-P4-L run; only simulation plus independent persisted-evidence PASS completes this one channel-length sensitivity group."
+  }
+}

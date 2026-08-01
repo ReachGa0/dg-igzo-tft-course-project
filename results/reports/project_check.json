@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 286,
+  "checks": 312,
   "failures": 0,
   "results": [
     {
@@ -190,6 +190,16 @@
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_c_bidirectional"
     },
     {
+      "name": "directory:results/tcad/t03_sensitivity/p4_channel_length",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p4_channel_length"
+    },
+    {
+      "name": "directory:results/tcad/t03_sensitivity/p4_channel_length_v1_failed",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p4_channel_length_v1_failed"
+    },
+    {
       "name": "directory:tcad/structures",
       "status": "PASS",
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/structures"
@@ -257,52 +267,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=12278"
+      "detail": "bytes=12616"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=13701"
+      "detail": "bytes=14028"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=7197"
+      "detail": "bytes=7677"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=46152"
+      "detail": "bytes=49222"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4078"
+      "detail": "bytes=4112"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=19140"
+      "detail": "bytes=20879"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=9683"
+      "detail": "bytes=10549"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=3061"
+      "detail": "bytes=3402"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=4745"
+      "detail": "bytes=4877"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=20492"
+      "detail": "bytes=21719"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -358,6 +368,16 @@
       "name": "file:config/tcad_t02_c_bidirectional.json",
       "status": "PASS",
       "detail": "bytes=13446"
+    },
+    {
+      "name": "file:config/tcad_t03_p4_channel_length.json",
+      "status": "PASS",
+      "detail": "bytes=12975"
+    },
+    {
+      "name": "file:config/tcad_t03_p4_channel_length_v1_failed.json",
+      "status": "PASS",
+      "detail": "bytes=10401"
     },
     {
       "name": "file:references/papers_manifest.csv",
@@ -500,6 +520,16 @@
       "detail": "bytes=37123"
     },
     {
+      "name": "file:scripts/check_t03_p4_l_contract.py",
+      "status": "PASS",
+      "detail": "bytes=20558"
+    },
+    {
+      "name": "file:scripts/check_t03_p4_channel_length.py",
+      "status": "PASS",
+      "detail": "bytes=32019"
+    },
+    {
       "name": "file:scripts/build_self_contained_report.py",
       "status": "PASS",
       "detail": "bytes=11722"
@@ -555,6 +585,11 @@
       "detail": "bytes=81080"
     },
     {
+      "name": "file:tcad/run_t03_p4_channel_length.py",
+      "status": "PASS",
+      "detail": "bytes=56968"
+    },
+    {
       "name": "file:report/manifest.json",
       "status": "PASS",
       "detail": "bytes=2539"
@@ -567,7 +602,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=5467"
+      "detail": "bytes=7264"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -893,6 +928,81 @@
       "name": "file:report/assets/tcad_t02_c_state_maps.png",
       "status": "PASS",
       "detail": "bytes=828743"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p4_l_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=13432"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p4_l_sensitivity.json",
+      "status": "PASS",
+      "detail": "bytes=116751"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p4_l_sensitivity_check.json",
+      "status": "PASS",
+      "detail": "bytes=4390"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p4_l_input_contract_v1_failed.json",
+      "status": "PASS",
+      "detail": "bytes=12422"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p4_l_sensitivity_v1_failed.json",
+      "status": "PASS",
+      "detail": "bytes=113034"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p4_l_transfer_curves.csv",
+      "status": "PASS",
+      "detail": "bytes=31194"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p4_l_metrics.csv",
+      "status": "PASS",
+      "detail": "bytes=2201"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p4_l_t02_c_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=4809"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p4_l_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=2099"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p4_channel_length/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=9510"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p4_channel_length_v1_failed/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=9510"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p4_l_sensitivity.png",
+      "status": "PASS",
+      "detail": "bytes=308514"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p4_l_state_maps.png",
+      "status": "PASS",
+      "detail": "bytes=873279"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p4_l_sensitivity_v1_failed.png",
+      "status": "PASS",
+      "detail": "bytes=308514"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p4_l_state_maps_v1_failed.png",
+      "status": "PASS",
+      "detail": "bytes=873279"
     },
     {
       "name": "file:models/level61/README.md",
@@ -1368,6 +1478,26 @@
       "name": "t02_c:checks_and_raw_outputs",
       "status": "PASS",
       "detail": "checks=15 states=6 state_csv=12 vtk=36 figures=2"
+    },
+    {
+      "name": "t03_p4_l:contract_and_simulation",
+      "status": "PASS",
+      "detail": "contract=PASS simulation=PASS runner_checks=16"
+    },
+    {
+      "name": "t03_p4_l:independent_check_and_completion_boundary",
+      "status": "PASS",
+      "detail": "independent=PASS completion={'status': 'PASS', 'p4_channel_length_three_point_group_complete': True, 'complete_t03_five_group_sensitivity': False, 'another_t03_group_permitted_next': True, 'experimental_calibration_permitted': False, 'physical_short_channel_claim_permitted': False, 'compact_model_calibrated': False}"
+    },
+    {
+      "name": "t03_p4_l:failed_ideal_scaling_diagnostic_is_not_silently_relaxed",
+      "status": "PASS",
+      "detail": "diagnostic=FAIL completion_gate=False"
+    },
+    {
+      "name": "t03_p4_l:raw_outputs_and_figures_exist",
+      "status": "PASS",
+      "detail": "states=3 state_csv=6 vtk=18 figures=2"
     },
     {
       "name": "tcad:mesh_levels",

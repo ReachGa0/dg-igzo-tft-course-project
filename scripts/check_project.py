@@ -41,6 +41,8 @@ REQUIRED_FILES = [
     "config/tcad_t02_a_dual_gate_contract.json",
     "config/tcad_t02_b_minimal_bias.json",
     "config/tcad_t02_c_bidirectional.json",
+    "config/tcad_t03_p4_channel_length.json",
+    "config/tcad_t03_p4_channel_length_v1_failed.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -69,6 +71,8 @@ REQUIRED_FILES = [
     "scripts/check_t02_b_minimal_bias.py",
     "scripts/check_t02_c_contract.py",
     "scripts/check_t02_c_bidirectional.py",
+    "scripts/check_t03_p4_l_contract.py",
+    "scripts/check_t03_p4_channel_length.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
@@ -80,6 +84,7 @@ REQUIRED_FILES = [
     "tcad/run_t02_dual_gate_limit_regression.py",
     "tcad/run_t02_dual_gate_minimal_bias.py",
     "tcad/run_t02_dual_gate_bidirectional.py",
+    "tcad/run_t03_p4_channel_length.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
@@ -148,6 +153,21 @@ REQUIRED_FILES = [
     "results/tcad/t02_dual_gate/t02_c_bidirectional/state_manifest.json",
     "report/assets/tcad_t02_c_bidirectional_families.png",
     "report/assets/tcad_t02_c_state_maps.png",
+    "results/reports/tcad_t03_p4_l_input_contract.json",
+    "results/reports/tcad_t03_p4_l_sensitivity.json",
+    "results/reports/tcad_t03_p4_l_sensitivity_check.json",
+    "results/reports/tcad_t03_p4_l_input_contract_v1_failed.json",
+    "results/reports/tcad_t03_p4_l_sensitivity_v1_failed.json",
+    "results/tables/tcad_t03_p4_l_transfer_curves.csv",
+    "results/tables/tcad_t03_p4_l_metrics.csv",
+    "results/tables/tcad_t03_p4_l_t02_c_reproduction.csv",
+    "results/tables/tcad_t03_p4_l_state_summary.csv",
+    "results/tcad/t03_sensitivity/p4_channel_length/state_manifest.json",
+    "results/tcad/t03_sensitivity/p4_channel_length_v1_failed/state_manifest.json",
+    "report/assets/tcad_t03_p4_l_sensitivity.png",
+    "report/assets/tcad_t03_p4_l_state_maps.png",
+    "report/assets/tcad_t03_p4_l_sensitivity_v1_failed.png",
+    "report/assets/tcad_t03_p4_l_state_maps_v1_failed.png",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -196,6 +216,8 @@ REQUIRED_DIRS = [
     "results/tcad/t02_dual_gate/t02_a_limit_regression",
     "results/tcad/t02_dual_gate/t02_b_minimal_bias",
     "results/tcad/t02_dual_gate/t02_c_bidirectional",
+    "results/tcad/t03_sensitivity/p4_channel_length",
+    "results/tcad/t03_sensitivity/p4_channel_length_v1_failed",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -1428,6 +1450,100 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t02_c:bidirectional", False, str(error))
+
+    t03_config_path = ROOT / "config" / "tcad_t03_p4_channel_length.json"
+    t03_contract_path = ROOT / "results" / "reports" / "tcad_t03_p4_l_input_contract.json"
+    t03_report_path = ROOT / "results" / "reports" / "tcad_t03_p4_l_sensitivity.json"
+    t03_check_path = ROOT / "results" / "reports" / "tcad_t03_p4_l_sensitivity_check.json"
+    try:
+        t03_config = json.loads(t03_config_path.read_text(encoding="utf-8"))
+        t03_contract = json.loads(t03_contract_path.read_text(encoding="utf-8"))
+        t03_report = json.loads(t03_report_path.read_text(encoding="utf-8"))
+        t03_check = json.loads(t03_check_path.read_text(encoding="utf-8"))
+        t03_runner_checks = t03_report.get("checks", {})
+        t03_completion = t03_report.get("t03_p4_l_completion", {})
+        t03_diagnostic = t03_report.get("diagnostic_hypotheses", {}).get(
+            "ideal_inverse_length", {}
+        )
+        add_check(
+            checks,
+            "t03_p4_l:contract_and_simulation",
+            t03_contract.get("contract_status") == "PASS"
+            and t03_contract.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(t03_contract.get("checks", [])) == 25
+            and all(item.get("status") == "PASS" for item in t03_contract["checks"])
+            and t03_report.get("status") == "PASS"
+            and t03_report.get("case_id") == t03_config.get("case_id")
+            and t03_report.get("evidence_level") == "E2"
+            and len(t03_runner_checks) == 16
+            and all(item.get("status") == "PASS" for item in t03_runner_checks.values())
+            and not t03_report.get("failures"),
+            f"contract={t03_contract.get('contract_status')} simulation={t03_report.get('status')} runner_checks={len(t03_runner_checks)}",
+        )
+        add_check(
+            checks,
+            "t03_p4_l:independent_check_and_completion_boundary",
+            t03_check.get("status") == "PASS"
+            and t03_check.get("case_id") == t03_config.get("case_id")
+            and t03_check.get("stage") == "T03-P4-L"
+            and t03_check.get("evidence_level") == "E3"
+            and len(t03_check.get("checks", [])) == 14
+            and all(item.get("status") == "PASS" for item in t03_check["checks"])
+            and not t03_check.get("failures")
+            and t03_completion.get("p4_channel_length_three_point_group_complete") is True
+            and t03_completion.get("complete_t03_five_group_sensitivity") is False
+            and t03_completion.get("another_t03_group_permitted_next") is True
+            and t03_completion.get("experimental_calibration_permitted") is False
+            and t03_completion.get("physical_short_channel_claim_permitted") is False,
+            f"independent={t03_check.get('status')} completion={t03_completion}",
+        )
+        add_check(
+            checks,
+            "t03_p4_l:failed_ideal_scaling_diagnostic_is_not_silently_relaxed",
+            t03_diagnostic.get("status") == "FAIL"
+            and t03_diagnostic.get("completion_gate") is False
+            and t03_diagnostic.get("checks")
+            and all(value is False for value in t03_diagnostic["checks"].values())
+            and t03_config.get("remediation", {}).get("prior_status") == "FAIL"
+            and t03_config.get("remediation", {}).get("prior_failed_checks")
+            == [
+                "vth_and_gm_numerical_proxies_are_valid",
+                "current_and_gm_length_products_are_stable",
+                "log_current_length_slope_matches_frozen_gate",
+            ],
+            f"diagnostic={t03_diagnostic.get('status')} completion_gate={t03_diagnostic.get('completion_gate')}",
+        )
+        t03_output_paths = [
+            ROOT / value
+            for key, value in t03_report.get("outputs", {}).items()
+            if key != "run_directory"
+        ]
+        t03_state_entries = t03_report.get("state_outputs", [])
+        t03_state_paths = [
+            ROOT / entry[key]
+            for entry in t03_state_entries
+            for key in ("node_csv", "element_csv")
+        ]
+        t03_vtk_paths = [
+            ROOT / item["path"]
+            for entry in t03_state_entries
+            for item in entry.get("vtk_files", [])
+        ]
+        t03_figures = [ROOT / item["path"] for item in t03_report.get("figures", [])]
+        t03_run_directory = ROOT / t03_report.get("outputs", {}).get("run_directory", "")
+        add_check(
+            checks,
+            "t03_p4_l:raw_outputs_and_figures_exist",
+            len(t03_state_entries) == 3
+            and len(t03_state_paths) == 6
+            and len(t03_vtk_paths) == 18
+            and len(t03_figures) == 2
+            and all(path.is_file() and path.stat().st_size > 0 for path in t03_output_paths + t03_state_paths + t03_vtk_paths + t03_figures + [t03_check_path])
+            and t03_run_directory.is_dir(),
+            f"states={len(t03_state_entries)} state_csv={len(t03_state_paths)} vtk={len(t03_vtk_paths)} figures={len(t03_figures)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t03_p4_l:channel_length_sensitivity", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:
