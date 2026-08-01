@@ -46,6 +46,7 @@ REQUIRED_FILES = [
     "config/tcad_t03_p1_secondary_bias.json",
     "config/tcad_t03_p1_capacitance_ratio.json",
     "config/tcad_t03_p2_interface_trap.json",
+    "config/tcad_t03_p2_dit_formal.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "references/t03_p2_dit_sources.csv",
@@ -83,6 +84,8 @@ REQUIRED_FILES = [
     "scripts/check_t03_p1_capacitance_ratio.py",
     "scripts/check_t03_p2_dit_contract.py",
     "scripts/check_t03_p2_dit_equation_smoke.py",
+    "scripts/check_t03_p2_dit_formal_contract.py",
+    "scripts/check_t03_p2_dit_formal.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
@@ -98,6 +101,7 @@ REQUIRED_FILES = [
     "tcad/run_t03_p1_secondary_bias.py",
     "tcad/run_t03_p1_capacitance_ratio.py",
     "tcad/run_t03_p2_dit_equation_smoke.py",
+    "tcad/run_t03_p2_dit_formal.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
@@ -209,6 +213,21 @@ REQUIRED_FILES = [
     "results/tcad/t03_sensitivity/p2_dit_equation_smoke/input_snapshot.json",
     "results/tcad/t03_sensitivity/p2_dit_equation_smoke/solver_log.json",
     "results/tcad/t03_sensitivity/p2_dit_equation_smoke/state_nodes.csv",
+    "results/reports/tcad_t03_p2_dit_formal_input_contract.json",
+    "results/reports/tcad_t03_p2_dit_formal.json",
+    "results/reports/tcad_t03_p2_dit_formal_check.json",
+    "results/reports/tcad_t03_p2_dit_formal_v1_failed.json",
+    "results/reports/tcad_t03_p2_dit_formal_input_contract_v1_ss_linearity_failed.json",
+    "results/reports/tcad_t03_p2_dit_formal_v1_ss_linearity_failed.json",
+    "results/tables/tcad_t03_p2_dit_formal_transfer.csv",
+    "results/tables/tcad_t03_p2_dit_formal_metrics.csv",
+    "results/tables/tcad_t03_p2_dit_formal_t02_c_reproduction.csv",
+    "results/tables/tcad_t03_p2_dit_formal_state_summary.csv",
+    "results/tcad/t03_sensitivity/p2_dit_formal/state_manifest.json",
+    "report/assets/tcad_t03_p2_dit_formal_sensitivity.png",
+    "report/assets/tcad_t03_p2_dit_formal_states.png",
+    "report/assets/tcad_t03_p2_dit_formal_sensitivity_v1_ss_linearity_failed.png",
+    "report/assets/tcad_t03_p2_dit_formal_states_v1_ss_linearity_failed.png",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -262,6 +281,9 @@ REQUIRED_DIRS = [
     "results/tcad/t03_sensitivity/p1_secondary_bias",
     "results/tcad/t03_sensitivity/p1_capacitance_ratio",
     "results/tcad/t03_sensitivity/p2_dit_equation_smoke",
+    "results/tcad/t03_sensitivity/p2_dit_formal",
+    "results/tcad/t03_sensitivity/p2_dit_formal_v1_failed",
+    "results/tcad/t03_sensitivity/p2_dit_formal_v1_ss_linearity_failed",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -533,7 +555,7 @@ def main() -> int:
             and sensitivity.get("remaining_parameter_groups")
             == ["P2", "P3", "P5"]
             and sensitivity.get("remaining_substages")
-            == ["T03-P2-DIT-FORMAL", "T03-P2-BULK-TRAPS", "T03-P3", "T03-P5"],
+            == ["T03-P2-BULK-TRAPS", "T03-P3", "T03-P5"],
             (
                 f"complete={sensitivity.get('completed_parameter_groups')} "
                 f"partial={sensitivity.get('partially_completed_parameter_groups')}"
@@ -2105,6 +2127,230 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t03_p2_dit:equation_smoke", False, str(error))
+
+    t03_p2_formal_config_path = ROOT / "config" / "tcad_t03_p2_dit_formal.json"
+    t03_p2_formal_contract_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p2_dit_formal_input_contract.json"
+    )
+    t03_p2_formal_report_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p2_dit_formal.json"
+    )
+    t03_p2_formal_check_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p2_dit_formal_check.json"
+    )
+    try:
+        t03_p2_formal_config = json.loads(
+            t03_p2_formal_config_path.read_text(encoding="utf-8")
+        )
+        t03_p2_formal_contract = json.loads(
+            t03_p2_formal_contract_path.read_text(encoding="utf-8")
+        )
+        t03_p2_formal_report = json.loads(
+            t03_p2_formal_report_path.read_text(encoding="utf-8")
+        )
+        t03_p2_formal_check = json.loads(
+            t03_p2_formal_check_path.read_text(encoding="utf-8")
+        )
+        t03_p2_formal_runner_checks = t03_p2_formal_report.get("checks", {})
+        add_check(
+            checks,
+            "t03_p2_dit_formal:contract_run_and_independent_check",
+            t03_p2_formal_contract.get("contract_status") == "PASS"
+            and t03_p2_formal_contract.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and t03_p2_formal_contract.get("evidence_level") == "E3"
+            and len(t03_p2_formal_contract.get("checks", [])) == 21
+            and all(
+                item.get("status") == "PASS"
+                for item in t03_p2_formal_contract.get("checks", [])
+            )
+            and t03_p2_formal_report.get("status") == "PASS"
+            and t03_p2_formal_report.get("stage") == "T03-P2-DIT-FORMAL"
+            and t03_p2_formal_report.get("case_id")
+            == t03_p2_formal_config.get("case_id")
+            and t03_p2_formal_report.get("evidence_level") == "E2"
+            and len(t03_p2_formal_runner_checks) == 14
+            and all(
+                item.get("status") == "PASS"
+                for item in t03_p2_formal_runner_checks.values()
+            )
+            and not t03_p2_formal_report.get("failures")
+            and t03_p2_formal_check.get("status") == "PASS"
+            and t03_p2_formal_check.get("evidence_level") == "E3"
+            and t03_p2_formal_check.get("independent_of_simulation_runner") is True
+            and len(t03_p2_formal_check.get("checks", [])) == 16
+            and all(
+                item.get("status") == "PASS"
+                for item in t03_p2_formal_check.get("checks", [])
+            )
+            and not t03_p2_formal_check.get("failures"),
+            (
+                f"contract={t03_p2_formal_contract.get('contract_status')} "
+                f"run={t03_p2_formal_report.get('status')} "
+                f"independent={t03_p2_formal_check.get('status')}"
+            ),
+        )
+
+        t03_p2_formal_artifact_paths = [
+            ROOT / item["path"]
+            for item in t03_p2_formal_report.get("artifacts", {}).values()
+        ]
+        t03_p2_formal_figure_paths = [
+            ROOT / item["path"] for item in t03_p2_formal_report.get("figures", [])
+        ]
+        t03_p2_formal_artifact_hashes_match = all(
+            path.is_file()
+            and path.stat().st_size > 0
+            and item.get("sha256") == sha256(path)
+            for item in t03_p2_formal_report.get("artifacts", {}).values()
+            for path in [ROOT / item["path"]]
+        ) and all(
+            path.is_file()
+            and path.stat().st_size > 0
+            and item.get("sha256") == sha256(path)
+            for item in t03_p2_formal_report.get("figures", [])
+            for path in [ROOT / item["path"]]
+        )
+        with (
+            (ROOT / t03_p2_formal_config["outputs"]["curve_csv"]).open(
+                "r", encoding="utf-8", newline=""
+            ) as curve_stream,
+            (ROOT / t03_p2_formal_config["outputs"]["metric_csv"]).open(
+                "r", encoding="utf-8", newline=""
+            ) as metric_stream,
+            (ROOT / t03_p2_formal_config["outputs"]["state_summary_csv"]).open(
+                "r", encoding="utf-8", newline=""
+            ) as state_stream,
+        ):
+            t03_p2_formal_curves = list(csv.DictReader(curve_stream))
+            t03_p2_formal_metrics = list(csv.DictReader(metric_stream))
+            t03_p2_formal_states = list(csv.DictReader(state_stream))
+        t03_p2_formal_manifest = json.loads(
+            (ROOT / t03_p2_formal_config["outputs"]["state_manifest"]).read_text(
+                encoding="utf-8"
+            )
+        )
+        t03_p2_formal_state_paths = [
+            ROOT / entry[key]
+            for entry in t03_p2_formal_manifest.get("entries", [])
+            for key in ("node_csv", "element_csv")
+        ]
+        t03_p2_formal_vtk_paths = [
+            ROOT / item["path"]
+            for entry in t03_p2_formal_manifest.get("entries", [])
+            for item in entry.get("vtk_files", [])
+        ]
+        t03_p2_formal_summary = t03_p2_formal_report.get("summary_metrics", {})
+        add_check(
+            checks,
+            "t03_p2_dit_formal:persisted_counts_hashes_states_and_figures",
+            t03_p2_formal_summary.get("device_count") == 4
+            and t03_p2_formal_summary.get("dc_solve_count") == 164
+            and t03_p2_formal_summary.get("reported_point_count") == 124
+            and t03_p2_formal_summary.get("state_count") == 4
+            and len(t03_p2_formal_curves) == 124
+            and len(t03_p2_formal_metrics) == 4
+            and len(t03_p2_formal_states) == 4
+            and t03_p2_formal_manifest.get("entry_count") == 4
+            and len(t03_p2_formal_state_paths) == 8
+            and len(t03_p2_formal_vtk_paths) == 24
+            and len(t03_p2_formal_artifact_paths) == 7
+            and len(t03_p2_formal_figure_paths) == 2
+            and t03_p2_formal_artifact_hashes_match
+            and all(
+                path.is_file() and path.stat().st_size > 0
+                for path in t03_p2_formal_state_paths + t03_p2_formal_vtk_paths
+            ),
+            (
+                f"curves={len(t03_p2_formal_curves)} metrics={len(t03_p2_formal_metrics)} "
+                f"states={len(t03_p2_formal_states)} vtk={len(t03_p2_formal_vtk_paths)}"
+            ),
+        )
+
+        t03_p2_formal_dit = [
+            float(row["dit_cm2_ev"]) for row in t03_p2_formal_metrics
+        ]
+        t03_p2_formal_vth = [
+            float(row["vth_proxy_v"]) for row in t03_p2_formal_metrics
+        ]
+        t03_p2_formal_ss = [
+            float(row["ss_proxy_mv_per_dec"]) for row in t03_p2_formal_metrics
+        ]
+        t03_p2_formal_ioff = [
+            float(row["ioff_proxy_a_per_cm"]) for row in t03_p2_formal_metrics
+        ]
+        t03_p2_formal_gm = [
+            float(row["gm_proxy_s_per_cm"]) for row in t03_p2_formal_metrics
+        ]
+        t03_p2_formal_ss_r2 = [
+            float(row["ss_fit_r_squared"]) for row in t03_p2_formal_metrics
+        ]
+        add_check(
+            checks,
+            "t03_p2_dit_formal:controlled_grid_proxies_and_t02_c_regression",
+            t03_p2_formal_dit == [0.0, 8.43e11, 3.07e12, 6.02e12]
+            and all(a < b for a, b in zip(t03_p2_formal_vth, t03_p2_formal_vth[1:]))
+            and all(a < b for a, b in zip(t03_p2_formal_ss, t03_p2_formal_ss[1:]))
+            and all(a < b for a, b in zip(t03_p2_formal_ioff, t03_p2_formal_ioff[1:]))
+            and all(a > b for a, b in zip(t03_p2_formal_gm, t03_p2_formal_gm[1:]))
+            and min(t03_p2_formal_ss_r2) >= 0.98
+            and t03_p2_formal_report.get("zero_dit_t02_c_reproduction")
+            == {
+                "point_count": 31,
+                "maximum_current_relative_difference": 0.0,
+                "maximum_center_potential_difference_v": 0.0,
+                "maximum_center_density_relative_difference": 0.0,
+                "vth_difference_v": 0.0,
+                "gm_relative_difference": 0.0,
+            },
+            (
+                f"VTH={t03_p2_formal_vth} SS={t03_p2_formal_ss} "
+                f"I_low={t03_p2_formal_ioff} gm={t03_p2_formal_gm}"
+            ),
+        )
+
+        t03_p2_formal_completion = t03_p2_formal_report.get(
+            "t03_p2_completion", {}
+        )
+        t03_p2_formal_failure_paths = [
+            ROOT / "results/reports/tcad_t03_p2_dit_formal_v1_failed.json",
+            ROOT
+            / "results/reports/tcad_t03_p2_dit_formal_input_contract_v1_ss_linearity_failed.json",
+            ROOT
+            / "results/reports/tcad_t03_p2_dit_formal_v1_ss_linearity_failed.json",
+            ROOT / "results/tcad/t03_sensitivity/p2_dit_formal_v1_failed",
+            ROOT
+            / "results/tcad/t03_sensitivity/p2_dit_formal_v1_ss_linearity_failed",
+            ROOT
+            / "report/assets/tcad_t03_p2_dit_formal_sensitivity_v1_ss_linearity_failed.png",
+            ROOT
+            / "report/assets/tcad_t03_p2_dit_formal_states_v1_ss_linearity_failed.png",
+        ]
+        add_check(
+            checks,
+            "t03_p2_dit_formal:failure_history_and_partial_p2_boundary",
+            all(path.exists() for path in t03_p2_formal_failure_paths)
+            and t03_p2_formal_completion.get("status") == "PARTIAL"
+            and t03_p2_formal_completion.get(
+                "formal_three_point_dit_sensitivity_complete"
+            )
+            is True
+            and t03_p2_formal_completion.get("interface_dit_substage_complete") is True
+            and t03_p2_formal_completion.get("bulk_tail_and_deep_traps_complete")
+            is False
+            and t03_p2_formal_completion.get("complete_p2_trap_group") is False
+            and t03_p2_formal_completion.get(
+                "complete_t03_five_group_sensitivity"
+            )
+            is False
+            and t03_p2_formal_completion.get("bulk_trap_contract_permitted_next")
+            is True
+            and t03_p2_formal_completion.get("experimental_calibration_permitted")
+            is False,
+            f"completion={t03_p2_formal_completion}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t03_p2_dit_formal:formal_sensitivity", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 369,
+  "checks": 395,
   "failures": 0,
   "results": [
     {
@@ -215,6 +215,21 @@
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_equation_smoke"
     },
     {
+      "name": "directory:results/tcad/t03_sensitivity/p2_dit_formal",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal"
+    },
+    {
+      "name": "directory:results/tcad/t03_sensitivity/p2_dit_formal_v1_failed",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal_v1_failed"
+    },
+    {
+      "name": "directory:results/tcad/t03_sensitivity/p2_dit_formal_v1_ss_linearity_failed",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal_v1_ss_linearity_failed"
+    },
+    {
       "name": "directory:tcad/structures",
       "status": "PASS",
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/structures"
@@ -282,52 +297,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=15266"
+      "detail": "bytes=15970"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=15016"
+      "detail": "bytes=14984"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=9342"
+      "detail": "bytes=9389"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=61749"
+      "detail": "bytes=65160"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4296"
+      "detail": "bytes=4285"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=26292"
+      "detail": "bytes=27709"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=13945"
+      "detail": "bytes=15073"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=4542"
+      "detail": "bytes=4890"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=5271"
+      "detail": "bytes=5407"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=25142"
+      "detail": "bytes=26186"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -410,6 +425,11 @@
       "detail": "bytes=10868"
     },
     {
+      "name": "file:config/tcad_t03_p2_dit_formal.json",
+      "status": "PASS",
+      "detail": "bytes=16045"
+    },
+    {
       "name": "file:references/papers_manifest.csv",
       "status": "PASS",
       "detail": "bytes=2493"
@@ -477,7 +497,7 @@
     {
       "name": "file:docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
       "status": "PASS",
-      "detail": "bytes=24002"
+      "detail": "bytes=24979"
     },
     {
       "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
@@ -595,6 +615,16 @@
       "detail": "bytes=16147"
     },
     {
+      "name": "file:scripts/check_t03_p2_dit_formal_contract.py",
+      "status": "PASS",
+      "detail": "bytes=18397"
+    },
+    {
+      "name": "file:scripts/check_t03_p2_dit_formal.py",
+      "status": "PASS",
+      "detail": "bytes=28344"
+    },
+    {
       "name": "file:scripts/build_self_contained_report.py",
       "status": "PASS",
       "detail": "bytes=11722"
@@ -602,7 +632,7 @@
     {
       "name": "file:tcad/README.md",
       "status": "PASS",
-      "detail": "bytes=12937"
+      "detail": "bytes=13606"
     },
     {
       "name": "file:tcad/run_dg_electrostatic.py",
@@ -647,7 +677,7 @@
     {
       "name": "file:tcad/run_t02_dual_gate_bidirectional.py",
       "status": "PASS",
-      "detail": "bytes=81080"
+      "detail": "bytes=81392"
     },
     {
       "name": "file:tcad/run_t03_p4_channel_length.py",
@@ -670,6 +700,11 @@
       "detail": "bytes=40814"
     },
     {
+      "name": "file:tcad/run_t03_p2_dit_formal.py",
+      "status": "PASS",
+      "detail": "bytes=38102"
+    },
+    {
       "name": "file:report/manifest.json",
       "status": "PASS",
       "detail": "bytes=2539"
@@ -682,7 +717,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=11693"
+      "detail": "bytes=14144"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -1223,6 +1258,81 @@
       "name": "file:results/tcad/t03_sensitivity/p2_dit_equation_smoke/state_nodes.csv",
       "status": "PASS",
       "detail": "bytes=1928726"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_formal_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=11728"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_formal.json",
+      "status": "PASS",
+      "detail": "bytes=152009"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_formal_check.json",
+      "status": "PASS",
+      "detail": "bytes=5977"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_formal_v1_failed.json",
+      "status": "PASS",
+      "detail": "bytes=42127"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_formal_input_contract_v1_ss_linearity_failed.json",
+      "status": "PASS",
+      "detail": "bytes=10812"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_formal_v1_ss_linearity_failed.json",
+      "status": "PASS",
+      "detail": "bytes=152072"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_dit_formal_transfer.csv",
+      "status": "PASS",
+      "detail": "bytes=44613"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_dit_formal_metrics.csv",
+      "status": "PASS",
+      "detail": "bytes=2315"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_dit_formal_t02_c_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=4818"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_dit_formal_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=2769"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_dit_formal/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=12976"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p2_dit_formal_sensitivity.png",
+      "status": "PASS",
+      "detail": "bytes=313277"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p2_dit_formal_states.png",
+      "status": "PASS",
+      "detail": "bytes=1136111"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p2_dit_formal_sensitivity_v1_ss_linearity_failed.png",
+      "status": "PASS",
+      "detail": "bytes=309286"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p2_dit_formal_states_v1_ss_linearity_failed.png",
+      "status": "PASS",
+      "detail": "bytes=1136111"
     },
     {
       "name": "file:models/level61/README.md",
@@ -1783,6 +1893,26 @@
       "name": "t03_p2_dit:single_interface_literature_range_and_closed_scan",
       "status": "PASS",
       "detail": "active=bottom_oxide_channel future_points=[843000000000.0, 3070000000000.0, 6020000000000.0]"
+    },
+    {
+      "name": "t03_p2_dit_formal:contract_run_and_independent_check",
+      "status": "PASS",
+      "detail": "contract=PASS run=PASS independent=PASS"
+    },
+    {
+      "name": "t03_p2_dit_formal:persisted_counts_hashes_states_and_figures",
+      "status": "PASS",
+      "detail": "curves=124 metrics=4 states=4 vtk=24"
+    },
+    {
+      "name": "t03_p2_dit_formal:controlled_grid_proxies_and_t02_c_regression",
+      "status": "PASS",
+      "detail": "VTH=[0.26385685799760256, 0.2835825707187407, 0.3161183956423358, 0.3389973181484732] SS=[137.59377510040815, 168.65702039999738, 231.49262773326376, 292.96619438917816] I_low=[2.100900501789906e-10, 1.4088216236003817e-09, 1.0917683993621227e-08, 2.963382973868361e-08] gm=[3.937599666287622e-05, 3.891387993744876e-05, 3.80152069036908e-05, 3.725313928093527e-05]"
+    },
+    {
+      "name": "t03_p2_dit_formal:failure_history_and_partial_p2_boundary",
+      "status": "PASS",
+      "detail": "completion={'status': 'PARTIAL', 'dit_literature_input_contract_passed': True, 'dit_interface_equation_smoke_passed': True, 'formal_three_point_dit_sensitivity_complete': True, 'interface_dit_substage_complete': True, 'bulk_tail_and_deep_traps_complete': False, 'complete_p2_trap_group': False, 'complete_t03_five_group_sensitivity': False, 'bulk_trap_contract_permitted_next': True, 'experimental_calibration_permitted': False}"
     },
     {
       "name": "tcad:mesh_levels",

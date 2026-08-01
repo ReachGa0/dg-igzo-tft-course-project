@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-08" class="report-chapter">
   <h2>8. 参数分析与讨论</h2>
-  <p>本章报告 T03 已关闭的两个参数组：T03-P4-L 沟道长度组，以及由 T03-P1-BIAS 和 T03-P1-CAP-RATIO 组成的数值 P1 组；另外单列 P2-DIT 已通过的输入合同与方程冒烟。P2 尚未运行正式敏感性，所以不能与前两个完成组并列。全部结果继承 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型；下列 VTH、Delta VTH、gm、耦合斜率和电流均是受限数值代理，不是实验参数。</p>
+  <p>本章报告 T03 已关闭的两个参数组：T03-P4-L 沟道长度组，以及由 T03-P1-BIAS 和 T03-P1-CAP-RATIO 组成的数值 P1 组；另外单列 P2-DIT 已关闭的 bottom-interface 子阶段。该子阶段已包含输入合同、方程冒烟和正式三点转移敏感性，但 bulk tail/deep traps 未完成，所以 P2 整组仍为 partial。全部结果继承 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型；下列 VTH、Delta VTH、SS、gm、耦合斜率和电流均是受限数值代理，不是实验参数。</p>
 
   <h3>8.1 沟道长度方向性敏感性</h3>
   <p>每个长度从独立的零偏压平衡态开始，随后执行与 T02-C 相同的低漏压阶梯、负向预处理和 31 点顶栅上扫。三个新器件共完成 123 次 DC 求解和 93 个正式点，并在 <code>VTG=1.0 V</code> 保存一个代表状态。VTH 采用 10 nA*(W/L) 的对数插值代理，gm 在 VTH+0.2 V 处由中心差分和线性插值得到。</p>
@@ -102,10 +102,10 @@
   <table>
     <thead><tr><th>退火</th><th>温度 (C)</th><th>D_it (cm^-2 eV^-1)</th><th>SS (mV/dec)</th><th>本项目用途</th></tr></thead>
     <tbody>
-      <tr><td>O2</td><td>300</td><td>6.02e12</td><td>168</td><td>未来上界点</td></tr>
+      <tr><td>O2</td><td>300</td><td>6.02e12</td><td>168</td><td>正式上界输入点</td></tr>
       <tr><td>O2</td><td>350</td><td>4.98e12</td><td>150</td><td>保留来源，不增加第四个正式器件</td></tr>
-      <tr><td>D2</td><td>300</td><td>3.07e12</td><td>115</td><td>当前代表冒烟与未来中点</td></tr>
-      <tr><td>D2</td><td>350</td><td>8.43e11</td><td>75</td><td>未来下界点</td></tr>
+      <tr><td>D2</td><td>300</td><td>3.07e12</td><td>115</td><td>代表冒烟与正式中点</td></tr>
+      <tr><td>D2</td><td>350</td><td>8.43e11</td><td>75</td><td>正式下界输入点</td></tr>
     </tbody>
   </table>
   <p>方程冒烟包含三个静电案例（无界面方程的零陷阱参考、启用方程的零陷阱极限、<code>D_it=3.07e12</code> 的代表电荷）和两个耦合漂移扩散案例（零陷阱、代表电荷），共 5 个器件和 17 次 DC。所有求解收敛；落盘 12095 行节点状态和 195 行界面采样。</p>
@@ -120,9 +120,33 @@
     </tbody>
   </table>
 
-  <h3>8.11 P2-DIT 证据边界</h3>
-  <p>22 项静态合同、运行器 14 项和不导入运行器/DEVSIM 的独立 15 项检查全部 PASS。E3 只表示来源、输入、方程、落盘文件和复算链可审计；没有三点 transfer 曲线，不能报告 DIT 对 SS、VTH、Ioff、Ion 或迁移率的正式趋势，也没有 bulk tail/deep states、动态捕获-发射、迟滞、bias stress、双界面或实验校准证据。</p>
+  <h3>8.11 P2-DIT 正式合同、失败与 V2 口径</h3>
+  <p>正式扫描以零 <code>D_it</code> 作 T02-C 回归控制，再执行三个文献约束点。四个器件的几何、材料、接触、网格、温度、<code>VDS=0.01 V</code>、<code>VBG=0 V</code> 和 <code>VTG=-0.5~1.0 V/0.05 V</code> 全部固定；每个器件从独立零偏压平衡态开始，共完成 164 次 DC 和 124 个正式点。</p>
+  <p>首次执行在第二个器件发现 DEVSIM mesh 重名，已保留输入、日志与零控制状态。修正内部 mesh/device 唯一标识后，V1 全部 164 次 DC 收敛，但原固定两-decade SS 窗口的 R2 为 <code>0.95470/0.97082/0.98560/0.99444</code>，零和低 DIT 曲线未过预注册 <code>R2&gt;=0.98</code> 门。V2 将 SS 窗口固定为 <code>1e-7~1e-6 A/cm</code> 的一 decade，通过端点对数电流插值后对栅压与 <code>log10(|Id|)</code> 做 OLS；R2 门、仿真栈和 DIT 点没有放宽或改动。</p>
 
-  <h3>8.12 适用范围和未完成组</h3>
-  <p>T03-P4-L 与数值 P1 已完整关闭，其中 P1 必须同时引用 BIAS 和 CAP-RATIO 两个子阶段。P2 仅完成 DIT 输入合同与方程冒烟，正式三点 DIT transfer sensitivity 和 bulk traps 仍未完成；P3 接触和 P5 温度也未实现，因此本章不关闭完整 T03。下一门只允许另立并运行 <code>T03-P2-DIT-FORMAL</code> 三点扫描；也没有进行实验拟合、紧凑模型、SPICE、电路、版图或 HZO 工作。</p>
+  <h3>8.12 P2-DIT 正式数值敏感性</h3>
+  <table>
+    <thead><tr><th>D_it (cm^-2 eV^-1)</th><th>VTH 代理 (V)</th><th>Delta VTH (V)</th><th>SS 代理 (mV/dec)</th><th>SS R2</th><th>VTG=-0.5 V 电流代理 (A/cm)</th><th>gm 代理 (S/cm)</th></tr></thead>
+    <tbody>
+      <tr><td>0（控制）</td><td>0.263857</td><td>0</td><td>137.594</td><td>0.998989</td><td>2.10090e-10</td><td>3.93760e-5</td></tr>
+      <tr><td>8.43e11</td><td>0.283583</td><td>+0.019726</td><td>168.657</td><td>0.999710</td><td>1.40882e-9</td><td>3.89139e-5</td></tr>
+      <tr><td>3.07e12</td><td>0.316118</td><td>+0.052262</td><td>231.493</td><td>0.999909</td><td>1.09177e-8</td><td>3.80152e-5</td></tr>
+      <tr><td>6.02e12</td><td>0.338997</td><td>+0.075140</td><td>292.966</td><td>0.998971</td><td>2.96338e-8</td><td>3.72531e-5</td></tr>
+    </tbody>
+  </table>
+  <p>在这个线性化教学方程中，VTH 与 SS 数值代理随 DIT 严格增加，gm 数值代理严格下降。<code>VTG=-0.5 V</code> 电流也增加，但线性电荷在 <code>Potential-Psi_neutral</code> 变号后会改变陷阱电荷方向；因此该量只标记为“最低栅压电流代理”，不解读为真实器件的物理 Ioff。源论文的 SS 来自不同单栅器件栈，不与本表做定量符合性判定。</p>
+
+  <h3>8.13 P2-DIT 图形与独立证据</h3>
+  <figure>
+    <img src="assets/tcad_t03_p2_dit_formal_sensitivity.png" alt="T03-P2-DIT 零控制和三个文献约束界面态密度下的转移曲线及数值代理" />
+    <figcaption>图 8-7 bottom-interface DIT 正式敏感性。曲线及 VTH、SS、最低栅压电流和 gm 均只适用于冻结线性化教学模型。</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/tcad_t03_p2_dit_formal_states.png" alt="T03-P2-DIT 四个 DIT 输入在共同 VTG 0.3 V 时的电势、电子浓度和局部电流密度" />
+    <figcaption>图 8-8 四个共同偏压状态。最大 DIT 与零控制的接触电流相对响应为 25.75%；局部电流密度不替代接触积分电流。</figcaption>
+  </figure>
+  <p>21 项静态合同、运行器 14 项和不导入运行器/DEVSIM 的独立 16 项检查全部 PASS。独立检查重算 124 个曲线点、4 行指标、T02-C 零 DIT 回归、4 个节点/单元状态、24 个 VTK、2 张 PNG 及全部哈希。对应命令为 <code>make t03-p2-dit-formal-contract-check</code>、<code>make t03-p2-dit-formal</code> 和 <code>make t03-p2-dit-formal-check</code>。</p>
+
+  <h3>8.14 适用范围和未完成组</h3>
+  <p>T03-P4-L 与数值 P1 已完整关闭，其中 P1 必须同时引用 BIAS 和 CAP-RATIO 两个子阶段。P2 的 bottom-interface DIT 子阶段已关闭，但 bulk tail/deep states、动态捕获-发射、迟滞、bias stress、双界面和实验校准证据均不存在，所以完整 P2 仍为 partial。P3 接触和 P5 温度也未实现，本章不关闭完整 T03。下一门只允许先冻结 <code>T03-P2-BULK-TRAPS</code> 合同；没有进行实验拟合、紧凑模型、SPICE、电路、版图或 HZO 工作。</p>
 </section>

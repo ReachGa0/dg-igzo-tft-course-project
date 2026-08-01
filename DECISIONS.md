@@ -1,5 +1,22 @@
 # 设计决策记录
 
+## ADR-024：以 V2 关闭 bottom-interface DIT 子阶段，但保留 P2 partial
+
+- 日期：2026-08-01
+- 状态：通过；只关闭 P2 界面 DIT 子阶段，不代表完整 P2 或 T03
+
+### 决策
+
+- 保持已通过的 bottom 单界面、线性准静态方程，固定零陷阱控制和三个 E1 文献约束点 `8.43e11/3.07e12/6.02e12 cm^-2 eV^-1`；共同偏压和 T02-C 提取口径不改。
+- V1 的 DEVSIM mesh 重名失败与两-decade SS 窗口线性度失败都保留为归档证据。V2 只将 SS 固定窗口改为一 decade，仍保持 `R2>=0.98`、控制器件和其他门槛不变。
+- 将 VTH、SS、`VTG=-0.5 V` 最低栅压电流和 gm 只报为冻结教学模型数值代理；方向性假设不作完成门，尤其是线性化 `Psi_neutral=0 V` 下最低栅压电流增大不解读为物理 Ioff。
+- 只在合同 21/21、运行器 14/14、独立 16/16、零 DIT T02-C 回归和落盘状态/VTK/PNG 哈希全部通过后关闭该子阶段。
+
+### 结果边界与下一步
+
+- V2 产生 4 器件、164 次 DC、124 个正式点和 4 个状态，VTH 随 DIT 增加、SS 恶化、gm 下降；这些只是数值敏感性，不是测量、拟合、能量分布或不确定度结果。
+- 该子阶段通过后仅允许进入另立的 `T03-P2-BULK-TRAPS` 合同；bulk traps、P3、P5、紧凑模型、SPICE、电路、版图和 HZO 仍保持关闭。
+
 ## ADR-023：P2 先冻结单界面 DIT 方程并只关闭冒烟门
 
 - 日期：2026-08-01
@@ -9,7 +26,7 @@
 
 - P2-DIT 的唯一当前变量是 bottom `bottom_interface_D_it_cm^-2_eV^-1`；`bottom_oxide_channel` 为 active interface，`channel_top_oxide` 固定为零，避免将单界面文献值重复施加。
 - 采用准静态线性均匀界面陷阱电荷：`Q_it=-q*D_it*(Potential@r1-Psi_neutral)`，`Psi_neutral=0 V` 是显式教学假设；DEVSIM 的 `fluxterm` 写成 `+q*D_it*(Potential@r1-Psi_neutral)=-Q_it`，并保留连续 `PotentialEquation`。
-- RSC DOI `10.1039/D6TC00357E` 的 `8.43e11/3.07e12/6.02e12 cm^-2 eV^-1` 作为未来三点形式扫描，`4.98e12` 留在来源表但不增加第四个器件；这些值只提供 E1 敏感性范围，不是项目测量。
+- RSC DOI `10.1039/D6TC00357E` 的 `8.43e11/3.07e12/6.02e12 cm^-2 eV^-1` 在本 ADR 决策时作为后续三点形式扫描（现已由 ADR-024 执行），`4.98e12` 留在来源表但不增加第四个器件；这些值只提供 E1 敏感性范围，不是项目测量。
 - 只有 22 项合同、5 案例/17 次 DC 方程冒烟、节点/界面落盘和独立 15 项检查全部通过，才允许进入另立的三点 transfer sensitivity 合同；本次不提取 SS、VTH、Ioff、Ion。
 
 ### 结果边界

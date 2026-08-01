@@ -1,0 +1,141 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T03_P2_DIT_FORMAL_V2",
+  "stage": "T03-P2-DIT-FORMAL",
+  "evidence_level": "E3",
+  "independent_of_simulation_runner": true,
+  "checks": [
+    {
+      "name": "identity:runner_report_is_passed_v2_e2",
+      "status": "PASS",
+      "detail": "status=PASS checks=14 failures=[]"
+    },
+    {
+      "name": "contract:current_v2_contract_passed_without_simulation",
+      "status": "PASS",
+      "detail": "contract=PASS checks=21"
+    },
+    {
+      "name": "provenance:input_snapshot_paths_and_hashes_match",
+      "status": "PASS",
+      "detail": "inputs=17 valid=True"
+    },
+    {
+      "name": "solver:four_devices_164_dc_all_converged",
+      "status": "PASS",
+      "detail": "runs=4 records=164 wall=11.015179615998932"
+    },
+    {
+      "name": "topology:single_variable_devices_and_interface_equations_match",
+      "status": "PASS",
+      "detail": "topologies=[(2419, 4480), (2419, 4480), (2419, 4480), (2419, 4480)]"
+    },
+    {
+      "name": "curves:schemas_counts_grid_and_controls_are_exact",
+      "status": "PASS",
+      "detail": "fields=25 rows=124 grids=True"
+    },
+    {
+      "name": "curves:current_is_finite_conserved_and_monotonic",
+      "status": "PASS",
+      "detail": "current=True monotonic=True imbalance=8.439568e-12"
+    },
+    {
+      "name": "metrics:vth_gm_ss_ioff_independently_recomputed",
+      "status": "PASS",
+      "detail": "metrics=4 fields=27"
+    },
+    {
+      "name": "metrics:v2_fixed_one_decade_ss_window_is_well_conditioned",
+      "status": "PASS",
+      "detail": "samples=[4, 5, 6, 8] R2=[0.9989888634089585, 0.9997101703253094, 0.999908752663489, 0.9989707870974065]"
+    },
+    {
+      "name": "diagnostics:directions_are_recomputed_and_not_completion_gates",
+      "status": "PASS",
+      "detail": "VTH=[0.26385685799760256, 0.2835825707187407, 0.3161183956423358, 0.3389973181484732] SS=[137.59377510040815, 168.65702039999738, 231.49262773326376, 292.96619438917816] Ioff=[2.100900501789906e-10, 1.4088216236003817e-09, 1.0917683993621227e-08, 2.963382973868361e-08] gm=[3.937599666287622e-05, 3.891387993744876e-05, 3.80152069036908e-05, 3.725313928093527e-05]"
+    },
+    {
+      "name": "regression:zero_dit_t02_c_reproduction_is_independent_and_exact",
+      "status": "PASS",
+      "detail": "{\"gm_relative_difference\": 0.0, \"maximum_center_density_relative_difference\": 0.0, \"maximum_center_potential_difference_v\": 0.0, \"maximum_current_relative_difference\": 0.0, \"point_count\": 31, \"vth_difference_v\": 0.0}"
+    },
+    {
+      "name": "states:manifest_csv_and_24_vtk_hashes_match",
+      "status": "PASS",
+      "detail": "entries=4 vtk=24"
+    },
+    {
+      "name": "states:common_bias_controls_and_response_are_recomputed",
+      "status": "PASS",
+      "detail": "currents=[1.1549445541373129e-05, 1.0711393749443818e-05, 9.410611435282586e-06, 8.575696386250626e-06] response=2.574798e-01"
+    },
+    {
+      "name": "artifacts:report_hashes_and_two_nontrivial_pngs_match",
+      "status": "PASS",
+      "detail": "artifacts=7 dimensions=[(2376, 1404), (2016, 1854)]"
+    },
+    {
+      "name": "history:device_name_and_ss_linearity_failures_remain_preserved",
+      "status": "PASS",
+      "detail": "The V1 two-decade window crossed a curved near-threshold region and did not support a single high-linearity OLS slope for the zero and lower-D_it curves."
+    },
+    {
+      "name": "boundary:interface_dit_complete_but_p2_and_t03_remain_partial",
+      "status": "PASS",
+      "detail": "{\"bulk_tail_and_deep_traps_complete\": false, \"bulk_trap_contract_permitted_next\": true, \"complete_p2_trap_group\": false, \"complete_t03_five_group_sensitivity\": false, \"dit_interface_equation_smoke_passed\": true, \"dit_literature_input_contract_passed\": true, \"experimental_calibration_permitted\": false, \"formal_three_point_dit_sensitivity_complete\": true, \"interface_dit_substage_complete\": true, \"status\": \"PARTIAL\"}"
+    }
+  ],
+  "failures": [],
+  "recomputed_metrics": {
+    "vth_proxy_v": [
+      0.26385685799760256,
+      0.2835825707187407,
+      0.3161183956423358,
+      0.3389973181484732
+    ],
+    "ss_proxy_mv_per_dec": [
+      137.59377510040815,
+      168.65702039999738,
+      231.49262773326376,
+      292.96619438917816
+    ],
+    "ioff_proxy_a_per_cm": [
+      2.100900501789906e-10,
+      1.4088216236003817e-09,
+      1.0917683993621227e-08,
+      2.963382973868361e-08
+    ],
+    "gm_proxy_s_per_cm": [
+      3.937599666287622e-05,
+      3.891387993744876e-05,
+      3.80152069036908e-05,
+      3.725313928093527e-05
+    ],
+    "ss_fit_sample_count": [
+      4,
+      5,
+      6,
+      8
+    ],
+    "ss_fit_r_squared": [
+      0.9989888634089585,
+      0.9997101703253094,
+      0.999908752663489,
+      0.9989707870974065
+    ],
+    "maximum_relative_terminal_current_imbalance": 8.439567986548772e-12,
+    "maximum_dit_common_state_current_relative_response": 0.25747981965625594
+  },
+  "evidence_boundary": {
+    "allowed_claim": "After contract, simulation, and independent persisted-evidence checks pass, the three literature-constrained bottom-interface D_it inputs have completed a controlled transfer sensitivity in the frozen teaching model, with VTH, SS, Ioff, and gm reported only as numerical proxies.",
+    "prohibited_claims": [
+      "measured or fitted project D_it, calibrated SS, physical Ion/Ioff, mobility, or process prediction",
+      "energy-resolved interface-state distribution, dynamic capture-emission, hysteresis, bias-stress, reliability, or border-trap validation",
+      "bulk N_tail or N_deep trap evidence or complete P2 trap group",
+      "both-interface trap validation or complete T03 five-group sensitivity",
+      "compact-model, circuit, layout, or HZO evidence"
+    ],
+    "next_gate": "Only a passed formal scan plus independent check completes the interface-D_it substage and permits a separate T03-P2-BULK-TRAPS contract; P3, P5, SPICE, and layout remain closed."
+  }
+}

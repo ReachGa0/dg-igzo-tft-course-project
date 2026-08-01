@@ -11,6 +11,7 @@ import os
 import statistics
 import sys
 import time
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -402,6 +403,8 @@ def run_family(
     family: dict[str, Any],
     fixed_secondary_v: float,
     run_dir: Path,
+    post_initialize_hook: Callable[[str, dict[str, Any]], None] | None = None,
+    device_token: str | None = None,
 ) -> tuple[
     list[dict[str, Any]],
     list[dict[str, Any]],
@@ -419,7 +422,8 @@ def run_family(
         t02_a_config["top_stack_contract"]["enabled_mode"]["top_oxide_thickness_cm"]
     )
     family_id = str(family["family_id"])
-    device = f"t02_c_{family_id}_{voltage_token(fixed_secondary_v)}"
+    token = device_token if device_token is not None else voltage_token(fixed_secondary_v)
+    device = f"t02_c_{family_id}_{token}"
     mode_id = t02_a_config["top_stack_contract"]["enabled_mode"]["mode_id"]
     records: list[dict[str, Any]] = []
     forward_rows: list[dict[str, Any]] = []
@@ -430,6 +434,8 @@ def run_family(
         t02_a.initialize_enabled_device(
             device, runtime, t02_a_config, mesh_level, mesh_spec
         )
+        if post_initialize_hook is not None:
+            post_initialize_hook(device, runtime)
         regions, contacts, interfaces = t02_a.active_topology(device, ENABLED_REGIONS)
         node_count, element_count = t02_a.active_counts(device, ENABLED_REGIONS)
         set_family_biases(

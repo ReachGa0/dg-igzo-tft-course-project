@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`T03_P2_DIT_EQUATION_SMOKE_E3_PARTIAL_P2`：T01/T02 冻结教学模型数值门、T03-P4-L 和数值 P1 已关闭。P2-DIT 已完成 4 行 E1 文献来源合同、5 案例/17 次 DC 准静态单界面方程冒烟和 E3 独立复核，但正式三点 transfer sensitivity 与 bulk traps 尚未运行，因此 P2 仍为 partial。G0 仍为 `TEACHING_BASELINE_ONLY`；P3/P5、紧凑模型和定量电路预测也尚未完成。
+`T03_P2_DIT_FORMAL_E3_PARTIAL_P2`：T01/T02 冻结教学模型数值门、T03-P4-L 和数值 P1 已关闭。P2-DIT 已完成 E1 文献来源合同、E3 方程冒烟和 E3 正式三点 transfer sensitivity：4 器件、164 次 DC、124 点、4 状态，独立 16/16 PASS。界面 DIT 子阶段已关闭，但 bulk tail/deep traps 尚未运行，因此完整 P2 仍为 partial。G0 仍为 `TEACHING_BASELINE_ONLY`；P3/P5、紧凑模型和定量电路预测也尚未完成。
 
 ## 截止日期
 
@@ -44,7 +44,7 @@
 | T00 | 二维双栅静电基准 | DONE，E2 | 既有 JSON/CSV/VTK/PNG |
 | T01 | 单栅漂移扩散 | DONE，E2 教学模型数值门 | `results/reports/tcad_t01_d_extraction.json`；状态、守恒、网格代理比较与独立检查完整，不代表实验标定 |
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
-| T03 | 五组器件参数 | PARTIAL，P1 DONE；P4-L DONE；P2-DIT 合同/方程冒烟 DONE；P2 正式扫描与 P3/P5 TODO | P1/P4 已关闭；P2 只有 E3 输入与方程证据，完整 T03 尚未关闭 |
+| T03 | 五组器件参数 | PARTIAL，P1 DONE；P4-L DONE；P2-DIT 界面子阶段 DONE；P2 bulk traps 与 P3/P5 TODO | P1/P4 已关闭；P2 界面 DIT 有 E3 证据，但完整 P2/T03 尚未关闭 |
 | M00 | IGZO 多曲线标定 | TODO | 等主数据集 |
 | M01 | AIM-Spice/ngspice 对照 | TODO | 依赖 M00 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-数值 P1/P4 与 P2-DIT 合同/方程冒烟已完成。下一件事只另立并运行 `T03-P2-DIT-FORMAL` 三点 transfer sensitivity，沿用已冻结的 bottom 单界面方程和 `8.43e11/3.07e12/6.02e12 cm^-2 eV^-1`，冻结共同偏压、SS/VTH/Ioff 提取和独立验收；通过前不同时铺开 bulk traps、P3/P5，也不启动 SPICE 或版图。
+数值 P1/P4 与 P2-DIT 界面子阶段已完成。下一件事只冻结 `T03-P2-BULK-TRAPS` 最小合同：先确定 `N_tail/N_deep` 的文献来源、单位、能量分布/占据方程、至少三点和独立验收，合同通过后才运行。此前不铺开 P3/P5，也不启动 SPICE 或版图。

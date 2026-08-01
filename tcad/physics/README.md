@@ -16,4 +16,4 @@
 - 物理面电荷：`Q_it=-q*D_it*(Potential@r1-Psi_neutral)`；`D_it` 单位为 `cm^-2 eV^-1`，`Psi_neutral=0 V` 是 `assumed` 教学参考。
 - DEVSIM 组装：保留连续 `PotentialEquation`，另以 `fluxterm` 加入 `q*D_it*(Potential@r1-Psi_neutral)=-Q_it`。
 - 来源：DOI `10.1039/D6TC00357E` 的 `D_it` 只标记为 `literature/E1` 范围，不是本项目测量或拟合参数。
-- 当前证据：零极限和代表方程冒烟 E3；未实现能量分布、bulk tail/deep states、捕获-发射、迟滞、bias stress 或正式三点 transfer sensitivity。
+- 当前证据：零极限和代表方程冒烟 E3；零控制 + 3 文献约束点正式 transfer sensitivity 也为 E3。未实现能量分布、bulk tail/deep states、捕获-发射、迟滞或 bias stress。

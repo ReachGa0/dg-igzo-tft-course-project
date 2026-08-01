@@ -246,11 +246,12 @@
         "T03-P4-L V2 channel-length-only sensitivity: L=8/10/12 um, 123 DC, 93 formal points, 3 states, independent 14/14 PASS",
         "T03-P1-BIAS fixed-bottom-gate-bias sensitivity: VBG=-0.4/-0.2/0/+0.2/+0.4 V, 217 DC, 155 formal points, 5 states, independent 14/14 PASS",
         "T03-P1-CAP-RATIO fixed-total-coupling allocation sensitivity: Ctop/Cbottom=0.5/0.75/1.0/1.5/2.0, 205 DC, 155 formal points, 5 states, independent 13/13 PASS",
-        "T03-P2-DIT literature input contract and quasi-static interface-equation smoke: 4 E1 source rows, 5 devices, 17 DC, 12095 state rows, independent 15/15 PASS; formal sensitivity not run"
+        "T03-P2-DIT literature input contract and quasi-static interface-equation smoke: 4 E1 source rows, 5 devices, 17 DC, 12095 state rows, independent 15/15 PASS",
+        "T03-P2-DIT-FORMAL controlled bottom-interface sensitivity: zero control plus 3 literature-constrained values, 4 devices, 164 DC, 124 transfer points, 4 states, independent 16/16 PASS; interface-DIT substage complete"
       ],
       "completed_parameter_groups": ["P1", "P4"],
       "partially_completed_parameter_groups": ["P2"],
-      "remaining_substages": ["T03-P2-DIT-FORMAL", "T03-P2-BULK-TRAPS", "T03-P3", "T03-P5"],
+      "remaining_substages": ["T03-P2-BULK-TRAPS", "T03-P3", "T03-P5"],
       "remaining_parameter_groups": ["P2", "P3", "P5"],
       "first_group_outputs": [
         "config/tcad_t03_p4_channel_length.json",
@@ -299,9 +300,20 @@
         "results/tables/tcad_t03_p2_dit_interface_samples.csv",
         "results/tcad/t03_sensitivity/p2_dit_equation_smoke/input_snapshot.json",
         "results/tcad/t03_sensitivity/p2_dit_equation_smoke/solver_log.json",
-        "results/tcad/t03_sensitivity/p2_dit_equation_smoke/state_nodes.csv"
+        "results/tcad/t03_sensitivity/p2_dit_equation_smoke/state_nodes.csv",
+        "config/tcad_t03_p2_dit_formal.json",
+        "results/reports/tcad_t03_p2_dit_formal_input_contract.json",
+        "results/reports/tcad_t03_p2_dit_formal.json",
+        "results/reports/tcad_t03_p2_dit_formal_check.json",
+        "results/tables/tcad_t03_p2_dit_formal_transfer.csv",
+        "results/tables/tcad_t03_p2_dit_formal_metrics.csv",
+        "results/tables/tcad_t03_p2_dit_formal_t02_c_reproduction.csv",
+        "results/tables/tcad_t03_p2_dit_formal_state_summary.csv",
+        "results/tcad/t03_sensitivity/p2_dit_formal/state_manifest.json",
+        "report/assets/tcad_t03_p2_dit_formal_sensitivity.png",
+        "report/assets/tcad_t03_p2_dit_formal_states.png"
       ],
-      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P1 combines the fixed-secondary-bias substage with a fixed-total-coupling effective capacitance-allocation ratio substage; it is not measured capacitance extraction, measured Al2O3 permittivity, or a fabricated asymmetric stack. P2 is only partial: the DIT literature/input contract and quasi-static interface-equation smoke are E3, but the formal three-point DIT transfer sensitivity and bulk tail/deep traps have not run. P3, P5 and complete T03 remain incomplete. No T03 result is experimental calibration, physical Ion, compact-model, circuit, layout, or HZO evidence.",
+      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P1 combines the fixed-secondary-bias substage with a fixed-total-coupling effective capacitance-allocation ratio substage; it is not measured capacitance extraction, measured Al2O3 permittivity, or a fabricated asymmetric stack. P2 remains partial: the bottom-interface DIT literature/input contract, quasi-static interface-equation smoke, and formal three-point transfer sensitivity are E3, but bulk tail/deep traps have not run. Formal DIT VTH, SS, lowest-gate current, and gm are numerical proxies; the source stack differs and the linearized neutral-potential model is not energy-resolved. P3, P5 and complete T03 remain incomplete. No T03 result is experimental calibration, physical Ion/Ioff, compact-model, circuit, layout, or HZO evidence.",
       "acceptance": ["five groups complete", "at least three points per group", "quantitative comparison uses common axes", "each completed group has an independent persisted-evidence check", "failed hypotheses remain visible and do not get silently relaxed"]
     },
     {

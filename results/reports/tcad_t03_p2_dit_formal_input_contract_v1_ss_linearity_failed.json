@@ -1,0 +1,205 @@
+{
+  "status": "PASS",
+  "contract_status": "PASS",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "case_id": "IGZO_T03_P2_DIT_FORMAL_V1",
+  "stage": "T03-P2-DIT-FORMAL",
+  "parameter_group_id": "P2",
+  "evidence_level": "E3",
+  "config": {
+    "path": "config/tcad_t03_p2_dit_formal.json",
+    "sha256": "517b31c243ed5ce1889c024cc338ce1c08ac925098d61d39d4bdb0307a9c4227"
+  },
+  "inputs": {
+    "project_config": {
+      "path": "config/project.json",
+      "sha256": "819bd7d06e5af4757c09aa4cef87999980ec986b298fe32d3d0a43a96837752a"
+    },
+    "experiments_config": {
+      "path": "config/experiments.json",
+      "sha256": "13bf60285a1802b309ba2100314e50d7659bfc5534d19adb2ae0ff3c479e2578"
+    },
+    "s00_report": {
+      "path": "results/reports/s00_data_audit.json",
+      "sha256": "44ea42ff7fd9923cd4c9c2d0156ce3d0029cd59655e3c4086ab7250f78b48e31"
+    },
+    "t01_baseline_config": {
+      "path": "config/tcad_t01_baseline.json",
+      "sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9"
+    },
+    "t01_mesh_config": {
+      "path": "config/tcad_t01_d_mesh_refinement.json",
+      "sha256": "6ba9815ab063708b9fa560092974ac65a748b95c981d16056af3dec1e0f74e23"
+    },
+    "t02_a_config": {
+      "path": "config/tcad_t02_a_dual_gate_contract.json",
+      "sha256": "59f19996be43c22972bf223cfebf1f95fcaec5cdd9bf2edef76d45e9f1b4ccb3"
+    },
+    "t02_c_config": {
+      "path": "config/tcad_t02_c_bidirectional.json",
+      "sha256": "93c29fe977dd304315537d7dcbb0e2ea4b920cdab331a7996d7c9dd399b84228"
+    },
+    "t02_c_contract_report": {
+      "path": "results/reports/tcad_t02_c_input_contract.json",
+      "sha256": "3e27a29ae160d23332a7696d92b67646978a0f9dd5e8736fb6a2eda9a5589de1"
+    },
+    "t02_c_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional.json",
+      "sha256": "d214e9bf7c1938cf3120eaaf06fc53d0b1c1faf0708c0378fef6b3faeafecfed"
+    },
+    "t02_c_check_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional_check.json",
+      "sha256": "a13c6bebb0f10e8bce7dabff865863ee862e9d3ac572dfc692423a66ba868aa4"
+    },
+    "dit_smoke_config": {
+      "path": "config/tcad_t03_p2_interface_trap.json",
+      "sha256": "c22ac08b2fc6121b73960c073b7381bc6b361bcf06f6c063c27874a693d8d664"
+    },
+    "dit_smoke_contract_report": {
+      "path": "results/reports/tcad_t03_p2_dit_input_contract.json",
+      "sha256": "56fe9f60d5a1d2d3ecc00c3f1ad4483fdafd3a088361bef3fd8d381f5c2fc1a9"
+    },
+    "dit_smoke_report": {
+      "path": "results/reports/tcad_t03_p2_dit_equation_smoke.json",
+      "sha256": "00baf3fe542e295239bbcb8c58fc473fed278a7c6e468fc4ef407ed875279ced"
+    },
+    "dit_smoke_check_report": {
+      "path": "results/reports/tcad_t03_p2_dit_equation_smoke_check.json",
+      "sha256": "a0deb5b67d4cc44c7924a3d078dfdab9df8c2ccf72bac2f9a23aea972983f77b"
+    },
+    "literature_table": {
+      "path": "references/t03_p2_dit_sources.csv",
+      "sha256": "ed5653587beded66ce37c5ec77c30c5a7675faeb3000f47678fe32eb2c6eee3f"
+    }
+  },
+  "checks": [
+    {
+      "name": "identity:t03_p2_dit_formal_contract",
+      "status": "PASS",
+      "detail": "case=IGZO_T03_P2_DIT_FORMAL_V1 stage=T03-P2-DIT-FORMAL"
+    },
+    {
+      "name": "dependencies:complete_t02_gate_passed",
+      "status": "PASS",
+      "detail": "contract=PASS run=PASS check=PASS"
+    },
+    {
+      "name": "dependencies:dit_equation_smoke_and_independent_check_passed",
+      "status": "PASS",
+      "detail": "smoke=PASS check=PASS permitted=True"
+    },
+    {
+      "name": "dependencies:identities_and_hashes_match",
+      "status": "PASS",
+      "detail": "t02=IGZO_T02_DUAL_GATE_DD_C_BIDIRECTIONAL_V1 smoke=IGZO_T03_P2_DIT_CONTRACT_SMOKE_V1"
+    },
+    {
+      "name": "gate:g0_remains_teaching_only",
+      "status": "PASS",
+      "detail": "{\"allowed_claim\": \"Teaching-parameter two-dimensional IGZO simulation\", \"missing_primary_inputs\": [\"condition-complete raw Id-Vg\", \"condition-complete raw Id-Vd\", \"device batch identity\", \"measurement or simulation condition metadata\"], \"prohibited_claim\": \"Accurate experimental fit or calibrated dual-gate prediction\", \"quantitative_fitting_permitted\": false, \"required_primary_fields\": [\"dataset_id\", \"device_id\", \"sweep_id\", \"VGS_V\", \"VDS_V\", \"ID_A\", \"W_um\", \"L_um\", \"temperature_K\", \"sweep_direction\", \"source\", \"source_status\"], \"status\": \"TEACHING_BASELINE_ONLY\", \"t01_permitted\": true}"
+    },
+    {
+      "name": "scope:igzo_2d_laptop_teaching_model_only",
+      "status": "PASS",
+      "detail": "2D n-IGZO electron-only drift-diffusion teaching model with the T02-A enabled symmetric dual-gate stack"
+    },
+    {
+      "name": "group:one_bottom_interface_dit_variable",
+      "status": "PASS",
+      "detail": "group=P2 variable=bottom_interface_D_it"
+    },
+    {
+      "name": "source:three_exact_literature_points_plus_zero_control",
+      "status": "PASS",
+      "detail": "formal=[843000000000.0, 3070000000000.0, 6020000000000.0] execution=[0.0, 843000000000.0, 3070000000000.0, 6020000000000.0]"
+    },
+    {
+      "name": "model:exact_passed_smoke_equation_is_reused",
+      "status": "PASS",
+      "detail": "InterfaceTrapFluxTerm=q*D_it*(Potential@r1-Psi_neutral)=-Q_it"
+    },
+    {
+      "name": "model:linearized_single_interface_limitations_are_explicit",
+      "status": "PASS",
+      "detail": "The sheet charge is a quasi-static linearized response, not an energy-resolved occupancy model. Only the bottom interface receives D_it; the source paper used a different single-gate stack. No bulk tail/deep states, capture-emission time constants, hysteresis, bias stress, border traps, or temperature dependence are represented. All extracted quantities remain numerical proxies in an uncalibrated teaching model."
+    },
+    {
+      "name": "controls:geometry_transport_contact_temperature_and_top_interface_frozen",
+      "status": "PASS",
+      "detail": "L=10 um W=60 um tch=24 nm tox=30/30 nm mesh=interface_4x top_Dit=0"
+    },
+    {
+      "name": "bias:exact_t02_c_top_primary_forward_grid",
+      "status": "PASS",
+      "detail": "grid=-0.5:1.0 points=31"
+    },
+    {
+      "name": "extraction:vth_and_gm_methods_inherit_t02_c",
+      "status": "PASS",
+      "detail": "{\"constant_current_vth_proxy\": {\"criterion_formula\": \"10 nA * (W/L) terminal current\", \"criterion_prefactor_a\": 1e-08, \"expected_current_per_width_a_per_cm\": 1e-05, \"expected_terminal_current_a\": 6e-08, \"interpolation\": \"linear primary-gate-voltage interpolation in log10(abs(drain current per unit width))\", \"name\": \"constant_current_log_interpolation\"}, \"gm_proxy\": {\"definition\": \"central-difference derivative of abs(drain current) versus primary-gate voltage, linearly interpolated at VTH + 0.2 V\", \"evaluation_overdrive_v\": 0.2, \"name\": \"central_difference_then_linear_interpolation\", \"reported_units\": [\"S/cm\", \"S terminal\"]}}"
+    },
+    {
+      "name": "extraction:ss_and_ioff_are_fixed_before_run",
+      "status": "PASS",
+      "detail": "{\"ioff\": {\"definition\": \"abs(drain current) at VTG=-0.5 V, VBG=0 V, and VDS=0.01 V\", \"evaluation_top_gate_v\": -0.5, \"name\": \"fixed_lowest_gate_voltage_current\", \"reported_units\": [\"A/cm\", \"A terminal\"]}, \"ss\": {\"endpoint_method\": \"log-current interpolation to exact fixed-window endpoints\", \"fit\": \"ordinary least squares of top-gate voltage versus log10(abs(drain current per unit width))\", \"lower_current_a_per_cm\": 1e-07, \"minimum_augmented_sample_count\": 4, \"name\": \"fixed_current_window_ols\", \"reported_unit\": \"mV/dec\", \"upper_current_a_per_cm\": 1e-05}}"
+    },
+    {
+      "name": "hypotheses:directions_registered_but_not_completion_gate",
+      "status": "PASS",
+      "detail": "A reproducible contrary trend is still a valid result; the linearized neutral-potential assumption can alter low-gate charge direction."
+    },
+    {
+      "name": "states:one_common_bias_state_per_execution_value",
+      "status": "PASS",
+      "detail": "states=['p2_dit_zero_common_primary', 'p2_dit_8p43e11_common_primary', 'p2_dit_3p07e12_common_primary', 'p2_dit_6p02e12_common_primary']"
+    },
+    {
+      "name": "execution:four_devices_124_points_164_solves_laptop_budget",
+      "status": "PASS",
+      "detail": "{\"laptop_target\": true, \"maximum_wall_seconds\": 300.0, \"required_control_device_count\": 1, \"required_dc_solve_count_per_device\": 41, \"required_device_count\": 4, \"required_formal_device_count\": 3, \"required_reported_point_count_per_device\": 31, \"required_total_dc_solve_count\": 164, \"required_total_reported_point_count\": 124}"
+    },
+    {
+      "name": "acceptance:numerics_reproduction_extraction_and_response_are_frozen",
+      "status": "PASS",
+      "detail": "convergence, conservation, T02-C reproduction, extractability, and nonzero response are mandatory"
+    },
+    {
+      "name": "outputs:paths_are_unique_and_formal_stage_scoped",
+      "status": "PASS",
+      "detail": "outputs=13 unique=13"
+    },
+    {
+      "name": "boundary:formal_interface_scan_does_not_complete_p2_or_t03",
+      "status": "PASS",
+      "detail": "After contract, simulation, and independent persisted-evidence checks pass, the three literature-constrained bottom-interface D_it inputs have completed a controlled transfer sensitivity in the frozen teaching model, with VTH, SS, Ioff, and gm reported only as numerical proxies."
+    }
+  ],
+  "failures": [],
+  "planned_run": {
+    "execution_values_cm2_ev": [
+      0.0,
+      843000000000.0,
+      3070000000000.0,
+      6020000000000.0
+    ],
+    "formal_values_cm2_ev": [
+      843000000000.0,
+      3070000000000.0,
+      6020000000000.0
+    ],
+    "device_count": 4,
+    "reported_point_count": 124,
+    "dc_solve_count": 164
+  },
+  "evidence_boundary": {
+    "allowed_claim": "After contract, simulation, and independent persisted-evidence checks pass, the three literature-constrained bottom-interface D_it inputs have completed a controlled transfer sensitivity in the frozen teaching model, with VTH, SS, Ioff, and gm reported only as numerical proxies.",
+    "prohibited_claims": [
+      "measured or fitted project D_it, calibrated SS, physical Ion/Ioff, mobility, or process prediction",
+      "energy-resolved interface-state distribution, dynamic capture-emission, hysteresis, bias-stress, reliability, or border-trap validation",
+      "bulk N_tail or N_deep trap evidence or complete P2 trap group",
+      "both-interface trap validation or complete T03 five-group sensitivity",
+      "compact-model, circuit, layout, or HZO evidence"
+    ],
+    "next_gate": "Only a passed formal scan plus independent check completes the interface-D_it substage and permits a separate T03-P2-BULK-TRAPS contract; P3, P5, SPICE, and layout remain closed."
+  }
+}

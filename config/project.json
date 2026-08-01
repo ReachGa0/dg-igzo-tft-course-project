@@ -39,10 +39,10 @@
     "dimension": "2D",
     "tool": "DEVSIM 2.10.0",
     "mesh": "DEVSIM structured mesh; Gmsh optional for later irregular geometry",
-    "baseline_scope": "complete T01 single-gate drift-diffusion numerical gate plus complete T02 dual-gate numerical gate, the complete T03-P4-L channel-length group, the complete numerical T03-P1 bias-and-coupling group, and the T03-P2-DIT contract/equation smoke",
-    "next_scope": "run only the separately contracted minimum three-point T03-P2-DIT transfer sensitivity; bulk traps, P3, and P5 remain closed",
+    "baseline_scope": "complete T01 single-gate drift-diffusion numerical gate plus complete T02 dual-gate numerical gate, the complete T03-P4-L channel-length group, the complete numerical T03-P1 bias-and-coupling group, and the complete T03-P2 bottom-interface DIT substage",
+    "next_scope": "freeze and run only the minimum T03-P2 bulk-tail/deep-trap contract; P3 and P5 remain closed",
     "laptop_target": true,
-    "evidence_boundary": "T02-C closes only the frozen teaching-model numerical gate. T03-P4-L adds one complete E3 three-point channel-length group while retaining the failed ideal 1/L diagnostic. Numerical P1 is complete through E3 P1-BIAS and P1-CAP-RATIO substages; the latter varies a fixed-total-coupling allocation proxy and is not measured capacitance, measured Al2O3 permittivity, or a fabricated asymmetric stack. T03-P2-DIT has only an E3 literature/input-contract and quasi-static interface-equation smoke; its formal three-point transfer sensitivity, SS/VTH/Ioff scan, bulk traps, P3, P5, complete T03, experimental calibration, physical parameter validation, uncertainty, compact models, and circuits remain unverified."
+    "evidence_boundary": "T02-C closes only the frozen teaching-model numerical gate. T03-P4-L adds one complete E3 three-point channel-length group while retaining the failed ideal 1/L diagnostic. Numerical P1 is complete through E3 P1-BIAS and P1-CAP-RATIO substages; the latter varies a fixed-total-coupling allocation proxy and is not measured capacitance, measured Al2O3 permittivity, or a fabricated asymmetric stack. The T03-P2 bottom-interface DIT substage now has E3 contract, equation-smoke, formal three-point transfer-sensitivity, persisted-state, and independent-check evidence. Its VTH, SS, lowest-gate current, and gm values remain numerical proxies from a linearized single-interface teaching model. Bulk tail/deep traps, complete P2, P3, P5, complete T03, experimental calibration, physical parameter validation, uncertainty, compact models, and circuits remain unverified."
   },
   "baseline_devices": {
     "IGZO_TFT": {
