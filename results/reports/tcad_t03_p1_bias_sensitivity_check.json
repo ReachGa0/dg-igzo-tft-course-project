@@ -1,0 +1,136 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T03_P1_SECONDARY_BIAS_V1",
+  "stage": "T03-P1-BIAS",
+  "evidence_level": "E3",
+  "independent_of_simulation_runner": true,
+  "checks": [
+    {
+      "name": "identity:e2_bias_only_report",
+      "status": "PASS",
+      "detail": "status=PASS case=IGZO_T03_P1_SECONDARY_BIAS_V1"
+    },
+    {
+      "name": "contract:static_gate_and_config_hash_match",
+      "status": "PASS",
+      "detail": "checks=22 simulation=NOT_RUN_BY_CONTRACT_CHECK"
+    },
+    {
+      "name": "inputs:snapshot_hashes_match",
+      "status": "PASS",
+      "detail": "inputs=16"
+    },
+    {
+      "name": "solver:five_fresh_devices_and_217_dc_solves_converged",
+      "status": "PASS",
+      "detail": "runs=5 solve_counts=[45, 43, 41, 43, 45] records=217"
+    },
+    {
+      "name": "topology:five_identical_one_variable_devices_are_valid",
+      "status": "PASS",
+      "detail": "topologies=[(2419, 4480), (2419, 4480), (2419, 4480), (2419, 4480), (2419, 4480)]"
+    },
+    {
+      "name": "curves:155_persisted_points_match_report_grid_and_controls",
+      "status": "PASS",
+      "detail": "rows=155 fields=23 grids=True"
+    },
+    {
+      "name": "current:direction_conservation_and_two_axis_ordering_recomputed",
+      "status": "PASS",
+      "detail": "imbalance=1.178203e-09 primary=True secondary=True"
+    },
+    {
+      "name": "initialization:five_zero_equilibria_recomputed_from_logs",
+      "status": "PASS",
+      "detail": "current=0.000000e+00 potential=0.000000e+00"
+    },
+    {
+      "name": "extraction:vth_delta_gm_and_five_point_ols_recomputed",
+      "status": "PASS",
+      "detail": "VTH=[0.6000830976185678, 0.4381802159278772, 0.26385685799760256, 0.06820158532106875, -0.1554817410452905] slope=-0.940554154 R2=0.995711655"
+    },
+    {
+      "name": "regression:t02_c_zero_secondary_curve_and_extraction_recomputed",
+      "status": "PASS",
+      "detail": "current=0.000e+00 potential=0.000e+00 density=0.000e+00"
+    },
+    {
+      "name": "states:five_node_element_and_30_vtk_outputs_recomputed",
+      "status": "PASS",
+      "detail": "states=['p1_vbg_m0p4_common_primary', 'p1_vbg_m0p2_common_primary', 'p1_vbg_0p0_common_primary', 'p1_vbg_p0p2_common_primary', 'p1_vbg_p0p4_common_primary']"
+    },
+    {
+      "name": "outputs:artifact_hashes_and_png_dimensions_match",
+      "status": "PASS",
+      "detail": "artifacts=7 figures=[(1944, 1440, 297552), (2016, 2196, 1073893)]"
+    },
+    {
+      "name": "scope:one_bias_variable_and_fixed_ratio_control_remain_frozen",
+      "status": "PASS",
+      "detail": "changed=fixed_bottom_gate_bias_v ratio=1.0"
+    },
+    {
+      "name": "runner:partial_p1_gate_and_evidence_boundary_pass",
+      "status": "PASS",
+      "detail": "runner_checks=14 bias_complete=True"
+    }
+  ],
+  "failures": [],
+  "recomputed_metrics": {
+    "maximum_relative_terminal_current_imbalance": 1.1782028770423584e-09,
+    "maximum_monotonic_relative_current_drop": 0.0,
+    "vth_proxy_v": [
+      0.6000830976185678,
+      0.4381802159278772,
+      0.26385685799760256,
+      0.06820158532106875,
+      -0.1554817410452905
+    ],
+    "delta_vth_proxy_v": [
+      0.33622623962096526,
+      0.17432335793027465,
+      0.0,
+      -0.19565527267653382,
+      -0.41933859904289306
+    ],
+    "gm_proxy_s_per_cm": [
+      3.315477398747663e-05,
+      3.686493393135457e-05,
+      3.937599666287622e-05,
+      3.9732528305608386e-05,
+      3.764185259981855e-05
+    ],
+    "coupling_slope_v_per_v": -0.9405541539672625,
+    "coupling_fit_intercept_v": 0.24296800316396516,
+    "coupling_fit_r_squared": 0.9957116545917115,
+    "t02_c_reference": {
+      "maximum_current_relative_difference": 0.0,
+      "maximum_center_potential_difference_v": 0.0,
+      "maximum_center_density_relative_difference": 0.0,
+      "vth_difference_v": 0.0,
+      "gm_relative_difference": 0.0
+    },
+    "state_absolute_drain_current_a_per_cm": [
+      6.248556957008021e-07,
+      4.560646784327142e-06,
+      1.1549445541373129e-05,
+      1.934008262651112e-05,
+      2.6821023946821766e-05
+    ],
+    "state_center_channel_potential_v": [
+      -0.04389525570063449,
+      0.023031565857549365,
+      0.056544883007083165,
+      0.07229130692443116,
+      0.07984931626733664
+    ],
+    "state_center_channel_electron_density_cm3": [
+      1531328856224678.2,
+      2.021796434922856e+16,
+      7.36401270624011e+16,
+      1.3519333066686466e+17,
+      1.809347768472839e+17
+    ]
+  }
+}

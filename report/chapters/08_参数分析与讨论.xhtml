@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-08" class="report-chapter">
   <h2>8. 参数分析与讨论</h2>
-  <p>本章只报告 T03 的第一个已关闭子组 T03-P4-L。研究变量是沟道长度 <code>L</code>，取 8、10 和 12 um；其余几何、材料、迁移率、接触、网格、偏压路径、方程和提取公式均继承 T02-C。模型仍是 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型，顶栅为主栅、底栅固定为 0 V、<code>VDS=0.01 V</code>，不含陷阱、复合、铁电极化或非理想接触。因此下列量是受限数值代理，不是实验参数。</p>
+  <p>本章报告 T03 已关闭的两个范围：完整的 T03-P4-L 沟道长度组，以及局部的 T03-P1-BIAS 固定底栅偏压子阶段。两者均继承 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型，不含陷阱、复合、铁电极化或非理想接触。因此下列 VTH、Delta VTH、gm、耦合斜率和电流均是受限数值代理，不是实验参数。</p>
 
   <h3>8.1 沟道长度方向性敏感性</h3>
   <p>每个长度从独立的零偏压平衡态开始，随后执行与 T02-C 相同的低漏压阶梯、负向预处理和 31 点顶栅上扫。三个新器件共完成 123 次 DC 求解和 93 个正式点，并在 <code>VTG=1.0 V</code> 保存一个代表状态。VTH 采用 10 nA*(W/L) 的对数插值代理，gm 在 VTH+0.2 V 处由中心差分和线性插值得到。</p>
@@ -39,6 +39,35 @@
   </figure>
   <p>运行器报告为 E2，独立读取配置、快照、求解日志、CSV、状态 CSV、18 个 VTK 和两张 PNG 的持久化复算为 E3。对应命令为 <code>make t03-p4-l-contract-check</code>、<code>make t03-p4-l-sensitivity</code> 和 <code>make t03-p4-l-sensitivity-check</code>。V1 失败包保存在 <code>config/tcad_t03_p4_channel_length_v1_failed.json</code>、<code>results/reports/*_v1_failed.json</code> 及 <code>results/tcad/t03_sensitivity/p4_channel_length_v1_failed/</code>，用于审计而不参与 V2 结果混合。</p>
 
-  <h3>8.4 适用范围和未完成组</h3>
-  <p>本节不关闭 T03 的整体五组参数分析。P1 双栅偏置、P2 陷阱、P3 接触和 P5 温度仍未实现；也没有进行实验拟合、紧凑模型、SPICE、电路、版图或 HZO 工作。下一次只能从剩余四组中选择一个，重新冻结至少三个点的单变量合同并单独过阶段门。</p>
+  <h3>8.4 P1 固定底栅偏压合同与运行范围</h3>
+  <p>T03-P1-BIAS 只改变底栅副栅偏压 <code>VBG=-0.4/-0.2/0/+0.2/+0.4 V</code>。顶栅作为主栅，以 <code>-0.5~1.0 V</code>、步长 0.05 V 上扫；<code>VDS=0.01 V</code>，10 um 沟道、30 nm 上下 Al2O3、相对介电常数 6.8、<code>interface_4x</code> 网格、材料、迁移率、接触和提取公式保持不变。平行板输入代理 <code>Ctop/Cbottom=1</code> 也固定不变，没有作为扫描变量。</p>
+  <p>五个偏压分别使用新建器件，从全零偏压 Poisson/移动电子平衡开始，经过低漏压阶梯、副栅 0.1 V 步进和顶栅负向预处理后完成 31 点正式曲线。求解次数为 45、43、41、43 和 45，共 217 次 DC、155 个正式点；每个 VBG 在共同 <code>VTG=0.3 V</code> 保存一个完整状态。</p>
+
+  <h3>8.5 P1-BIAS 数值趋势</h3>
+  <table>
+    <thead><tr><th>VBG (V)</th><th>VTH 代理 (V)</th><th>Delta VTH 代理 (V)</th><th>gm 代理 (S/cm)</th><th>VTH 包围区间 (V)</th></tr></thead>
+    <tbody>
+      <tr><td>-0.4</td><td>0.600083</td><td>+0.336226</td><td>3.31548e-5</td><td>0.60--0.65</td></tr>
+      <tr><td>-0.2</td><td>0.438180</td><td>+0.174323</td><td>3.68649e-5</td><td>0.40--0.45</td></tr>
+      <tr><td>0.0</td><td>0.263857</td><td>0</td><td>3.93760e-5</td><td>0.25--0.30</td></tr>
+      <tr><td>+0.2</td><td>0.068202</td><td>-0.195655</td><td>3.97325e-5</td><td>0.05--0.10</td></tr>
+      <tr><td>+0.4</td><td>-0.155482</td><td>-0.419339</td><td>3.76419e-5</td><td>-0.20 至 -0.15</td></tr>
+    </tbody>
+  </table>
+  <p>五点恒流 VTH 代理和 Delta VTH 代理随 VBG 严格下降；OLS 斜率为 <code>-0.940554 V/V</code>，<code>R2=0.995712</code>。全部曲线同时满足主栅方向电流严格增加和相同 VTG 下电流随 VBG 严格增加，最大端口相对不平衡为 <code>1.1782e-9</code>。零副栅的 31 点曲线、中心状态、VTH 和 gm 对 T02-C 参考复现差异均为 0。</p>
+  <p class="boundary">该斜率只描述固定对称电容输入下的五点数值偏压趋势，不等于物理电容比、实验耦合系数或紧凑模型参数。gm 在五点间不要求单调，只要求有限且为正；本表不能用于物理 Ion、实验精度或电路预测。</p>
+
+  <h3>8.6 P1-BIAS 图形与独立证据</h3>
+  <figure>
+    <img src="assets/tcad_t03_p1_bias_sensitivity.png" alt="T03-P1-BIAS 五个固定底栅偏压下的顶栅转移曲线、VTH、Delta VTH 和 gm 数值代理" />
+    <figcaption>图 8-3 T03-P1-BIAS 五点敏感性。曲线只覆盖固定对称栅电容输入、低漏压和 31 个离散顶栅点；拟合斜率是数值代理。</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/tcad_t03_p1_bias_state_maps.png" alt="T03-P1-BIAS 五个 VBG 在共同 VTG=0.3 V 时的电势、电子浓度和局部电流密度状态图" />
+    <figcaption>图 8-4 五个共同主栅偏压状态。每行固定 <code>VTG=0.3 V, VDS=0.01 V</code> 并改变 VBG；纵向显示尺度被展开，局部电流密度不能替代接触积分电流。</figcaption>
+  </figure>
+  <p>对应命令为 <code>make t03-p1-bias-contract-check</code>、<code>make t03-p1-bias-sensitivity</code> 和 <code>make t03-p1-bias-sensitivity-check</code>。22 项静态合同、运行器 14 项和不导入运行器的独立 14 项检查全部 PASS；独立检查从 CSV 重算 VTH/gm/OLS 与 T02-C 复现，并核对 5 个节点状态、5 个单元状态、30 个 VTK、两张 PNG 及全部哈希。</p>
+
+  <h3>8.7 适用范围和未完成组</h3>
+  <p>T03-P4-L 已完整关闭；T03-P1-BIAS 只关闭 P1 的固定副栅偏压子阶段。P1 仍缺少独立的上下栅电容比扫描，P2 陷阱、P3 接触和 P5 温度也未实现，因此本章不关闭完整 P1 或 T03 五组参数分析。下一门只允许先冻结 <code>T03-P1-CAP-RATIO</code> 的至少五点单变量合同并明确它与 P4 几何/介质变量的归属；也没有进行实验拟合、紧凑模型、SPICE、电路、版图或 HZO 工作。</p>
 </section>

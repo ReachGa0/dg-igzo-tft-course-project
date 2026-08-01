@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`T03_P4_L_CHANNEL_LENGTH_E3`：T01 和 T02 冻结教学模型数值门均已关闭。T03-P4-L V2 在 8/10/12 um 三个新器件上完成 123 次 DC、93 个正式点、3 个代表状态，运行器 16 项与独立 14 项检查 PASS；V1 理想 1/L 诊断保留为 FAIL，未被静默放宽。G0 仍为 `TEACHING_BASELINE_ONLY`；T03 其余 P1/P2/P3/P5、紧凑模型和定量电路预测尚未完成。
+`T03_P1_BIAS_E3_PARTIAL_P1`：T01/T02 冻结教学模型数值门和 T03-P4-L 已关闭。T03-P1-BIAS 在五个固定 VBG 上完成 217 次 DC、155 个正式点和 5 个代表状态，运行器与独立检查各 14 项 PASS；对称 Ctop/Cbottom=1 仍是未扫描输入代理，因此 P1 未完成。G0 仍为 `TEACHING_BASELINE_ONLY`；P1-CAP-RATIO、P2/P3/P5、紧凑模型和定量电路预测尚未完成。
 
 ## 截止日期
 
@@ -44,7 +44,7 @@
 | T00 | 二维双栅静电基准 | DONE，E2 | 既有 JSON/CSV/VTK/PNG |
 | T01 | 单栅漂移扩散 | DONE，E2 教学模型数值门 | `results/reports/tcad_t01_d_extraction.json`；状态、守恒、网格代理比较与独立检查完整，不代表实验标定 |
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
-| T03 | 五组器件参数 | PARTIAL，P4-L DONE；P1/P2/P3/P5 TODO | 依赖 T02 |
+| T03 | 五组器件参数 | PARTIAL，P4-L DONE；P1-BIAS DONE/P1-CAP-RATIO TODO；P2/P3/P5 TODO | P4-L 与 P1-BIAS 均有 E3 独立证据，但 P1 和 T03 整体未关闭 |
 | M00 | IGZO 多曲线标定 | TODO | 等主数据集 |
 | M01 | AIM-Spice/ngspice 对照 | TODO | 依赖 M00 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-T03-P4-L 已完成并保留了理想 1/L 假设失败证据。下一件事是为剩余四组中的一个冻结新的最小单变量合同：至少三个点，沿用共同的偏压和提取口径，只改变一个物理变量；合同通过后只运行该组，不同时铺开其他组，也不启动 SPICE 或版图。
+T03-P1-BIAS 已完成但不等于完整 P1。下一件事只冻结 `T03-P1-CAP-RATIO` 的至少五点单变量合同，先明确它与 P4 几何/介质变量的归属、固定量和可报告边界；合同通过后只运行这一子阶段，不同时铺开 P2/P3/P5，也不启动 SPICE 或版图。

@@ -16,6 +16,45 @@
 
 ---
 
+## 2026-08-01 | Codex GPT-5 | 完成 T03-P1-BIAS 五点固定底栅偏压子阶段
+
+### 用户目标
+
+继续按阶段门推进下一个小阶段；只运行普通笔记本可承受的二维 IGZO 案例，完成验证后更新文档、创建 Git 里程碑并推送，不同时铺开其余 T03 参数、SPICE、版图或 HZO。
+
+### 读取的关键输入
+
+- `AGENTS.md` 及项目规定顺序的 README、AI_CONTEXT、ARCHITECTURE、STATUS、PROJECT_PLAN、DECISIONS、AI_LOG、`config/project.json` 和 `config/experiments.json`。
+- T01 冻结基线与 `interface_4x` 网格、T02-A 对称启用顶栈、T02-C 双向曲线/提取/状态证据，以及已完成的 T03-P4-L 合同、运行报告和独立检查。
+- P1 机器合同要求的最少五点，以及 P1“偏压和电容比”与 P4“几何/介质”的变量归属边界。
+
+### 本次修改
+
+- 新增 `config/tcad_t03_p1_secondary_bias.json`，冻结唯一变量 `VBG=-0.4/-0.2/0/+0.2/+0.4 V`；顶栅主扫、`VDS=0.01 V`、31 点网格、10 um 沟道、30 nm 上下 Al2O3、网格、材料、接触和提取公式保持不变，`Ctop/Cbottom=1` 明确为未扫描输入代理。
+- 新增 `scripts/check_t03_p1_bias_contract.py`、`tcad/run_t03_p1_secondary_bias.py` 和 `scripts/check_t03_p1_secondary_bias.py`，分别完成静态合同、二维 DEVSIM 运行和不导入运行器的标准库独立复算；新增三个 Makefile 目标。
+- 落盘 155 点曲线、5 行提取表、T02-C 复现表、5 个状态摘要、5 份节点 CSV、5 份单元 CSV、30 个 VTK、两张 PNG、输入快照、求解日志和 E2/E3 JSON 报告。
+- 更新项目/实验配置、总检查器、STATUS/README/AI_CONTEXT/ARCHITECTURE/PROJECT_PLAN、ADR-021、二维 TCAD 路线、报告第 8 章和证据矩阵。`completed_parameter_groups` 仍只有 P4，P1 只列为 partial。
+
+### 实际结果
+
+- 五个新器件分别完成 `45/43/41/43/45` 次求解，共 217 次 DC、155 个正式点；全部收敛，最大端口相对不平衡为 `1.1782e-9`。
+- VTH 数值代理为 `0.600083/0.438180/0.263857/0.068202/-0.155482 V`，Delta VTH 代理为 `+0.336226/+0.174323/0/-0.195655/-0.419339 V`，随 VBG 严格下降。
+- 五点 OLS 耦合斜率为 `-0.940554 V/V`、`R2=0.995712`；gm 代理为 `3.31548e-5/3.68649e-5/3.93760e-5/3.97325e-5/3.76419e-5 S/cm`。零副栅曲线、中心状态、VTH 和 gm 对 T02-C 的落盘复现差异为 0。
+- 在共同 `VTG=0.3 V` 保存 5 个完整状态；状态电流、中心电势和中心电子浓度随 VBG 严格增加，10 个状态 CSV 与 30 个 VTK 均由独立检查器复核。
+
+### 验证与修正记录
+
+- 合同检查器首次开发运行把 T03-P4-L 报告中的 `input_snapshot` 路径字符串误当对象，随后改为显式读取快照；下一次检查因提取方法说明文字未与 T02-C 逐字一致而 FAIL，只修正描述字符串，没有修改公式、偏压、物理输入或阈值。最终 `make t03-p1-bias-contract-check` 为 22/22 PASS，且明确 `simulation=NOT_RUN_BY_CONTRACT_CHECK`。
+- 第一次实际运行已完成五组求解，但在写状态摘要时把哈希扩展字段传给既有 26 字段 CSV 合同，程序以 `ValueError` 退出，没有记作阶段通过。修正为按冻结字段白名单写出，并补强空结果失败报告路径后完整重跑。
+- `make t03-p1-bias-sensitivity`：217 次 DC、155 点、5 状态，运行器 14/14 PASS；`make t03-p1-bias-sensitivity-check`：独立 14/14 PASS，证据等级 E3。
+- 配置/文档更新后因输入哈希改变，按合同 -> 仿真 -> 独立检查顺序再次完整刷新，三项仍 PASS。
+- `make check`：项目总检查 332/332 PASS；`make report-check`：12 章、5 附录、10 张图结构 PASS，并明确保留 17 个未完成章节占位符，不能称为最终报告完成。
+
+### 证据边界与下一步
+
+- 当前只关闭 T03-P1-BIAS。`-0.940554 V/V` 是冻结对称 E2 教学模型的五点数值偏压斜率，不是物理电容比、实验耦合系数、实测阈值、物理 Ion 或电路模型参数。E3 表示落盘证据可独立复算，不提升物理验证等级。
+- P1 仍缺少 `T03-P1-CAP-RATIO`，T03 整体仍缺 P1 完整门及 P2/P3/P5。下一步只能先冻结至少五点的电容比单变量合同并明确与 P4 的归属，合同通过前不运行该扫描。
+
 ## 2026-08-01 | Codex GPT-5 | 完成 T03-P4-L V2 并保留 V1 理想缩放失败
 
 ### 用户目标

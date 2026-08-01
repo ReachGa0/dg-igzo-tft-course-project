@@ -43,6 +43,7 @@ REQUIRED_FILES = [
     "config/tcad_t02_c_bidirectional.json",
     "config/tcad_t03_p4_channel_length.json",
     "config/tcad_t03_p4_channel_length_v1_failed.json",
+    "config/tcad_t03_p1_secondary_bias.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -73,6 +74,8 @@ REQUIRED_FILES = [
     "scripts/check_t02_c_bidirectional.py",
     "scripts/check_t03_p4_l_contract.py",
     "scripts/check_t03_p4_channel_length.py",
+    "scripts/check_t03_p1_bias_contract.py",
+    "scripts/check_t03_p1_secondary_bias.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
@@ -85,6 +88,7 @@ REQUIRED_FILES = [
     "tcad/run_t02_dual_gate_minimal_bias.py",
     "tcad/run_t02_dual_gate_bidirectional.py",
     "tcad/run_t03_p4_channel_length.py",
+    "tcad/run_t03_p1_secondary_bias.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
@@ -168,6 +172,16 @@ REQUIRED_FILES = [
     "report/assets/tcad_t03_p4_l_state_maps.png",
     "report/assets/tcad_t03_p4_l_sensitivity_v1_failed.png",
     "report/assets/tcad_t03_p4_l_state_maps_v1_failed.png",
+    "results/reports/tcad_t03_p1_bias_input_contract.json",
+    "results/reports/tcad_t03_p1_bias_sensitivity.json",
+    "results/reports/tcad_t03_p1_bias_sensitivity_check.json",
+    "results/tables/tcad_t03_p1_bias_transfer_curves.csv",
+    "results/tables/tcad_t03_p1_bias_metrics.csv",
+    "results/tables/tcad_t03_p1_bias_t02_c_reproduction.csv",
+    "results/tables/tcad_t03_p1_bias_state_summary.csv",
+    "results/tcad/t03_sensitivity/p1_secondary_bias/state_manifest.json",
+    "report/assets/tcad_t03_p1_bias_sensitivity.png",
+    "report/assets/tcad_t03_p1_bias_state_maps.png",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -218,6 +232,7 @@ REQUIRED_DIRS = [
     "results/tcad/t02_dual_gate/t02_c_bidirectional",
     "results/tcad/t03_sensitivity/p4_channel_length",
     "results/tcad/t03_sensitivity/p4_channel_length_v1_failed",
+    "results/tcad/t03_sensitivity/p1_secondary_bias",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -480,6 +495,20 @@ def main() -> int:
             "experiments:high_difficulty_five_groups",
             len(sensitivity["parameter_group_ids"]) >= 5,
             ",".join(sensitivity["parameter_group_ids"]),
+        )
+        add_check(
+            checks,
+            "experiments:t03_completed_and_partial_groups_are_distinct",
+            sensitivity.get("completed_parameter_groups") == ["P4"]
+            and sensitivity.get("partially_completed_parameter_groups") == ["P1"]
+            and sensitivity.get("remaining_parameter_groups")
+            == ["P1", "P2", "P3", "P5"]
+            and sensitivity.get("remaining_substages")
+            == ["T03-P1-CAP-RATIO", "T03-P2", "T03-P3", "T03-P5"],
+            (
+                f"complete={sensitivity.get('completed_parameter_groups')} "
+                f"partial={sensitivity.get('partially_completed_parameter_groups')}"
+            ),
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "experiments:json", False, str(error))
@@ -1544,6 +1573,148 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t03_p4_l:channel_length_sensitivity", False, str(error))
+
+    t03_p1_config_path = ROOT / "config" / "tcad_t03_p1_secondary_bias.json"
+    t03_p1_contract_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p1_bias_input_contract.json"
+    )
+    t03_p1_report_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p1_bias_sensitivity.json"
+    )
+    t03_p1_check_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p1_bias_sensitivity_check.json"
+    )
+    try:
+        t03_p1_config = json.loads(t03_p1_config_path.read_text(encoding="utf-8"))
+        t03_p1_contract = json.loads(t03_p1_contract_path.read_text(encoding="utf-8"))
+        t03_p1_report = json.loads(t03_p1_report_path.read_text(encoding="utf-8"))
+        t03_p1_check = json.loads(t03_p1_check_path.read_text(encoding="utf-8"))
+        t03_p1_runner_checks = t03_p1_report.get("checks", {})
+        t03_p1_completion = t03_p1_report.get("t03_p1_bias_completion", {})
+        add_check(
+            checks,
+            "t03_p1_bias:contract_and_simulation",
+            t03_p1_contract.get("contract_status") == "PASS"
+            and t03_p1_contract.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(t03_p1_contract.get("checks", [])) == 22
+            and all(
+                item.get("status") == "PASS"
+                for item in t03_p1_contract["checks"]
+            )
+            and t03_p1_report.get("status") == "PASS"
+            and t03_p1_report.get("case_id") == t03_p1_config.get("case_id")
+            and t03_p1_report.get("evidence_level") == "E2"
+            and len(t03_p1_runner_checks) == 14
+            and all(
+                item.get("status") == "PASS"
+                for item in t03_p1_runner_checks.values()
+            )
+            and not t03_p1_report.get("failures"),
+            (
+                f"contract={t03_p1_contract.get('contract_status')} "
+                f"simulation={t03_p1_report.get('status')} "
+                f"runner_checks={len(t03_p1_runner_checks)}"
+            ),
+        )
+        add_check(
+            checks,
+            "t03_p1_bias:independent_check_and_partial_completion_boundary",
+            t03_p1_check.get("status") == "PASS"
+            and t03_p1_check.get("case_id") == t03_p1_config.get("case_id")
+            and t03_p1_check.get("stage") == "T03-P1-BIAS"
+            and t03_p1_check.get("evidence_level") == "E3"
+            and t03_p1_check.get("independent_of_simulation_runner") is True
+            and len(t03_p1_check.get("checks", [])) == 14
+            and all(
+                item.get("status") == "PASS" for item in t03_p1_check["checks"]
+            )
+            and not t03_p1_check.get("failures")
+            and t03_p1_completion.get("p1_bias_five_point_substage_complete")
+            is True
+            and t03_p1_completion.get("complete_p1_bias_and_capacitance_group")
+            is False
+            and t03_p1_completion.get("capacitance_ratio_substage_permitted_next")
+            is True
+            and t03_p1_completion.get("complete_t03_five_group_sensitivity")
+            is False
+            and t03_p1_completion.get("experimental_calibration_permitted")
+            is False
+            and t03_p1_completion.get("physical_capacitance_ratio_claim_permitted")
+            is False,
+            (
+                f"independent={t03_p1_check.get('status')} "
+                f"completion={t03_p1_completion}"
+            ),
+        )
+        t03_p1_output_paths = [
+            ROOT / value
+            for key, value in t03_p1_report.get("outputs", {}).items()
+            if key != "run_directory"
+        ]
+        t03_p1_state_entries = t03_p1_report.get("state_outputs", [])
+        t03_p1_state_paths = [
+            ROOT / entry[key]
+            for entry in t03_p1_state_entries
+            for key in ("node_csv", "element_csv")
+        ]
+        t03_p1_vtk_paths = [
+            ROOT / item["path"]
+            for entry in t03_p1_state_entries
+            for item in entry.get("vtk_files", [])
+        ]
+        t03_p1_figures = [
+            ROOT / item["path"] for item in t03_p1_report.get("figures", [])
+        ]
+        t03_p1_run_directory = (
+            ROOT / t03_p1_report.get("outputs", {}).get("run_directory", "")
+        )
+        add_check(
+            checks,
+            "t03_p1_bias:raw_outputs_and_figures_exist",
+            len(t03_p1_state_entries) == 5
+            and len(t03_p1_state_paths) == 10
+            and len(t03_p1_vtk_paths) == 30
+            and len(t03_p1_figures) == 2
+            and all(
+                path.is_file() and path.stat().st_size > 0
+                for path in t03_p1_output_paths
+                + t03_p1_state_paths
+                + t03_p1_vtk_paths
+                + t03_p1_figures
+                + [t03_p1_check_path]
+            )
+            and t03_p1_run_directory.is_dir(),
+            (
+                f"states={len(t03_p1_state_entries)} "
+                f"state_csv={len(t03_p1_state_paths)} "
+                f"vtk={len(t03_p1_vtk_paths)} figures={len(t03_p1_figures)}"
+            ),
+        )
+        ratio = t03_p1_config.get("capacitance_ratio_control", {})
+        prohibited = " ".join(
+            t03_p1_report.get("evidence_boundary", {}).get(
+                "prohibited_claims", []
+            )
+        )
+        add_check(
+            checks,
+            "t03_p1_bias:fixed_ratio_is_not_complete_p1",
+            t03_p1_config.get("scope", {}).get("changed_variable_count") == 1
+            and t03_p1_config.get("scope", {}).get("changed_variable")
+            == "fixed_bottom_gate_bias_v"
+            and ratio.get("status") == "controlled_not_scanned"
+            and ratio.get("fixed_top_to_bottom_ratio") == 1.0
+            and "complete P1" in prohibited
+            and "physical top-to-bottom capacitance ratio" in prohibited
+            and "complete T03" in prohibited,
+            (
+                f"changed={t03_p1_config.get('scope', {}).get('changed_variable')} "
+                f"ratio={ratio.get('fixed_top_to_bottom_ratio')}"
+            ),
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t03_p1_bias:secondary_bias_sensitivity", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

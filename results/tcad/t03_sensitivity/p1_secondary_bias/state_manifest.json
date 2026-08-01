@@ -1,0 +1,322 @@
+{
+  "case_id": "IGZO_T03_P1_SECONDARY_BIAS_V1",
+  "stage": "T03-P1-BIAS",
+  "entry_count": 5,
+  "entries": [
+    {
+      "state_id": "p1_vbg_m0p4_common_primary",
+      "state_label": "P1 VBG=-0.4 V common-primary proxy",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P1_SECONDARY_BIAS",
+      "vbg_v": -0.4,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 6.248556957008021e-07,
+      "drain_current_terminal_a": 3.749134174204813e-09,
+      "relative_current_imbalance": 1.6944571224247137e-15,
+      "center_channel_potential_v": -0.04389525570063449,
+      "center_channel_electron_density_cm3": 1531328856224678.2,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": -0.4,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 70484213249796.83,
+      "maximum_electron_density_cm3": 3.0608836574080524e+16,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 0.004825802481949935,
+      "median_cell_current_density_magnitude_a_per_cm2": 0.08943205207370022,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 1.437450750565981,
+      "node_csv": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p4_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p4_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "1452f38509733139dc3782aa22ca26b4d4e2db9583bdb0b877cd445bde1a6ee3",
+      "element_csv_sha256": "b674f0c266a2a919103905f75c65f7bf3f7bcbdffd6603f53c9c51e002c25e49",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p4_common_primary.visit",
+          "sha256": "33cf1f70fbeb919d2b13794f0a9f83b4d4e3c039101eb721c1458955dea315c4"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p4_common_primary.vtm",
+          "sha256": "2728b44fd8dc0345ef33172d9a1cd03baf20199d632c05c0b4b460e6595e16c0"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p4_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p4_common_primary_1.vtu",
+          "sha256": "64a472cb428e979add28ec05cb9427e0e0b6a4fd26202c3b9b1c3a50e4219161"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p4_common_primary_2.vtu",
+          "sha256": "409c27a1368b769627505a8ae547bfbdd63ac5b420263582bc1f70b9b3d6e480"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p4_common_primary_3.vtu",
+          "sha256": "6e7046009ada23e1853f6916a231f857418f3f405e6072aeef3a296d548476a8"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "p1_vbg_m0p2_common_primary",
+      "state_label": "P1 VBG=-0.2 V common-primary proxy",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P1_SECONDARY_BIAS",
+      "vbg_v": -0.2,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 4.560646784327142e-06,
+      "drain_current_terminal_a": 2.7363880705962853e-08,
+      "relative_current_imbalance": 3.5288034261144895e-15,
+      "center_channel_potential_v": 0.023031565857549365,
+      "center_channel_electron_density_cm3": 2.021796434922856e+16,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": -0.2,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 2921280779665523.0,
+      "maximum_electron_density_cm3": 1.6115848000196054e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 0.1711067853068947,
+      "median_cell_current_density_magnitude_a_per_cm2": 1.0957364825694729,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 7.805291548890693,
+      "node_csv": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p2_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p2_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "7a9a3b27d653f4c08dd61e35c343e1ff17d7785f6bcff89478bdc8093ee91edb",
+      "element_csv_sha256": "08210769e4992e495a1fd9f18ad288cd18963d847bf0917a97a48e5db8dc4eed",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p2_common_primary.visit",
+          "sha256": "6fa2ab125bdd3321a67051bd95f4af42c70bc8855e1c749b3dff2a6eef72b8d1"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p2_common_primary.vtm",
+          "sha256": "e18630132768b55cb5a3302c5163c931ab6226c7e8067c0077b08aecbefcccf0"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p2_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p2_common_primary_1.vtu",
+          "sha256": "6a6fb447e54a8999c4c5182ddd4bc60b9f34b2a85d407828cfa8fb30d7b2cd91"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p2_common_primary_2.vtu",
+          "sha256": "a17eac2dcbd0fe569cf04b3f966f920bca6debd03cc87b241617803cf52f0517"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_m0p2_common_primary_3.vtu",
+          "sha256": "fa60862ec6761201e552e81c08b599d71da52cd0d303ac4f069aedcf7b0bb4a2"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "p1_vbg_0p0_common_primary",
+      "state_label": "P1 VBG=0 V common-primary proxy",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P1_SECONDARY_BIAS",
+      "vbg_v": 0.0,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 1.1549445541373129e-05,
+      "drain_current_terminal_a": 6.929667324823877e-08,
+      "relative_current_imbalance": 2.053511784454081e-15,
+      "center_channel_potential_v": 0.056544883007083165,
+      "center_channel_electron_density_cm3": 7.36401270624011e+16,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 2.991755623840461e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 1.936010309908176,
+      "median_cell_current_density_magnitude_a_per_cm2": 3.803321115138429,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 13.983423972212625,
+      "node_csv": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_0p0_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_0p0_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "dcbc0d21e79bb91ef906fa9fa90d24c7fa706ec507082a0c622cee5676ab8e85",
+      "element_csv_sha256": "dc5843ab728b4ab8af17d293534519697c924905e3c60f46fe3e7541e42425ed",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_0p0_common_primary.visit",
+          "sha256": "e9ae19700149ecf89c5a7c975f0673335bf853b2ee78483885a7458a5882d951"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_0p0_common_primary.vtm",
+          "sha256": "b431442a1b800d3738ad4d4917dd9273a52ab8214e8f3fee936e76287a94dd48"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_0p0_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_0p0_common_primary_1.vtu",
+          "sha256": "b5315a6f8ce2b86e308aa962c306fe6b20d4fe7cc632cecc2a5fb6fc3b1a2d36"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_0p0_common_primary_2.vtu",
+          "sha256": "f5c361ac7159e2b958b6a36ed21a3cd0d8e44619ff07d11001c5c4181e8b7803"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_0p0_common_primary_3.vtu",
+          "sha256": "48007bb5aca85067583147b337ee73bc5ce88e77724c93287c9e80765b6828dc"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "p1_vbg_p0p2_common_primary",
+      "state_label": "P1 VBG=+0.2 V common-primary proxy",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P1_SECONDARY_BIAS",
+      "vbg_v": 0.2,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 1.934008262651112e-05,
+      "drain_current_terminal_a": 1.1604049575906672e-07,
+      "relative_current_imbalance": 7.357855593835854e-15,
+      "center_channel_potential_v": 0.07229130692443116,
+      "center_channel_electron_density_cm3": 1.3519333066686466e+17,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 3.7647605343143846e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 6.058353537777887,
+      "median_cell_current_density_magnitude_a_per_cm2": 7.276552634570516,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 16.538956843687714,
+      "node_csv": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p2_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p2_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "0c8a897fab42b05b92d3d553a2468b48acbe812e9092dbc1f757619398f52b29",
+      "element_csv_sha256": "c19cb31ac029f24258c28fb0e70880fd8f537838d56c1ba11c1534108a6f2ecb",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p2_common_primary.visit",
+          "sha256": "4380bdfb01ea0a162cdde9051a1b9bbdf946840f386eba85fc3fd9bbe96b33d4"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p2_common_primary.vtm",
+          "sha256": "59702b58504c1df9caa98a803ee00f6d4a7b4b02fe2eb2f3759654d634369573"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p2_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p2_common_primary_1.vtu",
+          "sha256": "4e6407bb24d06bfce47deba099c86bc6c7fdd57cb99a40a7094eca5a7d57363b"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p2_common_primary_2.vtu",
+          "sha256": "fde65a5d23fdcaafeb27677d5b2a49ac60a3073b209248bbe165a987e37b58df"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p2_common_primary_3.vtu",
+          "sha256": "9613e10dc55c72eb95015b5a3291d0cdc04117d9ffb26a52bb42b7006950ba52"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "p1_vbg_p0p4_common_primary",
+      "state_label": "P1 VBG=+0.4 V common-primary proxy",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P1_SECONDARY_BIAS",
+      "vbg_v": 0.4,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 2.6821023946821766e-05,
+      "drain_current_terminal_a": 1.609261436809306e-07,
+      "relative_current_imbalance": 5.6845678527437785e-15,
+      "center_channel_potential_v": 0.07984931626733664,
+      "center_channel_electron_density_cm3": 1.809347768472839e+17,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.4,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 6.575039794735261e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 7.5763802332706875,
+      "median_cell_current_density_magnitude_a_per_cm2": 9.708974460312676,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 26.63074472027815,
+      "node_csv": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p4_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p4_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "c2a26f226011f2561595b657debb9b18b4dd15a9318643fb695151c4c1cf0a28",
+      "element_csv_sha256": "f85b27b3d5f45644ae428698d3cc6ef2f5398de0e45f0ed5e03753f7a03ce9a7",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p4_common_primary.visit",
+          "sha256": "bb2b26927226c6544394f0113345f4bede0d52c74b98a0f1636471fa69c19c75"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p4_common_primary.vtm",
+          "sha256": "382f1867d9b93e73fd0b2acb1360115031f30072344025c3dc4f860bdb4d6156"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p4_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p4_common_primary_1.vtu",
+          "sha256": "63dfef40952627ba85484d046d6a893d670ac918c5fafb52f257850435a194aa"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p4_common_primary_2.vtu",
+          "sha256": "302bfa0d1512296b7812df0c4c82c51a1bdb22b651f3f0f041fa9e034b5872e1"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p1_secondary_bias/t02_c_p1_vbg_p0p4_common_primary_3.vtu",
+          "sha256": "2396b7d6355167930360550ef1c46c54c6d5b60187ae4676fb4a49556b3331cc"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      }
+    }
+  ]
+}

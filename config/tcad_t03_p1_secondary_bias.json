@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "case_id": "IGZO_T03_P1_SECONDARY_BIAS_V1",
+  "stage": "T03-P1-BIAS",
+  "parameter_group_id": "P1",
+  "status": "planned",
+  "evidence_level_before_run": "E0",
+  "contract_evidence_level_after_check": "E3",
+  "dependencies": {
+    "project_config": "config/project.json",
+    "experiments_config": "config/experiments.json",
+    "s00_report": "results/reports/s00_data_audit.json",
+    "t01_baseline_config": "config/tcad_t01_baseline.json",
+    "t01_mesh_config": "config/tcad_t01_d_mesh_refinement.json",
+    "t02_a_config": "config/tcad_t02_a_dual_gate_contract.json",
+    "t02_a_report": "results/reports/tcad_t02_a_limit_regression.json",
+    "t02_c_config": "config/tcad_t02_c_bidirectional.json",
+    "t02_c_contract_report": "results/reports/tcad_t02_c_input_contract.json",
+    "t02_c_report": "results/reports/tcad_t02_c_bidirectional.json",
+    "t02_c_check_report": "results/reports/tcad_t02_c_bidirectional_check.json",
+    "t03_p4_config": "config/tcad_t03_p4_channel_length.json",
+    "t03_p4_report": "results/reports/tcad_t03_p4_l_sensitivity.json",
+    "t03_p4_check_report": "results/reports/tcad_t03_p4_l_sensitivity_check.json",
+    "required_g0_status": "TEACHING_BASELINE_ONLY",
+    "required_t02_c_status": "PASS",
+    "required_t02_c_check_status": "PASS",
+    "required_t03_p4_status": "PASS",
+    "required_t03_p4_check_status": "PASS",
+    "require_complete_t02_numerical_gate": "PASS",
+    "require_t03_p4_group_complete": true
+  },
+  "scope": {
+    "device": "2D n-IGZO electron-only drift-diffusion teaching model with the T02-A enabled symmetric dual-gate stack",
+    "purpose": "Run the P1 fixed-secondary-bias substage as five independently initialized top-primary transfer families while keeping the symmetric gate-capacitance ratio and all non-bias inputs fixed.",
+    "changed_variable": "fixed_bottom_gate_bias_v",
+    "changed_variable_count": 1,
+    "fixed_variables": [
+      "top gate is the primary swept gate",
+      "Ctop/Cbottom parallel-plate proxy = 1 from symmetric 30 nm Al2O3 stacks",
+      "channel length = 10 um and width = 60 um",
+      "channel thickness = 24 nm",
+      "top and bottom physical Al2O3 thickness = 30 nm",
+      "top and bottom dielectric relative permittivity = 6.8",
+      "interface_4x mesh",
+      "source voltage = 0 V and drain voltage = 0.01 V",
+      "300 K constant teaching mobility = 35.5 cm2/(V*s)",
+      "ideal ohmic source and drain",
+      "Poisson plus electron continuity",
+      "no traps, recombination, ferroelectric polarization, or non-ideal contacts"
+    ],
+    "prohibited_work": [
+      "top-to-bottom gate-capacitance-ratio variation",
+      "trap, contact, geometry, dielectric, temperature, or mobility scans",
+      "any P2, P3, P4, or P5 run",
+      "experimental fitting or calibrated dual-gate prediction",
+      "physical capacitance-ratio, Ion, mobility, or uncertainty claims",
+      "compact-model, SPICE, circuit, layout, or HZO work"
+    ]
+  },
+  "sensitivity": {
+    "parameter_name": "fixed_bottom_gate_bias",
+    "parameter_symbol": "VBG",
+    "unit": "V",
+    "values_v": [-0.4, -0.2, 0.0, 0.2, 0.4],
+    "reference_value_v": 0.0,
+    "value_source_type": "controlled_design_sensitivity_extending_the_t02_c_secondary_bias_range",
+    "value_source_reference": "config/tcad_t02_c_bidirectional.json:bias_protocol.fixed_secondary_gate_values_v",
+    "interpretation": "Five-point numerical secondary-gate-bias sensitivity at fixed symmetric electrostatic coupling; not a measured process range or capacitance-ratio extraction."
+  },
+  "capacitance_ratio_control": {
+    "definition": "parallel_plate_ratio = (epsilon_top / t_top) / (epsilon_bottom / t_bottom)",
+    "top_relative_permittivity": 6.8,
+    "bottom_relative_permittivity": 6.8,
+    "top_physical_thickness_nm": 30.0,
+    "bottom_physical_thickness_nm": 30.0,
+    "fixed_top_to_bottom_ratio": 1.0,
+    "status": "controlled_not_scanned",
+    "boundary": "This ratio is an input geometry proxy, not an extracted or experimentally validated physical capacitance ratio."
+  },
+  "inheritance": {
+    "transport_source": "config/tcad_t01_baseline.json",
+    "mesh_source": "config/tcad_t01_d_mesh_refinement.json interface_4x",
+    "topology_source": "config/tcad_t02_a_dual_gate_contract.json enabled_mode",
+    "bias_and_extraction_source": "config/tcad_t02_c_bidirectional.json",
+    "reference_family": "top_primary at fixed secondary gate = 0 V",
+    "required_mesh_level": "interface_4x",
+    "require_exact_t02_a_enabled_topology": true,
+    "require_t02_c_zero_secondary_reproduction": true
+  },
+  "bias_protocol": {
+    "source_v": 0.0,
+    "drain_v": 0.01,
+    "low_vds_values_v": [0.0, 0.001, 0.005, 0.01],
+    "fixed_secondary_ramp_step_v": 0.1,
+    "primary_gate_grid": {
+      "start_v": -0.5,
+      "stop_v": 1.0,
+      "step_v": 0.05,
+      "point_count": 31
+    },
+    "primary_negative_preconditioning_v": [-0.1, -0.2, -0.3, -0.4, -0.5],
+    "families": [
+      {
+        "family_id": "top_primary",
+        "primary_gate": "top_gate",
+        "secondary_gate": "bottom_gate",
+        "fixed_secondary_values_v": [-0.4, -0.2, 0.0, 0.2, 0.4]
+      }
+    ],
+    "reverse_paths": [],
+    "common_state_primary_gate_v": 0.3,
+    "state_points": [
+      {"state_id": "p1_vbg_m0p4_common_primary", "label": "P1 VBG=-0.4 V common-primary proxy", "source_family": "top_primary", "vbg_v": -0.4, "vtg_v": 0.3},
+      {"state_id": "p1_vbg_m0p2_common_primary", "label": "P1 VBG=-0.2 V common-primary proxy", "source_family": "top_primary", "vbg_v": -0.2, "vtg_v": 0.3},
+      {"state_id": "p1_vbg_0p0_common_primary", "label": "P1 VBG=0 V common-primary proxy", "source_family": "top_primary", "vbg_v": 0.0, "vtg_v": 0.3},
+      {"state_id": "p1_vbg_p0p2_common_primary", "label": "P1 VBG=+0.2 V common-primary proxy", "source_family": "top_primary", "vbg_v": 0.2, "vtg_v": 0.3},
+      {"state_id": "p1_vbg_p0p4_common_primary", "label": "P1 VBG=+0.4 V common-primary proxy", "source_family": "top_primary", "vbg_v": 0.4, "vtg_v": 0.3}
+    ],
+    "execution_order": [
+      "create one fresh T02-A enabled-top-stack device for each fixed bottom-gate voltage",
+      "solve all-zero-bias Poisson initialization and coupled electron equilibrium",
+      "repeat the T02-C low-VDS ladder with both gates at 0 V",
+      "ramp the bottom secondary gate from 0 V to its target in 0.1 V increments",
+      "precondition the top primary gate from 0 V down to -0.5 V",
+      "sweep the exact 31-point top-gate grid upward from -0.5 V to 1.0 V",
+      "save the VTG=0.3 V state for that fixed bottom-gate voltage",
+      "delete the device before creating the next fixed bottom-gate voltage"
+    ]
+  },
+  "extraction_methods": {
+    "constant_current_vth_proxy": {
+      "name": "constant_current_log_interpolation",
+      "criterion_formula": "10 nA * (W/L) terminal current",
+      "criterion_prefactor_a": 1e-8,
+      "expected_terminal_current_a": 6e-8,
+      "expected_current_per_width_a_per_cm": 1e-5,
+      "interpolation": "linear primary-gate-voltage interpolation in log10(abs(drain current per unit width))"
+    },
+    "delta_vth_proxy": {
+      "name": "fixed-secondary constant-current threshold shift",
+      "reference_secondary_gate_v": 0.0,
+      "definition": "VTH(fixed secondary gate) minus VTH(fixed secondary gate = 0 V) within one primary-gate orientation"
+    },
+    "gm_proxy": {
+      "name": "central_difference_then_linear_interpolation",
+      "evaluation_overdrive_v": 0.2,
+      "definition": "central-difference derivative of abs(drain current) versus primary-gate voltage, linearly interpolated at VTH + 0.2 V",
+      "reported_units": ["S/cm", "S terminal"]
+    },
+    "coupling_slope_proxy": {
+      "name": "ordinary_least_squares_delta_vth_vs_secondary_bias",
+      "definition": "five-point OLS slope of constant-current VTH versus fixed bottom-gate voltage",
+      "reported_unit": "V/V"
+    }
+  },
+  "state_output_contract": {
+    "common_primary_gate_v": 0.3,
+    "potential": {"location": "bottom_oxide, channel, and top_oxide nodes", "unit": "V"},
+    "electron_density": {"location": "channel nodes", "unit": "cm^-3"},
+    "electron_current_density": {
+      "location": "channel triangular elements",
+      "unit": "A/cm^2",
+      "source_model": "DEVSIM ElectronCurrent edge model projected by element_from_edge_model"
+    },
+    "required_state_count": 5,
+    "required_vtk_file_count_per_state": 6
+  },
+  "resource_budget": {
+    "required_device_count": 5,
+    "required_forward_family_count": 5,
+    "required_reported_point_count_per_family": 31,
+    "required_total_reported_point_count": 155,
+    "required_dc_solve_counts_by_secondary_bias": [45, 43, 41, 43, 45],
+    "required_total_dc_solve_count": 217,
+    "maximum_wall_seconds": 420.0,
+    "laptop_target": true
+  },
+  "acceptance": {
+    "required_family_id": "top_primary",
+    "required_fixed_secondary_gate_values_v": [-0.4, -0.2, 0.0, 0.2, 0.4],
+    "required_reference_secondary_gate_v": 0.0,
+    "required_primary_gate_point_count": 31,
+    "required_forward_family_count": 5,
+    "required_forward_reported_point_count": 155,
+    "required_total_dc_solve_count": 217,
+    "maximum_relative_terminal_current_imbalance": 1e-5,
+    "maximum_monotonic_relative_current_drop": 1e-6,
+    "maximum_zero_equilibrium_absolute_terminal_current_a_per_cm": 1e-18,
+    "maximum_zero_equilibrium_absolute_potential_v": 1e-10,
+    "maximum_t02_c_reference_current_relative_difference": 1e-6,
+    "maximum_t02_c_reference_center_potential_difference_v": 1e-7,
+    "maximum_t02_c_reference_center_density_relative_difference": 1e-6,
+    "maximum_t02_c_reference_vth_difference_v": 1e-4,
+    "maximum_t02_c_reference_gm_relative_difference": 1e-4,
+    "minimum_absolute_coupling_slope_v_per_v": 0.5,
+    "maximum_absolute_coupling_slope_v_per_v": 1.5,
+    "minimum_coupling_fit_r_squared": 0.99,
+    "require_positive_drain_and_negative_source_current": true,
+    "require_strict_primary_gate_current_increase": true,
+    "require_strict_secondary_gate_current_ordering": true,
+    "require_vth_bracket_for_every_family": true,
+    "require_delta_vth_strictly_decreases_with_secondary_bias": true,
+    "require_positive_finite_gm": true,
+    "require_common_bias_state_current_potential_density_ordering": true,
+    "required_regions": ["bottom_oxide", "channel", "top_oxide"],
+    "required_contacts": ["source", "drain", "bottom_gate", "top_gate"],
+    "required_interfaces": ["bottom_oxide_channel", "channel_top_oxide"],
+    "required_state_ids": [
+      "p1_vbg_m0p4_common_primary",
+      "p1_vbg_m0p2_common_primary",
+      "p1_vbg_0p0_common_primary",
+      "p1_vbg_p0p2_common_primary",
+      "p1_vbg_p0p4_common_primary"
+    ],
+    "required_state_count": 5,
+    "required_vtk_file_count": 30,
+    "require_two_png_figures": true,
+    "require_all_dc_solves_converged": true
+  },
+  "outputs": {
+    "contract_report": "results/reports/tcad_t03_p1_bias_input_contract.json",
+    "run_directory": "results/tcad/t03_sensitivity/p1_secondary_bias",
+    "config_snapshot": "results/tcad/t03_sensitivity/p1_secondary_bias/input_snapshot.json",
+    "solver_log": "results/tcad/t03_sensitivity/p1_secondary_bias/solver_log.json",
+    "state_manifest": "results/tcad/t03_sensitivity/p1_secondary_bias/state_manifest.json",
+    "curve_csv": "results/tables/tcad_t03_p1_bias_transfer_curves.csv",
+    "metric_csv": "results/tables/tcad_t03_p1_bias_metrics.csv",
+    "reference_comparison_csv": "results/tables/tcad_t03_p1_bias_t02_c_reproduction.csv",
+    "state_summary_csv": "results/tables/tcad_t03_p1_bias_state_summary.csv",
+    "sensitivity_figure_png": "report/assets/tcad_t03_p1_bias_sensitivity.png",
+    "state_figure_png": "report/assets/tcad_t03_p1_bias_state_maps.png",
+    "report": "results/reports/tcad_t03_p1_bias_sensitivity.json",
+    "check_report": "results/reports/tcad_t03_p1_bias_sensitivity_check.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim": "T03-P1-BIAS may establish a reproducible five-point fixed-bottom-gate-bias sensitivity for the frozen symmetric E2 teaching model when the contract, numerical checks, T02-C zero-secondary reproduction, states, and independent checks pass.",
+    "allowed_parameter_labels": [
+      "fixed-secondary-bias sensitivity numerical proxy",
+      "constant-current VTH numerical proxy",
+      "Delta VTH numerical proxy",
+      "gm numerical proxy",
+      "five-point coupling slope numerical proxy"
+    ],
+    "prohibited_claims": [
+      "experimentally calibrated dual-gate response or process distribution",
+      "physical top-to-bottom capacitance ratio or capacitance-ratio sensitivity",
+      "physical Ion, mobility, hysteresis, or parameter uncertainty",
+      "trap, contact, geometry, dielectric, temperature, ferroelectric, compact-model, circuit, layout, or HZO evidence",
+      "complete P1 including capacitance-ratio variation",
+      "complete T03 five-group sensitivity"
+    ],
+    "next_gate": "Only contract PASS permits this P1-BIAS run; only simulation plus independent persisted-evidence PASS completes this bias-only substage and permits a separate capacitance-ratio contract."
+  }
+}
