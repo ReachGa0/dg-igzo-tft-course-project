@@ -1,0 +1,473 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T03_P2_DIT_CONTRACT_SMOKE_V1",
+  "stage": "T03-P2-DIT-CONTRACT-SMOKE",
+  "parameter_group_id": "P2",
+  "evidence_level": "E2",
+  "contract_report": {
+    "path": "results/reports/tcad_t03_p2_dit_input_contract.json",
+    "sha256": "56fe9f60d5a1d2d3ecc00c3f1ad4483fdafd3a088361bef3fd8d381f5c2fc1a9",
+    "status": "PASS"
+  },
+  "input_snapshot": "results/tcad/t03_sensitivity/p2_dit_equation_smoke/input_snapshot.json",
+  "literature_input": {
+    "source_id_prefix": "RSC_D6TC00357E",
+    "doi": "10.1039/D6TC00357E",
+    "title": "Deuterium-enabled stabilization of metal/oxide interfaces via suppressed oxygen diffusion in BEOL-compatible InGaZnO thin-film transistors",
+    "publication_year": 2026,
+    "source_evidence_level": "E1",
+    "reported_values_cm2_ev": [
+      843000000000.0,
+      3070000000000.0,
+      4980000000000.0,
+      6020000000000.0
+    ],
+    "formal_sensitivity_values_cm2_ev": [
+      843000000000.0,
+      3070000000000.0,
+      6020000000000.0
+    ],
+    "regression_control_cm2_ev": 0.0,
+    "smoke_value_cm2_ev": 3070000000000.0,
+    "selection_rule": "Use the reported lower, intermediate, and upper values for the minimum three-point future scan; retain 4.98e12 in provenance but do not add a fourth formal device.",
+    "source_device_context": "single global bottom gate, 15 nm Al2O3, 30 nm a-IGZO, W contacts, O2 or D2 anneal",
+    "project_mismatch": "The project uses a dual gate, 30 nm physical Al2O3 on each side, 24 nm IGZO, ideal contacts, and no anneal process model; source values constrain a sensitivity range only."
+  },
+  "interface_trap_model": {
+    "model_kind": "quasi_static_linearized_uniform_interface_trap_capacitance",
+    "interface_region_order": {
+      "region0": "bottom_oxide",
+      "region1": "channel"
+    },
+    "physical_sheet_charge_formula": "Q_it=-q*D_it*(Potential@r1-Psi_neutral)",
+    "devsim_fluxterm_formula": "InterfaceTrapFluxTerm=q*D_it*(Potential@r1-Psi_neutral)=-Q_it",
+    "devsim_fluxterm_derivative_r0": "d(InterfaceTrapFluxTerm)/d(Potential@r0)=0",
+    "devsim_fluxterm_derivative_r1": "d(InterfaceTrapFluxTerm)/d(Potential@r1)=q*D_it",
+    "interface_equation_type": "fluxterm",
+    "bulk_equation_name0": "PotentialEquation",
+    "bulk_equation_name1": "PotentialEquation",
+    "potential_continuity_equation_retained": true,
+    "neutral_potential_v": 0.0,
+    "neutral_potential_source_type": "explicit_teaching_assumption",
+    "unit_derivation": "D_it[cm^-2 eV^-1] times a one-electron surface-energy shift numerically equal to DeltaPotential[V] gives cm^-2; multiplication by q gives C/cm^2 and dQ/dV=q*D_it gives F/cm^2.",
+    "physical_boundary_relation": "At the bottom interface with +y from oxide to channel, D_channel_y-D_oxide_y=Q_it; DEVSIM therefore receives -Q_it as the fluxterm under its region0/region1 assembly convention.",
+    "software_reference": "https://devsim.net/models.html#interface",
+    "limitations": [
+      "This is a quasi-static linearized charge response about Psi_neutral, not a finite energy-distribution or capture-emission model.",
+      "D_it controls only the bottom interface; applying the same number to both interfaces would double count a single-interface literature value.",
+      "No bulk tail/deep states, trap-assisted recombination, time constants, hysteresis, bias stress, border traps, or temperature dependence are represented.",
+      "The literature D_it values are not project measurements or fitted parameters."
+    ]
+  },
+  "case_summaries": [
+    {
+      "case_id": "electrostatic_reference_no_equation",
+      "solve_mode": "electrostatic",
+      "interface_equation_active": false,
+      "dit_cm2_ev": 0.0,
+      "interface_trap_capacitance_f_per_cm2": 0.0,
+      "source_v": 0.0,
+      "drain_v": 0.0,
+      "vbg_v": 0.0,
+      "vtg_v": 0.1,
+      "mesh_level": "interface_4x",
+      "node_count_with_interface_duplicates": 2419,
+      "element_count": 4480,
+      "dc_solve_count": 1,
+      "all_dc_solves_converged": true,
+      "source_current_a_per_cm": "",
+      "drain_current_a_per_cm": "",
+      "relative_current_imbalance": "",
+      "center_channel_potential_v": 0.05000000000000001,
+      "center_channel_electron_density_cm3": 1e+16,
+      "maximum_interface_potential_discontinuity_v": 0.0,
+      "center_interface_x_cm": 0.0005,
+      "center_interface_potential_r0_v": 0.039308176100628936,
+      "center_interface_potential_r1_v": 0.039308176100628936,
+      "center_devsim_fluxterm_c_per_cm2": 0.0,
+      "center_physical_qit_c_per_cm2": -0.0,
+      "center_d_oxide_y_c_per_cm2": -7.888951405534607e-09,
+      "center_d_channel_y_c_per_cm2": -7.888951405534576e-09,
+      "center_displacement_jump_c_per_cm2": 3.143286327701505e-23,
+      "center_gauss_absolute_error_c_per_cm2": 3.143286327701505e-23,
+      "center_gauss_relative_error": 3.1432863277015052e+277,
+      "wall_seconds": 0.04839829800039297,
+      "bottom_interface_equations": [
+        "PotentialEquation"
+      ],
+      "top_interface_equations": [
+        "PotentialEquation"
+      ],
+      "interface_trap_equation_command": null
+    },
+    {
+      "case_id": "electrostatic_zero_dit_equation",
+      "solve_mode": "electrostatic",
+      "interface_equation_active": true,
+      "dit_cm2_ev": 0.0,
+      "interface_trap_capacitance_f_per_cm2": 0.0,
+      "source_v": 0.0,
+      "drain_v": 0.0,
+      "vbg_v": 0.0,
+      "vtg_v": 0.1,
+      "mesh_level": "interface_4x",
+      "node_count_with_interface_duplicates": 2419,
+      "element_count": 4480,
+      "dc_solve_count": 1,
+      "all_dc_solves_converged": true,
+      "source_current_a_per_cm": "",
+      "drain_current_a_per_cm": "",
+      "relative_current_imbalance": "",
+      "center_channel_potential_v": 0.05000000000000001,
+      "center_channel_electron_density_cm3": 1e+16,
+      "maximum_interface_potential_discontinuity_v": 0.0,
+      "center_interface_x_cm": 0.0005,
+      "center_interface_potential_r0_v": 0.039308176100628936,
+      "center_interface_potential_r1_v": 0.039308176100628936,
+      "center_devsim_fluxterm_c_per_cm2": 0.0,
+      "center_physical_qit_c_per_cm2": -0.0,
+      "center_d_oxide_y_c_per_cm2": -7.888951405534607e-09,
+      "center_d_channel_y_c_per_cm2": -7.888951405534576e-09,
+      "center_displacement_jump_c_per_cm2": 3.143286327701505e-23,
+      "center_gauss_absolute_error_c_per_cm2": 3.143286327701505e-23,
+      "center_gauss_relative_error": 3.1432863277015052e+277,
+      "wall_seconds": 0.03285156499987352,
+      "bottom_interface_equations": [
+        "InterfaceTrapChargeEquation",
+        "PotentialEquation"
+      ],
+      "top_interface_equations": [
+        "PotentialEquation"
+      ],
+      "interface_trap_equation_command": {
+        "device": "t03_p2_electrostatic_zero_dit_equation",
+        "interface": "bottom_oxide_channel",
+        "interface_model": "InterfaceTrapFluxTerm",
+        "name": "InterfaceTrapChargeEquation",
+        "name0": "PotentialEquation",
+        "name1": "PotentialEquation",
+        "type": "fluxterm"
+      }
+    },
+    {
+      "case_id": "electrostatic_representative_dit_equation",
+      "solve_mode": "electrostatic",
+      "interface_equation_active": true,
+      "dit_cm2_ev": 3070000000000.0,
+      "interface_trap_capacitance_f_per_cm2": 4.91868226638e-07,
+      "source_v": 0.0,
+      "drain_v": 0.0,
+      "vbg_v": 0.0,
+      "vtg_v": 0.1,
+      "mesh_level": "interface_4x",
+      "node_count_with_interface_duplicates": 2419,
+      "element_count": 4480,
+      "dc_solve_count": 1,
+      "all_dc_solves_converged": true,
+      "source_current_a_per_cm": "",
+      "drain_current_a_per_cm": "",
+      "relative_current_imbalance": "",
+      "center_channel_potential_v": 0.030635298686541038,
+      "center_channel_electron_density_cm3": 1e+16,
+      "maximum_interface_potential_discontinuity_v": 1.946776073680212e-13,
+      "center_interface_x_cm": 0.0005,
+      "center_interface_potential_r0_v": 0.015802595261215822,
+      "center_interface_potential_r1_v": 0.015802595261021502,
+      "center_devsim_fluxterm_c_per_cm2": 7.772794507316709e-09,
+      "center_physical_qit_c_per_cm2": -7.772794507316709e-09,
+      "center_d_oxide_y_c_per_cm2": -3.1715006511092747e-09,
+      "center_d_channel_y_c_per_cm2": -1.0944295158425995e-08,
+      "center_displacement_jump_c_per_cm2": -7.77279450731672e-09,
+      "center_gauss_absolute_error_c_per_cm2": 1.1580528575742387e-23,
+      "center_gauss_relative_error": 1.4898796777454199e-15,
+      "wall_seconds": 0.030975206002040068,
+      "bottom_interface_equations": [
+        "InterfaceTrapChargeEquation",
+        "PotentialEquation"
+      ],
+      "top_interface_equations": [
+        "PotentialEquation"
+      ],
+      "interface_trap_equation_command": {
+        "device": "t03_p2_electrostatic_representative_dit_equation",
+        "interface": "bottom_oxide_channel",
+        "interface_model": "InterfaceTrapFluxTerm",
+        "name": "InterfaceTrapChargeEquation",
+        "name0": "PotentialEquation",
+        "name1": "PotentialEquation",
+        "type": "fluxterm"
+      }
+    },
+    {
+      "case_id": "coupled_zero_dit_equation",
+      "solve_mode": "coupled",
+      "interface_equation_active": true,
+      "dit_cm2_ev": 0.0,
+      "interface_trap_capacitance_f_per_cm2": 0.0,
+      "source_v": 0.0,
+      "drain_v": 0.01,
+      "vbg_v": 0.0,
+      "vtg_v": 0.1,
+      "mesh_level": "interface_4x",
+      "node_count_with_interface_duplicates": 2419,
+      "element_count": 4480,
+      "dc_solve_count": 7,
+      "all_dc_solves_converged": true,
+      "source_current_a_per_cm": -3.700428574078741e-06,
+      "drain_current_a_per_cm": 3.700428574078735e-06,
+      "relative_current_imbalance": 1.6023091682714736e-15,
+      "center_channel_potential_v": 0.030249531738275284,
+      "center_channel_electron_density_cm3": 2.6766155869164244e+16,
+      "maximum_interface_potential_discontinuity_v": 0.0,
+      "center_interface_x_cm": 0.0005,
+      "center_interface_potential_r0_v": 0.02257544222906064,
+      "center_interface_potential_r1_v": 0.02257544222906064,
+      "center_devsim_fluxterm_c_per_cm2": 0.0,
+      "center_physical_qit_c_per_cm2": -0.0,
+      "center_d_oxide_y_c_per_cm2": -4.530776418345211e-09,
+      "center_d_channel_y_c_per_cm2": -4.590205972689915e-09,
+      "center_displacement_jump_c_per_cm2": -5.942955434470447e-11,
+      "center_gauss_absolute_error_c_per_cm2": 5.942955434470447e-11,
+      "center_gauss_relative_error": 5.942955434470447e+289,
+      "wall_seconds": 0.21996968099847436,
+      "bottom_interface_equations": [
+        "InterfaceTrapChargeEquation",
+        "PotentialEquation"
+      ],
+      "top_interface_equations": [
+        "PotentialEquation"
+      ],
+      "interface_trap_equation_command": {
+        "device": "t03_p2_coupled_zero_dit_equation",
+        "interface": "bottom_oxide_channel",
+        "interface_model": "InterfaceTrapFluxTerm",
+        "name": "InterfaceTrapChargeEquation",
+        "name0": "PotentialEquation",
+        "name1": "PotentialEquation",
+        "type": "fluxterm"
+      }
+    },
+    {
+      "case_id": "coupled_representative_dit_equation",
+      "solve_mode": "coupled",
+      "interface_equation_active": true,
+      "dit_cm2_ev": 3070000000000.0,
+      "interface_trap_capacitance_f_per_cm2": 4.91868226638e-07,
+      "source_v": 0.0,
+      "drain_v": 0.01,
+      "vbg_v": 0.0,
+      "vtg_v": 0.1,
+      "mesh_level": "interface_4x",
+      "node_count_with_interface_duplicates": 2419,
+      "element_count": 4480,
+      "dc_solve_count": 7,
+      "all_dc_solves_converged": true,
+      "source_current_a_per_cm": -2.8815572966293977e-06,
+      "drain_current_a_per_cm": 2.8815572966294003e-06,
+      "relative_current_imbalance": 8.81849146201348e-16,
+      "center_channel_potential_v": 0.023163546496782542,
+      "center_channel_electron_density_cm3": 2.0418702730297308e+16,
+      "maximum_interface_potential_discontinuity_v": 1.542498767603817e-13,
+      "center_interface_x_cm": 0.0005,
+      "center_interface_potential_r0_v": 0.011602188762223182,
+      "center_interface_potential_r1_v": 0.011602188762080514,
+      "center_devsim_fluxterm_c_per_cm2": 5.706748011523875e-09,
+      "center_physical_qit_c_per_cm2": -5.706748011523875e-09,
+      "center_d_oxide_y_c_per_cm2": -2.3285002980948985e-09,
+      "center_d_channel_y_c_per_cm2": -8.053608474192823e-09,
+      "center_displacement_jump_c_per_cm2": -5.725108176097924e-09,
+      "center_gauss_absolute_error_c_per_cm2": 1.8360164574049276e-11,
+      "center_gauss_relative_error": 0.003217272698386862,
+      "wall_seconds": 0.22626824699909776,
+      "bottom_interface_equations": [
+        "InterfaceTrapChargeEquation",
+        "PotentialEquation"
+      ],
+      "top_interface_equations": [
+        "PotentialEquation"
+      ],
+      "interface_trap_equation_command": {
+        "device": "t03_p2_coupled_representative_dit_equation",
+        "interface": "bottom_oxide_channel",
+        "interface_model": "InterfaceTrapFluxTerm",
+        "name": "InterfaceTrapChargeEquation",
+        "name0": "PotentialEquation",
+        "name1": "PotentialEquation",
+        "type": "fluxterm"
+      }
+    }
+  ],
+  "interface_equation_commands": {
+    "electrostatic_zero_dit_equation": {
+      "device": "t03_p2_electrostatic_zero_dit_equation",
+      "interface": "bottom_oxide_channel",
+      "interface_model": "InterfaceTrapFluxTerm",
+      "name": "InterfaceTrapChargeEquation",
+      "name0": "PotentialEquation",
+      "name1": "PotentialEquation",
+      "type": "fluxterm"
+    },
+    "electrostatic_representative_dit_equation": {
+      "device": "t03_p2_electrostatic_representative_dit_equation",
+      "interface": "bottom_oxide_channel",
+      "interface_model": "InterfaceTrapFluxTerm",
+      "name": "InterfaceTrapChargeEquation",
+      "name0": "PotentialEquation",
+      "name1": "PotentialEquation",
+      "type": "fluxterm"
+    },
+    "coupled_zero_dit_equation": {
+      "device": "t03_p2_coupled_zero_dit_equation",
+      "interface": "bottom_oxide_channel",
+      "interface_model": "InterfaceTrapFluxTerm",
+      "name": "InterfaceTrapChargeEquation",
+      "name0": "PotentialEquation",
+      "name1": "PotentialEquation",
+      "type": "fluxterm"
+    },
+    "coupled_representative_dit_equation": {
+      "device": "t03_p2_coupled_representative_dit_equation",
+      "interface": "bottom_oxide_channel",
+      "interface_model": "InterfaceTrapFluxTerm",
+      "name": "InterfaceTrapChargeEquation",
+      "name0": "PotentialEquation",
+      "name1": "PotentialEquation",
+      "type": "fluxterm"
+    }
+  },
+  "checks": {
+    "contract_passed_before_simulation": {
+      "status": "PASS",
+      "detail": "status=PASS hash=c22ac08b2fc6121b73960c073b7381bc6b361bcf06f6c063c27874a693d8d664"
+    },
+    "five_cases_and_17_dc_solves_completed": {
+      "status": "PASS",
+      "detail": "cases=['electrostatic_reference_no_equation', 'electrostatic_zero_dit_equation', 'electrostatic_representative_dit_equation', 'coupled_zero_dit_equation', 'coupled_representative_dit_equation'] solves=17"
+    },
+    "all_dc_solves_converged_within_laptop_budget": {
+      "status": "PASS",
+      "detail": "converged=17/17 wall=0.568423s"
+    },
+    "topology_and_interface_equation_lists_match_contract": {
+      "status": "PASS",
+      "detail": "topology=True equations=[('electrostatic_reference_no_equation', ['PotentialEquation']), ('electrostatic_zero_dit_equation', ['InterfaceTrapChargeEquation', 'PotentialEquation']), ('electrostatic_representative_dit_equation', ['InterfaceTrapChargeEquation', 'PotentialEquation']), ('coupled_zero_dit_equation', ['InterfaceTrapChargeEquation', 'PotentialEquation']), ('coupled_representative_dit_equation', ['InterfaceTrapChargeEquation', 'PotentialEquation'])]"
+    },
+    "zero_dit_equation_is_exact_electrostatic_limit": {
+      "status": "PASS",
+      "detail": "maximum_node_potential_difference=0.000000e+00 V"
+    },
+    "interface_potential_continuity_retained": {
+      "status": "PASS",
+      "detail": "maximum_discontinuity=1.946776e-13 V"
+    },
+    "interface_flux_formula_and_physical_charge_sign_match": {
+      "status": "PASS",
+      "detail": "formula_error=0.000000e+00 sign_error=0.000000e+00 C/cm2"
+    },
+    "center_gauss_jump_matches_physical_sheet_charge": {
+      "status": "PASS",
+      "detail": "jump=-7.772795e-09 Qit=-7.772795e-09 relative_error=1.489880e-15"
+    },
+    "representative_dit_creates_negative_sheet_charge_and_nonzero_response": {
+      "status": "PASS",
+      "detail": "Qit=-7.772795e-09 C/cm2 potential_change=1.936470e-02 V"
+    },
+    "coupled_smoke_converged_with_terminal_conservation": {
+      "status": "PASS",
+      "detail": "maximum_relative_imbalance=1.602309e-15"
+    },
+    "zero_dit_coupled_case_reproduces_t02_c_reference": {
+      "status": "PASS",
+      "detail": "{\"center_density_relative\": 1.4944245335611193e-16, \"center_potential_v\": 0.0, \"current_relative\": 2.289013097530675e-15}"
+    },
+    "representative_dit_reduces_fixed_bias_coupled_current": {
+      "status": "PASS",
+      "detail": "representative_to_zero_current_ratio=7.787091e-01"
+    },
+    "raw_state_and_interface_evidence_counts_complete": {
+      "status": "PASS",
+      "detail": "state_rows=12095/12095 interface_rows=195/195"
+    },
+    "formal_scan_and_complete_p2_remain_closed": {
+      "status": "PASS",
+      "detail": "Only a passed equation smoke plus independent check permits the separate minimum three-point T03-P2-DIT transfer sensitivity; P3, P5, SPICE, and layout remain closed."
+    }
+  },
+  "failures": [],
+  "diagnostics": {
+    "maximum_zero_dit_electrostatic_node_potential_difference_v": 0.0,
+    "maximum_interface_potential_discontinuity_v": 1.946776073680212e-13,
+    "maximum_interface_flux_formula_error_c_per_cm2": 0.0,
+    "maximum_interface_charge_sign_error_c_per_cm2": 0.0,
+    "representative_center_gauss_relative_error": 1.4898796777454199e-15,
+    "representative_center_physical_qit_c_per_cm2": -7.772794507316709e-09,
+    "representative_center_potential_change_v": 0.019364701313458972,
+    "maximum_coupled_relative_current_imbalance": 1.6023091682714736e-15,
+    "t02_c_zero_dit_reproduction": {
+      "current_relative": 2.289013097530675e-15,
+      "center_potential_v": 0.0,
+      "center_density_relative": 1.4944245335611193e-16
+    },
+    "representative_to_zero_dit_current_ratio": 0.7787090708396656
+  },
+  "resource_usage": {
+    "device_count": 5,
+    "dc_solve_count": 17,
+    "state_node_row_count": 12095,
+    "interface_sample_row_count": 195,
+    "wall_seconds": 0.5684234069995
+  },
+  "artifacts": {
+    "config_snapshot": {
+      "path": "results/tcad/t03_sensitivity/p2_dit_equation_smoke/input_snapshot.json",
+      "sha256": "317bc24ab17313e6c2376e9d2a418a8a16b05f8ac3c994be2e075dd4c40ba627"
+    },
+    "solver_log": {
+      "path": "results/tcad/t03_sensitivity/p2_dit_equation_smoke/solver_log.json",
+      "sha256": "1bd7ced8e0f7dcfaed3e37046eccc8958e71a734626cec9587a9be05f0e28c19"
+    },
+    "case_summary_csv": {
+      "path": "results/tables/tcad_t03_p2_dit_equation_smoke_cases.csv",
+      "sha256": "7619e0cda566acb363212af9101be696416168e5a41a7df563a9d63c261bbafc"
+    },
+    "interface_samples_csv": {
+      "path": "results/tables/tcad_t03_p2_dit_interface_samples.csv",
+      "sha256": "7963d7cee941bb942807bf7402c7fb97d928087ff94a29258e16ccb806cf4e85"
+    },
+    "state_nodes_csv": {
+      "path": "results/tcad/t03_sensitivity/p2_dit_equation_smoke/state_nodes.csv",
+      "sha256": "b0c8692dcb3062138aebaf7474e58aedcb660390c8af91d4143058a6fde4c91a"
+    }
+  },
+  "t03_p2_completion": {
+    "status": "PARTIAL",
+    "dit_literature_input_contract_passed": true,
+    "dit_interface_equation_smoke_passed": true,
+    "formal_three_point_dit_sensitivity_complete": false,
+    "bulk_tail_and_deep_traps_complete": false,
+    "complete_p2_trap_group": false,
+    "complete_t03_five_group_sensitivity": false,
+    "formal_three_point_dit_sensitivity_permitted_next": true,
+    "experimental_calibration_permitted": false
+  },
+  "formal_sensitivity_run": false,
+  "evidence_boundary": {
+    "allowed_claim": "After contract, smoke, and independent persisted-evidence checks pass, T03-P2-DIT may claim only that a literature-constrained bottom-interface D_it range and a quasi-static DEVSIM sheet-charge equation have passed zero-limit, convergence, continuity, and Gauss-law smoke tests in the frozen teaching model.",
+    "prohibited_claims": [
+      "completed D_it sensitivity or completed P2 trap group",
+      "reported SS, VTH, Ioff, Ion, or mobility trend from a formal trap scan",
+      "experimental calibration, process prediction, measured project D_it, or uncertainty",
+      "dynamic capture-emission, hysteresis, bias-stress, reliability, or border-trap validation",
+      "bulk N_tail or N_deep trap evidence",
+      "both-interface trap validation or complete T03 five-group sensitivity",
+      "compact-model, circuit, layout, or HZO evidence"
+    ],
+    "next_gate": "Only a passed equation smoke plus independent check permits the separate minimum three-point T03-P2-DIT transfer sensitivity; P3, P5, SPICE, and layout remain closed."
+  },
+  "limitations": [
+    "This is a quasi-static linearized charge response about Psi_neutral, not a finite energy-distribution or capture-emission model.",
+    "D_it controls only the bottom interface; applying the same number to both interfaces would double count a single-interface literature value.",
+    "No bulk tail/deep states, trap-assisted recombination, time constants, hysteresis, bias stress, border traps, or temperature dependence are represented.",
+    "The literature D_it values are not project measurements or fitted parameters."
+  ]
+}

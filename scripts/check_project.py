@@ -45,8 +45,10 @@ REQUIRED_FILES = [
     "config/tcad_t03_p4_channel_length_v1_failed.json",
     "config/tcad_t03_p1_secondary_bias.json",
     "config/tcad_t03_p1_capacitance_ratio.json",
+    "config/tcad_t03_p2_interface_trap.json",
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
+    "references/t03_p2_dit_sources.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
     "docs/02_\u6587\u732e\u8c03\u7814\u77e9\u9635.md",
     "docs/03_\u96c6\u6210\u7535\u8def\u8bbe\u8ba1\u5168\u6d41\u7a0b.md",
@@ -79,6 +81,8 @@ REQUIRED_FILES = [
     "scripts/check_t03_p1_secondary_bias.py",
     "scripts/check_t03_p1_cap_ratio_contract.py",
     "scripts/check_t03_p1_capacitance_ratio.py",
+    "scripts/check_t03_p2_dit_contract.py",
+    "scripts/check_t03_p2_dit_equation_smoke.py",
     "scripts/build_self_contained_report.py",
     "tcad/README.md",
     "tcad/run_dg_electrostatic.py",
@@ -93,6 +97,7 @@ REQUIRED_FILES = [
     "tcad/run_t03_p4_channel_length.py",
     "tcad/run_t03_p1_secondary_bias.py",
     "tcad/run_t03_p1_capacitance_ratio.py",
+    "tcad/run_t03_p2_dit_equation_smoke.py",
     "report/manifest.json",
     "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
     "report/evidence_matrix.csv",
@@ -196,6 +201,14 @@ REQUIRED_FILES = [
     "results/tcad/t03_sensitivity/p1_capacitance_ratio/state_manifest.json",
     "report/assets/tcad_t03_p1_cap_ratio_sensitivity.png",
     "report/assets/tcad_t03_p1_cap_ratio_state_maps.png",
+    "results/reports/tcad_t03_p2_dit_input_contract.json",
+    "results/reports/tcad_t03_p2_dit_equation_smoke.json",
+    "results/reports/tcad_t03_p2_dit_equation_smoke_check.json",
+    "results/tables/tcad_t03_p2_dit_equation_smoke_cases.csv",
+    "results/tables/tcad_t03_p2_dit_interface_samples.csv",
+    "results/tcad/t03_sensitivity/p2_dit_equation_smoke/input_snapshot.json",
+    "results/tcad/t03_sensitivity/p2_dit_equation_smoke/solver_log.json",
+    "results/tcad/t03_sensitivity/p2_dit_equation_smoke/state_nodes.csv",
     "models/level61/README.md",
     "spice/models/README.md",
     "spice/netlists/devices/README.md",
@@ -248,6 +261,7 @@ REQUIRED_DIRS = [
     "results/tcad/t03_sensitivity/p4_channel_length_v1_failed",
     "results/tcad/t03_sensitivity/p1_secondary_bias",
     "results/tcad/t03_sensitivity/p1_capacitance_ratio",
+    "results/tcad/t03_sensitivity/p2_dit_equation_smoke",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -515,11 +529,11 @@ def main() -> int:
             checks,
             "experiments:t03_completed_and_partial_groups_are_distinct",
             sensitivity.get("completed_parameter_groups") == ["P1", "P4"]
-            and sensitivity.get("partially_completed_parameter_groups") == []
+            and sensitivity.get("partially_completed_parameter_groups") == ["P2"]
             and sensitivity.get("remaining_parameter_groups")
             == ["P2", "P3", "P5"]
             and sensitivity.get("remaining_substages")
-            == ["T03-P2", "T03-P3", "T03-P5"],
+            == ["T03-P2-DIT-FORMAL", "T03-P2-BULK-TRAPS", "T03-P3", "T03-P5"],
             (
                 f"complete={sensitivity.get('completed_parameter_groups')} "
                 f"partial={sensitivity.get('partially_completed_parameter_groups')}"
@@ -1937,6 +1951,160 @@ def main() -> int:
             False,
             str(error),
         )
+
+    t03_p2_config_path = ROOT / "config" / "tcad_t03_p2_interface_trap.json"
+    t03_p2_contract_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p2_dit_input_contract.json"
+    )
+    t03_p2_report_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p2_dit_equation_smoke.json"
+    )
+    t03_p2_check_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p2_dit_equation_smoke_check.json"
+    )
+    try:
+        t03_p2_config = json.loads(t03_p2_config_path.read_text(encoding="utf-8"))
+        t03_p2_contract = json.loads(t03_p2_contract_path.read_text(encoding="utf-8"))
+        t03_p2_report = json.loads(t03_p2_report_path.read_text(encoding="utf-8"))
+        t03_p2_check = json.loads(t03_p2_check_path.read_text(encoding="utf-8"))
+        t03_p2_runner_checks = t03_p2_report.get("checks", {})
+        t03_p2_completion = t03_p2_report.get("t03_p2_completion", {})
+        add_check(
+            checks,
+            "t03_p2_dit:contract_and_equation_smoke",
+            t03_p2_contract.get("contract_status") == "PASS"
+            and t03_p2_contract.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and t03_p2_contract.get("evidence_level") == "E3"
+            and len(t03_p2_contract.get("checks", [])) == 22
+            and all(
+                item.get("status") == "PASS"
+                for item in t03_p2_contract.get("checks", [])
+            )
+            and t03_p2_report.get("status") == "PASS"
+            and t03_p2_report.get("case_id") == t03_p2_config.get("case_id")
+            and t03_p2_report.get("stage") == "T03-P2-DIT-CONTRACT-SMOKE"
+            and t03_p2_report.get("evidence_level") == "E2"
+            and len(t03_p2_runner_checks) == 14
+            and all(
+                item.get("status") == "PASS"
+                for item in t03_p2_runner_checks.values()
+            )
+            and not t03_p2_report.get("failures"),
+            (
+                f"contract={t03_p2_contract.get('contract_status')} "
+                f"smoke={t03_p2_report.get('status')} "
+                f"runner_checks={len(t03_p2_runner_checks)}"
+            ),
+        )
+        add_check(
+            checks,
+            "t03_p2_dit:independent_check_and_partial_boundary",
+            t03_p2_check.get("status") == "PASS"
+            and t03_p2_check.get("case_id") == t03_p2_config.get("case_id")
+            and t03_p2_check.get("stage") == "T03-P2-DIT-CONTRACT-SMOKE"
+            and t03_p2_check.get("evidence_level") == "E3"
+            and t03_p2_check.get("independent_of_simulation_runner") is True
+            and len(t03_p2_check.get("checks", [])) == 15
+            and all(
+                item.get("status") == "PASS"
+                for item in t03_p2_check.get("checks", [])
+            )
+            and not t03_p2_check.get("failures")
+            and t03_p2_completion.get("status") == "PARTIAL"
+            and t03_p2_completion.get("dit_literature_input_contract_passed") is True
+            and t03_p2_completion.get("dit_interface_equation_smoke_passed") is True
+            and t03_p2_completion.get("formal_three_point_dit_sensitivity_complete")
+            is False
+            and t03_p2_completion.get("bulk_tail_and_deep_traps_complete") is False
+            and t03_p2_completion.get("complete_p2_trap_group") is False
+            and t03_p2_completion.get("complete_t03_five_group_sensitivity") is False
+            and t03_p2_completion.get(
+                "formal_three_point_dit_sensitivity_permitted_next"
+            )
+            is True
+            and t03_p2_completion.get("experimental_calibration_permitted") is False,
+            (
+                f"independent={t03_p2_check.get('status')} "
+                f"completion={t03_p2_completion}"
+            ),
+        )
+        t03_p2_artifacts = [
+            ROOT / item["path"] for item in t03_p2_report.get("artifacts", {}).values()
+        ]
+        t03_p2_artifact_hashes_match = all(
+            path.is_file()
+            and path.stat().st_size > 0
+            and t03_p2_report["artifacts"][name]["sha256"] == sha256(path)
+            for name, path in (
+                (name, ROOT / item["path"])
+                for name, item in t03_p2_report.get("artifacts", {}).items()
+            )
+        )
+        with (
+            (ROOT / t03_p2_config["outputs"]["case_summary_csv"]).open(
+                "r", encoding="utf-8", newline=""
+            ) as case_stream,
+            (ROOT / t03_p2_config["outputs"]["interface_samples_csv"]).open(
+                "r", encoding="utf-8", newline=""
+            ) as interface_stream,
+            (ROOT / t03_p2_config["outputs"]["state_nodes_csv"]).open(
+                "r", encoding="utf-8", newline=""
+            ) as state_stream,
+        ):
+            t03_p2_cases = list(csv.DictReader(case_stream))
+            t03_p2_interfaces = list(csv.DictReader(interface_stream))
+            t03_p2_states = list(csv.DictReader(state_stream))
+        t03_p2_resource = t03_p2_report.get("resource_usage", {})
+        add_check(
+            checks,
+            "t03_p2_dit:persisted_outputs_counts_and_hashes",
+            len(t03_p2_artifacts) == 5
+            and t03_p2_artifact_hashes_match
+            and len(t03_p2_cases) == 5
+            and [row.get("case_id") for row in t03_p2_cases]
+            == t03_p2_config["acceptance"]["required_case_ids"]
+            and len(t03_p2_interfaces) == 195
+            and len(t03_p2_states) == 12095
+            and t03_p2_resource.get("device_count") == 5
+            and t03_p2_resource.get("dc_solve_count") == 17
+            and t03_p2_resource.get("state_node_row_count") == 12095
+            and t03_p2_resource.get("interface_sample_row_count") == 195
+            and all(
+                path.is_file() and path.stat().st_size > 0
+                for path in t03_p2_artifacts
+                + [t03_p2_contract_path, t03_p2_report_path, t03_p2_check_path]
+            ),
+            (
+                f"cases={len(t03_p2_cases)} interfaces={len(t03_p2_interfaces)} "
+                f"states={len(t03_p2_states)} dc={t03_p2_resource.get('dc_solve_count')}"
+            ),
+        )
+        t03_p2_scope = t03_p2_config.get("scope", {})
+        t03_p2_literature = t03_p2_config.get("literature_input", {})
+        t03_p2_prohibited = " ".join(
+            t03_p2_config.get("evidence_boundary", {}).get("prohibited_claims", [])
+        )
+        add_check(
+            checks,
+            "t03_p2_dit:single_interface_literature_range_and_closed_scan",
+            t03_p2_scope.get("changed_variable_count") == 1
+            and t03_p2_scope.get("active_interface") == "bottom_oxide_channel"
+            and t03_p2_scope.get("inactive_interface") == "channel_top_oxide"
+            and t03_p2_literature.get("source_evidence_level") == "E1"
+            and t03_p2_literature.get("formal_sensitivity_values_cm2_ev")
+            == [8.43e11, 3.07e12, 6.02e12]
+            and t03_p2_report.get("formal_sensitivity_run") is False
+            and "completed D_it sensitivity" in t03_p2_prohibited
+            and "bulk N_tail" in t03_p2_prohibited
+            and "complete T03" in t03_p2_prohibited,
+            (
+                f"active={t03_p2_scope.get('active_interface')} "
+                f"future_points={t03_p2_literature.get('formal_sensitivity_values_cm2_ev')}"
+            ),
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t03_p2_dit:equation_smoke", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

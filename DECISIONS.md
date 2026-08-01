@@ -1,5 +1,22 @@
 # 设计决策记录
 
+## ADR-023：P2 先冻结单界面 DIT 方程并只关闭冒烟门
+
+- 日期：2026-08-01
+- 状态：通过；T03-P2 仍为 partial，不代表正式 DIT 敏感性或完整陷阱组
+
+### 决策
+
+- P2-DIT 的唯一当前变量是 bottom `bottom_interface_D_it_cm^-2_eV^-1`；`bottom_oxide_channel` 为 active interface，`channel_top_oxide` 固定为零，避免将单界面文献值重复施加。
+- 采用准静态线性均匀界面陷阱电荷：`Q_it=-q*D_it*(Potential@r1-Psi_neutral)`，`Psi_neutral=0 V` 是显式教学假设；DEVSIM 的 `fluxterm` 写成 `+q*D_it*(Potential@r1-Psi_neutral)=-Q_it`，并保留连续 `PotentialEquation`。
+- RSC DOI `10.1039/D6TC00357E` 的 `8.43e11/3.07e12/6.02e12 cm^-2 eV^-1` 作为未来三点形式扫描，`4.98e12` 留在来源表但不增加第四个器件；这些值只提供 E1 敏感性范围，不是项目测量。
+- 只有 22 项合同、5 案例/17 次 DC 方程冒烟、节点/界面落盘和独立 15 项检查全部通过，才允许进入另立的三点 transfer sensitivity 合同；本次不提取 SS、VTH、Ioff、Ion。
+
+### 结果边界
+
+- 冒烟证明冻结教学模型中的零陷阱极限、界面电势连续、界面通量公式/符号、中心 Gauss 关系、耦合求解收敛和 T02-C 零陷阱回归；独立落盘复核为 E3。
+- 该结果不能称为完成 DIT 扫描、完成 P2、动态捕获-发射、迟滞、bias stress、bulk tail/deep traps、双界面验证、实验校准或电路参数。
+
 ## ADR-022：P1 电容比采用固定总耦合分配代理并关闭数值组
 
 - 日期：2026-08-01

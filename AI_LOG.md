@@ -16,6 +16,47 @@
 
 ---
 
+## 2026-08-01 | Codex GPT-5 | 完成 T03-P2-DIT 输入合同与方程冒烟（P2 保持 partial）
+
+### 用户目标
+
+继续按阶段门推进，只处理 T03-P2-DIT 的最小可审计子阶段；不同时启动 P3/P5、SPICE、版图或 HZO，并在验证后同步文档、提交和推送。
+
+### 读取的关键输入
+
+- `AGENTS.md` 及规定顺序的项目入口文档、`config/project.json`、`config/experiments.json`。
+- 已通过的 T01/T02、T03-P4-L、T03-P1-BIAS 和 T03-P1-CAP-RATIO 配置、报告、CSV 与独立检查。
+- RSC 论文 DOI `10.1039/D6TC00357E` 的四个 IGZO 界面陷阱来源点（E1）；论文器件是单底栅、15 nm Al2O3、30 nm a-IGZO，与本项目双栅 30/24/30 nm 教学栈不相同。
+- DEVSIM interface model/interface equation 手册，确认连续 `PotentialEquation` 与 `fluxterm` 界面方程可并存，并需显式区分 region0/region1 组装符号。
+
+### 本次修改
+
+- 新增 `references/t03_p2_dit_sources.csv`，保存 4 行 DOI、堆栈、退火、`D_it`、SS、证据等级和项目限制。
+- 新增 `config/tcad_t03_p2_interface_trap.json`，冻结唯一变量为 bottom `D_it`，top interface 设为 0，`Psi_neutral=0 V` 为教学假设；未来正式点为 `8.43e11/3.07e12/6.02e12 cm^-2 eV^-1`，本次仅用 `3.07e12` 做代表冒烟。
+- 新增 `scripts/check_t03_p2_dit_contract.py`、`tcad/run_t03_p2_dit_equation_smoke.py` 和 `scripts/check_t03_p2_dit_equation_smoke.py`，并加入三个 Makefile 目标。
+- 落盘 5 个器件、17 次 DC、12095 行节点状态、195 行界面采样、求解日志、输入快照和 E2/E3 JSON 检查报告。
+- 更新总检查器、项目/实验配置、状态、架构、计划、决策、TCAD 路线、报告第 5/8/12 章和证据矩阵；P2 标为 partial，不标为完成。
+
+### 验证与修正记录
+
+- `make t03-p2-dit-contract-check`：22/22 PASS，且明确 `simulation=NOT_RUN_BY_CONTRACT_CHECK`。
+- 首次冒烟暴露 DEVSIM 对纯常数 `0` 界面模型的空模型优化；第二次又确认派生的 `InterfaceTrapPhysicalSheetCharge` 不能稳定作为读取接口。没有掩盖该失败：零 `D_it` 分支改为显式零值回退，非零分支读取真实 `InterfaceTrapFluxTerm`，物理 `Q_it` 按冻结符号取其相反数。
+- `make t03-p2-dit-equation-smoke`：14/14 PASS，5 案例、17 次 DC 全收敛；零 `D_it` 节点电势差为 0，代表界面电势连续性最大差约 `1.95e-13 V`，中心 Gauss 相对误差约 `1.49e-15`。
+- `make t03-p2-dit-equation-smoke-check`：不导入运行器或 DEVSIM，从落盘 CSV/JSON、哈希、方程清单、T02-C 零陷阱回归和边界重新计算，15/15 PASS，证据等级 E3。
+- `make check`：369 项全部 PASS。
+- `make report`：因其余报告章节仍有 16 个既存占位符而按正式门正确 FAIL；没有把结构检查或本阶段章节更新冒充最终报告完成。
+- `make report-check`：在项目当前登记的 `--allow-placeholders` 检查模式下 PASS，确认 12 章、5 附录、12 张图片和 XML/组装结构有效，同时明确报告仍有 16 个占位符。
+
+### 新决策、假设和未解决问题
+
+- 当前模型是准静态线性均匀界面陷阱电容，不是能量分布、捕获-发射、迟滞或可靠性模型；单个文献值只施加在 bottom oxide/channel 界面，避免把单界面值重复计入两侧。
+- 本阶段不报告正式陷阱扫描的 SS、VTH、Ioff、Ion 或迁移率趋势；文献值是 E1 范围约束，不是项目测量或拟合参数。
+- P2 仍未完成；bulk tail/deep traps、P3、P5 和完整 T03 保持关闭。
+
+### 下一步建议
+
+仅在本阶段门保持 PASS 的前提下，另立并运行最小三点 `T03-P2-DIT` transfer sensitivity 合同；完成前不并行展开其他参数组。
+
 ## 2026-08-01 | Codex GPT-5 | 完成 T03-P1-CAP-RATIO 并关闭数值 P1
 
 ### 用户目标

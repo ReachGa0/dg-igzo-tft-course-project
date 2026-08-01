@@ -1,0 +1,35 @@
+{
+  "case_id": "IGZO_T03_P2_DIT_CONTRACT_SMOKE_V1",
+  "stage": "T03-P2-DIT-CONTRACT-SMOKE",
+  "inputs": {
+    "t03_config": {
+      "path": "config/tcad_t03_p2_interface_trap.json",
+      "sha256": "c22ac08b2fc6121b73960c073b7381bc6b361bcf06f6c063c27874a693d8d664"
+    },
+    "contract_report": {
+      "path": "results/reports/tcad_t03_p2_dit_input_contract.json",
+      "sha256": "56fe9f60d5a1d2d3ecc00c3f1ad4483fdafd3a088361bef3fd8d381f5c2fc1a9"
+    },
+    "literature_table": {
+      "path": "references/t03_p2_dit_sources.csv",
+      "sha256": "ed5653587beded66ce37c5ec77c30c5a7675faeb3000f47678fe32eb2c6eee3f"
+    },
+    "t01_baseline_config": {
+      "path": "config/tcad_t01_baseline.json",
+      "sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9"
+    },
+    "t01_mesh_config": {
+      "path": "config/tcad_t01_d_mesh_refinement.json",
+      "sha256": "6ba9815ab063708b9fa560092974ac65a748b95c981d16056af3dec1e0f74e23"
+    },
+    "t02_a_config": {
+      "path": "config/tcad_t02_a_dual_gate_contract.json",
+      "sha256": "59f19996be43c22972bf223cfebf1f95fcaec5cdd9bf2edef76d45e9f1b4ccb3"
+    },
+    "t02_c_family_csv": {
+      "path": "results/tables/tcad_t02_c_bidirectional_families.csv",
+      "sha256": "247d863f6a650545a2a5c407e92f3141113ec21fb0d648c2c9d45024e208f4a9"
+    }
+  },
+  "formal_sensitivity_run": false
+}

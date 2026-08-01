@@ -1,0 +1,121 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T03_P2_DIT_CONTRACT_SMOKE_V1",
+  "stage": "T03-P2-DIT-CONTRACT-SMOKE",
+  "evidence_level": "E3",
+  "independent_of_simulation_runner": true,
+  "checks": [
+    {
+      "name": "identity:report_and_config_match",
+      "status": "PASS",
+      "detail": "case=IGZO_T03_P2_DIT_CONTRACT_SMOKE_V1 stage=T03-P2-DIT-CONTRACT-SMOKE formal_scan=False"
+    },
+    {
+      "name": "inputs:snapshot_hashes_and_formal_scan_flag_match",
+      "status": "PASS",
+      "detail": "inputs=7"
+    },
+    {
+      "name": "outputs:csv_headers_and_case_order_match_contract",
+      "status": "PASS",
+      "detail": "case_fields=31 interface_fields=14 state_fields=15"
+    },
+    {
+      "name": "counts:five_cases_17_solves_12095_raw_rows",
+      "status": "PASS",
+      "detail": "cases=5 solves=17 state_rows=12095 interface_rows=195"
+    },
+    {
+      "name": "solver:all_persisted_records_converged",
+      "status": "PASS",
+      "detail": "records=17"
+    },
+    {
+      "name": "topology:every_case_matches_enabled_t02_stack",
+      "status": "PASS",
+      "detail": "nodes=['2419'] elements=['4480']"
+    },
+    {
+      "name": "equation:active_case_has_fluxterm_and_inactive_case_does_not",
+      "status": "PASS",
+      "detail": "active=['InterfaceTrapChargeEquation', 'PotentialEquation'] inactive=['PotentialEquation']"
+    },
+    {
+      "name": "zero_limit:reference_and_zero_dit_node_potentials_match",
+      "status": "PASS",
+      "detail": "maximum_node_potential_difference=0.000000e+00 V"
+    },
+    {
+      "name": "interface:formula_sign_and_continuity_persisted_values_match",
+      "status": "PASS",
+      "detail": "formula=0.000000e+00 sign=0.000000e+00 continuity=1.946776e-13"
+    },
+    {
+      "name": "gauss:representative_case_matches_interface_displacement_jump",
+      "status": "PASS",
+      "detail": "relative_error=1.4898796777454199e-15 Qit=-7.772794507316709e-09"
+    },
+    {
+      "name": "response:representative_dit_has_nonzero_electrostatic_effect",
+      "status": "PASS",
+      "detail": "Qit=-7.772794507316709e-09 potential_change=1.936470e-02 V"
+    },
+    {
+      "name": "regression:zero_dit_coupled_case_reproduces_t02_c_reference",
+      "status": "PASS",
+      "detail": "current=2.289013e-15 potential=0.000000e+00 density=1.494425e-16"
+    },
+    {
+      "name": "coupled:conservation_and_representative_current_direction_match",
+      "status": "PASS",
+      "detail": "maximum_imbalance=1.602309e-15 representative_to_zero_ratio=7.787091e-01"
+    },
+    {
+      "name": "artifacts:all_reported_hashes_and_files_match",
+      "status": "PASS",
+      "detail": "artifacts=5 dc_solves=17"
+    },
+    {
+      "name": "boundary:smoke_does_not_close_formal_dit_or_p2",
+      "status": "PASS",
+      "detail": "{\"bulk_tail_and_deep_traps_complete\": false, \"complete_p2_trap_group\": false, \"complete_t03_five_group_sensitivity\": false, \"dit_interface_equation_smoke_passed\": true, \"dit_literature_input_contract_passed\": true, \"experimental_calibration_permitted\": false, \"formal_three_point_dit_sensitivity_complete\": false, \"formal_three_point_dit_sensitivity_permitted_next\": true, \"status\": \"PARTIAL\"}"
+    }
+  ],
+  "failures": [],
+  "recomputed_diagnostics": {
+    "maximum_zero_dit_electrostatic_node_potential_difference_v": 0.0,
+    "maximum_interface_formula_error_c_per_cm2": 0.0,
+    "maximum_interface_sign_error_c_per_cm2": 0.0,
+    "maximum_interface_potential_discontinuity_v": 1.946776073680212e-13,
+    "representative_center_gauss_relative_error": 1.4898796777454199e-15,
+    "representative_center_potential_change_v": 0.019364701313458972,
+    "t02_c_zero_dit_reproduction": {
+      "current_relative": 2.289013097530675e-15,
+      "center_potential_difference_v": 0.0,
+      "center_density_relative": 1.4944245335611193e-16
+    },
+    "representative_to_zero_dit_current_ratio": 0.7787090708396656
+  },
+  "artifact_hashes": {
+    "config_snapshot": {
+      "path": "results/tcad/t03_sensitivity/p2_dit_equation_smoke/input_snapshot.json",
+      "sha256": "317bc24ab17313e6c2376e9d2a418a8a16b05f8ac3c994be2e075dd4c40ba627"
+    },
+    "solver_log": {
+      "path": "results/tcad/t03_sensitivity/p2_dit_equation_smoke/solver_log.json",
+      "sha256": "1bd7ced8e0f7dcfaed3e37046eccc8958e71a734626cec9587a9be05f0e28c19"
+    },
+    "case_summary_csv": {
+      "path": "results/tables/tcad_t03_p2_dit_equation_smoke_cases.csv",
+      "sha256": "7619e0cda566acb363212af9101be696416168e5a41a7df563a9d63c261bbafc"
+    },
+    "interface_samples_csv": {
+      "path": "results/tables/tcad_t03_p2_dit_interface_samples.csv",
+      "sha256": "7963d7cee941bb942807bf7402c7fb97d928087ff94a29258e16ccb806cf4e85"
+    },
+    "state_nodes_csv": {
+      "path": "results/tcad/t03_sensitivity/p2_dit_equation_smoke/state_nodes.csv",
+      "sha256": "b0c8692dcb3062138aebaf7474e58aedcb660390c8af91d4143058a6fde4c91a"
+    }
+  }
+}

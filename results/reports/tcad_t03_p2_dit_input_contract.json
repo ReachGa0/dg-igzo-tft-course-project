@@ -1,0 +1,222 @@
+{
+  "status": "PASS",
+  "contract_status": "PASS",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "case_id": "IGZO_T03_P2_DIT_CONTRACT_SMOKE_V1",
+  "stage": "T03-P2-DIT-CONTRACT-SMOKE",
+  "parameter_group_id": "P2",
+  "evidence_level": "E3",
+  "config": {
+    "path": "config/tcad_t03_p2_interface_trap.json",
+    "sha256": "c22ac08b2fc6121b73960c073b7381bc6b361bcf06f6c063c27874a693d8d664"
+  },
+  "inputs": {
+    "project_config": {
+      "path": "config/project.json",
+      "sha256": "819bd7d06e5af4757c09aa4cef87999980ec986b298fe32d3d0a43a96837752a"
+    },
+    "experiments_config": {
+      "path": "config/experiments.json",
+      "sha256": "13bf60285a1802b309ba2100314e50d7659bfc5534d19adb2ae0ff3c479e2578"
+    },
+    "s00_report": {
+      "path": "results/reports/s00_data_audit.json",
+      "sha256": "44ea42ff7fd9923cd4c9c2d0156ce3d0029cd59655e3c4086ab7250f78b48e31"
+    },
+    "t01_baseline_config": {
+      "path": "config/tcad_t01_baseline.json",
+      "sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9"
+    },
+    "t01_mesh_config": {
+      "path": "config/tcad_t01_d_mesh_refinement.json",
+      "sha256": "6ba9815ab063708b9fa560092974ac65a748b95c981d16056af3dec1e0f74e23"
+    },
+    "t02_a_config": {
+      "path": "config/tcad_t02_a_dual_gate_contract.json",
+      "sha256": "59f19996be43c22972bf223cfebf1f95fcaec5cdd9bf2edef76d45e9f1b4ccb3"
+    },
+    "t02_c_config": {
+      "path": "config/tcad_t02_c_bidirectional.json",
+      "sha256": "93c29fe977dd304315537d7dcbb0e2ea4b920cdab331a7996d7c9dd399b84228"
+    },
+    "t02_c_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional.json",
+      "sha256": "d214e9bf7c1938cf3120eaaf06fc53d0b1c1faf0708c0378fef6b3faeafecfed"
+    },
+    "t02_c_check_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional_check.json",
+      "sha256": "a13c6bebb0f10e8bce7dabff865863ee862e9d3ac572dfc692423a66ba868aa4"
+    },
+    "t03_p4_report": {
+      "path": "results/reports/tcad_t03_p4_l_sensitivity.json",
+      "sha256": "b54c823f9618513334968c7a85872371315a283c7a518facd88166d5921cd61c"
+    },
+    "t03_p4_check_report": {
+      "path": "results/reports/tcad_t03_p4_l_sensitivity_check.json",
+      "sha256": "9f437759d91615732e3dddf37ced9d49144ae3927d9bc3ad429a39ff781e0e5d"
+    },
+    "t03_p1_bias_report": {
+      "path": "results/reports/tcad_t03_p1_bias_sensitivity.json",
+      "sha256": "e35fc46f642d6be876e91f01e0ea11c54f066033662fb3b66578010e91507e71"
+    },
+    "t03_p1_bias_check_report": {
+      "path": "results/reports/tcad_t03_p1_bias_sensitivity_check.json",
+      "sha256": "9489b04999c0076c69650da2c5c0b40413e19acc1e35ef5b53c0ec95501a78fb"
+    },
+    "t03_p1_cap_ratio_report": {
+      "path": "results/reports/tcad_t03_p1_cap_ratio_sensitivity.json",
+      "sha256": "6a715933139376959bda64939226e81ad82baab430f6fc09d4fd30f82dc089c9"
+    },
+    "t03_p1_cap_ratio_check_report": {
+      "path": "results/reports/tcad_t03_p1_cap_ratio_sensitivity_check.json",
+      "sha256": "ba9b524f620d6d8dcc1dcfe745a8a550ec168cc8a5150f727c54787e912eabcb"
+    },
+    "literature_table": {
+      "path": "references/t03_p2_dit_sources.csv",
+      "sha256": "ed5653587beded66ce37c5ec77c30c5a7675faeb3000f47678fe32eb2c6eee3f"
+    }
+  },
+  "checks": [
+    {
+      "name": "identity:t03_p2_dit_contract_smoke",
+      "status": "PASS",
+      "detail": "case=IGZO_T03_P2_DIT_CONTRACT_SMOKE_V1 stage=T03-P2-DIT-CONTRACT-SMOKE group=P2"
+    },
+    {
+      "name": "dependencies:complete_t02_gate_passed",
+      "status": "PASS",
+      "detail": "run=PASS independent=PASS completion=PASS"
+    },
+    {
+      "name": "dependencies:p4_group_passed",
+      "status": "PASS",
+      "detail": "run=PASS independent=PASS complete=True"
+    },
+    {
+      "name": "dependencies:numerical_p1_group_passed",
+      "status": "PASS",
+      "detail": "bias=PASS/PASS ratio=PASS/PASS complete=True"
+    },
+    {
+      "name": "gate:g0_remains_teaching_only",
+      "status": "PASS",
+      "detail": "{\"allowed_claim\": \"Teaching-parameter two-dimensional IGZO simulation\", \"missing_primary_inputs\": [\"condition-complete raw Id-Vg\", \"condition-complete raw Id-Vd\", \"device batch identity\", \"measurement or simulation condition metadata\"], \"prohibited_claim\": \"Accurate experimental fit or calibrated dual-gate prediction\", \"quantitative_fitting_permitted\": false, \"required_primary_fields\": [\"dataset_id\", \"device_id\", \"sweep_id\", \"VGS_V\", \"VDS_V\", \"ID_A\", \"W_um\", \"L_um\", \"temperature_K\", \"sweep_direction\", \"source\", \"source_status\"], \"status\": \"TEACHING_BASELINE_ONLY\", \"t01_permitted\": true}"
+    },
+    {
+      "name": "scope:igzo_2d_laptop_teaching_model_only",
+      "status": "PASS",
+      "detail": "2D n-IGZO electron-only drift-diffusion teaching model with the T02-A enabled symmetric dual-gate stack"
+    },
+    {
+      "name": "group:one_bottom_interface_dit_variable",
+      "status": "PASS",
+      "detail": "group=P2 variable=bottom_interface_D_it_cm^-2_eV^-1"
+    },
+    {
+      "name": "source:four_primary_literature_rows_and_schema",
+      "status": "PASS",
+      "detail": "rows=4 ids=['RSC_D6TC00357E_O2_300', 'RSC_D6TC00357E_O2_350', 'RSC_D6TC00357E_D2_300', 'RSC_D6TC00357E_D2_350']"
+    },
+    {
+      "name": "source:reported_dit_and_ss_values_match_article",
+      "status": "PASS",
+      "detail": "dit=[843000000000.0, 3070000000000.0, 4980000000000.0, 6020000000000.0] ss=[75.0, 115.0, 150.0, 168.0]"
+    },
+    {
+      "name": "source:three_literature_points_plus_zero_control_frozen",
+      "status": "PASS",
+      "detail": "formal=[843000000000.0, 3070000000000.0, 6020000000000.0] control=0.0 smoke=3070000000000.0"
+    },
+    {
+      "name": "source:e1_process_mismatch_is_explicit",
+      "status": "PASS",
+      "detail": "The project uses a dual gate, 30 nm physical Al2O3 on each side, 24 nm IGZO, ideal contacts, and no anneal process model; source values constrain a sensitivity range only."
+    },
+    {
+      "name": "model:bottom_interface_order_and_single_location",
+      "status": "PASS",
+      "detail": "{\"region0\": \"bottom_oxide\", \"region1\": \"channel\"}"
+    },
+    {
+      "name": "model:physical_charge_and_devsim_flux_sign_frozen",
+      "status": "PASS",
+      "detail": "InterfaceTrapFluxTerm=q*D_it*(Potential@r1-Psi_neutral)=-Q_it"
+    },
+    {
+      "name": "model:continuous_plus_fluxterm_assembly_frozen",
+      "status": "PASS",
+      "detail": "type=fluxterm software=https://devsim.net/models.html#interface"
+    },
+    {
+      "name": "model:units_and_neutral_reference_are_explicit_assumptions",
+      "status": "PASS",
+      "detail": "D_it[cm^-2 eV^-1] times a one-electron surface-energy shift numerically equal to DeltaPotential[V] gives cm^-2; multiplication by q gives C/cm^2 and dQ/dV=q*D_it gives F/cm^2."
+    },
+    {
+      "name": "model:dynamic_bulk_and_double_interface_claims_blocked",
+      "status": "PASS",
+      "detail": "This is a quasi-static linearized charge response about Psi_neutral, not a finite energy-distribution or capture-emission model. D_it controls only the bottom interface; applying the same number to both interfaces would double count a single-interface literature value. No bulk tail/deep states, trap-assisted recombination, time constants, hysteresis, bias stress, border traps, or temperature dependence are represented. The literature D_it values are not project measurements or fitted parameters."
+    },
+    {
+      "name": "smoke:three_electrostatic_zero_limit_and_charge_cases",
+      "status": "PASS",
+      "detail": "[{\"case_id\": \"electrostatic_reference_no_equation\", \"dit_cm2_ev\": 0.0, \"interface_equation_active\": false}, {\"case_id\": \"electrostatic_zero_dit_equation\", \"dit_cm2_ev\": 0.0, \"interface_equation_active\": true}, {\"case_id\": \"electrostatic_representative_dit_equation\", \"dit_cm2_ev\": 3070000000000.0, \"interface_equation_active\": true}]"
+    },
+    {
+      "name": "smoke:two_coupled_cases_and_minimal_continuation",
+      "status": "PASS",
+      "detail": "{\"fixed_bottom_gate_v\": 0.0, \"low_vds_values_v\": [0.001, 0.005, 0.01], \"start_at_all_zero_bias\": true, \"top_gate_values_v\": [0.05, 0.1]}"
+    },
+    {
+      "name": "execution:five_devices_17_solves_laptop_budget",
+      "status": "PASS",
+      "detail": "{\"laptop_target\": true, \"maximum_wall_seconds\": 120.0, \"required_coupled_case_count\": 2, \"required_coupled_dc_solve_count_per_case\": 7, \"required_device_count\": 5, \"required_electrostatic_case_count\": 3, \"required_electrostatic_dc_solve_count\": 3, \"required_total_dc_solve_count\": 17}"
+    },
+    {
+      "name": "acceptance:zero_limit_continuity_gauss_and_coupled_gates_frozen",
+      "status": "PASS",
+      "detail": "zero-limit, potential continuity, Gauss closure, current conservation, and response direction are mandatory"
+    },
+    {
+      "name": "outputs:paths_are_unique_and_stage_scoped",
+      "status": "PASS",
+      "detail": "outputs=9 unique=9"
+    },
+    {
+      "name": "boundary:equation_smoke_does_not_complete_scan_or_p2",
+      "status": "PASS",
+      "detail": "After contract, smoke, and independent persisted-evidence checks pass, T03-P2-DIT may claim only that a literature-constrained bottom-interface D_it range and a quasi-static DEVSIM sheet-charge equation have passed zero-limit, convergence, continuity, and Gauss-law smoke tests in the frozen teaching model."
+    }
+  ],
+  "failures": [],
+  "planned_smoke": {
+    "case_ids": [
+      "electrostatic_reference_no_equation",
+      "electrostatic_zero_dit_equation",
+      "electrostatic_representative_dit_equation",
+      "coupled_zero_dit_equation",
+      "coupled_representative_dit_equation"
+    ],
+    "device_count": 5,
+    "dc_solve_count": 17,
+    "formal_sensitivity_run": false
+  },
+  "planned_future_formal_values_cm2_ev": [
+    843000000000.0,
+    3070000000000.0,
+    6020000000000.0
+  ],
+  "evidence_boundary": {
+    "allowed_claim": "After contract, smoke, and independent persisted-evidence checks pass, T03-P2-DIT may claim only that a literature-constrained bottom-interface D_it range and a quasi-static DEVSIM sheet-charge equation have passed zero-limit, convergence, continuity, and Gauss-law smoke tests in the frozen teaching model.",
+    "prohibited_claims": [
+      "completed D_it sensitivity or completed P2 trap group",
+      "reported SS, VTH, Ioff, Ion, or mobility trend from a formal trap scan",
+      "experimental calibration, process prediction, measured project D_it, or uncertainty",
+      "dynamic capture-emission, hysteresis, bias-stress, reliability, or border-trap validation",
+      "bulk N_tail or N_deep trap evidence",
+      "both-interface trap validation or complete T03 five-group sensitivity",
+      "compact-model, circuit, layout, or HZO evidence"
+    ],
+    "next_gate": "Only a passed equation smoke plus independent check permits the separate minimum three-point T03-P2-DIT transfer sensitivity; P3, P5, SPICE, and layout remain closed."
+  }
+}

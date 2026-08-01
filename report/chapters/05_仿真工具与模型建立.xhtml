@@ -16,6 +16,17 @@
       <tr><td>T01-D-C 提取/状态</td><td>两档均在 VDS=0.01 V 取 51 个 VGS 点；VTH 用 60 nA 恒流对数插值，SS 用固定电流窗口 OLS，迁移率用物理氧化层电容和中心差分；4x 保存 VGS=-0.5/0.2/1.0 V 三状态</td><td>只生成可复算教学模型数值代理，不以课程目标匹配作为 PASS 条件</td></tr>
     </tbody>
   </table>
+  <h3>5.1 T03-P2-DIT 准静态单界面方程</h3>
+  <p>T03-P2-DIT 当前只建立并冒烟验证一个准静态、线性、均匀的界面陷阱电荷项。bottom oxide/channel 界面的区域顺序为 <code>region0=bottom_oxide</code>、<code>region1=channel</code>；top interface 的 <code>D_it</code> 固定为 0，避免把单界面文献值重复施加。物理面电荷写为 <code>Q_it=-q*D_it*(Potential@r1-Psi_neutral)</code>，其中 <code>Psi_neutral=0 V</code> 是显式教学假设。DEVSIM 保留原连续 <code>PotentialEquation</code>，另用 <code>fluxterm=q*D_it*(Potential@r1-Psi_neutral)=-Q_it</code> 加入界面方程。</p>
+  <table>
+    <thead><tr><th>合同项</th><th>当前实现</th><th>尚未实现</th></tr></thead>
+    <tbody>
+      <tr><td>位置与变量</td><td>仅 bottom Al2O3/IGZO interface；单变量 <code>D_it</code></td><td>双界面共同陷阱、bulk tail/deep states</td></tr>
+      <tr><td>单位</td><td><code>D_it: cm^-2 eV^-1</code>；<code>Q_it: C/cm2</code>；小信号系数 <code>q*D_it: F/cm2</code></td><td>能量窗口积分和占据统计</td></tr>
+      <tr><td>数值装配</td><td>连续电势界面方程 + 独立 <code>fluxterm</code>；对 region0/region1 提供解析导数</td><td>捕获-发射时间常数、复合、bias stress</td></tr>
+      <tr><td>当前门</td><td>零陷阱极限、符号、连续性、Gauss、耦合收敛和 T02-C 回归</td><td>正式三点 transfer 曲线及 SS/VTH/Ioff 趋势</td></tr>
+    </tbody>
+  </table>
   <table>
     <thead><tr><th>T02-A/B/C 拓扑与偏压合同</th><th>实现</th><th>证据边界</th></tr></thead>
     <tbody>
@@ -30,5 +41,5 @@
       <tr><td>T02-C 状态合同</td><td>保存双负、上下栅非对称、两种阈值附近和双正共 6 个状态的节点/沟道单元 CSV 与 VTK</td><td>覆盖电势、电子浓度和局部电流密度；不含陷阱、动态极化或非理想接触</td></tr>
     </tbody>
   </table>
-  <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>，T01-D-C 使用 <code>make t01-d-extract</code>/<code>make t01-d-extract-check</code>。T02-A 依次使用 <code>make t02-a-contract-check</code>、<code>make t02-a-regression</code> 和 <code>make t02-a-regression-check</code>；T02-B 使用对应的 <code>t02-b-contract-check</code>、<code>t02-b-minimal</code> 和 <code>t02-b-minimal-check</code> 目标；T02-C 使用 <code>make t02-c-contract-check</code>、<code>make t02-c-bidirectional</code> 和 <code>make t02-c-bidirectional-check</code>。各运行器保存输入快照、DC 求解记录、CSV、JSON 及阶段所需状态或图，独立检查器复算哈希、偏压点、守恒、单调性、上游回归、正反路径、上下栅互易性和提取公式。完整 T01 与完整 T02 均是 E2 教学参数数值证据；实验拟合、物理 Ion/Ioff、电容比、真实回滞、参数不确定度和电路可用性尚未验证。</p>
+  <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>，T01-D-C 使用 <code>make t01-d-extract</code>/<code>make t01-d-extract-check</code>。T02-A/B/C 分别使用对应的 contract、run 和 independent-check 目标。T03-P2-DIT 方程门依次使用 <code>make t03-p2-dit-contract-check</code>、<code>make t03-p2-dit-equation-smoke</code> 和 <code>make t03-p2-dit-equation-smoke-check</code>。各运行器保存输入快照、DC 求解记录、CSV、JSON 及阶段所需状态或图，独立检查器复算哈希、偏压点、守恒、上游回归和方程边界。完整 T01/T02 及当前 T03 子阶段均是教学模型数值证据；实验拟合、物理 Ion/Ioff、真实回滞、参数不确定度和电路可用性尚未验证。</p>
 </section>

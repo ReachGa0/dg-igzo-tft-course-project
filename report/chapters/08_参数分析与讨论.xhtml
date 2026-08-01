@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-08" class="report-chapter">
   <h2>8. 参数分析与讨论</h2>
-  <p>本章报告 T03 已关闭的两个参数组：T03-P4-L 沟道长度组，以及由 T03-P1-BIAS 和 T03-P1-CAP-RATIO 组成的数值 P1 组。它们均继承 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型，不含陷阱、复合、铁电极化或非理想接触。因此下列 VTH、Delta VTH、gm、耦合斜率和电流均是受限数值代理，不是实验参数。</p>
+  <p>本章报告 T03 已关闭的两个参数组：T03-P4-L 沟道长度组，以及由 T03-P1-BIAS 和 T03-P1-CAP-RATIO 组成的数值 P1 组；另外单列 P2-DIT 已通过的输入合同与方程冒烟。P2 尚未运行正式敏感性，所以不能与前两个完成组并列。全部结果继承 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型；下列 VTH、Delta VTH、gm、耦合斜率和电流均是受限数值代理，不是实验参数。</p>
 
   <h3>8.1 沟道长度方向性敏感性</h3>
   <p>每个长度从独立的零偏压平衡态开始，随后执行与 T02-C 相同的低漏压阶梯、负向预处理和 31 点顶栅上扫。三个新器件共完成 123 次 DC 求解和 93 个正式点，并在 <code>VTG=1.0 V</code> 保存一个代表状态。VTH 采用 10 nA*(W/L) 的对数插值代理，gm 在 VTH+0.2 V 处由中心差分和线性插值得到。</p>
@@ -97,6 +97,32 @@
   </figure>
   <p>对应命令为 <code>make t03-p1-cap-ratio-contract-check</code>、<code>make t03-p1-cap-ratio-sensitivity</code> 和 <code>make t03-p1-cap-ratio-sensitivity-check</code>。20 项静态合同、运行器 16 项和不导入运行器或 DEVSIM 的独立 13 项检查全部 PASS；独立检查从落盘 CSV 重算 VTH、Delta VTH、gm、固定总量和 T02-C 复现，并核对 5 个节点状态、5 个单元状态、30 个 VTK、两张 PNG 及全部哈希。运行器报告为 E2，独立持久化证据为 E3。</p>
 
-  <h3>8.10 适用范围和未完成组</h3>
-  <p>T03-P4-L 与数值 P1 已完整关闭，其中 P1 必须同时引用 BIAS 和 CAP-RATIO 两个子阶段。P2 陷阱、P3 接触和 P5 温度仍未实现，因此本章不关闭完整 T03 五组参数分析。下一门只允许先冻结 <code>T03-P2-DIT</code> 的数据来源、方程、单位、至少三点输入和验收合同；也没有进行实验拟合、紧凑模型、SPICE、电路、版图或 HZO 工作。</p>
+  <h3>8.10 P2-DIT 文献输入与方程冒烟</h3>
+  <p>文献输入来自 DOI <code>10.1039/D6TC00357E</code>，原器件为单底栅、15 nm Al2O3、30 nm a-IGZO。其四个报道点只作为 E1 范围来源；本项目双栅 30/24/30 nm 教学栈、理想接触和无退火工艺模型与原文不同。</p>
+  <table>
+    <thead><tr><th>退火</th><th>温度 (C)</th><th>D_it (cm^-2 eV^-1)</th><th>SS (mV/dec)</th><th>本项目用途</th></tr></thead>
+    <tbody>
+      <tr><td>O2</td><td>300</td><td>6.02e12</td><td>168</td><td>未来上界点</td></tr>
+      <tr><td>O2</td><td>350</td><td>4.98e12</td><td>150</td><td>保留来源，不增加第四个正式器件</td></tr>
+      <tr><td>D2</td><td>300</td><td>3.07e12</td><td>115</td><td>当前代表冒烟与未来中点</td></tr>
+      <tr><td>D2</td><td>350</td><td>8.43e11</td><td>75</td><td>未来下界点</td></tr>
+    </tbody>
+  </table>
+  <p>方程冒烟包含三个静电案例（无界面方程的零陷阱参考、启用方程的零陷阱极限、<code>D_it=3.07e12</code> 的代表电荷）和两个耦合漂移扩散案例（零陷阱、代表电荷），共 5 个器件和 17 次 DC。所有求解收敛；落盘 12095 行节点状态和 195 行界面采样。</p>
+  <table>
+    <thead><tr><th>验收量</th><th>结果</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td>零 D_it 与无方程的最大节点势差</td><td>0 V</td><td>PASS</td></tr>
+      <tr><td>最大界面电势不连续</td><td>1.95e-13 V</td><td>PASS</td></tr>
+      <tr><td>代表中心 Gauss 相对误差</td><td>1.49e-15</td><td>PASS</td></tr>
+      <tr><td>T02-C 零陷阱电流相对复现差</td><td>2.29e-15</td><td>PASS</td></tr>
+      <tr><td>代表/零陷阱电流比</td><td>0.778709</td><td>只作响应方向冒烟</td></tr>
+    </tbody>
+  </table>
+
+  <h3>8.11 P2-DIT 证据边界</h3>
+  <p>22 项静态合同、运行器 14 项和不导入运行器/DEVSIM 的独立 15 项检查全部 PASS。E3 只表示来源、输入、方程、落盘文件和复算链可审计；没有三点 transfer 曲线，不能报告 DIT 对 SS、VTH、Ioff、Ion 或迁移率的正式趋势，也没有 bulk tail/deep states、动态捕获-发射、迟滞、bias stress、双界面或实验校准证据。</p>
+
+  <h3>8.12 适用范围和未完成组</h3>
+  <p>T03-P4-L 与数值 P1 已完整关闭，其中 P1 必须同时引用 BIAS 和 CAP-RATIO 两个子阶段。P2 仅完成 DIT 输入合同与方程冒烟，正式三点 DIT transfer sensitivity 和 bulk traps 仍未完成；P3 接触和 P5 温度也未实现，因此本章不关闭完整 T03。下一门只允许另立并运行 <code>T03-P2-DIT-FORMAL</code> 三点扫描；也没有进行实验拟合、紧凑模型、SPICE、电路、版图或 HZO 工作。</p>
 </section>

@@ -19,7 +19,7 @@
 - 题目：基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK。
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
-- S00、T01-A/B/C/D-A/D-B/D-C 和 T02-A/B/C 已完成；T03-P4-L 已完整关闭，T03-P1-BIAS 与 T03-P1-CAP-RATIO 也均完成 E3 复核并共同关闭数值 P1。G0 仍为 `TEACHING_BASELINE_ONLY`。冻结教学模型的完整 T01/T02 数值门已关闭；P2/P3/P5、M00/C00/L00/V01 仍未实现。
+- S00、T01-A/B/C/D-A/D-B/D-C 和 T02-A/B/C 已完成；T03-P4-L 已完整关闭，T03-P1-BIAS 与 T03-P1-CAP-RATIO 均完成 E3 复核并共同关闭数值 P1。T03-P2-DIT 只完成 E1 文献输入合同与 E3 准静态单界面方程冒烟，正式三点 transfer sensitivity 和 bulk traps 未运行，所以 P2 仍为 partial。G0 仍为 `TEACHING_BASELINE_ONLY`；P3/P5、M00/C00/L00/V01 仍未实现。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
@@ -65,6 +65,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 - T03-P4-L 沟道长度敏感性：E3；V2 合同 25 项 PASS，L=8/10/12 um 三个新器件共 123 次 DC、93 点、3 个状态，运行器 16 项和独立 14 项复算 PASS。开态电流代理与 gm 代理随 L 严格下降；理想 1/L 诊断按原冻结阈值 FAIL（VTH range=12.058 mV，I*L spread=14.315%，gm*L spread=15.461%，log slope=-0.61818，R2=0.999517），该 FAIL 是公开限制而非被放宽的通过。
 - T03-P1-BIAS 固定底栅偏压敏感性：E3；22 项合同冻结 `VBG=-0.4/-0.2/0/+0.2/+0.4 V`，其余输入含对称 `Ctop/Cbottom=1` 代理不变。五个新器件完成 217 次 DC、155 点和 5 个 `VTG=0.3 V` 状态，运行器 14 项和独立 14 项复算 PASS。VTH 代理为 0.600083/0.438180/0.263857/0.068202/-0.155482 V，OLS 斜率 -0.940554 V/V、R2=0.995712；零副栅参考对 T02-C 复现差异为 0。该结果不是物理电容比、实验耦合系数或完整 P1。
 - T03-P1-CAP-RATIO 有效电容分配比敏感性：E3；20 项合同冻结 `Ctop/Cbottom=0.5/0.75/1.0/1.5/2.0`，上下物理介质厚度固定 30 nm，并以 `epsilon_top+epsilon_bottom=13.6` 固定总耦合代理。五个新器件完成 205 次 DC、155 点和 5 个 `VTG=0.3 V` 状态，运行器 16 项和独立 13 项复算 PASS。VTH 代理严格降至 0.209247 V，gm 代理严格升至 4.94347e-5 S/cm；比值 1 对 T02-C 复现差异为 0。它与 BIAS 共同关闭数值 P1，但不是物理电容、材料参数或制造栈验证。
+- T03-P2-DIT 输入合同与方程冒烟：E3；4 行 RSC E1 来源冻结未来 `8.43e11/3.07e12/6.02e12 cm^-2 eV^-1` 三点，当前仅在 bottom interface 以 `3.07e12` 运行代表方程冒烟。5 个器件完成 17 次 DC、12095 行节点和 195 行界面采样，运行器 14 项与独立 15 项 PASS；零 `D_it` 节点势差为 0，代表中心 Gauss 相对误差 1.49e-15。该结果不包含正式 DIT 曲线、SS/VTH/Ioff 提取、bulk traps、动态陷阱或实验标定，P2 仍为 partial。
 - 学长 IGZO 曲线：E1/reference_only；元数据不完整。
 - IGZO 单管外部 GDS：E2 基线，可参考但尚未迁入新 PDK。
 - 其余领域任务：E0。
@@ -78,7 +79,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. T02-A/B/C、T03-P4-L 和完整数值 P1 已通过。下一步只能冻结独立的 `T03-P2-DIT` 至少三点界面陷阱密度合同，并先冻结来源、方程、单位、固定量和验收门；合同与最小方程测试通过后只运行这一子阶段。不得同时铺开 P3/P5，也不得提前启动 SPICE、KLayout 或 HZO。
+8. T02-A/B/C、T03-P4-L、完整数值 P1 和 T03-P2-DIT 合同/方程冒烟已通过。下一步只能另立并运行 `T03-P2-DIT-FORMAL` 三点 transfer sensitivity；通过前不得铺开 bulk traps、P3/P5，也不得提前启动 SPICE、KLayout 或 HZO。
 
 ## 原始资产路径
 
