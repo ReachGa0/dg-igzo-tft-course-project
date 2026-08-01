@@ -1,0 +1,134 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T03_P1_CAP_RATIO_V1",
+  "stage": "T03-P1-CAP-RATIO",
+  "evidence_level": "E3",
+  "independent_of_simulation_runner": true,
+  "checks": [
+    {
+      "name": "identity:e2_cap_ratio_report",
+      "status": "PASS",
+      "detail": "status=PASS case=IGZO_T03_P1_CAP_RATIO_V1"
+    },
+    {
+      "name": "contract:static_gate_and_config_hash_match",
+      "status": "PASS",
+      "detail": "checks=20 simulation=NOT_RUN_BY_CONTRACT_CHECK"
+    },
+    {
+      "name": "inputs:snapshot_hashes_match",
+      "status": "PASS",
+      "detail": "inputs=17"
+    },
+    {
+      "name": "solver:five_fresh_devices_and_205_dc_solves_converged",
+      "status": "PASS",
+      "detail": "runs=5 solve_counts=[41, 41, 41, 41, 41] records=205 wall=12.74939907999942"
+    },
+    {
+      "name": "topology:five_identical_fixed_geometry_devices_and_ratio_encoding_valid",
+      "status": "PASS",
+      "detail": "topologies=[(2419, 4480), (2419, 4480), (2419, 4480), (2419, 4480), (2419, 4480)] encoding=True"
+    },
+    {
+      "name": "curves:155_persisted_points_match_report_grid_controls_and_encoding",
+      "status": "PASS",
+      "detail": "rows=155 fields=28 grids=True"
+    },
+    {
+      "name": "current:direction_conservation_primary_ordering_and_zero_states_recomputed",
+      "status": "PASS",
+      "detail": "imbalance=4.842871e-10 primary=True zero_current=0.000e+00"
+    },
+    {
+      "name": "extraction:vth_delta_and_gm_recomputed_independently",
+      "status": "PASS",
+      "detail": "VTH=[0.36843318040303513, 0.29833687816120913, 0.26385685799760256, 0.22829893657413922, 0.20924721820673142] delta=[0.10457632240543258, 0.03448002016360657, 0.0, -0.03555792142346334, -0.054609639790871134] gm=[2.8067278359670276e-05, 3.4722994436700694e-05, 3.937599666287622e-05, 4.551852053889154e-05, 4.943465357119618e-05]"
+    },
+    {
+      "name": "regression:t02_c_symmetric_curve_and_extraction_recomputed",
+      "status": "PASS",
+      "detail": "current=0.000e+00 potential=0.000e+00 density=0.000e+00"
+    },
+    {
+      "name": "states:five_node_element_and_30_vtk_outputs_recomputed",
+      "status": "PASS",
+      "detail": "states=['p1_ratio_0p50_common_primary', 'p1_ratio_0p75_common_primary', 'p1_ratio_1p00_common_primary', 'p1_ratio_1p50_common_primary', 'p1_ratio_2p00_common_primary']"
+    },
+    {
+      "name": "outputs:artifact_hashes_and_png_dimensions_match",
+      "status": "PASS",
+      "detail": "artifacts=7 figures=[(1944, 1440, 302230), (2016, 2196, 1314666)]"
+    },
+    {
+      "name": "scope:one_fixed_sum_p1_ratio_variable_and_p4_controls_remain_frozen",
+      "status": "PASS",
+      "detail": "P4 owns physical geometry and common-mode dielectric changes; P1 owns only this fixed-sum differential coupling allocation."
+    },
+    {
+      "name": "runner:numerical_p1_completion_and_evidence_boundary_pass",
+      "status": "PASS",
+      "detail": "runner_checks=16 p1_complete=True"
+    }
+  ],
+  "failures": [],
+  "recomputed_metrics": {
+    "maximum_relative_terminal_current_imbalance": 4.84287145465063e-10,
+    "vth_proxy_v": [
+      0.36843318040303513,
+      0.29833687816120913,
+      0.26385685799760256,
+      0.22829893657413922,
+      0.20924721820673142
+    ],
+    "delta_vth_proxy_v": [
+      0.10457632240543258,
+      0.03448002016360657,
+      0.0,
+      -0.03555792142346334,
+      -0.054609639790871134
+    ],
+    "gm_proxy_s_per_cm": [
+      2.8067278359670276e-05,
+      3.4722994436700694e-05,
+      3.937599666287622e-05,
+      4.551852053889154e-05,
+      4.943465357119618e-05
+    ],
+    "gm_relative_to_symmetric": [
+      0.7128017253753013,
+      0.8818315059803328,
+      1.0,
+      1.1559966577761955,
+      1.2554514872204692
+    ],
+    "t02_c_reference": {
+      "maximum_current_relative_difference": 0.0,
+      "maximum_center_potential_difference_v": 0.0,
+      "maximum_center_density_relative_difference": 0.0,
+      "vth_difference_v": 0.0,
+      "gm_relative_difference": 0.0
+    },
+    "state_absolute_drain_current_a_per_cm": [
+      8.034199316552203e-06,
+      1.0066291634131918e-05,
+      1.1549445541373129e-05,
+      1.3567110663847222e-05,
+      1.4877194294127645e-05
+    ],
+    "state_center_channel_potential_v": [
+      0.04824285841834704,
+      0.053412939413321606,
+      0.056544883007083165,
+      0.060215136668568855,
+      0.06232779086891796
+    ],
+    "state_center_channel_electron_density_cm3": [
+      5.3481087207549704e+16,
+      6.526854625154532e+16,
+      7.36401270624011e+16,
+      8.482796171868293e+16,
+      9.202328176674824e+16
+    ]
+  }
+}

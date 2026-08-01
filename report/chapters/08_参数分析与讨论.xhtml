@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-08" class="report-chapter">
   <h2>8. 参数分析与讨论</h2>
-  <p>本章报告 T03 已关闭的两个范围：完整的 T03-P4-L 沟道长度组，以及局部的 T03-P1-BIAS 固定底栅偏压子阶段。两者均继承 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型，不含陷阱、复合、铁电极化或非理想接触。因此下列 VTH、Delta VTH、gm、耦合斜率和电流均是受限数值代理，不是实验参数。</p>
+  <p>本章报告 T03 已关闭的两个参数组：T03-P4-L 沟道长度组，以及由 T03-P1-BIAS 和 T03-P1-CAP-RATIO 组成的数值 P1 组。它们均继承 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型，不含陷阱、复合、铁电极化或非理想接触。因此下列 VTH、Delta VTH、gm、耦合斜率和电流均是受限数值代理，不是实验参数。</p>
 
   <h3>8.1 沟道长度方向性敏感性</h3>
   <p>每个长度从独立的零偏压平衡态开始，随后执行与 T02-C 相同的低漏压阶梯、负向预处理和 31 点顶栅上扫。三个新器件共完成 123 次 DC 求解和 93 个正式点，并在 <code>VTG=1.0 V</code> 保存一个代表状态。VTH 采用 10 nA*(W/L) 的对数插值代理，gm 在 VTH+0.2 V 处由中心差分和线性插值得到。</p>
@@ -68,6 +68,35 @@
   </figure>
   <p>对应命令为 <code>make t03-p1-bias-contract-check</code>、<code>make t03-p1-bias-sensitivity</code> 和 <code>make t03-p1-bias-sensitivity-check</code>。22 项静态合同、运行器 14 项和不导入运行器的独立 14 项检查全部 PASS；独立检查从 CSV 重算 VTH/gm/OLS 与 T02-C 复现，并核对 5 个节点状态、5 个单元状态、30 个 VTK、两张 PNG 及全部哈希。</p>
 
-  <h3>8.7 适用范围和未完成组</h3>
-  <p>T03-P4-L 已完整关闭；T03-P1-BIAS 只关闭 P1 的固定副栅偏压子阶段。P1 仍缺少独立的上下栅电容比扫描，P2 陷阱、P3 接触和 P5 温度也未实现，因此本章不关闭完整 P1 或 T03 五组参数分析。下一门只允许先冻结 <code>T03-P1-CAP-RATIO</code> 的至少五点单变量合同并明确它与 P4 几何/介质变量的归属；也没有进行实验拟合、紧凑模型、SPICE、电路、版图或 HZO 工作。</p>
+  <h3>8.7 P1-CAP-RATIO 合同与变量归属</h3>
+  <p>T03-P1-CAP-RATIO 只改变有效 <code>Ctop/Cbottom=0.5/0.75/1.0/1.5/2.0</code>。上下介质物理厚度都固定为 30 nm，且总平行板耦合代理固定为对称 T02-C 的总量：<code>epsilon_top+epsilon_bottom=13.6</code>。给定比值 <code>r</code>，输入编码为 <code>epsilon_top=13.6*r/(1+r)</code>、<code>epsilon_bottom=13.6/(1+r)</code>。顶栅仍按 <code>-0.5~1.0 V</code>、步长 0.05 V 主扫，底栅固定 0 V，<code>VDS=0.01 V</code>，几何、网格、迁移率、接触和提取方法不变。</p>
+  <p>这一归属把 P1 限定为固定总耦合下的差分分配比，把物理介质厚度、沟道几何和公共介质变化继续留给 P4。成对 <code>epsilon</code> 是数值静电耦合系数，不表示两个制造 Al2O3 层具有这些实测体介电常数。</p>
+
+  <h3>8.8 P1-CAP-RATIO 数值趋势</h3>
+  <table>
+    <thead><tr><th>Ctop/Cbottom</th><th>epsilon_top 编码</th><th>epsilon_bottom 编码</th><th>VTH 代理 (V)</th><th>Delta VTH 代理 (V)</th><th>gm 代理 (S/cm)</th></tr></thead>
+    <tbody>
+      <tr><td>0.50</td><td>4.5333</td><td>9.0667</td><td>0.368433</td><td>+0.104576</td><td>2.80673e-5</td></tr>
+      <tr><td>0.75</td><td>5.8286</td><td>7.7714</td><td>0.298337</td><td>+0.034480</td><td>3.47230e-5</td></tr>
+      <tr><td>1.00</td><td>6.8000</td><td>6.8000</td><td>0.263857</td><td>0</td><td>3.93760e-5</td></tr>
+      <tr><td>1.50</td><td>8.1600</td><td>5.4400</td><td>0.228299</td><td>-0.035558</td><td>4.55185e-5</td></tr>
+      <tr><td>2.00</td><td>9.0667</td><td>4.5333</td><td>0.209247</td><td>-0.054610</td><td>4.94347e-5</td></tr>
+    </tbody>
+  </table>
+  <p>五个新器件各完成 41 次 DC，共 205 次 DC、155 个正式点；VTH 代理随分配比严格下降，gm 代理严格增加，最大端口相对不平衡为 <code>4.8429e-10</code>。在共同 <code>VTG=0.3 V</code> 下，电流代理由 <code>8.03420e-6</code> 增至 <code>1.48772e-5 A/cm</code>，沟道中心势由 <code>0.048243</code> 增至 <code>0.062328 V</code>，中心电子浓度由 <code>5.34811e16</code> 增至 <code>9.20233e16 cm^-3</code>。比值 1 的 31 点曲线、中心状态、VTH 和 gm 对 T02-C 的落盘复现差异均为 0。</p>
+  <p class="boundary">上述单调性只描述冻结教学模型在固定总耦合代理下的五个离散输入。它不是实测电容比、实测 Al2O3 介电常数、真实非对称介质栈、物理 Ion、工艺分布或实验精度。</p>
+
+  <h3>8.9 P1-CAP-RATIO 图形与独立证据</h3>
+  <figure>
+    <img src="assets/tcad_t03_p1_cap_ratio_sensitivity.png" alt="T03-P1-CAP-RATIO 五个固定总耦合分配比下的转移曲线、VTH、Delta VTH、gm 和输入编码" />
+    <figcaption>图 8-5 固定总耦合的五点有效电容分配敏感性。右下角同时显示成对输入编码，避免将单变量分配比误写成公共介质扫描。</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/tcad_t03_p1_cap_ratio_state_maps.png" alt="T03-P1-CAP-RATIO 五个分配比在共同 VTG=0.3 V 时的电势、电子浓度和局部电流密度状态图" />
+    <figcaption>图 8-6 五个共同主栅偏压状态。每行固定 <code>VTG=0.3 V, VBG=0 V, VDS=0.01 V</code> 并改变有效分配比；局部电流密度不能替代接触积分电流。</figcaption>
+  </figure>
+  <p>对应命令为 <code>make t03-p1-cap-ratio-contract-check</code>、<code>make t03-p1-cap-ratio-sensitivity</code> 和 <code>make t03-p1-cap-ratio-sensitivity-check</code>。20 项静态合同、运行器 16 项和不导入运行器或 DEVSIM 的独立 13 项检查全部 PASS；独立检查从落盘 CSV 重算 VTH、Delta VTH、gm、固定总量和 T02-C 复现，并核对 5 个节点状态、5 个单元状态、30 个 VTK、两张 PNG 及全部哈希。运行器报告为 E2，独立持久化证据为 E3。</p>
+
+  <h3>8.10 适用范围和未完成组</h3>
+  <p>T03-P4-L 与数值 P1 已完整关闭，其中 P1 必须同时引用 BIAS 和 CAP-RATIO 两个子阶段。P2 陷阱、P3 接触和 P5 温度仍未实现，因此本章不关闭完整 T03 五组参数分析。下一门只允许先冻结 <code>T03-P2-DIT</code> 的数据来源、方程、单位、至少三点输入和验收合同；也没有进行实验拟合、紧凑模型、SPICE、电路、版图或 HZO 工作。</p>
 </section>

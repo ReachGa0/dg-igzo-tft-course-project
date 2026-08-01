@@ -244,12 +244,13 @@
       "required_outputs": ["normalized_sensitivity_table", "physical_explanations", "failure_log", "group_contracts", "independent_checks"],
       "completed_substages": [
         "T03-P4-L V2 channel-length-only sensitivity: L=8/10/12 um, 123 DC, 93 formal points, 3 states, independent 14/14 PASS",
-        "T03-P1-BIAS fixed-bottom-gate-bias sensitivity: VBG=-0.4/-0.2/0/+0.2/+0.4 V, 217 DC, 155 formal points, 5 states, independent 14/14 PASS"
+        "T03-P1-BIAS fixed-bottom-gate-bias sensitivity: VBG=-0.4/-0.2/0/+0.2/+0.4 V, 217 DC, 155 formal points, 5 states, independent 14/14 PASS",
+        "T03-P1-CAP-RATIO fixed-total-coupling allocation sensitivity: Ctop/Cbottom=0.5/0.75/1.0/1.5/2.0, 205 DC, 155 formal points, 5 states, independent 13/13 PASS"
       ],
-      "completed_parameter_groups": ["P4"],
-      "partially_completed_parameter_groups": ["P1"],
-      "remaining_substages": ["T03-P1-CAP-RATIO", "T03-P2", "T03-P3", "T03-P5"],
-      "remaining_parameter_groups": ["P1", "P2", "P3", "P5"],
+      "completed_parameter_groups": ["P1", "P4"],
+      "partially_completed_parameter_groups": [],
+      "remaining_substages": ["T03-P2", "T03-P3", "T03-P5"],
+      "remaining_parameter_groups": ["P2", "P3", "P5"],
       "first_group_outputs": [
         "config/tcad_t03_p4_channel_length.json",
         "results/reports/tcad_t03_p4_l_input_contract.json",
@@ -263,7 +264,7 @@
         "report/assets/tcad_t03_p4_l_sensitivity.png",
         "report/assets/tcad_t03_p4_l_state_maps.png"
       ],
-      "partial_p1_outputs": [
+      "p1_outputs": [
         "config/tcad_t03_p1_secondary_bias.json",
         "results/reports/tcad_t03_p1_bias_input_contract.json",
         "results/reports/tcad_t03_p1_bias_sensitivity.json",
@@ -274,9 +275,20 @@
         "results/tables/tcad_t03_p1_bias_state_summary.csv",
         "results/tcad/t03_sensitivity/p1_secondary_bias/state_manifest.json",
         "report/assets/tcad_t03_p1_bias_sensitivity.png",
-        "report/assets/tcad_t03_p1_bias_state_maps.png"
+        "report/assets/tcad_t03_p1_bias_state_maps.png",
+        "config/tcad_t03_p1_capacitance_ratio.json",
+        "results/reports/tcad_t03_p1_cap_ratio_input_contract.json",
+        "results/reports/tcad_t03_p1_cap_ratio_sensitivity.json",
+        "results/reports/tcad_t03_p1_cap_ratio_sensitivity_check.json",
+        "results/tables/tcad_t03_p1_cap_ratio_transfer_curves.csv",
+        "results/tables/tcad_t03_p1_cap_ratio_metrics.csv",
+        "results/tables/tcad_t03_p1_cap_ratio_t02_c_reproduction.csv",
+        "results/tables/tcad_t03_p1_cap_ratio_state_summary.csv",
+        "results/tcad/t03_sensitivity/p1_capacitance_ratio/state_manifest.json",
+        "report/assets/tcad_t03_p1_cap_ratio_sensitivity.png",
+        "report/assets/tcad_t03_p1_cap_ratio_state_maps.png"
       ],
-      "evidence_boundary": "P4 is complete. P1-BIAS is an E3 fixed-secondary-bias numerical substage at fixed symmetric Ctop/Cbottom=1, but P1 remains incomplete until a separate capacitance-ratio substage passes. No T03 result is experimental calibration, physical capacitance extraction, physical Ion, compact-model, circuit, layout, or HZO evidence.",
+      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P1 combines the fixed-secondary-bias substage with a fixed-total-coupling effective capacitance-allocation ratio substage; it is not measured capacitance extraction, measured Al2O3 permittivity, or a fabricated asymmetric stack. P2, P3, P5 and complete T03 remain incomplete. No T03 result is experimental calibration, physical Ion, compact-model, circuit, layout, or HZO evidence.",
       "acceptance": ["five groups complete", "at least three points per group", "quantitative comparison uses common axes", "each completed group has an independent persisted-evidence check", "failed hypotheses remain visible and do not get silently relaxed"]
     },
     {

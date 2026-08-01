@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 332,
+  "checks": 351,
   "failures": 0,
   "results": [
     {
@@ -205,6 +205,11 @@
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p1_secondary_bias"
     },
     {
+      "name": "directory:results/tcad/t03_sensitivity/p1_capacitance_ratio",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p1_capacitance_ratio"
+    },
+    {
       "name": "directory:tcad/structures",
       "status": "PASS",
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/structures"
@@ -272,52 +277,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=13724"
+      "detail": "bytes=14415"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=14391"
+      "detail": "bytes=14620"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=8222"
+      "detail": "bytes=8808"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=53531"
+      "detail": "bytes=57975"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4195"
+      "detail": "bytes=4217"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=22796"
+      "detail": "bytes=24813"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=11681"
+      "detail": "bytes=12831"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=3764"
+      "detail": "bytes=4167"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=5020"
+      "detail": "bytes=5040"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=23020"
+      "detail": "bytes=24022"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -390,6 +395,11 @@
       "detail": "bytes=13173"
     },
     {
+      "name": "file:config/tcad_t03_p1_capacitance_ratio.json",
+      "status": "PASS",
+      "detail": "bytes=14905"
+    },
+    {
       "name": "file:references/papers_manifest.csv",
       "status": "PASS",
       "detail": "bytes=2493"
@@ -452,7 +462,7 @@
     {
       "name": "file:docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
       "status": "PASS",
-      "detail": "bytes=21474"
+      "detail": "bytes=22982"
     },
     {
       "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
@@ -550,6 +560,16 @@
       "detail": "bytes=34140"
     },
     {
+      "name": "file:scripts/check_t03_p1_cap_ratio_contract.py",
+      "status": "PASS",
+      "detail": "bytes=17096"
+    },
+    {
+      "name": "file:scripts/check_t03_p1_capacitance_ratio.py",
+      "status": "PASS",
+      "detail": "bytes=30133"
+    },
+    {
       "name": "file:scripts/build_self_contained_report.py",
       "status": "PASS",
       "detail": "bytes=11722"
@@ -557,7 +577,7 @@
     {
       "name": "file:tcad/README.md",
       "status": "PASS",
-      "detail": "bytes=10704"
+      "detail": "bytes=12151"
     },
     {
       "name": "file:tcad/run_dg_electrostatic.py",
@@ -615,6 +635,11 @@
       "detail": "bytes=34989"
     },
     {
+      "name": "file:tcad/run_t03_p1_capacitance_ratio.py",
+      "status": "PASS",
+      "detail": "bytes=35682"
+    },
+    {
       "name": "file:report/manifest.json",
       "status": "PASS",
       "detail": "bytes=2539"
@@ -627,7 +652,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=8578"
+      "detail": "bytes=9948"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -1080,6 +1105,56 @@
       "detail": "bytes=1073893"
     },
     {
+      "name": "file:results/reports/tcad_t03_p1_cap_ratio_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=11112"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p1_cap_ratio_sensitivity.json",
+      "status": "PASS",
+      "detail": "bytes=231719"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p1_cap_ratio_sensitivity_check.json",
+      "status": "PASS",
+      "detail": "bytes=4590"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p1_cap_ratio_transfer_curves.csv",
+      "status": "PASS",
+      "detail": "bytes=61751"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p1_cap_ratio_metrics.csv",
+      "status": "PASS",
+      "detail": "bytes=2211"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p1_cap_ratio_t02_c_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=4809"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p1_cap_ratio_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=3703"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p1_capacitance_ratio/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=17329"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p1_cap_ratio_sensitivity.png",
+      "status": "PASS",
+      "detail": "bytes=302230"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p1_cap_ratio_state_maps.png",
+      "status": "PASS",
+      "detail": "bytes=1314666"
+    },
+    {
       "name": "file:models/level61/README.md",
       "status": "PASS",
       "detail": "bytes=354"
@@ -1282,7 +1357,7 @@
     {
       "name": "experiments:t03_completed_and_partial_groups_are_distinct",
       "status": "PASS",
-      "detail": "complete=['P4'] partial=['P1']"
+      "detail": "complete=['P1', 'P4'] partial=[]"
     },
     {
       "name": "senior:manifest",
@@ -1598,6 +1673,26 @@
       "name": "t03_p1_bias:fixed_ratio_is_not_complete_p1",
       "status": "PASS",
       "detail": "changed=fixed_bottom_gate_bias_v ratio=1.0"
+    },
+    {
+      "name": "t03_p1_cap_ratio:contract_and_simulation",
+      "status": "PASS",
+      "detail": "contract=PASS simulation=PASS runner_checks=16"
+    },
+    {
+      "name": "t03_p1_cap_ratio:independent_check_and_numerical_p1_boundary",
+      "status": "PASS",
+      "detail": "independent=PASS completion={'status': 'PASS', 'p1_bias_five_point_substage_complete': True, 'p1_capacitance_ratio_five_point_substage_complete': True, 'complete_p1_numerical_group': True, 'complete_t03_five_group_sensitivity': False, 'one_of_p2_p3_p5_permitted_next': True, 'experimental_calibration_permitted': False, 'physical_capacitance_ratio_claim_permitted': False, 'compact_model_calibrated': False}"
+    },
+    {
+      "name": "t03_p1_cap_ratio:fixed_sum_encoding_and_p1_p4_ownership",
+      "status": "PASS",
+      "detail": "ratios=[0.5, 0.75, 1.0, 1.5, 2.0] sum=13.6"
+    },
+    {
+      "name": "t03_p1_cap_ratio:raw_outputs_and_figures_exist",
+      "status": "PASS",
+      "detail": "states=5 state_csv=10 vtk=30 figures=2"
     },
     {
       "name": "tcad:mesh_levels",

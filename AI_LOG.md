@@ -16,6 +16,45 @@
 
 ---
 
+## 2026-08-01 | Codex GPT-5 | 完成 T03-P1-CAP-RATIO 并关闭数值 P1
+
+### 用户目标
+
+继续按阶段门推进下一小阶段；只运行普通笔记本可承受的二维 IGZO 案例，完成验证后同步文档、创建 Git 里程碑并推送，不同时启动其他 T03 参数、SPICE、版图或 HZO。
+
+### 读取的关键输入
+
+- `AGENTS.md` 及规定顺序的 README、AI_CONTEXT、ARCHITECTURE、STATUS、PROJECT_PLAN、DECISIONS、AI_LOG、`config/project.json` 和 `config/experiments.json`。
+- T01 冻结输运与 `interface_4x` 网格、T02-A 启用双栅拓扑、T02-C 顶栅主扫/提取/状态证据、T03-P4-L 完整组，以及已通过的 T03-P1-BIAS 子阶段。
+- P1 的 `Ctop/Cbottom` 要求、P4 的几何/介质变量所有权和 G0 教学参数边界；本阶段不需要外部实验数据，不把控制输入点冒充文献或实测范围。
+
+### 本次修改
+
+- 新增 `config/tcad_t03_p1_capacitance_ratio.json`，冻结唯一变量 `Ctop/Cbottom=0.5/0.75/1.0/1.5/2.0`。上下物理介质厚度固定 30 nm，总耦合代理固定为 `epsilon_top+epsilon_bottom=13.6`；成对介电常数只编码固定总量下的差分分配。
+- 新增 `scripts/check_t03_p1_cap_ratio_contract.py`、`tcad/run_t03_p1_capacitance_ratio.py` 和 `scripts/check_t03_p1_capacitance_ratio.py`，分别执行静态合同、二维 DEVSIM 运行和不导入运行器/DEVSIM 的标准库独立复算；新增三个 Makefile 目标。
+- 落盘 155 点曲线、5 行提取表、T02-C 复现表、5 个状态摘要、5 份节点 CSV、5 份单元 CSV、30 个 VTK、两张 PNG、输入快照、求解日志和 E2/E3 JSON 报告。
+- 更新总检查器、项目/实验配置、STATUS/README/AI_CONTEXT/ARCHITECTURE/PROJECT_PLAN、ADR-022、二维 TCAD 路线、报告第 8 章、TCAD 入口和证据矩阵。机器状态将 P1/P4 列为完成，P2/P3/P5 保持未完成。
+
+### 实际结果
+
+- 五个新器件各完成 41 次求解，共 205 次 DC、155 个正式点；全部收敛，最大端口相对不平衡为 `4.8429e-10`，整组墙钟时间约 `12.69 s`，低于 420 s 笔记本预算。
+- VTH 数值代理为 `0.368433/0.298337/0.263857/0.228299/0.209247 V`，相对比值 1 的 Delta VTH 为 `+0.104576/+0.034480/0/-0.035558/-0.054610 V`，随有效分配比严格下降。
+- gm 数值代理为 `2.80673e-5/3.47230e-5/3.93760e-5/4.55185e-5/4.94347e-5 S/cm`，随比值严格增加。共同 `VTG=0.3 V` 状态的电流、中心势和中心电子浓度也严格增加。
+- 比值 1 的 31 点曲线、中心状态、VTH 和 gm 对 T02-C 的落盘复现差异均为 0。P1-BIAS 与本子阶段共同关闭数值 P1。
+
+### 验证与修正记录
+
+- `make t03-p1-cap-ratio-contract-check`：20/20 PASS，且明确 `simulation=NOT_RUN_BY_CONTRACT_CHECK`。
+- 第一次仿真完成比值 0.5 的 41 次求解后，第二个比值因复用 T02-C 帮助函数产生同名 DEVSIM mesh 而停止。删除 device 不会删除 mesh；只给内部 device/mesh 名加唯一比值后缀，没有改变物理输入、合同或阈值，并从头重跑。
+- 第二次仿真已完成全部 205 次 DC、155 点和 5 状态，但运行器把 DEVSIM 返回的字母序接触列表与合同语义顺序直接比较，导致仅后处理检查 FAIL。改为集合等价比较，没有改变结构、物理输入、数值结果或验收阈值，并再次完整重跑。
+- 最终 `make t03-p1-cap-ratio-sensitivity` 为运行器 16/16 PASS；`make t03-p1-cap-ratio-sensitivity-check` 为独立 13/13 PASS、证据等级 E3。两张 PNG 已人工检查为非空、清晰且无重叠。
+- 配置/文档更新后因输入哈希变化，按合同 -> 仿真 -> 独立检查顺序完整刷新，随后 `make check` 为 351/351 PASS，`make report-check` 的 12 章、5 附录和 12 张图结构 PASS，并明确保留 17 个未完成占位符。结构检查不冒充器件仿真通过。
+
+### 证据边界与下一步
+
+- CAP-RATIO 的成对 `epsilon` 是固定总耦合下的有效静电分配编码，不是实测 Al2O3 介电常数、物理电容提取、真实制造非对称栈或文献校准范围。E3 只提升证据完整性，不提升冻结 E2 教学模型的物理真实性。
+- 当前关闭的是数值 P1 与 P4；P2 陷阱、P3 接触、P5 温度和完整 T03 仍未完成。下一步只冻结 `T03-P2-DIT` 的来源、DEVSIM 方程、单位、至少三点输入和最小验收合同，合同与最小方程测试通过前不运行扫描。
+
 ## 2026-08-01 | Codex GPT-5 | 完成 T03-P1-BIAS 五点固定底栅偏压子阶段
 
 ### 用户目标

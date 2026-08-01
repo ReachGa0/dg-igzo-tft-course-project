@@ -39,10 +39,10 @@
     "dimension": "2D",
     "tool": "DEVSIM 2.10.0",
     "mesh": "DEVSIM structured mesh; Gmsh optional for later irregular geometry",
-    "baseline_scope": "complete T01 single-gate drift-diffusion numerical gate plus complete T02 dual-gate numerical gate, the complete T03-P4-L channel-length group, and the bias-only T03-P1-BIAS substage",
-    "next_scope": "freeze T03-P1-CAP-RATIO as a separate one-variable contract; P1 remains incomplete until that substage passes",
+    "baseline_scope": "complete T01 single-gate drift-diffusion numerical gate plus complete T02 dual-gate numerical gate, the complete T03-P4-L channel-length group, and the complete numerical T03-P1 bias-and-coupling group",
+    "next_scope": "freeze one T03-P2 trap-sensitivity input contract before any P2 simulation; P3 and P5 remain closed",
     "laptop_target": true,
-    "evidence_boundary": "T02-C closes only the frozen teaching-model numerical gate. T03-P4-L adds one complete E3 three-point channel-length group while retaining the failed ideal 1/L diagnostic. T03-P1-BIAS adds one E3 five-point fixed-bottom-gate-bias substage at a controlled symmetric capacitance-ratio proxy of one; it does not scan or extract a physical capacitance ratio and does not complete P1 or T03. Experimental calibration, physical parameter validation, traps, nonideal contacts, uncertainty, compact models, and circuits remain unverified."
+    "evidence_boundary": "T02-C closes only the frozen teaching-model numerical gate. T03-P4-L adds one complete E3 three-point channel-length group while retaining the failed ideal 1/L diagnostic. Numerical P1 is complete through E3 P1-BIAS and P1-CAP-RATIO substages; the latter varies a fixed-total-coupling allocation proxy and is not measured capacitance, measured Al2O3 permittivity, or a fabricated asymmetric stack. P2, P3, P5, complete T03, experimental calibration, physical parameter validation, uncertainty, compact models, and circuits remain unverified."
   },
   "baseline_devices": {
     "IGZO_TFT": {
