@@ -42,7 +42,7 @@
       "variables": ["temperature_K"],
       "planned_points": [250, 300, 350],
       "controls": ["geometry", "bias_protocol", "trap_model", "contact_model"],
-      "primary_outputs": ["mobility", "VTH", "SS", "leakage"]
+      "primary_outputs": ["configured_mobility_control", "VTH_proxy", "SS_proxy", "gm_proxy", "low_gate_current_proxy", "high_gate_current_proxy"]
     },
     {
       "id": "P6",
@@ -258,7 +258,8 @@
         "T03-P3-CONTACT-RESISTANCE V1 input contract: 2 E1 TLM source rows mapped to project total-pair teaching proxies R_pair*W=0/0.5/4.5 kOhm*um; symmetric device-circuit model, 12 planned devices, 243 planned DC solves and 156 planned points frozen by 30/30 E3 static checks without DEVSIM",
         "T03-P3-CONTACT-RESISTANCE V1 failed run preserved: 12 devices, 243 converged DC solves, 156 points, 3 states and 18 VTK; 24/25 runner gates passed, but relative terminal-current conservation was incorrectly applied to nine zero-VDS numerical-noise points, so V1 remains E0/FAIL and no independent check was run",
         "T03-P3-CONTACT-RESISTANCE V2 recovery contract: all contact values, physics, bias, extraction, thresholds and 12-device/243-DC/156-point budget retained; unchanged relative conservation applies only at VDS>0 and unchanged absolute current applies at VDS=0; V1 evidence and archive-collision supplement preserved by 34/34 E3 static checks without DEVSIM",
-        "T03-P3-CONTACT-RESISTANCE V2 controlled sensitivity: one formal run completed 12 devices, 243 converged DC solves, 156 points, 3 states and 18 VTK; runner 25/25 PASS at E2 and independent persisted-evidence check 20/20 PASS at E3; P3 complete within the numerical-proxy boundary"
+        "T03-P3-CONTACT-RESISTANCE V2 controlled sensitivity: one formal run completed 12 devices, 243 converged DC solves, 156 points, 3 states and 18 VTK; runner 25/25 PASS at E2 and independent persisted-evidence check 20/20 PASS at E3; P3 complete within the numerical-proxy boundary",
+        "T03-P5-TEMPERATURE formal input contract: 250/300/350 K with only V_t=k_B*T changed in the existing Scharfetter-Gummel current; 3 devices, 123 DC solves, 93 transfer points, 3 states and 18 VTK frozen as planned E3 static evidence without DEVSIM"
       ],
       "completed_parameter_groups": ["P1", "P2", "P3", "P4"],
       "partially_completed_parameter_groups": [],
@@ -413,6 +414,26 @@
         "complete_p3_contact_group": true,
         "complete_t03_five_group_sensitivity": false
       },
+      "p5_temperature_contract_evidence": {
+        "status": "input_contract_ready",
+        "revision": 1,
+        "contract_evidence": "E3",
+        "contract_checks_passed": 23,
+        "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+        "temperature_values_k": [250.0, 300.0, 350.0],
+        "thermal_voltage_values_v": [0.021543333155, 0.025851999786, 0.030160666417],
+        "only_temperature_dependent_term": "V_t in the existing Scharfetter-Gummel electron-current expression",
+        "configured_mobility_cm2_vs": 35.5,
+        "mobility_temperature_law_active": false,
+        "planned_devices": 3,
+        "planned_dc_solves": 123,
+        "planned_reported_points": 93,
+        "planned_states": 3,
+        "planned_vtk_files": 18,
+        "formal_sensitivity_completed": false,
+        "complete_p5_temperature_group": false,
+        "complete_t03_five_group_sensitivity": false
+      },
       "first_group_outputs": [
         "config/tcad_t03_p4_channel_length.json",
         "results/reports/tcad_t03_p4_l_input_contract.json",
@@ -554,7 +575,15 @@
         "report/assets/tcad_t03_p3_contact_v2_sensitivity.png",
         "report/assets/tcad_t03_p3_contact_v2_states.png"
       ],
-      "evidence_boundary": "P4, numerical P1, P2 and P3 are complete with E3 persisted-evidence checks. P2 comprises the bottom-interface DIT substage, the bulk equation smoke, and the formal isolated NTA/NGA V3 transfer sensitivity; its V1/V2 failures remain preserved. P3 contact V1 completed 12 devices, 243 converged DC solves, 156 points, 3 states and 18 VTK, but passed only 24/25 runner gates and remains E0/FAIL because a relative current-conservation ratio was applied to nine zero-VDS numerical-noise points. Its maximum nonzero-VDS relative imbalance was 3.35344e-11 and zero-VDS maximum absolute current was 1.08454e-19 A/cm, both within the unchanged thresholds; no V1 independent check was run. V1 exact inputs, runner, logs, curves, tables, figures, states, reports and original failure manifest remain preserved, and a supplement discloses/reconstructs the archive filename collision without rewriting the original manifest. The P3 V2 recovery contract passed 34/34 at E3 with simulation explicitly NOT_RUN. V2 changed only gate applicability and unique output/archive paths: relative imbalance <=1e-5 applies at external VDS>0 and absolute current <=1e-16 A/cm applies at external VDS=0. The E1 anchors, total-pair mapping, physics, bias, extraction, acceptance values and 12-device/243-DC/156-point budget remained unchanged. The one formal V2 run then completed all 12 devices and 243 DC solves, with 25/25 runner gates at E2; an independent checker that imports neither the runner nor DEVSIM passed 20/20 at E3 over all 156 points, three states, 18 VTK files, figures and artifact hashes. The high resistance proxy reduces the sampled high-gate current by 0.161396% and increases the external total-resistance-width proxy from 2780.13345 to 2784.63204 kOhm*um. These are controlled uncalibrated numerical responses, not project TLM/contact parameters, Ti/Ni comparison, barrier/injection physics, physical Ion or experimental calibration. V2 completion does not make V1 pass. P5, complete T03, compact-model, circuit-cell, layout, PEX and HZO evidence remain unverified.",
+      "p5_outputs": [
+        "references/t03_p5_temperature_sources.csv",
+        "config/tcad_t03_p5_temperature.json",
+        "scripts/check_t03_p5_temperature_contract.py",
+        "tcad/run_t03_p5_temperature.py",
+        "scripts/check_t03_p5_temperature.py",
+        "results/reports/tcad_t03_p5_temperature_input_contract.json"
+      ],
+      "evidence_boundary": "P4, numerical P1, P2 and P3 are complete with E3 persisted-evidence checks. P2 comprises the bottom-interface DIT substage, the bulk equation smoke, and the formal isolated NTA/NGA V3 transfer sensitivity; its V1/V2 failures remain preserved. P3 contact V1 completed 12 devices, 243 converged DC solves, 156 points, 3 states and 18 VTK, but passed only 24/25 runner gates and remains E0/FAIL because a relative current-conservation ratio was applied to nine zero-VDS numerical-noise points. Its maximum nonzero-VDS relative imbalance was 3.35344e-11 and zero-VDS maximum absolute current was 1.08454e-19 A/cm, both within the unchanged thresholds; no V1 independent check was run. V1 exact inputs, runner, logs, curves, tables, figures, states, reports and original failure manifest remain preserved, and a supplement discloses/reconstructs the archive filename collision without rewriting the original manifest. The P3 V2 recovery contract passed 34/34 at E3 with simulation explicitly NOT_RUN. V2 changed only gate applicability and unique output/archive paths: relative imbalance <=1e-5 applies at external VDS>0 and absolute current <=1e-16 A/cm applies at external VDS=0. The E1 anchors, total-pair mapping, physics, bias, extraction, acceptance values and 12-device/243-DC/156-point budget remained unchanged. The one formal V2 run then completed all 12 devices and 243 DC solves, with 25/25 runner gates at E2; an independent checker that imports neither the runner nor DEVSIM passed 20/20 at E3 over all 156 points, three states, 18 VTK files, figures and artifact hashes. The high resistance proxy reduces the sampled high-gate current by 0.161396% and increases the external total-resistance-width proxy from 2780.13345 to 2784.63204 kOhm*um. These are controlled uncalibrated numerical responses, not project TLM/contact parameters, Ti/Ni comparison, barrier/injection physics, physical Ion or experimental calibration. V2 completion does not make V1 pass. The P5 E3 static contract freezes 250/300/350 K and only changes V_t=k_B*T in the existing Scharfetter-Gummel current; 3 devices, 123 DC solves, 93 points, 3 states and 18 VTK are planned rather than simulated. Mobility, DOS, band parameters, permittivities, contacts, traps, geometry and bias remain fixed. P5, complete T03, compact-model, circuit-cell, layout, PEX and HZO evidence remain unverified.",
       "acceptance": ["five groups complete", "at least three points per group", "quantitative comparison uses common axes", "each completed group has an independent persisted-evidence check", "failed hypotheses remain visible and do not get silently relaxed"]
     },
     {

@@ -16,6 +16,44 @@
 
 ---
 
+## 2026-08-02 | Codex GPT-5 | 建立 T03-P5 V_t-only 正式温度输入合同
+
+### 用户目标
+
+按阶段 DAG 在已完成数值 P3 后继续，只建立并验证正式隔离 P5 温度敏感性合同；先冻结温度点、温度依赖/不依赖项、提取、失败保留、输出与证据边界并提交，合同里程碑推送前不得运行正式 P5，也不得启动 M00/M01、SPICE、电路、版图、PEX 或 HZO。
+
+### 读取的关键输入
+
+- 已推送 P3 完成提交 `c99d17e`，P3 V2 运行器 25/25 E2、独立检查 20/20 E3，以及仍保持 E0/FAIL 的 P3 V1 全部证据。
+- T01 冻结温度/输运实现、T02-A 启用双栅拓扑、T02-C 顶栅主扫与提取、已完成 P1/P2/P3/P4 报告和 `config/project.json`、`config/experiments.json`。
+- NIST CODATA Boltzmann 常数入口与项目架构预定的 250/300/350 K 最低三点；来源记录写入 `references/t03_p5_temperature_sources.csv`。
+
+### 合同与实现
+
+- 新增 `config/tcad_t03_p5_temperature.json`，冻结 `T=250/300/350 K` 和 `V_t=0.021543333155/0.025851999786/0.030160666417 V`。唯一随温度改变的实现项是既有 Scharfetter-Gummel 电子电流中的 `V_t=k_B*T`；300 K 精确复用 T01/T02-C 的热电压。
+- 教学迁移率固定为 35.5 cm2/(V*s)，不启用经验迁移率温度律；DOS、带隙、亲和势、介电、接触、陷阱、几何、网格、偏压均固定，也不加入自热或热边界方程。
+- 正式计划冻结为每温度一个新器件，共 3 器件、123 次 DC、93 个 transfer 点、3 个 `VTG=1 V` 状态和 18 VTK。提取沿用恒流 VTH、`VTH+0.2 V` gm、`1e-7~1e-6 A/cm` 固定窗口 SS 和高低栅压电流代理；方向只报告、不判门，端点最大相对响应门为 0.1%，300 K 必须完整回归 T02-C。
+- 新增拒绝覆盖的正式运行器、独立落盘检查器和三个 Makefile 目标。独立检查器不导入运行器或 DEVSIM；在静态预检中将其指标列与运行器门数量断言校正为实际冻结的 32 列和 14 门，并按 P3 两级证据语义确认只有独立 E3 报告放行 P5。
+
+### 合同结果与文档
+
+- `make t03-p5-temperature-contract-check`：23/23 PASS、E3、`simulation=NOT_RUN_BY_CONTRACT_CHECK`。合同报告记录 23 个输入哈希；3/123/93/3/18 仍是未来计划量。
+- 同步 `config/project.json`、`config/experiments.json`、`STATUS.md`、`README.md`、`AI_CONTEXT.md`、`ARCHITECTURE.md`、`PROJECT_PLAN.md`、ADR-034、二维 TCAD 路线、课程矩阵、TCAD README、报告第 5/6/8 章和证据矩阵。
+- `scripts/check_project.py` 新增 6 个必需文件及 5 项 P5 合同复核，验证 23 项静态门、23 个输入哈希、4 行来源、唯一 `V_t` 变化、计划规模、机器状态、正式输出缺失和下游证据边界；同时把 P3 的当前下一门断言推进到正式 P5 运行。
+
+### 完整验证与边界
+
+- `make check`：527/527 PASS。
+- `make report-check`：PASS；12 章、5 附录、16 个允许占位符、20 张图片。
+- Python 编译、活动 JSON、三章 XHTML、42 行证据矩阵 CSV、23 个合同输入哈希和 `git diff --check` 均 PASS。
+- 本里程碑没有导入或运行 DEVSIM，也没有运行 P5、SPICE 或任何下游阶段。合同 PASS 不证明温度曲线、物理/校准 IGZO 温度依赖、激活能、迁移率/DOS/接触/陷阱温度律、物理 VTH/SS/Ioff/Ion、工作温区、自热、可靠性、完整 T03 或电路温度行为。
+
+### 下一步
+
+- 先提交并推送 P5 合同里程碑。确认 `origin/main` 包含合同后，只运行一次 `make t03-p5-temperature-sensitivity`；只有运行器 PASS 才执行独立落盘检查。任何门失败保留全部结果并停止在 P5。
+
+---
+
 ## 2026-08-02 | Codex GPT-5 | 完成 P3 V2 正式敏感性与独立 E3 检查
 
 ### 用户目标

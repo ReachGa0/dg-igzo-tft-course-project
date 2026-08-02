@@ -20,6 +20,9 @@
 14. `T03-P2-DIT-FORMAL` 已运行的正式单界面敏感性：零控制 + 3 个文献约束点完成 4 器件/164 次 DC/124 点/4 状态，独立 16 项检查通过；P2 仍缺 bulk traps。
 15. `T03-P2-BULK-TRAPS-CONTRACT` 已通过的静态合同：冻结 NTA/NGA 来源、方程、准静态占据、积分和两组隔离三点；30/30 PASS。
 16. `T03-P2-BULK-TRAPS-EQUATION-SMOKE` 已完成零控制、NTA 参考和 NGA 参考三个器件/21 次 DC；运行器 E2、独立 16 项落盘复核 E3 PASS，正式 transfer sensitivity 仍关闭。
+17. `T03-P2-BULK-TRAPS-FORMAL` 已保留 V1/V2 正式失败，并以 V3 的 8 器件/456 次 DC/376 点、运行器 17/17 和独立 16/16 关闭冻结准静态教学模型内的数值 P2。
+18. `T03-P3-CONTACT-RESISTANCE` 已保留 V1 零漏压适用域失败；V2 完成 12 器件/243 次 DC/156 点，运行器 25/25、独立 20/20 PASS，只关闭对称 lumped series-resistance 教学代理。
+19. `T03-P5-TEMPERATURE` 已以 23/23 E3 静态合同冻结 250/300/350 K 和唯一温度项 `V_t=k_B*T`；正式 3 器件/123 次 DC/93 点尚未运行。
 
 `T00` 不能被写成“IGZO TFT 电流仿真已完成”。它只证明二维结构、Poisson 方程、边界条件、扫描和数据导出链路能运行。
 
@@ -51,6 +54,9 @@ tcad/
 |-- run_t03_p1_capacitance_ratio.py # T03-P1-CAP-RATIO 固定总耦合分配敏感性
 |-- run_t03_p2_dit_equation_smoke.py # T03-P2-DIT 单界面合同与方程冒烟
 |-- run_t03_p2_dit_formal.py # T03-P2-DIT 正式三点转移敏感性
+|-- run_t03_p2_bulk_traps_formal.py # T03-P2 bulk NTA/NGA 正式敏感性 V3
+|-- run_t03_p3_contact_resistance.py # T03-P3 对称串联接触代理 V2
+|-- run_t03_p5_temperature.py # T03-P5 V_t-only 三点温度敏感性
 |-- structures/README.md      # 后续 Gmsh/DEVSIM 结构与网格
 |-- physics/README.md         # 方程、材料、陷阱、接触和 bulk-trap 合同
 `-- tests/README.md           # 网格、极限条件和故障测试
@@ -262,6 +268,16 @@ make t03-p2-bulk-traps-contract-check
 
 合同从 DOI `10.3390/electronics9101652` 固化受主型导带指数尾态 NTA 和高斯深态 NGA，各自采用零控制加三个文献点，并规定扫描一类时另一类及双界面 DIT 均为零。准静态占据只通过 Poisson 体电荷和解析 `Electrons` Jacobian 耦合；固定 96 点能量积分。30 项检查通过后，三案例方程冒烟完成 21 次 DC；不能写成正式 bulk transfer sensitivity、物理 DOS 或完整 P2 通过。
 
+## T03-P5 V_t-only 温度合同与后续命令
+
+```bash
+make t03-p5-temperature-contract-check
+make t03-p5-temperature-sensitivity
+make t03-p5-temperature-sensitivity-check
+```
+
+当前只执行了第一条：23/23 PASS、E3、`NOT_RUN_BY_CONTRACT_CHECK`。合同固定 `T=250/300/350 K`，只把既有 Scharfetter-Gummel 电子电流中的 `V_t` 替换为 `k_B*T`；教学迁移率仍为 35.5 cm2/(V*s)，DOS、能带、介电、接触、陷阱、几何、网格和偏压均不变。3 器件、123 次 DC、93 个 transfer 点、3 状态和 18 VTK 是后续正式运行计划，不是当前结果。运行器通过前不得执行第三条，任何未来提取只能称数值代理。
+
 ## T00 的模型
 
 三个区域均求解：
@@ -279,13 +295,14 @@ div(epsilon * grad(Potential)) = 0
 - 其余外边界：自然零通量边界；
 - 两个介质/IGZO 界面：电势连续、电位移通量由区域方程共同守恒。
 
-## T02 已完成及后续工作
+## T02/T03 已完成及后续工作
 
 1. T02-A 已完成顶栅、顶介质、上下栅边界与禁用极限合同；
 2. T02-B 已完成固定 VDS/VBG 的最小正向顶栅偏压族，电流方向、守恒与端点内部状态通过；
 3. T02-C 已完成固定第二栅的上下栅主扫族、零第二栅回程路径、受限 VTH/gm/耦合提取和 6 个二维状态，关闭完整 T02 教学模型数值门；
-4. T03-P4-L、数值 P1、P2-DIT 界面子阶段和 P2-BULK-TRAPS 方程冒烟已完成；
-5. 下一门建立正式隔离 NTA/NGA transfer-sensitivity 合同，P3/P5 保持关闭；
-6. 与老师数据或条件完整的文献/实验数据定量对比。
+4. T03-P4-L、数值 P1、完整数值 P2 和数值 P3 已完成，P2/P3 的历史失败均保留；
+5. T03-P5 正式输入合同已以 23/23 E3 静态检查通过，正式温度敏感性和完整 T03 仍未完成；
+6. 下一门只允许在合同提交后运行一次正式 P5，运行器 PASS 后才允许独立落盘检查；
+7. 与老师数据或条件完整的文献/实验数据定量对比。
 
 学长 `1.xlsx` 缺少 `VDS`、尺寸、材料参数和求解设置，因此只能作为导入和形状参考。条件未补齐前，不参与“精确拟合”评分。

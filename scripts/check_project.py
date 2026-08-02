@@ -135,6 +135,12 @@ REQUIRED_FILES = [
     "report/assets/tcad_t03_p3_contact_states.png",
     "report/assets/tcad_t03_p3_contact_v2_sensitivity.png",
     "report/assets/tcad_t03_p3_contact_v2_states.png",
+    "references/t03_p5_temperature_sources.csv",
+    "config/tcad_t03_p5_temperature.json",
+    "scripts/check_t03_p5_temperature_contract.py",
+    "scripts/check_t03_p5_temperature.py",
+    "tcad/run_t03_p5_temperature.py",
+    "results/reports/tcad_t03_p5_temperature_input_contract.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal/state_manifest.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/input_snapshot.json",
@@ -856,6 +862,43 @@ def main() -> int:
                 "results/tcad/t03_sensitivity/p3_contact_resistance_v2/state_manifest.json",
                 "report/assets/tcad_t03_p3_contact_v2_sensitivity.png",
                 "report/assets/tcad_t03_p3_contact_v2_states.png",
+            ]
+            and sensitivity.get("p5_temperature_contract_evidence")
+            == {
+                "status": "input_contract_ready",
+                "revision": 1,
+                "contract_evidence": "E3",
+                "contract_checks_passed": 23,
+                "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+                "temperature_values_k": [250.0, 300.0, 350.0],
+                "thermal_voltage_values_v": [
+                    0.021543333155,
+                    0.025851999786,
+                    0.030160666417,
+                ],
+                "only_temperature_dependent_term": (
+                    "V_t in the existing Scharfetter-Gummel "
+                    "electron-current expression"
+                ),
+                "configured_mobility_cm2_vs": 35.5,
+                "mobility_temperature_law_active": False,
+                "planned_devices": 3,
+                "planned_dc_solves": 123,
+                "planned_reported_points": 93,
+                "planned_states": 3,
+                "planned_vtk_files": 18,
+                "formal_sensitivity_completed": False,
+                "complete_p5_temperature_group": False,
+                "complete_t03_five_group_sensitivity": False,
+            }
+            and sensitivity.get("p5_outputs")
+            == [
+                "references/t03_p5_temperature_sources.csv",
+                "config/tcad_t03_p5_temperature.json",
+                "scripts/check_t03_p5_temperature_contract.py",
+                "tcad/run_t03_p5_temperature.py",
+                "scripts/check_t03_p5_temperature.py",
+                "results/reports/tcad_t03_p5_temperature_input_contract.json",
             ]
             and all(
                 path in sensitivity.get("p2_outputs", [])
@@ -3605,7 +3648,7 @@ def main() -> int:
             and p3_recorded_machine_state.get("experiments_config")
             == p3_inputs.get("experiments_config")
             and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "establish the formal isolated T03-P5"
+                "run exactly one formal isolated T03-P5"
             )
             and "without running DEVSIM"
             in p3_contract.get("evidence_boundary", {}).get(
@@ -3954,6 +3997,170 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t03_p3_contact:v2_contract_and_v1_failure", False, str(error))
+
+    p5_config_path = ROOT / "config" / "tcad_t03_p5_temperature.json"
+    p5_contract_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p5_temperature_input_contract.json"
+    )
+    p5_source_path = ROOT / "references" / "t03_p5_temperature_sources.csv"
+    try:
+        p5_config = json.loads(p5_config_path.read_text(encoding="utf-8"))
+        p5_contract = json.loads(p5_contract_path.read_text(encoding="utf-8"))
+        p5_experiments = json.loads(experiments_path.read_text(encoding="utf-8"))
+        p5_t03 = next(
+            item for item in p5_experiments["experiments"] if item["id"] == "T03"
+        )
+        with p5_source_path.open("r", encoding="utf-8", newline="") as stream:
+            p5_source_rows = list(csv.DictReader(stream))
+
+        p5_checks = p5_contract.get("checks", [])
+        add_check(
+            checks,
+            "t03_p5_temperature:static_contract_e3",
+            p5_contract.get("status") == "PASS"
+            and p5_contract.get("contract_status") == "PASS"
+            and p5_contract.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and p5_contract.get("evidence_level") == "E3"
+            and len(p5_checks) == 23
+            and all(item.get("status") == "PASS" for item in p5_checks)
+            and not p5_contract.get("failures")
+            and p5_contract.get("config", {}).get("path")
+            == "config/tcad_t03_p5_temperature.json"
+            and p5_contract.get("config", {}).get("sha256")
+            == sha256(p5_config_path),
+            (
+                f"checks={sum(item.get('status') == 'PASS' for item in p5_checks)}/"
+                f"{len(p5_checks)} simulation={p5_contract.get('simulation_status')}"
+            ),
+        )
+        p5_inputs = p5_contract.get("inputs", {})
+        add_check(
+            checks,
+            "t03_p5_temperature:contract_inputs_and_sources_preserved",
+            len(p5_inputs) == 23
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                for item in p5_inputs.values()
+            )
+            and len(p5_source_rows) == 4
+            and {row["source_id"] for row in p5_source_rows}
+            == {
+                "NIST_CODATA_2022_BOLTZMANN_EV_PER_K",
+                "PROJECT_ARCHITECTURE_P5_POINTS",
+                "T01_BASELINE_300K",
+                "T01_SG_IMPLEMENTATION",
+            },
+            f"inputs={len(p5_inputs)} source_rows={len(p5_source_rows)}",
+        )
+
+        p5_model = p5_config.get("temperature_model_contract", {})
+        p5_scope = p5_config.get("scope", {})
+        p5_plan = p5_contract.get("planned_run", {})
+        p5_temperatures = p5_config.get("sensitivity", {}).get("values_k", [])
+        p5_thermal_values = p5_config.get("sensitivity", {}).get(
+            "thermal_voltage_values_v", []
+        )
+        p5_computed_thermal = [
+            p5_model.get("boltzmann_ev_per_k", 0.0) * value
+            for value in p5_temperatures
+        ]
+        add_check(
+            checks,
+            "t03_p5_temperature:vt_only_model_and_plan",
+            p5_config.get("case_id") == "IGZO_T03_P5_TEMPERATURE_V1"
+            and p5_config.get("stage") == "T03-P5-TEMPERATURE"
+            and p5_config.get("parameter_group_id") == "P5"
+            and p5_config.get("status") == "planned"
+            and p5_scope.get("changed_variable") == "lattice_temperature_k"
+            and p5_scope.get("changed_variable_count") == 1
+            and p5_temperatures == [250.0, 300.0, 350.0]
+            and all(
+                math.isclose(left, right, rel_tol=1e-12, abs_tol=1e-15)
+                for left, right in zip(p5_thermal_values, p5_computed_thermal)
+            )
+            and p5_model.get("changed_devsim_parameter")
+            == "channel region parameter V_t"
+            and p5_model.get("mobility_changed") is False
+            and p5_model.get("mobility_temperature_law_active") is False
+            and p5_model.get("effective_density_of_states_changed") is False
+            and p5_model.get("bandgap_or_affinity_changed") is False
+            and p5_model.get("permittivity_changed") is False
+            and p5_model.get("contact_model_changed") is False
+            and p5_model.get("trap_model_active") is False
+            and p5_model.get("self_heating_active") is False
+            and p5_plan
+            == {
+                "changed_variable": "lattice_temperature_k",
+                "temperature_values_k": [250.0, 300.0, 350.0],
+                "thermal_voltage_values_v": [
+                    0.021543333155,
+                    0.025851999786,
+                    0.030160666417,
+                ],
+                "devices": 3,
+                "reported_points": 93,
+                "dc_solves": 123,
+                "states": 3,
+                "vtk_files": 18,
+            },
+            f"temperatures={p5_temperatures} plan={p5_plan}",
+        )
+
+        p5_machine_evidence = p5_t03.get("p5_temperature_contract_evidence", {})
+        add_check(
+            checks,
+            "t03_p5_temperature:machine_state_and_next_gate",
+            p5_t03.get("completed_parameter_groups") == ["P1", "P2", "P3", "P4"]
+            and p5_t03.get("remaining_parameter_groups") == ["P5"]
+            and p5_t03.get("remaining_substages") == ["T03-P5"]
+            and p5_machine_evidence.get("status") == "input_contract_ready"
+            and p5_machine_evidence.get("contract_checks_passed") == 23
+            and p5_machine_evidence.get("formal_sensitivity_completed") is False
+            and p5_machine_evidence.get("complete_p5_temperature_group") is False
+            and p5_machine_evidence.get("complete_t03_five_group_sensitivity")
+            is False
+            and config.get("tcad_track", {}).get("next_scope", "").startswith(
+                "run exactly one formal isolated T03-P5"
+            ),
+            config.get("tcad_track", {}).get("next_scope", ""),
+        )
+
+        p5_outputs = p5_config.get("outputs", {})
+        p5_future_output_paths = [
+            ROOT / value
+            for name, value in p5_outputs.items()
+            if name != "contract_report"
+        ]
+        p5_prohibited_claims = " ".join(
+            p5_config.get("evidence_boundary", {}).get("prohibited_claims", [])
+        )
+        add_check(
+            checks,
+            "t03_p5_temperature:formal_outputs_absent_and_boundary_preserved",
+            p5_outputs.get("contract_report")
+            == "results/reports/tcad_t03_p5_temperature_input_contract.json"
+            and not any(path.exists() for path in p5_future_output_paths)
+            and "without running DEVSIM"
+            in p5_config.get("evidence_boundary", {}).get(
+                "contract_allowed_claim", ""
+            )
+            and "V_t-only"
+            in p5_config.get("evidence_boundary", {}).get(
+                "future_run_allowed_claim", ""
+            )
+            and "experimental or calibrated" in p5_prohibited_claims
+            and "physical VTH" in p5_prohibited_claims
+            and "compact-model" in p5_prohibited_claims
+            and "complete T03 before" in p5_prohibited_claims,
+            (
+                f"future_outputs={sum(path.exists() for path in p5_future_output_paths)}/"
+                f"{len(p5_future_output_paths)}"
+            ),
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t03_p5_temperature:formal_input_contract", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

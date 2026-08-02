@@ -1,0 +1,263 @@
+{
+  "status": "PASS",
+  "contract_status": "PASS",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "case_id": "IGZO_T03_P5_TEMPERATURE_V1",
+  "stage": "T03-P5-TEMPERATURE",
+  "parameter_group_id": "P5",
+  "evidence_level": "E3",
+  "config": {
+    "path": "config/tcad_t03_p5_temperature.json",
+    "sha256": "7202cd76a6ee7567562bb6bb766c7eae599d62e8809130feb8ca0dd2f8ad61f3"
+  },
+  "inputs": {
+    "project_config": {
+      "path": "config/project.json",
+      "sha256": "8b30046f5dad7e91ebcaf8132c65e249346bc73b0b018916d850f7a37ad661f7"
+    },
+    "experiments_config": {
+      "path": "config/experiments.json",
+      "sha256": "03907f09fb1e497a119dabb3f836408f9067353142efb47afe8413a8549766c4"
+    },
+    "s00_report": {
+      "path": "results/reports/s00_data_audit.json",
+      "sha256": "44ea42ff7fd9923cd4c9c2d0156ce3d0029cd59655e3c4086ab7250f78b48e31"
+    },
+    "t01_baseline_config": {
+      "path": "config/tcad_t01_baseline.json",
+      "sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9"
+    },
+    "t01_mesh_config": {
+      "path": "config/tcad_t01_d_mesh_refinement.json",
+      "sha256": "6ba9815ab063708b9fa560092974ac65a748b95c981d16056af3dec1e0f74e23"
+    },
+    "t02_a_config": {
+      "path": "config/tcad_t02_a_dual_gate_contract.json",
+      "sha256": "59f19996be43c22972bf223cfebf1f95fcaec5cdd9bf2edef76d45e9f1b4ccb3"
+    },
+    "t02_c_config": {
+      "path": "config/tcad_t02_c_bidirectional.json",
+      "sha256": "93c29fe977dd304315537d7dcbb0e2ea4b920cdab331a7996d7c9dd399b84228"
+    },
+    "t02_c_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional.json",
+      "sha256": "d214e9bf7c1938cf3120eaaf06fc53d0b1c1faf0708c0378fef6b3faeafecfed"
+    },
+    "t02_c_check_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional_check.json",
+      "sha256": "a13c6bebb0f10e8bce7dabff865863ee862e9d3ac572dfc692423a66ba868aa4"
+    },
+    "p4_report": {
+      "path": "results/reports/tcad_t03_p4_l_sensitivity.json",
+      "sha256": "b54c823f9618513334968c7a85872371315a283c7a518facd88166d5921cd61c"
+    },
+    "p4_check_report": {
+      "path": "results/reports/tcad_t03_p4_l_sensitivity_check.json",
+      "sha256": "9f437759d91615732e3dddf37ced9d49144ae3927d9bc3ad429a39ff781e0e5d"
+    },
+    "p1_bias_report": {
+      "path": "results/reports/tcad_t03_p1_bias_sensitivity.json",
+      "sha256": "e35fc46f642d6be876e91f01e0ea11c54f066033662fb3b66578010e91507e71"
+    },
+    "p1_bias_check_report": {
+      "path": "results/reports/tcad_t03_p1_bias_sensitivity_check.json",
+      "sha256": "9489b04999c0076c69650da2c5c0b40413e19acc1e35ef5b53c0ec95501a78fb"
+    },
+    "p1_cap_report": {
+      "path": "results/reports/tcad_t03_p1_cap_ratio_sensitivity.json",
+      "sha256": "6a715933139376959bda64939226e81ad82baab430f6fc09d4fd30f82dc089c9"
+    },
+    "p1_cap_check_report": {
+      "path": "results/reports/tcad_t03_p1_cap_ratio_sensitivity_check.json",
+      "sha256": "ba9b524f620d6d8dcc1dcfe745a8a550ec168cc8a5150f727c54787e912eabcb"
+    },
+    "p2_bulk_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_formal_v3.json",
+      "sha256": "62f76f4bbc875688061595e313f4d272dbbacd3151dff39c8fe470b6ad3aad9b"
+    },
+    "p2_bulk_check_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json",
+      "sha256": "07b22ee6a0f277fe3b5d3837892ad2e2146e089c48ee670aed534a6c188b40b9"
+    },
+    "p3_report": {
+      "path": "results/reports/tcad_t03_p3_contact_resistance_v2.json",
+      "sha256": "2d7b53786990858e96f4d953a833ee6faf85c6862faf67571088c396594905d4"
+    },
+    "p3_check_report": {
+      "path": "results/reports/tcad_t03_p3_contact_resistance_v2_check.json",
+      "sha256": "fbcf091dae5a036e15ae61eb8c064916aab7704a866871ebd6464435e463366f"
+    },
+    "t01_transport_runner": {
+      "path": "tcad/run_t01_single_gate_smoke.py",
+      "sha256": "5b42f36ae9bd7d3471d873c5ee4146b560d6666c8480f6a3a2b1dca864e0e882"
+    },
+    "source_table": {
+      "path": "references/t03_p5_temperature_sources.csv",
+      "sha256": "acf48f7fb8530bef868795dc1af43b5298176db576c9711613cba0f8f8dca1d7"
+    },
+    "runner": {
+      "path": "tcad/run_t03_p5_temperature.py",
+      "sha256": "c2804b99b4f0751a3e2e7a7efc4683865800c4961ee646ec8552fcc0f206626e"
+    },
+    "independent_checker": {
+      "path": "scripts/check_t03_p5_temperature.py",
+      "sha256": "295b50a5b78410abe271910a7d442f73b231764050cf60a63a889aa12f28c785"
+    }
+  },
+  "checks": [
+    {
+      "name": "identity:t03_p5_temperature_contract",
+      "status": "PASS",
+      "detail": "case=IGZO_T03_P5_TEMPERATURE_V1 stage=T03-P5-TEMPERATURE group=P5"
+    },
+    {
+      "name": "scope:2d_n_igzo_laptop_only",
+      "status": "PASS",
+      "detail": "2D n-IGZO electron-only drift-diffusion teaching model with the T02-A enabled symmetric dual-gate stack"
+    },
+    {
+      "name": "gate:g0_remains_teaching_only",
+      "status": "PASS",
+      "detail": "{\"allowed_claim\": \"Teaching-parameter two-dimensional IGZO simulation\", \"missing_primary_inputs\": [\"condition-complete raw Id-Vg\", \"condition-complete raw Id-Vd\", \"device batch identity\", \"measurement or simulation condition metadata\"], \"prohibited_claim\": \"Accurate experimental fit or calibrated dual-gate prediction\", \"quantitative_fitting_permitted\": false, \"required_primary_fields\": [\"dataset_id\", \"device_id\", \"sweep_id\", \"VGS_V\", \"VDS_V\", \"ID_A\", \"W_um\", \"L_um\", \"temperature_K\", \"sweep_direction\", \"source\", \"source_status\"], \"status\": \"TEACHING_BASELINE_ONLY\", \"t01_permitted\": true}"
+    },
+    {
+      "name": "dependencies:t02_numerical_gate_is_complete",
+      "status": "PASS",
+      "detail": "run=PASS check=PASS completion=PASS"
+    },
+    {
+      "name": "dependencies:p1_p2_p3_p4_are_complete_before_p5",
+      "status": "PASS",
+      "detail": "completed=['P1', 'P2', 'P3', 'P4'] remaining=['P5']"
+    },
+    {
+      "name": "machine_state:contract_ready_and_only_formal_p5_run_is_next",
+      "status": "PASS",
+      "detail": "run exactly one formal isolated T03-P5 temperature sensitivity under the committed 250/300/350 K V_t-only contract; only runner PASS permits the independent persisted-evidence check, and M00, M01, SPICE, circuit cells, layout, PEX, and HZO remain closed until P5 and complete T03 are documented"
+    },
+    {
+      "name": "model:three_points_and_thermal_voltage_are_exact",
+      "status": "PASS",
+      "detail": "temperatures=[250.0, 300.0, 350.0] thermal_voltage=[0.021543333155, 0.025851999786, 0.030160666417]"
+    },
+    {
+      "name": "model:only_vt_changes_and_all_empirical_temperature_laws_are_off",
+      "status": "PASS",
+      "detail": "This is a one-term numerical temperature sensitivity of the frozen teaching transport closure, not a complete physical IGZO temperature model."
+    },
+    {
+      "name": "implementation:existing_sg_current_uses_runtime_vt",
+      "status": "PASS",
+      "detail": "ElectronCharge*mu_n*EdgeInverseLength*V_t*kahan3(Electrons@n1*Bern01, Electrons@n1*vdiff, -Electrons@n0*Bern01)"
+    },
+    {
+      "name": "sources:nist_constant_and_project_boundaries_are_explicit",
+      "status": "PASS",
+      "detail": "rows=4 ids=['NIST_CODATA_2022_BOLTZMANN_EV_PER_K', 'PROJECT_ARCHITECTURE_P5_POINTS', 'T01_BASELINE_300K', 'T01_SG_IMPLEMENTATION']"
+    },
+    {
+      "name": "controls:geometry_bias_transport_contacts_and_traps_are_frozen",
+      "status": "PASS",
+      "detail": "lattice_temperature_k"
+    },
+    {
+      "name": "bias:exact_t02_c_top_primary_zero_secondary_grid",
+      "status": "PASS",
+      "detail": "points=31 range=-0.5..1.0 V"
+    },
+    {
+      "name": "extraction:vth_gm_ss_and_fixed_current_proxies_are_frozen",
+      "status": "PASS",
+      "detail": "{\"configured_mobility_control\": {\"extracted_mobility_claim_permitted\": false, \"temperature_dependent\": false, \"value_cm2_vs\": 35.5}, \"constant_current_vth_proxy\": {\"criterion_formula\": \"10 nA * (W/L) terminal current\", \"criterion_prefactor_a\": 1e-08, \"expected_current_per_width_a_per_cm\": 1e-05, \"expected_terminal_current_a\": 6e-08, \"interpolation\": \"linear top-gate-voltage interpolation in log10(abs(drain current per unit width))\", \"name\": \"constant_current_log_interpolation\"}, \"delta_vth_proxy\": {\"definition\": \"VTH(T) minus VTH(300 K)\", \"name\": \"temperature constant-current threshold shift\", \"reference_temperature_k\": 300.0}, \"gm_proxy\": {\"definition\": \"central-difference derivative of abs(drain current) versus top-gate voltage, linearly interpolated at VTH + 0.2 V\", \"evaluation_overdrive_v\": 0.2, \"name\": \"central_difference_then_linear_interpolation\", \"reported_units\": [\"S/cm\", \"S terminal\"]}, \"high_gate_current_proxy\": {\"definition\": \"abs(drain current) at VTG=1.0 V, VBG=0 V, and VDS=0.01 V\", \"evaluation_top_gate_v\": 1.0, \"name\": \"fixed_highest_gate_voltage_current\", \"physical_ion_claim_permitted\": false}, \"low_gate_current_proxy\": {\"definition\": \"abs(drain current) at VTG=-0.5 V, VBG=0 V, and VDS=0.01 V\", \"evaluation_top_gate_v\": -0.5, \"name\": \"fixed_lowest_gate_voltage_current\", \"physical_leakage_or_ioff_claim_permitted\": false}, \"ss_proxy\": {\"endpoint_method\": \"log-current interpolation to exact fixed-window endpoints\", \"fit\": \"ordinary least squares of top-gate voltage versus log10(abs(drain current per unit width))\", \"lower_current_a_per_cm\": 1e-07, \"minimum_augmented_sample_count\": 4, \"name\": \"fixed_current_window_ols\", \"reported_unit\": \"mV/dec\", \"upper_current_a_per_cm\": 1e-06}}"
+    },
+    {
+      "name": "execution:three_fresh_devices_93_points_and_123_dc_solves",
+      "status": "PASS",
+      "detail": "{\"laptop_target\": true, \"maximum_run_directory_bytes\": 75000000, \"maximum_wall_seconds\": 300.0, \"required_dc_solve_count_per_device\": 41, \"required_device_count\": 3, \"required_reported_point_count_per_device\": 31, \"required_temperature_count\": 3, \"required_total_dc_solve_count\": 123, \"required_total_reported_point_count\": 93}"
+    },
+    {
+      "name": "states:three_common_on_proxy_states_and_18_vtk_are_required",
+      "status": "PASS",
+      "detail": "{\"common_primary_gate_v\": 1.0, \"electron_current_density\": {\"location\": \"channel triangular elements\", \"source_model\": \"DEVSIM ElectronCurrent edge model projected by element_from_edge_model\", \"unit\": \"A/cm^2\"}, \"electron_density\": {\"location\": \"channel nodes\", \"unit\": \"cm^-3\"}, \"potential\": {\"location\": \"bottom_oxide, channel, and top_oxide nodes\", \"unit\": \"V\"}, \"required_state_count\": 3, \"required_state_ids\": [\"p5_temperature_250k_on_proxy\", \"p5_temperature_300k_on_proxy\", \"p5_temperature_350k_on_proxy\"], \"required_total_vtk_file_count\": 18, \"required_vtk_file_count_per_state\": 6}"
+    },
+    {
+      "name": "acceptance:counts_conservation_extraction_and_response_are_prefrozen",
+      "status": "PASS",
+      "detail": "{\"maximum_300k_t02_c_center_density_relative_difference\": 1e-06, \"maximum_300k_t02_c_center_potential_difference_v\": 1e-07, \"maximum_300k_t02_c_current_relative_difference\": 1e-06, \"maximum_300k_t02_c_gm_relative_difference\": 0.0001, \"maximum_300k_t02_c_vth_difference_v\": 0.0001, \"maximum_monotonic_relative_current_drop\": 1e-06, \"maximum_relative_terminal_current_imbalance\": 1e-05, \"maximum_zero_equilibrium_absolute_potential_v\": 1e-10, \"maximum_zero_equilibrium_absolute_terminal_current_a_per_cm\": 1e-18, \"minimum_250_to_350_maximum_metric_relative_response\": 0.001, \"minimum_augmented_ss_sample_count\": 4, \"minimum_ss_fit_r_squared\": 0.98, \"require_all_dc_solves_converged\": true, \"require_directional_hypotheses_reported_without_gating\": true, \"require_finite_positive_low_and_high_gate_current\": true, \"require_positive_drain_and_negative_source_current\": true, \"require_positive_finite_gm\": true, \"require_positive_finite_ss\": true, \"require_strict_primary_gate_current_increase\": true, \"require_two_png_figures\": true, \"require_vth_bracket_for_every_device\": true, \"required_contacts\": [\"source\", \"drain\", \"bottom_gate\", \"top_gate\"], \"required_interfaces\": [\"bottom_oxide_channel\", \"channel_top_oxide\"], \"required_primary_gate_point_count\": 31, \"required_reference_temperature_k\": 300.0, \"required_regions\": [\"bottom_oxide\", \"channel\", \"top_oxide\"], \"required_state_count\": 3, \"required_state_ids\": [\"p5_temperature_250k_on_proxy\", \"p5_temperature_300k_on_proxy\", \"p5_temperature_350k_on_proxy\"], \"required_temperature_values_k\": [250.0, 300.0, 350.0], \"required_thermal_voltage_values_v\": [0.021543333155, 0.025851999786, 0.030160666417], \"required_total_dc_solve_count\": 123, \"required_total_reported_point_count\": 93, \"required_vtk_file_count\": 18}"
+    },
+    {
+      "name": "acceptance:300k_t02_c_full_regression_is_mandatory",
+      "status": "PASS",
+      "detail": "31-point curve, center state, VTH and gm must reproduce T02-C at 300 K"
+    },
+    {
+      "name": "diagnostics:temperature_direction_is_report_only",
+      "status": "PASS",
+      "detail": "Only V_t changes; the model intentionally omits calibrated IGZO mobility, density-of-states, contact, trap and band-parameter temperature laws."
+    },
+    {
+      "name": "failure:retention_and_no_overwrite_are_mandatory",
+      "status": "PASS",
+      "detail": "Any point, model-term, extraction-window or threshold change requires a new config revision, a recorded rationale, preservation of the failed contract/report, and a complete rerun."
+    },
+    {
+      "name": "outputs:unique_stage_paths_are_unrun",
+      "status": "PASS",
+      "detail": "outputs=13 existing_run_outputs=[]"
+    },
+    {
+      "name": "implementation:runner_and_independent_checker_are_frozen",
+      "status": "PASS",
+      "detail": "runner=tcad/run_t03_p5_temperature.py checker=scripts/check_t03_p5_temperature.py"
+    },
+    {
+      "name": "boundary:no_calibration_physical_parameter_or_downstream_claim",
+      "status": "PASS",
+      "detail": "Static E3 checks may establish that the formal isolated 250/300/350 K P5 input contract is complete and internally consistent without running DEVSIM."
+    },
+    {
+      "name": "gate:no_p5_simulation_or_downstream_work_was_started",
+      "status": "PASS",
+      "detail": "formal P5 DEVSIM run temperature-dependent mobility, density-of-states, bandgap, affinity, permittivity, contact, or trap law simultaneous trap, contact, geometry, dielectric, bias, or mobility scan M00, M01, SPICE, circuit-cell, layout, PEX, or HZO work"
+    }
+  ],
+  "failures": [],
+  "planned_run": {
+    "changed_variable": "lattice_temperature_k",
+    "temperature_values_k": [
+      250.0,
+      300.0,
+      350.0
+    ],
+    "thermal_voltage_values_v": [
+      0.021543333155,
+      0.025851999786,
+      0.030160666417
+    ],
+    "devices": 3,
+    "reported_points": 93,
+    "dc_solves": 123,
+    "states": 3,
+    "vtk_files": 18
+  },
+  "evidence_boundary": {
+    "contract_allowed_claim": "Static E3 checks may establish that the formal isolated 250/300/350 K P5 input contract is complete and internally consistent without running DEVSIM.",
+    "future_run_allowed_claim": "Runner E2 plus independent persisted-evidence E3 PASS may close only the three-point V_t-only temperature sensitivity of the frozen 2D n-IGZO teaching model and thereby close numerical T03.",
+    "allowed_parameter_labels": [
+      "lattice-temperature numerical sensitivity",
+      "thermal-voltage input",
+      "constant-current VTH numerical proxy",
+      "SS numerical proxy",
+      "gm numerical proxy",
+      "sampled low-gate and high-gate current numerical proxies"
+    ],
+    "prohibited_claims": [
+      "experimental or calibrated IGZO temperature dependence",
+      "measured or fitted temperature-dependent mobility, DOS, contact, trap, bandgap, affinity, permittivity, activation energy, or thermal resistance",
+      "physical VTH, SS, leakage, Ioff, Ion, gm, operating range, reliability, or self-heating",
+      "compact-model, SPICE, circuit-cell, layout, PEX, or HZO evidence",
+      "complete T03 before both the formal runner and independent persisted-evidence checker pass"
+    ],
+    "next_gate": "Only a committed contract PASS permits exactly one complete formal P5 run; only runner PASS permits the independent persisted-evidence check; only both PASS plus documentation may close numerical T03."
+  }
+}

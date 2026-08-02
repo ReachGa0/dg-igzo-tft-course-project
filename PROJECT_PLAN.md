@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`T03_P3_CONTACT_V2_E3_COMPLETE_P5_CONTRACT_NEXT`：T01/T02 冻结教学模型数值门及 T03-P1/P2/P3/P4 已关闭。P3 V1 的 12 器件/243 次收敛 DC/156 点继续以 24/25 E0/FAIL 保留；V2 在不改三点、模型、偏压、提取、阈值或预算的 34/34 E3 恢复合同后唯一运行一次，完成 12/243/156/3/18，运行器 25/25 E2、独立检查 20/20 E3。G0 仍为 `TEACHING_BASELINE_ONLY`；P5、完整 T03、紧凑模型和定量电路预测尚未完成。
+`T03_P5_TEMPERATURE_CONTRACT_E3_READY_FORMAL_RUN_NEXT`：T01/T02 冻结教学模型数值门及 T03-P1/P2/P3/P4 已关闭，P3 V1 失败保留。P5 已以 23/23 E3 静态合同冻结 250/300/350 K，只让既有 Scharfetter-Gummel 电流中的 `V_t=k_B*T` 变化；3 器件/123 DC/93 点/3 状态/18 VTK 尚未运行。G0 仍为 `TEACHING_BASELINE_ONLY`；正式 P5、完整 T03、紧凑模型和定量电路预测尚未完成。
 
 ## 截止日期
 
@@ -44,7 +44,7 @@
 | T00 | 二维双栅静电基准 | DONE，E2 | 既有 JSON/CSV/VTK/PNG |
 | T01 | 单栅漂移扩散 | DONE，E2 教学模型数值门 | `results/reports/tcad_t01_d_extraction.json`；状态、守恒、网格代理比较与独立检查完整，不代表实验标定 |
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
-| T03 | 五组器件参数 | PARTIAL，P1/P2/P3/P4 DONE；P3 V1 FAIL PRESERVED、V2 E2/E3 PASS；P5 TODO | P3 只在冻结教学模型边界内关闭；完整 T03 尚未关闭 |
+| T03 | 五组器件参数 | PARTIAL，P1/P2/P3/P4 DONE；P3 V1 FAIL PRESERVED；P5 CONTRACT E3 | P5 的 250/300/350 K V_t-only 合同 23/23 PASS，但正式 3/123/93 尚未运行；完整 T03 未关闭 |
 | M00 | IGZO 多曲线标定 | TODO | 等主数据集 |
 | M01 | AIM-Spice/ngspice 对照 | TODO | 依赖 M00 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-P3 V1 失败证据已完整保留，V2 正式运行与独立检查已经关闭数值 P3。当前下一件事只建立正式隔离 T03-P5 温度敏感性输入合同：冻结至少三个温度点、温度依赖教学项、共同偏压与提取、失败保留、输出和证据边界。合同通过并提交前不得运行 P5；M00/M01、SPICE、电路、版图、PEX 和 HZO 继续关闭。
+P5 正式隔离输入合同已冻结并通过静态检查，但合同提交前不运行 DEVSIM。提交并推送后只执行一次 250/300/350 K 的完整 `V_t`-only 正式敏感性；运行器 PASS 后才执行独立落盘检查。M00/M01、SPICE、电路、版图、PEX 和 HZO 继续关闭。
