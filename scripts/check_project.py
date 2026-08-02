@@ -55,6 +55,7 @@ REQUIRED_FILES = [
     "config/tcad_t03_p2_bulk_traps.json",
     "config/tcad_t03_p2_bulk_traps_formal.json",
     "config/tcad_t03_p2_bulk_traps_formal_v1_failed.json",
+    "config/tcad_t03_p2_bulk_traps_formal_v2_failed.json",
     "scripts/check_t03_p2_bulk_traps_contract.py",
     "scripts/check_t03_p2_bulk_traps_equation_smoke.py",
     "scripts/check_t03_p2_bulk_traps_formal_contract.py",
@@ -62,17 +63,20 @@ REQUIRED_FILES = [
     "tcad/run_t03_p2_bulk_traps_equation_smoke.py",
     "tcad/run_t03_p2_bulk_traps_formal.py",
     "tcad/run_t03_p2_bulk_traps_formal_v1_failed.py",
+    "tcad/run_t03_p2_bulk_traps_formal_v2_failed.py",
     "results/reports/tcad_t03_p2_bulk_traps_input_contract.json",
     "results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json",
     "results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json",
     "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json",
     "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json",
+    "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3.json",
     "results/reports/tcad_t03_p2_bulk_traps_formal.json",
     "results/reports/tcad_t03_p2_bulk_traps_formal_v1_runner_completed_without_exception.json",
     "results/reports/tcad_t03_p2_bulk_traps_formal_v2.json",
     "results/reports/tcad_t03_p2_bulk_traps_formal_v2_runner_completed_without_exception.json",
     "results/reports/project_check_t03_p2_bulk_formal_boundary_checker_bug_failed.json",
     "results/reports/project_check_t03_p2_bulk_v2_failure_checker_math_import_bug_failed.json",
+    "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3_checker_v2_curve_loader_bug_failed.json",
     "results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
     "results/tables/tcad_t03_p2_bulk_traps_integration_samples.csv",
     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
@@ -611,11 +615,12 @@ def main() -> int:
             }
             and sensitivity.get("p2_bulk_formal_contract_evidence")
             == {
-                "status": "input_contract_ready_v2",
-                "revision": 2,
+                "status": "input_contract_ready_v3",
+                "revision": 3,
                 "contract_evidence": "E3",
                 "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
                 "v1_failure_preserved": True,
+                "v2_failure_preserved": True,
                 "formal_sensitivity_completed": False,
             }
             and sensitivity.get("p2_bulk_formal_v1_failure_evidence")
@@ -667,11 +672,14 @@ def main() -> int:
                     "config/tcad_t03_p2_bulk_traps_formal.json",
                     "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json",
                     "config/tcad_t03_p2_bulk_traps_formal_v1_failed.json",
+                    "config/tcad_t03_p2_bulk_traps_formal_v2_failed.json",
+                    "tcad/run_t03_p2_bulk_traps_formal_v2_failed.py",
                     "results/reports/tcad_t03_p2_bulk_traps_formal_v1_runner_completed_without_exception.json",
                     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
                     "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json",
                     "results/reports/tcad_t03_p2_bulk_traps_formal_v2_runner_completed_without_exception.json",
                     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/failure_archive_manifest.json",
+                    "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3.json",
                 ]
             ),
             (
@@ -2631,7 +2639,7 @@ def main() -> int:
         ROOT
         / "results"
         / "reports"
-        / "tcad_t03_p2_bulk_traps_formal_input_contract_v2.json"
+        / "tcad_t03_p2_bulk_traps_formal_input_contract_v3.json"
     )
     try:
         t03_p2_bulk_formal_config = json.loads(
@@ -2649,13 +2657,13 @@ def main() -> int:
             and t03_p2_bulk_formal_contract.get("simulation_status")
             == "NOT_RUN_BY_CONTRACT_CHECK"
             and t03_p2_bulk_formal_contract.get("case_id")
-            == "IGZO_T03_P2_BULK_TRAPS_FORMAL_V2"
+            == "IGZO_T03_P2_BULK_TRAPS_FORMAL_V3"
             and t03_p2_bulk_formal_contract.get("stage")
             == "T03-P2-BULK-TRAPS-FORMAL"
             and t03_p2_bulk_formal_contract.get("evidence_level") == "E3"
             and t03_p2_bulk_formal_contract.get("config", {}).get("sha256")
             == sha256(t03_p2_bulk_formal_config_path)
-            and len(formal_checks) == 23
+            and len(formal_checks) == 24
             and all(item.get("status") == "PASS" for item in formal_checks)
             and not t03_p2_bulk_formal_contract.get("failures"),
             (
@@ -2677,13 +2685,13 @@ def main() -> int:
                 "NGA": [0.0, 1e16, 5e16, 5e17],
             }
             and planned_formal.get("device_count") == 8
-            and planned_formal.get("reported_point_count") == 360
-            and planned_formal.get("dc_solve_count") == 440
+            and planned_formal.get("reported_point_count") == 376
+            and planned_formal.get("dc_solve_count") == 456
             and planned_formal.get("state_count") == 8
             and planned_formal.get("formal_sensitivity_run") is False
             and formal_budget.get("required_total_device_count") == 8
-            and formal_budget.get("required_total_reported_point_count") == 360
-            and formal_budget.get("required_total_dc_solve_count") == 440,
+            and formal_budget.get("required_total_reported_point_count") == 376
+            and formal_budget.get("required_total_dc_solve_count") == 456,
             (
                 f"devices={planned_formal.get('device_count')} "
                 f"points={planned_formal.get('reported_point_count')} "
@@ -2705,7 +2713,7 @@ def main() -> int:
                 "P2, T03" in claim
                 for claim in formal_boundary.get("prohibited_claims", [])
             )
-            and "Only this V2 formal contract PASS permits"
+            and "Only this V3 formal contract PASS permits"
             in formal_boundary.get("next_gate", "")
             and t03_p2_bulk_formal_config.get("status") == "planned",
             formal_boundary.get("next_gate", ""),
@@ -2792,6 +2800,15 @@ def main() -> int:
                 f"{sum(int(entry.get('vtk_file_count', 0)) for entry in v1_entries)}"
             ),
         )
+        v2_config_path = (
+            ROOT / "config/tcad_t03_p2_bulk_traps_formal_v2_failed.json"
+        )
+        v2_contract = json.loads(
+            (
+                ROOT
+                / "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json"
+            ).read_text(encoding="utf-8")
+        )
         v2_report_path = (
             ROOT / "results/reports/tcad_t03_p2_bulk_traps_formal_v2.json"
         )
@@ -2861,6 +2878,9 @@ def main() -> int:
             checks,
             "t03_p2_bulk_traps:formal_v2_extraction_grid_failure_preserved",
             v2_report.get("status") == "FAIL"
+            and v2_contract.get("contract_status") == "PASS"
+            and v2_contract.get("config", {}).get("sha256")
+            == sha256(v2_config_path)
             and v2_report.get("evidence_level") == "E0"
             and v2_report.get("formal_sensitivity_run") is False
             and v2_report.get("independent_persisted_evidence_check_complete")
@@ -2877,11 +2897,11 @@ def main() -> int:
             and v2_snapshot.get("inputs", {}).get("formal_config", {}).get(
                 "sha256"
             )
-            == sha256(ROOT / "config/tcad_t03_p2_bulk_traps_formal.json")
+            == sha256(v2_config_path)
             and v2_snapshot.get("inputs", {}).get("runner_script", {}).get(
                 "sha256"
             )
-            == sha256(ROOT / "tcad/run_t03_p2_bulk_traps_formal.py")
+            == sha256(ROOT / "tcad/run_t03_p2_bulk_traps_formal_v2_failed.py")
             and len(v2_solver_log.get("runs", [])) == 8
             and len(v2_solver_records) == 440
             and all(record.get("converged") is True for record in v2_solver_records)
@@ -2918,6 +2938,31 @@ def main() -> int:
                 f"rows={len(v2_curve_rows)} states={len(v2_entries)} "
                 f"vth={v2_vth:.12f} gm_eval={v2_vth + 0.2:.12f}"
             ),
+        )
+        v3_contract_checker_failure = json.loads(
+            (
+                ROOT
+                / "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3_checker_v2_curve_loader_bug_failed.json"
+            ).read_text(encoding="utf-8")
+        )
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:v3_contract_checker_csv_loader_bug_preserved",
+            v3_contract_checker_failure.get("status") == "FAIL"
+            and v3_contract_checker_failure.get("failure_class")
+            == "contract_checker_input_loader_bug"
+            and v3_contract_checker_failure.get("error_type")
+            == "JSONDecodeError"
+            and v3_contract_checker_failure.get("simulation_run") is False
+            and v3_contract_checker_failure.get("contract_assertions_evaluated")
+            is False
+            and v3_contract_checker_failure.get("acceptance_thresholds_changed")
+            is False
+            and v3_contract_checker_failure.get("physical_inputs_changed") is False
+            and "v2_curve_csv" in v3_contract_checker_failure.get(
+                "error_detail", ""
+            ),
+            v3_contract_checker_failure.get("error_detail", ""),
         )
         archived_boundary_failure = json.loads(
             (

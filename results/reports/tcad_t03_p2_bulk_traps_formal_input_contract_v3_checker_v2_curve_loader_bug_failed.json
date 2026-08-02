@@ -1,0 +1,14 @@
+{
+  "status": "FAIL",
+  "date": "2026-08-02",
+  "stage": "T03-P2-BULK-TRAPS-FORMAL-V3-CONTRACT",
+  "command": "make t03-p2-bulk-traps-formal-contract-check",
+  "failure_class": "contract_checker_input_loader_bug",
+  "error_type": "JSONDecodeError",
+  "error_detail": "The newly declared v2_curve_csv dependency was routed to load_json instead of load_csv and failed at line 1 column 1 before contract assertions were evaluated.",
+  "simulation_run": false,
+  "contract_assertions_evaluated": false,
+  "acceptance_thresholds_changed": false,
+  "physical_inputs_changed": false,
+  "remediation": "Add v2_curve_csv to the existing CSV dependency loader set and rerun the unchanged V3 static contract."
+}

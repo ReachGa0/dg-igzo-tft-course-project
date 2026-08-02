@@ -16,6 +16,41 @@
 
 ---
 
+## 2026-08-02 | Codex GPT-5 | 建立 bulk 正式 V3 统一 1.8 V 恢复合同
+
+### 用户目标
+
+批准采用建议的统一 1.8 V 栅压上限，并授权后续对不涉及范围冲突、物理口径变更或门槛放宽的可处理问题按现有保守模式直接解决；继续严格按阶段门推进。
+
+### 读取的关键输入
+
+- `AGENTS.md`、`README.md`、`AI_CONTEXT.md`、`ARCHITECTURE.md`、`STATUS.md`、`PROJECT_PLAN.md`、`DECISIONS.md`、本日志顶部、`config/project.json` 和 `config/experiments.json`。
+- V1/V2 精确配置、运行器、合同报告、失败归档、输入快照、求解日志和 transfer 曲线，以及冻结的 T02-C/DIT V2 提取方法。
+- V2 诊断 VTH=`1.4666676 V`、gm 评价点=`1.6666676 V` 和中心差分上邻点不足这一已保留 E0/FAIL。
+
+### 修改和合同结果
+
+- 原样冻结 V2 活动配置和运行器为 `config/tcad_t03_p2_bulk_traps_formal_v2_failed.json` 与 `tcad/run_t03_p2_bulk_traps_formal_v2_failed.py`，活动合同升为 V3。
+- V3 唯一数值输入变化是全部 8 个器件共同网格由 `-0.5~1.7 V` 扩展为 `-0.5~1.8 V`，步长保持 `0.05 V`；密度点、隔离方式、方程、积分、提取方法和验收阈值均不变。
+- V3 冻结每器件 47 个 transfer 点和 57 次 DC，共 376 个计划点、456 次计划 DC、8 个状态和 48 个 VTK；所有 V3 输出使用独立 `v3` 路径。
+- 首次合同检查因 `v2_curve_csv` 被按 JSON 读取而在断言前异常退出。失败记录保存在 `results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3_checker_v2_curve_loader_bug_failed.json`；修正只把该输入加入 CSV 加载分支。
+- 修正后 `make t03-p2-bulk-traps-formal-contract-check`：24/24 PASS，E3，`simulation=NOT_RUN_BY_CONTRACT_CHECK`。本里程碑没有运行 DEVSIM。
+
+### 验证命令和结果
+
+- `make t03-p2-bulk-traps-formal-contract-check`：首次因检查器 CSV 加载分支遗漏而异常退出并保留；修正后 24/24 PASS，8 器件、456 次计划 DC、376 个计划点。
+- `make check`：449/449 PASS，包括 V1/V2 精确失败证据、V3 静态合同和本次检查器失败记录。
+- `make report-check`：PASS，12 章、5 附录、16 个允许占位符和 14 张既有图片。
+- Python 编译、三份活动 JSON、证据矩阵 CSV 解析和 `git diff --check`：PASS。
+- 没有运行 V3 DEVSIM、V2 独立检查、P3/P5、M00/M01、SPICE、电路、版图、PEX 或 HZO。
+
+### 证据边界和下一步
+
+- 8/456/376 是计划量，不是仿真结果。V1/V2 仍分别为 E0/FAIL，V2 独立检查仍未运行。
+- 下一步只允许运行一次 V3 正式隔离 NTA/NGA transfer sensitivity；运行器 PASS 后才执行独立落盘检查。此前 P3/P5、M00/M01、SPICE、电路、版图、PEX 和 HZO 继续关闭。
+
+---
+
 ## 2026-08-02 | Codex GPT-5 | 保留 bulk 正式 V2 提取网格失败并暂停阶段 DAG
 
 ### 用户目标

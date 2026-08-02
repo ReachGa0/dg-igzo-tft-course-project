@@ -10,8 +10,8 @@
       <tr><td>Al2O3</td><td>物理厚度 30 nm；SPICE 有效 TOX 10 nm；k = 6.8</td><td>分别用于 TCAD 几何和紧凑模型口径</td><td>两个厚度不得互换</td></tr>
       <tr><td>IGZO 教学参数</td><td>mu_n = 35.5 cm2/(V*s)，VTH = 0.21 V</td><td>T01 初始假设和量级检查</td><td>不是实验拟合目标</td></tr>
       <tr><td>bottom-interface D_it</td><td>8.43e11/3.07e12/6.02e12 cm^-2 eV^-1；零值只作回归控制</td><td>T03-P2-DIT 线性准静态教学模型的三点敏感性</td><td>DOI 10.1039/D6TC00357E 的单栅不同栈 E1 范围，不是本项目测量或拟合 D_it</td></tr>
-      <tr><td>bulk NTA</td><td>1e18/5e18/5e19 cm^-3 eV^-1；WTA=0.08 eV；另设零控制</td><td>已冻结的正式隔离受主型导带指数尾态扫描</td><td>DOI 10.3390/electronics9101652 的单底栅、100 nm SiO2、VD=40 V E1 输入；V1 未包络 VTH，V2 已包络但 gm 中心差分网格不足，两次均为 E0/FAIL，不能作为正式 transfer 结论</td></tr>
-      <tr><td>bulk NGA</td><td>1e16/5e16/5e17 cm^-3 eV^-1；WGA=0.2 eV，EGA=0.5 eV below Ec；另设零控制</td><td>已冻结的正式隔离受主型高斯深态扫描</td><td>同一 E1 来源；论文图注与公式/表的 donor/acceptor 命名冲突已保留，合同采用公式/表口径；V1/V2 失败证据均保留，没有通过的正式 transfer 或独立复核</td></tr>
+      <tr><td>bulk NTA</td><td>1e18/5e18/5e19 cm^-3 eV^-1；WTA=0.08 eV；另设零控制</td><td>已冻结的正式隔离受主型导带指数尾态扫描</td><td>DOI 10.3390/electronics9101652 的单底栅、100 nm SiO2、VD=40 V E1 输入；V1/V2 均为 E0/FAIL，V3 只把统一上限扩展至 1.8 V 且尚未运行，不能作为正式 transfer 结论</td></tr>
+      <tr><td>bulk NGA</td><td>1e16/5e16/5e17 cm^-3 eV^-1；WGA=0.2 eV，EGA=0.5 eV below Ec；另设零控制</td><td>已冻结的正式隔离受主型高斯深态扫描</td><td>同一 E1 来源；论文图注与公式/表的 donor/acceptor 命名冲突已保留，合同采用公式/表口径；V1/V2 失败证据均保留，V3 当前只有 24/24 E3 静态合同</td></tr>
       <tr><td>学长 IGZO/VTC 表</td><td>已保留来源行和质量标记</td><td>导入、对数作图和数据质量参考</td><td>缺少完整条件，仅 reference_only</td></tr>
     </tbody>
   </table>

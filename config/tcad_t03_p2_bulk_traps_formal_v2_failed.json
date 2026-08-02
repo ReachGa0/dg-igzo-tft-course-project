@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "case_id": "IGZO_T03_P2_BULK_TRAPS_FORMAL_V3",
-  "revision": 3,
+  "case_id": "IGZO_T03_P2_BULK_TRAPS_FORMAL_V2",
+  "revision": 2,
   "stage": "T03-P2-BULK-TRAPS-FORMAL",
   "parameter_group_id": "P2",
   "status": "planned",
@@ -28,13 +28,6 @@
     "v1_config_snapshot": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/input_snapshot.json",
     "v1_runner_script": "tcad/run_t03_p2_bulk_traps_formal_v1_failed.py",
     "v1_curve_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_transfer.csv",
-    "v2_formal_config": "config/tcad_t03_p2_bulk_traps_formal_v2_failed.json",
-    "v2_formal_contract_report": "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json",
-    "v2_formal_report": "results/reports/tcad_t03_p2_bulk_traps_formal_v2_runner_completed_without_exception.json",
-    "v2_failure_archive_manifest": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/failure_archive_manifest.json",
-    "v2_config_snapshot": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/input_snapshot.json",
-    "v2_runner_script": "tcad/run_t03_p2_bulk_traps_formal_v2_failed.py",
-    "v2_curve_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_v2_transfer.csv",
     "required_g0_status": "TEACHING_BASELINE_ONLY",
     "required_t02_c_status": "PASS",
     "required_t02_c_check_status": "PASS",
@@ -67,31 +60,9 @@
     "archive_directory": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception",
     "archive_report": "results/reports/tcad_t03_p2_bulk_traps_formal_v1_runner_completed_without_exception.json"
   },
-  "prior_v2_failed_run": {
-    "case_id": "IGZO_T03_P2_BULK_TRAPS_FORMAL_V2",
-    "status": "FAIL_PRESERVED",
-    "completed_device_count": 8,
-    "completed_dc_solve_count": 440,
-    "completed_transfer_point_count": 360,
-    "completed_state_count": 8,
-    "completed_vtk_file_count": 48,
-    "all_dc_records_converged": true,
-    "maximum_gate_v": 1.7,
-    "high_nta_maximum_current_a_per_cm": 1.4190074297322551e-5,
-    "unchanged_constant_current_criterion_a_per_cm": 1e-5,
-    "diagnostic_vth_v": 1.466667576519075,
-    "gm_evaluation_v": 1.666667576519075,
-    "failed_gate": "the unchanged VTH+0.2 V gm evaluation lacked an upper neighbor on the frozen central-difference grid",
-    "v3_change": "Extend the common top-gate grid from 1.7 V to 1.8 V for all eight devices, retaining the 0.05 V step and every equation, density point, extraction method, and acceptance threshold.",
-    "grid_extension_basis": "The V2 diagnostic gm evaluation is 1.6666676 V. A 1.75 V stop is the minimum grid that supplies a 1.70 V centered-difference sample above that evaluation point; the user approved a uniform 1.8 V stop to retain one additional 0.05 V margin point.",
-    "user_approved_recovery": true,
-    "independent_persisted_check_run": false,
-    "archive_directory": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception",
-    "archive_report": "results/reports/tcad_t03_p2_bulk_traps_formal_v2_runner_completed_without_exception.json"
-  },
   "scope": {
     "device": "2D n-IGZO electron-only drift-diffusion teaching model with the T02-A enabled symmetric dual-gate stack",
-    "purpose": "Freeze the V3 formal isolated NTA and NGA transfer-sensitivity protocol after preserving the complete V1 and V2 failures.",
+    "purpose": "Freeze the V2 formal isolated NTA and NGA transfer-sensitivity protocol after preserving the complete V1 bracket and zero-bias-gate failure.",
     "changed_variable_families": [
       "NTA_conduction_band_tail_peak_cm^-3_eV^-1",
       "NGA_gaussian_deep_state_peak_cm^-3_eV^-1"
@@ -183,9 +154,9 @@
     "primary_negative_preconditioning_v": [-0.1, -0.2, -0.3, -0.4, -0.5],
     "primary_gate_grid": {
       "start_v": -0.5,
-      "stop_v": 1.8,
+      "stop_v": 1.7,
       "step_v": 0.05,
-      "point_count": 47
+      "point_count": 45
     },
     "reverse_paths": [],
     "common_state_primary_gate_v": 0.3,
@@ -195,7 +166,7 @@
       "for every device solve all-zero-bias Poisson and coupled equilibrium",
       "apply the T02-C low-VDS ladder with both gates at 0 V",
       "precondition the top gate from 0 V down to -0.5 V",
-      "sweep the exact 47-point top-gate grid upward from -0.5 V to 1.8 V",
+      "sweep the exact 45-point top-gate grid upward from -0.5 V to 1.7 V",
       "save the VTG=0.3 V state and delete the device before the next value"
     ]
   },
@@ -298,10 +269,10 @@
     "required_total_device_count": 8,
     "required_formal_device_count": 6,
     "required_control_device_count": 2,
-    "required_reported_point_count_per_device": 47,
-    "required_total_reported_point_count": 376,
-    "required_dc_solve_count_per_device": 57,
-    "required_total_dc_solve_count": 456,
+    "required_reported_point_count_per_device": 45,
+    "required_total_reported_point_count": 360,
+    "required_dc_solve_count_per_device": 55,
+    "required_total_dc_solve_count": 440,
     "maximum_wall_seconds": 600.0,
     "laptop_target": true
   },
@@ -311,9 +282,9 @@
     "required_nga_values_cm3_ev": [0.0, 1e16, 5e16, 5e17],
     "required_formal_points_per_family": 3,
     "required_control_points_per_family": 1,
-    "required_primary_gate_point_count": 47,
-    "required_total_reported_point_count": 376,
-    "required_total_dc_solve_count": 456,
+    "required_primary_gate_point_count": 45,
+    "required_total_reported_point_count": 360,
+    "required_total_dc_solve_count": 440,
     "maximum_relative_terminal_current_imbalance": 1e-5,
     "maximum_zero_equilibrium_absolute_terminal_current_a_per_cm": 1e-18,
     "maximum_zero_control_equilibrium_absolute_potential_v": 1e-10,
@@ -342,23 +313,23 @@
     "require_two_png_figures": true
   },
   "outputs": {
-    "contract_report": "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3.json",
-    "run_directory": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3",
-    "config_snapshot": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/input_snapshot.json",
-    "solver_log": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/solver_log.json",
-    "state_manifest": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/state_manifest.json",
-    "curve_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_v3_transfer.csv",
-    "metric_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_v3_metrics.csv",
-    "reference_comparison_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_v3_t02_c_reproduction.csv",
-    "zero_control_comparison_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_v3_zero_control_comparison.csv",
-    "state_summary_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_v3_state_summary.csv",
-    "sensitivity_figure_png": "report/assets/tcad_t03_p2_bulk_traps_formal_v3_sensitivity.png",
-    "state_figure_png": "report/assets/tcad_t03_p2_bulk_traps_formal_v3_states.png",
-    "report": "results/reports/tcad_t03_p2_bulk_traps_formal_v3.json",
-    "check_report": "results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json"
+    "contract_report": "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json",
+    "run_directory": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2",
+    "config_snapshot": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2/input_snapshot.json",
+    "solver_log": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2/solver_log.json",
+    "state_manifest": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2/state_manifest.json",
+    "curve_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_v2_transfer.csv",
+    "metric_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_v2_metrics.csv",
+    "reference_comparison_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_v2_t02_c_reproduction.csv",
+    "zero_control_comparison_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_v2_zero_control_comparison.csv",
+    "state_summary_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_v2_state_summary.csv",
+    "sensitivity_figure_png": "report/assets/tcad_t03_p2_bulk_traps_formal_v2_sensitivity.png",
+    "state_figure_png": "report/assets/tcad_t03_p2_bulk_traps_formal_v2_states.png",
+    "report": "results/reports/tcad_t03_p2_bulk_traps_formal_v2.json",
+    "check_report": "results/reports/tcad_t03_p2_bulk_traps_formal_v2_check.json"
   },
   "evidence_boundary": {
-    "allowed_claim_after_contract_pass": "The V1 and V2 failures are preserved, and the V3 formal isolated NTA/NGA transfer grid, unchanged teaching-model equations, density points, extraction methods and thresholds, failure-retention policy, output files, laptop budget, acceptance gates, and evidence boundary have been frozen and statically checked without running DEVSIM.",
+    "allowed_claim_after_contract_pass": "The V1 failure is preserved, and the V2 formal isolated NTA/NGA transfer grid, unchanged teaching-model equations and extraction thresholds, corrected zero-bias gate semantics, failure-retention policy, output files, laptop budget, acceptance gates, and evidence boundary have been frozen and statically checked without running DEVSIM.",
     "allowed_claim_after_future_run_and_independent_check": "The isolated NTA and NGA literature-constrained point sets completed controlled transfer sensitivities in the frozen quasi-static teaching model; VTH, SS, low-gate current, gm, and internal-state responses remain numerical proxies.",
     "prohibited_claims": [
       "the formal NTA/NGA transfer sensitivity passed before both the runner and independent persisted-evidence check pass",
@@ -367,6 +338,6 @@
       "dynamic capture-emission, hysteresis, bias-stress, reliability, NTD, NGD, or complete four-band DOS was validated",
       "P2, T03, compact-model, circuit, layout, PEX, or HZO work completed before its own stage gate"
     ],
-    "next_gate": "Only this V3 formal contract PASS permits a complete fresh V3 formal NTA/NGA transfer run. P3, P5, M00, M01, SPICE, circuits, layout, PEX, and HZO remain closed until the V3 runner and independent persisted-evidence check pass and P2 completion is documented."
+    "next_gate": "Only this V2 formal contract PASS permits a complete fresh V2 formal NTA/NGA transfer run. P3, P5, M00, M01, SPICE, circuits, layout, PEX, and HZO remain closed until the V2 runner and independent persisted-evidence check pass and P2 completion is documented."
   }
 }

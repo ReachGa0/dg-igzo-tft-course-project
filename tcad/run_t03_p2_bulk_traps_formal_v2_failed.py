@@ -1304,13 +1304,6 @@ def main() -> int:
                 "v1_config_snapshot",
                 "v1_runner_script",
                 "v1_curve_csv",
-                "v2_formal_config",
-                "v2_formal_contract_report",
-                "v2_formal_report",
-                "v2_failure_archive_manifest",
-                "v2_config_snapshot",
-                "v2_runner_script",
-                "v2_curve_csv",
             )
         },
     }

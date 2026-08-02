@@ -159,9 +159,10 @@
       <tr><td>正式 V1</td><td>E0/FAIL；8 器件、328 次收敛 DC、248 点、8 状态、48 VTK</td><td>已计算但未通过阶段门；失败证据完整保留</td></tr>
       <tr><td>正式 V2 输入合同</td><td>E3 静态 23/23 PASS；8 器件、440 DC、360 点计划</td><td><code>NOT_RUN_BY_CONTRACT_CHECK</code>，计划数不是仿真结果</td></tr>
       <tr><td>正式 V2</td><td>E0/FAIL；8 器件、440 次收敛 DC、360 点、8 状态、48 VTK</td><td>最高 NTA 已包络 VTH，但 gm 中心差分网格不足；独立检查未运行</td></tr>
+      <tr><td>正式 V3 输入合同</td><td>E3 静态 24/24 PASS；8 器件、456 DC、376 点计划</td><td>统一上限 1.8 V；<code>NOT_RUN_BY_CONTRACT_CHECK</code></td></tr>
     </tbody>
   </table>
-  <p class="boundary">合同 PASS 允许进入三案例方程冒烟；运行器和独立检查已经证明冻结准静态 NTA/NGA Poisson 体电荷模型在未标定教学模型中通过积分、零极限、解析导数、耦合收敛、端口守恒和非零响应门。正式 V1/V2 的求解完成事实都不覆盖各自 E0/FAIL 阶段结论；仍不能声称完成正式 NTA/NGA 敏感性、提取本项目 DOS、验证物理 SS/VTH/Ioff/Ion 或关闭 P2。</p>
+  <p class="boundary">合同 PASS 允许进入三案例方程冒烟；运行器和独立检查已经证明冻结准静态 NTA/NGA Poisson 体电荷模型在未标定教学模型中通过积分、零极限、解析导数、耦合收敛、端口守恒和非零响应门。正式 V1/V2 的求解完成事实都不覆盖各自 E0/FAIL 阶段结论；V3 的 8/456/376 只是未运行计划量，仍不能声称完成正式 NTA/NGA 敏感性、提取本项目 DOS、验证物理 SS/VTH/Ioff/Ion 或关闭 P2。</p>
 
   <h3>8.15 P2-BULK-TRAPS 方程冒烟</h3>
   <p>方程冒烟沿用合同冻结的 <code>epsilon=Ec-E</code>、受主型指数尾态 NTA 和高斯深态 NGA，只激活一个 family，另一类及两个界面 <code>D_it</code> 保持零。三个案例分别为零陷阱控制、<code>NTA=5e18 cm^-3 eV^-1</code> 尾态参考和 <code>NGA=5e16 cm^-3 eV^-1</code> 深态参考；每个器件固定 <code>VBG=0 V</code>、<code>VDS=0.01 V</code>，先做 0.001/0.005/0.01 V 的低漏压阶梯，再做 <code>VTG=0.05/0.10 V</code>，共 3 个器件和 21 次耦合 DC。</p>
@@ -176,7 +177,7 @@
   <p>21 次求解全部收敛，最大端口电流相对不平衡为 <code>4.69e-15</code>。独立检查从 7257 行二维节点状态重算能量积分、占据密度、<code>dOccupiedBulkTraps/dElectrons</code>、物理陷阱电荷和 Poisson 源，最大节点密度相对误差为 <code>6.72e-16</code>，最大解析导数相对误差为 <code>1.04e-15</code>；零控制对 T02-C 共同偏压电流的相对复现差为 <code>2.29e-15</code>。尾态和深态案例相对零控制均产生非零电流/中心密度响应。</p>
   <p class="boundary">运行器报告为 E2，独立持久化复核为 E3。上述响应只证明冻结准静态方程在未标定教学模型中的数值可运行性，不是物理 DOS、SS、VTH、Ion/Ioff、动态捕获-发射、迟滞或实验校准结果。对应命令为 <code>make t03-p2-bulk-traps-contract-check</code>、<code>make t03-p2-bulk-traps-equation-smoke</code> 和 <code>make t03-p2-bulk-traps-equation-smoke-check</code>。</p>
 
-  <h3>8.16 P2-BULK-TRAPS 正式 V1 失败与 V2 合同</h3>
+  <h3>8.16 P2-BULK-TRAPS 正式 V1/V2 失败与 V3 合同</h3>
   <p>正式 V1 在运行前冻结 NTA 与 NGA 两个完全隔离的 family。NTA family 依次为 <code>0/1e18/5e18/5e19 cm^-3 eV^-1</code>，NGA family 依次为 <code>0/1e16/5e16/5e17 cm^-3 eV^-1</code>；每个 family 使用自己的零控制，另一 bulk family、上下界面 DIT、NTD 和 NGD 均固定为零。V1 完成全部计划求解，但最高 NTA 曲线到 <code>VTG=1.0 V</code> 仅达 <code>3.14e-6 A/cm</code>，没有包络不变的 <code>1e-5 A/cm</code> VTH 判据；非零受主占据电荷在零外偏形成最大 <code>0.157504 V</code> 自洽内部势，也说明从无陷阱控制继承的“所有器件内部势近零”门不适用。</p>
   <table>
     <thead><tr><th>阶段项</th><th>事实或合同</th><th>证据边界</th></tr></thead>
@@ -189,10 +190,13 @@
       <tr><td>V2 规模与检查</td><td>8 个计划器件、440 次计划 DC、360 个计划 transfer 点、8 状态、48 VTK；23/23 PASS，E3</td><td><code>simulation=NOT_RUN_BY_CONTRACT_CHECK</code></td></tr>
       <tr><td>V2 已完成计算</td><td>8 器件、440 次收敛 DC、360 点、8 状态、48 VTK；最高 NTA 在 1.7 V 达 1.41901e-5 A/cm</td><td>这是失败运行的完成量，不是阶段 PASS</td></tr>
       <tr><td>V2 提取失败</td><td>诊断 VTH=1.4666676 V，gm 评价点 1.6666676 V；高于倒数第二个网格点 1.65 V</td><td>缺少中心差分上邻点；运行器 E0/FAIL，独立检查未运行</td></tr>
+      <tr><td>V3 唯一修正</td><td>全部器件共同网格统一扩展至 -0.5~1.8 V/0.05 V；1.75 V 为最低充分上限，1.8 V 多留一个步长</td><td>用户批准；没有只补失败器件或改变物理/提取口径</td></tr>
+      <tr><td>V3 不变项</td><td>全部密度点、family 隔离、方程、积分、VTH/Delta VTH/SS/gm/最低栅压电流方法和所有阈值</td><td>V1/V2 精确输入和运行器另行冻结</td></tr>
+      <tr><td>V3 规模与检查</td><td>8 个计划器件、456 次计划 DC、376 个计划 transfer 点、8 状态、48 VTK；24/24 PASS，E3</td><td><code>simulation=NOT_RUN_BY_CONTRACT_CHECK</code></td></tr>
     </tbody>
   </table>
-  <p class="boundary">V1/V2 完整失败包见附录 D；V2 合同检查命令为 <code>make t03-p2-bulk-traps-formal-contract-check</code>。23/23 合同 PASS 曾只打开 V2 正式运行；运行器随后失败，因此没有执行独立检查。当前暂停等待恢复决定，不支持正式 bulk 敏感性、物理 DOS、SS/VTH/Ion/Ioff、实验拟合、完整 P2/T03、紧凑模型、电路或版图结论。</p>
+  <p class="boundary">V1/V2 完整失败包见附录 D；V3 合同检查命令仍为 <code>make t03-p2-bulk-traps-formal-contract-check</code>。24/24 合同 PASS 只打开一次完整 V3 正式运行；只有运行器 PASS 后才执行独立检查。当前不支持正式 bulk 敏感性、物理 DOS、SS/VTH/Ion/Ioff、实验拟合、完整 P2/T03、紧凑模型、电路或版图结论。</p>
 
   <h3>8.17 适用范围和未完成组</h3>
-  <p>T03-P4-L 与数值 P1 已完整关闭，其中 P1 必须同时引用 BIAS 和 CAP-RATIO 两个子阶段。P2 的 bottom-interface DIT 子阶段和 bulk-trap 方程冒烟已关闭各自阶段门；正式 V1/V2 失败均已保留，V2 输入合同也已关闭，但通过的 NTA/NGA transfer 敏感性、动态捕获-发射、迟滞、bias stress、双界面和实验校准证据仍不存在，所以完整 P2 仍为 partial。P3 接触和 P5 温度也未实现，本章不关闭完整 T03。当前暂停等待恢复决定；没有进行 V2 独立检查、实验拟合、紧凑模型、SPICE、电路、版图、PEX 或 HZO 工作。</p>
+  <p>T03-P4-L 与数值 P1 已完整关闭，其中 P1 必须同时引用 BIAS 和 CAP-RATIO 两个子阶段。P2 的 bottom-interface DIT 子阶段和 bulk-trap 方程冒烟已关闭各自阶段门；正式 V1/V2 失败均已保留，V3 输入合同也已关闭，但 V3 尚未运行，通过的 NTA/NGA transfer 敏感性、动态捕获-发射、迟滞、bias stress、双界面和实验校准证据仍不存在，所以完整 P2 仍为 partial。P3 接触和 P5 温度也未实现，本章不关闭完整 T03。没有进行 V2 独立检查、实验拟合、紧凑模型、SPICE、电路、版图、PEX 或 HZO 工作。</p>
 </section>

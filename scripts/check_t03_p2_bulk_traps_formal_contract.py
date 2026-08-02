@@ -62,6 +62,24 @@ def primary_grid(spec: dict[str, Any]) -> list[float]:
     return [round(start + index * step, 12) for index in range(intervals + 1)]
 
 
+def voltage_at_current(rows: list[dict[str, str]], target: float) -> float:
+    ordered = sorted(rows, key=lambda row: float(row["primary_gate_v"]))
+    voltages = [float(row["primary_gate_v"]) for row in ordered]
+    currents = [abs(float(row["drain_current_a_per_cm"])) for row in ordered]
+    bracket = next(
+        index
+        for index in range(len(currents) - 1)
+        if currents[index] <= target <= currents[index + 1]
+    )
+    lower_log = math.log10(currents[bracket])
+    upper_log = math.log10(currents[bracket + 1])
+    return voltages[bracket] + (
+        (math.log10(target) - lower_log)
+        * (voltages[bracket + 1] - voltages[bracket])
+        / (upper_log - lower_log)
+    )
+
+
 def check_contract(config_path: Path) -> dict[str, Any]:
     config = load_json(config_path)
     dep = config["dependencies"]
@@ -86,15 +104,22 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         "v1_config_snapshot",
         "v1_runner_script",
         "v1_curve_csv",
+        "v2_formal_config",
+        "v2_formal_contract_report",
+        "v2_formal_report",
+        "v2_failure_archive_manifest",
+        "v2_config_snapshot",
+        "v2_runner_script",
+        "v2_curve_csv",
     )
     paths = {name: ROOT / dep[name] for name in input_names}
     loaded = {
         name: (
             load_csv(path)
-            if name in {"literature_table", "v1_curve_csv"}
+            if name in {"literature_table", "v1_curve_csv", "v2_curve_csv"}
             else (
                 {"path": str(path.relative_to(ROOT))}
-                if name == "v1_runner_script"
+                if name in {"v1_runner_script", "v2_runner_script"}
                 else load_json(path)
             )
         )
@@ -119,16 +144,22 @@ def check_contract(config_path: Path) -> dict[str, Any]:
     v1_archive = loaded["v1_failure_archive_manifest"]
     v1_snapshot = loaded["v1_config_snapshot"]
     v1_curve = loaded["v1_curve_csv"]
+    v2_config = loaded["v2_formal_config"]
+    v2_contract = loaded["v2_formal_contract_report"]
+    v2_report = loaded["v2_formal_report"]
+    v2_archive = loaded["v2_failure_archive_manifest"]
+    v2_snapshot = loaded["v2_config_snapshot"]
+    v2_curve = loaded["v2_curve_csv"]
     t03 = next(item for item in experiments["experiments"] if item["id"] == "T03")
     p2 = next(item for item in experiments["parameter_groups"] if item["id"] == "P2")
     checks: list[dict[str, Any]] = []
 
     add_check(
         checks,
-        "identity:t03_p2_bulk_traps_formal_v2",
+        "identity:t03_p2_bulk_traps_formal_v3",
         config.get("schema_version") == 1
-        and config.get("case_id") == "IGZO_T03_P2_BULK_TRAPS_FORMAL_V2"
-        and config.get("revision") == 2
+        and config.get("case_id") == "IGZO_T03_P2_BULK_TRAPS_FORMAL_V3"
+        and config.get("revision") == 3
         and config.get("stage") == "T03-P2-BULK-TRAPS-FORMAL"
         and config.get("parameter_group_id") == "P2"
         and config.get("status") == "planned"
@@ -276,6 +307,70 @@ def check_contract(config_path: Path) -> dict[str, Any]:
             f"zero_bias_potential={v1_maximum_nonzero_potential:.6e}"
         ),
     )
+    v2_prior = config["prior_v2_failed_run"]
+    v2_high_rows = [
+        row
+        for row in v2_curve
+        if row.get("bulk_family_id") == "NTA"
+        and close(float(row.get("bulk_value_cm3_ev", "nan")), 5e19)
+    ]
+    v2_diagnostic_vth = voltage_at_current(
+        v2_high_rows, v2_prior["unchanged_constant_current_criterion_a_per_cm"]
+    )
+    v2_error_detail = v2_report.get("checks", {}).get(
+        "runner_completed_without_exception", {}
+    ).get("detail", "")
+    add_check(
+        checks,
+        "failure:v2_extraction_grid_failure_is_preserved",
+        v2_config.get("case_id") == "IGZO_T03_P2_BULK_TRAPS_FORMAL_V2"
+        and v2_config.get("revision") == 2
+        and close(v2_config["bias_protocol"]["primary_gate_grid"]["stop_v"], 1.7)
+        and v2_config["bias_protocol"]["primary_gate_grid"]["point_count"] == 45
+        and v2_contract.get("contract_status") == "PASS"
+        and v2_contract.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+        and v2_contract.get("config", {}).get("sha256")
+        == sha256(paths["v2_formal_config"])
+        and v2_snapshot.get("inputs", {}).get("formal_config", {}).get("sha256")
+        == sha256(paths["v2_formal_config"])
+        and v2_snapshot.get("inputs", {}).get("runner_script", {}).get("sha256")
+        == sha256(paths["v2_runner_script"])
+        and v2_report.get("status") == "FAIL"
+        and v2_report.get("evidence_level") == "E0"
+        and v2_report.get("formal_sensitivity_run") is False
+        and v2_report.get("summary_metrics", {}).get("device_count") == 8
+        and v2_report.get("summary_metrics", {}).get("dc_solve_count") == 440
+        and v2_report.get("summary_metrics", {}).get("reported_point_count") == 360
+        and len(v2_curve) == 360
+        and len(v2_high_rows) == 45
+        and close(
+            max(abs(float(row["drain_current_a_per_cm"])) for row in v2_high_rows),
+            v2_prior["high_nta_maximum_current_a_per_cm"],
+        )
+        and close(v2_diagnostic_vth, v2_prior["diagnostic_vth_v"])
+        and close(
+            v2_diagnostic_vth
+            + config["extraction_methods"]["gm_proxy"]["evaluation_overdrive_v"],
+            v2_prior["gm_evaluation_v"],
+        )
+        and "outside the central-difference grid" in v2_error_detail
+        and v2_archive.get("status") == "FAIL_PRESERVED"
+        and v2_archive.get("failed_gate") == "runner_completed_without_exception"
+        and v2_report.get("failure_archive", {}).get("directory")
+        == v2_prior["archive_directory"]
+        and v2_prior["status"] == "FAIL_PRESERVED"
+        and v2_prior["user_approved_recovery"] is True
+        and v2_prior["independent_persisted_check_run"] is False
+        and not (
+            ROOT
+            / "results/reports/tcad_t03_p2_bulk_traps_formal_v2_check.json"
+        ).exists(),
+        (
+            f"v2_rows={len(v2_curve)} high_nta_max="
+            f"{v2_prior['high_nta_maximum_current_a_per_cm']:.6e} "
+            f"vth={v2_diagnostic_vth:.7f} gm_eval={v2_prior['gm_evaluation_v']:.7f}"
+        ),
+    )
     machine_evidence = t03.get("p2_bulk_formal_contract_evidence", {})
     add_check(
         checks,
@@ -292,14 +387,15 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         ]
         and machine_evidence
         == {
-            "status": "input_contract_ready_v2",
-            "revision": 2,
+            "status": "input_contract_ready_v3",
+            "revision": 3,
             "contract_evidence": "E3",
             "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
             "v1_failure_preserved": True,
+            "v2_failure_preserved": True,
             "formal_sensitivity_completed": False,
         }
-        and "run the V2 formal isolated NTA/NGA transfer sensitivity"
+        and "run the V3 formal isolated NTA/NGA transfer sensitivity"
         in project.get("tcad_track", {}).get("next_scope", ""),
         (
             f"t03={t03.get('status')} partial={t03.get('partially_completed_parameter_groups')} "
@@ -411,7 +507,7 @@ def check_contract(config_path: Path) -> dict[str, Any]:
     t02_protocol = t02_config["bias_protocol"]
     add_check(
         checks,
-        "bias:t02_c_prefix_and_v2_common_high_gate_extension_are_exact",
+        "bias:t02_c_prefix_and_v3_common_high_gate_extension_are_exact",
         close(protocol["source_v"], t02_protocol["source_v"])
         and close(protocol["drain_v"], t02_protocol["drain_v"])
         and protocol["low_vds_values_v"] == t02_protocol["low_vds_values_v"]
@@ -422,9 +518,9 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         ]
         == primary_grid(t02_protocol["primary_gate_grid"])
         == primary_grid(source_protocol["primary_gate_grid"])
-        and len(primary_grid(protocol["primary_gate_grid"])) == 45
-        and close(protocol["primary_gate_grid"]["stop_v"], 1.7)
-        and protocol["primary_gate_grid"]["point_count"] == 45
+        and len(primary_grid(protocol["primary_gate_grid"])) == 47
+        and close(protocol["primary_gate_grid"]["stop_v"], 1.8)
+        and protocol["primary_gate_grid"]["point_count"] == 47
         and protocol["primary_gate"] == "top_gate"
         and protocol["secondary_gate"] == "bottom_gate"
         and close(protocol["fixed_secondary_gate_v"], 0.0)
@@ -504,16 +600,16 @@ def check_contract(config_path: Path) -> dict[str, Any]:
     budget = config["resource_budget"]
     add_check(
         checks,
-        "resource:eight_devices_360_points_440_dc_fit_laptop_budget",
+        "resource:eight_devices_376_points_456_dc_fit_laptop_budget",
         budget["required_family_count"] == 2
         and budget["required_device_count_per_family"] == 4
         and budget["required_total_device_count"] == 8
         and budget["required_formal_device_count"] == 6
         and budget["required_control_device_count"] == 2
-        and budget["required_reported_point_count_per_device"] == 45
-        and budget["required_total_reported_point_count"] == 360
-        and budget["required_dc_solve_count_per_device"] == 55
-        and budget["required_total_dc_solve_count"] == 440
+        and budget["required_reported_point_count_per_device"] == 47
+        and budget["required_total_reported_point_count"] == 376
+        and budget["required_dc_solve_count_per_device"] == 57
+        and budget["required_total_dc_solve_count"] == 456
         and budget["maximum_wall_seconds"] <= 600.0
         and budget["laptop_target"] is True,
         json.dumps(budget, sort_keys=True),
@@ -529,14 +625,14 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         == family_map["NGA"]["execution_values_cm3_ev"]
         and acceptance["required_formal_points_per_family"] == 3
         and acceptance["required_control_points_per_family"] == 1
-        and acceptance["required_primary_gate_point_count"] == 45
-        and acceptance["required_total_reported_point_count"] == 360
-        and acceptance["required_total_dc_solve_count"] == 440
+        and acceptance["required_primary_gate_point_count"] == 47
+        and acceptance["required_total_reported_point_count"] == 376
+        and acceptance["required_total_dc_solve_count"] == 456
         and acceptance["require_all_dc_solves_converged"] is True
         and acceptance["require_exact_isolation_for_every_device"] is True
         and acceptance["require_both_interface_dit_zero"] is True
         and acceptance["require_independent_persisted_evidence_check"] is True,
-        "families=2 formal=6 controls=2 points=360 solves=440 independent=required",
+        "families=2 formal=6 controls=2 points=376 solves=456 independent=required",
     )
     add_check(
         checks,
@@ -601,9 +697,9 @@ def check_contract(config_path: Path) -> dict[str, Any]:
             or "p2_bulk_traps_formal" in value
             for value in outputs.values()
         )
-        and all("v2" in value for value in outputs.values())
+        and all("v3" in value for value in outputs.values())
         and outputs["contract_report"]
-        == "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json",
+        == "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3.json",
         f"outputs={len(outputs)} unique={len(set(outputs.values()))}",
     )
     boundary = config["evidence_boundary"]
@@ -617,7 +713,7 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         in boundary["allowed_claim_after_future_run_and_independent_check"]
         and "before both the runner and independent" in prohibited
         and "measured, extracted, fitted, calibrated" in prohibited
-        and "Only this V2 formal contract PASS permits"
+        and "Only this V3 formal contract PASS permits"
         in boundary["next_gate"]
         and "P3, P5, M00, M01" in boundary["next_gate"],
         boundary["allowed_claim_after_contract_pass"],

@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 444,
+  "checks": 449,
   "failures": 0,
   "results": [
     {
@@ -302,37 +302,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=18866"
+      "detail": "bytes=19315"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=16446"
+      "detail": "bytes=16640"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=11232"
+      "detail": "bytes=11549"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=85400"
+      "detail": "bytes=88198"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4582"
+      "detail": "bytes=4575"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=36690"
+      "detail": "bytes=38624"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=19350"
+      "detail": "bytes=19653"
     },
     {
       "name": "file:Makefile",
@@ -342,12 +342,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=6944"
+      "detail": "bytes=6867"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=32094"
+      "detail": "bytes=32643"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -462,12 +462,17 @@
     {
       "name": "file:config/tcad_t03_p2_bulk_traps_formal.json",
       "status": "PASS",
-      "detail": "bytes=19518"
+      "detail": "bytes=21821"
     },
     {
       "name": "file:config/tcad_t03_p2_bulk_traps_formal_v1_failed.json",
       "status": "PASS",
       "detail": "bytes=16287"
+    },
+    {
+      "name": "file:config/tcad_t03_p2_bulk_traps_formal_v2_failed.json",
+      "status": "PASS",
+      "detail": "bytes=19518"
     },
     {
       "name": "file:scripts/check_t03_p2_bulk_traps_contract.py",
@@ -482,7 +487,7 @@
     {
       "name": "file:scripts/check_t03_p2_bulk_traps_formal_contract.py",
       "status": "PASS",
-      "detail": "bytes=29747"
+      "detail": "bytes=34101"
     },
     {
       "name": "file:scripts/check_t03_p2_bulk_traps_formal.py",
@@ -497,12 +502,17 @@
     {
       "name": "file:tcad/run_t03_p2_bulk_traps_formal.py",
       "status": "PASS",
-      "detail": "bytes=62697"
+      "detail": "bytes=62967"
     },
     {
       "name": "file:tcad/run_t03_p2_bulk_traps_formal_v1_failed.py",
       "status": "PASS",
       "detail": "bytes=60584"
+    },
+    {
+      "name": "file:tcad/run_t03_p2_bulk_traps_formal_v2_failed.py",
+      "status": "PASS",
+      "detail": "bytes=62697"
     },
     {
       "name": "file:results/reports/tcad_t03_p2_bulk_traps_input_contract.json",
@@ -528,6 +538,11 @@
       "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json",
       "status": "PASS",
       "detail": "bytes=14198"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3.json",
+      "status": "PASS",
+      "detail": "bytes=16779"
     },
     {
       "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal.json",
@@ -558,6 +573,11 @@
       "name": "file:results/reports/project_check_t03_p2_bulk_v2_failure_checker_math_import_bug_failed.json",
       "status": "PASS",
       "detail": "bytes=73222"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3_checker_v2_curve_loader_bug_failed.json",
+      "status": "PASS",
+      "detail": "bytes=701"
     },
     {
       "name": "file:results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
@@ -682,7 +702,7 @@
     {
       "name": "file:docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
       "status": "PASS",
-      "detail": "bytes=29618"
+      "detail": "bytes=29899"
     },
     {
       "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
@@ -902,7 +922,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=18567"
+      "detail": "bytes=19342"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -2127,17 +2147,17 @@
     {
       "name": "t03_p2_bulk_traps:formal_contract_evidence",
       "status": "PASS",
-      "detail": "status=PASS simulation=NOT_RUN_BY_CONTRACT_CHECK checks=23"
+      "detail": "status=PASS simulation=NOT_RUN_BY_CONTRACT_CHECK checks=24"
     },
     {
       "name": "t03_p2_bulk_traps:formal_contract_frozen_counts",
       "status": "PASS",
-      "detail": "devices=8 points=360 solves=440 states=8"
+      "detail": "devices=8 points=376 solves=456 states=8"
     },
     {
       "name": "t03_p2_bulk_traps:formal_contract_boundary",
       "status": "PASS",
-      "detail": "Only this V2 formal contract PASS permits a complete fresh V2 formal NTA/NGA transfer run. P3, P5, M00, M01, SPICE, circuits, layout, PEX, and HZO remain closed until the V2 runner and independent persisted-evidence check pass and P2 completion is documented."
+      "detail": "Only this V3 formal contract PASS permits a complete fresh V3 formal NTA/NGA transfer run. P3, P5, M00, M01, SPICE, circuits, layout, PEX, and HZO remain closed until the V3 runner and independent persisted-evidence check pass and P2 completion is documented."
     },
     {
       "name": "t03_p2_bulk_traps:formal_v1_failure_inputs_and_outputs_preserved",
@@ -2148,6 +2168,11 @@
       "name": "t03_p2_bulk_traps:formal_v2_extraction_grid_failure_preserved",
       "status": "PASS",
       "detail": "report=FAIL records=440 rows=360 states=8 vth=1.466667576519 gm_eval=1.666667576519"
+    },
+    {
+      "name": "t03_p2_bulk_traps:v3_contract_checker_csv_loader_bug_preserved",
+      "status": "PASS",
+      "detail": "The newly declared v2_curve_csv dependency was routed to load_json instead of load_csv and failed at line 1 column 1 before contract assertions were evaluated."
     },
     {
       "name": "t03_p2_bulk_traps:formal_contract_checker_failure_preserved",
