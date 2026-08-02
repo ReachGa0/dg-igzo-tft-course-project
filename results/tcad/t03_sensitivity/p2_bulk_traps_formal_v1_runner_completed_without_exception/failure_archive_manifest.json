@@ -1,0 +1,56 @@
+{
+  "status": "FAIL_PRESERVED",
+  "directory": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception",
+  "report": "results/reports/tcad_t03_p2_bulk_traps_formal_v1_runner_completed_without_exception.json",
+  "failed_gate": "runner_completed_without_exception",
+  "copied_external_artifacts": [
+    {
+      "name": "config_snapshot",
+      "source": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/input_snapshot.json",
+      "archive": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/input_snapshot.json",
+      "sha256": "c7e7201e3fccf2a15a632c51af8fff42431da5fc7551c679180c57ef13d8de44"
+    },
+    {
+      "name": "solver_log",
+      "source": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/solver_log.json",
+      "archive": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/solver_log.json",
+      "sha256": "fcfd982f0f0f3bbe8c858751a0390007d3373479e34527cf5e4b5718495fdd7c"
+    },
+    {
+      "name": "state_manifest",
+      "source": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/state_manifest.json",
+      "archive": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/state_manifest.json",
+      "sha256": "27f7054b426c6654116153f310ce4bb14708ac1a8d1ee10232f936890e97c125"
+    },
+    {
+      "name": "curve_csv",
+      "source": "results/tables/tcad_t03_p2_bulk_traps_formal_transfer.csv",
+      "archive": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_transfer.csv",
+      "sha256": "309379dfb187fbed17979a16d09769e702ca6402e77539b47778298cb8fa58a7"
+    },
+    {
+      "name": "metric_csv",
+      "source": "results/tables/tcad_t03_p2_bulk_traps_formal_metrics.csv",
+      "archive": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_metrics.csv",
+      "sha256": "6a18bd305330db55e9042d3635a106387279048403a7bfd65faa3ef4dec3be09"
+    },
+    {
+      "name": "reference_comparison_csv",
+      "source": "results/tables/tcad_t03_p2_bulk_traps_formal_t02_c_reproduction.csv",
+      "archive": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_t02_c_reproduction.csv",
+      "sha256": "c4e9d997074597bf05859db48dc1648db3d9027dbc39d4ff98b0b517056efb35"
+    },
+    {
+      "name": "zero_control_comparison_csv",
+      "source": "results/tables/tcad_t03_p2_bulk_traps_formal_zero_control_comparison.csv",
+      "archive": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_zero_control_comparison.csv",
+      "sha256": "af2fc8f61fb8133e8fb9aae0573c3fccd93d7aab9985348054834e2f50e18e13"
+    },
+    {
+      "name": "state_summary_csv",
+      "source": "results/tables/tcad_t03_p2_bulk_traps_formal_state_summary.csv",
+      "archive": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_state_summary.csv",
+      "sha256": "d3e709fc4d96711ee114a150a64143c9f34a022914790919e77240c936c76082"
+    }
+  ]
+}

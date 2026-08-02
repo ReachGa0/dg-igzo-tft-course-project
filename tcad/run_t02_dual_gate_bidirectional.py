@@ -405,6 +405,11 @@ def run_family(
     run_dir: Path,
     post_initialize_hook: Callable[[str, dict[str, Any]], None] | None = None,
     device_token: str | None = None,
+    post_state_hook: Callable[
+        [str, dict[str, Any], dict[str, Any], dict[str, Any], dict[str, Any], Path],
+        None,
+    ]
+    | None = None,
 ) -> tuple[
     list[dict[str, Any]],
     list[dict[str, Any]],
@@ -596,17 +601,20 @@ def run_family(
                 (family_id, round(vbg_v, 12), round(vtg_v, 12))
             )
             if state is not None:
-                state_entries.append(
-                    write_state(
-                        device,
-                        runtime,
-                        mesh_level,
-                        mode_id,
-                        state,
-                        row,
-                        run_dir,
-                    )
+                state_entry = write_state(
+                    device,
+                    runtime,
+                    mesh_level,
+                    mode_id,
+                    state,
+                    row,
+                    run_dir,
                 )
+                if post_state_hook is not None:
+                    post_state_hook(
+                        device, runtime, state, row, state_entry, run_dir
+                    )
+                state_entries.append(state_entry)
 
         reverse_enabled = any(
             item["family_id"] == family_id

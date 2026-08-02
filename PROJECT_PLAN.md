@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`T03_P2_BULK_TRAPS_FORMAL_CONTRACT_E3_PARTIAL_P2`：T01/T02 冻结教学模型数值门、T03-P4-L 和数值 P1 已关闭，P2-DIT 界面子阶段也已关闭。bulk-trap 30/30 静态合同、3 器件/21 次 DC 方程冒烟、独立 16 项检查和另立的 22/22 正式隔离合同已通过；正式合同没有运行 DEVSIM，正式 NTA/NGA transfer 敏感性尚未完成，因此完整 P2 仍为 partial。G0 仍为 `TEACHING_BASELINE_ONLY`；P3/P5、紧凑模型和定量电路预测也尚未完成。
+`T03_P2_BULK_TRAPS_FORMAL_V2_CONTRACT_E3_PARTIAL_P2`：T01/T02 冻结教学模型数值门、T03-P4-L 和数值 P1 已关闭，P2-DIT 界面子阶段也已关闭。bulk-trap 30/30 静态合同、3 器件/21 次 DC 方程冒烟和独立 16 项检查已通过。正式 V1 完成 8 器件/328 次收敛 DC/248 点但按冻结门保持 E0/FAIL，完整失败证据已保留；V2 正式隔离合同 23/23 E3 静态 PASS，8 器件/440 DC/360 点仍是计划且没有运行 V2 DEVSIM。正式 V2 NTA/NGA transfer 敏感性尚未完成，因此完整 P2 仍为 partial。G0 仍为 `TEACHING_BASELINE_ONLY`；P3/P5、紧凑模型和定量电路预测也尚未完成。
 
 ## 截止日期
 
@@ -44,7 +44,7 @@
 | T00 | 二维双栅静电基准 | DONE，E2 | 既有 JSON/CSV/VTK/PNG |
 | T01 | 单栅漂移扩散 | DONE，E2 教学模型数值门 | `results/reports/tcad_t01_d_extraction.json`；状态、守恒、网格代理比较与独立检查完整，不代表实验标定 |
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
-| T03 | 五组器件参数 | PARTIAL，P1 DONE；P4-L DONE；P2-DIT 界面子阶段 DONE；P2 bulk equation smoke 与 formal contract DONE，正式扫描与 P3/P5 TODO | 正式合同是 E3 静态证据，没有运行 DEVSIM；完整 P2/T03 尚未关闭 |
+| T03 | 五组器件参数 | PARTIAL，P1 DONE；P4-L DONE；P2-DIT 界面子阶段 DONE；P2 bulk equation smoke DONE；formal V1 failure preserved；V2 contract DONE；V2 扫描与 P3/P5 TODO | V1 是 E0/FAIL；V2 合同是 E3 静态证据，没有运行 V2 DEVSIM；完整 P2/T03 尚未关闭 |
 | M00 | IGZO 多曲线标定 | TODO | 等主数据集 |
 | M01 | AIM-Spice/ngspice 对照 | TODO | 依赖 M00 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-数值 P1/P4、P2-DIT 界面子阶段、bulk-trap 三案例方程冒烟和正式隔离合同已完成。下一件事只运行合同定义的正式 NTA/NGA transfer sensitivity，再执行独立落盘检查；两者通过并记录 P2 完成边界前不铺开 P3/P5、M00/M01，也不启动 SPICE、电路、版图、PEX 或 HZO。
+数值 P1/P4、P2-DIT 界面子阶段、bulk-trap 三案例方程冒烟、正式 V1 失败保留和 V2 隔离合同已完成。下一件事只运行 V2 合同定义的正式 NTA/NGA transfer sensitivity，再执行独立落盘检查；两者通过并记录 P2 完成边界前不铺开 P3/P5、M00/M01，也不启动 SPICE、电路、版图、PEX 或 HZO。

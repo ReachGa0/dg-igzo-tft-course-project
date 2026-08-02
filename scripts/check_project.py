@@ -53,20 +53,32 @@ REQUIRED_FILES = [
     "references/t03_p2_bulk_trap_sources.csv",
     "config/tcad_t03_p2_bulk_traps.json",
     "config/tcad_t03_p2_bulk_traps_formal.json",
+    "config/tcad_t03_p2_bulk_traps_formal_v1_failed.json",
     "scripts/check_t03_p2_bulk_traps_contract.py",
     "scripts/check_t03_p2_bulk_traps_equation_smoke.py",
     "scripts/check_t03_p2_bulk_traps_formal_contract.py",
+    "scripts/check_t03_p2_bulk_traps_formal.py",
     "tcad/run_t03_p2_bulk_traps_equation_smoke.py",
+    "tcad/run_t03_p2_bulk_traps_formal.py",
+    "tcad/run_t03_p2_bulk_traps_formal_v1_failed.py",
     "results/reports/tcad_t03_p2_bulk_traps_input_contract.json",
     "results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json",
     "results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json",
     "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json",
+    "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json",
+    "results/reports/tcad_t03_p2_bulk_traps_formal.json",
+    "results/reports/tcad_t03_p2_bulk_traps_formal_v1_runner_completed_without_exception.json",
     "results/reports/project_check_t03_p2_bulk_formal_boundary_checker_bug_failed.json",
     "results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
     "results/tables/tcad_t03_p2_bulk_traps_integration_samples.csv",
     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/solver_log.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_formal/state_manifest.json",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/input_snapshot.json",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/state_manifest.json",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_transfer.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
     "docs/02_\u6587\u732e\u8c03\u7814\u77e9\u9635.md",
     "docs/03_\u96c6\u6210\u7535\u8def\u8bbe\u8ba1\u5168\u6d41\u7a0b.md",
@@ -591,9 +603,27 @@ def main() -> int:
             }
             and sensitivity.get("p2_bulk_formal_contract_evidence")
             == {
-                "status": "input_contract_ready",
+                "status": "input_contract_ready_v2",
+                "revision": 2,
                 "contract_evidence": "E3",
                 "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+                "v1_failure_preserved": True,
+                "formal_sensitivity_completed": False,
+            }
+            and sensitivity.get("p2_bulk_formal_v1_failure_evidence")
+            == {
+                "status": "FAIL_PRESERVED",
+                "evidence_level": "E0",
+                "devices": 8,
+                "converged_dc_records": 328,
+                "transfer_points": 248,
+                "states": 8,
+                "vtk_files": 48,
+                "failed_vth_bracket_case": "NTA=5e19 cm^-3 eV^-1",
+                "maximum_gate_v": 1.0,
+                "maximum_current_a_per_cm": 3.137504658975777e-6,
+                "constant_current_criterion_a_per_cm": 1e-5,
+                "maximum_nonzero_trap_zero_equilibrium_internal_potential_v": 0.15750389258195557,
                 "formal_sensitivity_completed": False,
             }
             and all(
@@ -608,6 +638,10 @@ def main() -> int:
                     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
                     "config/tcad_t03_p2_bulk_traps_formal.json",
                     "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json",
+                    "config/tcad_t03_p2_bulk_traps_formal_v1_failed.json",
+                    "results/reports/tcad_t03_p2_bulk_traps_formal_v1_runner_completed_without_exception.json",
+                    "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
+                    "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json",
                 ]
             ),
             (
@@ -2567,7 +2601,7 @@ def main() -> int:
         ROOT
         / "results"
         / "reports"
-        / "tcad_t03_p2_bulk_traps_formal_input_contract.json"
+        / "tcad_t03_p2_bulk_traps_formal_input_contract_v2.json"
     )
     try:
         t03_p2_bulk_formal_config = json.loads(
@@ -2585,13 +2619,13 @@ def main() -> int:
             and t03_p2_bulk_formal_contract.get("simulation_status")
             == "NOT_RUN_BY_CONTRACT_CHECK"
             and t03_p2_bulk_formal_contract.get("case_id")
-            == "IGZO_T03_P2_BULK_TRAPS_FORMAL_V1"
+            == "IGZO_T03_P2_BULK_TRAPS_FORMAL_V2"
             and t03_p2_bulk_formal_contract.get("stage")
             == "T03-P2-BULK-TRAPS-FORMAL"
             and t03_p2_bulk_formal_contract.get("evidence_level") == "E3"
             and t03_p2_bulk_formal_contract.get("config", {}).get("sha256")
             == sha256(t03_p2_bulk_formal_config_path)
-            and len(formal_checks) == 22
+            and len(formal_checks) == 23
             and all(item.get("status") == "PASS" for item in formal_checks)
             and not t03_p2_bulk_formal_contract.get("failures"),
             (
@@ -2613,13 +2647,13 @@ def main() -> int:
                 "NGA": [0.0, 1e16, 5e16, 5e17],
             }
             and planned_formal.get("device_count") == 8
-            and planned_formal.get("reported_point_count") == 248
-            and planned_formal.get("dc_solve_count") == 328
+            and planned_formal.get("reported_point_count") == 360
+            and planned_formal.get("dc_solve_count") == 440
             and planned_formal.get("state_count") == 8
             and planned_formal.get("formal_sensitivity_run") is False
             and formal_budget.get("required_total_device_count") == 8
-            and formal_budget.get("required_total_reported_point_count") == 248
-            and formal_budget.get("required_total_dc_solve_count") == 328,
+            and formal_budget.get("required_total_reported_point_count") == 360
+            and formal_budget.get("required_total_dc_solve_count") == 440,
             (
                 f"devices={planned_formal.get('device_count')} "
                 f"points={planned_formal.get('reported_point_count')} "
@@ -2641,10 +2675,92 @@ def main() -> int:
                 "P2, T03" in claim
                 for claim in formal_boundary.get("prohibited_claims", [])
             )
-            and "Only this formal contract PASS permits"
+            and "Only this V2 formal contract PASS permits"
             in formal_boundary.get("next_gate", "")
             and t03_p2_bulk_formal_config.get("status") == "planned",
             formal_boundary.get("next_gate", ""),
+        )
+        v1_config_path = (
+            ROOT / "config/tcad_t03_p2_bulk_traps_formal_v1_failed.json"
+        )
+        v1_contract = json.loads(
+            (
+                ROOT
+                / "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json"
+            ).read_text(encoding="utf-8")
+        )
+        v1_report = json.loads(
+            (
+                ROOT
+                / "results/reports/tcad_t03_p2_bulk_traps_formal_v1_runner_completed_without_exception.json"
+            ).read_text(encoding="utf-8")
+        )
+        v1_archive_dir = (
+            ROOT
+            / "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception"
+        )
+        v1_archive = json.loads(
+            (v1_archive_dir / "failure_archive_manifest.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        v1_snapshot = json.loads(
+            (v1_archive_dir / "input_snapshot.json").read_text(encoding="utf-8")
+        )
+        v1_state_manifest = json.loads(
+            (v1_archive_dir / "state_manifest.json").read_text(encoding="utf-8")
+        )
+        with (
+            v1_archive_dir
+            / "external_artifacts/tcad_t03_p2_bulk_traps_formal_transfer.csv"
+        ).open("r", encoding="utf-8", newline="") as stream:
+            v1_curve_rows = list(csv.DictReader(stream))
+        v1_high_rows = [
+            row
+            for row in v1_curve_rows
+            if row["bulk_family_id"] == "NTA"
+            and float(row["bulk_value_cm3_ev"]) == 5e19
+        ]
+        v1_entries = v1_state_manifest.get("entries", [])
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:formal_v1_failure_inputs_and_outputs_preserved",
+            v1_contract.get("contract_status") == "PASS"
+            and v1_contract.get("config", {}).get("sha256")
+            == sha256(v1_config_path)
+            and v1_report.get("status") == "FAIL"
+            and v1_report.get("evidence_level") == "E0"
+            and v1_report.get("formal_sensitivity_run") is False
+            and v1_report.get("summary_metrics", {}).get("device_count") == 8
+            and v1_report.get("summary_metrics", {}).get("dc_solve_count") == 328
+            and v1_report.get("summary_metrics", {}).get("reported_point_count")
+            == 248
+            and v1_archive.get("status") == "FAIL_PRESERVED"
+            and v1_archive.get("failed_gate")
+            == "runner_completed_without_exception"
+            and v1_snapshot.get("inputs", {}).get("runner_script", {}).get(
+                "sha256"
+            )
+            == sha256(ROOT / "tcad/run_t03_p2_bulk_traps_formal_v1_failed.py")
+            and len(v1_curve_rows) == 248
+            and len(v1_high_rows) == 31
+            and max(abs(float(row["drain_current_a_per_cm"])) for row in v1_high_rows)
+            < 1e-5
+            and v1_state_manifest.get("entry_count") == 8
+            and len(v1_entries) == 8
+            and sum(int(entry.get("vtk_file_count", 0)) for entry in v1_entries)
+            == 48
+            and all(
+                (ROOT / entry["node_csv"]).is_file()
+                and (ROOT / entry["element_csv"]).is_file()
+                and (ROOT / entry["bulk_node_csv"]).is_file()
+                for entry in v1_entries
+            ),
+            (
+                f"report={v1_report.get('status')} rows={len(v1_curve_rows)} "
+                f"states={len(v1_entries)} vtk="
+                f"{sum(int(entry.get('vtk_file_count', 0)) for entry in v1_entries)}"
+            ),
         )
         archived_boundary_failure = json.loads(
             (

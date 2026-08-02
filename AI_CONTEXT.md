@@ -19,7 +19,7 @@
 - 题目：基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK。
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
-- S00、T01-A/B/C/D-A/D-B/D-C 和 T02-A/B/C 已完成；T03-P4-L 已完整关闭，T03-P1-BIAS 与 T03-P1-CAP-RATIO 共同关闭数值 P1。T03-P2-DIT 界面子阶段已关闭；bulk-trap 的 30/30 静态合同、三案例方程冒烟运行器和独立落盘检查已通过（E2/E3），另立的正式隔离 NTA/NGA 合同也以 22/22 E3 静态检查通过。正式合同没有运行 DEVSIM，正式 transfer 敏感性尚未完成，所以完整 P2 仍为 partial。G0 仍为 `TEACHING_BASELINE_ONLY`；P3/P5、M00/C00/L00/V01 仍未实现。
+- S00、T01-A/B/C/D-A/D-B/D-C 和 T02-A/B/C 已完成；T03-P4-L 已完整关闭，T03-P1-BIAS 与 T03-P1-CAP-RATIO 共同关闭数值 P1。T03-P2-DIT 界面子阶段已关闭；bulk-trap 的 30/30 静态合同、三案例方程冒烟运行器和独立落盘检查已通过（E2/E3）。正式 V1 完成 8 器件/328 次收敛 DC/248 点但保持 E0/FAIL，完整证据已保留；V2 合同 23/23 E3 静态 PASS，冻结 8 器件/440 次 DC/360 点计划但没有运行 V2 DEVSIM。正式 V2 transfer 敏感性尚未完成，所以完整 P2 仍为 partial。G0 仍为 `TEACHING_BASELINE_ONLY`；P3/P5、M00/C00/L00/V01 仍未实现。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
@@ -67,7 +67,8 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 - T03-P1-CAP-RATIO 有效电容分配比敏感性：E3；20 项合同冻结 `Ctop/Cbottom=0.5/0.75/1.0/1.5/2.0`，上下物理介质厚度固定 30 nm，并以 `epsilon_top+epsilon_bottom=13.6` 固定总耦合代理。五个新器件完成 205 次 DC、155 点和 5 个 `VTG=0.3 V` 状态，运行器 16 项和独立 13 项复算 PASS。VTH 代理严格降至 0.209247 V，gm 代理严格升至 4.94347e-5 S/cm；比值 1 对 T02-C 复现差异为 0。它与 BIAS 共同关闭数值 P1，但不是物理电容、材料参数或制造栈验证。
 - T03-P2-DIT 界面子阶段：E3；方程冒烟先以 5 器件/17 次 DC 验证零极限、Gauss 和 T02-C 回归。正式 V2 再运行零控制与 `8.43e11/3.07e12/6.02e12 cm^-2 eV^-1` 三点，4 器件完成 164 次 DC、124 点和 4 状态，合同 21/21、运行器 14/14、独立 16/16 PASS。VTH 代理从 0.263857 V 增至 0.338997 V，SS 代理从 137.594 增至 292.966 mV/dec，gm 代理递减；最低栅压电流递增只是 `Psi_neutral=0 V` 线性化模型的数值响应，不是物理 Ioff。bulk 正式 transfer 敏感性仍缺，所以 P2 仍为 partial。
 - T03-P2-BULK-TRAPS 方程冒烟：运行器 E2、独立落盘复核 E3；零控制、`NTA=5e18` 尾态参考和 `NGA=5e16` 深态参考完成 3 器件/21 次 DC，7257 行节点状态和 6 行积分样本落盘，所有求解、零极限、解析导数、符号、守恒和非零响应检查通过。正式 NTA/NGA transfer sensitivity、物理 DOS/SS/VTH/Ion/Ioff 和完整 P2 仍关闭。
-- T03-P2-BULK-TRAPS-FORMAL 合同：E3 静态证据；22/22 PASS，冻结 NTA/NGA 各零控制加三个正式点、严格 family 隔离、DIT/NTD/NGD 为零、8 个计划器件、328 次计划 DC、248 个计划 transfer 点、8 个计划状态、DIT V2 提取方法、失败归档与 14 个阶段输出。检查结果为 `NOT_RUN_BY_CONTRACT_CHECK`，不能写成正式敏感性或 P2 完成。
+- T03-P2-BULK-TRAPS-FORMAL V1：E0/FAIL；8 个器件、328 次 DC、248 点、8 状态和 48 VTK 均完成且求解收敛，但 `NTA=5e19` 到 `VTG=1.0 V` 仍未达到 `1e-5 A/cm` VTH 判据，且非零占据陷阱不适用从零控制继承的近零内部电势门。输入、V1 源码、日志、曲线、状态、VTK 和报告已保留；不能写成正式敏感性 PASS。
+- T03-P2-BULK-TRAPS-FORMAL V2 合同：E3 静态证据；23/23 PASS。全部密度点、方程和提取阈值不变，共同栅压网格扩展至 `-0.5~1.7 V/0.05 V`，近零内部电势门只用于精确零陷阱控制；冻结 8 器件、440 次计划 DC、360 个计划点，状态为 `NOT_RUN_BY_CONTRACT_CHECK`。
 - 学长 IGZO 曲线：E1/reference_only；元数据不完整。
 - IGZO 单管外部 GDS：E2 基线，可参考但尚未迁入新 PDK。
 - 其余领域任务：E0。
@@ -81,7 +82,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. T02-A/B/C、T03-P4-L、完整数值 P1、T03-P2-DIT 界面子阶段、T03-P2-BULK-TRAPS 方程冒烟和正式隔离合同已通过。下一步只能运行合同定义的正式 NTA/NGA transfer sensitivity，再执行独立落盘检查；两者都通过并记录 P2 边界前不得铺开 P3/P5、M00/M01、SPICE、电路、KLayout、PEX 或 HZO。
+8. T02-A/B/C、T03-P4-L、完整数值 P1、T03-P2-DIT 界面子阶段、T03-P2-BULK-TRAPS 方程冒烟、正式 V1 失败保留和 V2 隔离合同已完成各自当前门。下一步只能运行 V2 合同定义的正式 NTA/NGA transfer sensitivity，再执行独立落盘检查；两者都通过并记录 P2 边界前不得铺开 P3/P5、M00/M01、SPICE、电路、KLayout、PEX 或 HZO。
 
 ## 原始资产路径
 

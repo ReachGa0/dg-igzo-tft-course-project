@@ -1,0 +1,267 @@
+{
+  "status": "PASS",
+  "contract_status": "PASS",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "case_id": "IGZO_T03_P2_BULK_TRAPS_FORMAL_V2",
+  "stage": "T03-P2-BULK-TRAPS-FORMAL",
+  "parameter_group_id": "P2",
+  "evidence_level": "E3",
+  "config": {
+    "path": "config/tcad_t03_p2_bulk_traps_formal.json",
+    "sha256": "08e03d5f922d3b45e7456893e828503dccec81ed02e4e5fa4bf7c1decf2238ef"
+  },
+  "inputs": {
+    "project_config": {
+      "path": "config/project.json",
+      "sha256": "2529bdcbad1586f6d1c001a81897141a45aca18987c76ad2c13238f6d48c4fee"
+    },
+    "experiments_config": {
+      "path": "config/experiments.json",
+      "sha256": "c307c5b7437d7bc0bd7cf89d52ee3f6c4f04be4ecd64850a342e30fd706ed278"
+    },
+    "s00_report": {
+      "path": "results/reports/s00_data_audit.json",
+      "sha256": "44ea42ff7fd9923cd4c9c2d0156ce3d0029cd59655e3c4086ab7250f78b48e31"
+    },
+    "t01_baseline_config": {
+      "path": "config/tcad_t01_baseline.json",
+      "sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9"
+    },
+    "t02_c_config": {
+      "path": "config/tcad_t02_c_bidirectional.json",
+      "sha256": "93c29fe977dd304315537d7dcbb0e2ea4b920cdab331a7996d7c9dd399b84228"
+    },
+    "t02_c_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional.json",
+      "sha256": "d214e9bf7c1938cf3120eaaf06fc53d0b1c1faf0708c0378fef6b3faeafecfed"
+    },
+    "t02_c_check_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional_check.json",
+      "sha256": "a13c6bebb0f10e8bce7dabff865863ee862e9d3ac572dfc692423a66ba868aa4"
+    },
+    "dit_formal_config": {
+      "path": "config/tcad_t03_p2_dit_formal.json",
+      "sha256": "d04ae8308e005e746f662a629079827ce18dc1b4b62d92fc490e7bace5c3890a"
+    },
+    "bulk_input_config": {
+      "path": "config/tcad_t03_p2_bulk_traps.json",
+      "sha256": "18c3c6218504fe3cfe980a2e814288f5d2171c0f169e674f7b1cacd0af0cc8c4"
+    },
+    "bulk_input_contract_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_input_contract.json",
+      "sha256": "9ab28508e9341927e908b86eb8c8f2224ed00ec6871ceaa9c3faa559c366a782"
+    },
+    "bulk_smoke_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json",
+      "sha256": "43e42f8df134410d6fc5ba2f7801e19d841dfa839e371c694176caef1dece540"
+    },
+    "bulk_smoke_check_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json",
+      "sha256": "200e9ce16a3689869367aecae4eff618065f8f067cbc1d6ff199a58a06eb0c4c"
+    },
+    "literature_table": {
+      "path": "references/t03_p2_bulk_trap_sources.csv",
+      "sha256": "c7e70e98b62439fc3eda7ad49fa90cc8b55367614efa8e848dd2ee7f7fb1e867"
+    },
+    "v1_formal_config": {
+      "path": "config/tcad_t03_p2_bulk_traps_formal_v1_failed.json",
+      "sha256": "13cae3d24f0c5313afade72b84acf424570a234946b1c7d9337de37199fc4f3a"
+    },
+    "v1_formal_contract_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json",
+      "sha256": "c372b509987af48e1c521ae930afe0bff097116157aacc7c3d7b9e248ec9cead"
+    },
+    "v1_formal_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_formal_v1_runner_completed_without_exception.json",
+      "sha256": "9d2a6558e95e04ddf14641fe6d66d28ed4cc8b5d6d9c84f2ab15df7df951f3b7"
+    },
+    "v1_failure_archive_manifest": {
+      "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
+      "sha256": "e632a5d9718124c385cba53305e8f99f8544d6b6a94c13afa9c424f5d2889c59"
+    },
+    "v1_config_snapshot": {
+      "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/input_snapshot.json",
+      "sha256": "c7e7201e3fccf2a15a632c51af8fff42431da5fc7551c679180c57ef13d8de44"
+    },
+    "v1_runner_script": {
+      "path": "tcad/run_t03_p2_bulk_traps_formal_v1_failed.py",
+      "sha256": "b405a8ebae13f4c0b20b7ed33617b76efbff5af705055a7ffa2174446b6f4b00"
+    },
+    "v1_curve_csv": {
+      "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_transfer.csv",
+      "sha256": "309379dfb187fbed17979a16d09769e702ca6402e77539b47778298cb8fa58a7"
+    }
+  },
+  "checks": [
+    {
+      "name": "identity:t03_p2_bulk_traps_formal_v2",
+      "status": "PASS",
+      "detail": "case=IGZO_T03_P2_BULK_TRAPS_FORMAL_V2 stage=T03-P2-BULK-TRAPS-FORMAL"
+    },
+    {
+      "name": "dependencies:all_declared_inputs_exist",
+      "status": "PASS",
+      "detail": "project_config=config/project.json; experiments_config=config/experiments.json; s00_report=results/reports/s00_data_audit.json; t01_baseline_config=config/tcad_t01_baseline.json; t02_c_config=config/tcad_t02_c_bidirectional.json; t02_c_report=results/reports/tcad_t02_c_bidirectional.json; t02_c_check_report=results/reports/tcad_t02_c_bidirectional_check.json; dit_formal_config=config/tcad_t03_p2_dit_formal.json; bulk_input_config=config/tcad_t03_p2_bulk_traps.json; bulk_input_contract_report=results/reports/tcad_t03_p2_bulk_traps_input_contract.json; bulk_smoke_report=results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json; bulk_smoke_check_report=results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json; literature_table=references/t03_p2_bulk_trap_sources.csv; v1_formal_config=config/tcad_t03_p2_bulk_traps_formal_v1_failed.json; v1_formal_contract_report=results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json; v1_formal_report=results/reports/tcad_t03_p2_bulk_traps_formal_v1_runner_completed_without_exception.json; v1_failure_archive_manifest=results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json; v1_config_snapshot=results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/input_snapshot.json; v1_runner_script=tcad/run_t03_p2_bulk_traps_formal_v1_failed.py; v1_curve_csv=results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_transfer.csv"
+    },
+    {
+      "name": "dependencies:g0_and_complete_t02_gate_are_preserved",
+      "status": "PASS",
+      "detail": "g0=TEACHING_BASELINE_ONLY t02=PASS independent=PASS"
+    },
+    {
+      "name": "dependencies:bulk_input_contract_passed_without_simulation",
+      "status": "PASS",
+      "detail": "status=PASS checks=30"
+    },
+    {
+      "name": "dependencies:bulk_equation_smoke_e2_and_independent_e3_passed",
+      "status": "PASS",
+      "detail": "runner=PASS/E2 independent=PASS/E3"
+    },
+    {
+      "name": "failure:v1_bracket_and_zero_bias_gate_failure_is_preserved",
+      "status": "PASS",
+      "detail": "v1_rows=248 high_nta_max=3.137505e-06 criterion=1.000000e-05 zero_bias_potential=1.575039e-01"
+    },
+    {
+      "name": "gate:machine_state_is_formal_contract_ready_and_p2_partial",
+      "status": "PASS",
+      "detail": "t03=partial_verified partial=['P2'] contract={'status': 'input_contract_ready_v2', 'revision': 2, 'contract_evidence': 'E3', 'simulation_status': 'NOT_RUN_BY_CONTRACT_CHECK', 'v1_failure_preserved': True, 'formal_sensitivity_completed': False}"
+    },
+    {
+      "name": "scope:2d_igzo_single_family_isolation_and_closed_later_work",
+      "status": "PASS",
+      "detail": "NTA/NGA isolated; DIT/NTD/NGD zero; later tracks closed"
+    },
+    {
+      "name": "points:exact_two_families_three_formal_points_and_two_controls",
+      "status": "PASS",
+      "detail": "{\"NGA\": [0.0, 1e+16, 5e+16, 5e+17], \"NTA\": [0.0, 1e+18, 5e+18, 5e+19]}"
+    },
+    {
+      "name": "points:width_peak_units_and_inactive_families_are_exact",
+      "status": "PASS",
+      "detail": "NTA WTA=0.08 eV; NGA WGA=0.2 eV and EGA=0.5 eV below Ec"
+    },
+    {
+      "name": "source:two_e1_rows_and_device_mismatch_remain_explicit",
+      "status": "PASS",
+      "detail": "rows=2 symbols=['NGA', 'NTA']"
+    },
+    {
+      "name": "model:equations_energy_grid_and_analytic_jacobian_are_unchanged",
+      "status": "PASS",
+      "detail": "model=quasi_static_energy_resolved_acceptor_occupancy_added_to_poisson integration=96"
+    },
+    {
+      "name": "bias:t02_c_prefix_and_v2_common_high_gate_extension_are_exact",
+      "status": "PASS",
+      "detail": "VDS=0.01 grid=-0.5:1.7"
+    },
+    {
+      "name": "extraction:vth_gm_ss_and_low_gate_current_are_pre_registered",
+      "status": "PASS",
+      "detail": "VTH=1e-5 A/cm; gm at VTH+0.2 V; SS=1e-7..1e-6 A/cm; low gate=-0.5 V"
+    },
+    {
+      "name": "hypotheses:directions_are_registered_diagnostics_not_completion_gates",
+      "status": "PASS",
+      "detail": "A finite, converged, conserved, independently reproducible contrary or non-monotonic trend is retained and reported rather than converted into a stage failure."
+    },
+    {
+      "name": "outputs:eight_common_states_include_potential_density_traps_and_current",
+      "status": "PASS",
+      "detail": "states=8 VTK=48 fields=potential/electrons/occupied traps/current density"
+    },
+    {
+      "name": "failure:failed_runs_are_archived_without_threshold_relaxation",
+      "status": "PASS",
+      "detail": "Any extraction-window or threshold change requires a new config revision, a recorded rationale, preservation of the prior failed contract/report, and a complete rerun."
+    },
+    {
+      "name": "resource:eight_devices_360_points_440_dc_fit_laptop_budget",
+      "status": "PASS",
+      "detail": "{\"laptop_target\": true, \"maximum_wall_seconds\": 600.0, \"required_control_device_count\": 2, \"required_dc_solve_count_per_device\": 55, \"required_device_count_per_family\": 4, \"required_family_count\": 2, \"required_formal_device_count\": 6, \"required_reported_point_count_per_device\": 45, \"required_total_dc_solve_count\": 440, \"required_total_device_count\": 8, \"required_total_reported_point_count\": 360}"
+    },
+    {
+      "name": "acceptance:counts_isolation_convergence_and_independent_check_are_frozen",
+      "status": "PASS",
+      "detail": "families=2 formal=6 controls=2 points=360 solves=440 independent=required"
+    },
+    {
+      "name": "acceptance:numerical_tolerances_are_not_weaker_than_upstream_contract",
+      "status": "PASS",
+      "detail": "imbalance=1e-05 R2=0.98"
+    },
+    {
+      "name": "outputs:fourteen_unique_stage_scoped_paths_are_frozen",
+      "status": "PASS",
+      "detail": "outputs=14 unique=14"
+    },
+    {
+      "name": "boundary:contract_is_not_formal_simulation_or_physical_validation",
+      "status": "PASS",
+      "detail": "The V1 failure is preserved, and the V2 formal isolated NTA/NGA transfer grid, unchanged teaching-model equations and extraction thresholds, corrected zero-bias gate semantics, failure-retention policy, output files, laptop budget, acceptance gates, and evidence boundary have been frozen and statically checked without running DEVSIM."
+    },
+    {
+      "name": "contract:no_simulation_is_run_by_this_checker",
+      "status": "PASS",
+      "detail": "simulation=NOT_RUN_BY_CONTRACT_CHECK formal_sensitivity_completed=false"
+    }
+  ],
+  "failures": [],
+  "planned_formal_sensitivity": {
+    "families": {
+      "NTA": [
+        0.0,
+        1e+18,
+        5e+18,
+        5e+19
+      ],
+      "NGA": [
+        0.0,
+        1e+16,
+        5e+16,
+        5e+17
+      ]
+    },
+    "device_count": 8,
+    "reported_point_count": 360,
+    "dc_solve_count": 440,
+    "state_count": 8,
+    "formal_sensitivity_run": false
+  },
+  "failure_retention": {
+    "preserve_every_failed_run": true,
+    "never_delete_or_overwrite_failed_evidence": true,
+    "archive_directory_pattern": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v<revision>_<failure_slug>",
+    "archive_report_pattern": "results/reports/tcad_t03_p2_bulk_traps_formal_v<revision>_<failure_slug>.json",
+    "required_failure_artifacts": [
+      "input snapshot",
+      "solver log through the failure",
+      "all completed transfer rows and metrics",
+      "all completed state files and manifest entries",
+      "runner report with the exact failed acceptance gate",
+      "figures when enough persisted data exist"
+    ],
+    "acceptance_change_rule": "Any extraction-window or threshold change requires a new config revision, a recorded rationale, preservation of the prior failed contract/report, and a complete rerun.",
+    "prohibited_recovery": [
+      "delete failed evidence",
+      "silently relax an acceptance threshold",
+      "drop a literature point after seeing its result",
+      "reuse a partially solved device as a replacement control"
+    ]
+  },
+  "evidence_boundary": {
+    "allowed_claim_after_contract_pass": "The V1 failure is preserved, and the V2 formal isolated NTA/NGA transfer grid, unchanged teaching-model equations and extraction thresholds, corrected zero-bias gate semantics, failure-retention policy, output files, laptop budget, acceptance gates, and evidence boundary have been frozen and statically checked without running DEVSIM.",
+    "allowed_claim_after_future_run_and_independent_check": "The isolated NTA and NGA literature-constrained point sets completed controlled transfer sensitivities in the frozen quasi-static teaching model; VTH, SS, low-gate current, gm, and internal-state responses remain numerical proxies.",
+    "prohibited_claims": [
+      "the formal NTA/NGA transfer sensitivity passed before both the runner and independent persisted-evidence check pass",
+      "project-device DOS was measured, extracted, fitted, calibrated, or assigned physical uncertainty",
+      "SS, VTH, Ioff, Ion, mobility, or process behavior was physically or experimentally validated",
+      "dynamic capture-emission, hysteresis, bias-stress, reliability, NTD, NGD, or complete four-band DOS was validated",
+      "P2, T03, compact-model, circuit, layout, PEX, or HZO work completed before its own stage gate"
+    ],
+    "next_gate": "Only this V2 formal contract PASS permits a complete fresh V2 formal NTA/NGA transfer run. P3, P5, M00, M01, SPICE, circuits, layout, PEX, and HZO remain closed until the V2 runner and independent persisted-evidence check pass and P2 completion is documented."
+  }
+}

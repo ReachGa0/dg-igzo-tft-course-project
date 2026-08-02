@@ -1,0 +1,615 @@
+{
+  "case_id": "IGZO_T03_P2_BULK_TRAPS_FORMAL_V1",
+  "stage": "T03-P2-BULK-TRAPS-FORMAL",
+  "entry_count": 8,
+  "entries": [
+    {
+      "state_id": "p2_bulk_nta_zero_common_primary",
+      "state_label": "NTA zero common-primary state",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P2_BULK_TRAPS_FORMAL",
+      "vbg_v": 0.0,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 1.1549445541373129e-05,
+      "drain_current_terminal_a": 6.929667324823877e-08,
+      "relative_current_imbalance": 2.053511784454081e-15,
+      "center_channel_potential_v": 0.056544883007083165,
+      "center_channel_electron_density_cm3": 7.36401270624011e+16,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 2.991755623840461e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 1.936010309908176,
+      "median_cell_current_density_magnitude_a_per_cm2": 3.803321115138429,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 13.983423972212625,
+      "node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_zero_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_zero_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "7cf132c51b26ab922c8460eb20644826022cd2f3d6d1bd3c603993fc477f4871",
+      "element_csv_sha256": "f1e5603f7ea7b51516037791b49c594e7a9e0f233769f2eeabbdea2854112f19",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_zero_common_primary.visit",
+          "sha256": "63ea54b70778b6066eac6414bfd353b0726227898d906409c3458d7f18c2ad0a"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_zero_common_primary.vtm",
+          "sha256": "cb08f313da50cba8590695b08becd1b47f2a9149c6398c364a167bd0a18bde20"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_zero_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_zero_common_primary_1.vtu",
+          "sha256": "b5315a6f8ce2b86e308aa962c306fe6b20d4fe7cc632cecc2a5fb6fc3b1a2d36"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_zero_common_primary_2.vtu",
+          "sha256": "ec1125ddda59b50e00f247edc0a0cbf6a399b61a18650a6f23de674d78cc6fbf"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_zero_common_primary_3.vtu",
+          "sha256": "48007bb5aca85067583147b337ee73bc5ce88e77724c93287c9e80765b6828dc"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      },
+      "bulk_family_id": "NTA",
+      "bulk_value_cm3_ev": 0.0,
+      "nta_cm3_ev": 0.0,
+      "nga_cm3_ev": 0.0,
+      "is_zero_control": true,
+      "bulk_node_row_count": 2419,
+      "bulk_channel_node_count": 1353,
+      "center_tail_occupied_density_cm3": 0.0,
+      "center_deep_occupied_density_cm3": 0.0,
+      "center_occupied_bulk_traps_cm3": 0.0,
+      "maximum_occupied_bulk_traps_cm3": 0.0,
+      "bulk_node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t03_p2_bulk_p2_bulk_nta_zero_common_primary_bulk_nodes.csv",
+      "bulk_node_csv_sha256": "c3d4a1082f5eae1c28c26192488fcc76195aa3a668213ae28994a4ac555e7e48"
+    },
+    {
+      "state_id": "p2_bulk_nta_1e18_common_primary",
+      "state_label": "NTA 1e18 common-primary state",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P2_BULK_TRAPS_FORMAL",
+      "vbg_v": 0.0,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 9.95792243694497e-06,
+      "drain_current_terminal_a": 5.974753462166982e-08,
+      "relative_current_imbalance": 2.721958770393202e-15,
+      "center_channel_potential_v": 0.051772039740405895,
+      "center_channel_electron_density_cm3": 6.1247501385830264e+16,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 2.607815132113783e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 1.6532351502572835,
+      "median_cell_current_density_magnitude_a_per_cm2": 3.2258202110369396,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 12.361923251832794,
+      "node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_1e18_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_1e18_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "7c519f82b3c42df4b2dac8ec6d7eaeaddf7b5c4e70b65227ee3b05f94d0774c3",
+      "element_csv_sha256": "98f991039d095fc3f22aecf6ec027d7d18686bb4b3bfed1e923ec1e0ce5198fd",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_1e18_common_primary.visit",
+          "sha256": "d7a883762499ee1d0d428ef9336300f528c88ba532dad2bb2494b25dac29fc32"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_1e18_common_primary.vtm",
+          "sha256": "226893e4949c1d53bd421bf4036ab3810897ecf655e837c2c4b07a49689e4df0"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_1e18_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_1e18_common_primary_1.vtu",
+          "sha256": "460b863bf87337a55e66d1cc54354bb5e0b6b674fc53591ea9297022cd8d72f4"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_1e18_common_primary_2.vtu",
+          "sha256": "727c95365df14570c4210292eeced3630e0f870b62c324e6601f2b648c7a487e"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_1e18_common_primary_3.vtu",
+          "sha256": "67605b720d54b936c776a1d26227007e3f3851d92d0d2e2f64c683f271824ef0"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      },
+      "bulk_family_id": "NTA",
+      "bulk_value_cm3_ev": 1e+18,
+      "nta_cm3_ev": 1e+18,
+      "nga_cm3_ev": 0.0,
+      "is_zero_control": false,
+      "bulk_node_row_count": 2419,
+      "bulk_channel_node_count": 1353,
+      "center_tail_occupied_density_cm3": 1.818847210319897e+16,
+      "center_deep_occupied_density_cm3": 0.0,
+      "center_occupied_bulk_traps_cm3": 1.818847210319897e+16,
+      "maximum_occupied_bulk_traps_cm3": 2.843510566880352e+16,
+      "bulk_node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t03_p2_bulk_p2_bulk_nta_1e18_common_primary_bulk_nodes.csv",
+      "bulk_node_csv_sha256": "8e022e5ccc2538be0d6f6897806e1f9e4abfe1ca3a36108d36e000b4d19286a3"
+    },
+    {
+      "state_id": "p2_bulk_nta_5e18_common_primary",
+      "state_label": "NTA 5e18 common-primary state",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P2_BULK_TRAPS_FORMAL",
+      "vbg_v": 0.0,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 5.351630756486944e-06,
+      "drain_current_terminal_a": 3.210978453892167e-08,
+      "relative_current_imbalance": 2.8489620723732305e-15,
+      "center_channel_potential_v": 0.032605511506812714,
+      "center_channel_electron_density_cm3": 2.9217352554915824e+16,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 1.4611305247606957e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 0.8799590801242879,
+      "median_cell_current_density_magnitude_a_per_cm2": 1.6359371627784371,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 7.219263383477795,
+      "node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e18_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e18_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "ffe842baf940027601dfe72761ae6beeeb6c0cc7a5125c7bb6f08f5fec526ac8",
+      "element_csv_sha256": "10ac381d90332922d56febe3c5577122d0c495580297aa573ad46c9c7d7733be",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e18_common_primary.visit",
+          "sha256": "7d8be4daef250d26a081104837f9181a6ff71bf7e44d2f71a52a8ff3d66100bd"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e18_common_primary.vtm",
+          "sha256": "3f1d81cd9bc4fde4596ac175a7cc1db1671516078c0f7af060ec1501bf9da7e3"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e18_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e18_common_primary_1.vtu",
+          "sha256": "f366e748c92b83c20594e3ab1a8c06ae35e867ab94a740879bab49492d52f704"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e18_common_primary_2.vtu",
+          "sha256": "7b941f3dbb11da5af2a3b214e55a963a7da06953ef33a86622e7cc2154f3a9e8"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e18_common_primary_3.vtu",
+          "sha256": "ffb2e151ac113da470c8646bc77b9848a0aaacc3cc4d8c57c7d1f74be0d48b12"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      },
+      "bulk_family_id": "NTA",
+      "bulk_value_cm3_ev": 5e+18,
+      "nta_cm3_ev": 5e+18,
+      "nga_cm3_ev": 0.0,
+      "is_zero_control": false,
+      "bulk_node_row_count": 2419,
+      "bulk_channel_node_count": 1353,
+      "center_tail_occupied_density_cm3": 7.195753729520977e+16,
+      "center_deep_occupied_density_cm3": 0.0,
+      "center_occupied_bulk_traps_cm3": 7.195753729520977e+16,
+      "maximum_occupied_bulk_traps_cm3": 1.1921598583435184e+17,
+      "bulk_node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t03_p2_bulk_p2_bulk_nta_5e18_common_primary_bulk_nodes.csv",
+      "bulk_node_csv_sha256": "3d2f54e1639ae2c74f5361069c876b624a2688bda2f840f955251216a433908a"
+    },
+    {
+      "state_id": "p2_bulk_nta_5e19_common_primary",
+      "state_label": "NTA 5e19 common-primary state",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P2_BULK_TRAPS_FORMAL",
+      "vbg_v": 0.0,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 1.1713670391131308e-07,
+      "drain_current_terminal_a": 7.028202234678785e-10,
+      "relative_current_imbalance": 9.841141701636747e-14,
+      "center_channel_potential_v": -0.07404686705092371,
+      "center_channel_electron_density_cm3": 472272892260096.5,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": -0.08371223677255583,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 351683133599682.44,
+      "maximum_electron_density_cm3": 1e+16,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 0.02164114335237076,
+      "median_cell_current_density_magnitude_a_per_cm2": 0.02921529690685496,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 0.2026559084305649,
+      "node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e19_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e19_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "8d71a9bc51d7a970f588ee89e8752f1006fc1f1ac7e2532d829a5db0546bd68f",
+      "element_csv_sha256": "6dc6eb79562ae6ba2b120c25f34fd13cf7d9a9acc4c6abbdc2a6a48ed70106d7",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e19_common_primary.visit",
+          "sha256": "208c9b24a1c275fcb1bae1601da5f705bfe6e00d4164086b1a9d1d2647f032b3"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e19_common_primary.vtm",
+          "sha256": "dc137bcab9315ac5eecf92fa53ede8357902194f83d2d4f87d2eeafdede85768"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e19_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e19_common_primary_1.vtu",
+          "sha256": "39c568ca3144eb4fc7ef69ca0d173d421a656b425f17cc8b97df7d109e33aa2d"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e19_common_primary_2.vtu",
+          "sha256": "0d38610e192a0ebb7d51cb1f9a8efb8803340b465def4fa2d9d28a44d8e56e28"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nta_5e19_common_primary_3.vtu",
+          "sha256": "3a1b6f56b9f0240820cf5b22f47f167ea58bdbc7cba7ca42a1509fb79f575a96"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      },
+      "bulk_family_id": "NTA",
+      "bulk_value_cm3_ev": 5e+19,
+      "nta_cm3_ev": 5e+19,
+      "nga_cm3_ev": 0.0,
+      "is_zero_control": false,
+      "bulk_node_row_count": 2419,
+      "bulk_channel_node_count": 1353,
+      "center_tail_occupied_density_cm3": 1.9112421642831187e+17,
+      "center_deep_occupied_density_cm3": 0.0,
+      "center_occupied_bulk_traps_cm3": 1.9112421642831187e+17,
+      "maximum_occupied_bulk_traps_cm3": 5.108994365903968e+17,
+      "bulk_node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t03_p2_bulk_p2_bulk_nta_5e19_common_primary_bulk_nodes.csv",
+      "bulk_node_csv_sha256": "f82e5fac0d2b7891080bbe8ff913b7169c50a19b7c56908770657858198c7cf9"
+    },
+    {
+      "state_id": "p2_bulk_nga_zero_common_primary",
+      "state_label": "NGA zero common-primary state",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P2_BULK_TRAPS_FORMAL",
+      "vbg_v": 0.0,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 1.1549445541373129e-05,
+      "drain_current_terminal_a": 6.929667324823877e-08,
+      "relative_current_imbalance": 2.053511784454081e-15,
+      "center_channel_potential_v": 0.056544883007083165,
+      "center_channel_electron_density_cm3": 7.36401270624011e+16,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 2.991755623840461e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 1.936010309908176,
+      "median_cell_current_density_magnitude_a_per_cm2": 3.803321115138429,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 13.983423972212625,
+      "node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_zero_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_zero_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "5e21b9c3b734344f8649de79a08a08825ea0e903fb8274ca0cd05bfc90fb525e",
+      "element_csv_sha256": "b4a44b080a6abee56b87c8a046f5426222e16aca837e4cab73b2b4191c40fc83",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_zero_common_primary.visit",
+          "sha256": "346fa557eb8ba709f0c427f824372d16b5822cc1093af4a6ff8d7f180ddafc0d"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_zero_common_primary.vtm",
+          "sha256": "38c2c78d02608d75d919745c03822fb675e85e429d2e3f2ef4ded567f7f3cebd"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_zero_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_zero_common_primary_1.vtu",
+          "sha256": "b5315a6f8ce2b86e308aa962c306fe6b20d4fe7cc632cecc2a5fb6fc3b1a2d36"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_zero_common_primary_2.vtu",
+          "sha256": "ec1125ddda59b50e00f247edc0a0cbf6a399b61a18650a6f23de674d78cc6fbf"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_zero_common_primary_3.vtu",
+          "sha256": "48007bb5aca85067583147b337ee73bc5ce88e77724c93287c9e80765b6828dc"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      },
+      "bulk_family_id": "NGA",
+      "bulk_value_cm3_ev": 0.0,
+      "nta_cm3_ev": 0.0,
+      "nga_cm3_ev": 0.0,
+      "is_zero_control": true,
+      "bulk_node_row_count": 2419,
+      "bulk_channel_node_count": 1353,
+      "center_tail_occupied_density_cm3": 0.0,
+      "center_deep_occupied_density_cm3": 0.0,
+      "center_occupied_bulk_traps_cm3": 0.0,
+      "maximum_occupied_bulk_traps_cm3": 0.0,
+      "bulk_node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t03_p2_bulk_p2_bulk_nga_zero_common_primary_bulk_nodes.csv",
+      "bulk_node_csv_sha256": "5c39e8cd1797219005ba16f25f97cd9989a787aee52bc6acde8d477f35aa7433"
+    },
+    {
+      "state_id": "p2_bulk_nga_1e16_common_primary",
+      "state_label": "NGA 1e16 common-primary state",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P2_BULK_TRAPS_FORMAL",
+      "vbg_v": 0.0,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 1.125791893216281e-05,
+      "drain_current_terminal_a": 6.754751359297686e-08,
+      "relative_current_imbalance": 4.363853678178089e-15,
+      "center_channel_potential_v": 0.05568990104504584,
+      "center_channel_electron_density_cm3": 7.125091676158982e+16,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 2.92687752485858e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 1.8781200490080754,
+      "median_cell_current_density_magnitude_a_per_cm2": 3.6937549288089135,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 13.711041177254891,
+      "node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_1e16_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_1e16_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "e0057d4004a4b4572d957fe2f825f4ad13fa7b9ecb55741121161673993e90cc",
+      "element_csv_sha256": "02ecd2fde08ae4b7c5c6b8fbfa557bdd4c7b96af98be1a87add043a988255ce9",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_1e16_common_primary.visit",
+          "sha256": "993081834260d30902c8372040e296e327548d029a2430b9752bb76506bb5fe8"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_1e16_common_primary.vtm",
+          "sha256": "6c936ee701a6e8f8eab01f9c35fee7f912cb2ef9fa64a194fbdc44afec1632a6"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_1e16_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_1e16_common_primary_1.vtu",
+          "sha256": "96b0bd9862f3aa87ee7a0474fdc492dfd97d728daca92c6f5e6787add12453f1"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_1e16_common_primary_2.vtu",
+          "sha256": "0a87d7dc755566a047199578b4b76e55ada49b4e62d54294e0d6348c979d3a47"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_1e16_common_primary_3.vtu",
+          "sha256": "07ceb3f35d778f02d79f8602a481b7a67f2da2622595c338a5383488b9b5b6b1"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      },
+      "bulk_family_id": "NGA",
+      "bulk_value_cm3_ev": 1e+16,
+      "nta_cm3_ev": 0.0,
+      "nga_cm3_ev": 1e+16,
+      "is_zero_control": false,
+      "bulk_node_row_count": 2419,
+      "bulk_channel_node_count": 1353,
+      "center_tail_occupied_density_cm3": 0.0,
+      "center_deep_occupied_density_cm3": 3522533857283155.0,
+      "center_occupied_bulk_traps_cm3": 3522533857283155.0,
+      "maximum_occupied_bulk_traps_cm3": 3533918494077862.5,
+      "bulk_node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t03_p2_bulk_p2_bulk_nga_1e16_common_primary_bulk_nodes.csv",
+      "bulk_node_csv_sha256": "8c3f02b089acbb23bdbbe777961963e5674833a22fd369eb8266b545b165b24f"
+    },
+    {
+      "state_id": "p2_bulk_nga_5e16_common_primary",
+      "state_label": "NGA 5e16 common-primary state",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P2_BULK_TRAPS_FORMAL",
+      "vbg_v": 0.0,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 1.0095418358781629e-05,
+      "drain_current_terminal_a": 6.057251015268978e-08,
+      "relative_current_imbalance": 6.544411290133846e-15,
+      "center_channel_potential_v": 0.052070316380422595,
+      "center_channel_electron_density_cm3": 6.196628389653052e+16,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 2.665604247761183e+17,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 1.6520714587477756,
+      "median_cell_current_density_magnitude_a_per_cm2": 3.260371683228687,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 12.596442948362597,
+      "node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e16_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e16_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "1cf731ecca30abecadbedde04564b34d37a4031da85c9256d0eed42fc8eb87ed",
+      "element_csv_sha256": "c7a0daca227be2cc83674a705f13480a7d89606e39b314ddde0787bf26bca6be",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e16_common_primary.visit",
+          "sha256": "4af0b63120faa9a01c5590156a1b444728abac5a845a444e3d37e1731772a788"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e16_common_primary.vtm",
+          "sha256": "ad918048caee46fbc2059623e5fb2af14ed4cf7191b83472c46b05a27461269b"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e16_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e16_common_primary_1.vtu",
+          "sha256": "204b178df36cf020762d0d45d08fdb43a78d6baeccd467c2f0cfd5afb17286e2"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e16_common_primary_2.vtu",
+          "sha256": "93e86cb9dfb98def2cf2330cde7ff615f8f8e4afa33949542aaeb06d6eeddc0b"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e16_common_primary_3.vtu",
+          "sha256": "2d5133f94060252c0abe9010b7cbe81e3cae4177fb8690c61c65ec0ebc4b6f0c"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      },
+      "bulk_family_id": "NGA",
+      "bulk_value_cm3_ev": 5e+16,
+      "nta_cm3_ev": 0.0,
+      "nga_cm3_ev": 5e+16,
+      "is_zero_control": false,
+      "bulk_node_row_count": 2419,
+      "bulk_channel_node_count": 1353,
+      "center_tail_occupied_density_cm3": 0.0,
+      "center_deep_occupied_density_cm3": 1.760486271327914e+16,
+      "center_occupied_bulk_traps_cm3": 1.760486271327914e+16,
+      "maximum_occupied_bulk_traps_cm3": 1.7666855119348656e+16,
+      "bulk_node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t03_p2_bulk_p2_bulk_nga_5e16_common_primary_bulk_nodes.csv",
+      "bulk_node_csv_sha256": "9779cc5bfb10938d6c255d208f001d5f060043c25fb73fc304a68df2f76c5cbf"
+    },
+    {
+      "state_id": "p2_bulk_nga_5e17_common_primary",
+      "state_label": "NGA 5e17 common-primary state",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P2_BULK_TRAPS_FORMAL",
+      "vbg_v": 0.0,
+      "vtg_v": 0.3,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 6.120384820832148e-07,
+      "drain_current_terminal_a": 3.672230892499289e-09,
+      "relative_current_imbalance": 4.1518612246629846e-15,
+      "center_channel_potential_v": -0.031702016683641164,
+      "center_channel_electron_density_cm3": 2452813883320624.0,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": -0.04393931773718724,
+      "maximum_potential_v": 0.3,
+      "minimum_electron_density_cm3": 1350798407424366.0,
+      "maximum_electron_density_cm3": 2.2701695728487212e+16,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 0.08978561572773226,
+      "median_cell_current_density_magnitude_a_per_cm2": 0.14982312449803367,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 1.0655657452172251,
+      "node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e17_common_primary_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e17_common_primary_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "3b66315ca7d5fdeb2db5e1a8d944bfaf57df5bad1cfd85595e0b5e69e4c1c231",
+      "element_csv_sha256": "da0b90860135be732a0624e3ea1d46680836f0a9433c8c9c56344e82384c8d8c",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e17_common_primary.visit",
+          "sha256": "2a3b0980b8a8e8ff717ad41150e4e3bef335de0a23c319a1c459cc0d27e9624a"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e17_common_primary.vtm",
+          "sha256": "34b58e73a0c7551f5fc2ca38fd2eeafa1f3da7a14403f0846d813f4a42dba6af"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e17_common_primary_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e17_common_primary_1.vtu",
+          "sha256": "cc4135e2c7fd0cd9c297fd134f22a82972d27334bce8d2611c1f0400ec8c9fb1"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e17_common_primary_2.vtu",
+          "sha256": "ed3c6d4112efaf8f42245d9442c3cfef2c7ff3517422d52718e669a6a096e18e"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t02_c_p2_bulk_nga_5e17_common_primary_3.vtu",
+          "sha256": "474f15381a3f4e88c618902ab2caac10f3e0609e8da6105258036c97bdfce70b"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      },
+      "bulk_family_id": "NGA",
+      "bulk_value_cm3_ev": 5e+17,
+      "nta_cm3_ev": 0.0,
+      "nga_cm3_ev": 5e+17,
+      "is_zero_control": false,
+      "bulk_node_row_count": 2419,
+      "bulk_channel_node_count": 1353,
+      "center_tail_occupied_density_cm3": 0.0,
+      "center_deep_occupied_density_cm3": 1.7230428355039728e+17,
+      "center_occupied_bulk_traps_cm3": 1.7230428355039728e+17,
+      "maximum_occupied_bulk_traps_cm3": 1.7533033098409274e+17,
+      "bulk_node_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/t03_p2_bulk_p2_bulk_nga_5e17_common_primary_bulk_nodes.csv",
+      "bulk_node_csv_sha256": "fd1ab3c18aedb7d497e01c07eadfe424aea78bb015f1e1a5385d711974cc959a"
+    }
+  ]
+}

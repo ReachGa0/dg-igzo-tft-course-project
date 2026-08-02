@@ -250,7 +250,8 @@
         "T03-P2-DIT-FORMAL controlled bottom-interface sensitivity: zero control plus 3 literature-constrained values, 4 devices, 164 DC, 124 transfer points, 4 states, independent 16/16 PASS; interface-DIT substage complete",
         "T03-P2-BULK-TRAPS static input contract: 2 E1 source rows, isolated NTA/NGA three-point sets, quasi-static occupancy and 96-point integration, 30/30 PASS",
         "T03-P2-BULK-TRAPS equation smoke: zero control plus NTA and NGA references, 3 devices, 21 coupled DC solves, 7257 state-node rows, 6 integration samples, E2 runner PASS and independent E3 16/16 PASS",
-        "T03-P2-BULK-TRAPS-FORMAL input contract: isolated NTA/NGA zero controls plus three formal points per family, 8 devices, 328 planned DC solves, 248 planned transfer points, extraction/failure/output/evidence gates frozen as E3 static evidence without DEVSIM"
+        "T03-P2-BULK-TRAPS-FORMAL V1 failed run preserved: 8 devices, 328 converged DC records, 248 transfer points, 8 states and 48 VTK; NTA=5e19 did not bracket the unchanged VTH criterion and the nonzero-trap zero-bias internal-potential gate was invalid, so runner remained E0/FAIL",
+        "T03-P2-BULK-TRAPS-FORMAL V2 input contract: all V1 density points and extraction thresholds retained, common VTG grid extended to 1.7 V, zero internal-potential regression limited to exact zero controls, 8 devices, 440 planned DC solves and 360 planned transfer points frozen as E3 static evidence without V2 DEVSIM"
       ],
       "completed_parameter_groups": ["P1", "P4"],
       "partially_completed_parameter_groups": ["P2"],
@@ -267,9 +268,26 @@
         "formal_transfer_sensitivity_completed": false
       },
       "p2_bulk_formal_contract_evidence": {
-        "status": "input_contract_ready",
+        "status": "input_contract_ready_v2",
+        "revision": 2,
         "contract_evidence": "E3",
         "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+        "v1_failure_preserved": true,
+        "formal_sensitivity_completed": false
+      },
+      "p2_bulk_formal_v1_failure_evidence": {
+        "status": "FAIL_PRESERVED",
+        "evidence_level": "E0",
+        "devices": 8,
+        "converged_dc_records": 328,
+        "transfer_points": 248,
+        "states": 8,
+        "vtk_files": 48,
+        "failed_vth_bracket_case": "NTA=5e19 cm^-3 eV^-1",
+        "maximum_gate_v": 1.0,
+        "maximum_current_a_per_cm": 3.137504658975777e-6,
+        "constant_current_criterion_a_per_cm": 1e-5,
+        "maximum_nonzero_trap_zero_equilibrium_internal_potential_v": 0.15750389258195557,
         "formal_sensitivity_completed": false
       },
       "first_group_outputs": [
@@ -341,10 +359,17 @@
         "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
         "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/solver_log.json",
         "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
+        "config/tcad_t03_p2_bulk_traps_formal_v1_failed.json",
         "config/tcad_t03_p2_bulk_traps_formal.json",
-        "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json"
+        "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json",
+        "results/reports/tcad_t03_p2_bulk_traps_formal.json",
+        "results/reports/tcad_t03_p2_bulk_traps_formal_v1_runner_completed_without_exception.json",
+        "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
+        "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/state_manifest.json",
+        "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_transfer.csv",
+        "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json"
       ],
-      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P1 combines the fixed-secondary-bias substage with a fixed-total-coupling effective capacitance-allocation ratio substage; it is not measured capacitance extraction, measured Al2O3 permittivity, or a fabricated asymmetric stack. P2 remains partial: the bottom-interface DIT substage is E3; the bulk NTA/NGA source/equation contract is E3 static evidence; and the 3-device, 21-DC bulk equation smoke has E2 runner evidence plus an E3 independent persisted-evidence check. The separate formal NTA/NGA input contract is E3 static evidence only: it freezes two isolated zero controls plus three formal points per family, 8 devices, 328 planned DC solves, 248 planned transfer points, the DIT-V2 extraction methods, failed-run retention, outputs, and acceptance gates without running DEVSIM. Formal isolated NTA/NGA transfer sensitivity has not run, so physical DOS, SS, VTH, Ion/Ioff, dynamic capture-emission, complete P2, P3, P5, and complete T03 remain unverified. Formal DIT metrics remain numerical proxies and source stacks differ. No T03 result is experimental calibration, compact-model, circuit, layout, PEX, or HZO evidence.",
+      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P2 remains partial: the bottom-interface DIT substage is E3, and the bulk equation smoke has E2 runner plus E3 independent evidence. Formal bulk V1 completed all 8 devices, 328 converged DC records, 248 transfer points, 8 states and 48 VTK but remains E0/FAIL: NTA=5e19 did not bracket the unchanged VTH criterion by 1.0 V, and nonzero occupied trap charge produced finite zero-external-bias internal potential that invalidated the inherited near-zero internal-potential gate. V1 inputs, logs, curves, states and reports are preserved. V2 keeps all density points, equations and extraction thresholds, extends the common gate grid to 1.7 V, applies near-zero internal potential only to exact zero controls, and freezes 8 devices, 440 planned DC solves and 360 planned transfer points as E3 static evidence without a V2 simulation. Formal V2 sensitivity, physical DOS, SS, VTH, Ion/Ioff, dynamic capture-emission, complete P2, P3, P5 and complete T03 remain unverified. No T03 result is experimental calibration, compact-model, circuit, layout, PEX or HZO evidence.",
       "acceptance": ["five groups complete", "at least three points per group", "quantitative comparison uses common axes", "each completed group has an independent persisted-evidence check", "failed hypotheses remain visible and do not get silently relaxed"]
     },
     {

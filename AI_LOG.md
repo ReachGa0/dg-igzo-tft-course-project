@@ -16,6 +16,44 @@
 
 ---
 
+## 2026-08-02 | Codex GPT-5 | 保留 bulk 正式 V1 失败并建立 V2 恢复合同
+
+### 用户目标
+
+按阶段 DAG 继续正式隔离 NTA/NGA transfer sensitivity；若阶段门失败则保留全部证据，不放宽预注册阈值，并在恢复合同通过前继续关闭 P3/P5、M00/M01、SPICE、电路、版图、PEX 和 HZO。
+
+### 读取的关键输入
+
+- `AGENTS.md`、`ARCHITECTURE.md`、`STATUS.md`、`PROJECT_PLAN.md`、`DECISIONS.md` 的阶段门、失败保留、证据等级与 Git 规则。
+- 已通过的 30/30 bulk 静态合同、3 器件/21 次 DC 方程冒烟 E2、独立 16/16 E3、22/22 V1 正式输入合同，以及 T02-C 与 DIT V2 的共同偏压和提取口径。
+- `config/project.json`、`config/experiments.json`、V1 落盘曲线/状态/求解日志和全部输出；没有改写 NTA/NGA 文献点、物理方程或既有历史证据。
+
+### 修改的文件和产物
+
+- 新增正式运行器 `tcad/run_t03_p2_bulk_traps_formal.py`、独立落盘检查器 `scripts/check_t03_p2_bulk_traps_formal.py` 及 Makefile 的 formal/formal-check 目标；共享 T02-C family runner 只增加默认兼容的状态后处理 hook。
+- V1 完成 8 个新器件、328 次全部收敛 DC、248 个 transfer 点、8 个状态和 48 个 VTK，但最高 NTA 曲线在 `VTG=1.0 V` 仅达 `3.1375e-6 A/cm`，没有包络不变的 `1e-5 A/cm` VTH 判据；非零受主占据电荷的零外偏内部势最大为 `0.157504 V`，说明继承的“所有器件内部势近零”门不适用。运行器正确保持 E0/FAIL，没有把求解收敛冒充阶段通过。
+- V1 标准输出与版本化归档均完整保留；另存精确 V1 配置和运行器源码，并由总检查核对配置/源码哈希、8/328/248、8 状态、48 VTK、最高 NTA 未包络和 E0 报告。
+- V2 保持全部 NTA/NGA 点、能量分布/占据/Poisson 方程、VTH/SS/gm 提取定义和验收阈值不变。所有 8 个器件统一采用 `VTG=-0.5~1.7 V`、`0.05 V` 步长的 45 点共同网格；近零内部势回归仅用于精确零陷阱控制，非零器件内部势要求有限并作为诊断落盘。
+- V2 合同冻结 8 个计划器件、每器件 55 次计划 DC、共 440 次计划 DC、360 个计划 transfer 点、8 个状态和 48 个 VTK，并使用独立 V2 路径避免覆盖 V1。合同 23/23 PASS、E3、`NOT_RUN_BY_CONTRACT_CHECK`；本里程碑没有运行 V2 DEVSIM。
+- 新增 ADR-027，并同步 `config/project.json`、`config/experiments.json`、`scripts/check_project.py`、状态/架构/计划/二维路线、报告第 5/6/8 章、附录 D 和证据矩阵；完整 P2/T03 保持 partial。
+
+### 验证命令和结果
+
+- V1 `make t03-p2-bulk-traps-formal`：8 器件、328 次 DC 全部收敛，但提取阶段按冻结门返回 E0/FAIL；失败报告、空提取表、完整 transfer、状态、VTK、日志和归档均保留。
+- `make t03-p2-bulk-traps-formal-contract-check`：V2 23/23 PASS，E3，`simulation=NOT_RUN_BY_CONTRACT_CHECK`，计划规模 8/440/360。
+- `make check`：435/435 PASS；包括 V1 失败证据保留和 V2 静态合同的项目级断言。
+- `make report-check`：PASS，12 章、5 附录、16 个允许占位符、14 张图片。
+- `python3 -m py_compile`、JSON/证据矩阵 CSV 解析和 `git diff --check`：PASS。
+- 未启动 V2 正式敏感性、P3、P5、M00/M01、SPICE、电路、版图、PEX 或 HZO。
+
+### 新决策、证据边界和下一步
+
+- ADR-027 将 V1 的有限栅压包络失败与错误继承的非零陷阱内部势门分开处理；扩展栅压不是删点或放宽判据，零偏语义修正也不改变陷阱方程。
+- V1 的 8/328/248 是已完成但 E0/FAIL 的计算证据；V2 的 8/440/360 是尚未运行的冻结计划。两者都不支持物理 DOS、SS/VTH/Ioff/Ion、实验校准、动态捕获-发射或完整 P2/T03 结论。
+- 下一步只运行一次 V2 合同定义的正式隔离 NTA/NGA transfer sensitivity；只有运行器 PASS 后才执行独立落盘检查。任何 V2 失败继续完整保留并暂停阶段 DAG。
+
+---
+
 ## 2026-08-02 | Codex GPT-5 | 完成 T03-P2-BULK-TRAPS 正式隔离输入合同
 
 ### 用户目标

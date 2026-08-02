@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-02
-- 当前阶段：`T03_P2_BULK_TRAPS_FORMAL_CONTRACT_E3_PARTIAL_P2`
+- 当前阶段：`T03_P2_BULK_TRAPS_FORMAL_V2_CONTRACT_E3_PARTIAL_P2`
 - 整体状态：`YELLOW`
-- 当前原则：完整 T02 数值门已在冻结 E2 教学模型上关闭；T03-P4-L 和数值 P1 组均已完整关闭。P2 的 bottom-interface DIT 子阶段已达 E3；bulk-trap 的 30/30 静态合同、三案例方程冒烟运行器与独立落盘检查已通过，另立的正式隔离 NTA/NGA 合同也以 22/22 静态检查通过。正式合同只冻结 8 个计划器件、328 次计划 DC、248 个计划 transfer 点、提取/失败/输出边界，没有运行 DEVSIM；正式敏感性尚未完成，所以完整 P2 仍为 partial。T02/T03 的 VTH、Delta VTH、SS、gm、耦合斜率和电流均只能称为数值代理。G0 继续禁止实验拟合、物理参数验证、物理 Ion/Ioff 和定量电路预测
+- 当前原则：完整 T02 数值门已在冻结 E2 教学模型上关闭；T03-P4-L 和数值 P1 组均已完整关闭。P2 的 bottom-interface DIT 子阶段已达 E3；bulk-trap 的 30/30 静态合同、三案例方程冒烟运行器与独立落盘检查已通过。正式 V1 完成 8 个器件、328 次收敛 DC、248 个 transfer 点、8 个状态和 48 个 VTK，但因最高 NTA 未包络冻结 VTH 判据且非零陷阱电荷不适用继承的近零内部电势门而保持 E0/FAIL，证据已完整保留。V2 合同以 23/23 E3 静态检查冻结共同扩展栅压网格和修正后的零偏语义；8 个器件、440 次 DC 和 360 个 transfer 点仍是未运行计划。正式 V2 敏感性尚未完成，所以完整 P2 仍为 partial。T02/T03 的 VTH、Delta VTH、SS、gm、耦合斜率和电流均只能称为数值代理。G0 继续禁止实验拟合、物理参数验证、物理 Ion/Ioff 和定量电路预测
 
 ## 已完成
 
@@ -17,7 +17,7 @@
 - [x] 活动冻结基线已重建为 7 个 IGZO 来源副本，旧材料和旧电路副本已移出活动数据集。
 - [x] 既有二维双栅静电基准为 E2，可作为后续起点。
 - [x] 报告已拆成 12 章和 5 个附录源，按清单组装为最终单文件 HTML，并支持打印分页。
-- [x] 文档、配置、目录合同、AI 入口、分章报告合同、17 阶段依赖图、T02-A/B/C、T03-P4-L、完整数值 P1、T03-P2-DIT 界面证据包、bulk-trap 静态合同、方程冒烟证据包和正式隔离合同已通过 422 项项目检查。
+- [x] 文档、配置、目录合同、AI 入口、分章报告合同、17 阶段依赖图、T02-A/B/C、T03-P4-L、完整数值 P1、T03-P2-DIT 界面证据包、bulk-trap 静态合同、方程冒烟、V1 失败保留和 V2 正式隔离合同已通过 435 项项目检查。
 - [x] 建立 `AGENTS.md` 权威 AI 入口及 Claude/Copilot 兼容指针。
 - [x] S00 数据审计已生成 50 条来源哈希、23 条单位记录（9 参数、14 数据字段）、8 个数据集边界和 6 项冲突登记；审计报告 PASS。
 - [x] G0 已决策为 `TEACHING_BASELINE_ONLY`：允许 E2 教学参数 T01，禁止称为实验拟合或校准双栅预测。
@@ -60,14 +60,16 @@
 - [x] bulk-trap 合同固定 `epsilon=Ec-E`、准静态占据和 Poisson 体电荷 Jacobian；96 点 Gauss-Legendre 对独立 32768 区间 Simpson 参考的最大相对误差为 `7.93e-7`，30/30 静态检查 PASS，明确 `simulation=NOT_RUN_BY_CONTRACT_CHECK`。
 - [x] bulk-trap 方程冒烟完成零控制、`NTA=5e18 cm^-3 eV^-1` 尾态参考和 `NGA=5e16 cm^-3 eV^-1` 深态参考三个器件，共 21 次耦合 DC；7257 行二维节点状态和 6 行积分样本已落盘，运行器 E2 PASS，独立 16 项检查 E3 PASS。
 - [x] `config/project.json` 与 `config/experiments.json` 已同步登记 bulk 方程冒烟的完成历史、结果路径和 E2/E3 边界；未改变物理输入或既有仿真证据。
-- [x] `T03-P2-BULK-TRAPS-FORMAL` 以 22/22 静态检查冻结 NTA 与 NGA 各自零控制加三个正式点、两个 family 完全隔离、DIT/NTD/NGD 为零、DIT V2 提取方法、失败证据保留、14 个阶段输出路径和独立落盘验收要求。合同证据为 E3，明确 `simulation=NOT_RUN_BY_CONTRACT_CHECK`。
+- [x] `T03-P2-BULK-TRAPS-FORMAL` V1 输入合同以 22/22 静态检查冻结 NTA 与 NGA 各自零控制加三个正式点、两个 family 完全隔离、DIT/NTD/NGD 为零、DIT V2 提取方法、失败证据保留、阶段输出路径和独立落盘验收要求。
+- [x] 正式 V1 完成 8 个新器件、328 条全部收敛的 DC 记录、248 个 transfer 点、8 个共同状态和 48 个 VTK；最大端口相对不平衡为 `6.01e-9`。最高 NTA 曲线在 `VTG=1.0 V` 仅达 `3.14e-6 A/cm`，未包络不变的 `1e-5 A/cm` VTH 判据；非零陷阱零外偏内部势最大为 `0.157504 V`。运行器因此保持 E0/FAIL，输入、源码、日志、曲线、状态、VTK 和报告均已版本化保留。
+- [x] V2 保持全部 NTA/NGA 点、方程和提取阈值不变，将所有器件共同栅压网格扩展为 `-0.5~1.7 V/0.05 V`，并只对精确零陷阱控制施加近零内部电势回归。V2 合同 23/23 PASS、E3、`NOT_RUN_BY_CONTRACT_CHECK`；8 器件/440 DC/360 点仍是计划量，不是仿真结果。
 - [x] 首次 `make check` 因新增边界断言把子串错误写成列表整项匹配而 419/420 PASS；失败报告已保留为 `results/reports/project_check_t03_p2_bulk_formal_boundary_checker_bug_failed.json`。修正只改变检查器匹配方式，不放宽任何合同、数值或物理门槛；归档失败本身已纳入最终总检查。
 
 ## 后续领域实现
 
 - [x] T01 单栅 IGZO 漂移扩散（教学参数 E2 数值门完成；不等同实验标定或物理参数验证）。
 - [x] T02 双栅电流与阈值耦合（冻结教学模型数值门完成；不等同实验标定、物理电容比、迟滞或紧凑模型验证）。
-- [ ] T03 五组器件参数分析（部分完成：P1 DONE、P4 DONE、P2 interface DIT substage DONE、P2 bulk equation smoke DONE、P2 bulk formal contract DONE；正式 bulk 扫描、P3、P5 TODO）。
+- [ ] T03 五组器件参数分析（部分完成：P1 DONE、P4 DONE、P2 interface DIT substage DONE、P2 bulk equation smoke DONE、P2 bulk formal V1 failure preserved、V2 contract DONE；正式 bulk V2 扫描、P3、P5 TODO）。
 - [ ] M00/M01 紧凑模型标定与双轨对照。
 - [ ] C00/C01 单极性标准单元。
 - [ ] C02/C03 环振和全加器。
@@ -92,7 +94,7 @@
 - T03-P1-BIAS 只改变固定底栅偏压。0.600083 至 -0.155482 V 的 VTH 代理和 -0.940554 V/V 的斜率不得称为实测阈值、物理电容比、实验耦合系数或电路可用参数；它单独不完成 P1。
 - T03-P1-CAP-RATIO 只改变固定总耦合下的有效分配比。VTH/gm/状态的五点单调趋势不得称为实测电容比、实测 Al2O3 介电常数、真实非对称介质栈、物理 Ion 或实验模型精度；它与 BIAS 共同完成数值 P1，但不完成 T03。
 - T03-P2-DIT 正式扫描只验证文献范围约束的准静态、线性化、bottom 单界面教学方程。VTH/SS/gm 和 `VTG=-0.5 V` 电流均是数值代理，不是实测 DIT、物理 Ioff/Ion、能量分布陷阱、实验标定或完整 P2。
-- T03-P2-BULK-TRAPS 已通过三案例方程冒烟和 22 项正式输入合同，但正式 NTA/NGA transfer sensitivity 仍未运行；合同的 8 器件、328 次 DC 和 248 点均是冻结计划，不是已完成结果，也不是物理 DOS、SS/VTH/Ion/Ioff、动态捕获-发射或完整 P2 证据。
+- T03-P2-BULK-TRAPS 正式 V1 的 8 器件、328 次 DC 和 248 点是已计算的失败证据，不是阶段 PASS；V2 合同的 8 器件、440 次 DC 和 360 点才是尚未运行的冻结计划。二者都不是物理 DOS、SS/VTH/Ion/Ioff、动态捕获-发射或完整 P2 证据。
 - 尚未生成的有源负载网表、标准单元版图和 LVS 报告。
 
 ## 当前阻塞
@@ -104,4 +106,4 @@
 
 ## 下一步
 
-只运行已通过合同定义的正式隔离 NTA/NGA transfer sensitivity，并在运行器之后执行独立落盘证据检查。运行器与独立检查都通过并记录 P2 完成边界之前，不启动 P3/P5、M00/M01、SPICE、电路、版图、PEX 或 HZO。
+只运行已通过 V2 合同定义的正式隔离 NTA/NGA transfer sensitivity，并在运行器之后执行独立落盘证据检查。V2 运行器与独立检查都通过并记录 P2 完成边界之前，不启动 P3/P5、M00/M01、SPICE、电路、版图、PEX 或 HZO。

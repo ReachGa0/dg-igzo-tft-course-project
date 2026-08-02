@@ -79,10 +79,25 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         "bulk_smoke_report",
         "bulk_smoke_check_report",
         "literature_table",
+        "v1_formal_config",
+        "v1_formal_contract_report",
+        "v1_formal_report",
+        "v1_failure_archive_manifest",
+        "v1_config_snapshot",
+        "v1_runner_script",
+        "v1_curve_csv",
     )
     paths = {name: ROOT / dep[name] for name in input_names}
     loaded = {
-        name: (load_csv(path) if name == "literature_table" else load_json(path))
+        name: (
+            load_csv(path)
+            if name in {"literature_table", "v1_curve_csv"}
+            else (
+                {"path": str(path.relative_to(ROOT))}
+                if name == "v1_runner_script"
+                else load_json(path)
+            )
+        )
         for name, path in paths.items()
     }
     project = loaded["project_config"]
@@ -98,16 +113,22 @@ def check_contract(config_path: Path) -> dict[str, Any]:
     smoke_report = loaded["bulk_smoke_report"]
     smoke_check = loaded["bulk_smoke_check_report"]
     literature = loaded["literature_table"]
+    v1_config = loaded["v1_formal_config"]
+    v1_contract = loaded["v1_formal_contract_report"]
+    v1_report = loaded["v1_formal_report"]
+    v1_archive = loaded["v1_failure_archive_manifest"]
+    v1_snapshot = loaded["v1_config_snapshot"]
+    v1_curve = loaded["v1_curve_csv"]
     t03 = next(item for item in experiments["experiments"] if item["id"] == "T03")
     p2 = next(item for item in experiments["parameter_groups"] if item["id"] == "P2")
     checks: list[dict[str, Any]] = []
 
     add_check(
         checks,
-        "identity:t03_p2_bulk_traps_formal_v1",
+        "identity:t03_p2_bulk_traps_formal_v2",
         config.get("schema_version") == 1
-        and config.get("case_id") == "IGZO_T03_P2_BULK_TRAPS_FORMAL_V1"
-        and config.get("revision") == 1
+        and config.get("case_id") == "IGZO_T03_P2_BULK_TRAPS_FORMAL_V2"
+        and config.get("revision") == 2
         and config.get("stage") == "T03-P2-BULK-TRAPS-FORMAL"
         and config.get("parameter_group_id") == "P2"
         and config.get("status") == "planned"
@@ -188,6 +209,73 @@ def check_contract(config_path: Path) -> dict[str, Any]:
             f"independent={smoke_check.get('status')}/{smoke_check.get('evidence_level')}"
         ),
     )
+    v1_high_rows = [
+        row
+        for row in v1_curve
+        if row.get("bulk_family_id") == "NTA"
+        and close(float(row.get("bulk_value_cm3_ev", "nan")), 5e19)
+    ]
+    v1_other_curves: dict[tuple[str, float], list[dict[str, str]]] = {}
+    for row in v1_curve:
+        key = (row.get("bulk_family_id", ""), float(row["bulk_value_cm3_ev"]))
+        v1_other_curves.setdefault(key, []).append(row)
+    v1_maximum_nonzero_potential = max(
+        float(item["zero_equilibrium"]["maximum_absolute_potential_v"])
+        for item in v1_report.get("family_summaries", [])
+        if not item.get("is_zero_control")
+    )
+    prior = config["prior_failed_run"]
+    add_check(
+        checks,
+        "failure:v1_bracket_and_zero_bias_gate_failure_is_preserved",
+        v1_config.get("case_id") == "IGZO_T03_P2_BULK_TRAPS_FORMAL_V1"
+        and v1_config.get("revision") == 1
+        and v1_contract.get("contract_status") == "PASS"
+        and v1_contract.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+        and v1_contract.get("config", {}).get("sha256")
+        == sha256(paths["v1_formal_config"])
+        and v1_snapshot.get("inputs", {}).get("runner_script", {}).get("sha256")
+        == sha256(paths["v1_runner_script"])
+        and v1_report.get("status") == "FAIL"
+        and v1_report.get("evidence_level") == "E0"
+        and v1_report.get("formal_sensitivity_run") is False
+        and v1_report.get("summary_metrics", {}).get("device_count") == 8
+        and v1_report.get("summary_metrics", {}).get("dc_solve_count") == 328
+        and v1_report.get("summary_metrics", {}).get("reported_point_count") == 248
+        and len(v1_curve) == 248
+        and len(v1_high_rows) == 31
+        and close(
+            max(abs(float(row["drain_current_a_per_cm"])) for row in v1_high_rows),
+            prior["v1_high_nta_maximum_current_a_per_cm"],
+        )
+        and prior["v1_high_nta_maximum_current_a_per_cm"]
+        < prior["unchanged_constant_current_criterion_a_per_cm"]
+        and all(
+            max(abs(float(row["drain_current_a_per_cm"])) for row in rows)
+            >= prior["unchanged_constant_current_criterion_a_per_cm"]
+            for key, rows in v1_other_curves.items()
+            if key != ("NTA", 5e19)
+        )
+        and close(
+            v1_maximum_nonzero_potential,
+            prior[
+                "v1_maximum_nonzero_trap_zero_equilibrium_internal_potential_v"
+            ],
+        )
+        and v1_archive.get("status") == "FAIL_PRESERVED"
+        and v1_archive.get("failed_gate")
+        == "runner_completed_without_exception"
+        and v1_report.get("failure_archive", {}).get("directory")
+        == prior["archive_directory"]
+        and prior["status"] == "FAIL_PRESERVED"
+        and prior["user_approved_recovery"] is True,
+        (
+            f"v1_rows={len(v1_curve)} high_nta_max="
+            f"{prior['v1_high_nta_maximum_current_a_per_cm']:.6e} "
+            f"criterion={prior['unchanged_constant_current_criterion_a_per_cm']:.6e} "
+            f"zero_bias_potential={v1_maximum_nonzero_potential:.6e}"
+        ),
+    )
     machine_evidence = t03.get("p2_bulk_formal_contract_evidence", {})
     add_check(
         checks,
@@ -204,12 +292,14 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         ]
         and machine_evidence
         == {
-            "status": "input_contract_ready",
+            "status": "input_contract_ready_v2",
+            "revision": 2,
             "contract_evidence": "E3",
             "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+            "v1_failure_preserved": True,
             "formal_sensitivity_completed": False,
         }
-        and "run the formal isolated NTA/NGA transfer sensitivity"
+        and "run the V2 formal isolated NTA/NGA transfer sensitivity"
         in project.get("tcad_track", {}).get("next_scope", ""),
         (
             f"t03={t03.get('status')} partial={t03.get('partially_completed_parameter_groups')} "
@@ -321,16 +411,20 @@ def check_contract(config_path: Path) -> dict[str, Any]:
     t02_protocol = t02_config["bias_protocol"]
     add_check(
         checks,
-        "bias:exact_t02_c_top_primary_forward_transfer_protocol",
+        "bias:t02_c_prefix_and_v2_common_high_gate_extension_are_exact",
         close(protocol["source_v"], t02_protocol["source_v"])
         and close(protocol["drain_v"], t02_protocol["drain_v"])
         and protocol["low_vds_values_v"] == t02_protocol["low_vds_values_v"]
         and protocol["primary_negative_preconditioning_v"]
         == t02_protocol["primary_negative_preconditioning_v"]
-        and primary_grid(protocol["primary_gate_grid"])
+        and primary_grid(protocol["primary_gate_grid"])[
+            : len(primary_grid(t02_protocol["primary_gate_grid"]))
+        ]
         == primary_grid(t02_protocol["primary_gate_grid"])
         == primary_grid(source_protocol["primary_gate_grid"])
-        and len(primary_grid(protocol["primary_gate_grid"])) == 31
+        and len(primary_grid(protocol["primary_gate_grid"])) == 45
+        and close(protocol["primary_gate_grid"]["stop_v"], 1.7)
+        and protocol["primary_gate_grid"]["point_count"] == 45
         and protocol["primary_gate"] == "top_gate"
         and protocol["secondary_gate"] == "bottom_gate"
         and close(protocol["fixed_secondary_gate_v"], 0.0)
@@ -410,16 +504,16 @@ def check_contract(config_path: Path) -> dict[str, Any]:
     budget = config["resource_budget"]
     add_check(
         checks,
-        "resource:eight_devices_248_points_328_dc_fit_laptop_budget",
+        "resource:eight_devices_360_points_440_dc_fit_laptop_budget",
         budget["required_family_count"] == 2
         and budget["required_device_count_per_family"] == 4
         and budget["required_total_device_count"] == 8
         and budget["required_formal_device_count"] == 6
         and budget["required_control_device_count"] == 2
-        and budget["required_reported_point_count_per_device"] == 31
-        and budget["required_total_reported_point_count"] == 248
-        and budget["required_dc_solve_count_per_device"] == 41
-        and budget["required_total_dc_solve_count"] == 328
+        and budget["required_reported_point_count_per_device"] == 45
+        and budget["required_total_reported_point_count"] == 360
+        and budget["required_dc_solve_count_per_device"] == 55
+        and budget["required_total_dc_solve_count"] == 440
         and budget["maximum_wall_seconds"] <= 600.0
         and budget["laptop_target"] is True,
         json.dumps(budget, sort_keys=True),
@@ -435,13 +529,14 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         == family_map["NGA"]["execution_values_cm3_ev"]
         and acceptance["required_formal_points_per_family"] == 3
         and acceptance["required_control_points_per_family"] == 1
-        and acceptance["required_total_reported_point_count"] == 248
-        and acceptance["required_total_dc_solve_count"] == 328
+        and acceptance["required_primary_gate_point_count"] == 45
+        and acceptance["required_total_reported_point_count"] == 360
+        and acceptance["required_total_dc_solve_count"] == 440
         and acceptance["require_all_dc_solves_converged"] is True
         and acceptance["require_exact_isolation_for_every_device"] is True
         and acceptance["require_both_interface_dit_zero"] is True
         and acceptance["require_independent_persisted_evidence_check"] is True,
-        "families=2 formal=6 controls=2 points=248 solves=328 independent=required",
+        "families=2 formal=6 controls=2 points=360 solves=440 independent=required",
     )
     add_check(
         checks,
@@ -469,7 +564,27 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         and acceptance["require_vth_bracket_for_every_device"] is True
         and acceptance["require_positive_finite_gm"] is True
         and acceptance["require_positive_finite_ss"] is True
-        and acceptance["require_finite_positive_low_gate_current"] is True,
+        and acceptance["require_finite_positive_low_gate_current"] is True
+        and acceptance[
+            "maximum_zero_control_equilibrium_absolute_potential_v"
+        ]
+        == v1_config["acceptance"][
+            "maximum_zero_equilibrium_absolute_potential_v"
+        ]
+        and acceptance[
+            "maximum_zero_equilibrium_absolute_terminal_current_a_per_cm"
+        ]
+        == v1_config["acceptance"][
+            "maximum_zero_equilibrium_absolute_terminal_current_a_per_cm"
+        ]
+        and acceptance[
+            "require_all_nonzero_trap_equilibrium_internal_potentials_finite"
+        ]
+        is True
+        and acceptance[
+            "require_near_zero_internal_potential_only_for_zero_controls"
+        ]
+        is True,
         (
             f"imbalance={acceptance['maximum_relative_terminal_current_imbalance']} "
             f"R2={acceptance['minimum_ss_fit_r_squared']}"
@@ -486,8 +601,9 @@ def check_contract(config_path: Path) -> dict[str, Any]:
             or "p2_bulk_traps_formal" in value
             for value in outputs.values()
         )
+        and all("v2" in value for value in outputs.values())
         and outputs["contract_report"]
-        == "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json",
+        == "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json",
         f"outputs={len(outputs)} unique={len(set(outputs.values()))}",
     )
     boundary = config["evidence_boundary"]
@@ -501,7 +617,7 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         in boundary["allowed_claim_after_future_run_and_independent_check"]
         and "before both the runner and independent" in prohibited
         and "measured, extracted, fitted, calibrated" in prohibited
-        and "Only this formal contract PASS permits"
+        and "Only this V2 formal contract PASS permits"
         in boundary["next_gate"]
         and "P3, P5, M00, M01" in boundary["next_gate"],
         boundary["allowed_claim_after_contract_pass"],
