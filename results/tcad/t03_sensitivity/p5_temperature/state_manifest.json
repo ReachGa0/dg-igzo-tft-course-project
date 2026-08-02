@@ -1,0 +1,205 @@
+{
+  "case_id": "IGZO_T03_P5_TEMPERATURE_V1",
+  "stage": "T03-P5-TEMPERATURE",
+  "entry_count": 3,
+  "entries": [
+    {
+      "state_id": "p5_temperature_250k_on_proxy",
+      "state_label": "T=250 K on proxy",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P5_TEMPERATURE",
+      "vbg_v": 0.0,
+      "vtg_v": 1.0,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 3.6469841491285194e-05,
+      "drain_current_terminal_a": 2.1881904894771116e-07,
+      "relative_current_imbalance": 5.258269611733528e-14,
+      "center_channel_potential_v": 0.06183629481209764,
+      "center_channel_electron_density_cm3": 1.3967707357988066e+17,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 1.0,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 4.840352934826624e+18,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 1.9215657646726652,
+      "median_cell_current_density_magnitude_a_per_cm2": 5.244075864851977,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 152.39141643852935,
+      "node_csv": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_250k_on_proxy_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_250k_on_proxy_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "e7c8cfc00dae5087e406dd928877b0132406699fb2489b72708a264387a166dd",
+      "element_csv_sha256": "fdc553f38afca0735b998e204e6f63dfcafce3ecfc9d233af9b6a96b2d095777",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_250k_on_proxy.visit",
+          "sha256": "b9ee033636fa230437d0df2a46b356af1c2b09b24bf4d18a3330e3f100872ba1"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_250k_on_proxy.vtm",
+          "sha256": "b3b2836190c620ac786db30940d4c4cb2844a3e47dfb39894e82d274fd9fafc2"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_250k_on_proxy_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_250k_on_proxy_1.vtu",
+          "sha256": "3ac75edf58636f67c9d5f8da2e14f91a0723e8eec6410a704c455facc8ff61e7"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_250k_on_proxy_2.vtu",
+          "sha256": "3c684b3d6bda883b7d26f1e17588056b5bb1e9abddcefe06175a3f3f15da3ce4"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_250k_on_proxy_3.vtu",
+          "sha256": "89f7b7bed54a04c076c05f75c8e5c03b7c6221fcc5863d2fe0393bb9dabbcbcb"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      },
+      "parameter_group_id": "P5",
+      "temperature_k": 250.0,
+      "thermal_voltage_v": 0.021543333155
+    },
+    {
+      "state_id": "p5_temperature_300k_on_proxy",
+      "state_label": "T=300 K on proxy",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P5_TEMPERATURE",
+      "vbg_v": 0.0,
+      "vtg_v": 1.0,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 3.593724333278673e-05,
+      "drain_current_terminal_a": 2.156234599967204e-07,
+      "relative_current_imbalance": 6.7880968651448835e-15,
+      "center_channel_potential_v": 0.07584432558886496,
+      "center_channel_electron_density_cm3": 1.5479676378982486e+17,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 1.0,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 3.911948753740598e+18,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 2.192629202227578,
+      "median_cell_current_density_magnitude_a_per_cm2": 5.934206088503833,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 127.61148221135086,
+      "node_csv": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_300k_on_proxy_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_300k_on_proxy_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "811fb3104f53ce33a51e06a1b8923be8a5ea2c7e5c92e4dec7122e233249460e",
+      "element_csv_sha256": "f9ee2689faf902be4cd20963c8b50ac3465a7494c3317be8755f1c87c3795f50",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_300k_on_proxy.visit",
+          "sha256": "f716e78603d1fa2f87dde1000d66b33b68a9ea5a6a4bd7d6f95df4b5ca0b67d7"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_300k_on_proxy.vtm",
+          "sha256": "04c1618b40a58196e7b16cec8ed9de82a0af2fc9f47127703897f2ad4581d9cc"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_300k_on_proxy_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_300k_on_proxy_1.vtu",
+          "sha256": "297653a41dc05221eb432f46c725252684df5fa66ad3574ba3f3ab6e52b09db6"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_300k_on_proxy_2.vtu",
+          "sha256": "35146df4be805e7123808d892977a5923d9cbd6860190cf7775c04cceb0bf214"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_300k_on_proxy_3.vtu",
+          "sha256": "4c23ac99dcea4174c21181ddaf40c9b38beedec39ddf38df3b3dad0fbf4c1f8a"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      },
+      "parameter_group_id": "P5",
+      "temperature_k": 300.0,
+      "thermal_voltage_v": 0.025851999786
+    },
+    {
+      "state_id": "p5_temperature_350k_on_proxy",
+      "state_label": "T=350 K on proxy",
+      "source_family": "top_primary",
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P5_TEMPERATURE",
+      "vbg_v": 0.0,
+      "vtg_v": 1.0,
+      "vds_v": 0.01,
+      "absolute_drain_current_a_per_cm": 3.529250269768652e-05,
+      "drain_current_terminal_a": 2.1175501618611912e-07,
+      "relative_current_imbalance": 3.6096548991804153e-14,
+      "center_channel_potential_v": 0.08994151150791836,
+      "center_channel_electron_density_cm3": 1.6706654385331526e+17,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 1.0,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 3.2389263700940575e+18,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 2.433988033278219,
+      "median_cell_current_density_magnitude_a_per_cm2": 6.520157913880819,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 108.85355438880447,
+      "node_csv": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_350k_on_proxy_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_350k_on_proxy_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "0f3b6fcbd7f57a177e6e28c2137c3f4eeb64ea4a9ae4259cd74c969d3b8b8054",
+      "element_csv_sha256": "4770ae3bb6b69442517dc003dc5c09d2c4c9df8c5e991143d80d63114ebe578a",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_350k_on_proxy.visit",
+          "sha256": "eaef8e0f35d071002a28a52b2d263f3713660021c1af7dd52c8301b25766b576"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_350k_on_proxy.vtm",
+          "sha256": "0561fe9cb83b79477fdccc6da130190c72c3c784a15e16178e1244ddbaff8753"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_350k_on_proxy_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_350k_on_proxy_1.vtu",
+          "sha256": "345e5759864e0fb107b7f2320318e542aef7fb19b583837575cc7ecfd4755886"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_350k_on_proxy_2.vtu",
+          "sha256": "87539b09070c3a380a67e3a02235859e278bbf92ba322b8e65b7b94eed3b7c9f"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p5_temperature/t02_c_p5_temperature_350k_on_proxy_3.vtu",
+          "sha256": "427c6f9add82cb3e7f5302a918131aa7d6084aefcf948ef3a1a569b02be1237b"
+        }
+      ],
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of the three element-node vectors",
+        "local_unit": "A/cm^2"
+      },
+      "parameter_group_id": "P5",
+      "temperature_k": 350.0,
+      "thermal_voltage_v": 0.030160666417
+    }
+  ]
+}

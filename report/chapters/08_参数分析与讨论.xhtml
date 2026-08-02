@@ -251,10 +251,28 @@
   <p>V2 非零漏压最大端口相对不平衡为 <code>3.35344e-11</code>，零漏压最大绝对电流为 <code>1.08454e-19 A/cm</code>；circuit KCL、Ohm 定律和压降分配最大残差分别为 <code>2.42178e-12</code>、<code>1.20922e-12</code> 和 0。独立检查不导入运行器或 DEVSIM，重算全部 156 点、243 条求解记录、circuit 闭合、提取、T02-C 回归、3 状态、18 VTK、两张图和主产物哈希，20/20 PASS。</p>
   <p class="boundary">V1 继续保持 E0/FAIL，V2 的正式通过不重解释 V1。V2 两级证据只关闭冻结二维教学模型内的 P3，不支持项目接触电阻、TLM 提取、Ti/Ni 比较、Schottky barrier、热发射、隧穿、current crowding、物理 Ion 或实验校准。V1 原失败 manifest 的同名 archive 副本冲突已在 supplement 中披露，原始 manifest 和数值结果没有改写。</p>
 
-  <h3>8.19 P5 正式输入合同（未运行）</h3>
-  <p>P5 已冻结 250/300/350 K 三点和对应 <code>V_t=0.021543333155/0.025851999786/0.030160666417 V</code>。唯一变化项是既有 Scharfetter-Gummel 电流中的 <code>V_t=k_B*T</code>；迁移率保持 35.5 cm2/(V*s)，DOS、能带、介电、接触、陷阱、几何、网格和偏压全部不变。合同预注册 3 器件、123 次 DC、93 个 transfer 点、3 状态和 18 VTK，并要求 300 K 完整回归 T02-C。</p>
-  <p class="boundary">当前只有 23/23 静态合同检查 PASS、E3、<code>NOT_RUN_BY_CONTRACT_CHECK</code>。上述规模不是仿真结果，不存在温度趋势、VTH/SS/gm/电流结论，也不能声称物理 IGZO 温度模型、实验拟合、激活能、工作温区、自热或可靠性。</p>
+  <h3>8.19 P5 V_t-only 正式温度敏感性</h3>
+  <p>P5 先以 23/23 静态合同检查冻结 250/300/350 K 三点和对应 <code>V_t=0.021543333155/0.025851999786/0.030160666417 V</code>。唯一变化项是既有 Scharfetter-Gummel 电流中的 <code>V_t=k_B*T</code>；迁移率保持 35.5 cm2/(V*s)，DOS、能带、介电、接触、陷阱、几何、网格和偏压全部不变。唯一一次正式运行完成 3 个新器件、123 次全部收敛 DC、93 个 transfer 点、3 状态和 18 VTK，墙钟 9.127 s；runner 14/14 PASS、E2。</p>
+  <table>
+    <thead><tr><th>T (K)</th><th>V_t (V)</th><th>VTH 代理 (V)</th><th>Delta VTH (V)</th><th>SS 代理 (mV/dec)</th><th>gm 代理 (S/cm)</th><th>低栅电流代理 (A/cm)</th><th>高栅电流代理 (A/cm)</th></tr></thead>
+    <tbody>
+      <tr><td>250</td><td>0.021543333155</td><td>0.245409</td><td>-0.018448</td><td>117.138</td><td>3.98472e-5</td><td>4.03293e-11</td><td>3.64698e-5</td></tr>
+      <tr><td>300</td><td>0.025851999786</td><td>0.263857</td><td>0</td><td>137.594</td><td>3.93760e-5</td><td>2.10090e-10</td><td>3.59372e-5</td></tr>
+      <tr><td>350</td><td>0.030160666417</td><td>0.281977</td><td>+0.018120</td><td>157.796</td><td>3.88128e-5</td><td>6.94544e-10</td><td>3.52925e-5</td></tr>
+    </tbody>
+  </table>
+  <p>在该冻结闭包内，VTH 与 SS 数值代理随温度点增加，gm 与高栅电流代理下降，低栅电流代理增加；五个端点提取代理的最大相对响应为 0.941934。三条 SS 拟合的 R2 为 0.998683/0.998989/0.999379。300 K 的 31 点曲线、共同状态、VTH 和 gm 对 T02-C 的差异均为 0，最大端口相对电流不平衡为 <code>4.37301e-10</code>。</p>
+  <figure>
+    <img src="assets/tcad_t03_p5_temperature_sensitivity.png" alt="T03-P5 V_t-only 三点温度转移曲线和数值代理" />
+    <figcaption>图 8-13 P5 三点 <code>V_t-only</code> 数值敏感性。横向比较只归因于热电压输入变化，所有温度相关材料、接触和陷阱规律均未启用。</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/tcad_t03_p5_temperature_states.png" alt="T03-P5 三个温度点共同高栅偏压状态的电势电子浓度和局部电流密度" />
+    <figcaption>图 8-14 三个 <code>VTG=1 V</code> 共同偏压状态。二维场量用于审计冻结模型的数值响应，不构成自热或真实温度场证据。</figcaption>
+  </figure>
+  <p>随后独立检查在不导入运行器或 DEVSIM 的条件下复核全部 93 点、123 条求解记录、三个提取行、300 K 回归、3 状态、18 VTK、两张 PNG 和主产物哈希，15/15 PASS、E3。该证据与历史合同记录共同关闭冻结边界内的 P5。</p>
+  <p class="boundary">这些趋势只是固定迁移率和全部其他物理输入时改变 <code>V_t</code> 的数值响应，不是实验或物理 IGZO 温度依赖，不支持激活能、迁移率/DOS/接触/陷阱温度律、物理 VTH/SS/Ioff/Ion/gm、工作温区、自热、可靠性或不确定度结论。</p>
 
-  <h3>8.20 适用范围和未完成组</h3>
-  <p>T03-P4-L、数值 P1、P2 和 P3 已完整关闭，其中 P1 必须同时引用 BIAS 与 CAP-RATIO，P2 必须同时引用 bottom-interface DIT、bulk 方程冒烟、V1/V2 失败保留及 V3 正式两级证据，P3 必须同时引用 V1 失败保留、V2 恢复合同、正式运行和独立检查。P5 只有正式输入合同，尚未运行或独立检查，因此本章不关闭 P5 或完整 T03。也没有进行实验拟合、紧凑模型、SPICE、电路、版图、PEX 或 HZO 工作。</p>
+  <h3>8.20 适用范围和后续阶段门</h3>
+  <p>T03-P4-L、数值 P1、P2、P3 和 P5 已在各自冻结教学模型边界内关闭，其中 P1 必须同时引用 BIAS 与 CAP-RATIO，P2 必须同时引用 bottom-interface DIT、bulk 方程冒烟、V1/V2 失败保留及 V3 正式两级证据，P3 必须同时引用 V1 失败保留、V2 恢复合同、正式运行和独立检查，P5 必须同时引用静态合同、正式运行和独立落盘检查。因此五组数值 T03 完成，但实验拟合、物理参数验证、紧凑模型、SPICE、电路、版图、PEX 与 HZO 均未完成。下一门只允许先建立 M00 教学紧凑模型输入与验证合同；合同通过并提交前不得拟合或运行 SPICE。</p>
 </section>

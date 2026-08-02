@@ -1,8 +1,8 @@
 {
   "project": "DG-IGZO-TFT-PDK",
-  "status": "PASS",
-  "checks": 542,
-  "failures": 0,
+  "status": "FAIL",
+  "checks": 540,
+  "failures": 1,
   "results": [
     {
       "name": "directory:config",
@@ -322,7 +322,7 @@
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=110838"
+      "detail": "bytes=107148"
     },
     {
       "name": "file:PROJECT_PLAN.md",
@@ -337,7 +337,7 @@
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=25880"
+      "detail": "bytes=25467"
     },
     {
       "name": "file:Makefile",
@@ -352,7 +352,7 @@
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=46952"
+      "detail": "bytes=46873"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -913,11 +913,6 @@
       "name": "file:results/reports/tcad_t03_p5_temperature_check.json",
       "status": "PASS",
       "detail": "bytes=9120"
-    },
-    {
-      "name": "file:results/reports/project_check_t03_p5_p3_next_gate_stale_failed.json",
-      "status": "PASS",
-      "detail": "bytes=90030"
     },
     {
       "name": "file:results/tables/tcad_t03_p5_temperature_transfer.csv",
@@ -2570,9 +2565,9 @@
       "detail": "values=[0.0, 0.5, 4.5] plan={'changed_variable': 'symmetric_total_source_drain_series_resistance_width_product', 'values_kohm_um': [0.0, 0.5, 4.5], 'devices': 12, 'reported_points': 156, 'dc_solves': 243, 'states': 3, 'vtk_files': 18}"
     },
     {
-      "name": "t03_p3_contact:contract_inputs_and_recorded_machine_state_preserved",
-      "status": "PASS",
-      "detail": "inputs=31 immutable=29"
+      "name": "t03_p3_contact:contract_inputs_preserved_and_next_gate",
+      "status": "FAIL",
+      "detail": "inputs=31 immutable=29 next=establish a formal M00 teaching compact-model input and validation contract from qualified T01/T02/T03 numerical curves; freeze dataset eligibility, train/holdout split, model routes, extraction and optimization methods, linear/log error metrics, outputs, failure retention, and evidence boundary before any compact-model fitting or SPICE run, while M01, circuit cells, layout, PEX, and HZO remain closed"
     },
     {
       "name": "t03_p3_contact:v1_single_gate_failure_and_numerical_evidence",
@@ -2643,11 +2638,6 @@
       "name": "t03_p5_temperature:machine_state_next_gate_and_boundary",
       "status": "PASS",
       "detail": "establish a formal M00 teaching compact-model input and validation contract from qualified T01/T02/T03 numerical curves; freeze dataset eligibility, train/holdout split, model routes, extraction and optimization methods, linear/log error metrics, outputs, failure retention, and evidence boundary before any compact-model fitting or SPICE run, while M01, circuit cells, layout, PEX, and HZO remain closed"
-    },
-    {
-      "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
-      "status": "PASS",
-      "detail": "status=FAIL checks=540 failures=1"
     },
     {
       "name": "tcad:mesh_levels",

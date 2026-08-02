@@ -1,0 +1,116 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T03_P5_TEMPERATURE_V1",
+  "stage": "T03-P5-TEMPERATURE",
+  "parameter_group_id": "P5",
+  "evidence_level": "E3",
+  "independent_of_simulation_runner": true,
+  "runner_imported": false,
+  "devsim_imported": false,
+  "checks": [
+    {
+      "name": "contract_and_runner:pass_chain_is_valid",
+      "status": "PASS",
+      "detail": "contract=PASS runner=PASS"
+    },
+    {
+      "name": "inputs:immutable_snapshot_hashes_match",
+      "status": "PASS",
+      "detail": "inputs=25 immutable=23"
+    },
+    {
+      "name": "solver:three_fresh_devices_and_123_dc_solves_converged",
+      "status": "PASS",
+      "detail": "runs=3 records=123 wall=9.126646766999329"
+    },
+    {
+      "name": "model_and_topology:only_temperature_and_vt_change",
+      "status": "PASS",
+      "detail": "topologies=[(2419, 4480), (2419, 4480), (2419, 4480)] thermal_voltage=[0.021543333155, 0.025851999786, 0.030160666417]"
+    },
+    {
+      "name": "curves:93_persisted_points_match_report_grid_and_controls",
+      "status": "PASS",
+      "detail": "rows=93 fields=27 grids=True"
+    },
+    {
+      "name": "current:direction_conservation_and_gate_ordering_recomputed",
+      "status": "PASS",
+      "detail": "imbalance=4.373008e-10 monotonic=True"
+    },
+    {
+      "name": "initialization:three_zero_equilibria_are_current_free",
+      "status": "PASS",
+      "detail": "current=0.000000e+00 potential=0.000000e+00"
+    },
+    {
+      "name": "extraction:vth_gm_ss_currents_and_endpoint_response_recomputed",
+      "status": "PASS",
+      "detail": "endpoint_response=9.419342e-01 metrics=[{'temperature_k': 250.0, 'thermal_voltage_v': 0.021543333155, 'configured_mobility_cm2_vs': 35.5, 'constant_current_criterion_terminal_a': 6e-08, 'constant_current_criterion_a_per_cm': 1e-05, 'vth_proxy_v': 0.24540900212816344, 'vth_bracket_lower_primary_gate_v': 0.2, 'vth_bracket_upper_primary_gate_v': 0.25, 'vth_bracket_lower_current_a_per_cm': 8.06191148469406e-06, 'vth_bracket_upper_current_a_per_cm': 1.0220200598481116e-05, 'gm_evaluation_primary_gate_v': 0.4454090021281635, 'gm_proxy_s_per_cm': 3.9847163606731224e-05, 'gm_proxy_terminal_s': 2.3908298164038736e-07, 'maximum_sampled_gm_s_per_cm': 4.320075130667396e-05, 'maximum_sampled_gm_primary_gate_v': 0.25, 'ss_window_lower_current_a_per_cm': 1e-07, 'ss_window_upper_current_a_per_cm': 1e-06, 'ss_fit_sample_count': 4.0, 'ss_fit_slope_v_per_dec': 0.11713784095935709, 'ss_fit_intercept_v': 0.692163850192399, 'ss_fit_r_squared': 0.9986832970596793, 'ss_proxy_mv_per_dec': 117.13784095935709, 'low_gate_evaluation_top_gate_v': -0.5, 'low_gate_current_proxy_a_per_cm': 4.032928160350107e-11, 'low_gate_current_proxy_terminal_a': 2.4197568962100643e-13, 'high_gate_evaluation_top_gate_v': 1.0, 'high_gate_current_proxy_a_per_cm': 3.6469841491285194e-05, 'high_gate_current_proxy_terminal_a': 2.1881904894771116e-07, 'delta_vth_proxy_v': -0.018447855869439117}, {'temperature_k': 300.0, 'thermal_voltage_v': 0.025851999786, 'configured_mobility_cm2_vs': 35.5, 'constant_current_criterion_terminal_a': 6e-08, 'constant_current_criterion_a_per_cm': 1e-05, 'vth_proxy_v': 0.26385685799760256, 'vth_bracket_lower_primary_gate_v': 0.25, 'vth_bracket_upper_primary_gate_v': 0.3, 'vth_bracket_lower_current_a_per_cm': 9.462693911699367e-06, 'vth_bracket_upper_current_a_per_cm': 1.1549445541373129e-05, 'gm_evaluation_primary_gate_v': 0.46385685799760257, 'gm_proxy_s_per_cm': 3.937599666287622e-05, 'gm_proxy_terminal_s': 2.3625597997725733e-07, 'maximum_sampled_gm_s_per_cm': 4.170461174228463e-05, 'maximum_sampled_gm_primary_gate_v': 0.3, 'ss_window_lower_current_a_per_cm': 1e-07, 'ss_window_upper_current_a_per_cm': 1e-06, 'ss_fit_sample_count': 4.0, 'ss_fit_slope_v_per_dec': 0.13759377510040816, 'ss_fit_intercept_v': 0.8119695591078275, 'ss_fit_r_squared': 0.9989888634089585, 'ss_proxy_mv_per_dec': 137.59377510040815, 'low_gate_evaluation_top_gate_v': -0.5, 'low_gate_current_proxy_a_per_cm': 2.100900501789906e-10, 'low_gate_current_proxy_terminal_a': 1.2605403010739435e-12, 'high_gate_evaluation_top_gate_v': 1.0, 'high_gate_current_proxy_a_per_cm': 3.593724333278673e-05, 'high_gate_current_proxy_terminal_a': 2.156234599967204e-07, 'delta_vth_proxy_v': 0.0}, {'temperature_k': 350.0, 'thermal_voltage_v': 0.030160666417, 'configured_mobility_cm2_vs': 35.5, 'constant_current_criterion_terminal_a': 6e-08, 'constant_current_criterion_a_per_cm': 1e-05, 'vth_proxy_v': 0.2819769165981422, 'vth_bracket_lower_primary_gate_v': 0.25, 'vth_bracket_upper_primary_gate_v': 0.3, 'vth_bracket_lower_current_a_per_cm': 8.768630181501364e-06, 'vth_bracket_upper_current_a_per_cm': 1.0768749075687657e-05, 'gm_evaluation_primary_gate_v': 0.48197691659814224, 'gm_proxy_s_per_cm': 3.8812821127225277e-05, 'gm_proxy_terminal_s': 2.3287692676335167e-07, 'maximum_sampled_gm_s_per_cm': 4.038151681026156e-05, 'maximum_sampled_gm_primary_gate_v': 0.35, 'ss_window_lower_current_a_per_cm': 1e-07, 'ss_window_upper_current_a_per_cm': 1e-06, 'ss_fit_sample_count': 5.0, 'ss_fit_slope_v_per_dec': 0.15779613260681255, 'ss_fit_intercept_v': 0.9303003014994127, 'ss_fit_r_squared': 0.9993785359144398, 'ss_proxy_mv_per_dec': 157.79613260681256, 'low_gate_evaluation_top_gate_v': -0.5, 'low_gate_current_proxy_a_per_cm': 6.945440894357022e-10, 'low_gate_current_proxy_terminal_a': 4.167264536614213e-12, 'high_gate_evaluation_top_gate_v': 1.0, 'high_gate_current_proxy_a_per_cm': 3.529250269768652e-05, 'high_gate_current_proxy_terminal_a': 2.1175501618611912e-07, 'delta_vth_proxy_v': 0.018120058600539668}]"
+    },
+    {
+      "name": "regression:t02_c_300k_curve_state_and_extraction_recomputed",
+      "status": "PASS",
+      "detail": "current=0.000e+00 potential=0.000e+00 density=0.000e+00"
+    },
+    {
+      "name": "states:three_node_element_and_18_vtk_outputs_recomputed",
+      "status": "PASS",
+      "detail": "states=['p5_temperature_250k_on_proxy', 'p5_temperature_300k_on_proxy', 'p5_temperature_350k_on_proxy']"
+    },
+    {
+      "name": "artifacts:hashes_and_two_nontrivial_pngs_are_valid",
+      "status": "PASS",
+      "detail": "artifacts=7 figures=[(1944, 1440, 322448), (2016, 1476, 881525)]"
+    },
+    {
+      "name": "diagnostics:directions_are_reported_without_becoming_gates",
+      "status": "PASS",
+      "detail": "{\"completion_gate\": false, \"failure_rule\": \"A finite, converged, conserved and independently reproducible contrary or non-monotonic trend is retained and reported rather than converted into a stage failure.\", \"reported_metric_values\": {\"gm_proxy_s_per_cm\": [3.9847163606731224e-05, 3.937599666287622e-05, 3.8812821127225277e-05], \"high_gate_current_proxy_a_per_cm\": [3.6469841491285194e-05, 3.593724333278673e-05, 3.529250269768652e-05], \"low_gate_current_proxy_a_per_cm\": [4.032928160350107e-11, 2.100900501789906e-10, 6.945440894357022e-10], \"ss_proxy_mv_per_dec\": [117.13784095935709, 137.59377510040815, 157.79613260681256], \"vth_proxy_v\": [0.24540900212816344, 0.26385685799760256, 0.2819769165981422]}, \"ss_proxy_strictly_increases_with_temperature\": true}"
+    },
+    {
+      "name": "runner:all_prefrozen_acceptance_gates_passed",
+      "status": "PASS",
+      "detail": "runner_checks=14/14"
+    },
+    {
+      "name": "resources:laptop_output_budget_is_met",
+      "status": "PASS",
+      "detail": "run_directory_bytes=9295067"
+    },
+    {
+      "name": "boundary:vt_only_teaching_scope_and_downstream_limits_are_preserved",
+      "status": "PASS",
+      "detail": "Runner E2 plus independent persisted-evidence E3 PASS may close only the three-point V_t-only temperature sensitivity of the frozen 2D n-IGZO teaching model and thereby close numerical T03."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "check_count": 15,
+    "pass_count": 15,
+    "device_count": 3,
+    "dc_solve_count": 123,
+    "reported_point_count": 93,
+    "state_count": 3,
+    "vtk_file_count": 18,
+    "maximum_relative_terminal_current_imbalance": 4.3730079797195624e-10,
+    "maximum_endpoint_metric_relative_response": 0.9419341662870279,
+    "run_directory_bytes": 9295067
+  },
+  "t03_p5_completion": {
+    "status": "PASS",
+    "complete_p5_temperature_group": true,
+    "complete_t03_five_group_sensitivity": true,
+    "m00_contract_permitted_after_documentation": true,
+    "compact_model_simulation_permitted_before_m00_contract": false,
+    "spice_circuit_layout_pex_or_hzo_permitted": false
+  },
+  "allowed_claim": "The frozen 2D n-IGZO teaching model has an independently reproducible three-point V_t-only temperature sensitivity and all five numerical T03 groups are complete.",
+  "prohibited_claims": [
+    "experimental or calibrated IGZO temperature dependence",
+    "measured or fitted temperature-dependent mobility, DOS, contact, trap, bandgap, affinity, permittivity, activation energy, or thermal resistance",
+    "physical VTH, SS, leakage, Ioff, Ion, gm, operating range, reliability, or self-heating",
+    "compact-model, SPICE, circuit-cell, layout, PEX, or HZO evidence",
+    "complete T03 before both the formal runner and independent persisted-evidence checker pass"
+  ]
+}

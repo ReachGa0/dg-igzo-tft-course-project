@@ -1,0 +1,127 @@
+{
+  "case_id": "IGZO_T03_P5_TEMPERATURE_V1",
+  "stage": "T03-P5-TEMPERATURE",
+  "parameter_group_id": "P5",
+  "inputs": {
+    "t03_p5_config": {
+      "path": "config/tcad_t03_p5_temperature.json",
+      "sha256": "7202cd76a6ee7567562bb6bb766c7eae599d62e8809130feb8ca0dd2f8ad61f3"
+    },
+    "t03_p5_contract_report": {
+      "path": "results/reports/tcad_t03_p5_temperature_input_contract.json",
+      "sha256": "dc307a865c189a551ba9b25d63a77ae8f64e8b21dbda6e499ffdf1f0b86832a9"
+    },
+    "project_config": {
+      "path": "config/project.json",
+      "sha256": "8b30046f5dad7e91ebcaf8132c65e249346bc73b0b018916d850f7a37ad661f7"
+    },
+    "experiments_config": {
+      "path": "config/experiments.json",
+      "sha256": "03907f09fb1e497a119dabb3f836408f9067353142efb47afe8413a8549766c4"
+    },
+    "s00_report": {
+      "path": "results/reports/s00_data_audit.json",
+      "sha256": "44ea42ff7fd9923cd4c9c2d0156ce3d0029cd59655e3c4086ab7250f78b48e31"
+    },
+    "t01_baseline_config": {
+      "path": "config/tcad_t01_baseline.json",
+      "sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9"
+    },
+    "t01_mesh_config": {
+      "path": "config/tcad_t01_d_mesh_refinement.json",
+      "sha256": "6ba9815ab063708b9fa560092974ac65a748b95c981d16056af3dec1e0f74e23"
+    },
+    "t01_transport_runner": {
+      "path": "tcad/run_t01_single_gate_smoke.py",
+      "sha256": "5b42f36ae9bd7d3471d873c5ee4146b560d6666c8480f6a3a2b1dca864e0e882"
+    },
+    "t02_a_config": {
+      "path": "config/tcad_t02_a_dual_gate_contract.json",
+      "sha256": "59f19996be43c22972bf223cfebf1f95fcaec5cdd9bf2edef76d45e9f1b4ccb3"
+    },
+    "t02_c_config": {
+      "path": "config/tcad_t02_c_bidirectional.json",
+      "sha256": "93c29fe977dd304315537d7dcbb0e2ea4b920cdab331a7996d7c9dd399b84228"
+    },
+    "t02_c_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional.json",
+      "sha256": "d214e9bf7c1938cf3120eaaf06fc53d0b1c1faf0708c0378fef6b3faeafecfed"
+    },
+    "t02_c_check_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional_check.json",
+      "sha256": "a13c6bebb0f10e8bce7dabff865863ee862e9d3ac572dfc692423a66ba868aa4"
+    },
+    "p4_report": {
+      "path": "results/reports/tcad_t03_p4_l_sensitivity.json",
+      "sha256": "b54c823f9618513334968c7a85872371315a283c7a518facd88166d5921cd61c"
+    },
+    "p4_check_report": {
+      "path": "results/reports/tcad_t03_p4_l_sensitivity_check.json",
+      "sha256": "9f437759d91615732e3dddf37ced9d49144ae3927d9bc3ad429a39ff781e0e5d"
+    },
+    "p1_bias_report": {
+      "path": "results/reports/tcad_t03_p1_bias_sensitivity.json",
+      "sha256": "e35fc46f642d6be876e91f01e0ea11c54f066033662fb3b66578010e91507e71"
+    },
+    "p1_bias_check_report": {
+      "path": "results/reports/tcad_t03_p1_bias_sensitivity_check.json",
+      "sha256": "9489b04999c0076c69650da2c5c0b40413e19acc1e35ef5b53c0ec95501a78fb"
+    },
+    "p1_cap_report": {
+      "path": "results/reports/tcad_t03_p1_cap_ratio_sensitivity.json",
+      "sha256": "6a715933139376959bda64939226e81ad82baab430f6fc09d4fd30f82dc089c9"
+    },
+    "p1_cap_check_report": {
+      "path": "results/reports/tcad_t03_p1_cap_ratio_sensitivity_check.json",
+      "sha256": "ba9b524f620d6d8dcc1dcfe745a8a550ec168cc8a5150f727c54787e912eabcb"
+    },
+    "p2_bulk_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_formal_v3.json",
+      "sha256": "62f76f4bbc875688061595e313f4d272dbbacd3151dff39c8fe470b6ad3aad9b"
+    },
+    "p2_bulk_check_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json",
+      "sha256": "07b22ee6a0f277fe3b5d3837892ad2e2146e089c48ee670aed534a6c188b40b9"
+    },
+    "p3_report": {
+      "path": "results/reports/tcad_t03_p3_contact_resistance_v2.json",
+      "sha256": "2d7b53786990858e96f4d953a833ee6faf85c6862faf67571088c396594905d4"
+    },
+    "p3_check_report": {
+      "path": "results/reports/tcad_t03_p3_contact_resistance_v2_check.json",
+      "sha256": "fbcf091dae5a036e15ae61eb8c064916aab7704a866871ebd6464435e463366f"
+    },
+    "source_table": {
+      "path": "references/t03_p5_temperature_sources.csv",
+      "sha256": "acf48f7fb8530bef868795dc1af43b5298176db576c9711613cba0f8f8dca1d7"
+    },
+    "runner": {
+      "path": "tcad/run_t03_p5_temperature.py",
+      "sha256": "c2804b99b4f0751a3e2e7a7efc4683865800c4961ee646ec8552fcc0f206626e"
+    },
+    "independent_checker": {
+      "path": "scripts/check_t03_p5_temperature.py",
+      "sha256": "295b50a5b78410abe271910a7d442f73b231764050cf60a63a889aa12f28c785"
+    }
+  },
+  "temperature_model_contract": {
+    "boltzmann_ev_per_k": 8.617333262e-05,
+    "boltzmann_source": "references/t03_p5_temperature_sources.csv:NIST_CODATA_2022_BOLTZMANN_EV_PER_K",
+    "thermal_voltage_formula": "V_t(T) = k_B[eV/K] * T[K]",
+    "changed_devsim_parameter": "channel region parameter V_t",
+    "implemented_current_expression_source": "tcad/run_t01_single_gate_smoke.py:create_transport",
+    "implemented_current_expression": "ElectronCharge*mu_n*EdgeInverseLength*V_t*kahan3(Electrons@n1*Bern01, Electrons@n1*vdiff, -Electrons@n0*Bern01)",
+    "bernoulli_model": "existing DEVSIM CreateBernoulli edge model",
+    "poisson_charge_equation_changed": false,
+    "electron_contact_density_changed": false,
+    "mobility_changed": false,
+    "mobility_temperature_law_active": false,
+    "effective_density_of_states_changed": false,
+    "bandgap_or_affinity_changed": false,
+    "permittivity_changed": false,
+    "contact_model_changed": false,
+    "trap_model_active": false,
+    "self_heating_active": false,
+    "interpretation": "This is a one-term numerical temperature sensitivity of the frozen teaching transport closure, not a complete physical IGZO temperature model."
+  }
+}

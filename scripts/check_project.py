@@ -141,6 +141,18 @@ REQUIRED_FILES = [
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
+    "results/reports/tcad_t03_p5_temperature.json",
+    "results/reports/tcad_t03_p5_temperature_check.json",
+    "results/reports/project_check_t03_p5_p3_next_gate_stale_failed.json",
+    "results/tables/tcad_t03_p5_temperature_transfer.csv",
+    "results/tables/tcad_t03_p5_temperature_metrics.csv",
+    "results/tables/tcad_t03_p5_temperature_t02_c_reproduction.csv",
+    "results/tables/tcad_t03_p5_temperature_state_summary.csv",
+    "results/tcad/t03_sensitivity/p5_temperature/input_snapshot.json",
+    "results/tcad/t03_sensitivity/p5_temperature/solver_log.json",
+    "results/tcad/t03_sensitivity/p5_temperature/state_manifest.json",
+    "report/assets/tcad_t03_p5_temperature_sensitivity.png",
+    "report/assets/tcad_t03_p5_temperature_states.png",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal/state_manifest.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/input_snapshot.json",
@@ -652,13 +664,12 @@ def main() -> int:
         add_check(
             checks,
             "experiments:t03_completed_and_partial_groups_are_distinct",
-            sensitivity.get("completed_parameter_groups")
-            == ["P1", "P2", "P3", "P4"]
+            sensitivity.get("status") == "verified"
+            and sensitivity.get("completed_parameter_groups")
+            == ["P1", "P2", "P3", "P4", "P5"]
             and sensitivity.get("partially_completed_parameter_groups") == []
-            and sensitivity.get("remaining_parameter_groups")
-            == ["P5"]
-            and sensitivity.get("remaining_substages")
-            == ["T03-P5"]
+            and sensitivity.get("remaining_parameter_groups") == []
+            and sensitivity.get("remaining_substages") == []
             and sensitivity.get("p2_bulk_equation_smoke_evidence")
             == {
                 "status": "smoke_verified",
@@ -887,9 +898,61 @@ def main() -> int:
                 "planned_reported_points": 93,
                 "planned_states": 3,
                 "planned_vtk_files": 18,
-                "formal_sensitivity_completed": False,
-                "complete_p5_temperature_group": False,
-                "complete_t03_five_group_sensitivity": False,
+                "formal_sensitivity_completed": True,
+                "complete_p5_temperature_group": True,
+                "complete_t03_five_group_sensitivity": True,
+            }
+            and sensitivity.get("p5_temperature_evidence")
+            == {
+                "status": "formal_sensitivity_verified",
+                "runner_evidence": "E2",
+                "independent_persisted_check_evidence": "E3",
+                "runner_checks_passed": 14,
+                "independent_checks_passed": 15,
+                "devices": 3,
+                "converged_dc_solves": 123,
+                "transfer_points": 93,
+                "states": 3,
+                "state_node_rows": 7257,
+                "state_element_rows": 7680,
+                "vtk_files": 18,
+                "wall_seconds": 9.126646766999329,
+                "maximum_relative_terminal_current_imbalance": (
+                    4.3730079797195624e-10
+                ),
+                "maximum_endpoint_metric_relative_response": 0.9419341662870279,
+                "temperature_values_k": [250.0, 300.0, 350.0],
+                "vth_proxy_v": [
+                    0.24540900212816344,
+                    0.26385685799760256,
+                    0.2819769165981422,
+                ],
+                "ss_proxy_mv_per_dec": [
+                    117.13784095935709,
+                    137.59377510040815,
+                    157.79613260681256,
+                ],
+                "gm_proxy_s_per_cm": [
+                    3.9847163606731224e-5,
+                    3.937599666287622e-5,
+                    3.8812821127225277e-5,
+                ],
+                "low_gate_current_proxy_a_per_cm": [
+                    4.032928160350107e-11,
+                    2.100900501789906e-10,
+                    6.945440894357022e-10,
+                ],
+                "high_gate_current_proxy_a_per_cm": [
+                    3.6469841491285194e-5,
+                    3.593724333278673e-5,
+                    3.529250269768652e-5,
+                ],
+                "configured_mobility_cm2_vs": 35.5,
+                "t02_c_300k_curve_state_vth_gm_exact_reproduction": True,
+                "complete_p5_temperature_group": True,
+                "complete_t03_five_group_sensitivity": True,
+                "m00_contract_permitted_after_documentation": True,
+                "compact_model_simulation_permitted_before_m00_contract": False,
             }
             and sensitivity.get("p5_outputs")
             == [
@@ -899,6 +962,18 @@ def main() -> int:
                 "tcad/run_t03_p5_temperature.py",
                 "scripts/check_t03_p5_temperature.py",
                 "results/reports/tcad_t03_p5_temperature_input_contract.json",
+                "results/reports/tcad_t03_p5_temperature.json",
+                "results/reports/tcad_t03_p5_temperature_check.json",
+                "results/reports/project_check_t03_p5_p3_next_gate_stale_failed.json",
+                "results/tables/tcad_t03_p5_temperature_transfer.csv",
+                "results/tables/tcad_t03_p5_temperature_metrics.csv",
+                "results/tables/tcad_t03_p5_temperature_t02_c_reproduction.csv",
+                "results/tables/tcad_t03_p5_temperature_state_summary.csv",
+                "results/tcad/t03_sensitivity/p5_temperature/input_snapshot.json",
+                "results/tcad/t03_sensitivity/p5_temperature/solver_log.json",
+                "results/tcad/t03_sensitivity/p5_temperature/state_manifest.json",
+                "report/assets/tcad_t03_p5_temperature_sensitivity.png",
+                "report/assets/tcad_t03_p5_temperature_states.png",
             ]
             and all(
                 path in sensitivity.get("p2_outputs", [])
@@ -3635,7 +3710,7 @@ def main() -> int:
         )
         add_check(
             checks,
-            "t03_p3_contact:contract_inputs_preserved_and_next_gate",
+            "t03_p3_contact:contract_inputs_and_recorded_machine_state_preserved",
             len(p3_inputs) == 31
             and len(p3_immutable_inputs) == 29
             and all(
@@ -3647,9 +3722,6 @@ def main() -> int:
             == p3_inputs.get("project_config")
             and p3_recorded_machine_state.get("experiments_config")
             == p3_inputs.get("experiments_config")
-            and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "run exactly one formal isolated T03-P5"
-            )
             and "without running DEVSIM"
             in p3_contract.get("evidence_boundary", {}).get(
                 "contract_allowed_claim", ""
@@ -3659,8 +3731,7 @@ def main() -> int:
                 "future_run_allowed_claim", ""
             ),
             (
-                f"inputs={len(p3_inputs)} immutable={len(p3_immutable_inputs)} "
-                f"next={config.get('tcad_track', {}).get('next_scope')}"
+                f"inputs={len(p3_inputs)} immutable={len(p3_immutable_inputs)}"
             ),
         )
 
@@ -4002,16 +4073,65 @@ def main() -> int:
     p5_contract_path = (
         ROOT / "results" / "reports" / "tcad_t03_p5_temperature_input_contract.json"
     )
+    p5_report_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p5_temperature.json"
+    )
+    p5_check_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p5_temperature_check.json"
+    )
+    p5_snapshot_path = (
+        ROOT
+        / "results"
+        / "tcad"
+        / "t03_sensitivity"
+        / "p5_temperature"
+        / "input_snapshot.json"
+    )
+    p5_solver_path = p5_snapshot_path.with_name("solver_log.json")
+    p5_manifest_path = p5_snapshot_path.with_name("state_manifest.json")
+    p5_metric_path = (
+        ROOT / "results" / "tables" / "tcad_t03_p5_temperature_metrics.csv"
+    )
+    p5_curve_path = (
+        ROOT / "results" / "tables" / "tcad_t03_p5_temperature_transfer.csv"
+    )
+    p5_reference_path = (
+        ROOT
+        / "results"
+        / "tables"
+        / "tcad_t03_p5_temperature_t02_c_reproduction.csv"
+    )
+    p5_state_summary_path = (
+        ROOT
+        / "results"
+        / "tables"
+        / "tcad_t03_p5_temperature_state_summary.csv"
+    )
     p5_source_path = ROOT / "references" / "t03_p5_temperature_sources.csv"
     try:
         p5_config = json.loads(p5_config_path.read_text(encoding="utf-8"))
         p5_contract = json.loads(p5_contract_path.read_text(encoding="utf-8"))
+        p5_report = json.loads(p5_report_path.read_text(encoding="utf-8"))
+        p5_check = json.loads(p5_check_path.read_text(encoding="utf-8"))
+        p5_snapshot = json.loads(p5_snapshot_path.read_text(encoding="utf-8"))
+        p5_solver = json.loads(p5_solver_path.read_text(encoding="utf-8"))
+        p5_manifest = json.loads(p5_manifest_path.read_text(encoding="utf-8"))
         p5_experiments = json.loads(experiments_path.read_text(encoding="utf-8"))
         p5_t03 = next(
             item for item in p5_experiments["experiments"] if item["id"] == "T03"
         )
         with p5_source_path.open("r", encoding="utf-8", newline="") as stream:
             p5_source_rows = list(csv.DictReader(stream))
+        with p5_metric_path.open("r", encoding="utf-8", newline="") as stream:
+            p5_metric_rows = list(csv.DictReader(stream))
+        with p5_curve_path.open("r", encoding="utf-8", newline="") as stream:
+            p5_curve_rows = list(csv.DictReader(stream))
+        with p5_reference_path.open("r", encoding="utf-8", newline="") as stream:
+            p5_reference_rows = list(csv.DictReader(stream))
+        with p5_state_summary_path.open(
+            "r", encoding="utf-8", newline=""
+        ) as stream:
+            p5_state_summary_rows = list(csv.DictReader(stream))
 
         p5_checks = p5_contract.get("checks", [])
         add_check(
@@ -4035,14 +4155,38 @@ def main() -> int:
             ),
         )
         p5_inputs = p5_contract.get("inputs", {})
+        p5_contract_mutable_names = {"project_config", "experiments_config"}
+        p5_contract_immutable = {
+            name: item
+            for name, item in p5_inputs.items()
+            if name not in p5_contract_mutable_names
+        }
+        p5_snapshot_inputs = p5_snapshot.get("inputs", {})
+        p5_snapshot_immutable = {
+            name: item
+            for name, item in p5_snapshot_inputs.items()
+            if name not in p5_contract_mutable_names
+        }
         add_check(
             checks,
-            "t03_p5_temperature:contract_inputs_and_sources_preserved",
+            "t03_p5_temperature:contract_and_run_inputs_are_preserved",
             len(p5_inputs) == 23
+            and len(p5_contract_immutable) == 21
             and all(
                 (ROOT / item["path"]).is_file()
                 and sha256(ROOT / item["path"]) == item["sha256"]
-                for item in p5_inputs.values()
+                for item in p5_contract_immutable.values()
+            )
+            and len(p5_snapshot_inputs) == 25
+            and len(p5_snapshot_immutable) == 23
+            and p5_snapshot_inputs.get("project_config")
+            == p5_inputs.get("project_config")
+            and p5_snapshot_inputs.get("experiments_config")
+            == p5_inputs.get("experiments_config")
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                for item in p5_snapshot_immutable.values()
             )
             and len(p5_source_rows) == 4
             and {row["source_id"] for row in p5_source_rows}
@@ -4052,7 +4196,11 @@ def main() -> int:
                 "T01_BASELINE_300K",
                 "T01_SG_IMPLEMENTATION",
             },
-            f"inputs={len(p5_inputs)} source_rows={len(p5_source_rows)}",
+            (
+                f"contract_inputs={len(p5_inputs)} "
+                f"run_inputs={len(p5_snapshot_inputs)} "
+                f"source_rows={len(p5_source_rows)}"
+            ),
         )
 
         p5_model = p5_config.get("temperature_model_contract", {})
@@ -4108,40 +4256,289 @@ def main() -> int:
             f"temperatures={p5_temperatures} plan={p5_plan}",
         )
 
-        p5_machine_evidence = p5_t03.get("p5_temperature_contract_evidence", {})
+        p5_runner_checks = p5_report.get("checks", {})
+        p5_runner_summary = p5_report.get("summary_metrics", {})
+        p5_runner_completion = p5_report.get("t03_p5_completion", {})
+        p5_reproduction = p5_report.get(
+            "t02_c_300k_reference_reproduction", {}
+        )
+        p5_solver_runs = p5_solver.get("runs", [])
+        expected_p5_arrays = {
+            "vth_proxy_v": [
+                0.24540900212816344,
+                0.26385685799760256,
+                0.2819769165981422,
+            ],
+            "ss_proxy_mv_per_dec": [
+                117.13784095935709,
+                137.59377510040815,
+                157.79613260681256,
+            ],
+            "gm_proxy_s_per_cm": [
+                3.9847163606731224e-5,
+                3.937599666287622e-5,
+                3.8812821127225277e-5,
+            ],
+            "low_gate_current_proxy_a_per_cm": [
+                4.032928160350107e-11,
+                2.100900501789906e-10,
+                6.945440894357022e-10,
+            ],
+            "high_gate_current_proxy_a_per_cm": [
+                3.6469841491285194e-5,
+                3.593724333278673e-5,
+                3.529250269768652e-5,
+            ],
+        }
         add_check(
             checks,
-            "t03_p5_temperature:machine_state_and_next_gate",
-            p5_t03.get("completed_parameter_groups") == ["P1", "P2", "P3", "P4"]
-            and p5_t03.get("remaining_parameter_groups") == ["P5"]
-            and p5_t03.get("remaining_substages") == ["T03-P5"]
-            and p5_machine_evidence.get("status") == "input_contract_ready"
-            and p5_machine_evidence.get("contract_checks_passed") == 23
-            and p5_machine_evidence.get("formal_sensitivity_completed") is False
-            and p5_machine_evidence.get("complete_p5_temperature_group") is False
-            and p5_machine_evidence.get("complete_t03_five_group_sensitivity")
+            "t03_p5_temperature:formal_runner_e2_and_numeric_results",
+            p5_report.get("status") == "PASS"
+            and p5_report.get("case_id") == p5_config.get("case_id")
+            and p5_report.get("stage") == "T03-P5-TEMPERATURE"
+            and p5_report.get("parameter_group_id") == "P5"
+            and p5_report.get("evidence_level") == "E2"
+            and len(p5_runner_checks) == 14
+            and all(
+                item.get("status") == "PASS"
+                for item in p5_runner_checks.values()
+            )
+            and not p5_report.get("failures")
+            and p5_runner_summary.get("device_count") == 3
+            and p5_runner_summary.get("dc_solve_count") == 123
+            and p5_runner_summary.get("reported_point_count") == 93
+            and p5_runner_summary.get("state_count") == 3
+            and p5_runner_summary.get("vtk_file_count") == 18
+            and p5_runner_summary.get("temperature_values_k")
+            == [250.0, 300.0, 350.0]
+            and p5_runner_summary.get("thermal_voltage_values_v")
+            == [0.021543333155, 0.025851999786, 0.030160666417]
+            and all(
+                len(p5_runner_summary.get(name, [])) == 3
+                and all(
+                    math.isclose(actual, expected, rel_tol=1e-12, abs_tol=1e-15)
+                    for actual, expected in zip(
+                        p5_runner_summary[name], expected_values
+                    )
+                )
+                for name, expected_values in expected_p5_arrays.items()
+            )
+            and math.isclose(
+                p5_runner_summary.get(
+                    "maximum_relative_terminal_current_imbalance", 1.0
+                ),
+                4.3730079797195624e-10,
+                rel_tol=1e-12,
+                abs_tol=1e-18,
+            )
+            and math.isclose(
+                p5_runner_summary.get(
+                    "maximum_endpoint_metric_relative_response", 0.0
+                ),
+                0.9419341662870279,
+                rel_tol=1e-12,
+                abs_tol=1e-15,
+            )
+            and len(p5_report.get("curve_points", [])) == 93
+            and len(p5_report.get("sensitivity_metrics", [])) == 3
+            and len(p5_report.get("topology_summaries", [])) == 3
+            and len(p5_solver_runs) == 3
+            and [item.get("temperature_k") for item in p5_solver_runs]
+            == [250.0, 300.0, 350.0]
+            and all(item.get("status") == "PASS" for item in p5_solver_runs)
+            and sum(len(item.get("solver_records", [])) for item in p5_solver_runs)
+            == 123
+            and all(
+                record.get("converged") is True
+                for item in p5_solver_runs
+                for record in item.get("solver_records", [])
+            )
+            and not p5_solver.get("errors")
+            and math.isclose(
+                p5_solver.get("wall_seconds", 0.0),
+                9.126646766999329,
+                rel_tol=1e-12,
+                abs_tol=1e-12,
+            )
+            and p5_reproduction
+            == {
+                "point_count": 31,
+                "maximum_current_relative_difference": 0.0,
+                "maximum_center_potential_difference_v": 0.0,
+                "maximum_center_density_relative_difference": 0.0,
+                "vth_difference_v": 0.0,
+                "gm_relative_difference": 0.0,
+            }
+            and p5_runner_completion.get("status")
+            == "RUNNER_PASS_INDEPENDENT_CHECK_REQUIRED"
+            and p5_runner_completion.get(
+                "p5_temperature_three_point_runner_complete"
+            )
+            is True
+            and p5_runner_completion.get("complete_p5_temperature_group")
             is False
-            and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "run exactly one formal isolated T03-P5"
+            and p5_runner_completion.get(
+                "complete_t03_five_group_sensitivity"
+            )
+            is False,
+            (
+                f"runner={sum(item.get('status') == 'PASS' for item in p5_runner_checks.values())}/"
+                f"{len(p5_runner_checks)} devices={p5_runner_summary.get('device_count')} "
+                f"dc={p5_runner_summary.get('dc_solve_count')}"
             ),
-            config.get("tcad_track", {}).get("next_scope", ""),
+        )
+
+        p5_independent_checks = p5_check.get("checks", [])
+        p5_independent_summary = p5_check.get("summary", {})
+        p5_independent_completion = p5_check.get("t03_p5_completion", {})
+        add_check(
+            checks,
+            "t03_p5_temperature:independent_e3_closes_numerical_t03",
+            p5_check.get("status") == "PASS"
+            and p5_check.get("case_id") == p5_config.get("case_id")
+            and p5_check.get("stage") == "T03-P5-TEMPERATURE"
+            and p5_check.get("parameter_group_id") == "P5"
+            and p5_check.get("evidence_level") == "E3"
+            and p5_check.get("independent_of_simulation_runner") is True
+            and p5_check.get("runner_imported") is False
+            and p5_check.get("devsim_imported") is False
+            and len(p5_independent_checks) == 15
+            and all(
+                item.get("status") == "PASS" for item in p5_independent_checks
+            )
+            and not p5_check.get("failures")
+            and p5_independent_summary.get("check_count") == 15
+            and p5_independent_summary.get("pass_count") == 15
+            and p5_independent_summary.get("device_count") == 3
+            and p5_independent_summary.get("dc_solve_count") == 123
+            and p5_independent_summary.get("reported_point_count") == 93
+            and p5_independent_summary.get("state_count") == 3
+            and p5_independent_summary.get("vtk_file_count") == 18
+            and p5_independent_summary.get("run_directory_bytes") == 9295067
+            and p5_independent_completion
+            == {
+                "status": "PASS",
+                "complete_p5_temperature_group": True,
+                "complete_t03_five_group_sensitivity": True,
+                "m00_contract_permitted_after_documentation": True,
+                "compact_model_simulation_permitted_before_m00_contract": False,
+                "spice_circuit_layout_pex_or_hzo_permitted": False,
+            }
+            and "frozen 2D n-IGZO teaching model"
+            in p5_check.get("allowed_claim", "")
+            and "all five numerical T03 groups"
+            in p5_check.get("allowed_claim", ""),
+            (
+                f"independent={sum(item.get('status') == 'PASS' for item in p5_independent_checks)}/"
+                f"{len(p5_independent_checks)} completion="
+                f"{p5_independent_completion.get('status')}"
+            ),
         )
 
         p5_outputs = p5_config.get("outputs", {})
-        p5_future_output_paths = [
+        p5_output_files = [
             ROOT / value
             for name, value in p5_outputs.items()
-            if name != "contract_report"
+            if name != "run_directory"
         ]
+        p5_run_directory = ROOT / p5_outputs.get("run_directory", "")
+        p5_artifacts = p5_report.get("artifacts", {})
+        p5_figures = p5_report.get("figures", [])
+        p5_state_entries = p5_manifest.get("entries", [])
+        p5_state_hash_records = [
+            {"path": entry[key], "sha256": entry[hash_key]}
+            for entry in p5_state_entries
+            for key, hash_key in (
+                ("node_csv", "node_csv_sha256"),
+                ("element_csv", "element_csv_sha256"),
+            )
+        ] + [
+            item
+            for entry in p5_state_entries
+            for item in entry.get("vtk_files", [])
+        ]
+        add_check(
+            checks,
+            "t03_p5_temperature:persisted_artifacts_states_and_hashes",
+            len(p5_outputs) == 13
+            and p5_run_directory.is_dir()
+            and all(path.is_file() and path.stat().st_size > 0 for path in p5_output_files)
+            and len(p5_artifacts) == 7
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                for item in p5_artifacts.values()
+            )
+            and len(p5_figures) == 2
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                for item in p5_figures
+            )
+            and p5_manifest.get("case_id") == p5_config.get("case_id")
+            and p5_manifest.get("stage") == "T03-P5-TEMPERATURE"
+            and p5_manifest.get("entry_count") == 3
+            and len(p5_state_entries) == 3
+            and p5_report.get("state_outputs") == p5_state_entries
+            and sum(item.get("node_row_count", 0) for item in p5_state_entries)
+            == 7257
+            and sum(
+                item.get("channel_element_count", 0) for item in p5_state_entries
+            )
+            == 7680
+            and sum(item.get("vtk_file_count", 0) for item in p5_state_entries)
+            == 18
+            and len(p5_state_hash_records) == 24
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                for item in p5_state_hash_records
+            )
+            and len(p5_curve_rows) == 93
+            and len(p5_metric_rows) == 3
+            and len(p5_reference_rows) == 31
+            and len(p5_state_summary_rows) == 3,
+            (
+                f"artifacts={len(p5_artifacts)} figures={len(p5_figures)} "
+                f"states={len(p5_state_entries)} vtk="
+                f"{sum(item.get('vtk_file_count', 0) for item in p5_state_entries)}"
+            ),
+        )
+
+        p5_machine_contract = p5_t03.get("p5_temperature_contract_evidence", {})
+        p5_machine_evidence = p5_t03.get("p5_temperature_evidence", {})
         p5_prohibited_claims = " ".join(
             p5_config.get("evidence_boundary", {}).get("prohibited_claims", [])
         )
         add_check(
             checks,
-            "t03_p5_temperature:formal_outputs_absent_and_boundary_preserved",
-            p5_outputs.get("contract_report")
-            == "results/reports/tcad_t03_p5_temperature_input_contract.json"
-            and not any(path.exists() for path in p5_future_output_paths)
+            "t03_p5_temperature:machine_state_next_gate_and_boundary",
+            p5_t03.get("status") == "verified"
+            and p5_t03.get("completed_parameter_groups")
+            == ["P1", "P2", "P3", "P4", "P5"]
+            and p5_t03.get("remaining_parameter_groups") == []
+            and p5_t03.get("remaining_substages") == []
+            and p5_machine_contract.get("status") == "input_contract_ready"
+            and p5_machine_contract.get("contract_checks_passed") == 23
+            and p5_machine_contract.get("formal_sensitivity_completed") is True
+            and p5_machine_evidence.get("status")
+            == "formal_sensitivity_verified"
+            and p5_machine_evidence.get("runner_checks_passed") == 14
+            and p5_machine_evidence.get("independent_checks_passed") == 15
+            and p5_machine_evidence.get("complete_p5_temperature_group") is True
+            and p5_machine_evidence.get("complete_t03_five_group_sensitivity")
+            is True
+            and p5_machine_evidence.get(
+                "m00_contract_permitted_after_documentation"
+            )
+            is True
+            and p5_machine_evidence.get(
+                "compact_model_simulation_permitted_before_m00_contract"
+            )
+            is False
+            and config.get("tcad_track", {}).get("next_scope", "").startswith(
+                "establish a formal M00 teaching compact-model"
+            )
             and "without running DEVSIM"
             in p5_config.get("evidence_boundary", {}).get(
                 "contract_allowed_claim", ""
@@ -4154,13 +4551,45 @@ def main() -> int:
             and "physical VTH" in p5_prohibited_claims
             and "compact-model" in p5_prohibited_claims
             and "complete T03 before" in p5_prohibited_claims,
+            config.get("tcad_track", {}).get("next_scope", ""),
+        )
+        p5_project_check_failure = json.loads(
             (
-                f"future_outputs={sum(path.exists() for path in p5_future_output_paths)}/"
-                f"{len(p5_future_output_paths)}"
+                ROOT
+                / "results"
+                / "reports"
+                / "project_check_t03_p5_p3_next_gate_stale_failed.json"
+            ).read_text(encoding="utf-8")
+        )
+        p5_project_failed_checks = [
+            item
+            for item in p5_project_check_failure.get("results", [])
+            if item.get("status") == "FAIL"
+        ]
+        add_check(
+            checks,
+            "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
+            p5_project_check_failure.get("status") == "FAIL"
+            and p5_project_check_failure.get("checks") == 540
+            and p5_project_check_failure.get("failures") == 1
+            and len(p5_project_failed_checks) == 1
+            and p5_project_failed_checks[0].get("name")
+            == "t03_p3_contact:contract_inputs_preserved_and_next_gate"
+            and "establish a formal M00 teaching compact-model"
+            in p5_project_failed_checks[0].get("detail", ""),
+            (
+                f"status={p5_project_check_failure.get('status')} "
+                f"checks={p5_project_check_failure.get('checks')} "
+                f"failures={len(p5_project_failed_checks)}"
             ),
         )
     except Exception as error:  # noqa: BLE001
-        add_check(checks, "t03_p5_temperature:formal_input_contract", False, str(error))
+        add_check(
+            checks,
+            "t03_p5_temperature:formal_sensitivity_and_independent_check",
+            False,
+            str(error),
+        )
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:
