@@ -16,6 +16,31 @@
 
 ---
 
+## 2026-08-02 | Codex GPT-5 | 实现 M00 正式拟合与独立检查执行链
+
+### 用户目标
+
+在已推送的 M00 输入/验证合同提交 `c9b2063` 后继续阶段 DAG；正式拟合只允许运行一次，因此先完成可复现运行器、holdout 隔离、失败保留与独立落盘检查实现，不运行 TCAD/SPICE 或下游阶段。
+
+### 实现与边界
+
+- 新增 `models/fit_m00_teaching_compact.py`：正式模式拒绝覆盖全部 R01 输出，先校验合同/注册表/13 个源表哈希，只加载 9 条 train/163 个计分点进入确定性 `scipy.optimize.least_squares(method=trf)`；优化终止并落盘日志后才加载 4 条 holdout/70 点。运行器保存输入快照、247 行选择清单、预测、逐曲线线性/对数误差、11 系数边界距离、VTH/gm、局部有效域、图和未执行候选；任一门失败保持 E0/FAIL 和全部证据。
+- 新增 `scripts/check_m00_compact_model_fit.py`：不导入运行器、NumPy、SciPy、DEVSIM 或 subprocess，只用标准库从冻结源 CSV 独立重建 247 行选择、参考核预测、线性/对数残差、整条件聚合、holdout VTH/gm、参数边界、PNG 和产物哈希。只有运行器 24 门 PASS 后才允许执行该 20 门 E3 检查。
+- Makefile 新增 `m00-compact-model-self-test`、`m00-compact-model-fit` 和 `m00-compact-model-fit-check`。合成自测不读取正式训练目标进入优化，也不创建正式输出；候选 ngspice/AIM-Spice 文件即使未来生成也明确为 M01 前未执行、非方程同一和非电路可用。
+
+### 验证
+
+- Python 语法编译：PASS。
+- `make m00-compact-model-self-test`：PASS；只运行合成核和二维 SciPy 探针。
+- `make m00-compact-model-contract-check`：25/25 PASS，`fit/SPICE=NOT_RUN_BY_CONTRACT_CHECK`。
+- `make check`：551/551 PASS。
+- `git diff --check`：PASS。
+- 本里程碑没有运行正式 M00 数据优化、holdout 评分、TCAD、ngspice、AIM-Spice、电路、版图、PEX 或 HZO，M00 仍为 E0。
+
+### 下一步
+
+先提交并推送该执行链，使正式快照引用已提交的运行器/检查器字节；随后执行唯一一次 `make m00-compact-model-fit`。只有运行器全部门通过才执行 `make m00-compact-model-fit-check`，任一失败均保留证据并停止。
+
 ## 2026-08-02 | Codex GPT-5 | 建立 M00 教学紧凑模型输入与验证合同
 
 ### 用户目标
