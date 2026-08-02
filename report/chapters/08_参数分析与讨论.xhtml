@@ -226,6 +226,20 @@
   </figure>
   <p>两个独立零控制在 47 点 V3 网格上曲线和全部提取量完全一致，并分别在 31 个共同点上精确复现 T02-C 的电流、中心势、中心密度、VTH 和 gm。独立检查重算占据密度、解析导数和 Poisson 电荷，最大相对误差分别为 <code>6.69e-16</code>、<code>1.17e-15</code> 和 <code>5.94e-16</code>；8 状态、48 VTK、两张 PNG 和全部主产物哈希通过。该 E3 证据关闭 P2 的可复算性门，不赋予 E2 教学模型实验或物理校准等级。</p>
 
-  <h3>8.18 适用范围和未完成组</h3>
-  <p>T03-P4-L、数值 P1 和 P2 已完整关闭，其中 P1 必须同时引用 BIAS 与 CAP-RATIO，P2 必须同时引用 bottom-interface DIT、bulk 方程冒烟、V1/V2 失败保留及 V3 正式两级证据。P2 不包含动态捕获-发射、迟滞、bias stress、双界面、完整四带 DOS 或实验校准。P3 接触和 P5 温度尚未实现，因此本章不关闭完整 T03。V2 独立检查从未运行；也没有进行实验拟合、紧凑模型、SPICE、电路、版图、PEX 或 HZO 工作。</p>
+  <h3>8.18 P3 接触电阻代理静态合同</h3>
+  <p>P3 合同冻结三个总源漏串联电阻宽度积点 <code>0/0.5/4.5 kOhm*um</code>。0 点是 T02-C 直连理想接触回归；0.5/4.5 两个数值来自不同纳米器件论文的 Ni/Ti TLM 报告，但本项目只把数值大小映射成低/高总串联电阻教学代理，运行案例不使用金属名。按 W=60 um 换算，总电阻为 0/8.333/75 ohm，两个非零点的源漏各分一半。</p>
+  <table>
+    <thead><tr><th>冻结项</th><th>合同值</th><th>当前证据</th></tr></thead>
+    <tbody>
+      <tr><td>器件-电路模型</td><td>零点直连；非零点源漏 contact equation 绑定内部 circuit node，再以对称 R 元件接外部 V 元件</td><td>静态 API/方程合同，尚未求解</td></tr>
+      <tr><td>transfer/output</td><td>每点 31 个 transfer 点；VTG=0.3/0.5/1.0 V 各 7 个 output 点</td><td>共 93+63=156 个计划点</td></tr>
+      <tr><td>运行规模</td><td>3 个 transfer 器件 + 9 个独立 output 器件；243 次计划 DC；3 状态、18 VTK</td><td>未运行计划量</td></tr>
+      <tr><td>完成门</td><td>收敛、器件守恒、circuit KCL、Ohm 定律、压降分配、方向/最小响应、T02-C 零点回归、状态与独立复算</td><td>运行器和独立检查均未运行</td></tr>
+      <tr><td>合同检查</td><td>30/30 PASS、E3</td><td><code>simulation=NOT_RUN_BY_CONTRACT_CHECK</code></td></tr>
+    </tbody>
+  </table>
+  <p class="boundary">合同通过不支持项目接触电阻、TLM 提取、Ti/Ni 比较、Schottky barrier、热发射、隧穿、current crowding、物理 Ion 或 P3 完成。首次静态检查的三个检查器断言错误已保留为失败证据；修正没有改变任何输入或门槛。</p>
+
+  <h3>8.19 适用范围和未完成组</h3>
+  <p>T03-P4-L、数值 P1 和 P2 已完整关闭，其中 P1 必须同时引用 BIAS 与 CAP-RATIO，P2 必须同时引用 bottom-interface DIT、bulk 方程冒烟、V1/V2 失败保留及 V3 正式两级证据。P3 只有静态合同，正式运行和独立检查尚未开始；P5 温度也未实现，因此本章不关闭完整 T03。也没有进行实验拟合、紧凑模型、SPICE、电路、版图、PEX 或 HZO 工作。</p>
 </section>

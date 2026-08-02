@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "case_id": "IGZO_T03_P3_CONTACT_RESISTANCE_V1",
+  "stage": "T03-P3-CONTACT-RESISTANCE",
+  "parameter_group_id": "P3",
+  "status": "planned",
+  "evidence_level_before_run": "E0",
+  "contract_evidence_level_after_check": "E3",
+  "dependencies": {
+    "project_config": "config/project.json",
+    "experiments_config": "config/experiments.json",
+    "s00_report": "results/reports/s00_data_audit.json",
+    "t01_baseline_config": "config/tcad_t01_baseline.json",
+    "t01_mesh_config": "config/tcad_t01_d_mesh_refinement.json",
+    "t02_a_config": "config/tcad_t02_a_dual_gate_contract.json",
+    "t02_c_config": "config/tcad_t02_c_bidirectional.json",
+    "t02_c_report": "results/reports/tcad_t02_c_bidirectional.json",
+    "t02_c_check_report": "results/reports/tcad_t02_c_bidirectional_check.json",
+    "p4_report": "results/reports/tcad_t03_p4_l_sensitivity.json",
+    "p4_check_report": "results/reports/tcad_t03_p4_l_sensitivity_check.json",
+    "p1_cap_report": "results/reports/tcad_t03_p1_cap_ratio_sensitivity.json",
+    "p1_cap_check_report": "results/reports/tcad_t03_p1_cap_ratio_sensitivity_check.json",
+    "p2_dit_report": "results/reports/tcad_t03_p2_dit_formal.json",
+    "p2_dit_check_report": "results/reports/tcad_t03_p2_dit_formal_check.json",
+    "p2_bulk_config": "config/tcad_t03_p2_bulk_traps_formal.json",
+    "p2_bulk_report": "results/reports/tcad_t03_p2_bulk_traps_formal_v3.json",
+    "p2_bulk_check_report": "results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json",
+    "literature_table": "references/t03_p3_contact_sources.csv",
+    "senior_manifest": "references/senior_work_manifest.csv",
+    "required_g0_status": "TEACHING_BASELINE_ONLY",
+    "required_t02_c_status": "PASS",
+    "required_t02_c_check_status": "PASS",
+    "require_complete_t02_numerical_gate": "PASS",
+    "require_p4_complete": true,
+    "require_p1_complete": true,
+    "require_p2_complete": true,
+    "require_p3_permitted_by_p2_check": true
+  },
+  "scope": {
+    "device": "2D n-IGZO electron-only drift-diffusion teaching model with the T02-A enabled symmetric dual-gate stack",
+    "purpose": "Freeze a formal isolated source-drain series-resistance sensitivity that distinguishes a self-consistent lumped contact proxy from the unchanged channel model.",
+    "changed_variable": "symmetric_total_source_drain_series_resistance_width_product",
+    "changed_variable_count": 1,
+    "fixed_variables": [
+      "channel length = 10 um and width = 60 um",
+      "channel thickness = 24 nm",
+      "top and bottom physical Al2O3 thickness = 30 nm",
+      "top and bottom dielectric relative permittivity = 6.8",
+      "interface_4x mesh with fixed 0.25 um x spacing",
+      "top gate is primary and bottom gate is fixed at 0 V",
+      "300 K constant teaching mobility = 35.5 cm2/(V*s)",
+      "Poisson plus electron continuity",
+      "bottom and top interface D_it = 0",
+      "bulk NTA, NGA, NTD and NGD = 0",
+      "source and drain use equal one-half shares of the declared total pair resistance",
+      "no barrier-height variation, thermionic emission, tunneling, recombination, ferroelectric polarization, or temperature variation"
+    ],
+    "prohibited_work_before_contract_pass": [
+      "formal P3 DEVSIM device-circuit run",
+      "barrier-height or work-function scan",
+      "simultaneous trap, mobility, geometry, dielectric, temperature, or contact-asymmetry scan",
+      "P5, M00, M01, SPICE, circuit-cell, layout, PEX, or HZO work"
+    ],
+    "prohibited_claims_after_future_run": [
+      "measured, extracted, fitted, or calibrated contact resistance for the project device",
+      "Ti-versus-Ni project-device comparison",
+      "Schottky barrier, thermionic injection, tunneling, current crowding, or metal-work-function validation",
+      "physical Ion, mobility, VTH, SS, process distribution, or uncertainty",
+      "complete T03, compact-model, SPICE, circuit, layout, PEX, or HZO evidence"
+    ]
+  },
+  "literature_mapping": {
+    "table": "references/t03_p3_contact_sources.csv",
+    "source_evidence_level": "E1",
+    "doi": "10.1109/IEDM45625.2022.10019488",
+    "reported_method": "transfer-length method",
+    "reported_condition": "VGS-VTH=2.5 V",
+    "reported_magnitude_anchors_kohm_um": {
+      "Ni": 0.5,
+      "Ti": 4.5
+    },
+    "source_rc_convention_inherited": false,
+    "project_mapping": "The two reported numerical magnitudes are used only as lower and upper values of the project-defined total source-plus-drain R_pair*W teaching proxy.",
+    "project_case_labels_do_not_name_metals": true,
+    "mapping_is_measurement_or_calibration": false,
+    "reason": "The paper device, stack, process, overdrive and contact-extraction convention differ from this project; an explicit total-pair convention avoids silently treating the external values as project contact parameters."
+  },
+  "sensitivity": {
+    "parameter_name": "symmetric_total_source_drain_series_resistance_width_product",
+    "parameter_symbol": "R_pair*W",
+    "unit": "kOhm*um",
+    "values_kohm_um": [0.0, 0.5, 4.5],
+    "reference_value_kohm_um": 0.0,
+    "width_um": 60.0,
+    "source_fraction": 0.5,
+    "drain_fraction": 0.5,
+    "conversion": {
+      "total_pair_resistance_ohm": "R_pair_ohm = R_pairW_kohm_um * 1000 / W_um",
+      "source_resistance_ohm": "R_source_ohm = source_fraction * R_pair_ohm",
+      "drain_resistance_ohm": "R_drain_ohm = drain_fraction * R_pair_ohm"
+    },
+    "cases": [
+      {
+        "case_id": "ideal_control",
+        "r_pair_w_kohm_um": 0.0,
+        "r_pair_ohm": 0.0,
+        "r_source_ohm": 0.0,
+        "r_drain_ohm": 0.0,
+        "execution_mode": "direct_ideal_ohmic_contacts",
+        "source_role": "exact T02-C regression control"
+      },
+      {
+        "case_id": "literature_low_magnitude_proxy",
+        "r_pair_w_kohm_um": 0.5,
+        "r_pair_ohm": 8.333333333333334,
+        "r_source_ohm": 4.166666666666667,
+        "r_drain_ohm": 4.166666666666667,
+        "execution_mode": "self_consistent_device_circuit_coupling",
+        "source_role": "E1 lower numerical magnitude mapped to the project total-pair proxy"
+      },
+      {
+        "case_id": "literature_high_magnitude_proxy",
+        "r_pair_w_kohm_um": 4.5,
+        "r_pair_ohm": 75.0,
+        "r_source_ohm": 37.5,
+        "r_drain_ohm": 37.5,
+        "execution_mode": "self_consistent_device_circuit_coupling",
+        "source_role": "E1 upper numerical magnitude mapped to the project total-pair proxy"
+      }
+    ],
+    "interpretation": "Three-point controlled numerical sensitivity only; values are neither a project TLM extraction nor metal-specific project parameters."
+  },
+  "contact_model_contract": {
+    "model_kind": "self_consistent_symmetric_lumped_series_resistance_proxy",
+    "spatial_representation": "The IGZO device remains 2D; each nonzero contact resistance is an external lumped resistor and is not spatially resolved in the contact region.",
+    "zero_control_rule": "R_pair*W=0 uses the unchanged direct ideal-ohmic T02 contact equations; no zero-valued circuit resistor is created.",
+    "nonzero_rule": "Each device source and drain contact is coupled to an internal circuit node, a resistor connects each internal node to its external voltage-source node, and the device plus circuit equations are solved together.",
+    "required_devsim_api": [
+      "contact_equation(circuit_node=...)",
+      "circuit_element with V and R elements",
+      "circuit_alter for external bias continuation",
+      "get_circuit_node_value",
+      "get_circuit_solution_list",
+      "delete_circuit"
+    ],
+    "source_external_voltage_v": 0.0,
+    "drain_external_voltage_role": "swept independent voltage-source value",
+    "gate_contacts_remain_direct_dirichlet": true,
+    "poisson_and_electron_contact_equations_both_coupled_to_internal_nodes": true,
+    "manual_outer_voltage_drop_iteration_permitted": false,
+    "postprocessed_current_derating_permitted": false,
+    "barrier_height_ev": null,
+    "thermionic_emission_active": false,
+    "tunneling_active": false,
+    "contact_region_mesh_or_material_changed": false,
+    "stored_circuit_quantities": [
+      "external source and drain voltage",
+      "internal source and drain node voltage",
+      "source and drain resistor current",
+      "device source and drain terminal current",
+      "source and drain KCL residual",
+      "source, drain and total resistor voltage drop",
+      "total resistor power"
+    ]
+  },
+  "inheritance": {
+    "transport_source": "config/tcad_t01_baseline.json",
+    "mesh_source": "config/tcad_t01_d_mesh_refinement.json interface_4x",
+    "topology_source": "config/tcad_t02_a_dual_gate_contract.json enabled_mode",
+    "transfer_bias_source": "config/tcad_t02_c_bidirectional.json top_primary at fixed secondary gate = 0 V",
+    "output_bias_source": "config/tcad_t01_d_idvd.json with additional 0.001 V and 0.005 V low-field points",
+    "required_mesh_level": "interface_4x",
+    "require_exact_t02_a_enabled_topology": true,
+    "require_t02_c_zero_resistance_transfer_reproduction": true,
+    "traps_inherited_from_completed_p2": false,
+    "reason_traps_are_zero": "P3 attribution changes only the declared contact proxy; completed P2 evidence is not combined into this isolated scan."
+  },
+  "bias_protocol": {
+    "external_source_v": 0.0,
+    "bottom_gate_v": 0.0,
+    "transfer": {
+      "external_drain_v": 0.01,
+      "external_low_vds_values_v": [0.0, 0.001, 0.005, 0.01],
+      "primary_gate": "top_gate",
+      "secondary_gate": "bottom_gate",
+      "fixed_secondary_gate_v": 0.0,
+      "primary_gate_grid": {
+        "start_v": -0.5,
+        "stop_v": 1.0,
+        "step_v": 0.05,
+        "point_count": 31
+      },
+      "primary_negative_preconditioning_v": [-0.1, -0.2, -0.3, -0.4, -0.5]
+    },
+    "output": {
+      "top_gate_values_v": [0.3, 0.5, 1.0],
+      "external_drain_values_v": [0.0, 0.001, 0.005, 0.01, 0.05, 0.1, 0.2],
+      "gate_preconditioning_ladder_v": [0.1, 0.2, 0.3, 0.5, 0.75, 1.0],
+      "fresh_device_per_gate_curve": true
+    },
+    "execution_order": [
+      "for each R_pair*W value create one fresh transfer device",
+      "solve all-zero-bias Poisson initialization and coupled electron equilibrium",
+      "continue the external drain through 0.001, 0.005 and 0.01 V",
+      "precondition the top gate from 0 V down to -0.5 V",
+      "record the exact 31-point top-gate transfer grid with bottom gate at 0 V",
+      "delete the transfer device",
+      "for each of the three output top-gate values create a separate fresh device",
+      "solve zero-bias Poisson and coupled equilibrium, ramp the top gate at zero external VDS, then record all seven external VDS points",
+      "save the VTG=1.0 V, external VDS=0.2 V state and circuit quantities for each R_pair*W value",
+      "delete every device and its circuit before the next case"
+    ]
+  },
+  "extraction_methods": {
+    "transfer_high_gate_current_proxy": {
+      "bias": "VTG=1.0 V, VBG=0 V, external VDS=0.01 V",
+      "definition": "absolute external drain current and current per device width",
+      "label": "sampled low-VDS high-gate current numerical proxy; not physical Ion"
+    },
+    "output_current_proxies": {
+      "biases": "VTG=0.3, 0.5 and 1.0 V; VBG=0 V; external VDS=0.2 V",
+      "definition": "absolute external drain current and current per device width",
+      "label": "sampled output-current numerical proxies; not physical Ion or saturation current"
+    },
+    "linear_region_total_resistance_width_proxy": {
+      "gate_bias": "VTG=1.0 V and VBG=0 V",
+      "fit_external_vds_values_v": [0.001, 0.005, 0.01],
+      "fit": "ordinary least squares of absolute external drain current versus external VDS constrained through the origin",
+      "conductance_formula": "G_fit = sum(VDS_ext*abs(ID_ext)) / sum(VDS_ext^2)",
+      "resistance_formula": "R_total_ohm = 1/G_fit",
+      "width_product_formula": "R_totalW_kohm_um = R_total_ohm * W_um / 1000",
+      "added_resistance_formula": "Delta_R_totalW = R_totalW(case) - R_totalW(ideal_control)",
+      "label": "external linear-region total-resistance-width numerical proxy; includes channel plus configured lumped pair"
+    },
+    "circuit_closure": {
+      "source_drop_v": "V_source_internal - V_source_external",
+      "drain_drop_v": "V_drain_external - V_drain_internal",
+      "total_drop_v": "source_drop_v + drain_drop_v",
+      "ohms_law": "total_drop_v = abs(I_external) * R_pair_ohm",
+      "internal_device_vds_v": "V_drain_internal - V_source_internal",
+      "voltage_partition": "external_VDS = source_drop + internal_device_VDS + drain_drop",
+      "power_w": "abs(I_external)^2 * R_pair_ohm"
+    }
+  },
+  "diagnostic_hypotheses": {
+    "extracted_added_resistance_matches_declared_pair": {
+      "completion_gate": false,
+      "required_reporting": true,
+      "maximum_relative_difference": 0.15,
+      "comparison": "Delta_R_totalW versus declared R_pair*W for each nonzero case",
+      "reason_non_gating": "The OLS total-resistance proxy also contains transistor nonlinearity and source-degeneration effects; exact resistor behavior is gated directly through KCL, Ohm-law and voltage-partition closure."
+    }
+  },
+  "state_output_contract": {
+    "state_id_template": "contact_<case_id>_output_vtg_1p0_vds_0p2",
+    "bias": "VTG=1.0 V, VBG=0 V, external VDS=0.2 V",
+    "potential": {"location": "bottom_oxide, channel, and top_oxide nodes", "unit": "V"},
+    "electron_density": {"location": "channel nodes", "unit": "cm^-3"},
+    "electron_current_density": {
+      "location": "channel triangular elements",
+      "unit": "A/cm^2",
+      "source_model": "DEVSIM ElectronCurrent edge model projected by element_from_edge_model"
+    },
+    "circuit_state_required": true,
+    "required_state_count": 3,
+    "required_vtk_file_count_per_state": 6
+  },
+  "resource_budget": {
+    "required_contact_case_count": 3,
+    "required_transfer_device_count": 3,
+    "required_output_device_count": 9,
+    "required_total_device_count": 12,
+    "required_circuit_coupled_device_count": 8,
+    "required_transfer_point_count_per_case": 31,
+    "required_output_point_count_per_case": 21,
+    "required_reported_point_count_per_case": 52,
+    "required_total_reported_point_count": 156,
+    "required_transfer_dc_solve_count_per_case": 41,
+    "required_output_dc_solve_counts_per_gate": [12, 13, 15],
+    "required_output_dc_solve_count_per_case": 40,
+    "required_total_dc_solve_count_per_case": 81,
+    "required_total_dc_solve_count": 243,
+    "maximum_wall_seconds": 600.0,
+    "maximum_run_directory_bytes": 125000000,
+    "laptop_target": true
+  },
+  "acceptance": {
+    "required_r_pair_w_values_kohm_um": [0.0, 0.5, 4.5],
+    "required_case_ids": ["ideal_control", "literature_low_magnitude_proxy", "literature_high_magnitude_proxy"],
+    "required_transfer_point_count": 93,
+    "required_output_point_count": 63,
+    "required_total_reported_point_count": 156,
+    "required_total_dc_solve_count": 243,
+    "required_total_device_count": 12,
+    "maximum_relative_device_terminal_current_imbalance": 1e-5,
+    "maximum_zero_external_vds_absolute_current_a_per_cm": 1e-16,
+    "minimum_resolved_positive_current_a_per_cm": 1e-18,
+    "maximum_circuit_kcl_relative_residual": 1e-6,
+    "maximum_circuit_ohms_law_relative_residual": 1e-8,
+    "maximum_circuit_voltage_partition_absolute_residual_v": 1e-9,
+    "circuit_relative_residual_floor_a": 1e-18,
+    "circuit_closure_gate_domain": "nonzero R_pair*W, external VDS>0, and VTG>=0.3 V",
+    "maximum_monotonic_relative_current_drop": 1e-6,
+    "minimum_high_proxy_relative_current_reduction_at_largest_r_pair": 0.001,
+    "maximum_t02_c_reference_current_relative_difference": 1e-6,
+    "maximum_t02_c_reference_center_potential_difference_v": 1e-7,
+    "maximum_t02_c_reference_center_density_relative_difference": 1e-6,
+    "required_current_ordering_biases": {
+      "transfer": [{"vtg_v": 1.0, "external_vds_v": 0.01}],
+      "output": [
+        {"vtg_v": 0.5, "external_vds_v": 0.01},
+        {"vtg_v": 0.5, "external_vds_v": 0.05},
+        {"vtg_v": 0.5, "external_vds_v": 0.1},
+        {"vtg_v": 0.5, "external_vds_v": 0.2},
+        {"vtg_v": 1.0, "external_vds_v": 0.01},
+        {"vtg_v": 1.0, "external_vds_v": 0.05},
+        {"vtg_v": 1.0, "external_vds_v": 0.1},
+        {"vtg_v": 1.0, "external_vds_v": 0.2}
+      ]
+    },
+    "require_all_dc_solves_converged": true,
+    "require_strict_transfer_current_increase_with_top_gate": true,
+    "require_output_current_nondecreasing_with_external_vds": true,
+    "require_strict_current_decrease_with_r_pair_at_selected_biases": true,
+    "require_strict_linear_region_total_resistance_increase_with_r_pair": true,
+    "require_internal_node_voltage_ordering_within_external_rails": true,
+    "require_nonnegative_resistor_power": true,
+    "require_t02_c_ideal_transfer_reproduction": true,
+    "require_added_resistance_diagnostic_reported": true,
+    "required_regions": ["bottom_oxide", "channel", "top_oxide"],
+    "required_contacts": ["source", "drain", "bottom_gate", "top_gate"],
+    "required_interfaces": ["bottom_oxide_channel", "channel_top_oxide"],
+    "required_state_count": 3,
+    "required_vtk_file_count": 18,
+    "require_two_png_figures": true
+  },
+  "failure_retention": {
+    "runner_pass_required_before_independent_check": true,
+    "on_exception_or_failed_gate": "write an E0 FAIL report, preserve every completed solver record and partial artifact, and stop before the independent checker",
+    "failure_archive_directory_template": "results/tcad/t03_sensitivity/p3_contact_resistance_<failure_slug>",
+    "failure_archive_manifest_required": true,
+    "archive_before_any_recovery_run": true,
+    "delete_or_overwrite_failed_evidence_permitted": false,
+    "relax_preregistered_thresholds_after_failure_permitted": false,
+    "recovery_requires_new_contract_revision": true,
+    "failure_does_not_complete_p3_or_t03": true
+  },
+  "implementation_contract": {
+    "future_runner": "tcad/run_t03_p3_contact_resistance.py",
+    "future_independent_checker": "scripts/check_t03_p3_contact_resistance.py",
+    "runner_imports_existing_device_helpers": true,
+    "independent_checker_must_not_import_runner_or_devsim": true,
+    "formal_run_permitted_only_after_contract_pass": true
+  },
+  "outputs": {
+    "contract_report": "results/reports/tcad_t03_p3_contact_input_contract.json",
+    "run_directory": "results/tcad/t03_sensitivity/p3_contact_resistance",
+    "config_snapshot": "results/tcad/t03_sensitivity/p3_contact_resistance/input_snapshot.json",
+    "solver_log": "results/tcad/t03_sensitivity/p3_contact_resistance/solver_log.json",
+    "state_manifest": "results/tcad/t03_sensitivity/p3_contact_resistance/state_manifest.json",
+    "transfer_csv": "results/tables/tcad_t03_p3_contact_transfer.csv",
+    "output_csv": "results/tables/tcad_t03_p3_contact_output.csv",
+    "metric_csv": "results/tables/tcad_t03_p3_contact_metrics.csv",
+    "circuit_balance_csv": "results/tables/tcad_t03_p3_contact_circuit_balance.csv",
+    "reference_comparison_csv": "results/tables/tcad_t03_p3_contact_t02_c_reproduction.csv",
+    "state_summary_csv": "results/tables/tcad_t03_p3_contact_state_summary.csv",
+    "sensitivity_figure_png": "report/assets/tcad_t03_p3_contact_sensitivity.png",
+    "state_figure_png": "report/assets/tcad_t03_p3_contact_states.png",
+    "report": "results/reports/tcad_t03_p3_contact_resistance.json",
+    "check_report": "results/reports/tcad_t03_p3_contact_resistance_check.json"
+  },
+  "evidence_boundary": {
+    "contract_allowed_claim": "The P3 input contract freezes an E1-anchored, three-point, symmetric lumped total-pair series-resistance proxy, self-consistent device-circuit coupling, biases, extraction, failure retention, outputs and numerical acceptance gates without running DEVSIM.",
+    "future_run_allowed_claim": "Only runner E2 plus independent persisted-evidence E3 PASS may establish a controlled contact-series-resistance numerical sensitivity for the frozen 2D teaching model.",
+    "allowed_parameter_labels": [
+      "symmetric lumped total-pair resistance-width teaching proxy",
+      "external linear-region total-resistance-width numerical proxy",
+      "sampled low-VDS high-gate current numerical proxy",
+      "sampled output-current numerical proxy"
+    ],
+    "prohibited_claims": [
+      "measured, TLM-extracted, fitted, or calibrated project-device contact resistance",
+      "project Ti-versus-Ni contact comparison or contact-metal selection",
+      "Schottky barrier, thermionic injection, tunneling, current crowding, or work-function validation",
+      "physical Ion, mobility, VTH, SS, process variation, uncertainty, or experimental accuracy",
+      "complete P3 before runner and independent check PASS",
+      "complete T03, P5, compact-model, SPICE, circuit-cell, layout, PEX, or HZO evidence"
+    ],
+    "next_gate": "Contract PASS permits only the formal P3 contact-resistance runner; runner PASS is required before the independent persisted-evidence checker, and both are required to complete P3."
+  }
+}

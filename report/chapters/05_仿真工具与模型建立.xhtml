@@ -40,6 +40,18 @@
       <tr><td>当前门</td><td>30/30 静态合同与三案例方程冒烟通过；正式 V1/V2 E0/FAIL 均完整保留；V3 合同 24/24 PASS，随后运行器 17/17 PASS、独立检查 16/16 PASS</td><td>V3 的 8/456/376 只关闭冻结准静态教学模型内的 P2；V1/V2 失败不被覆盖，也不验证测量/拟合 DOS、物理 SS/VTH/Ioff/Ion、动态陷阱或实验校准</td></tr>
     </tbody>
   </table>
+  <h3>5.3 T03-P3 对称串联接触代理合同</h3>
+  <p>P3 不在二维网格中伪造接触材料或势垒区，而保持 T02-A 的二维 n-IGZO 沟道与直接栅边界，只在源漏外部加入对称 lumped resistor。唯一变量为总源漏串联电阻宽度积 <code>R_pair*W=0/0.5/4.5 kOhm*um</code>；按 <code>R_pair_ohm=R_pairW*1000/W_um</code> 换算后，源漏各取一半。零点继续使用 T02-C 的直连理想欧姆接触，避免创建数值奇异的零值电阻。</p>
+  <table>
+    <thead><tr><th>合同项</th><th>冻结实现</th><th>证据边界</th></tr></thead>
+    <tbody>
+      <tr><td>非零接触路径</td><td>源漏 Poisson 和电子接触方程绑定内部 circuit node；R 元件连接外部 V 元件；器件与电路方程共同求解</td><td>禁止事后电流降额或手工外层压降迭代</td></tr>
+      <tr><td>未实现物理</td><td>barrier height=null；热发射、隧穿、接触区材料/网格和 current crowding 均未加入</td><td>只能称为对称 lumped series-resistance 教学代理</td></tr>
+      <tr><td>偏压与提取</td><td>31 点 transfer；VTG=0.3/0.5/1.0 V 的 7 点 output；用 VTG=1 V、外部 VDS=1/5/10 mV 过原点 OLS 提取总线性电阻宽度积代理</td><td>外部高栅电流与输出电流不是物理 Ion</td></tr>
+      <tr><td>电路闭合</td><td>保存内外源漏电压、两个电阻电流、器件端电流、KCL、Ohm 定律、压降分配和功耗</td><td>只有运行器与独立检查均 PASS 才可声称受控数值敏感性</td></tr>
+      <tr><td>当前证据</td><td>30/30 静态检查 PASS、E3；12 器件、243 DC、156 点、3 状态为未来计划</td><td><code>NOT_RUN_BY_CONTRACT_CHECK</code>，尚无 P3 仿真结果</td></tr>
+    </tbody>
+  </table>
   <table>
     <thead><tr><th>T02-A/B/C 拓扑与偏压合同</th><th>实现</th><th>证据边界</th></tr></thead>
     <tbody>
@@ -54,5 +66,5 @@
       <tr><td>T02-C 状态合同</td><td>保存双负、上下栅非对称、两种阈值附近和双正共 6 个状态的节点/沟道单元 CSV 与 VTK</td><td>覆盖电势、电子浓度和局部电流密度；不含陷阱、动态极化或非理想接触</td></tr>
     </tbody>
   </table>
-  <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>，T01-D-C 使用 <code>make t01-d-extract</code>/<code>make t01-d-extract-check</code>。T02-A/B/C 分别使用对应的 contract、run 和 independent-check 目标。T03-P2-DIT 方程门依次使用 <code>make t03-p2-dit-contract-check</code>、<code>make t03-p2-dit-equation-smoke</code> 和 <code>make t03-p2-dit-equation-smoke-check</code>；正式敏感性使用 <code>make t03-p2-dit-formal-contract-check</code>、<code>make t03-p2-dit-formal</code> 和 <code>make t03-p2-dit-formal-check</code>。bulk-trap 方程门依次使用 <code>make t03-p2-bulk-traps-contract-check</code>、<code>make t03-p2-bulk-traps-equation-smoke</code> 和 <code>make t03-p2-bulk-traps-equation-smoke-check</code>。正式 V1 完成 8 器件/328 次收敛 DC/248 点后因冻结提取与零偏门保持 E0/FAIL；V2 完成 8 器件/440 次收敛 DC/360 点后因最高 NTA 的 <code>VTH+0.2 V</code> 缺少中心差分上邻点保持 E0/FAIL，两套失败输入和输出均归档。V3 通过 <code>make t03-p2-bulk-traps-formal-contract-check</code> 冻结统一 1.8 V 网格，24/24 E3 静态 PASS；再以 <code>make t03-p2-bulk-traps-formal</code> 完成 8 器件/456 次收敛 DC/376 点并通过运行器 17 项，最后以 <code>make t03-p2-bulk-traps-formal-check</code> 完成不导入运行器/DEVSIM 的 16 项独立复核。密度点、方程、提取方法和阈值均未改变。各运行器保存输入快照、DC 求解记录、CSV、JSON 及阶段所需状态或图，独立检查器复算哈希、偏压点、守恒、上游回归和方程边界。完整 T01/T02 及当前 T03-P1/P2/P4 均是教学模型数值证据；实验拟合、物理 Ion/Ioff、真实回滞、参数不确定度和电路可用性尚未验证。</p>
+  <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>，T01-D-C 使用 <code>make t01-d-extract</code>/<code>make t01-d-extract-check</code>。T02-A/B/C 分别使用对应的 contract、run 和 independent-check 目标。T03-P2-DIT 方程门依次使用 <code>make t03-p2-dit-contract-check</code>、<code>make t03-p2-dit-equation-smoke</code> 和 <code>make t03-p2-dit-equation-smoke-check</code>；正式敏感性使用 <code>make t03-p2-dit-formal-contract-check</code>、<code>make t03-p2-dit-formal</code> 和 <code>make t03-p2-dit-formal-check</code>。bulk-trap 方程门依次使用 <code>make t03-p2-bulk-traps-contract-check</code>、<code>make t03-p2-bulk-traps-equation-smoke</code> 和 <code>make t03-p2-bulk-traps-equation-smoke-check</code>。正式 V1 完成 8 器件/328 次收敛 DC/248 点后因冻结提取与零偏门保持 E0/FAIL；V2 完成 8 器件/440 次收敛 DC/360 点后因最高 NTA 的 <code>VTH+0.2 V</code> 缺少中心差分上邻点保持 E0/FAIL，两套失败输入和输出均归档。V3 通过 <code>make t03-p2-bulk-traps-formal-contract-check</code> 冻结统一 1.8 V 网格，24/24 E3 静态 PASS；再以 <code>make t03-p2-bulk-traps-formal</code> 完成 8 器件/456 次收敛 DC/376 点并通过运行器 17 项，最后以 <code>make t03-p2-bulk-traps-formal-check</code> 完成不导入运行器/DEVSIM 的 16 项独立复核。P3 当前只可使用 <code>make t03-p3-contact-contract-check</code>，其 30 项静态检查不导入或运行 DEVSIM；正式 runner/checker 仍是下一阶段。各运行器保存输入快照、DC 求解记录、CSV、JSON 及阶段所需状态或图，独立检查器复算哈希、偏压点、守恒、上游回归和方程边界。完整 T01/T02 及当前 T03-P1/P2/P4 均是教学模型数值证据；P3 只有输入合同，实验拟合、物理 Ion/Ioff、真实回滞、参数不确定度和电路可用性尚未验证。</p>
 </section>

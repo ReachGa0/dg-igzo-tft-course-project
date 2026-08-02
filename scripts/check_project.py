@@ -94,6 +94,11 @@ REQUIRED_FILES = [
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/state_manifest.json",
     "report/assets/tcad_t03_p2_bulk_traps_formal_v3_sensitivity.png",
     "report/assets/tcad_t03_p2_bulk_traps_formal_v3_states.png",
+    "references/t03_p3_contact_sources.csv",
+    "config/tcad_t03_p3_contact_resistance.json",
+    "scripts/check_t03_p3_contact_contract.py",
+    "results/reports/tcad_t03_p3_contact_input_contract.json",
+    "results/reports/tcad_t03_p3_contact_input_contract_v1_checker_initial_assertions_failed.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal/state_manifest.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/input_snapshot.json",
@@ -689,6 +694,31 @@ def main() -> int:
                 "complete_p2_trap_group": True,
                 "complete_t03_five_group_sensitivity": False,
             }
+            and sensitivity.get("p3_contact_contract_evidence")
+            == {
+                "status": "input_contract_ready",
+                "contract_evidence": "E3",
+                "contract_checks_passed": 30,
+                "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+                "literature_source_rows": 2,
+                "r_pair_w_values_kohm_um": [0.0, 0.5, 4.5],
+                "planned_devices": 12,
+                "planned_dc_solves": 243,
+                "planned_reported_points": 156,
+                "planned_states": 3,
+                "initial_checker_failure_preserved": True,
+                "formal_sensitivity_completed": False,
+                "complete_p3_contact_group": False,
+                "complete_t03_five_group_sensitivity": False,
+            }
+            and sensitivity.get("p3_outputs")
+            == [
+                "references/t03_p3_contact_sources.csv",
+                "config/tcad_t03_p3_contact_resistance.json",
+                "scripts/check_t03_p3_contact_contract.py",
+                "results/reports/tcad_t03_p3_contact_input_contract_v1_checker_initial_assertions_failed.json",
+                "results/reports/tcad_t03_p3_contact_input_contract.json",
+            ]
             and all(
                 path in sensitivity.get("p2_outputs", [])
                 for path in [
@@ -3249,6 +3279,116 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t03_p2_bulk_traps:formal_contract", False, str(error))
+
+    p3_config_path = ROOT / "config" / "tcad_t03_p3_contact_resistance.json"
+    p3_contract_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p3_contact_input_contract.json"
+    )
+    p3_failed_checker_path = (
+        ROOT
+        / "results"
+        / "reports"
+        / "tcad_t03_p3_contact_input_contract_v1_checker_initial_assertions_failed.json"
+    )
+    try:
+        p3_config = json.loads(p3_config_path.read_text(encoding="utf-8"))
+        p3_contract = json.loads(p3_contract_path.read_text(encoding="utf-8"))
+        p3_failed_checker = json.loads(
+            p3_failed_checker_path.read_text(encoding="utf-8")
+        )
+        p3_contract_checks = p3_contract.get("checks", [])
+        add_check(
+            checks,
+            "t03_p3_contact:static_contract",
+            p3_config.get("case_id") == "IGZO_T03_P3_CONTACT_RESISTANCE_V1"
+            and p3_config.get("stage") == "T03-P3-CONTACT-RESISTANCE"
+            and p3_contract.get("status") == "PASS"
+            and p3_contract.get("contract_status") == "PASS"
+            and p3_contract.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and p3_contract.get("evidence_level") == "E3"
+            and p3_contract.get("case_id") == p3_config.get("case_id")
+            and p3_contract.get("config", {}).get("sha256")
+            == sha256(p3_config_path)
+            and len(p3_contract_checks) == 30
+            and all(item.get("status") == "PASS" for item in p3_contract_checks)
+            and not p3_contract.get("failures"),
+            (
+                f"status={p3_contract.get('status')} "
+                f"checks={len(p3_contract_checks)} "
+                f"simulation={p3_contract.get('simulation_status')}"
+            ),
+        )
+        planned = p3_contract.get("planned_run", {})
+        p3_mapping = p3_config.get("literature_mapping", {})
+        p3_values = p3_config.get("sensitivity", {}).get("values_kohm_um", [])
+        add_check(
+            checks,
+            "t03_p3_contact:frozen_plan_and_source_boundary",
+            p3_values == [0.0, 0.5, 4.5]
+            and planned.get("values_kohm_um") == p3_values
+            and planned.get("devices") == 12
+            and planned.get("dc_solves") == 243
+            and planned.get("reported_points") == 156
+            and planned.get("states") == 3
+            and planned.get("vtk_files") == 18
+            and p3_mapping.get("source_rc_convention_inherited") is False
+            and p3_mapping.get("project_case_labels_do_not_name_metals") is True
+            and p3_mapping.get("mapping_is_measurement_or_calibration") is False
+            and p3_config.get("contact_model_contract", {}).get("barrier_height_ev")
+            is None
+            and p3_config.get("failure_retention", {}).get(
+                "relax_preregistered_thresholds_after_failure_permitted"
+            )
+            is False,
+            f"values={p3_values} plan={planned}",
+        )
+        p3_inputs = p3_contract.get("inputs", {})
+        add_check(
+            checks,
+            "t03_p3_contact:input_hashes_and_next_gate",
+            len(p3_inputs) == 20
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                for item in p3_inputs.values()
+            )
+            and "implement and run only the formal T03-P3"
+            in config.get("tcad_track", {}).get("next_scope", "")
+            and "without running DEVSIM"
+            in p3_contract.get("evidence_boundary", {}).get(
+                "contract_allowed_claim", ""
+            )
+            and "runner E2 plus independent persisted-evidence E3 PASS"
+            in p3_contract.get("evidence_boundary", {}).get(
+                "future_run_allowed_claim", ""
+            ),
+            f"inputs={len(p3_inputs)} next={config.get('tcad_track', {}).get('next_scope')}",
+        )
+        failed_checks = [
+            item
+            for item in p3_failed_checker.get("checks", [])
+            if item.get("status") == "FAIL"
+        ]
+        add_check(
+            checks,
+            "t03_p3_contact:initial_checker_failure_preserved",
+            p3_failed_checker.get("status") == "FAIL"
+            and p3_failed_checker.get("contract_status") == "FAIL"
+            and p3_failed_checker.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(p3_failed_checker.get("checks", [])) == 30
+            and len(failed_checks) == 3
+            and [item.get("name") for item in failed_checks]
+            == [
+                "dependencies:g0_and_complete_t02_gate_passed",
+                "literature:magnitudes_are_not_inherited_as_project_metal_parameters",
+                "model:no_barrier_injection_or_contact_region_claim_is_implemented",
+            ],
+            f"status={p3_failed_checker.get('status')} failed_checks={len(failed_checks)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t03_p3_contact:contract", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

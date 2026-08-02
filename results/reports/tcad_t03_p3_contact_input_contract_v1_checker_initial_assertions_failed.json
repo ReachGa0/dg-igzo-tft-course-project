@@ -1,0 +1,323 @@
+{
+  "status": "FAIL",
+  "contract_status": "FAIL",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "case_id": "IGZO_T03_P3_CONTACT_RESISTANCE_V1",
+  "stage": "T03-P3-CONTACT-RESISTANCE",
+  "parameter_group_id": "P3",
+  "evidence_level": "E3",
+  "config": {
+    "path": "config/tcad_t03_p3_contact_resistance.json",
+    "sha256": "4aa64aae897a9302e39f41c548c7691f1cc13b5fbf12b5ff0a32cf3fe30b3cff"
+  },
+  "inputs": {
+    "project_config": {
+      "path": "config/project.json",
+      "sha256": "9d8e2e054b548700f0f831c6b54aa20852d74728caf8afeaeab44c99e8df1687"
+    },
+    "experiments_config": {
+      "path": "config/experiments.json",
+      "sha256": "fd23f5f6cba87a5e994780776640192b24e2ffeaf7d993c18d87ff2a989a61ee"
+    },
+    "s00_report": {
+      "path": "results/reports/s00_data_audit.json",
+      "sha256": "44ea42ff7fd9923cd4c9c2d0156ce3d0029cd59655e3c4086ab7250f78b48e31"
+    },
+    "t01_baseline_config": {
+      "path": "config/tcad_t01_baseline.json",
+      "sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9"
+    },
+    "t01_mesh_config": {
+      "path": "config/tcad_t01_d_mesh_refinement.json",
+      "sha256": "6ba9815ab063708b9fa560092974ac65a748b95c981d16056af3dec1e0f74e23"
+    },
+    "t02_a_config": {
+      "path": "config/tcad_t02_a_dual_gate_contract.json",
+      "sha256": "59f19996be43c22972bf223cfebf1f95fcaec5cdd9bf2edef76d45e9f1b4ccb3"
+    },
+    "t02_c_config": {
+      "path": "config/tcad_t02_c_bidirectional.json",
+      "sha256": "93c29fe977dd304315537d7dcbb0e2ea4b920cdab331a7996d7c9dd399b84228"
+    },
+    "t02_c_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional.json",
+      "sha256": "d214e9bf7c1938cf3120eaaf06fc53d0b1c1faf0708c0378fef6b3faeafecfed"
+    },
+    "t02_c_check_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional_check.json",
+      "sha256": "a13c6bebb0f10e8bce7dabff865863ee862e9d3ac572dfc692423a66ba868aa4"
+    },
+    "p4_report": {
+      "path": "results/reports/tcad_t03_p4_l_sensitivity.json",
+      "sha256": "b54c823f9618513334968c7a85872371315a283c7a518facd88166d5921cd61c"
+    },
+    "p4_check_report": {
+      "path": "results/reports/tcad_t03_p4_l_sensitivity_check.json",
+      "sha256": "9f437759d91615732e3dddf37ced9d49144ae3927d9bc3ad429a39ff781e0e5d"
+    },
+    "p1_cap_report": {
+      "path": "results/reports/tcad_t03_p1_cap_ratio_sensitivity.json",
+      "sha256": "6a715933139376959bda64939226e81ad82baab430f6fc09d4fd30f82dc089c9"
+    },
+    "p1_cap_check_report": {
+      "path": "results/reports/tcad_t03_p1_cap_ratio_sensitivity_check.json",
+      "sha256": "ba9b524f620d6d8dcc1dcfe745a8a550ec168cc8a5150f727c54787e912eabcb"
+    },
+    "p2_dit_report": {
+      "path": "results/reports/tcad_t03_p2_dit_formal.json",
+      "sha256": "b57ebcca40f60fce196731dff9f47965223bd84a4578d919259ef732f9a84491"
+    },
+    "p2_dit_check_report": {
+      "path": "results/reports/tcad_t03_p2_dit_formal_check.json",
+      "sha256": "a05aa80b073562535caa36060c35c594af4ca9966cea18fe5f34c60f48ce5faa"
+    },
+    "p2_bulk_config": {
+      "path": "config/tcad_t03_p2_bulk_traps_formal.json",
+      "sha256": "c8978537d9744e8bbdfb7544e20381edf004ec7284ec240a32113f0e8e89cfaf"
+    },
+    "p2_bulk_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_formal_v3.json",
+      "sha256": "62f76f4bbc875688061595e313f4d272dbbacd3151dff39c8fe470b6ad3aad9b"
+    },
+    "p2_bulk_check_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json",
+      "sha256": "07b22ee6a0f277fe3b5d3837892ad2e2146e089c48ee670aed534a6c188b40b9"
+    },
+    "literature_table": {
+      "path": "references/t03_p3_contact_sources.csv",
+      "sha256": "3d3d6ad799085d52b7c95f746eab93979ca228a5f205151becd233918785ac89"
+    },
+    "senior_manifest": {
+      "path": "references/senior_work_manifest.csv",
+      "sha256": "f6b64465df647fe519ec9a817651c700484adcf47ac30613cc7b720e49c325d9"
+    }
+  },
+  "checks": [
+    {
+      "name": "identity:t03_p3_contact_resistance_v1",
+      "status": "PASS",
+      "detail": "case=IGZO_T03_P3_CONTACT_RESISTANCE_V1 stage=T03-P3-CONTACT-RESISTANCE"
+    },
+    {
+      "name": "dependencies:all_declared_inputs_exist",
+      "status": "PASS",
+      "detail": "project_config=config/project.json; experiments_config=config/experiments.json; s00_report=results/reports/s00_data_audit.json; t01_baseline_config=config/tcad_t01_baseline.json; t01_mesh_config=config/tcad_t01_d_mesh_refinement.json; t02_a_config=config/tcad_t02_a_dual_gate_contract.json; t02_c_config=config/tcad_t02_c_bidirectional.json; t02_c_report=results/reports/tcad_t02_c_bidirectional.json; t02_c_check_report=results/reports/tcad_t02_c_bidirectional_check.json; p4_report=results/reports/tcad_t03_p4_l_sensitivity.json; p4_check_report=results/reports/tcad_t03_p4_l_sensitivity_check.json; p1_cap_report=results/reports/tcad_t03_p1_cap_ratio_sensitivity.json; p1_cap_check_report=results/reports/tcad_t03_p1_cap_ratio_sensitivity_check.json; p2_dit_report=results/reports/tcad_t03_p2_dit_formal.json; p2_dit_check_report=results/reports/tcad_t03_p2_dit_formal_check.json; p2_bulk_config=config/tcad_t03_p2_bulk_traps_formal.json; p2_bulk_report=results/reports/tcad_t03_p2_bulk_traps_formal_v3.json; p2_bulk_check_report=results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json; literature_table=references/t03_p3_contact_sources.csv; senior_manifest=references/senior_work_manifest.csv"
+    },
+    {
+      "name": "dependencies:g0_and_complete_t02_gate_passed",
+      "status": "FAIL",
+      "detail": "g0=TEACHING_BASELINE_ONLY t02=PASS/PASS"
+    },
+    {
+      "name": "dependencies:prior_t03_groups_passed_in_sequence",
+      "status": "PASS",
+      "detail": "p4=PASS/PASS p1=PASS/PASS p2=PASS/PASS"
+    },
+    {
+      "name": "dependencies:machine_state_keeps_only_p3_and_p5_open",
+      "status": "PASS",
+      "detail": "complete=['P1', 'P2', 'P4'] remaining=['T03-P3', 'T03-P5']"
+    },
+    {
+      "name": "scope:igzo_2d_laptop_teaching_model_only",
+      "status": "PASS",
+      "detail": "2D n-IGZO electron-only drift-diffusion teaching model with the T02-A enabled symmetric dual-gate stack"
+    },
+    {
+      "name": "group:one_symmetric_p3_resistance_variable",
+      "status": "PASS",
+      "detail": "group=P3 variable=symmetric_total_source_drain_series_resistance_width_product"
+    },
+    {
+      "name": "scan:three_ordered_points_and_explicit_ohm_conversion",
+      "status": "PASS",
+      "detail": "values=[0.0, 0.5, 4.5] pair_ohm=[0.0, 8.333333333333334, 75.0]"
+    },
+    {
+      "name": "literature:two_primary_e1_tlm_anchors_are_frozen",
+      "status": "PASS",
+      "detail": "rows=2 metals=['Ni', 'Ti']"
+    },
+    {
+      "name": "literature:manifest_identity_and_live_hash_match",
+      "status": "PASS",
+      "detail": "manifest_rows=1 source=/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f/2026_07_30_s41928-021-00671-0 (1)/First_Demonstration_of_Dual-Gate_IGZO_2T0C_DRAM_with_Novel_Read_Operation_One_Bit_Line_in_Single_Cell_ION1500_A_mVDS1V_and_Retention_Timegt300s.pdf"
+    },
+    {
+      "name": "literature:magnitudes_are_not_inherited_as_project_metal_parameters",
+      "status": "FAIL",
+      "detail": "The two reported numerical magnitudes are used only as lower and upper values of the project-defined total source-plus-drain R_pair*W teaching proxy."
+    },
+    {
+      "name": "controls:geometry_transport_traps_and_temperature_are_frozen",
+      "status": "PASS",
+      "detail": "L=10 um W=60 um tch=24 nm dual 30 nm Al2O3 k=6.8 T=300 K; traps zero"
+    },
+    {
+      "name": "topology:inherits_enabled_t02_stack_and_interface_4x_mesh",
+      "status": "PASS",
+      "detail": "{\"evidence_level\": \"E1_teaching_assumption\", \"fabrication_status\": \"not present in the stated fabricated single-bottom-gate process\", \"mode_id\": \"enabled_symmetric_teaching_top_stack\", \"source_type\": \"symmetric teaching extension inherited from the T00 electrostatic baseline\", \"top_gate_boundary\": \"ideal_electrostatic_dirichlet\", \"top_gate_present\": true, \"top_gate_work_function_offset_model\": \"none\", \"top_oxide_material\": \"Al2O3\", \"top_oxide_present\": true, \"top_oxide_relative_permittivity\": 6.8, \"top_oxide_thickness_cm\": 3e-06, \"top_oxide_thickness_nm\": 30.0}"
+    },
+    {
+      "name": "model:self_consistent_device_circuit_series_resistance_is_frozen",
+      "status": "PASS",
+      "detail": "self_consistent_symmetric_lumped_series_resistance_proxy"
+    },
+    {
+      "name": "model:ideal_zero_control_and_nonzero_circuit_paths_are_distinct",
+      "status": "PASS",
+      "detail": "R_pair*W=0 uses the unchanged direct ideal-ohmic T02 contact equations; no zero-valued circuit resistor is created."
+    },
+    {
+      "name": "model:no_barrier_injection_or_contact_region_claim_is_implemented",
+      "status": "FAIL",
+      "detail": "lumped resistance only; barrier/thermionic/tunneling/contact-region changes inactive"
+    },
+    {
+      "name": "bias:transfer_exactly_inherits_t02_c_zero_secondary_family",
+      "status": "PASS",
+      "detail": "points=31 range=-0.5..1.0 V"
+    },
+    {
+      "name": "bias:three_output_curves_and_low_field_fit_points_are_frozen",
+      "status": "PASS",
+      "detail": "VTG=[0.3, 0.5, 1.0] VDS=[0.0, 0.001, 0.005, 0.01, 0.05, 0.1, 0.2]"
+    },
+    {
+      "name": "execution:twelve_fresh_devices_156_points_and_243_solves",
+      "status": "PASS",
+      "detail": "transfer=41 output=[12, 13, 15] total=243"
+    },
+    {
+      "name": "extraction:external_current_and_linear_resistance_proxy_are_prefrozen",
+      "status": "PASS",
+      "detail": "external linear-region total-resistance-width numerical proxy; includes channel plus configured lumped pair"
+    },
+    {
+      "name": "extraction:kcl_ohms_law_voltage_partition_and_power_are_prefrozen",
+      "status": "PASS",
+      "detail": "{\"drain_drop_v\": \"V_drain_external - V_drain_internal\", \"internal_device_vds_v\": \"V_drain_internal - V_source_internal\", \"ohms_law\": \"total_drop_v = abs(I_external) * R_pair_ohm\", \"power_w\": \"abs(I_external)^2 * R_pair_ohm\", \"source_drop_v\": \"V_source_internal - V_source_external\", \"total_drop_v\": \"source_drop_v + drain_drop_v\", \"voltage_partition\": \"external_VDS = source_drop + internal_device_VDS + drain_drop\"}"
+    },
+    {
+      "name": "acceptance:counts_conservation_and_circuit_closure_are_frozen",
+      "status": "PASS",
+      "detail": "device conservation plus circuit KCL/Ohm-law/voltage-partition gates"
+    },
+    {
+      "name": "acceptance:direction_and_minimum_response_gates_are_prefrozen",
+      "status": "PASS",
+      "detail": "selected_ordering_points=9"
+    },
+    {
+      "name": "acceptance:ideal_control_must_reproduce_t02_c",
+      "status": "PASS",
+      "detail": "31-point transfer current plus center potential/density regression"
+    },
+    {
+      "name": "diagnostic:added_resistance_match_is_required_report_not_completion_gate",
+      "status": "PASS",
+      "detail": "The OLS total-resistance proxy also contains transistor nonlinearity and source-degeneration effects; exact resistor behavior is gated directly through KCL, Ohm-law and voltage-partition closure."
+    },
+    {
+      "name": "states:one_complete_high_output_state_per_contact_case",
+      "status": "PASS",
+      "detail": "{\"bias\": \"VTG=1.0 V, VBG=0 V, external VDS=0.2 V\", \"circuit_state_required\": true, \"electron_current_density\": {\"location\": \"channel triangular elements\", \"source_model\": \"DEVSIM ElectronCurrent edge model projected by element_from_edge_model\", \"unit\": \"A/cm^2\"}, \"electron_density\": {\"location\": \"channel nodes\", \"unit\": \"cm^-3\"}, \"potential\": {\"location\": \"bottom_oxide, channel, and top_oxide nodes\", \"unit\": \"V\"}, \"required_state_count\": 3, \"required_vtk_file_count_per_state\": 6, \"state_id_template\": \"contact_<case_id>_output_vtg_1p0_vds_0p2\"}"
+    },
+    {
+      "name": "failure:partial_outputs_and_thresholds_must_be_preserved",
+      "status": "PASS",
+      "detail": "write an E0 FAIL report, preserve every completed solver record and partial artifact, and stop before the independent checker"
+    },
+    {
+      "name": "execution:runner_then_independent_checker_order_is_frozen",
+      "status": "PASS",
+      "detail": "runner=tcad/run_t03_p3_contact_resistance.py checker=scripts/check_t03_p3_contact_resistance.py"
+    },
+    {
+      "name": "outputs:paths_are_unique_and_stage_scoped",
+      "status": "PASS",
+      "detail": "outputs=15 unique=15"
+    },
+    {
+      "name": "boundary:contract_is_static_and_physical_contact_claims_remain_closed",
+      "status": "PASS",
+      "detail": "The P3 input contract freezes an E1-anchored, three-point, symmetric lumped total-pair series-resistance proxy, self-consistent device-circuit coupling, biases, extraction, failure retention, outputs and numerical acceptance gates without running DEVSIM."
+    }
+  ],
+  "failures": [
+    {
+      "name": "dependencies:g0_and_complete_t02_gate_passed",
+      "status": "FAIL",
+      "detail": "g0=TEACHING_BASELINE_ONLY t02=PASS/PASS"
+    },
+    {
+      "name": "literature:magnitudes_are_not_inherited_as_project_metal_parameters",
+      "status": "FAIL",
+      "detail": "The two reported numerical magnitudes are used only as lower and upper values of the project-defined total source-plus-drain R_pair*W teaching proxy."
+    },
+    {
+      "name": "model:no_barrier_injection_or_contact_region_claim_is_implemented",
+      "status": "FAIL",
+      "detail": "lumped resistance only; barrier/thermionic/tunneling/contact-region changes inactive"
+    }
+  ],
+  "planned_run": {
+    "changed_variable": "symmetric_total_source_drain_series_resistance_width_product",
+    "values_kohm_um": [
+      0.0,
+      0.5,
+      4.5
+    ],
+    "devices": 12,
+    "reported_points": 156,
+    "dc_solves": 243,
+    "states": 3,
+    "vtk_files": 18
+  },
+  "source_boundary": {
+    "table": "references/t03_p3_contact_sources.csv",
+    "source_evidence_level": "E1",
+    "doi": "10.1109/IEDM45625.2022.10019488",
+    "reported_method": "transfer-length method",
+    "reported_condition": "VGS-VTH=2.5 V",
+    "reported_magnitude_anchors_kohm_um": {
+      "Ni": 0.5,
+      "Ti": 4.5
+    },
+    "source_rc_convention_inherited": false,
+    "project_mapping": "The two reported numerical magnitudes are used only as lower and upper values of the project-defined total source-plus-drain R_pair*W teaching proxy.",
+    "project_case_labels_do_not_name_metals": true,
+    "mapping_is_measurement_or_calibration": false,
+    "reason": "The paper device, stack, process, overdrive and contact-extraction convention differ from this project; an explicit total-pair convention avoids silently treating the external values as project contact parameters."
+  },
+  "failure_retention": {
+    "runner_pass_required_before_independent_check": true,
+    "on_exception_or_failed_gate": "write an E0 FAIL report, preserve every completed solver record and partial artifact, and stop before the independent checker",
+    "failure_archive_directory_template": "results/tcad/t03_sensitivity/p3_contact_resistance_<failure_slug>",
+    "failure_archive_manifest_required": true,
+    "archive_before_any_recovery_run": true,
+    "delete_or_overwrite_failed_evidence_permitted": false,
+    "relax_preregistered_thresholds_after_failure_permitted": false,
+    "recovery_requires_new_contract_revision": true,
+    "failure_does_not_complete_p3_or_t03": true
+  },
+  "evidence_boundary": {
+    "contract_allowed_claim": "The P3 input contract freezes an E1-anchored, three-point, symmetric lumped total-pair series-resistance proxy, self-consistent device-circuit coupling, biases, extraction, failure retention, outputs and numerical acceptance gates without running DEVSIM.",
+    "future_run_allowed_claim": "Only runner E2 plus independent persisted-evidence E3 PASS may establish a controlled contact-series-resistance numerical sensitivity for the frozen 2D teaching model.",
+    "allowed_parameter_labels": [
+      "symmetric lumped total-pair resistance-width teaching proxy",
+      "external linear-region total-resistance-width numerical proxy",
+      "sampled low-VDS high-gate current numerical proxy",
+      "sampled output-current numerical proxy"
+    ],
+    "prohibited_claims": [
+      "measured, TLM-extracted, fitted, or calibrated project-device contact resistance",
+      "project Ti-versus-Ni contact comparison or contact-metal selection",
+      "Schottky barrier, thermionic injection, tunneling, current crowding, or work-function validation",
+      "physical Ion, mobility, VTH, SS, process variation, uncertainty, or experimental accuracy",
+      "complete P3 before runner and independent check PASS",
+      "complete T03, P5, compact-model, SPICE, circuit-cell, layout, PEX, or HZO evidence"
+    ],
+    "next_gate": "Contract PASS permits only the formal P3 contact-resistance runner; runner PASS is required before the independent persisted-evidence checker, and both are required to complete P3."
+  }
+}

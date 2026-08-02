@@ -2,7 +2,7 @@ PYTHON ?= /mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/发
 TCAD_PYTHON ?= /mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/发送版本/课程0/.venv/bin/python
 DEVSIM_MATH_LIBS ?= liblapack.so.3:libblas.so.3
 
-.PHONY: all import-baseline import-senior s00-audit s00-audit-check t01-a-check t01-b-smoke t01-b-check t01-c-transfer t01-c-check t01-d-mesh t01-d-mesh-check t01-d-idvd t01-d-idvd-check t01-d-extract t01-d-extract-check t02-a-contract-check t02-a-regression t02-a-regression-check t02-b-contract-check t02-b-minimal t02-b-minimal-check t02-c-contract-check t02-c-bidirectional t02-c-bidirectional-check t03-p4-l-contract-check t03-p4-l-sensitivity t03-p4-l-sensitivity-check t03-p1-bias-contract-check t03-p1-bias-sensitivity t03-p1-bias-sensitivity-check t03-p1-cap-ratio-contract-check t03-p1-cap-ratio-sensitivity t03-p1-cap-ratio-sensitivity-check t03-p2-dit-contract-check t03-p2-dit-equation-smoke t03-p2-dit-equation-smoke-check t03-p2-dit-formal-contract-check t03-p2-dit-formal t03-p2-dit-formal-check t03-p2-bulk-traps-contract-check t03-p2-bulk-traps-equation-smoke t03-p2-bulk-traps-equation-smoke-check t03-p2-bulk-traps-formal-contract-check t03-p2-bulk-traps-formal t03-p2-bulk-traps-formal-check tcad-smoke report-check report check status
+.PHONY: all import-baseline import-senior s00-audit s00-audit-check t01-a-check t01-b-smoke t01-b-check t01-c-transfer t01-c-check t01-d-mesh t01-d-mesh-check t01-d-idvd t01-d-idvd-check t01-d-extract t01-d-extract-check t02-a-contract-check t02-a-regression t02-a-regression-check t02-b-contract-check t02-b-minimal t02-b-minimal-check t02-c-contract-check t02-c-bidirectional t02-c-bidirectional-check t03-p4-l-contract-check t03-p4-l-sensitivity t03-p4-l-sensitivity-check t03-p1-bias-contract-check t03-p1-bias-sensitivity t03-p1-bias-sensitivity-check t03-p1-cap-ratio-contract-check t03-p1-cap-ratio-sensitivity t03-p1-cap-ratio-sensitivity-check t03-p2-dit-contract-check t03-p2-dit-equation-smoke t03-p2-dit-equation-smoke-check t03-p2-dit-formal-contract-check t03-p2-dit-formal t03-p2-dit-formal-check t03-p2-bulk-traps-contract-check t03-p2-bulk-traps-equation-smoke t03-p2-bulk-traps-equation-smoke-check t03-p2-bulk-traps-formal-contract-check t03-p2-bulk-traps-formal t03-p2-bulk-traps-formal-check t03-p3-contact-contract-check tcad-smoke report-check report check status
 
 all: import-baseline import-senior check
 
@@ -140,6 +140,9 @@ t03-p2-bulk-traps-formal:
 
 t03-p2-bulk-traps-formal-check:
 	"$(PYTHON)" scripts/check_t03_p2_bulk_traps_formal.py
+
+t03-p3-contact-contract-check:
+	"$(PYTHON)" scripts/check_t03_p3_contact_contract.py
 
 tcad-smoke:
 	DEVSIM_MATH_LIBS="$(DEVSIM_MATH_LIBS)" "$(TCAD_PYTHON)" tcad/run_dg_electrostatic.py

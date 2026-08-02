@@ -254,7 +254,8 @@
         "T03-P2-BULK-TRAPS-FORMAL V2 input contract: all V1 density points and extraction thresholds retained, common VTG grid extended to 1.7 V, zero internal-potential regression limited to exact zero controls, 8 devices, 440 planned DC solves and 360 planned transfer points frozen as E3 static evidence without V2 DEVSIM",
         "T03-P2-BULK-TRAPS-FORMAL V2 failed run preserved: 8 devices, 440 converged DC records, 360 transfer points, 8 states and 48 VTK; NTA=5e19 bracketed VTH but its VTH+0.2 V gm evaluation was outside the central-difference grid, so runner remained E0/FAIL and no independent check was run",
         "T03-P2-BULK-TRAPS-FORMAL V3 input contract: user-approved common VTG grid extended uniformly to 1.8 V while all density points, equations, extraction methods and thresholds remain unchanged; 8 devices, 456 planned DC solves and 376 planned transfer points frozen as E3 static evidence without V3 DEVSIM",
-        "T03-P2-BULK-TRAPS-FORMAL V3 controlled isolated sensitivity: 8 devices, 456 converged DC solves, 376 transfer points, 8 states and 48 VTK; runner 17/17 PASS at E2 and independent persisted-evidence check 16/16 PASS at E3; P2 complete within the numerical-proxy boundary"
+        "T03-P2-BULK-TRAPS-FORMAL V3 controlled isolated sensitivity: 8 devices, 456 converged DC solves, 376 transfer points, 8 states and 48 VTK; runner 17/17 PASS at E2 and independent persisted-evidence check 16/16 PASS at E3; P2 complete within the numerical-proxy boundary",
+        "T03-P3-CONTACT-RESISTANCE input contract: 2 E1 TLM source rows mapped to project total-pair teaching proxies R_pair*W=0/0.5/4.5 kOhm*um; symmetric device-circuit model, 12 planned devices, 243 planned DC solves and 156 planned points frozen by 30/30 E3 static checks without DEVSIM"
       ],
       "completed_parameter_groups": ["P1", "P2", "P4"],
       "partially_completed_parameter_groups": [],
@@ -331,6 +332,22 @@
         "nga_diagnostic": "VTH proxy strictly increases and gm proxy strictly decreases while SS proxy mildly decreases",
         "formal_sensitivity_completed": true,
         "complete_p2_trap_group": true,
+        "complete_t03_five_group_sensitivity": false
+      },
+      "p3_contact_contract_evidence": {
+        "status": "input_contract_ready",
+        "contract_evidence": "E3",
+        "contract_checks_passed": 30,
+        "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+        "literature_source_rows": 2,
+        "r_pair_w_values_kohm_um": [0.0, 0.5, 4.5],
+        "planned_devices": 12,
+        "planned_dc_solves": 243,
+        "planned_reported_points": 156,
+        "planned_states": 3,
+        "initial_checker_failure_preserved": true,
+        "formal_sensitivity_completed": false,
+        "complete_p3_contact_group": false,
         "complete_t03_five_group_sensitivity": false
       },
       "first_group_outputs": [
@@ -432,7 +449,14 @@
         "report/assets/tcad_t03_p2_bulk_traps_formal_v3_sensitivity.png",
         "report/assets/tcad_t03_p2_bulk_traps_formal_v3_states.png"
       ],
-      "evidence_boundary": "P4, numerical P1, and P2 are complete with E3 persisted-evidence checks. P2 comprises the bottom-interface DIT substage, the bulk equation smoke, and the formal isolated NTA/NGA V3 transfer sensitivity. Formal bulk V1 completed all 8 devices, 328 converged DC records and 248 transfer points but remains E0/FAIL because NTA=5e19 did not bracket the unchanged VTH criterion and the inherited nonzero-trap internal-potential gate was invalid. V2 completed all 8 devices, 440 converged DC records and 360 transfer points but also remains E0/FAIL because the diagnostic VTH+0.2 V gm evaluation lacked a central-difference upper neighbor on the 1.7 V grid. V1 and V2 exact inputs, runners, logs, curves, states and reports are preserved; no V2 independent check was run. The V3 E3 static contract changed only the common stop to the user-approved 1.8 V. Its subsequent runner completed all 8 devices, 456 converged DC records, 376 transfer points, 8 states and 48 VTK files; the E2 runner passed 17/17 and the independent E3 persisted-evidence check passed 16/16. The NTA and NGA VTH/gm/SS/current/state results remain numerical proxies from an uncalibrated quasi-static teaching model. In particular, the mildly decreasing NGA SS proxy is a recorded diagnostic, not a validated physical mechanism. P3, P5, complete T03, measured or fitted DOS, physical SS/VTH/Ioff/Ion, dynamic capture-emission, experimental calibration, compact-model, circuit, layout, PEX and HZO evidence remain unverified.",
+      "p3_outputs": [
+        "references/t03_p3_contact_sources.csv",
+        "config/tcad_t03_p3_contact_resistance.json",
+        "scripts/check_t03_p3_contact_contract.py",
+        "results/reports/tcad_t03_p3_contact_input_contract_v1_checker_initial_assertions_failed.json",
+        "results/reports/tcad_t03_p3_contact_input_contract.json"
+      ],
+      "evidence_boundary": "P4, numerical P1, and P2 are complete with E3 persisted-evidence checks. P2 comprises the bottom-interface DIT substage, the bulk equation smoke, and the formal isolated NTA/NGA V3 transfer sensitivity. Formal bulk V1 completed all 8 devices, 328 converged DC records and 248 transfer points but remains E0/FAIL because NTA=5e19 did not bracket the unchanged VTH criterion and the inherited nonzero-trap internal-potential gate was invalid. V2 completed all 8 devices, 440 converged DC records and 360 transfer points but also remains E0/FAIL because the diagnostic VTH+0.2 V gm evaluation lacked a central-difference upper neighbor on the 1.7 V grid. V1 and V2 exact inputs, runners, logs, curves, states and reports are preserved; no V2 independent check was run. The V3 E3 static contract changed only the common stop to the user-approved 1.8 V. Its subsequent runner completed all 8 devices, 456 converged DC records, 376 transfer points, 8 states and 48 VTK files; the E2 runner passed 17/17 and the independent E3 persisted-evidence check passed 16/16. The NTA and NGA VTH/gm/SS/current/state results remain numerical proxies from an uncalibrated quasi-static teaching model. In particular, the mildly decreasing NGA SS proxy is a recorded diagnostic, not a validated physical mechanism. The P3 contact input contract passed 30/30 at E3 with simulation explicitly NOT_RUN. It maps two E1 literature magnitudes to an explicit symmetric total-pair lumped resistance teaching proxy and freezes 12 planned devices, 243 planned DC solves and 156 planned points. These counts are not simulation results, the source convention and contact metals are not inherited, and no project TLM extraction, barrier or injection model is claimed. Formal P3 simulation and independent result verification remain incomplete; P3, P5, complete T03, physical contact parameters, experimental calibration, compact-model, circuit-cell, layout, PEX and HZO evidence remain unverified.",
       "acceptance": ["five groups complete", "at least three points per group", "quantitative comparison uses common axes", "each completed group has an independent persisted-evidence check", "failed hypotheses remain visible and do not get silently relaxed"]
     },
     {

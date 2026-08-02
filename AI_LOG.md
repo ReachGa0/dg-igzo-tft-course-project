@@ -16,6 +16,40 @@
 
 ---
 
+## 2026-08-02 | Codex GPT-5 | 建立 T03-P3 对称串联接触电阻正式合同
+
+### 用户目标
+
+在完整数值 P2 已关闭后按阶段 DAG 继续推进；可由现有代码、配置和证据保守解决的问题直接处理。本里程碑只建立正式 T03-P3 接触敏感性合同，不运行 TCAD/SPICE，不提前进入 P5、紧凑模型、电路、版图、PEX 或 HZO。
+
+### 读取的关键输入与来源
+
+- `AGENTS.md`、根目录状态文档、`config/project.json`、`config/experiments.json`、T01/T02/P1/P2/P4 配置与 E2/E3 报告，以及既有 DEVSIM 源漏接触实现。
+- 学长来源 manifest 中 DOI `10.1109/IEDM45625.2022.10019488` 的 2022 IEDM 一手论文；原文件 SHA-256 为 `96cf85563f3940cb3a70092f31ae5ede3a8b250a9be63d0aa67ad505e55baa96`。论文 Fig. 9 文字在 `VGS-VTH=2.5 V` 报告 Ni/Ti 接触电阻约 `0.5/4.5 kOhm*um`。
+- 原论文为纳米沟道、5 nm IGZO 和不同 HfO2/Al2O3 栈，不能继承为本项目 `W/L=60/10 um`、24 nm IGZO、双 30 nm Al2O3 器件的测量、拟合或金属参数。
+
+### 合同决策与产物
+
+- 新增 `references/t03_p3_contact_sources.csv` 和 `config/tcad_t03_p3_contact_resistance.json`。唯一变量冻结为项目定义的总源漏串联电阻宽度积 `R_pair*W=0/0.5/4.5 kOhm*um`；两个非零文献数量级只映射为低/高教学代理，不继承原 Rc 定义或 Ni/Ti 案例标签。
+- 零点沿用 T02-C 直连理想欧姆接触；非零点把总电阻对称分到源漏，要求 Poisson/电子接触方程通过 internal circuit node 与外部 R/V elements 自洽耦合。barrier height、热发射、隧穿、接触区材料/网格、手工外层压降迭代和事后电流降额均禁止。
+- 冻结 3 个 transfer 器件和 9 个独立 output 器件，共 12 器件、243 次计划 DC、93 个 transfer 点、63 个 output 点、3 状态和 18 VTK。线性区总电阻宽度积用 `VTG=1 V`、外部 `VDS=0.001/0.005/0.01 V` 与外部漏电流的过原点 OLS 提取。
+- 完成门包括求解收敛、器件守恒、circuit KCL、Ohm 定律、内外电压分配、选定偏压电流/电阻方向、最大输入至少 0.1% 响应、T02-C 理想控制回归、状态/图/哈希和独立复算。失败必须先归档，禁止覆盖、删点或放宽门槛；运行器 PASS 后才允许独立检查。
+- 新增纯标准库 `scripts/check_t03_p3_contact_contract.py` 和 `make t03-p3-contact-contract-check`；同步机器配置、项目总检查、README/上下文/架构/状态/计划/ADR-031、TCAD 路线、实验矩阵、报告第 5/6/8/12 章、附录 D 和证据矩阵。
+
+### 失败保留与验证
+
+- 首次静态合同检查为 27/30 PASS，三个失败均是检查器断言错误：错误要求 T02-C 独立报告的未定义顶层字段、把 `literature` 子串误判为 `Ti`、以及连字符拼写不一致。失败报告已保留为 `results/reports/tcad_t03_p3_contact_input_contract_v1_checker_initial_assertions_failed.json`。
+- 修正只改变三处检查器断言，不改合同值、模型、偏压、提取、计划数量或验收阈值。复跑 `make t03-p3-contact-contract-check` 为 30/30 PASS、E3、`simulation=NOT_RUN_BY_CONTRACT_CHECK`。
+- `make check`：474/474 PASS。`make report-check`：12 章、5 附录、16 个允许占位符、16 张既有图片 PASS。Python 编译、三个活动 JSON 和两份 CSV 解析均 PASS。
+- 本里程碑没有导入 DEVSIM 运行器、没有运行 TCAD/SPICE，也没有生成 P3 曲线、指标、状态或图片。12/243/156/3/18 全部是预注册计划量，不是仿真结果。
+
+### 证据边界和下一步
+
+- E3 只证明静态合同、来源映射、阶段顺序、失败保留和预注册门可自动复核；不证明项目 TLM 提取、Ti/Ni 接触比较、势垒/注入机制、物理 Ion、P3 或完整 T03。
+- 下一步只实现并运行正式 P3 对称串联接触电阻代理敏感性；运行器 PASS 后才运行独立持久化证据检查。任何预注册门失败都保留证据并暂停，P5 及全部下游领域继续关闭。
+
+---
+
 ## 2026-08-02 | Codex GPT-5 | 完成 bulk 正式 V3 并关闭数值 P2
 
 ### 用户目标
