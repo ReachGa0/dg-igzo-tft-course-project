@@ -138,6 +138,11 @@ REQUIRED_FILES = [
     "references/t03_p5_temperature_sources.csv",
     "config/tcad_t03_p5_temperature.json",
     "scripts/check_t03_p5_temperature_contract.py",
+    "config/compact_m00_input_validation.json",
+    "references/m00_dataset_registry.csv",
+    "scripts/check_m00_compact_model_contract.py",
+    "results/reports/m00_compact_model_input_contract.json",
+    "results/reports/m00_compact_model_input_contract_dependency_status_mismatch_failed.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -4512,7 +4517,7 @@ def main() -> int:
         )
         add_check(
             checks,
-            "t03_p5_temperature:machine_state_next_gate_and_boundary",
+            "t03_p5_temperature:documented_completion_boundary",
             p5_t03.get("status") == "verified"
             and p5_t03.get("completed_parameter_groups")
             == ["P1", "P2", "P3", "P4", "P5"]
@@ -4536,9 +4541,6 @@ def main() -> int:
                 "compact_model_simulation_permitted_before_m00_contract"
             )
             is False
-            and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "establish a formal M00 teaching compact-model"
-            )
             and "without running DEVSIM"
             in p5_config.get("evidence_boundary", {}).get(
                 "contract_allowed_claim", ""
@@ -4590,6 +4592,128 @@ def main() -> int:
             False,
             str(error),
         )
+
+    try:
+        m00_config_path = ROOT / "config" / "compact_m00_input_validation.json"
+        m00_registry_path = ROOT / "references" / "m00_dataset_registry.csv"
+        m00_report_path = ROOT / "results" / "reports" / "m00_compact_model_input_contract.json"
+        m00_failure_path = (
+            ROOT
+            / "results"
+            / "reports"
+            / "m00_compact_model_input_contract_dependency_status_mismatch_failed.json"
+        )
+        m00_config = json.loads(m00_config_path.read_text(encoding="utf-8"))
+        m00_report = json.loads(m00_report_path.read_text(encoding="utf-8"))
+        m00_failure = json.loads(m00_failure_path.read_text(encoding="utf-8"))
+        with m00_registry_path.open("r", encoding="utf-8", newline="") as stream:
+            m00_registry_rows = list(csv.DictReader(stream))
+        m00_experiment = next(
+            item for item in experiments["experiments"] if item["id"] == "M00"
+        )
+        m00_checks = m00_report.get("checks", [])
+        m00_plan = m00_report.get("planned_fit", {})
+
+        def m00_csv_row_count(path: Path) -> int:
+            with path.open("r", encoding="utf-8", newline="") as stream:
+                return sum(1 for _ in csv.DictReader(stream))
+
+        add_check(
+            checks,
+            "m00_contract:static_report_and_frozen_split",
+            m00_report.get("status") == "PASS"
+            and m00_report.get("contract_status") == "PASS"
+            and m00_report.get("fit_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m00_report.get("tcad_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m00_report.get("spice_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m00_report.get("circuit_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m00_report.get("evidence_level") == "E3"
+            and len(m00_checks) == 25
+            and all(item.get("status") == "PASS" for item in m00_checks)
+            and not m00_report.get("failures")
+            and m00_plan.get("parameter_count") == 11
+            and m00_plan.get("training_curves") == 9
+            and m00_plan.get("training_scored_points") == 163
+            and m00_plan.get("holdout_curves") == 4
+            and m00_plan.get("holdout_scored_points") == 70
+            and m00_plan.get("zero_vds_invariant_points") == 7,
+            (
+                f"checks={len(m00_checks)} train={m00_plan.get('training_curves')}/"
+                f"{m00_plan.get('training_scored_points')} holdout="
+                f"{m00_plan.get('holdout_curves')}/{m00_plan.get('holdout_scored_points')}"
+            ),
+        )
+        registry_valid = (
+            len(m00_registry_rows) == 13
+            and len({item["dataset_id"] for item in m00_registry_rows}) == 13
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                and m00_csv_row_count(ROOT / item["path"])
+                == int(item["row_count"])
+                for item in m00_registry_rows
+            )
+        )
+        add_check(
+            checks,
+            "m00_contract:config_registry_and_source_hashes",
+            sha256(m00_config_path) == m00_report.get("config", {}).get("sha256")
+            and sha256(ROOT / "scripts" / "check_m00_compact_model_contract.py")
+            == m00_report.get("contract_checker", {}).get("sha256")
+            and sha256(m00_registry_path) == m00_report.get("registry", {}).get("sha256")
+            and m00_report.get("registry", {}).get("dataset_count") == 13
+            and registry_valid
+            and m00_config.get("dataset_contract", {}).get("formal_fit_dataset_ids")
+            == [
+                "T01_D_B_IDVD", "T01_D_C_IDVG", "T02_C_DG_TRANSFER",
+                "T03_P4_LENGTH_TRANSFER", "T03_P3_V2_OUTPUT",
+            ],
+            f"registry_rows={len(m00_registry_rows)} config={m00_report.get('config', {}).get('sha256')}",
+        )
+        m00_failed_checks = [
+            item for item in m00_failure.get("checks", [])
+            if item.get("status") == "FAIL"
+        ]
+        add_check(
+            checks,
+            "m00_contract:dependency_status_mismatch_failure_preserved",
+            m00_failure.get("status") == "FAIL"
+            and m00_failure.get("fit_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m00_failure.get("spice_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(m00_failure.get("checks", [])) == 25
+            and len(m00_failed_checks) == 1
+            and m00_failed_checks[0].get("name")
+            == "dependencies:t01_t02_t03_numerical_gates_complete"
+            and "T01=complete_e2" in m00_failed_checks[0].get("detail", "")
+            and "T02=bidirectional_verified" in m00_failed_checks[0].get("detail", ""),
+            f"status={m00_failure.get('status')} failures={len(m00_failed_checks)}",
+        )
+        m00_machine = m00_experiment.get("contract_evidence", {})
+        m00_prohibited = " ".join(
+            m00_config.get("evidence_boundary", {}).get("prohibited_claims", [])
+        )
+        add_check(
+            checks,
+            "m00_contract:machine_state_next_gate_and_boundary",
+            m00_experiment.get("status") == "in_progress"
+            and m00_experiment.get("current_evidence") == "E0"
+            and m00_experiment.get("depends_on") == ["S00", "T01", "T02", "T03"]
+            and m00_machine.get("status") == "input_validation_contract_ready"
+            and m00_machine.get("contract_evidence") == "E3"
+            and m00_machine.get("contract_checks_passed") == 25
+            and m00_machine.get("fit_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m00_machine.get("formal_fit_completed") is False
+            and m00_machine.get("m01_or_downstream_permitted") is False
+            and config.get("tcad_track", {}).get("next_scope", "").startswith(
+                "run exactly one formal M00 teaching compact-model fit"
+            )
+            and "experimental fitting" in m00_prohibited
+            and "independent external validation" in m00_prohibited
+            and "circuit-ready" in m00_prohibited,
+            config.get("tcad_track", {}).get("next_scope", ""),
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "m00_contract:static_input_validation", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

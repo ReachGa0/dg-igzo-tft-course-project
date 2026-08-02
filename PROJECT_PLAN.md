@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`T03_COMPLETE_E3_M00_CONTRACT_NEXT`：T01/T02 冻结教学模型数值门和 T03-P1/P2/P3/P4/P5 已关闭，P2/P3 历史失败保留。P5 完成 3 器件/123 次收敛 DC/93 点/3 状态/18 VTK，运行器 14/14 E2、独立检查 15/15 E3。G0 仍为 `TEACHING_BASELINE_ONLY`；下一步只建立 M00 教学紧凑模型输入与验证合同，紧凑模型拟合和定量电路预测尚未开始。
+`M00_INPUT_VALIDATION_CONTRACT_E3_FIT_NEXT`：T01/T02/T03 冻结教学模型数值门已关闭，P2/P3 历史失败保留。M00 输入/验证合同以 25/25 静态检查 PASS、E3，固定 13 表、9 条 train/163 点、4 条 holdout/70 点和 11 个系数；首次依赖状态枚举 FAIL 已保留。合同不是拟合或仿真，M00 模型仍 E0；下一步只运行一次正式教学代理拟合及其独立检查。
 
 ## 截止日期
 
@@ -45,7 +45,7 @@
 | T01 | 单栅漂移扩散 | DONE，E2 教学模型数值门 | `results/reports/tcad_t01_d_extraction.json`；状态、守恒、网格代理比较与独立检查完整，不代表实验标定 |
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
-| M00 | IGZO 多曲线标定 | TODO，CONTRACT NEXT | G0 无条件完整实验主数据；先冻结合格 TCAD 教学曲线、train/holdout、双轨模型、误差和边界合同 |
+| M00 | IGZO 教学多曲线代理拟合 | IN PROGRESS，CONTRACT E3 / FIT E0 | 25/25 静态合同已冻结 9/163 train、4/70 holdout、线性/对数误差和失败保留；未拟合、未运行 SPICE |
 | M01 | AIM-Spice/ngspice 对照 | TODO | 依赖 M00 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-只建立正式 M00 教学紧凑模型输入与验证合同：冻结可用数据集及禁止用途、训练/holdout 划分、AIM-Spice Level 15 与 ngspice 行为等效双轨边界、提取/优化方法、线性与对数误差、失败保留和输出路径。合同通过并提交前不做拟合或 SPICE；M01、电路、版图、PEX 和 HZO 继续关闭。
+只按已冻结合同运行一次正式 M00 教学紧凑代理拟合：仅 9 条 train/163 点可进入确定性优化，4 条整条件 holdout/70 点只能在拟合完成后评分。同时报告线性/对数误差、VTH/gm、单调与零漏压门、参数来源和局部有效域；运行器 PASS 后再做独立落盘检查。本阶段不运行 TCAD/SPICE，M01、电路、版图、PEX 和 HZO 继续关闭。

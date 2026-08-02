@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 542,
+  "checks": 551,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=21210"
+      "detail": "bytes=21225"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=17827"
+      "detail": "bytes=17925"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=13887"
+      "detail": "bytes=13982"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=110838"
+      "detail": "bytes=113637"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4400"
+      "detail": "bytes=4498"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=52674"
+      "detail": "bytes=55667"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=25880"
+      "detail": "bytes=27636"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=6535"
+      "detail": "bytes=6660"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=10541"
+      "detail": "bytes=11236"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=46952"
+      "detail": "bytes=48689"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -890,6 +890,31 @@
       "detail": "bytes=21888"
     },
     {
+      "name": "file:config/compact_m00_input_validation.json",
+      "status": "PASS",
+      "detail": "bytes=22714"
+    },
+    {
+      "name": "file:references/m00_dataset_registry.csv",
+      "status": "PASS",
+      "detail": "bytes=5633"
+    },
+    {
+      "name": "file:scripts/check_m00_compact_model_contract.py",
+      "status": "PASS",
+      "detail": "bytes=27241"
+    },
+    {
+      "name": "file:results/reports/m00_compact_model_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=18128"
+    },
+    {
+      "name": "file:results/reports/m00_compact_model_input_contract_dependency_status_mismatch_failed.json",
+      "status": "PASS",
+      "detail": "bytes=17678"
+    },
+    {
       "name": "file:scripts/check_t03_p5_temperature.py",
       "status": "PASS",
       "detail": "bytes=35919"
@@ -1282,7 +1307,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=28833"
+      "detail": "bytes=30428"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -1902,12 +1927,12 @@
     {
       "name": "file:models/level61/README.md",
       "status": "PASS",
-      "detail": "bytes=354"
+      "detail": "bytes=666"
     },
     {
       "name": "file:spice/models/README.md",
       "status": "PASS",
-      "detail": "bytes=263"
+      "detail": "bytes=504"
     },
     {
       "name": "file:spice/netlists/devices/README.md",
@@ -2640,14 +2665,34 @@
       "detail": "artifacts=7 figures=2 states=3 vtk=18"
     },
     {
-      "name": "t03_p5_temperature:machine_state_next_gate_and_boundary",
+      "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "establish a formal M00 teaching compact-model input and validation contract from qualified T01/T02/T03 numerical curves; freeze dataset eligibility, train/holdout split, model routes, extraction and optimization methods, linear/log error metrics, outputs, failure retention, and evidence boundary before any compact-model fitting or SPICE run, while M01, circuit cells, layout, PEX, and HZO remain closed"
+      "detail": "run exactly one formal M00 teaching compact-model fit against the frozen 9-curve/163-point training set, then run its independent persisted-evidence check against the untouched 4-curve/70-point holdout; do not run TCAD or SPICE, and keep M01, circuit cells, layout, PEX, and HZO closed until both M00 evidence levels pass"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
       "status": "PASS",
       "detail": "status=FAIL checks=540 failures=1"
+    },
+    {
+      "name": "m00_contract:static_report_and_frozen_split",
+      "status": "PASS",
+      "detail": "checks=25 train=9/163 holdout=4/70"
+    },
+    {
+      "name": "m00_contract:config_registry_and_source_hashes",
+      "status": "PASS",
+      "detail": "registry_rows=13 config=407585bca9929dd573665ce6e0c7dcd872aee6cef184ef1cdd25b0b19e1bf27e"
+    },
+    {
+      "name": "m00_contract:dependency_status_mismatch_failure_preserved",
+      "status": "PASS",
+      "detail": "status=FAIL failures=1"
+    },
+    {
+      "name": "m00_contract:machine_state_next_gate_and_boundary",
+      "status": "PASS",
+      "detail": "run exactly one formal M00 teaching compact-model fit against the frozen 9-curve/163-point training set, then run its independent persisted-evidence check against the untouched 4-curve/70-point holdout; do not run TCAD or SPICE, and keep M01, circuit cells, layout, PEX, and HZO closed until both M00 evidence levels pass"
     },
     {
       "name": "tcad:mesh_levels",

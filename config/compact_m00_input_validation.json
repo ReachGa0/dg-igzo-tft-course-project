@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "case_id": "IGZO_M00_TEACHING_COMPACT_INPUT_VALIDATION_V1",
+  "stage": "M00",
+  "status": "planned",
+  "evidence_level_before_fit": "E0",
+  "contract_evidence_level_after_check": "E3",
+  "dependencies": {
+    "project_config": "config/project.json",
+    "experiments_config": "config/experiments.json",
+    "s00_report": "results/reports/s00_data_audit.json",
+    "dataset_registry": "references/m00_dataset_registry.csv",
+    "contract_checker": "scripts/check_m00_compact_model_contract.py",
+    "required_g0_status": "TEACHING_BASELINE_ONLY",
+    "required_t01_status": "complete_e2",
+    "required_t02_status": "bidirectional_verified",
+    "required_t03_status": "verified",
+    "required_t03_groups": ["P1", "P2", "P3", "P4", "P5"]
+  },
+  "scope": {
+    "device": "2D n-IGZO teaching compact surrogate for single-bottom-gate and symmetric dual-gate DC current",
+    "purpose": "Fit one auditable simulator-independent IGZO-only DC kernel to qualified project numerical curves and evaluate a condition-held-out set before any simulator cross-check or circuit prediction.",
+    "laptop_target": true,
+    "changed_variables_in_future_fit": [
+      "compact surrogate coefficients only"
+    ],
+    "fixed_inputs": [
+      "qualified persisted T01/T02/T03 CSV bytes and SHA-256 values",
+      "whole-condition training and holdout selectors",
+      "per-curve equal weighting",
+      "linear and logarithmic metrics",
+      "parameter bounds and deterministic optimizer settings",
+      "300 K nominal trap-free ideal-contact IGZO teaching-model boundary"
+    ],
+    "prohibited_work_before_contract_commit": [
+      "compact-model optimization or parameter fitting",
+      "ngspice or AIM-Spice execution",
+      "M01 simulator comparison",
+      "C00 or any later circuit cell",
+      "layout DRC LVS or PEX",
+      "HZO or ferroelectric work"
+    ]
+  },
+  "dataset_contract": {
+    "registry": "references/m00_dataset_registry.csv",
+    "target_current_column": "absolute drain current per unit out-of-plane width",
+    "target_current_unit": "A/cm",
+    "terminal_current_conversion": "I_terminal_A = I_per_width_A_per_cm * W_cm",
+    "formal_fit_dataset_ids": [
+      "T01_D_B_IDVD",
+      "T01_D_C_IDVG",
+      "T02_C_DG_TRANSFER",
+      "T03_P4_LENGTH_TRANSFER",
+      "T03_P3_V2_OUTPUT"
+    ],
+    "forbidden_fit_dataset_ids": [
+      "T03_P1_BIAS_TRANSFER",
+      "T03_P1_CAP_RATIO_TRANSFER",
+      "T03_P2_DIT_TRANSFER",
+      "T03_P2_BULK_V3_TRANSFER",
+      "T03_P3_V2_TRANSFER",
+      "T03_P5_TEMPERATURE_TRANSFER",
+      "EXTERNAL_NGSPICE_TRANSFER",
+      "EXTERNAL_NGSPICE_OUTPUT"
+    ],
+    "rules": [
+      "Only rows selected from E3 independently checked project numerical tables may be scored.",
+      "The split is by complete bias or geometry condition rather than random neighboring points.",
+      "Holdout rows cannot initialize parameters enter the objective select a restart or alter thresholds.",
+      "Reference meshes reciprocal paths reverse sweeps and repeated control curves are audits rather than independent validation.",
+      "VDS=0 rows are zero-current invariants and repeated VDS=0.01 output rows are cross-stage audits rather than weighted duplicates.",
+      "External and senior data remain reference_only under G0 and cannot enter fitting or holdout."
+    ]
+  },
+  "scored_curves": [
+    {
+      "curve_id": "train_t01_single_idvg_l10",
+      "dataset_id": "T01_D_C_IDVG",
+      "split": "train",
+      "kind": "transfer",
+      "selector": {"mesh_role": "production", "mesh_level": "interface_4x"},
+      "scoring_filter": {"column": "vds_v", "operator": "equal", "values": [0.01]},
+      "point_count": 51,
+      "scored_point_count": 51,
+      "topology": "single_bottom_gate",
+      "w_um": 60.0,
+      "l_um": 10.0,
+      "temperature_k": 300.0
+    },
+    {
+      "curve_id": "train_t01_single_idvd_vgs_0p0",
+      "dataset_id": "T01_D_B_IDVD",
+      "split": "train",
+      "kind": "output",
+      "selector": {"curve_id": "interface_4x_vgs_0p000"},
+      "scoring_filter": {"column": "vds_v", "operator": "not_in", "values": [0.0, 0.01]},
+      "point_count": 5,
+      "scored_point_count": 3,
+      "topology": "single_bottom_gate",
+      "w_um": 60.0,
+      "l_um": 10.0,
+      "temperature_k": 300.0
+    },
+    {
+      "curve_id": "holdout_t01_single_idvd_vgs_0p3",
+      "dataset_id": "T01_D_B_IDVD",
+      "split": "holdout",
+      "kind": "output",
+      "selector": {"curve_id": "interface_4x_vgs_0p300"},
+      "scoring_filter": {"column": "vds_v", "operator": "not_in", "values": [0.0, 0.01]},
+      "point_count": 5,
+      "scored_point_count": 3,
+      "topology": "single_bottom_gate",
+      "w_um": 60.0,
+      "l_um": 10.0,
+      "temperature_k": 300.0
+    },
+    {
+      "curve_id": "train_t01_single_idvd_vgs_0p5",
+      "dataset_id": "T01_D_B_IDVD",
+      "split": "train",
+      "kind": "output",
+      "selector": {"curve_id": "interface_4x_vgs_0p500"},
+      "scoring_filter": {"column": "vds_v", "operator": "not_in", "values": [0.0, 0.01]},
+      "point_count": 5,
+      "scored_point_count": 3,
+      "topology": "single_bottom_gate",
+      "w_um": 60.0,
+      "l_um": 10.0,
+      "temperature_k": 300.0
+    },
+    {
+      "curve_id": "train_t01_single_idvd_vgs_1p0",
+      "dataset_id": "T01_D_B_IDVD",
+      "split": "train",
+      "kind": "output",
+      "selector": {"curve_id": "interface_4x_vgs_1p000"},
+      "scoring_filter": {"column": "vds_v", "operator": "not_in", "values": [0.0, 0.01]},
+      "point_count": 5,
+      "scored_point_count": 3,
+      "topology": "single_bottom_gate",
+      "w_um": 60.0,
+      "l_um": 10.0,
+      "temperature_k": 300.0
+    },
+    {
+      "curve_id": "train_t02_dual_secondary_m0p3",
+      "dataset_id": "T02_C_DG_TRANSFER",
+      "split": "train",
+      "kind": "transfer",
+      "selector": {"family_id": "top_primary", "sweep_direction": "forward", "fixed_secondary_gate_v": -0.3},
+      "scoring_filter": {"column": "vds_v", "operator": "equal", "values": [0.01]},
+      "point_count": 31,
+      "scored_point_count": 31,
+      "topology": "symmetric_dual_gate",
+      "w_um": 60.0,
+      "l_um": 10.0,
+      "temperature_k": 300.0
+    },
+    {
+      "curve_id": "holdout_t02_dual_secondary_0p0",
+      "dataset_id": "T02_C_DG_TRANSFER",
+      "split": "holdout",
+      "kind": "transfer",
+      "selector": {"family_id": "top_primary", "sweep_direction": "forward", "fixed_secondary_gate_v": 0.0},
+      "scoring_filter": {"column": "vds_v", "operator": "equal", "values": [0.01]},
+      "point_count": 31,
+      "scored_point_count": 31,
+      "topology": "symmetric_dual_gate",
+      "w_um": 60.0,
+      "l_um": 10.0,
+      "temperature_k": 300.0
+    },
+    {
+      "curve_id": "train_t02_dual_secondary_p0p3",
+      "dataset_id": "T02_C_DG_TRANSFER",
+      "split": "train",
+      "kind": "transfer",
+      "selector": {"family_id": "top_primary", "sweep_direction": "forward", "fixed_secondary_gate_v": 0.3},
+      "scoring_filter": {"column": "vds_v", "operator": "equal", "values": [0.01]},
+      "point_count": 31,
+      "scored_point_count": 31,
+      "topology": "symmetric_dual_gate",
+      "w_um": 60.0,
+      "l_um": 10.0,
+      "temperature_k": 300.0
+    },
+    {
+      "curve_id": "train_t03_dual_length_8",
+      "dataset_id": "T03_P4_LENGTH_TRANSFER",
+      "split": "train",
+      "kind": "transfer",
+      "selector": {"channel_length_um": 8.0},
+      "scoring_filter": {"column": "vds_v", "operator": "equal", "values": [0.01]},
+      "point_count": 31,
+      "scored_point_count": 31,
+      "topology": "symmetric_dual_gate",
+      "w_um": 60.0,
+      "l_um": 8.0,
+      "temperature_k": 300.0
+    },
+    {
+      "curve_id": "holdout_t03_dual_length_12",
+      "dataset_id": "T03_P4_LENGTH_TRANSFER",
+      "split": "holdout",
+      "kind": "transfer",
+      "selector": {"channel_length_um": 12.0},
+      "scoring_filter": {"column": "vds_v", "operator": "equal", "values": [0.01]},
+      "point_count": 31,
+      "scored_point_count": 31,
+      "topology": "symmetric_dual_gate",
+      "w_um": 60.0,
+      "l_um": 12.0,
+      "temperature_k": 300.0
+    },
+    {
+      "curve_id": "train_t03_dual_idvd_vtg_0p3",
+      "dataset_id": "T03_P3_V2_OUTPUT",
+      "split": "train",
+      "kind": "output",
+      "selector": {"case_id": "ideal_control", "curve_id": "ideal_control_output_vtg_0p3"},
+      "scoring_filter": {"column": "external_vds_v", "operator": "not_in", "values": [0.0, 0.01]},
+      "point_count": 7,
+      "scored_point_count": 5,
+      "topology": "symmetric_dual_gate",
+      "w_um": 60.0,
+      "l_um": 10.0,
+      "temperature_k": 300.0
+    },
+    {
+      "curve_id": "holdout_t03_dual_idvd_vtg_0p5",
+      "dataset_id": "T03_P3_V2_OUTPUT",
+      "split": "holdout",
+      "kind": "output",
+      "selector": {"case_id": "ideal_control", "curve_id": "ideal_control_output_vtg_0p5"},
+      "scoring_filter": {"column": "external_vds_v", "operator": "not_in", "values": [0.0, 0.01]},
+      "point_count": 7,
+      "scored_point_count": 5,
+      "topology": "symmetric_dual_gate",
+      "w_um": 60.0,
+      "l_um": 10.0,
+      "temperature_k": 300.0
+    },
+    {
+      "curve_id": "train_t03_dual_idvd_vtg_1p0",
+      "dataset_id": "T03_P3_V2_OUTPUT",
+      "split": "train",
+      "kind": "output",
+      "selector": {"case_id": "ideal_control", "curve_id": "ideal_control_output_vtg_1"},
+      "scoring_filter": {"column": "external_vds_v", "operator": "not_in", "values": [0.0, 0.01]},
+      "point_count": 7,
+      "scored_point_count": 5,
+      "topology": "symmetric_dual_gate",
+      "w_um": 60.0,
+      "l_um": 10.0,
+      "temperature_k": 300.0
+    }
+  ],
+  "split_summary": {
+    "training_curve_count": 9,
+    "holdout_curve_count": 4,
+    "training_scored_point_count": 163,
+    "holdout_scored_point_count": 70,
+    "zero_vds_invariant_point_count": 7,
+    "repeated_low_vds_audit_point_count": 7,
+    "split_policy": "fixed whole-condition split registered before fitting"
+  },
+  "audit_and_exclusion_contract": {
+    "numerical_reproduction_sets": [
+      {"dataset_id": "T01_D_B_IDVD", "selector": {"mesh_level": "interface_8x"}, "row_count": 10, "role": "mesh audit"},
+      {"dataset_id": "T01_D_C_IDVG", "selector": {"mesh_level": "interface_8x"}, "row_count": 51, "role": "mesh audit"},
+      {"dataset_id": "T02_C_DG_TRANSFER", "selector": {"family_id": "bottom_primary", "sweep_direction": "forward"}, "row_count": 93, "role": "reciprocity audit"},
+      {"dataset_id": "T02_C_DG_TRANSFER", "selector": {"sweep_direction": "reverse"}, "row_count": 62, "role": "path audit"},
+      {"dataset_id": "T03_P4_LENGTH_TRANSFER", "selector": {"channel_length_um": 10.0}, "row_count": 31, "role": "T02-C duplicate audit"}
+    ],
+    "report_only_challenges": [
+      {"dataset_id": "T03_P1_BIAS_TRANSFER", "row_count": 155, "reason": "secondary-bias interpolation and endpoint response"},
+      {"dataset_id": "T03_P1_CAP_RATIO_TRANSFER", "row_count": 155, "reason": "non-nominal effective coupling allocation"},
+      {"dataset_id": "T03_P3_V2_TRANSFER", "row_count": 93, "reason": "ideal duplicate plus lumped-contact response"},
+      {"dataset_id": "T03_P5_TEMPERATURE_TRANSFER", "row_count": 93, "reason": "V_t-only temperature response"}
+    ],
+    "excluded_physics_variants": [
+      {"dataset_id": "T03_P2_DIT_TRANSFER", "row_count": 124, "reason": "interface charge model differs from nominal"},
+      {"dataset_id": "T03_P2_BULK_V3_TRANSFER", "row_count": 376, "reason": "bulk trap charge model differs from nominal"}
+    ],
+    "completion_rule": "Audit challenge and excluded sets must be listed in the future report but cannot change fit parameters or formal acceptance."
+  },
+  "reference_kernel": {
+    "kernel_id": "IGZO_DG_TEACHING_KERNEL_R01",
+    "model_kind": "smooth charge-difference DC teaching surrogate",
+    "current_direction_domain": "formal M00 scoring uses VDS >= 0 only",
+    "softplus": "Q(x,s) = s * log(1 + exp(clamp(x/s,-60,60)))",
+    "single_gate_control": "U = VBG",
+    "dual_gate_control": "U = eta_dg * (VTG + VBG)",
+    "length_threshold": "Vth(L) = Vth_topology + kvth_l * ln(L/Lref)",
+    "current_per_width": "I = sign(VDS) * {10^log_beta * (Lref/L)^p_l * [Q(U-Vth,s)^gamma - Q(U-Vth-k_d*abs(VDS),s)^gamma] * [1+lambda*abs(VDS)] + 10^log_gmin*abs(VDS)}",
+    "terminal_current": "I_terminal = I_per_width * W_cm",
+    "reference_length_um": 10.0,
+    "reciprocity_rule": "Top and bottom gate coefficients are identical in the nominal symmetric dual-gate route.",
+    "physical_parameter_claim_permitted": false
+  },
+  "parameter_contract": [
+    {"name": "log_beta", "initial": -3.0, "lower": -8.0, "upper": 1.0, "unit": "log10(A/cm/V^gamma)", "role": "current scale coefficient"},
+    {"name": "vth_single_v", "initial": 0.2175, "lower": -0.5, "upper": 1.0, "unit": "V", "role": "single-gate control offset"},
+    {"name": "vth_dual_v", "initial": 0.132, "lower": -0.5, "upper": 1.0, "unit": "V", "role": "dual-gate control offset"},
+    {"name": "eta_dg", "initial": 0.5, "lower": 0.2, "upper": 0.8, "unit": "1", "role": "equal per-gate nominal control weight"},
+    {"name": "softplus_scale_v", "initial": 0.026, "lower": 0.005, "upper": 0.2, "unit": "V", "role": "smooth subthreshold scale coefficient"},
+    {"name": "transport_exponent", "initial": 2.0, "lower": 1.0, "upper": 4.0, "unit": "1", "role": "charge-power coefficient"},
+    {"name": "drain_coupling", "initial": 1.0, "lower": 0.1, "upper": 3.0, "unit": "1", "role": "drain-side charge reduction coefficient"},
+    {"name": "lambda_per_v", "initial": 0.1, "lower": 0.0, "upper": 20.0, "unit": "1/V", "role": "sampled output modulation coefficient"},
+    {"name": "log_gmin", "initial": -18.0, "lower": -30.0, "upper": -8.0, "unit": "log10(S/cm)", "role": "numerical floor conductance coefficient"},
+    {"name": "length_exponent", "initial": 0.62, "lower": 0.0, "upper": 2.0, "unit": "1", "role": "local 8-12 um current scaling coefficient"},
+    {"name": "length_vth_slope_v", "initial": -0.03, "lower": -0.3, "upper": 0.3, "unit": "V", "role": "local threshold shift per ln(L/Lref)"}
+  ],
+  "optimization_contract": {
+    "backend": "scipy.optimize.least_squares",
+    "method": "trf",
+    "loss": "linear",
+    "jacobian": "2-point finite difference",
+    "xtol": 1e-12,
+    "ftol": 1e-12,
+    "gtol": 1e-12,
+    "max_nfev": 20000,
+    "random_seed_or_restart": "none",
+    "training_only": true,
+    "holdout_access_during_fit": false,
+    "per_curve_weighting": "Each training curve contributes equal total squared weight; linear and log residual blocks each contribute 0.5 per curve.",
+    "linear_residual": "(I_model-I_target)/max(abs(I_target)) within each scored curve",
+    "log_residual": "log10(max(abs(I_model),floor))-log10(max(abs(I_target),floor))",
+    "current_floor_a_per_cm": 1e-20,
+    "maximum_wall_seconds": 120.0,
+    "tcad_or_spice_execution": false
+  },
+  "metric_contract": {
+    "report_separately": [
+      "per-curve linear NRMSE",
+      "per-curve logarithmic RMSE in decades",
+      "aggregate equal-curve-weight linear NRMSE",
+      "aggregate equal-curve-weight logarithmic RMSE in decades",
+      "holdout VTH proxy absolute error for transfer curves with a valid common criterion",
+      "holdout gm proxy relative error at VTH+0.2 V when the common grid brackets it",
+      "zero-VDS current invariant",
+      "sampled transfer and output monotonicity",
+      "parameter bound distance and validity domain"
+    ],
+    "forbidden_reporting": [
+      "one blended score without linear and log components",
+      "metrics after removing a failed curve",
+      "experimental accuracy uncertainty or confidence interval",
+      "physical Ion Ioff mobility DOS contact or temperature parameters"
+    ]
+  },
+  "acceptance": {
+    "required_training_curve_count": 9,
+    "required_holdout_curve_count": 4,
+    "required_training_scored_point_count": 163,
+    "required_holdout_scored_point_count": 70,
+    "required_zero_vds_invariant_point_count": 7,
+    "maximum_training_aggregate_linear_nrmse": 0.15,
+    "maximum_training_aggregate_log_rmse_dec": 0.45,
+    "maximum_holdout_aggregate_linear_nrmse": 0.20,
+    "maximum_holdout_aggregate_log_rmse_dec": 0.60,
+    "maximum_training_per_curve_linear_nrmse": 0.30,
+    "maximum_training_per_curve_log_rmse_dec": 0.80,
+    "maximum_holdout_per_curve_linear_nrmse": 0.35,
+    "maximum_holdout_per_curve_log_rmse_dec": 1.0,
+    "maximum_holdout_vth_absolute_error_v": 0.10,
+    "maximum_holdout_gm_relative_error": 0.50,
+    "maximum_zero_vds_abs_current_a_per_cm": 1e-18,
+    "require_all_predictions_finite": true,
+    "require_nonnegative_current_for_nonnegative_vds": true,
+    "require_sampled_transfer_and_output_monotonicity": true,
+    "require_all_parameters_strictly_inside_bounds": true,
+    "require_training_and_holdout_metrics_reported_separately": true,
+    "require_multiple_vds_in_training_and_holdout": true,
+    "require_parameter_provenance_and_validity_domain": true
+  },
+  "model_routes": {
+    "reference_python": {
+      "role": "required M00 fit and independent validation route",
+      "equation_identity": "reference_kernel",
+      "simulator_execution": false
+    },
+    "ngspice_behavioral": {
+      "role": "generated IGZO-only behavioral translation candidate after M00 PASS; execution deferred to M01",
+      "equation_identity_target": "reference_kernel within declared numerical clipping",
+      "native_level61_claim_permitted": false
+    },
+    "aimspice_level15": {
+      "role": "IGZO-only native NMOS LEVEL=15 candidate plus explicit dual-gate control wrapper; execution and separate error comparison deferred to M01",
+      "hspice_mapping_note": "AIM-Spice LEVEL=15 corresponds to the teacher's HSPICE Level 61 route but the project must not call an unexecuted card HSPICE-validated.",
+      "physical_tox_nm": 30.0,
+      "effective_model_tox_nm": 10.0,
+      "dielectric_relative_permittivity": 6.8,
+      "equation_identity_with_ngspice": false
+    },
+    "m01_gate": "Neither simulator route is accepted or circuit-ready until M01 runs the same geometry bias and metrics and reports route differences."
+  },
+  "validity_domain": {
+    "material": "n-type IGZO only",
+    "evidence_source": "qualified project 2D teaching-model numerical curves",
+    "temperature_k": [300.0, 300.0],
+    "contact": "ideal ohmic nominal only",
+    "traps": "none in nominal model",
+    "dual_gate_stack": "symmetric 30 nm physical Al2O3 per gate with k=6.8",
+    "single_gate_vgs_v": [-1.0, 1.0],
+    "dual_gate_primary_v": [-0.5, 1.0],
+    "dual_gate_secondary_v": [-0.3, 0.3],
+    "vds_v": [0.0, 0.2],
+    "channel_length_um": [8.0, 12.0],
+    "source_width_um": 60.0,
+    "width_scaling": "Linear conversion from the 2D per-width current is a teaching assumption and is not a measured width-dependence validation.",
+    "analysis_type": "DC only",
+    "excluded": [
+      "negative VDS formal accuracy",
+      "capacitance transient noise or AC behavior",
+      "trap contact temperature ferroelectric stress or reliability laws",
+      "experimental process corners uncertainty or extrapolation",
+      "quantitative circuit prediction before M01"
+    ]
+  },
+  "failure_retention": {
+    "refuse_to_overwrite_existing_run_outputs": true,
+    "preserve_every_failed_fit": true,
+    "required_failure_artifacts": [
+      "input snapshot and selected-row manifest",
+      "exact parameter bounds and initial vector",
+      "optimizer termination log",
+      "training and holdout predictions and residuals",
+      "all linear and logarithmic metrics",
+      "failed acceptance names and report"
+    ],
+    "prohibited_recovery": [
+      "change a train or holdout selector after seeing results",
+      "remove a curve or point after seeing results",
+      "change the current floor or per-curve weights after seeing results",
+      "relax a parameter bound or acceptance threshold after seeing results",
+      "use holdout data to select a restart or parameter vector",
+      "overwrite delete or relabel a failed fit"
+    ],
+    "acceptance_change_rule": "Any justified contract change requires a new revision with the failed run preserved; the previous run remains FAIL."
+  },
+  "outputs": {
+    "contract_report": "results/reports/m00_compact_model_input_contract.json",
+    "run_directory": "results/compact/m00_teaching_fit_r01",
+    "input_snapshot": "results/compact/m00_teaching_fit_r01/input_snapshot.json",
+    "selected_rows_manifest": "results/compact/m00_teaching_fit_r01/selected_rows_manifest.csv",
+    "optimizer_log": "results/compact/m00_teaching_fit_r01/optimizer_log.json",
+    "predictions_csv": "results/tables/m00_compact_model_predictions.csv",
+    "curve_metrics_csv": "results/tables/m00_compact_model_curve_metrics.csv",
+    "parameter_table_csv": "results/tables/m00_compact_model_parameters.csv",
+    "validity_json": "models/dual_gate/igzo_dg_teaching_r01.json",
+    "ngspice_candidate": "spice/models/igzo_dg_behavioral_r01.inc",
+    "aimspice_candidate": "models/level61/igzo_level15_r01.inc",
+    "aimspice_mapping": "models/level61/igzo_level15_r01_parameters.json",
+    "fit_figure_png": "report/assets/m00_compact_model_fit.png",
+    "residual_figure_png": "report/assets/m00_compact_model_residuals.png",
+    "fit_report": "results/reports/m00_compact_model_fit.json",
+    "independent_check_report": "results/reports/m00_compact_model_fit_check.json"
+  },
+  "evidence_boundary": {
+    "contract_allowed_claim": "An E3 static check may verify frozen dataset bytes selectors split equations bounds metrics outputs and failure rules without fitting a model or running TCAD SPICE or a circuit.",
+    "future_m00_pass_allowed_claim": "A later two-level PASS may establish an IGZO-only teaching compact surrogate fit to qualified project numerical curves with condition-held-out numerical errors and an explicit local validity domain.",
+    "prohibited_claims": [
+      "experimental fitting calibration or measured predictive accuracy",
+      "physical VTH SS mobility Ion Ioff DOS contact or temperature parameters",
+      "independent external validation because train and holdout originate from the same frozen teaching model",
+      "AIM-Spice or ngspice validation before M01 execution",
+      "equation identity between native AIM-Spice Level 15 and ngspice behavioral routes",
+      "native HSPICE Level 61 execution",
+      "circuit-ready active-load model quantitative circuit results layout PEX or HZO evidence"
+    ],
+    "next_gate": "After this contract passes and is committed only one formal M00 reference-kernel fit may run; M01 and all downstream work remain closed until M00 runner and independent persisted-evidence checks both pass."
+  }
+}

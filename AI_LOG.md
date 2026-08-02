@@ -16,6 +16,33 @@
 
 ---
 
+## 2026-08-02 | Codex GPT-5 | 建立 M00 教学紧凑模型输入与验证合同
+
+### 用户目标
+
+按阶段 DAG 在完成 T03 后继续；先冻结 M00 合格数据、train/holdout、模型路线、优化、误差、输出、失败保留和证据边界，不运行 TCAD/SPICE、不启动 M01 或下游。
+
+### 输入审计与决策
+
+- 核对 T01-D-B 30 行 Id-Vd、T01-D-C 102 行 Id-Vg、T02-C 248 行双向双栅族及 T03-P1/P2/P3/P4/P5 合格落盘表、上游运行/独立检查和 SHA-256。`interface_8x`、回程与上下栅互易是同一数值条件的复现，不当作独立 holdout。
+- 新增 `references/m00_dataset_registry.csv` 固定 13 表。正式拟合数据只来自 T01-D-B/C、T02-C、T03-P4 和 T03-P3 理想接触 output 子集；P1/P3/P5 改变只作挑战，P2 陷阱变体和外部 ngspice 表禁止进入拟合。
+- `config/compact_m00_input_validation.json` 以整条件冻结 9 条 train/163 计分点和 4 条 holdout/70 计分点；7 个 `VDS=0` 点只做不变量，7 个重复 `VDS=0.01 V` output 点只做复现。同时冻结平滑电荷差 DC 教学核、11 个有界系数、确定性 `least_squares`、每曲线等权的线性/对数误差、VTH/gm/单调/零漏压门、失败保留和局部有效域。
+- M00 参考核是仿真器无关的教学代理。ngspice 后续只能生成行为翻译候选，不得称 Level 61；AIM-Spice 候选才使用原生 Level 15。两路执行和差异留到 M01，M00 静态合同不得声称任一仿真器通过。
+
+### 失败保留与验证
+
+- 首次 `make m00-compact-model-contract-check` 因合同误要求 T01/T02 为通用 `verified`，而实际机器枚举是 `complete_e2`/`bidirectional_verified`，因此 24/25 PASS。原报告保留为 `results/reports/m00_compact_model_input_contract_dependency_status_mismatch_failed.json`；该失败未运行拟合、TCAD 或 SPICE。
+- 只修正依赖状态字面值后，`make m00-compact-model-contract-check` 为 25/25 PASS、E3，报告明确 `fit/TCAD/SPICE/circuit=NOT_RUN_BY_CONTRACT_CHECK`。数据、划分、方程、系数边界和验收阈值未改。
+- `make check`：551 项 PASS。
+- `make report-check`：12 章、5 附录、15 个剩余占位、22 张图，PASS。
+- Python 语法、JSON、CSV 和四个相关 XHTML 源解析 PASS；M00 注册表 13 行，证据矩阵 46 条证据记录且每行 10 列。
+- `git diff --check`：PASS。
+- 本里程碑未运行紧凑模型拟合、TCAD、ngspice、AIM-Spice、电路、版图、PEX 或 HZO。
+
+### 下一步
+
+先提交并推送该合同里程碑。之后只按冻结 9/163 train 运行一次正式 M00 拟合，优化完成后才评分未触碰的 4/70 holdout；运行器 PASS 后再执行独立落盘检查。任一门 FAIL 则保留证据并停止；M01、SPICE、电路和下游继续关闭。
+
 ## 2026-08-02 | Codex GPT-5 | 完成 T03-P5 V_t-only 正式敏感性与数值 T03
 
 ### 用户目标
