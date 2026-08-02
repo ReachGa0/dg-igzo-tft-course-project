@@ -1,0 +1,166 @@
+{
+  "case_id": "IGZO_T03_P3_CONTACT_RESISTANCE_V2",
+  "stage": "T03-P3-CONTACT-RESISTANCE",
+  "parameter_group_id": "P3",
+  "python_executable": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u53d1\u9001\u7248\u672c/\u8bfe\u7a0b0/.venv/bin/python",
+  "devsim_version": "2.10.0",
+  "circuit_api": {
+    "internal_nodes": [
+      "p3_source_internal",
+      "p3_drain_internal"
+    ],
+    "external_nodes": [
+      "p3_source_external",
+      "p3_drain_external"
+    ],
+    "voltage_elements": [
+      "VP3SourceExternal",
+      "VP3DrainExternal"
+    ],
+    "resistor_elements": [
+      "RP3Source",
+      "RP3Drain"
+    ],
+    "terminal_current_scaling": "2D contact edge current multiplied by frozen device width before integration into the external circuit"
+  },
+  "contract_recorded_machine_state": {
+    "project_config": {
+      "path": "config/project.json",
+      "sha256": "94ed20fd437267ef0a7b27b9cc5efb30f72ca62fb9efe95f9e0ede747f9910b2"
+    },
+    "experiments_config": {
+      "path": "config/experiments.json",
+      "sha256": "bb6e66f6ddae3cf9c12b1b8c94fbd41ed69de5d9da3f0576bfafebe424602dcd"
+    }
+  },
+  "inputs": {
+    "p3_config": {
+      "path": "config/tcad_t03_p3_contact_resistance.json",
+      "sha256": "1b39430764c38405f1ec9a81d0c52f845ca4e8307ed3d5e36f272e61999c942a"
+    },
+    "p3_contract_report": {
+      "path": "results/reports/tcad_t03_p3_contact_input_contract_v2.json",
+      "sha256": "9d459fda9ed68d9036a5bddfa39e8b5d2c4f7d00fdf2de0d4519f748004f7e98"
+    },
+    "runner_script": {
+      "path": "tcad/run_t03_p3_contact_resistance.py",
+      "sha256": "21581f70ecd01a9be469f85122627e6b0738806779cc7c757e7397c79d192ec3"
+    },
+    "s00_report": {
+      "path": "results/reports/s00_data_audit.json",
+      "sha256": "44ea42ff7fd9923cd4c9c2d0156ce3d0029cd59655e3c4086ab7250f78b48e31"
+    },
+    "t01_baseline_config": {
+      "path": "config/tcad_t01_baseline.json",
+      "sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9"
+    },
+    "t01_mesh_config": {
+      "path": "config/tcad_t01_d_mesh_refinement.json",
+      "sha256": "6ba9815ab063708b9fa560092974ac65a748b95c981d16056af3dec1e0f74e23"
+    },
+    "t02_a_config": {
+      "path": "config/tcad_t02_a_dual_gate_contract.json",
+      "sha256": "59f19996be43c22972bf223cfebf1f95fcaec5cdd9bf2edef76d45e9f1b4ccb3"
+    },
+    "t02_c_config": {
+      "path": "config/tcad_t02_c_bidirectional.json",
+      "sha256": "93c29fe977dd304315537d7dcbb0e2ea4b920cdab331a7996d7c9dd399b84228"
+    },
+    "t02_c_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional.json",
+      "sha256": "d214e9bf7c1938cf3120eaaf06fc53d0b1c1faf0708c0378fef6b3faeafecfed"
+    },
+    "t02_c_check_report": {
+      "path": "results/reports/tcad_t02_c_bidirectional_check.json",
+      "sha256": "a13c6bebb0f10e8bce7dabff865863ee862e9d3ac572dfc692423a66ba868aa4"
+    },
+    "p4_report": {
+      "path": "results/reports/tcad_t03_p4_l_sensitivity.json",
+      "sha256": "b54c823f9618513334968c7a85872371315a283c7a518facd88166d5921cd61c"
+    },
+    "p4_check_report": {
+      "path": "results/reports/tcad_t03_p4_l_sensitivity_check.json",
+      "sha256": "9f437759d91615732e3dddf37ced9d49144ae3927d9bc3ad429a39ff781e0e5d"
+    },
+    "p1_cap_report": {
+      "path": "results/reports/tcad_t03_p1_cap_ratio_sensitivity.json",
+      "sha256": "6a715933139376959bda64939226e81ad82baab430f6fc09d4fd30f82dc089c9"
+    },
+    "p1_cap_check_report": {
+      "path": "results/reports/tcad_t03_p1_cap_ratio_sensitivity_check.json",
+      "sha256": "ba9b524f620d6d8dcc1dcfe745a8a550ec168cc8a5150f727c54787e912eabcb"
+    },
+    "p2_dit_report": {
+      "path": "results/reports/tcad_t03_p2_dit_formal.json",
+      "sha256": "b57ebcca40f60fce196731dff9f47965223bd84a4578d919259ef732f9a84491"
+    },
+    "p2_dit_check_report": {
+      "path": "results/reports/tcad_t03_p2_dit_formal_check.json",
+      "sha256": "a05aa80b073562535caa36060c35c594af4ca9966cea18fe5f34c60f48ce5faa"
+    },
+    "p2_bulk_config": {
+      "path": "config/tcad_t03_p2_bulk_traps_formal.json",
+      "sha256": "c8978537d9744e8bbdfb7544e20381edf004ec7284ec240a32113f0e8e89cfaf"
+    },
+    "p2_bulk_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_formal_v3.json",
+      "sha256": "62f76f4bbc875688061595e313f4d272dbbacd3151dff39c8fe470b6ad3aad9b"
+    },
+    "p2_bulk_check_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json",
+      "sha256": "07b22ee6a0f277fe3b5d3837892ad2e2146e089c48ee670aed534a6c188b40b9"
+    },
+    "v1_frozen_config": {
+      "path": "config/tcad_t03_p3_contact_resistance_v1_failed.json",
+      "sha256": "4aa64aae897a9302e39f41c548c7691f1cc13b5fbf12b5ff0a32cf3fe30b3cff"
+    },
+    "v1_frozen_runner": {
+      "path": "tcad/run_t03_p3_contact_resistance_v1_failed.py",
+      "sha256": "8d1362742d2001b94f66b9099b2814bc479d1dd6293a66492f36ff00c6cb5ca2"
+    },
+    "v1_frozen_contract_checker": {
+      "path": "scripts/check_t03_p3_contact_contract_v1.py",
+      "sha256": "9a4446e9bb2e678983fcadf114c0b3922a8464f02fa3c5ffdbf3724760c87315"
+    },
+    "v1_frozen_contract_report": {
+      "path": "results/reports/tcad_t03_p3_contact_input_contract_v1.json",
+      "sha256": "82553acc696b1e0d350c37dbe5e6e208e72189b7b5b68a5e6391ff9cdd6f7623"
+    },
+    "v1_run_report": {
+      "path": "results/reports/tcad_t03_p3_contact_resistance.json",
+      "sha256": "d5e0d189bc69eede80787dfc34f5556c119ff3807b1a978e0fef85d01e384b98"
+    },
+    "v1_versioned_run_report": {
+      "path": "results/reports/tcad_t03_p3_contact_resistance_device_terminal_current_conservation.json",
+      "sha256": "d5e0d189bc69eede80787dfc34f5556c119ff3807b1a978e0fef85d01e384b98"
+    },
+    "v1_input_snapshot": {
+      "path": "results/tcad/t03_sensitivity/p3_contact_resistance/input_snapshot.json",
+      "sha256": "456fca04d8b1afdb657b42ffc2381b9a29213bee97ea9cc7fd5329f24186c256"
+    },
+    "v1_solver_log": {
+      "path": "results/tcad/t03_sensitivity/p3_contact_resistance/solver_log.json",
+      "sha256": "bc5f68d00112de06e0c4b96fc8b362e0475734e15a13fd469622babc5c20042e"
+    },
+    "v1_state_manifest": {
+      "path": "results/tcad/t03_sensitivity/p3_contact_resistance/state_manifest.json",
+      "sha256": "265fae69ce968661bc63005322a31e86ca984b19da0cac88b4dd34f8c76867e2"
+    },
+    "v1_failure_archive_manifest": {
+      "path": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/failure_archive_manifest.json",
+      "sha256": "7e453fad7f22bd5ea18f7922e9311e709b94457f6252e7b887c7c2a89cac508e"
+    },
+    "v1_failure_archive_supplement": {
+      "path": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/failure_archive_supplement.json",
+      "sha256": "568573e6ff824354c553137a2232a400ae2f75fb186440e66013e38a47eca6f2"
+    },
+    "literature_table": {
+      "path": "references/t03_p3_contact_sources.csv",
+      "sha256": "3d3d6ad799085d52b7c95f746eab93979ca228a5f205151becd233918785ac89"
+    },
+    "senior_manifest": {
+      "path": "references/senior_work_manifest.csv",
+      "sha256": "f6b64465df647fe519ec9a817651c700484adcf47ac30613cc7b720e49c325d9"
+    }
+  }
+}

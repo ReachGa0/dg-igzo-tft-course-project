@@ -108,6 +108,8 @@ REQUIRED_FILES = [
     "results/reports/tcad_t03_p3_contact_input_contract_v1_checker_initial_assertions_failed.json",
     "results/reports/tcad_t03_p3_contact_resistance.json",
     "results/reports/tcad_t03_p3_contact_resistance_device_terminal_current_conservation.json",
+    "results/reports/tcad_t03_p3_contact_resistance_v2.json",
+    "results/reports/tcad_t03_p3_contact_resistance_v2_check.json",
     "results/reports/report_check_t03_p3_v1_appendix_image_path_failed.json",
     "results/tables/tcad_t03_p3_contact_transfer.csv",
     "results/tables/tcad_t03_p3_contact_output.csv",
@@ -115,13 +117,24 @@ REQUIRED_FILES = [
     "results/tables/tcad_t03_p3_contact_circuit_balance.csv",
     "results/tables/tcad_t03_p3_contact_t02_c_reproduction.csv",
     "results/tables/tcad_t03_p3_contact_state_summary.csv",
+    "results/tables/tcad_t03_p3_contact_v2_transfer.csv",
+    "results/tables/tcad_t03_p3_contact_v2_output.csv",
+    "results/tables/tcad_t03_p3_contact_v2_metrics.csv",
+    "results/tables/tcad_t03_p3_contact_v2_circuit_balance.csv",
+    "results/tables/tcad_t03_p3_contact_v2_t02_c_reproduction.csv",
+    "results/tables/tcad_t03_p3_contact_v2_state_summary.csv",
     "results/tcad/t03_sensitivity/p3_contact_resistance/input_snapshot.json",
     "results/tcad/t03_sensitivity/p3_contact_resistance/solver_log.json",
     "results/tcad/t03_sensitivity/p3_contact_resistance/state_manifest.json",
+    "results/tcad/t03_sensitivity/p3_contact_resistance_v2/input_snapshot.json",
+    "results/tcad/t03_sensitivity/p3_contact_resistance_v2/solver_log.json",
+    "results/tcad/t03_sensitivity/p3_contact_resistance_v2/state_manifest.json",
     "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/failure_archive_manifest.json",
     "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/failure_archive_supplement.json",
     "report/assets/tcad_t03_p3_contact_sensitivity.png",
     "report/assets/tcad_t03_p3_contact_states.png",
+    "report/assets/tcad_t03_p3_contact_v2_sensitivity.png",
+    "report/assets/tcad_t03_p3_contact_v2_states.png",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal/state_manifest.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/input_snapshot.json",
@@ -633,12 +646,13 @@ def main() -> int:
         add_check(
             checks,
             "experiments:t03_completed_and_partial_groups_are_distinct",
-            sensitivity.get("completed_parameter_groups") == ["P1", "P2", "P4"]
+            sensitivity.get("completed_parameter_groups")
+            == ["P1", "P2", "P3", "P4"]
             and sensitivity.get("partially_completed_parameter_groups") == []
             and sensitivity.get("remaining_parameter_groups")
-            == ["P3", "P5"]
+            == ["P5"]
             and sensitivity.get("remaining_substages")
-            == ["T03-P3", "T03-P5"]
+            == ["T03-P5"]
             and sensitivity.get("p2_bulk_equation_smoke_evidence")
             == {
                 "status": "smoke_verified",
@@ -768,6 +782,38 @@ def main() -> int:
                 "complete_p3_contact_group": False,
                 "complete_t03_five_group_sensitivity": False,
             }
+            and sensitivity.get("p3_contact_v2_evidence")
+            == {
+                "status": "formal_sensitivity_verified",
+                "runner_evidence": "E2",
+                "independent_persisted_check_evidence": "E3",
+                "runner_checks_passed": 25,
+                "independent_checks_passed": 20,
+                "devices": 12,
+                "converged_dc_solves": 243,
+                "transfer_points": 93,
+                "output_points": 63,
+                "states": 3,
+                "state_node_rows": 7257,
+                "state_element_rows": 7680,
+                "vtk_files": 18,
+                "wall_seconds": 24.73534312699485,
+                "maximum_nonzero_vds_relative_terminal_current_imbalance": 3.3534440908787024e-11,
+                "maximum_zero_vds_absolute_current_a_per_cm": 1.0845387955775905e-19,
+                "maximum_circuit_kcl_relative_residual": 2.421775820902517e-12,
+                "maximum_circuit_ohms_law_relative_residual": 1.2092244533030856e-12,
+                "maximum_circuit_voltage_partition_absolute_residual_v": 0.0,
+                "largest_pair_high_gate_current_relative_reduction": 0.0016139591451679268,
+                "linear_region_total_resistance_width_kohm_um": [
+                    2780.13344904325,
+                    2780.633291954896,
+                    2784.6320382862077,
+                ],
+                "v1_failure_reinterpreted_as_pass": False,
+                "formal_sensitivity_completed": True,
+                "complete_p3_contact_group": True,
+                "complete_t03_five_group_sensitivity": False,
+            }
             and sensitivity.get("p3_outputs")
             == [
                 "references/t03_p3_contact_sources.csv",
@@ -797,6 +843,19 @@ def main() -> int:
                 "report/assets/tcad_t03_p3_contact_sensitivity.png",
                 "report/assets/tcad_t03_p3_contact_states.png",
                 "results/reports/tcad_t03_p3_contact_input_contract_v2.json",
+                "results/reports/tcad_t03_p3_contact_resistance_v2.json",
+                "results/reports/tcad_t03_p3_contact_resistance_v2_check.json",
+                "results/tables/tcad_t03_p3_contact_v2_transfer.csv",
+                "results/tables/tcad_t03_p3_contact_v2_output.csv",
+                "results/tables/tcad_t03_p3_contact_v2_metrics.csv",
+                "results/tables/tcad_t03_p3_contact_v2_circuit_balance.csv",
+                "results/tables/tcad_t03_p3_contact_v2_t02_c_reproduction.csv",
+                "results/tables/tcad_t03_p3_contact_v2_state_summary.csv",
+                "results/tcad/t03_sensitivity/p3_contact_resistance_v2/input_snapshot.json",
+                "results/tcad/t03_sensitivity/p3_contact_resistance_v2/solver_log.json",
+                "results/tcad/t03_sensitivity/p3_contact_resistance_v2/state_manifest.json",
+                "report/assets/tcad_t03_p3_contact_v2_sensitivity.png",
+                "report/assets/tcad_t03_p3_contact_v2_states.png",
             ]
             and all(
                 path in sensitivity.get("p2_outputs", [])
@@ -3378,8 +3437,20 @@ def main() -> int:
         / "reports"
         / "tcad_t03_p3_contact_resistance_device_terminal_current_conservation.json"
     )
+    p3_v2_report_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p3_contact_resistance_v2.json"
+    )
+    p3_v2_check_path = (
+        ROOT
+        / "results"
+        / "reports"
+        / "tcad_t03_p3_contact_resistance_v2_check.json"
+    )
     p3_v1_run_dir = (
         ROOT / "results" / "tcad" / "t03_sensitivity" / "p3_contact_resistance"
+    )
+    p3_v2_run_dir = (
+        ROOT / "results" / "tcad" / "t03_sensitivity" / "p3_contact_resistance_v2"
     )
     p3_v1_archive_dir = (
         ROOT
@@ -3409,6 +3480,8 @@ def main() -> int:
         p3_v1_versioned_report = json.loads(
             p3_v1_versioned_report_path.read_text(encoding="utf-8")
         )
+        p3_v2_report = json.loads(p3_v2_report_path.read_text(encoding="utf-8"))
+        p3_v2_check = json.loads(p3_v2_check_path.read_text(encoding="utf-8"))
         p3_v1_snapshot = json.loads(
             (p3_v1_run_dir / "input_snapshot.json").read_text(encoding="utf-8")
         )
@@ -3417,6 +3490,15 @@ def main() -> int:
         )
         p3_v1_state_manifest = json.loads(
             (p3_v1_run_dir / "state_manifest.json").read_text(encoding="utf-8")
+        )
+        p3_v2_snapshot = json.loads(
+            (p3_v2_run_dir / "input_snapshot.json").read_text(encoding="utf-8")
+        )
+        p3_v2_solver_log = json.loads(
+            (p3_v2_run_dir / "solver_log.json").read_text(encoding="utf-8")
+        )
+        p3_v2_state_manifest = json.loads(
+            (p3_v2_run_dir / "state_manifest.json").read_text(encoding="utf-8")
         )
         p3_v1_archive_manifest = json.loads(
             (p3_v1_archive_dir / "failure_archive_manifest.json").read_text(
@@ -3500,17 +3582,30 @@ def main() -> int:
             f"values={p3_values} plan={planned}",
         )
         p3_inputs = p3_contract.get("inputs", {})
+        p3_immutable_inputs = {
+            name: item
+            for name, item in p3_inputs.items()
+            if name not in {"project_config", "experiments_config"}
+        }
+        p3_recorded_machine_state = p3_v2_snapshot.get(
+            "contract_recorded_machine_state", {}
+        )
         add_check(
             checks,
-            "t03_p3_contact:input_hashes_and_next_gate",
+            "t03_p3_contact:contract_inputs_preserved_and_next_gate",
             len(p3_inputs) == 31
+            and len(p3_immutable_inputs) == 29
             and all(
                 (ROOT / item["path"]).is_file()
                 and sha256(ROOT / item["path"]) == item["sha256"]
-                for item in p3_inputs.values()
+                for item in p3_immutable_inputs.values()
             )
+            and p3_recorded_machine_state.get("project_config")
+            == p3_inputs.get("project_config")
+            and p3_recorded_machine_state.get("experiments_config")
+            == p3_inputs.get("experiments_config")
             and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "run exactly one formal T03-P3 V2"
+                "establish the formal isolated T03-P5"
             )
             and "without running DEVSIM"
             in p3_contract.get("evidence_boundary", {}).get(
@@ -3520,7 +3615,10 @@ def main() -> int:
             in p3_contract.get("evidence_boundary", {}).get(
                 "future_run_allowed_claim", ""
             ),
-            f"inputs={len(p3_inputs)} next={config.get('tcad_track', {}).get('next_scope')}",
+            (
+                f"inputs={len(p3_inputs)} immutable={len(p3_immutable_inputs)} "
+                f"next={config.get('tcad_track', {}).get('next_scope')}"
+            ),
         )
 
         expected_v1_hashes = p3_config.get("remediation", {}).get(
@@ -3639,16 +3737,172 @@ def main() -> int:
                 f"supplement={p3_v1_archive_supplement.get('status')}"
             ),
         )
-        v2_noncontract_paths = [
-            ROOT / value
-            for name, value in p3_config.get("outputs", {}).items()
-            if name != "contract_report"
+        v2_output_paths = [
+            ROOT / value for value in p3_config.get("outputs", {}).values()
+        ]
+        v2_runner_checks = p3_v2_report.get("checks", {})
+        v2_all_points = [
+            *p3_v2_report.get("transfer_points", []),
+            *p3_v2_report.get("output_points", []),
+        ]
+        v2_nonzero_points = [
+            row for row in v2_all_points if float(row["external_vds_v"]) > 1e-12
+        ]
+        v2_zero_points = [
+            row
+            for row in p3_v2_report.get("output_points", [])
+            if math.isclose(
+                float(row["external_vds_v"]), 0.0, rel_tol=0.0, abs_tol=1e-12
+            )
+        ]
+        v2_circuit_points = [
+            row for row in v2_all_points if row.get("circuit_closure_applicable")
+        ]
+        v2_max_nonzero = max(
+            float(row["relative_current_imbalance"]) for row in v2_nonzero_points
+        )
+        v2_max_zero = max(
+            abs(float(row["external_drain_current_a_per_cm"]))
+            for row in v2_zero_points
+        )
+        v2_max_kcl = max(
+            max(
+                float(row["source_kcl_relative_residual"]),
+                float(row["drain_kcl_relative_residual"]),
+            )
+            for row in v2_circuit_points
+        )
+        v2_max_ohm = max(
+            float(row["circuit_ohms_law_relative_residual"])
+            for row in v2_circuit_points
+        )
+        v2_max_partition = max(
+            abs(float(row["voltage_partition_residual_v"]))
+            for row in v2_circuit_points
+        )
+        v2_summary = p3_v2_report.get("summary_metrics", {})
+        add_check(
+            checks,
+            "t03_p3_contact:v2_formal_runner_and_numerical_gates",
+            p3_v2_report.get("status") == "PASS"
+            and p3_v2_report.get("evidence_level") == "E2"
+            and p3_v2_report.get("case_id")
+            == "IGZO_T03_P3_CONTACT_RESISTANCE_V2"
+            and p3_v2_report.get("formal_sensitivity_run") is True
+            and p3_v2_report.get(
+                "independent_persisted_evidence_check_complete"
+            )
+            is False
+            and not p3_v2_report.get("failures")
+            and len(v2_runner_checks) == 25
+            and all(item.get("status") == "PASS" for item in v2_runner_checks.values())
+            and len(p3_v2_solver_log.get("runs", [])) == 12
+            and len(p3_v2_solver_log.get("solver_records", [])) == 243
+            and all(
+                record.get("converged")
+                for record in p3_v2_solver_log.get("solver_records", [])
+            )
+            and len(p3_v2_report.get("transfer_points", [])) == 93
+            and len(p3_v2_report.get("output_points", [])) == 63
+            and len(v2_nonzero_points) == 147
+            and len(v2_zero_points) == 9
+            and len(v2_circuit_points) == 66
+            and math.isclose(
+                v2_max_nonzero, 3.3534440908787024e-11, rel_tol=1e-12
+            )
+            and math.isclose(v2_max_zero, 1.0845387955775905e-19, rel_tol=1e-12)
+            and math.isclose(v2_max_kcl, 2.421775820902517e-12, rel_tol=1e-12)
+            and math.isclose(v2_max_ohm, 1.2092244533030856e-12, rel_tol=1e-12)
+            and math.isclose(v2_max_partition, 0.0, abs_tol=0.0)
+            and math.isclose(
+                v2_summary.get("largest_pair_high_gate_current_relative_reduction"),
+                0.0016139591451679268,
+                rel_tol=1e-12,
+            )
+            and v2_summary.get("linear_region_total_resistance_width_kohm_um")
+            == [2780.13344904325, 2780.633291954896, 2784.6320382862077],
+            (
+                f"runner={sum(item.get('status') == 'PASS' for item in v2_runner_checks.values())}/"
+                f"{len(v2_runner_checks)} devices={len(p3_v2_solver_log.get('runs', []))} "
+                f"dc={len(p3_v2_solver_log.get('solver_records', []))} "
+                f"points={len(v2_all_points)} nonzero={v2_max_nonzero:.6e} "
+                f"zero={v2_max_zero:.6e}"
+            ),
+        )
+        v2_artifacts = p3_v2_report.get("artifacts", {})
+        v2_vtk_artifacts = [
+            item
+            for entry in p3_v2_state_manifest.get("entries", [])
+            for item in entry.get("vtk_files", [])
         ]
         add_check(
             checks,
-            "t03_p3_contact:v2_simulation_and_independent_check_not_run",
-            all(not path.exists() for path in v2_noncontract_paths)
-            and p3_contract.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            "t03_p3_contact:v2_persisted_outputs_and_hashes",
+            all(path.exists() for path in v2_output_paths)
+            and len(v2_artifacts) == 9
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                for item in v2_artifacts.values()
+            )
+            and p3_v2_snapshot.get("case_id")
+            == "IGZO_T03_P3_CONTACT_RESISTANCE_V2"
+            and p3_v2_state_manifest.get("entry_count") == 3
+            and sum(
+                int(entry.get("node_row_count", 0))
+                for entry in p3_v2_state_manifest.get("entries", [])
+            )
+            == 7257
+            and sum(
+                int(entry.get("channel_element_count", 0))
+                for entry in p3_v2_state_manifest.get("entries", [])
+            )
+            == 7680
+            and len(v2_vtk_artifacts) == 18
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                for item in v2_vtk_artifacts
+            )
+            and not list(p3_v2_run_dir.parent.glob("p3_contact_resistance_v2_*")),
+            (
+                f"outputs={sum(path.exists() for path in v2_output_paths)}/"
+                f"{len(v2_output_paths)} artifacts={len(v2_artifacts)} "
+                f"states={p3_v2_state_manifest.get('entry_count')} vtk={len(v2_vtk_artifacts)}"
+            ),
+        )
+        v2_checker_checks = p3_v2_check.get("checks", [])
+        v2_check_summary = p3_v2_check.get("summary", {})
+        v2_completion = p3_v2_check.get("t03_p3_completion", {})
+        add_check(
+            checks,
+            "t03_p3_contact:v2_independent_e3_completion_and_boundary",
+            p3_v2_check.get("status") == "PASS"
+            and p3_v2_check.get("evidence_level") == "E3"
+            and p3_v2_check.get("independent_of_simulation_runner") is True
+            and p3_v2_check.get("runner_imported") is False
+            and p3_v2_check.get("devsim_imported") is False
+            and not p3_v2_check.get("failures")
+            and len(v2_checker_checks) == 20
+            and all(item.get("status") == "PASS" for item in v2_checker_checks)
+            and v2_check_summary.get("check_count") == 20
+            and v2_check_summary.get("pass_count") == 20
+            and v2_check_summary.get("device_count") == 12
+            and v2_check_summary.get("dc_solve_count") == 243
+            and v2_check_summary.get("reported_point_count") == 156
+            and v2_check_summary.get("state_count") == 3
+            and v2_check_summary.get("vtk_file_count") == 18
+            and v2_completion.get("status") == "PASS"
+            and v2_completion.get("complete_p3_contact_group") is True
+            and v2_completion.get("complete_t03_five_group_sensitivity") is False
+            and v2_completion.get("p5_permitted_after_documentation") is True
+            and v2_completion.get("compact_model_or_downstream_permitted") is False
+            and "frozen 2D IGZO teaching model"
+            in p3_v2_check.get("allowed_claim", "")
+            and any(
+                "TLM-extracted" in claim
+                for claim in p3_v2_check.get("prohibited_claims", [])
+            )
             and p3_config.get("remediation", {}).get("physical_input_changed")
             is False
             and p3_config.get("remediation", {}).get("relative_threshold_changed")
@@ -3657,7 +3911,11 @@ def main() -> int:
                 "zero_vds_absolute_threshold_changed"
             )
             is False,
-            f"absent_v2_outputs={sum(not path.exists() for path in v2_noncontract_paths)}/{len(v2_noncontract_paths)}",
+            (
+                f"checker={sum(item.get('status') == 'PASS' for item in v2_checker_checks)}/"
+                f"{len(v2_checker_checks)} completion={v2_completion.get('status')} "
+                f"p3={v2_completion.get('complete_p3_contact_group')}"
+            ),
         )
         add_check(
             checks,

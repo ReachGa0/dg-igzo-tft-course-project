@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 501,
+  "checks": 516,
   "failures": 0,
   "results": [
     {
@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=20805"
+      "detail": "bytes=20935"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=17423"
+      "detail": "bytes=17533"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=12644"
+      "detail": "bytes=13158"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=99798"
+      "detail": "bytes=103451"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4514"
+      "detail": "bytes=4356"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=46404"
+      "detail": "bytes=48483"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=23097"
+      "detail": "bytes=23909"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=8737"
+      "detail": "bytes=9563"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=40319"
+      "detail": "bytes=43232"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -740,6 +740,16 @@
       "detail": "bytes=505577"
     },
     {
+      "name": "file:results/reports/tcad_t03_p3_contact_resistance_v2.json",
+      "status": "PASS",
+      "detail": "bytes=501779"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p3_contact_resistance_v2_check.json",
+      "status": "PASS",
+      "detail": "bytes=7556"
+    },
+    {
       "name": "file:results/reports/report_check_t03_p3_v1_appendix_image_path_failed.json",
       "status": "PASS",
       "detail": "bytes=765"
@@ -775,6 +785,36 @@
       "detail": "bytes=3171"
     },
     {
+      "name": "file:results/tables/tcad_t03_p3_contact_v2_transfer.csv",
+      "status": "PASS",
+      "detail": "bytes=97183"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p3_contact_v2_output.csv",
+      "status": "PASS",
+      "detail": "bytes=66952"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p3_contact_v2_metrics.csv",
+      "status": "PASS",
+      "detail": "bytes=1962"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p3_contact_v2_circuit_balance.csv",
+      "status": "PASS",
+      "detail": "bytes=82272"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p3_contact_v2_t02_c_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=5863"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p3_contact_v2_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=3189"
+    },
+    {
       "name": "file:results/tcad/t03_sensitivity/p3_contact_resistance/input_snapshot.json",
       "status": "PASS",
       "detail": "bytes=4901"
@@ -788,6 +828,21 @@
       "name": "file:results/tcad/t03_sensitivity/p3_contact_resistance/state_manifest.json",
       "status": "PASS",
       "detail": "bytes=14283"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p3_contact_resistance_v2/input_snapshot.json",
+      "status": "PASS",
+      "detail": "bytes=7205"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p3_contact_resistance_v2/solver_log.json",
+      "status": "PASS",
+      "detail": "bytes=3167553"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p3_contact_resistance_v2/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=14355"
     },
     {
       "name": "file:results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/failure_archive_manifest.json",
@@ -806,6 +861,16 @@
     },
     {
       "name": "file:report/assets/tcad_t03_p3_contact_states.png",
+      "status": "PASS",
+      "detail": "bytes=1000628"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p3_contact_v2_sensitivity.png",
+      "status": "PASS",
+      "detail": "bytes=283676"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p3_contact_v2_states.png",
       "status": "PASS",
       "detail": "bytes=1000628"
     },
@@ -907,12 +972,12 @@
     {
       "name": "file:docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
       "status": "PASS",
-      "detail": "bytes=33551"
+      "detail": "bytes=34064"
     },
     {
       "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
       "status": "PASS",
-      "detail": "bytes=9816"
+      "detail": "bytes=9786"
     },
     {
       "name": "file:scripts/import_senior_reference.py",
@@ -1127,7 +1192,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=24630"
+      "detail": "bytes=26302"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -1947,7 +2012,7 @@
     {
       "name": "experiments:t03_completed_and_partial_groups_are_distinct",
       "status": "PASS",
-      "detail": "complete=['P1', 'P2', 'P4'] partial=[] remaining=['T03-P3', 'T03-P5']"
+      "detail": "complete=['P1', 'P2', 'P3', 'P4'] partial=[] remaining=['T03-P5']"
     },
     {
       "name": "senior:manifest",
@@ -2415,9 +2480,9 @@
       "detail": "values=[0.0, 0.5, 4.5] plan={'changed_variable': 'symmetric_total_source_drain_series_resistance_width_product', 'values_kohm_um': [0.0, 0.5, 4.5], 'devices': 12, 'reported_points': 156, 'dc_solves': 243, 'states': 3, 'vtk_files': 18}"
     },
     {
-      "name": "t03_p3_contact:input_hashes_and_next_gate",
+      "name": "t03_p3_contact:contract_inputs_preserved_and_next_gate",
       "status": "PASS",
-      "detail": "inputs=31 next=run exactly one formal T03-P3 V2 symmetric lumped contact-resistance sensitivity under its passed recovery contract; run the independent persisted-evidence checker only after runner PASS; P5, M00, M01, SPICE, circuit cells, layout, PEX, and HZO remain closed"
+      "detail": "inputs=31 immutable=29 next=establish the formal isolated T03-P5 temperature-sensitivity input contract only; freeze temperature points, temperature-dependent teaching-model terms, extraction, failure retention, outputs and evidence boundaries before any P5 DEVSIM run; M00, M01, SPICE, circuit cells, layout, PEX, and HZO remain closed"
     },
     {
       "name": "t03_p3_contact:v1_single_gate_failure_and_numerical_evidence",
@@ -2430,9 +2495,19 @@
       "detail": "hashes=11 archive=FAIL_PRESERVED supplement=FAIL_PRESERVED_WITH_SUPPLEMENT"
     },
     {
-      "name": "t03_p3_contact:v2_simulation_and_independent_check_not_run",
+      "name": "t03_p3_contact:v2_formal_runner_and_numerical_gates",
       "status": "PASS",
-      "detail": "absent_v2_outputs=14/14"
+      "detail": "runner=25/25 devices=12 dc=243 points=156 nonzero=3.353444e-11 zero=1.084539e-19"
+    },
+    {
+      "name": "t03_p3_contact:v2_persisted_outputs_and_hashes",
+      "status": "PASS",
+      "detail": "outputs=15/15 artifacts=9 states=3 vtk=18"
+    },
+    {
+      "name": "t03_p3_contact:v2_independent_e3_completion_and_boundary",
+      "status": "PASS",
+      "detail": "checker=20/20 completion=PASS p3=True"
     },
     {
       "name": "t03_p3_contact:report_image_path_failure_is_preserved",

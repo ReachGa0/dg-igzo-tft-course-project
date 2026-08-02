@@ -88,5 +88,5 @@
     <img src="assets/tcad_t03_p3_contact_states.png" alt="T03-P3 V1 E0 failure potential density and current-density states"/>
     <figcaption>图 D-2 V1 的三个 <code>VTG=1 V, external VDS=0.2 V</code> 二维状态。局部电流密度是教学模型场量，不是项目接触参数或物理 Ion。</figcaption>
   </figure>
-  <p>V2 合同只把不变的相对门限定到 <code>external VDS&gt;0</code>、把不变的绝对电流门限定到 <code>external VDS=0</code>，并把全部输出与失败归档改为独立 <code>v2</code> 路径；三点、器件方程、偏压、提取、阈值和 12/243/156 预算均未改变。34/34 静态检查 PASS、E3、<code>NOT_RUN_BY_CONTRACT_CHECK</code>。V1 失败归档中报告与配置同 basename 的副本冲突已由 supplement 披露并用唯一文件名补齐，原 manifest 和原始结果未改写。首次报告检查还发现两张附录图误用 <code>../assets</code> 路径；该非仿真实现失败已单独保留，只修正引用为报告约定的 <code>assets</code> 后通过结构检查。</p>
+  <p>V2 合同只把不变的相对门限定到 <code>external VDS&gt;0</code>、把不变的绝对电流门限定到 <code>external VDS=0</code>，并把全部输出与失败归档改为独立 <code>v2</code> 路径；三点、器件方程、偏压、提取、阈值和 12/243/156 预算均未改变。34/34 静态检查 PASS、E3、<code>NOT_RUN_BY_CONTRACT_CHECK</code>。合同提交后 V2 唯一运行一次并通过 25/25 运行器与 20/20 独立检查，只在冻结教学模型内关闭 P3；这不改变本节 V1 的 E0/FAIL 判定。V1 失败归档中报告与配置同 basename 的副本冲突已由 supplement 披露并用唯一文件名补齐，原 manifest 和原始结果未改写。首次报告检查还发现两张附录图误用 <code>../assets</code> 路径；该非仿真实现失败已单独保留，只修正引用为报告约定的 <code>assets</code> 后通过结构检查。</p>
 </section>

@@ -1,0 +1,179 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T03_P3_CONTACT_RESISTANCE_V2",
+  "stage": "T03-P3-CONTACT-RESISTANCE",
+  "parameter_group_id": "P3",
+  "evidence_level": "E3",
+  "independent_of_simulation_runner": true,
+  "runner_imported": false,
+  "devsim_imported": false,
+  "checker": {
+    "path": "scripts/check_t03_p3_contact_resistance.py",
+    "sha256": "6ccc80887d62804ea7187a8f97f6e8620601559f4f474f3b07086bc5eabc0ac2"
+  },
+  "checks": [
+    {
+      "name": "identity:runner_contract_stage_and_all_runner_gates_passed",
+      "status": "PASS",
+      "detail": "runner=PASS/E2 contract=PASS checks=25"
+    },
+    {
+      "name": "inputs:snapshot_hashes_and_circuit_api_provenance_match",
+      "status": "PASS",
+      "detail": "inputs=32 devsim=2.10.0"
+    },
+    {
+      "name": "artifacts:runner_hashes_match_all_primary_persisted_outputs",
+      "status": "PASS",
+      "detail": "artifacts=9"
+    },
+    {
+      "name": "points:headers_unique_ids_exact_cases_bias_grids_and_counts_match",
+      "status": "PASS",
+      "detail": "fields=58 transfer=93 output=63 grids=True/True"
+    },
+    {
+      "name": "points:runner_report_embedded_points_match_csv_values",
+      "status": "PASS",
+      "detail": "report_transfer=93 report_output=63"
+    },
+    {
+      "name": "solver:twelve_fresh_devices_and_243_frozen_dc_records_converged",
+      "status": "PASS",
+      "detail": "runs=12 counts=[41, 12, 13, 15, 41, 12, 13, 15, 41, 12, 13, 15] records=243 wall=24.73534312699485"
+    },
+    {
+      "name": "coupling:ideal_direct_and_eight_nonzero_circuit_devices_are_exact",
+      "status": "PASS",
+      "detail": "circuit_runs=8 exact=True"
+    },
+    {
+      "name": "transport:terminal_width_conversion_and_nonzero_vds_device_current_conservation_recompute",
+      "status": "PASS",
+      "detail": "units=True rows=147 maximum_nonzero_vds_imbalance=3.353444e-11 maximum_all_point_imbalance_nongating=1.672052e+00"
+    },
+    {
+      "name": "circuit:kcl_ohm_voltage_partition_and_power_recompute_within_gates",
+      "status": "PASS",
+      "detail": "rows=66 recomputed=True kcl=2.421776e-12 ohm=1.209224e-12 partition=0.000000e+00"
+    },
+    {
+      "name": "circuit:dedicated_balance_table_matches_every_reported_point",
+      "status": "PASS",
+      "detail": "rows=156 fields=33 exact=True"
+    },
+    {
+      "name": "bias:zero_vds_current_resolved_positive_current_and_internal_rails_pass",
+      "status": "PASS",
+      "detail": "zero_rows=9 max_zero=1.084539e-19 min_resolved=1.190320e-06 rails=True"
+    },
+    {
+      "name": "curves:transfer_strict_and_output_nondecreasing_monotonicity_recompute",
+      "status": "PASS",
+      "detail": "transfer=True maximum_output_drop=0.000000e+00"
+    },
+    {
+      "name": "metrics:ols_total_resistance_current_proxies_and_diagnostic_recompute",
+      "status": "PASS",
+      "detail": "[{\"case_id\": \"ideal_control\", \"conductance\": 2.1581697821249656e-05, \"high_current\": 2.1562345999672124e-07, \"resistance\": 46335.55748405417, \"resistance_width\": 2780.13344904325}, {\"case_id\": \"literature_low_magnitude_proxy\", \"conductance\": 2.1577818324191037e-05, \"high_current\": 2.155847369797459e-07, \"resistance\": 46343.888199248264, \"resistance_width\": 2780.633291954896}, {\"case_id\": \"literature_high_magnitude_proxy\", \"conductance\": 2.1546832462980205e-05, \"high_current\": 2.1527545254154678e-07, \"resistance\": 46410.533971436795, \"resistance_width\": 2784.6320382862077}]"
+    },
+    {
+      "name": "metrics:runner_report_and_metric_csv_match",
+      "status": "PASS",
+      "detail": "report=3 csv=3"
+    },
+    {
+      "name": "response:selected_current_ordering_resistance_ordering_and_minimum_response_pass",
+      "status": "PASS",
+      "detail": "orderings=9/True RtotalW=[2780.13344904325, 2780.633291954896, 2784.6320382862077] high_reduction=1.613959e-03"
+    },
+    {
+      "name": "reference:ideal_transfer_recomputes_against_persisted_t02_c",
+      "status": "PASS",
+      "detail": "rows=31 valid=True current=3.229543e-11 potential=2.775558e-17 density=2.129202e-15"
+    },
+    {
+      "name": "states:three_node_element_circuit_states_and_18_vtk_files_verify",
+      "status": "PASS",
+      "detail": "states=3 nodes=7257 elements=7680 vtk=18 valid=True"
+    },
+    {
+      "name": "figures:two_nonempty_png_hashes_and_dimensions_verify",
+      "status": "PASS",
+      "detail": "figures=2 dimensions=[(1980, 1440), (2016, 1476)]"
+    },
+    {
+      "name": "provenance:checker_is_independent_and_no_failure_archive_was_needed",
+      "status": "PASS",
+      "detail": "imports=['__future__', 'ast', 'csv', 'hashlib', 'json', 'math', 'pathlib', 'struct', 'sys', 'typing'] forbidden=[] failure_archives=[]"
+    },
+    {
+      "name": "boundary:runner_remains_e2_numerical_proxy_and_downstream_closed",
+      "status": "PASS",
+      "detail": "runner_complete=False downstream=False"
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "check_count": 20,
+    "pass_count": 20,
+    "transfer_point_count": 93,
+    "output_point_count": 63,
+    "reported_point_count": 156,
+    "device_count": 12,
+    "dc_solve_count": 243,
+    "circuit_closure_point_count": 66,
+    "state_count": 3,
+    "state_node_row_count": 7257,
+    "state_element_row_count": 7680,
+    "vtk_file_count": 18,
+    "maximum_nonzero_vds_relative_terminal_current_imbalance": 3.3534440908787024e-11,
+    "maximum_all_point_relative_terminal_current_imbalance_nongating": 1.672051696284307,
+    "maximum_circuit_kcl_relative_residual": 2.421775820902517e-12,
+    "maximum_circuit_ohms_law_relative_residual": 1.2092244533030856e-12,
+    "maximum_circuit_voltage_partition_absolute_residual_v": 0.0,
+    "maximum_zero_external_vds_absolute_current_a_per_cm": 1.0845387955775905e-19,
+    "maximum_output_monotonic_relative_drop": 0.0,
+    "largest_pair_high_gate_current_relative_reduction": 0.0016139591451679268,
+    "linear_region_total_resistance_width_kohm_um": [
+      2780.13344904325,
+      2780.633291954896,
+      2784.6320382862077
+    ],
+    "t02_c_maximum_current_relative_difference": 3.229543221331285e-11,
+    "t02_c_maximum_center_potential_difference_v": 2.7755575615628914e-17,
+    "t02_c_maximum_center_density_relative_difference": 2.129201799972324e-15,
+    "figure_dimensions": [
+      [
+        1980,
+        1440
+      ],
+      [
+        2016,
+        1476
+      ]
+    ],
+    "runner_wall_seconds": 24.73534312699485,
+    "run_directory_bytes": 12788328
+  },
+  "t03_p3_completion": {
+    "status": "PASS",
+    "input_contract_passed": true,
+    "formal_runner_passed": true,
+    "independent_check_passed": true,
+    "complete_p3_contact_group": true,
+    "complete_t03_five_group_sensitivity": false,
+    "p5_permitted_after_documentation": true,
+    "compact_model_or_downstream_permitted": false,
+    "experimental_calibration_permitted": false
+  },
+  "allowed_claim": "A controlled three-point symmetric lumped contact-series-resistance numerical sensitivity is complete for the frozen 2D IGZO teaching model.",
+  "prohibited_claims": [
+    "measured, TLM-extracted, fitted, or calibrated project-device contact resistance",
+    "project Ti-versus-Ni contact comparison or contact-metal selection",
+    "Schottky barrier, thermionic injection, tunneling, current crowding, or work-function validation",
+    "physical Ion, mobility, VTH, SS, process variation, uncertainty, or experimental accuracy",
+    "complete P3 before runner and independent check PASS",
+    "complete T03, P5, compact-model, SPICE, circuit-cell, layout, PEX, or HZO evidence"
+  ]
+}

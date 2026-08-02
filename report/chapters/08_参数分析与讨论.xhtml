@@ -226,7 +226,7 @@
   </figure>
   <p>两个独立零控制在 47 点 V3 网格上曲线和全部提取量完全一致，并分别在 31 个共同点上精确复现 T02-C 的电流、中心势、中心密度、VTH 和 gm。独立检查重算占据密度、解析导数和 Poisson 电荷，最大相对误差分别为 <code>6.69e-16</code>、<code>1.17e-15</code> 和 <code>5.94e-16</code>；8 状态、48 VTK、两张 PNG 和全部主产物哈希通过。该 E3 证据关闭 P2 的可复算性门，不赋予 E2 教学模型实验或物理校准等级。</p>
 
-  <h3>8.18 P3 接触 V1 失败与 V2 静态恢复合同</h3>
+  <h3>8.18 P3 接触 V1 失败、V2 恢复与正式敏感性</h3>
   <p>P3 合同冻结三个总源漏串联电阻宽度积点 <code>0/0.5/4.5 kOhm*um</code>。0 点是 T02-C 直连理想接触回归；0.5/4.5 两个数值来自不同纳米器件论文的 Ni/Ti TLM 报告，但本项目只把数值大小映射成低/高总串联电阻教学代理，运行案例不使用金属名。按 W=60 um 换算，总电阻为 0/8.333/75 ohm，两个非零点的源漏各分一半。</p>
   <table>
     <thead><tr><th>冻结项</th><th>合同值</th><th>当前证据</th></tr></thead>
@@ -236,10 +236,21 @@
       <tr><td>V1 唯一失败</td><td>9 个 VDS=0 舍入噪声点误用相对守恒，最大比值 1.67205</td><td>非零漏压最大相对不平衡 3.35344e-11；零漏压最大绝对电流 1.08454e-19 A/cm</td></tr>
       <tr><td>已通过但不关闭阶段的门</td><td>243 次收敛、circuit KCL=2.42e-12、Ohm=1.21e-12、压降分配=0、方向/响应、T02-C 回归、状态与图</td><td>求解与 24 项通过不能覆盖第 25 项失败</td></tr>
       <tr><td>V2 恢复合同</td><td>相对门 1e-5 只用于 VDS&gt;0；绝对门 1e-16 A/cm 只用于 VDS=0；三点、模型、偏压、提取、阈值与预算不变</td><td>34/34 PASS、E3，<code>simulation=NOT_RUN_BY_CONTRACT_CHECK</code></td></tr>
+      <tr><td>V2 正式两级证据</td><td>12 器件、243 次收敛 DC、93+63=156 点、3 状态、18 VTK；墙钟 24.735 s</td><td>runner 25/25 E2；independent 20/20 E3</td></tr>
+      <tr><td>V2 响应代理</td><td>高电阻点高栅电流下降 0.161396%；总电阻宽度积代理 2780.13345/2780.63329/2784.63204 kOhm*um</td><td>方向与最小响应门通过；不是物理接触参数</td></tr>
     </tbody>
   </table>
-  <p class="boundary">V1 保持 E0/FAIL，V2 合同 PASS 不重解释 V1，也不等于 V2 运行。两者均不支持项目接触电阻、TLM 提取、Ti/Ni 比较、Schottky barrier、热发射、隧穿、current crowding、物理 Ion 或 P3 完成。V1 原失败 manifest 的同名 archive 副本冲突已在 supplement 中披露，原始 manifest 和数值结果没有改写。</p>
+  <figure>
+    <img src="assets/tcad_t03_p3_contact_v2_sensitivity.png" alt="T03-P3 V2 symmetric lumped contact series resistance numerical sensitivity" />
+    <figcaption>图 8-11 P3 V2 三点对称串联电阻教学敏感性。曲线差异很小但方向门和 0.1% 最小响应门均通过；纵轴与提取量仍是未校准数值代理。</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/tcad_t03_p3_contact_v2_states.png" alt="T03-P3 V2 potential electron density and current density states" />
+    <figcaption>图 8-12 三个 <code>VTG=1 V, external VDS=0.2 V</code> 共同状态。电势、电子浓度和局部电流密度用于审计二维解，不建立接触区或注入物理。</figcaption>
+  </figure>
+  <p>V2 非零漏压最大端口相对不平衡为 <code>3.35344e-11</code>，零漏压最大绝对电流为 <code>1.08454e-19 A/cm</code>；circuit KCL、Ohm 定律和压降分配最大残差分别为 <code>2.42178e-12</code>、<code>1.20922e-12</code> 和 0。独立检查不导入运行器或 DEVSIM，重算全部 156 点、243 条求解记录、circuit 闭合、提取、T02-C 回归、3 状态、18 VTK、两张图和主产物哈希，20/20 PASS。</p>
+  <p class="boundary">V1 继续保持 E0/FAIL，V2 的正式通过不重解释 V1。V2 两级证据只关闭冻结二维教学模型内的 P3，不支持项目接触电阻、TLM 提取、Ti/Ni 比较、Schottky barrier、热发射、隧穿、current crowding、物理 Ion 或实验校准。V1 原失败 manifest 的同名 archive 副本冲突已在 supplement 中披露，原始 manifest 和数值结果没有改写。</p>
 
   <h3>8.19 适用范围和未完成组</h3>
-  <p>T03-P4-L、数值 P1 和 P2 已完整关闭，其中 P1 必须同时引用 BIAS 与 CAP-RATIO，P2 必须同时引用 bottom-interface DIT、bulk 方程冒烟、V1/V2 失败保留及 V3 正式两级证据。P3 V1 已计算但失败，V2 只有静态恢复合同，正式 V2 运行和独立检查尚未开始；P5 温度也未实现，因此本章不关闭完整 T03。也没有进行实验拟合、紧凑模型、SPICE、电路、版图、PEX 或 HZO 工作。</p>
+  <p>T03-P4-L、数值 P1、P2 和 P3 已完整关闭，其中 P1 必须同时引用 BIAS 与 CAP-RATIO，P2 必须同时引用 bottom-interface DIT、bulk 方程冒烟、V1/V2 失败保留及 V3 正式两级证据，P3 必须同时引用 V1 失败保留、V2 恢复合同、正式运行和独立检查。P5 温度尚未实现，因此本章不关闭完整 T03。也没有进行实验拟合、紧凑模型、SPICE、电路、版图、PEX 或 HZO 工作。</p>
 </section>
