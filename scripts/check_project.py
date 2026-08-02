@@ -53,7 +53,16 @@ REQUIRED_FILES = [
     "references/t03_p2_bulk_trap_sources.csv",
     "config/tcad_t03_p2_bulk_traps.json",
     "scripts/check_t03_p2_bulk_traps_contract.py",
+    "scripts/check_t03_p2_bulk_traps_equation_smoke.py",
+    "tcad/run_t03_p2_bulk_traps_equation_smoke.py",
     "results/reports/tcad_t03_p2_bulk_traps_input_contract.json",
+    "results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json",
+    "results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json",
+    "results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
+    "results/tables/tcad_t03_p2_bulk_traps_integration_samples.csv",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/solver_log.json",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
     "docs/02_\u6587\u732e\u8c03\u7814\u77e9\u9635.md",
     "docs/03_\u96c6\u6210\u7535\u8def\u8bbe\u8ba1\u5168\u6d41\u7a0b.md",
@@ -288,6 +297,7 @@ REQUIRED_DIRS = [
     "results/tcad/t03_sensitivity/p2_dit_formal",
     "results/tcad/t03_sensitivity/p2_dit_formal_v1_failed",
     "results/tcad/t03_sensitivity/p2_dit_formal_v1_ss_linearity_failed",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -2387,7 +2397,7 @@ def main() -> int:
             and t03_p2_bulk_contract.get("simulation_status")
             == "NOT_RUN_BY_CONTRACT_CHECK"
             and t03_p2_bulk_contract.get("evidence_level") == "E3"
-            and len(t03_p2_bulk_contract.get("checks", [])) == 29
+            and len(t03_p2_bulk_contract.get("checks", [])) == 30
             and all(
                 item.get("status") == "PASS"
                 for item in t03_p2_bulk_contract.get("checks", [])
@@ -2446,6 +2456,72 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t03_p2_bulk_traps:contract", False, str(error))
+
+    t03_p2_bulk_smoke_report_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p2_bulk_traps_equation_smoke.json"
+    )
+    t03_p2_bulk_smoke_check_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p2_bulk_traps_equation_smoke_check.json"
+    )
+    try:
+        t03_p2_bulk_smoke_report = json.loads(
+            t03_p2_bulk_smoke_report_path.read_text(encoding="utf-8")
+        )
+        t03_p2_bulk_smoke_check = json.loads(
+            t03_p2_bulk_smoke_check_path.read_text(encoding="utf-8")
+        )
+        smoke_config = t03_p2_bulk_config.get("next_equation_smoke", {})
+        smoke_resource_usage = t03_p2_bulk_smoke_report.get("resource_usage", {})
+        smoke_checks = t03_p2_bulk_smoke_report.get("checks", [])
+        independent_checks = t03_p2_bulk_smoke_check.get("checks", [])
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:equation_smoke_evidence",
+            t03_p2_bulk_smoke_report.get("status") == "PASS"
+            and t03_p2_bulk_smoke_report.get("case_id") == smoke_config.get("case_id")
+            and t03_p2_bulk_smoke_report.get("stage") == smoke_config.get("stage")
+            and t03_p2_bulk_smoke_report.get("evidence_level") == "E2"
+            and t03_p2_bulk_smoke_report.get("formal_sensitivity_run") is False
+            and len(t03_p2_bulk_smoke_report.get("case_summaries", [])) == 3
+            and smoke_resource_usage.get("device_count") == 3
+            and smoke_resource_usage.get("dc_solve_count") == 21
+            and smoke_resource_usage.get("state_node_row_count") == 7257
+            and smoke_resource_usage.get("integration_sample_row_count") == 6
+            and all(item.get("status") == "PASS" for item in smoke_checks.values())
+            and not t03_p2_bulk_smoke_report.get("failures")
+            and t03_p2_bulk_smoke_report.get("contract_report", {}).get("sha256")
+            == sha256(t03_p2_bulk_contract_path)
+            and t03_p2_bulk_smoke_check.get("status") == "PASS"
+            and t03_p2_bulk_smoke_check.get("evidence_level") == "E3"
+            and t03_p2_bulk_smoke_check.get("independent_of_simulation_runner") is True
+            and len(independent_checks) == 16
+            and all(item.get("status") == "PASS" for item in independent_checks)
+            and not t03_p2_bulk_smoke_check.get("failures"),
+            (
+                f"runner={t03_p2_bulk_smoke_report.get('status')} "
+                f"independent={t03_p2_bulk_smoke_check.get('status')} "
+                f"devices={smoke_resource_usage.get('device_count')} "
+                f"solves={smoke_resource_usage.get('dc_solve_count')}"
+            ),
+        )
+        smoke_boundary = t03_p2_bulk_smoke_report.get("evidence_boundary", {})
+        smoke_completion = t03_p2_bulk_smoke_report.get("t03_p2_completion", {})
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:equation_smoke_boundary",
+            smoke_completion.get("bulk_trap_equation_smoke_passed") is True
+            and smoke_completion.get("bulk_tail_and_deep_traps_complete") is False
+            and smoke_completion.get("formal_bulk_sensitivity_complete") is False
+            and smoke_completion.get("complete_p2_trap_group") is False
+            and smoke_completion.get("complete_t03_five_group_sensitivity") is False
+            and "formal NTA or NGA transfer sensitivity has completed"
+            in smoke_boundary.get("prohibited_claims", [])
+            and "P2 or T03 has completed" in smoke_boundary.get("prohibited_claims", [])
+            and "Only a passed equation smoke" in smoke_boundary.get("next_gate", ""),
+            smoke_boundary.get("next_gate", ""),
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t03_p2_bulk_traps:equation_smoke", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

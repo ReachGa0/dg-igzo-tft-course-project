@@ -1,0 +1,135 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T03_P2_BULK_TRAPS_EQUATION_SMOKE_V1",
+  "stage": "T03-P2-BULK-TRAPS-EQUATION-SMOKE",
+  "evidence_level": "E3",
+  "independent_of_simulation_runner": true,
+  "checks": [
+    {
+      "name": "identity:report_config_contract_and_stage_match",
+      "status": "PASS",
+      "detail": "case=IGZO_T03_P2_BULK_TRAPS_EQUATION_SMOKE_V1 stage=T03-P2-BULK-TRAPS-EQUATION-SMOKE contract=PASS"
+    },
+    {
+      "name": "inputs:snapshot_hashes_match",
+      "status": "PASS",
+      "detail": "inputs=8"
+    },
+    {
+      "name": "outputs:headers_case_order_and_counts_match_contract",
+      "status": "PASS",
+      "detail": "cases=3 integration_rows=6 state_rows=7257"
+    },
+    {
+      "name": "solver:21_records_and_all_cases_converged",
+      "status": "PASS",
+      "detail": "solves=21 runs=3"
+    },
+    {
+      "name": "scope:isolated_nta_nga_and_zero_interface_dit",
+      "status": "PASS",
+      "detail": "[('0.0', '0.0'), ('5e+18', '0.0'), ('0.0', '5e+16')]"
+    },
+    {
+      "name": "topology_and_bulk_models_match_enabled_t02_stack",
+      "status": "PASS",
+      "detail": "topology=True models=True"
+    },
+    {
+      "name": "integration:independent_96_point_recomputation_matches_persisted_samples",
+      "status": "PASS",
+      "detail": "[{\"electron_density_cm3\": 1000000000000.0, \"family\": \"tail\", \"gauss\": 0.0005228562505379284, \"simpson\": 0.000522855835968451}, {\"electron_density_cm3\": 1e+16, \"family\": \"tail\", \"gauss\": 0.010217988731807936, \"simpson\": 0.010217988724593138}, {\"electron_density_cm3\": 1e+20, \"family\": \"tail\", \"gauss\": 0.07815023145935576, \"simpson\": 0.07815023145935339}, {\"electron_density_cm3\": 1000000000000.0, \"family\": \"deep\", \"gauss\": 0.2524748181666935, \"simpson\": 0.25247474631232575}, {\"electron_density_cm3\": 1e+16, \"family\": \"deep\", \"gauss\": 0.34897750722675186, \"simpson\": 0.34897750722297377}, {\"electron_density_cm3\": 1e+20, \"family\": \"deep\", \"gauss\": 0.35440719284061484, \"simpson\": 0.35440719284061495}]"
+    },
+    {
+      "name": "nodes:independent_energy_integral_charge_and_derivative_recompute",
+      "status": "PASS",
+      "detail": "max_density_relative_error=6.722758e-16 max_derivative_relative_error=1.036409e-15 max_charge_relative_error=6.952587e-16"
+    },
+    {
+      "name": "nodes:finite_nonnegative_occupancy_and_opposite_charge_sign",
+      "status": "PASS",
+      "detail": "channel_rows=4059"
+    },
+    {
+      "name": "zero_limit:all_trap_node_models_are_zero",
+      "status": "PASS",
+      "detail": "zero control channel diagnostics"
+    },
+    {
+      "name": "zero_limit:T02_C_common_bias_current_and_state_regression",
+      "status": "PASS",
+      "detail": "{\"center_density_relative\": 1.4944245335611193e-16, \"center_potential_v\": 0.0, \"current_relative\": 2.289013097530675e-15}"
+    },
+    {
+      "name": "transport:all_cases_terminal_current_conservation",
+      "status": "PASS",
+      "detail": "maximum_relative_imbalance=4.685539e-15"
+    },
+    {
+      "name": "response:tail_and_deep_cases_have_nonzero_persisted_response",
+      "status": "PASS",
+      "detail": "[{\"case_id\": \"bulk_tail_reference\", \"current_relative\": 0.6774269647284443, \"density_relative\": 0.705888147394364}, {\"case_id\": \"bulk_deep_reference\", \"current_relative\": 0.2916356724545718, \"density_relative\": 0.31402745002388593}]"
+    },
+    {
+      "name": "outputs:case_summaries_match_persisted_center_states",
+      "status": "PASS",
+      "detail": "summary/state center rows"
+    },
+    {
+      "name": "artifacts:all_hashes_and_paths_match_report",
+      "status": "PASS",
+      "detail": "artifacts=5"
+    },
+    {
+      "name": "boundary:formal_bulk_scan_and_complete_p2_remain_closed",
+      "status": "PASS",
+      "detail": "Only a passed equation smoke plus its independent persisted-evidence check permits a separate formal isolated NTA/NGA transfer-sensitivity contract; P3, P5, SPICE, and layout remain closed."
+    }
+  ],
+  "failures": [],
+  "recomputed_diagnostics": {
+    "t02_c_zero_control_reproduction": {
+      "current_relative": 2.289013097530675e-15,
+      "center_potential_v": 0.0,
+      "center_density_relative": 1.4944245335611193e-16
+    },
+    "maximum_relative_terminal_current_imbalance": 4.685539435505567e-15,
+    "maximum_node_density_relative_error": 6.722757730704135e-16,
+    "maximum_derivative_relative_error": 1.036408574079018e-15,
+    "maximum_potential_node_charge_relative_error": 6.952586821289497e-16,
+    "nonzero_responses": [
+      {
+        "case_id": "bulk_tail_reference",
+        "current_relative": 0.6774269647284443,
+        "density_relative": 0.705888147394364
+      },
+      {
+        "case_id": "bulk_deep_reference",
+        "current_relative": 0.2916356724545718,
+        "density_relative": 0.31402745002388593
+      }
+    ]
+  },
+  "artifact_hashes": {
+    "config_snapshot": {
+      "path": "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
+      "sha256": "ad5e9341020f86565e2f259ea458ab5b7e525c1dbb9e0b9f9eca61782fce7ba3"
+    },
+    "solver_log": {
+      "path": "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/solver_log.json",
+      "sha256": "dcc7380f8f092ec9eb14a01879ff263997d616f800dc2bca51ad81260a41ea25"
+    },
+    "case_summary_csv": {
+      "path": "results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
+      "sha256": "a30dd059ac88d2e2baf59b10f3e3a68a17b4ba9c6ca30585c388aba9410ee143"
+    },
+    "integration_samples_csv": {
+      "path": "results/tables/tcad_t03_p2_bulk_traps_integration_samples.csv",
+      "sha256": "5b41b251f3cd5d2cf383c72a916140186f42af0a8050ac3b7d0b938d0bd89731"
+    },
+    "state_nodes_csv": {
+      "path": "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
+      "sha256": "dad8c8754f547fa14c3c5c54d255d8eea39534ac65aa4d0edb9b1dc74e2e9024"
+    }
+  }
+}

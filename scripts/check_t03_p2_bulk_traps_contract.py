@@ -492,7 +492,10 @@ def check_contract(config_path: Path) -> dict[str, Any]:
     add_check(
         checks,
         "next_gate:minimum_three_case_equation_smoke_and_laptop_budget",
-        smoke["permitted_only_after_contract_pass"] is True
+        smoke["case_id"] == "IGZO_T03_P2_BULK_TRAPS_EQUATION_SMOKE_V1"
+        and smoke["stage"] == "T03-P2-BULK-TRAPS-EQUATION-SMOKE"
+        and smoke["evidence_level_before_run"] == "E0"
+        and smoke["permitted_only_after_contract_pass"] is True
         and [item["case_id"] for item in smoke["cases"]]
         == ["bulk_zero_control", "bulk_tail_reference", "bulk_deep_reference"]
         and budget["required_device_count"] == 3
@@ -512,6 +515,38 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         and any("current is conserved" in item for item in smoke["required_checks"])
         and any("nonzero persisted response" in item for item in smoke["required_checks"]),
         "; ".join(smoke["required_checks"]),
+    )
+    protocol = smoke["protocol"]
+    add_check(
+        checks,
+        "next_gate:seven_solve_protocol_and_t02_c_anchor_are_frozen",
+        close(protocol["source_v"], 0.0)
+        and close(protocol["drain_v"], 0.01)
+        and protocol["low_vds_values_v"] == [0.001, 0.005, 0.01]
+        and close(protocol["fixed_bottom_gate_v"], 0.0)
+        and protocol["top_gate_values_v"] == [0.05, 0.1]
+        and protocol["final_common_state"]
+        == {
+            "source_v": 0.0,
+            "drain_v": 0.01,
+            "bottom_gate_v": 0.0,
+            "top_gate_v": 0.1,
+        }
+        and protocol["t02_c_reference"]
+        == {
+            "family_id": "top_primary",
+            "sweep_direction": "forward",
+            "fixed_secondary_gate_v": 0.0,
+            "primary_gate_v": 0.1,
+            "vds_v": 0.01,
+        }
+        and "three-case DEVSIM equation smoke"
+        in smoke["evidence_boundary"]["allowed_claim_after_run_and_independent_check"]
+        and "formal NTA or NGA transfer sensitivity has completed"
+        in smoke["evidence_boundary"]["prohibited_claims"]
+        and "Only a passed equation smoke plus its independent"
+        in smoke["evidence_boundary"]["next_gate"],
+        json.dumps(protocol, sort_keys=True),
     )
     acceptance = config["acceptance"]
     add_check(

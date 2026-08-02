@@ -8,7 +8,7 @@
   "evidence_level": "E3",
   "config": {
     "path": "config/tcad_t03_p2_bulk_traps.json",
-    "sha256": "3b8a1eb5294e1564dd11a6b13884809c508111bb32761019ddcedc35eef051aa"
+    "sha256": "18c3c6218504fe3cfe980a2e814288f5d2171c0f169e674f7b1cacd0af0cc8c4"
   },
   "inputs": {
     "project_config": {
@@ -192,6 +192,11 @@
       "detail": "96-point quadrature agrees with an independent reference integration; zero trap density restores T02-C node charge and common-bias current; occupied trap density and analytic Electrons derivative are finite and nonnegative; physical trapped charge is nonpositive and DEVSIM node source has the opposite sign; all coupled solves converge and source/drain current is conserved; tail-only and deep-only cases produce a nonzero persisted response"
     },
     {
+      "name": "next_gate:seven_solve_protocol_and_t02_c_anchor_are_frozen",
+      "status": "PASS",
+      "detail": "{\"drain_v\": 0.01, \"final_common_state\": {\"bottom_gate_v\": 0.0, \"drain_v\": 0.01, \"source_v\": 0.0, \"top_gate_v\": 0.1}, \"fixed_bottom_gate_v\": 0.0, \"low_vds_values_v\": [0.001, 0.005, 0.01], \"source_v\": 0.0, \"t02_c_reference\": {\"family_id\": \"top_primary\", \"fixed_secondary_gate_v\": 0.0, \"primary_gate_v\": 0.1, \"sweep_direction\": \"forward\", \"vds_v\": 0.01}, \"top_gate_values_v\": [0.05, 0.1]}"
+    },
+    {
       "name": "acceptance:static_and_future_evidence_gates_are_frozen",
       "status": "PASS",
       "detail": "{\"maximum_future_relative_terminal_current_imbalance\": 1e-05, \"maximum_future_zero_control_t02_c_current_relative_difference\": 1e-06, \"minimum_future_nonzero_common_state_relative_response\": 1e-06, \"require_all_future_dc_solves_converged\": true, \"require_analytic_electrons_derivative\": true, \"require_exact_literature_points\": true, \"require_independent_persisted_evidence_check_after_future_run\": true, \"require_interface_dit_zero_during_bulk_scans\": true, \"require_one_active_family_per_scan\": true, \"require_zero_density_t02_c_regression\": true, \"required_control_points_per_family\": 1, \"required_formal_points_per_family\": 3, \"required_source_row_count\": 2}"
@@ -199,7 +204,7 @@
     {
       "name": "outputs:paths_are_unique_and_stage_scoped",
       "status": "PASS",
-      "detail": "outputs=8 unique=8"
+      "detail": "outputs=9 unique=9"
     },
     {
       "name": "boundary:contract_is_not_simulation_or_completed_p2",

@@ -175,6 +175,9 @@
     "common_state_primary_gate_v": 0.3
   },
   "next_equation_smoke": {
+    "case_id": "IGZO_T03_P2_BULK_TRAPS_EQUATION_SMOKE_V1",
+    "stage": "T03-P2-BULK-TRAPS-EQUATION-SMOKE",
+    "evidence_level_before_run": "E0",
     "permitted_only_after_contract_pass": true,
     "cases": [
       {"case_id": "bulk_zero_control", "nta_cm3_ev": 0.0, "nga_cm3_ev": 0.0},
@@ -195,6 +198,37 @@
       "required_total_dc_solve_count": 21,
       "maximum_wall_seconds": 180.0,
       "laptop_target": true
+    },
+    "protocol": {
+      "source_v": 0.0,
+      "drain_v": 0.01,
+      "low_vds_values_v": [0.001, 0.005, 0.01],
+      "fixed_bottom_gate_v": 0.0,
+      "top_gate_values_v": [0.05, 0.1],
+      "final_common_state": {
+        "source_v": 0.0,
+        "drain_v": 0.01,
+        "bottom_gate_v": 0.0,
+        "top_gate_v": 0.1
+      },
+      "t02_c_reference": {
+        "family_id": "top_primary",
+        "sweep_direction": "forward",
+        "fixed_secondary_gate_v": 0.0,
+        "primary_gate_v": 0.1,
+        "vds_v": 0.01
+      }
+    },
+    "evidence_boundary": {
+      "allowed_claim_after_run_and_independent_check": "The three-case DEVSIM equation smoke may claim only that the frozen quasi-static NTA/NGA Poisson charge model passed quadrature, zero-limit, analytic-derivative, convergence, terminal-conservation, and nonzero-response checks in the uncalibrated teaching model.",
+      "prohibited_claims": [
+        "formal NTA or NGA transfer sensitivity has completed",
+        "P2 or T03 has completed",
+        "project-device DOS has been measured, extracted, fitted, or calibrated",
+        "physical SS, VTH, Ioff, Ion, mobility, hysteresis, reliability, or dynamic trapping has been validated",
+        "compact-model, circuit, layout, or HZO evidence exists"
+      ],
+      "next_gate": "Only a passed equation smoke plus its independent persisted-evidence check permits a separate formal isolated NTA/NGA transfer-sensitivity contract; P3, P5, SPICE, and layout remain closed."
     }
   },
   "acceptance": {
@@ -219,6 +253,7 @@
     "future_solver_log": "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/solver_log.json",
     "future_case_summary_csv": "results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
     "future_integration_samples_csv": "results/tables/tcad_t03_p2_bulk_traps_integration_samples.csv",
+    "future_state_nodes_csv": "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
     "future_report": "results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json",
     "future_check_report": "results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json"
   },

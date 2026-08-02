@@ -248,7 +248,7 @@
         "T03-P1-CAP-RATIO fixed-total-coupling allocation sensitivity: Ctop/Cbottom=0.5/0.75/1.0/1.5/2.0, 205 DC, 155 formal points, 5 states, independent 13/13 PASS",
         "T03-P2-DIT literature input contract and quasi-static interface-equation smoke: 4 E1 source rows, 5 devices, 17 DC, 12095 state rows, independent 15/15 PASS",
         "T03-P2-DIT-FORMAL controlled bottom-interface sensitivity: zero control plus 3 literature-constrained values, 4 devices, 164 DC, 124 transfer points, 4 states, independent 16/16 PASS; interface-DIT substage complete",
-        "T03-P2-BULK-TRAPS static input contract: 2 E1 source rows, isolated NTA/NGA three-point sets, quasi-static occupancy and 96-point integration, 29/29 PASS; no DEVSIM run"
+        "T03-P2-BULK-TRAPS static input contract: 2 E1 source rows, isolated NTA/NGA three-point sets, quasi-static occupancy and 96-point integration, 30/30 PASS; equation smoke completed separately with 3 devices and 21 DC solves"
       ],
       "completed_parameter_groups": ["P1", "P4"],
       "partially_completed_parameter_groups": ["P2"],

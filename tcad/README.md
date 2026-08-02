@@ -18,7 +18,8 @@
 12. `T03-P1-CAP-RATIO` 已运行的固定总耦合分配子阶段：五个有效比值点与 BIAS 共同关闭数值 P1，不代表物理电容提取。
 13. `T03-P2-DIT-CONTRACT-SMOKE` 已运行的单界面方程冒烟：4 行 E1 文献来源、5 案例/17 次 DC 和独立 15 项检查通过。
 14. `T03-P2-DIT-FORMAL` 已运行的正式单界面敏感性：零控制 + 3 个文献约束点完成 4 器件/164 次 DC/124 点/4 状态，独立 16 项检查通过；P2 仍缺 bulk traps。
-15. `T03-P2-BULK-TRAPS-CONTRACT` 已通过的静态合同：冻结 NTA/NGA 来源、方程、准静态占据、积分和两组隔离三点；29/29 PASS，但没有调用 DEVSIM。
+15. `T03-P2-BULK-TRAPS-CONTRACT` 已通过的静态合同：冻结 NTA/NGA 来源、方程、准静态占据、积分和两组隔离三点；30/30 PASS。
+16. `T03-P2-BULK-TRAPS-EQUATION-SMOKE` 已完成零控制、NTA 参考和 NGA 参考三个器件/21 次 DC；运行器 E2、独立 16 项落盘复核 E3 PASS，正式 transfer sensitivity 仍关闭。
 
 `T00` 不能被写成“IGZO TFT 电流仿真已完成”。它只证明二维结构、Poisson 方程、边界条件、扫描和数据导出链路能运行。
 
@@ -259,7 +260,7 @@ make t03-p2-dit-formal-check
 make t03-p2-bulk-traps-contract-check
 ```
 
-合同从 DOI `10.3390/electronics9101652` 固化受主型导带指数尾态 NTA 和高斯深态 NGA，各自采用零控制加三个文献点，并规定扫描一类时另一类及双界面 DIT 均为零。准静态占据只通过 Poisson 体电荷和解析 `Electrons` Jacobian 耦合；固定 96 点能量积分。29 项检查通过只允许进入三案例方程冒烟，不能写成 bulk-trap DEVSIM 仿真、敏感性或完整 P2 通过。
+合同从 DOI `10.3390/electronics9101652` 固化受主型导带指数尾态 NTA 和高斯深态 NGA，各自采用零控制加三个文献点，并规定扫描一类时另一类及双界面 DIT 均为零。准静态占据只通过 Poisson 体电荷和解析 `Electrons` Jacobian 耦合；固定 96 点能量积分。30 项检查通过后，三案例方程冒烟完成 21 次 DC；不能写成正式 bulk transfer sensitivity、物理 DOS 或完整 P2 通过。
 
 ## T00 的模型
 
@@ -283,8 +284,8 @@ div(epsilon * grad(Potential)) = 0
 1. T02-A 已完成顶栅、顶介质、上下栅边界与禁用极限合同；
 2. T02-B 已完成固定 VDS/VBG 的最小正向顶栅偏压族，电流方向、守恒与端点内部状态通过；
 3. T02-C 已完成固定第二栅的上下栅主扫族、零第二栅回程路径、受限 VTH/gm/耦合提取和 6 个二维状态，关闭完整 T02 教学模型数值门；
-4. T03-P4-L、数值 P1 和 P2-DIT 界面子阶段已完成，P2-BULK-TRAPS 静态合同已通过；
-5. 下一门只运行零控制、NTA 参考和 NGA 参考的最小方程冒烟，P3/P5 保持关闭；
+4. T03-P4-L、数值 P1、P2-DIT 界面子阶段和 P2-BULK-TRAPS 方程冒烟已完成；
+5. 下一门建立正式隔离 NTA/NGA transfer-sensitivity 合同，P3/P5 保持关闭；
 6. 与老师数据或条件完整的文献/实验数据定量对比。
 
 学长 `1.xlsx` 缺少 `VDS`、尺寸、材料参数和求解设置，因此只能作为导入和形状参考。条件未补齐前，不参与“精确拟合”评分。

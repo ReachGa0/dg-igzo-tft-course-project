@@ -3,7 +3,7 @@
 ## ADR-025：bulk traps 先冻结隔离的 NTA/NGA 准静态合同
 
 - 日期：2026-08-02
-- 状态：通过；只关闭静态输入合同，不代表 bulk-trap 仿真或完整 P2
+- 状态：通过；已关闭静态输入合同和三案例方程冒烟，不代表正式 bulk 敏感性或完整 P2
 
 ### 决策
 
@@ -15,9 +15,9 @@
 
 ### 结果边界与下一步
 
-- 29/29 静态检查 PASS；96 点积分的最大相对误差为 `7.93e-7`，低于冻结的 `1e-5` 门。报告明确 `simulation=NOT_RUN_BY_CONTRACT_CHECK`。
+- 30/30 静态检查 PASS；96 点积分的最大相对误差为 `7.93e-7`，低于冻结的 `1e-5` 门。随后三案例方程冒烟完成 3 器件/21 次 DC，运行器 E2 PASS，独立 16 项检查 E3 PASS。
 - 来源器件为单底栅、100 nm SiO2、`VD=40 V`，与本项目双栅 30/24/30 nm Al2O3/IGZO 栈和 `VDS=0.01 V` 不同；这些点不是项目测量、拟合或 DOS 提取。
-- 下一步只运行 3 器件/21 次 DC 的方程冒烟，验证积分、零极限、符号/Jacobian、收敛、守恒、T02-C 回归和非零响应。冒烟与独立检查通过前不做正式 NTA/NGA transfer 扫描，也不启动 P3/P5、SPICE 或版图。
+- 下一步建立另立的正式隔离 NTA/NGA transfer-sensitivity 合同；在合同和独立检查通过前不启动 P3/P5、SPICE 或版图。当前冒烟不支持物理 DOS、SS/VTH/Ion/Ioff 或完整 P2 结论。
 
 ## ADR-024：以 V2 关闭 bottom-interface DIT 子阶段，但保留 P2 partial
 

@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 402,
+  "checks": 414,
   "failures": 0,
   "results": [
     {
@@ -230,6 +230,11 @@
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal_v1_ss_linearity_failed"
     },
     {
+      "name": "directory:results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke"
+    },
+    {
       "name": "directory:tcad/structures",
       "status": "PASS",
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/structures"
@@ -297,42 +302,42 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=16528"
+      "detail": "bytes=16703"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=15220"
+      "detail": "bytes=15308"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=9882"
+      "detail": "bytes=9847"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=68214"
+      "detail": "bytes=71196"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4319"
+      "detail": "bytes=4286"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=29733"
+      "detail": "bytes=29771"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=15922"
+      "detail": "bytes=16188"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=5015"
+      "detail": "bytes=5328"
     },
     {
       "name": "file:config/project.json",
@@ -342,7 +347,7 @@
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=26493"
+      "detail": "bytes=26547"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -452,17 +457,62 @@
     {
       "name": "file:config/tcad_t03_p2_bulk_traps.json",
       "status": "PASS",
-      "detail": "bytes=13615"
+      "detail": "bytes=15371"
     },
     {
       "name": "file:scripts/check_t03_p2_bulk_traps_contract.py",
       "status": "PASS",
-      "detail": "bytes=26194"
+      "detail": "bytes=27654"
+    },
+    {
+      "name": "file:scripts/check_t03_p2_bulk_traps_equation_smoke.py",
+      "status": "PASS",
+      "detail": "bytes=23154"
+    },
+    {
+      "name": "file:tcad/run_t03_p2_bulk_traps_equation_smoke.py",
+      "status": "PASS",
+      "detail": "bytes=47047"
     },
     {
       "name": "file:results/reports/tcad_t03_p2_bulk_traps_input_contract.json",
       "status": "PASS",
-      "detail": "bytes=15413"
+      "detail": "bytes=15966"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json",
+      "status": "PASS",
+      "detail": "bytes=53988"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json",
+      "status": "PASS",
+      "detail": "bytes=5924"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
+      "status": "PASS",
+      "detail": "bytes=1759"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_bulk_traps_integration_samples.csv",
+      "status": "PASS",
+      "detail": "bytes=589"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
+      "status": "PASS",
+      "detail": "bytes=1570"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/solver_log.json",
+      "status": "PASS",
+      "detail": "bytes=253043"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
+      "status": "PASS",
+      "detail": "bytes=1556173"
     },
     {
       "name": "file:docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -517,7 +567,7 @@
     {
       "name": "file:docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
       "status": "PASS",
-      "detail": "bytes=26287"
+      "detail": "bytes=27250"
     },
     {
       "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
@@ -652,7 +702,7 @@
     {
       "name": "file:tcad/README.md",
       "status": "PASS",
-      "detail": "bytes=14401"
+      "detail": "bytes=14572"
     },
     {
       "name": "file:tcad/run_dg_electrostatic.py",
@@ -737,7 +787,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=14834"
+      "detail": "bytes=16270"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -1937,7 +1987,7 @@
     {
       "name": "t03_p2_bulk_traps:static_contract_only",
       "status": "PASS",
-      "detail": "contract=PASS simulation=NOT_RUN_BY_CONTRACT_CHECK checks=29"
+      "detail": "contract=PASS simulation=NOT_RUN_BY_CONTRACT_CHECK checks=30"
     },
     {
       "name": "t03_p2_bulk_traps:source_equations_points_and_integration",
@@ -1948,6 +1998,16 @@
       "name": "t03_p2_bulk_traps:equation_smoke_is_next_and_p2_remains_partial",
       "status": "PASS",
       "detail": "Only this contract PASS permits the separate T03-P2-BULK-TRAPS equation smoke. The smoke and its independent persisted-evidence check must pass before any formal NTA/NGA transfer scan; P3, P5, SPICE, and layout remain closed."
+    },
+    {
+      "name": "t03_p2_bulk_traps:equation_smoke_evidence",
+      "status": "PASS",
+      "detail": "runner=PASS independent=PASS devices=3 solves=21"
+    },
+    {
+      "name": "t03_p2_bulk_traps:equation_smoke_boundary",
+      "status": "PASS",
+      "detail": "Only a passed equation smoke plus its independent persisted-evidence check permits a separate formal isolated NTA/NGA transfer-sensitivity contract; P3, P5, SPICE, and layout remain closed."
     },
     {
       "name": "tcad:mesh_levels",

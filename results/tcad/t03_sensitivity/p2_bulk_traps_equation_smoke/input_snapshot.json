@@ -1,0 +1,39 @@
+{
+  "case_id": "IGZO_T03_P2_BULK_TRAPS_EQUATION_SMOKE_V1",
+  "stage": "T03-P2-BULK-TRAPS-EQUATION-SMOKE",
+  "formal_sensitivity_run": false,
+  "inputs": {
+    "bulk_contract_config": {
+      "path": "config/tcad_t03_p2_bulk_traps.json",
+      "sha256": "18c3c6218504fe3cfe980a2e814288f5d2171c0f169e674f7b1cacd0af0cc8c4"
+    },
+    "bulk_contract_report": {
+      "path": "results/reports/tcad_t03_p2_bulk_traps_input_contract.json",
+      "sha256": "9ab28508e9341927e908b86eb8c8f2224ed00ec6871ceaa9c3faa559c366a782"
+    },
+    "literature_table": {
+      "path": "references/t03_p2_bulk_trap_sources.csv",
+      "sha256": "c7e70e98b62439fc3eda7ad49fa90cc8b55367614efa8e848dd2ee7f7fb1e867"
+    },
+    "t01_baseline_config": {
+      "path": "config/tcad_t01_baseline.json",
+      "sha256": "31a8a8ff206597e2ff8800bfddf873957d356403722eb37444c2217930fb5ed9"
+    },
+    "t01_mesh_config": {
+      "path": "config/tcad_t01_d_mesh_refinement.json",
+      "sha256": "6ba9815ab063708b9fa560092974ac65a748b95c981d16056af3dec1e0f74e23"
+    },
+    "t02_a_config": {
+      "path": "config/tcad_t02_a_dual_gate_contract.json",
+      "sha256": "59f19996be43c22972bf223cfebf1f95fcaec5cdd9bf2edef76d45e9f1b4ccb3"
+    },
+    "t02_c_family_csv": {
+      "path": "results/tables/tcad_t02_c_bidirectional_families.csv",
+      "sha256": "247d863f6a650545a2a5c407e92f3141113ec21fb0d648c2c9d45024e208f4a9"
+    },
+    "runner_script": {
+      "path": "tcad/run_t03_p2_bulk_traps_equation_smoke.py",
+      "sha256": "41405908e7e1903bafcd89502ba6c1b5ee55503d5836accd5781039246c90597"
+    }
+  }
+}

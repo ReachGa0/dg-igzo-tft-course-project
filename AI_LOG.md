@@ -16,6 +16,44 @@
 
 ---
 
+## 2026-08-02 | Codex GPT-5 | 完成 T03-P2-BULK-TRAPS 方程冒烟与独立复核
+
+### 用户目标
+
+按已通过的 bulk-trap 静态合同进入下一小阶段，严格运行零控制、NTA 参考和 NGA 参考三个案例；不提前做正式敏感性、P3/P5、SPICE 或版图，并把可复核证据写入状态和第 8 章。
+
+### 读取的关键输入
+
+- `AGENTS.md` 的阶段门、证据等级、提交和文档更新规则。
+- `config/tcad_t03_p2_bulk_traps.json`：`epsilon=Ec-E`、96 点 Gauss-Legendre、三案例/21 次 DC 协议和证据边界。
+- T02-C 共同偏压参考、现有双栅网格/Poisson/漂移扩散初始化，以及 DOI `10.3390/electronics9101652` 的 NTA/NGA 来源表。
+
+### 修改的文件和产物
+
+- 新增 `tcad/run_t03_p2_bulk_traps_equation_smoke.py`：在双栅 IGZO channel 的 `PotentialNodeCharge` 中加入准静态 NTA/NGA 体电荷和解析 `Electrons` 导数；零值分支精确恢复 T02-C 电荷表达式；保存案例摘要、积分样本、求解日志、配置快照和 7257 行二维节点状态。
+- 新增 `scripts/check_t03_p2_bulk_traps_equation_smoke.py`：不导入运行器或 DEVSIM，独立重算 16 项落盘证据；节点检查复用 96 点 quadrature，Simpson 仅用于 6 个交叉样本。
+- 更新 `config/tcad_t03_p2_bulk_traps.json`、`scripts/check_t03_p2_bulk_traps_contract.py`、`scripts/check_project.py`、`Makefile`、`report/evidence_matrix.csv`、`STATUS.md`、`docs/11_二维TCAD实施路线.md`、报告第 5/8 章及本日志。
+- 新增结果：`results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json`、独立检查报告、两张 CSV 和 `results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/` 证据目录。
+
+### 验证命令和结果
+
+- `make t03-p2-bulk-traps-contract-check`：30/30 PASS，静态合同仍标记 `simulation=NOT_RUN_BY_CONTRACT_CHECK`。
+- `make t03-p2-bulk-traps-equation-smoke`：3 个器件、21 次 DC 全部收敛，运行器 E2 PASS；最大端口相对不平衡 `4.69e-15`，墙钟约 `1.07 s`。
+- `make t03-p2-bulk-traps-equation-smoke-check`：独立 16/16 PASS，E3；最大节点密度相对误差 `6.72e-16`，最大解析导数相对误差 `1.04e-15`，T02-C 零控制电流复现差 `2.29e-15`。
+- `make check` 和 `make report-check`：文档接入后待最终运行；通过后创建提交并推送。
+
+### 新决策、假设和未解决问题
+
+- 方程冒烟只关闭准静态 Poisson 体电荷/解析 Jacobian 的三案例数值门；不把非零响应写成物理 DOS、SS、VTH、Ion/Ioff、动态捕获-发射或实验校准。
+- NTA、NGA 仍严格隔离，另一类和两个界面 `D_it` 为零；NTD/NGD 延后。
+- 正式 NTA/NGA transfer sensitivity 尚未运行，完整 P2/T03、P3/P5、紧凑模型、电路和版图仍关闭。
+
+### 下一步建议
+
+先建立独立的正式隔离 NTA/NGA transfer-sensitivity 合同，冻结正式点、提取方法、失败保留和报告边界；合同通过后再进行正式扫描。
+
+---
+
 ## 2026-08-02 | Codex GPT-5 | 完成 T03-P2-BULK-TRAPS 静态输入合同
 
 ### 用户目标
