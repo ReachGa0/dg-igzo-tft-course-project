@@ -16,6 +16,38 @@
 
 ---
 
+## 2026-08-02 | Codex GPT-5 | 完成 T03-P2-BULK-TRAPS 静态输入合同
+
+### 用户目标
+
+继续按阶段门推进下一小阶段；先说明重复图片，再只完成 bulk tail/deep traps 的最小来源、单位、方程、三点和验收合同，不提前运行器件仿真或启动 P3/P5、SPICE、版图、HZO。
+
+### 读取的关键输入
+
+- `AGENTS.md` 及规定顺序的项目入口文档、配置和当前 Git 状态。
+- 已通过的 T02-C、T03-P2-DIT 方程冒烟/正式敏感性及独立检查；确认 P2 仍为 partial，下一门必须先过 bulk 静态合同。
+- Kim 等 2020 年 Electronics 原始论文 DOI `10.3390/electronics9101652` 的 Eq. (3)/(5)、Table 1、Fig. 2/3；人工核对图中 NTA/NGA 离散点，并记录 NGA 图注与公式/表的 donor/acceptor 命名冲突。
+
+### 本次修改
+
+- 新增 `references/t03_p2_bulk_trap_sources.csv`，保存 NTA/NGA 两行 E1 来源、公式、单位、离散点、宽度/峰位、源器件条件、项目用途和限制。
+- 新增 `config/tcad_t03_p2_bulk_traps.json`，冻结受主型 NTA/NGA 的隔离扫描、`epsilon=Ec-E`、准静态占据、Poisson 体电荷/Jacobian、96 点积分、T02-C 共同偏压、两组零控制 + 三点和三案例方程冒烟门。
+- 新增 `scripts/check_t03_p2_bulk_traps_contract.py` 与 Makefile 目标；检查器只用标准库读取落盘输入，独立实现 Gauss-Legendre 和 Simpson 积分，不导入 DEVSIM。
+- 更新总检查器、项目/实验配置、STATUS/README/AI_CONTEXT/ARCHITECTURE/PROJECT_PLAN、ADR-025、TCAD/物理/参考文献说明、报告第 5/6/8 章、证据矩阵和图片资产说明。
+
+### 验证与修正记录
+
+- 第一次合同检查因检查器把基线 `physics.equations.poisson` 字符串误按对象读取而异常退出；没有生成 PASS，也没有运行 DEVSIM。只按实际配置结构修正字段检查，模型参数和验收门不变。
+- 最终 `make t03-p2-bulk-traps-contract-check`：29/29 PASS，明确 `simulation=NOT_RUN_BY_CONTRACT_CHECK`；六个代表积分中最大相对误差为 `7.928944e-7`。
+- `make check` 首次正确拦下总检查器中的旧 `remaining_substages` 字符串；只同步为“bulk equation smoke and formal scans”后，项目总检查 402/402 PASS，没有把 P2 改为完成。
+- `make report-check`：12 章、5 附录、14 张正文图的 XML/路径/组装结构 PASS；仍有 16 个既存占位符，因此不是最终报告完成。
+- 图片哈希审计确认 3 对字节级相同的失败归档图：P4 V1 的失败只在完成性诊断，P2-DIT V1 的失败只在 SS 提取窗口；这些归档图不被当前章节引用，资产 README 已说明。
+
+### 证据边界与下一步
+
+- 合同 E3 只表示来源、输入、公式、积分和下一门可自动复核，不是 bulk-trap DEVSIM 仿真、收敛、器件敏感性、项目 DOS 提取或物理验证。
+- 下一步只允许实现并运行零控制、NTA=5e18 和 NGA=5e16 三案例、合计 21 次 DC 的方程冒烟；通过独立落盘复核前不做正式 transfer 扫描。
+
 ## 2026-08-01 | Codex GPT-5 | 完成 T03-P2-DIT-FORMAL 并关闭界面 DIT 子阶段
 
 ### 用户目标

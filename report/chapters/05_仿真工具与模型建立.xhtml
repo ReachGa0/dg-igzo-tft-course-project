@@ -28,6 +28,18 @@
     </tbody>
   </table>
   <p>正式扫描继承 T02-C 的恒流 VTH 和 <code>VTH+0.2 V</code> gm 口径。SS 另外固定为 <code>1e-7~1e-6 A/cm</code> 一 decade 窗口：先对端点做对数电流插值，再用 OLS 拟合栅压对 <code>log10(|Id|)</code> 的斜率，且要求 <code>R2&gt;=0.98</code>。所谓 Ioff 实际是 <code>VTG=-0.5 V, VBG=0 V, VDS=0.01 V</code> 的最低栅压电流代理；线性化中性电势假设会影响其方向，不得称为物理 Ioff。</p>
+  <h3>5.2 T03-P2-BULK-TRAPS 能量分布合同</h3>
+  <p>下一层体陷阱不沿用线性界面电容，而把局部能量写为 <code>epsilon=Ec-E</code>。受主型导带尾态采用 <code>g_TA=NTA*exp(-epsilon/WTA)</code>；受主型高斯深态采用 <code>g_GA=NGA*exp(-((epsilon-EGA)/WGA)^2)</code>。局部占据冻结为 <code>f_t=1/(1+(Nc/n)*exp(-epsilon/(k_B*T)))</code>，占据态密度在 <code>0~3.0 eV</code> 积分后形成 <code>rho_trap=-q*(n_TA+n_GA)</code>；DEVSIM Poisson 节点源使用相反号 <code>+q*(n_TA+n_GA)</code>，并显式提供 <code>df_t/dn=f_t*(1-f_t)/n</code> 的解析 Jacobian。</p>
+  <table>
+    <thead><tr><th>合同项</th><th>冻结口径</th><th>证据边界</th></tr></thead>
+    <tbody>
+      <tr><td>包含态</td><td>导带指数尾态 NTA；高斯深态 NGA</td><td>NTD/NGD 延后，不能称为完整四带 DOS</td></tr>
+      <tr><td>隔离原则</td><td>扫描 NTA 时 NGA=0；扫描 NGA 时 NTA=0；双界面 D_it=0</td><td>不把 bulk 与 interface 响应混在一次归因扫描中</td></tr>
+      <tr><td>数值积分</td><td>96 点 Gauss-Legendre；独立 32768 区间 Simpson 参考</td><td>六个代表积分最大相对误差 7.93e-7，只验证积分实现方案</td></tr>
+      <tr><td>动态项</td><td>无 SRH 或 trap continuity，仅准静态 Poisson 电荷耦合</td><td>不能产生捕获-发射时间、迟滞或 bias stress</td></tr>
+      <tr><td>当前门</td><td>29/29 静态合同 PASS</td><td><code>simulation=NOT_RUN_BY_CONTRACT_CHECK</code>，未验证 DEVSIM 收敛或响应</td></tr>
+    </tbody>
+  </table>
   <table>
     <thead><tr><th>T02-A/B/C 拓扑与偏压合同</th><th>实现</th><th>证据边界</th></tr></thead>
     <tbody>
@@ -42,5 +54,5 @@
       <tr><td>T02-C 状态合同</td><td>保存双负、上下栅非对称、两种阈值附近和双正共 6 个状态的节点/沟道单元 CSV 与 VTK</td><td>覆盖电势、电子浓度和局部电流密度；不含陷阱、动态极化或非理想接触</td></tr>
     </tbody>
   </table>
-  <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>，T01-D-C 使用 <code>make t01-d-extract</code>/<code>make t01-d-extract-check</code>。T02-A/B/C 分别使用对应的 contract、run 和 independent-check 目标。T03-P2-DIT 方程门依次使用 <code>make t03-p2-dit-contract-check</code>、<code>make t03-p2-dit-equation-smoke</code> 和 <code>make t03-p2-dit-equation-smoke-check</code>；正式敏感性使用 <code>make t03-p2-dit-formal-contract-check</code>、<code>make t03-p2-dit-formal</code> 和 <code>make t03-p2-dit-formal-check</code>。各运行器保存输入快照、DC 求解记录、CSV、JSON 及阶段所需状态或图，独立检查器复算哈希、偏压点、守恒、上游回归和方程边界。完整 T01/T02 及当前 T03 子阶段均是教学模型数值证据；实验拟合、物理 Ion/Ioff、真实回滞、参数不确定度和电路可用性尚未验证。</p>
+  <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>，T01-D-C 使用 <code>make t01-d-extract</code>/<code>make t01-d-extract-check</code>。T02-A/B/C 分别使用对应的 contract、run 和 independent-check 目标。T03-P2-DIT 方程门依次使用 <code>make t03-p2-dit-contract-check</code>、<code>make t03-p2-dit-equation-smoke</code> 和 <code>make t03-p2-dit-equation-smoke-check</code>；正式敏感性使用 <code>make t03-p2-dit-formal-contract-check</code>、<code>make t03-p2-dit-formal</code> 和 <code>make t03-p2-dit-formal-check</code>。bulk-trap 当前只执行 <code>make t03-p2-bulk-traps-contract-check</code>，不调用 DEVSIM。各运行器保存输入快照、DC 求解记录、CSV、JSON 及阶段所需状态或图，独立检查器复算哈希、偏压点、守恒、上游回归和方程边界。完整 T01/T02 及当前 T03 子阶段均是教学模型数值证据；实验拟合、物理 Ion/Ioff、真实回滞、参数不确定度和电路可用性尚未验证。</p>
 </section>

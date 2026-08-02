@@ -247,11 +247,12 @@
         "T03-P1-BIAS fixed-bottom-gate-bias sensitivity: VBG=-0.4/-0.2/0/+0.2/+0.4 V, 217 DC, 155 formal points, 5 states, independent 14/14 PASS",
         "T03-P1-CAP-RATIO fixed-total-coupling allocation sensitivity: Ctop/Cbottom=0.5/0.75/1.0/1.5/2.0, 205 DC, 155 formal points, 5 states, independent 13/13 PASS",
         "T03-P2-DIT literature input contract and quasi-static interface-equation smoke: 4 E1 source rows, 5 devices, 17 DC, 12095 state rows, independent 15/15 PASS",
-        "T03-P2-DIT-FORMAL controlled bottom-interface sensitivity: zero control plus 3 literature-constrained values, 4 devices, 164 DC, 124 transfer points, 4 states, independent 16/16 PASS; interface-DIT substage complete"
+        "T03-P2-DIT-FORMAL controlled bottom-interface sensitivity: zero control plus 3 literature-constrained values, 4 devices, 164 DC, 124 transfer points, 4 states, independent 16/16 PASS; interface-DIT substage complete",
+        "T03-P2-BULK-TRAPS static input contract: 2 E1 source rows, isolated NTA/NGA three-point sets, quasi-static occupancy and 96-point integration, 29/29 PASS; no DEVSIM run"
       ],
       "completed_parameter_groups": ["P1", "P4"],
       "partially_completed_parameter_groups": ["P2"],
-      "remaining_substages": ["T03-P2-BULK-TRAPS", "T03-P3", "T03-P5"],
+      "remaining_substages": ["T03-P2-BULK-TRAPS equation smoke and formal scans", "T03-P3", "T03-P5"],
       "remaining_parameter_groups": ["P2", "P3", "P5"],
       "first_group_outputs": [
         "config/tcad_t03_p4_channel_length.json",
@@ -311,9 +312,12 @@
         "results/tables/tcad_t03_p2_dit_formal_state_summary.csv",
         "results/tcad/t03_sensitivity/p2_dit_formal/state_manifest.json",
         "report/assets/tcad_t03_p2_dit_formal_sensitivity.png",
-        "report/assets/tcad_t03_p2_dit_formal_states.png"
+        "report/assets/tcad_t03_p2_dit_formal_states.png",
+        "references/t03_p2_bulk_trap_sources.csv",
+        "config/tcad_t03_p2_bulk_traps.json",
+        "results/reports/tcad_t03_p2_bulk_traps_input_contract.json"
       ],
-      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P1 combines the fixed-secondary-bias substage with a fixed-total-coupling effective capacitance-allocation ratio substage; it is not measured capacitance extraction, measured Al2O3 permittivity, or a fabricated asymmetric stack. P2 remains partial: the bottom-interface DIT literature/input contract, quasi-static interface-equation smoke, and formal three-point transfer sensitivity are E3, but bulk tail/deep traps have not run. Formal DIT VTH, SS, lowest-gate current, and gm are numerical proxies; the source stack differs and the linearized neutral-potential model is not energy-resolved. P3, P5 and complete T03 remain incomplete. No T03 result is experimental calibration, physical Ion/Ioff, compact-model, circuit, layout, or HZO evidence.",
+      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P1 combines the fixed-secondary-bias substage with a fixed-total-coupling effective capacitance-allocation ratio substage; it is not measured capacitance extraction, measured Al2O3 permittivity, or a fabricated asymmetric stack. P2 remains partial: the bottom-interface DIT substage is E3, and the bulk NTA/NGA source/equation contract is E3 static evidence, but no bulk-trap DEVSIM equation smoke or formal sensitivity has run. Formal DIT VTH, SS, lowest-gate current, and gm are numerical proxies; source stacks differ. P3, P5 and complete T03 remain incomplete. No T03 result is experimental calibration, physical Ion/Ioff, compact-model, circuit, layout, or HZO evidence.",
       "acceptance": ["five groups complete", "at least three points per group", "quantitative comparison uses common axes", "each completed group has an independent persisted-evidence check", "failed hypotheses remain visible and do not get silently relaxed"]
     },
     {

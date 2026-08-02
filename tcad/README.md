@@ -18,6 +18,7 @@
 12. `T03-P1-CAP-RATIO` 已运行的固定总耦合分配子阶段：五个有效比值点与 BIAS 共同关闭数值 P1，不代表物理电容提取。
 13. `T03-P2-DIT-CONTRACT-SMOKE` 已运行的单界面方程冒烟：4 行 E1 文献来源、5 案例/17 次 DC 和独立 15 项检查通过。
 14. `T03-P2-DIT-FORMAL` 已运行的正式单界面敏感性：零控制 + 3 个文献约束点完成 4 器件/164 次 DC/124 点/4 状态，独立 16 项检查通过；P2 仍缺 bulk traps。
+15. `T03-P2-BULK-TRAPS-CONTRACT` 已通过的静态合同：冻结 NTA/NGA 来源、方程、准静态占据、积分和两组隔离三点；29/29 PASS，但没有调用 DEVSIM。
 
 `T00` 不能被写成“IGZO TFT 电流仿真已完成”。它只证明二维结构、Poisson 方程、边界条件、扫描和数据导出链路能运行。
 
@@ -50,7 +51,7 @@ tcad/
 |-- run_t03_p2_dit_equation_smoke.py # T03-P2-DIT 单界面合同与方程冒烟
 |-- run_t03_p2_dit_formal.py # T03-P2-DIT 正式三点转移敏感性
 |-- structures/README.md      # 后续 Gmsh/DEVSIM 结构与网格
-|-- physics/README.md         # 方程、材料、陷阱和接触模型
+|-- physics/README.md         # 方程、材料、陷阱、接触和 bulk-trap 合同
 `-- tests/README.md           # 网格、极限条件和故障测试
 ```
 
@@ -252,6 +253,14 @@ make t03-p2-dit-formal-check
 
 该子阶段保持几何、网格、输运、偏压和提取方法不变，只改变 bottom-interface `D_it`。V2 合同 21/21、运行器 14/14 和独立 16/16 PASS；4 器件完成 164 次 DC、124 点、4 状态和 24 个 VTK。VTH/SS/gm 和最低栅压电流是线性化教学模型数值代理，不是实测或物理 Ion/Ioff。
 
+## 检查 T03-P2-BULK-TRAPS 输入合同
+
+```bash
+make t03-p2-bulk-traps-contract-check
+```
+
+合同从 DOI `10.3390/electronics9101652` 固化受主型导带指数尾态 NTA 和高斯深态 NGA，各自采用零控制加三个文献点，并规定扫描一类时另一类及双界面 DIT 均为零。准静态占据只通过 Poisson 体电荷和解析 `Electrons` Jacobian 耦合；固定 96 点能量积分。29 项检查通过只允许进入三案例方程冒烟，不能写成 bulk-trap DEVSIM 仿真、敏感性或完整 P2 通过。
+
 ## T00 的模型
 
 三个区域均求解：
@@ -274,8 +283,8 @@ div(epsilon * grad(Potential)) = 0
 1. T02-A 已完成顶栅、顶介质、上下栅边界与禁用极限合同；
 2. T02-B 已完成固定 VDS/VBG 的最小正向顶栅偏压族，电流方向、守恒与端点内部状态通过；
 3. T02-C 已完成固定第二栅的上下栅主扫族、零第二栅回程路径、受限 VTH/gm/耦合提取和 6 个二维状态，关闭完整 T02 教学模型数值门；
-4. T03-P4-L、数值 P1 和 P2-DIT 界面子阶段已完成；
-5. 下一门只冻结 `T03-P2-BULK-TRAPS` 最小合同，P3/P5 保持关闭；
+4. T03-P4-L、数值 P1 和 P2-DIT 界面子阶段已完成，P2-BULK-TRAPS 静态合同已通过；
+5. 下一门只运行零控制、NTA 参考和 NGA 参考的最小方程冒烟，P3/P5 保持关闭；
 6. 与老师数据或条件完整的文献/实验数据定量对比。
 
 学长 `1.xlsx` 缺少 `VDS`、尺寸、材料参数和求解设置，因此只能作为导入和形状参考。条件未补齐前，不参与“精确拟合”评分。

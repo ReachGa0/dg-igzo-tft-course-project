@@ -1,9 +1,9 @@
 # 项目状态
 
-- 最后更新：2026-08-01
-- 当前阶段：`T03_P2_DIT_FORMAL_E3_PARTIAL_P2`
+- 最后更新：2026-08-02
+- 当前阶段：`T03_P2_BULK_TRAPS_CONTRACT_E3_PARTIAL_P2`
 - 整体状态：`YELLOW`
-- 当前原则：完整 T02 数值门已在冻结 E2 教学模型上关闭；T03-P4-L 和数值 P1 组均已完整关闭。P2 的 bottom-interface DIT 输入、方程冒烟和正式三点转移敏感性已达 E3，界面 DIT 子阶段关闭；bulk tail/deep traps 未运行，所以完整 P2 仍为 partial。T02/T03 的 VTH、Delta VTH、SS、gm、耦合斜率和电流均只能称为数值代理。G0 继续禁止实验拟合、物理参数验证、物理 Ion/Ioff 和定量电路预测
+- 当前原则：完整 T02 数值门已在冻结 E2 教学模型上关闭；T03-P4-L 和数值 P1 组均已完整关闭。P2 的 bottom-interface DIT 子阶段已达 E3；bulk-trap 的 NTA/NGA 文献、单位、方程、占据、积分和三点合同也已静态 29/29 PASS，但没有运行 DEVSIM，所以完整 P2 仍为 partial。T02/T03 的 VTH、Delta VTH、SS、gm、耦合斜率和电流均只能称为数值代理。G0 继续禁止实验拟合、物理参数验证、物理 Ion/Ioff 和定量电路预测
 
 ## 已完成
 
@@ -17,7 +17,7 @@
 - [x] 活动冻结基线已重建为 7 个 IGZO 来源副本，旧材料和旧电路副本已移出活动数据集。
 - [x] 既有二维双栅静电基准为 E2，可作为后续起点。
 - [x] 报告已拆成 12 章和 5 个附录源，按清单组装为最终单文件 HTML，并支持打印分页。
-- [x] 文档、配置、目录合同、AI 入口、分章报告合同、17 阶段依赖图、T02-A/B/C、T03-P4-L、完整数值 P1 和 T03-P2-DIT 界面证据包已通过 395 项项目检查。
+- [x] 文档、配置、目录合同、AI 入口、分章报告合同、17 阶段依赖图、T02-A/B/C、T03-P4-L、完整数值 P1、T03-P2-DIT 界面证据包和 bulk-trap 静态合同已通过 402 项项目检查。
 - [x] 建立 `AGENTS.md` 权威 AI 入口及 Claude/Copilot 兼容指针。
 - [x] S00 数据审计已生成 50 条来源哈希、23 条单位记录（9 参数、14 数据字段）、8 个数据集边界和 6 项冲突登记；审计报告 PASS。
 - [x] G0 已决策为 `TEACHING_BASELINE_ONLY`：允许 E2 教学参数 T01，禁止称为实验拟合或校准双栅预测。
@@ -56,12 +56,14 @@
 - [x] 随 DIT 增加，VTH 数值代理为 `0.263857/0.283583/0.316118/0.338997 V`，SS 为 `137.594/168.657/231.493/292.966 mV/dec`，gm 为 `3.93760e-5/3.89139e-5/3.80152e-5/3.72531e-5 S/cm`。最低栅压电流代理为 `2.10e-10/1.41e-9/1.09e-8/2.96e-8 A/cm`，受 `Psi_neutral=0 V` 线性化电荷符号影响，不得写成物理 Ioff。
 - [x] 两类失败证据已保留：首次在第二个器件发现 DEVSIM mesh 重名；完整 V1 两 decade SS 窗口的 R2 为 `0.95470/0.97082/0.98560/0.99444`，前两点未过 `R2>=0.98`。V2 改为固定一 decade 窗口，不改仿真栈、DIT 点或 R2 门槛。
 - [x] P2 继续标为 partial：E3 正式结果只关闭线性化 bottom-interface DIT 子阶段，不证明 bulk tail/deep traps、能量分布占据、动态捕获-发射、迟滞、实验校准或完整 T03。
+- [x] T03-P2-BULK-TRAPS 已冻结 DOI `10.3390/electronics9101652` 的受主型导带指数尾态 NTA 与高斯深态 NGA；两类各取零控制 + 三个文献点，扫描时另一类和双界面 DIT 固定为零，NTD/NGD 延后。
+- [x] bulk-trap 合同固定 `epsilon=Ec-E`、准静态占据和 Poisson 体电荷 Jacobian；96 点 Gauss-Legendre 对独立 32768 区间 Simpson 参考的最大相对误差为 `7.93e-7`，29/29 静态检查 PASS，明确 `simulation=NOT_RUN_BY_CONTRACT_CHECK`。
 
 ## 后续领域实现
 
 - [x] T01 单栅 IGZO 漂移扩散（教学参数 E2 数值门完成；不等同实验标定或物理参数验证）。
 - [x] T02 双栅电流与阈值耦合（冻结教学模型数值门完成；不等同实验标定、物理电容比、迟滞或紧凑模型验证）。
-- [ ] T03 五组器件参数分析（部分完成：P1 DONE、P4 DONE、P2 interface DIT substage DONE；P2 bulk traps、P3、P5 TODO）。
+- [ ] T03 五组器件参数分析（部分完成：P1 DONE、P4 DONE、P2 interface DIT substage DONE；P2 bulk contract PASS 但方程冒烟/正式扫描、P3、P5 TODO）。
 - [ ] M00/M01 紧凑模型标定与双轨对照。
 - [ ] C00/C01 单极性标准单元。
 - [ ] C02/C03 环振和全加器。
@@ -86,6 +88,7 @@
 - T03-P1-BIAS 只改变固定底栅偏压。0.600083 至 -0.155482 V 的 VTH 代理和 -0.940554 V/V 的斜率不得称为实测阈值、物理电容比、实验耦合系数或电路可用参数；它单独不完成 P1。
 - T03-P1-CAP-RATIO 只改变固定总耦合下的有效分配比。VTH/gm/状态的五点单调趋势不得称为实测电容比、实测 Al2O3 介电常数、真实非对称介质栈、物理 Ion 或实验模型精度；它与 BIAS 共同完成数值 P1，但不完成 T03。
 - T03-P2-DIT 正式扫描只验证文献范围约束的准静态、线性化、bottom 单界面教学方程。VTH/SS/gm 和 `VTG=-0.5 V` 电流均是数值代理，不是实测 DIT、物理 Ioff/Ion、能量分布陷阱、实验标定或完整 P2。
+- T03-P2-BULK-TRAPS 当前只有静态合同；积分误差 PASS 不是 DEVSIM 方程、收敛、端口守恒、二维状态或 NTA/NGA transfer sensitivity 通过。
 - 尚未生成的有源负载网表、标准单元版图和 LVS 报告。
 
 ## 当前阻塞
@@ -97,4 +100,4 @@
 
 ## 下一步
 
-只进入 `T03-P2-BULK-TRAPS` 最小合同：先查找并冻结 IGZO `N_tail/N_deep` 的文献来源、单位、能量分布/占据方程、至少三点、共同偏压、数值门和独立验收。合同 PASS 之前不运行 bulk-trap 扫描，也不启动 P3/P5、SPICE 或版图。
+只进入 `T03-P2-BULK-TRAPS` 最小方程冒烟：按已通过合同建立零陷阱控制、NTA 参考和 NGA 参考三个器件，共 21 次 DC；先验证积分、零极限、体电荷符号/Jacobian、收敛、守恒、T02-C 回归和非零响应，再做独立落盘复核。冒烟 PASS 之前不运行正式 NTA/NGA 扫描，也不启动 P3/P5、SPICE 或版图。

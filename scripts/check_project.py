@@ -50,6 +50,10 @@ REQUIRED_FILES = [
     "references/papers_manifest.csv",
     "references/senior_work_manifest.csv",
     "references/t03_p2_dit_sources.csv",
+    "references/t03_p2_bulk_trap_sources.csv",
+    "config/tcad_t03_p2_bulk_traps.json",
+    "scripts/check_t03_p2_bulk_traps_contract.py",
+    "results/reports/tcad_t03_p2_bulk_traps_input_contract.json",
     "docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
     "docs/02_\u6587\u732e\u8c03\u7814\u77e9\u9635.md",
     "docs/03_\u96c6\u6210\u7535\u8def\u8bbe\u8ba1\u5168\u6d41\u7a0b.md",
@@ -555,7 +559,11 @@ def main() -> int:
             and sensitivity.get("remaining_parameter_groups")
             == ["P2", "P3", "P5"]
             and sensitivity.get("remaining_substages")
-            == ["T03-P2-BULK-TRAPS", "T03-P3", "T03-P5"],
+            == [
+                "T03-P2-BULK-TRAPS equation smoke and formal scans",
+                "T03-P3",
+                "T03-P5",
+            ],
             (
                 f"complete={sensitivity.get('completed_parameter_groups')} "
                 f"partial={sensitivity.get('partially_completed_parameter_groups')}"
@@ -2351,6 +2359,93 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t03_p2_dit_formal:formal_sensitivity", False, str(error))
+
+    t03_p2_bulk_config_path = ROOT / "config" / "tcad_t03_p2_bulk_traps.json"
+    t03_p2_bulk_contract_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p2_bulk_traps_input_contract.json"
+    )
+    t03_p2_bulk_source_path = ROOT / "references" / "t03_p2_bulk_trap_sources.csv"
+    try:
+        t03_p2_bulk_config = json.loads(
+            t03_p2_bulk_config_path.read_text(encoding="utf-8")
+        )
+        t03_p2_bulk_contract = json.loads(
+            t03_p2_bulk_contract_path.read_text(encoding="utf-8")
+        )
+        with t03_p2_bulk_source_path.open(
+            "r", encoding="utf-8", newline=""
+        ) as source_stream:
+            t03_p2_bulk_sources = list(csv.DictReader(source_stream))
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:static_contract_only",
+            t03_p2_bulk_config.get("case_id")
+            == "IGZO_T03_P2_BULK_TRAPS_CONTRACT_V1"
+            and t03_p2_bulk_config.get("stage")
+            == "T03-P2-BULK-TRAPS-CONTRACT"
+            and t03_p2_bulk_contract.get("contract_status") == "PASS"
+            and t03_p2_bulk_contract.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and t03_p2_bulk_contract.get("evidence_level") == "E3"
+            and len(t03_p2_bulk_contract.get("checks", [])) == 29
+            and all(
+                item.get("status") == "PASS"
+                for item in t03_p2_bulk_contract.get("checks", [])
+            )
+            and not t03_p2_bulk_contract.get("failures")
+            and t03_p2_bulk_contract.get("config", {}).get("sha256")
+            == sha256(t03_p2_bulk_config_path),
+            (
+                f"contract={t03_p2_bulk_contract.get('contract_status')} "
+                f"simulation={t03_p2_bulk_contract.get('simulation_status')} "
+                f"checks={len(t03_p2_bulk_contract.get('checks', []))}"
+            ),
+        )
+        literature = t03_p2_bulk_config.get("literature_input", {})
+        tail = literature.get("tail", {})
+        deep = literature.get("deep", {})
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:source_equations_points_and_integration",
+            len(t03_p2_bulk_sources) == 2
+            and {row.get("parameter_symbol") for row in t03_p2_bulk_sources}
+            == {"NTA", "NGA"}
+            and all(row.get("doi") == literature.get("doi") for row in t03_p2_bulk_sources)
+            and tail.get("formal_sensitivity_values_cm3_ev")
+            == [1e18, 5e18, 5e19]
+            and deep.get("formal_sensitivity_values_cm3_ev")
+            == [1e16, 5e16, 5e17]
+            and t03_p2_bulk_config.get("energy_integration", {}).get("order") == 96
+            and t03_p2_bulk_contract.get("maximum_integration_relative_error", 1.0)
+            <= t03_p2_bulk_config["energy_integration"][
+                "maximum_relative_error_vs_reference"
+            ],
+            (
+                f"sources={len(t03_p2_bulk_sources)} "
+                f"tail={tail.get('formal_sensitivity_values_cm3_ev')} "
+                f"deep={deep.get('formal_sensitivity_values_cm3_ev')} "
+                f"integration_error={t03_p2_bulk_contract.get('maximum_integration_relative_error')}"
+            ),
+        )
+        boundary = t03_p2_bulk_config.get("evidence_boundary", {})
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:equation_smoke_is_next_and_p2_remains_partial",
+            t03_p2_bulk_contract.get("planned_next_equation_smoke", {}).get(
+                "simulation_run"
+            )
+            is False
+            and t03_p2_bulk_contract.get("planned_future_sensitivity", {}).get(
+                "formal_scan_run"
+            )
+            is False
+            and "Only this contract PASS permits" in boundary.get("next_gate", "")
+            and "P2 or T03 has completed"
+            in " ".join(boundary.get("prohibited_claims", [])),
+            boundary.get("next_gate", ""),
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t03_p2_bulk_traps:contract", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

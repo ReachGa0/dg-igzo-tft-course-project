@@ -1,5 +1,24 @@
 # 设计决策记录
 
+## ADR-025：bulk traps 先冻结隔离的 NTA/NGA 准静态合同
+
+- 日期：2026-08-02
+- 状态：通过；只关闭静态输入合同，不代表 bulk-trap 仿真或完整 P2
+
+### 决策
+
+- 使用 DOI `10.3390/electronics9101652` 的 E1 a-IGZO DOS 来源。导带指数尾态取 NTA=`1e18/5e18/5e19 cm^-3 eV^-1`、`WTA=0.08 eV`；高斯深态取 NGA=`1e16/5e16/5e17 cm^-3 eV^-1`、`WGA=0.2 eV`、`EGA=0.5 eV below Ec`。每组另加零值回归控制。
+- 采用 `epsilon=Ec-E` 和局部准静态费米占据；受主态空时中性、占据时带一个负电荷。积分占据密度只加入 Poisson 体电荷，并提供对 `Electrons` 的解析 Jacobian；当前不加入 SRH、trap continuity、捕获截面或时间常数。
+- NTA 与 NGA 必须分两次隔离扫描：扫描一类时另一类峰值为零，上下界面 DIT 也为零。价带尾态 NTD 和施主型高斯态 NGD 延后，避免一次引入四带 DOS 和界面/体陷阱混合归因。
+- 能量积分固定为 `0~3.0 eV` 的 96 点 Gauss-Legendre；合同检查器另用 32768 区间 Simpson 对六个代表点复核。只有静态合同 PASS 才允许构建零控制、NTA 参考和 NGA 参考三案例方程冒烟。
+- 论文公式和 Table 1 将 NGA 归为 acceptor-like，但 Figure 3 caption 写成 donor-like。本合同采用公式/表口径，并把冲突保留在来源表和限制中，不静默消除。
+
+### 结果边界与下一步
+
+- 29/29 静态检查 PASS；96 点积分的最大相对误差为 `7.93e-7`，低于冻结的 `1e-5` 门。报告明确 `simulation=NOT_RUN_BY_CONTRACT_CHECK`。
+- 来源器件为单底栅、100 nm SiO2、`VD=40 V`，与本项目双栅 30/24/30 nm Al2O3/IGZO 栈和 `VDS=0.01 V` 不同；这些点不是项目测量、拟合或 DOS 提取。
+- 下一步只运行 3 器件/21 次 DC 的方程冒烟，验证积分、零极限、符号/Jacobian、收敛、守恒、T02-C 回归和非零响应。冒烟与独立检查通过前不做正式 NTA/NGA transfer 扫描，也不启动 P3/P5、SPICE 或版图。
+
 ## ADR-024：以 V2 关闭 bottom-interface DIT 子阶段，但保留 P2 partial
 
 - 日期：2026-08-01

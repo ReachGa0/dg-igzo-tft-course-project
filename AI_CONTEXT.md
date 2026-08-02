@@ -19,12 +19,12 @@
 - 题目：基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK。
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
-- S00、T01-A/B/C/D-A/D-B/D-C 和 T02-A/B/C 已完成；T03-P4-L 已完整关闭，T03-P1-BIAS 与 T03-P1-CAP-RATIO 共同关闭数值 P1。T03-P2-DIT 已完成 E1 文献输入、E3 准静态单界面方程冒烟和 E3 正式三点 transfer sensitivity，界面 DIT 子阶段已关闭；bulk tail/deep traps 未运行，所以完整 P2 仍为 partial。G0 仍为 `TEACHING_BASELINE_ONLY`；P3/P5、M00/C00/L00/V01 仍未实现。
+- S00、T01-A/B/C/D-A/D-B/D-C 和 T02-A/B/C 已完成；T03-P4-L 已完整关闭，T03-P1-BIAS 与 T03-P1-CAP-RATIO 共同关闭数值 P1。T03-P2-DIT 界面子阶段已关闭；bulk-trap 的 NTA/NGA 文献、单位、能量分布、准静态占据、96 点积分和隔离三点合同也已 E3 静态通过，但没有运行 DEVSIM，所以完整 P2 仍为 partial。G0 仍为 `TEACHING_BASELINE_ONLY`；P3/P5、M00/C00/L00/V01 仍未实现。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
 
-- 当前日期：2026-08-01。
+- 当前日期：2026-08-02。
 - PPT：2026-08-06；报告：2026-08-13。
 - 基础工艺：Si/300 nm SiO2/50 nm Al/30 nm Al2O3/24 nm IGZO/50 nm Ti。
 - IGZO 尺寸：`W/L=60/10 um`。
@@ -66,6 +66,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 - T03-P1-BIAS 固定底栅偏压敏感性：E3；22 项合同冻结 `VBG=-0.4/-0.2/0/+0.2/+0.4 V`，其余输入含对称 `Ctop/Cbottom=1` 代理不变。五个新器件完成 217 次 DC、155 点和 5 个 `VTG=0.3 V` 状态，运行器 14 项和独立 14 项复算 PASS。VTH 代理为 0.600083/0.438180/0.263857/0.068202/-0.155482 V，OLS 斜率 -0.940554 V/V、R2=0.995712；零副栅参考对 T02-C 复现差异为 0。该结果不是物理电容比、实验耦合系数或完整 P1。
 - T03-P1-CAP-RATIO 有效电容分配比敏感性：E3；20 项合同冻结 `Ctop/Cbottom=0.5/0.75/1.0/1.5/2.0`，上下物理介质厚度固定 30 nm，并以 `epsilon_top+epsilon_bottom=13.6` 固定总耦合代理。五个新器件完成 205 次 DC、155 点和 5 个 `VTG=0.3 V` 状态，运行器 16 项和独立 13 项复算 PASS。VTH 代理严格降至 0.209247 V，gm 代理严格升至 4.94347e-5 S/cm；比值 1 对 T02-C 复现差异为 0。它与 BIAS 共同关闭数值 P1，但不是物理电容、材料参数或制造栈验证。
 - T03-P2-DIT 界面子阶段：E3；方程冒烟先以 5 器件/17 次 DC 验证零极限、Gauss 和 T02-C 回归。正式 V2 再运行零控制与 `8.43e11/3.07e12/6.02e12 cm^-2 eV^-1` 三点，4 器件完成 164 次 DC、124 点和 4 状态，合同 21/21、运行器 14/14、独立 16/16 PASS。VTH 代理从 0.263857 V 增至 0.338997 V，SS 代理从 137.594 增至 292.966 mV/dec，gm 代理递减；最低栅压电流递增只是 `Psi_neutral=0 V` 线性化模型的数值响应，不是物理 Ioff。bulk traps 仍缺，所以 P2 仍为 partial。
+- T03-P2-BULK-TRAPS 输入合同：E3 静态证据；DOI `10.3390/electronics9101652` 的 NTA/NGA 两行来源、两组零控制 + 三点、`epsilon=Ec-E` 方程、准静态费米占据、Poisson 体电荷/Jacobian 和 96 点 Gauss-Legendre 已冻结，29/29 PASS；独立 Simpson 对照最大相对误差 `7.93e-7`。没有运行 DEVSIM，不得声称 bulk-trap 方程、收敛或敏感性通过。
 - 学长 IGZO 曲线：E1/reference_only；元数据不完整。
 - IGZO 单管外部 GDS：E2 基线，可参考但尚未迁入新 PDK。
 - 其余领域任务：E0。
@@ -79,7 +80,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. T02-A/B/C、T03-P4-L、完整数值 P1 和 T03-P2-DIT 界面子阶段已通过。下一步只能先冻结 `T03-P2-BULK-TRAPS` 最小合同；合同通过前不得运行 bulk traps，也不得铺开 P3/P5、SPICE、KLayout 或 HZO。
+8. T02-A/B/C、T03-P4-L、完整数值 P1、T03-P2-DIT 界面子阶段和 T03-P2-BULK-TRAPS 静态合同已通过。下一步只能运行合同中的零控制/NTA 参考/NGA 参考三案例方程冒烟；冒烟和独立检查通过前不得做正式 bulk 扫描，也不得铺开 P3/P5、SPICE、KLayout 或 HZO。
 
 ## 原始资产路径
 

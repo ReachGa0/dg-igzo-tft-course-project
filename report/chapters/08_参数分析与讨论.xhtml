@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-08" class="report-chapter">
   <h2>8. 参数分析与讨论</h2>
-  <p>本章报告 T03 已关闭的两个参数组：T03-P4-L 沟道长度组，以及由 T03-P1-BIAS 和 T03-P1-CAP-RATIO 组成的数值 P1 组；另外单列 P2-DIT 已关闭的 bottom-interface 子阶段。该子阶段已包含输入合同、方程冒烟和正式三点转移敏感性，但 bulk tail/deep traps 未完成，所以 P2 整组仍为 partial。全部结果继承 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型；下列 VTH、Delta VTH、SS、gm、耦合斜率和电流均是受限数值代理，不是实验参数。</p>
+  <p>本章报告 T03 已关闭的两个参数组：T03-P4-L 沟道长度组，以及由 T03-P1-BIAS 和 T03-P1-CAP-RATIO 组成的数值 P1 组；另外单列 P2-DIT 已关闭的 bottom-interface 子阶段。bulk tail/deep traps 目前只有静态输入合同，没有器件仿真，所以 P2 整组仍为 partial。全部结果继承 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型；下列 VTH、Delta VTH、SS、gm、耦合斜率和电流均是受限数值代理，不是实验参数。</p>
 
   <h3>8.1 沟道长度方向性敏感性</h3>
   <p>每个长度从独立的零偏压平衡态开始，随后执行与 T02-C 相同的低漏压阶梯、负向预处理和 31 点顶栅上扫。三个新器件共完成 123 次 DC 求解和 93 个正式点，并在 <code>VTG=1.0 V</code> 保存一个代表状态。VTH 采用 10 nA*(W/L) 的对数插值代理，gm 在 VTH+0.2 V 处由中心差分和线性插值得到。</p>
@@ -147,6 +147,19 @@
   </figure>
   <p>21 项静态合同、运行器 14 项和不导入运行器/DEVSIM 的独立 16 项检查全部 PASS。独立检查重算 124 个曲线点、4 行指标、T02-C 零 DIT 回归、4 个节点/单元状态、24 个 VTK、2 张 PNG 及全部哈希。对应命令为 <code>make t03-p2-dit-formal-contract-check</code>、<code>make t03-p2-dit-formal</code> 和 <code>make t03-p2-dit-formal-check</code>。</p>
 
-  <h3>8.14 适用范围和未完成组</h3>
-  <p>T03-P4-L 与数值 P1 已完整关闭，其中 P1 必须同时引用 BIAS 和 CAP-RATIO 两个子阶段。P2 的 bottom-interface DIT 子阶段已关闭，但 bulk tail/deep states、动态捕获-发射、迟滞、bias stress、双界面和实验校准证据均不存在，所以完整 P2 仍为 partial。P3 接触和 P5 温度也未实现，本章不关闭完整 T03。下一门只允许先冻结 <code>T03-P2-BULK-TRAPS</code> 合同；没有进行实验拟合、紧凑模型、SPICE、电路、版图或 HZO 工作。</p>
+  <h3>8.14 P2-BULK-TRAPS 静态合同</h3>
+  <p>合同从 DOI <code>10.3390/electronics9101652</code> 记录两行 E1 来源。未来 NTA 组取 <code>0/1e18/5e18/5e19 cm^-3 eV^-1</code>，NGA 组取 <code>0/1e16/5e16/5e17 cm^-3 eV^-1</code>；零值为 T02-C 回归控制，正式点均为原文图中的离散值。每次只能激活一个 bulk family，另一类和上下界面 DIT 固定为零。</p>
+  <table>
+    <thead><tr><th>静态验收</th><th>结果</th><th>边界</th></tr></thead>
+    <tbody>
+      <tr><td>合同检查</td><td>29/29 PASS</td><td>没有调用 DEVSIM</td></tr>
+      <tr><td>积分对照</td><td>六个代表点最大相对误差 7.93e-7</td><td>只证明 96 点积分满足预设 1e-5 门</td></tr>
+      <tr><td>下一冒烟预算</td><td>3 器件、21 次 DC、上限 180 s</td><td>预算不是实际运行时间或收敛证据</td></tr>
+      <tr><td>正式扫描状态</td><td>NOT RUN</td><td>没有 VTH/SS/电流或二维状态结果</td></tr>
+    </tbody>
+  </table>
+  <p class="boundary">该合同 PASS 只允许进入零控制、NTA 参考和 NGA 参考的方程冒烟。不能据此声称 bulk-trap 方程在 DEVSIM 中收敛、完成 NTA/NGA 敏感性、提取本项目 DOS 或关闭 P2。</p>
+
+  <h3>8.15 适用范围和未完成组</h3>
+  <p>T03-P4-L 与数值 P1 已完整关闭，其中 P1 必须同时引用 BIAS 和 CAP-RATIO 两个子阶段。P2 的 bottom-interface DIT 子阶段已关闭，bulk-trap 静态合同也已通过；但 bulk 方程冒烟/正式扫描、动态捕获-发射、迟滞、bias stress、双界面和实验校准证据均不存在，所以完整 P2 仍为 partial。P3 接触和 P5 温度也未实现，本章不关闭完整 T03。下一门只允许运行 <code>T03-P2-BULK-TRAPS</code> 三案例方程冒烟；没有进行实验拟合、紧凑模型、SPICE、电路、版图或 HZO 工作。</p>
 </section>
