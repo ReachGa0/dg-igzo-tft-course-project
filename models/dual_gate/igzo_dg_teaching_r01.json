@@ -1,0 +1,210 @@
+{
+  "model_id": "IGZO_DG_TEACHING_KERNEL_R01",
+  "status": "M00_REFERENCE_KERNEL_RUNNER_EVIDENCE",
+  "evidence_level": "E2 if the formal fit report passes; independent E3 check stored separately",
+  "kernel": {
+    "kernel_id": "IGZO_DG_TEACHING_KERNEL_R01",
+    "model_kind": "smooth charge-difference DC teaching surrogate",
+    "current_direction_domain": "formal M00 scoring uses VDS >= 0 only",
+    "softplus": "Q(x,s) = s * log(1 + exp(clamp(x/s,-60,60)))",
+    "single_gate_control": "U = VBG",
+    "dual_gate_control": "U = eta_dg * (VTG + VBG)",
+    "length_threshold": "Vth(L) = Vth_topology + kvth_l * ln(L/Lref)",
+    "current_per_width": "I = sign(VDS) * {10^log_beta * (Lref/L)^p_l * [Q(U-Vth,s)^gamma - Q(U-Vth-k_d*abs(VDS),s)^gamma] * [1+lambda*abs(VDS)] + 10^log_gmin*abs(VDS)}",
+    "terminal_current": "I_terminal = I_per_width * W_cm",
+    "reference_length_um": 10.0,
+    "reciprocity_rule": "Top and bottom gate coefficients are identical in the nominal symmetric dual-gate route.",
+    "physical_parameter_claim_permitted": false
+  },
+  "parameters": {
+    "log_beta": -2.702921436295866,
+    "vth_single_v": -0.0013497127593725346,
+    "vth_dual_v": -0.020009329011924523,
+    "eta_dg": 0.5607792480485464,
+    "softplus_scale_v": 0.04524296281804436,
+    "transport_exponent": 1.7463435465688255,
+    "drain_coupling": 1.1950646712215522,
+    "lambda_per_v": 3.6126856452896537e-32,
+    "log_gmin": -28.3983301041743,
+    "length_exponent": 1.7010130815319018,
+    "length_vth_slope_v": -0.06863546717382345
+  },
+  "parameter_contract": [
+    {
+      "name": "log_beta",
+      "initial": -3.0,
+      "lower": -8.0,
+      "upper": 1.0,
+      "unit": "log10(A/cm/V^gamma)",
+      "role": "current scale coefficient"
+    },
+    {
+      "name": "vth_single_v",
+      "initial": 0.2175,
+      "lower": -0.5,
+      "upper": 1.0,
+      "unit": "V",
+      "role": "single-gate control offset"
+    },
+    {
+      "name": "vth_dual_v",
+      "initial": 0.132,
+      "lower": -0.5,
+      "upper": 1.0,
+      "unit": "V",
+      "role": "dual-gate control offset"
+    },
+    {
+      "name": "eta_dg",
+      "initial": 0.5,
+      "lower": 0.2,
+      "upper": 0.8,
+      "unit": "1",
+      "role": "equal per-gate nominal control weight"
+    },
+    {
+      "name": "softplus_scale_v",
+      "initial": 0.026,
+      "lower": 0.005,
+      "upper": 0.2,
+      "unit": "V",
+      "role": "smooth subthreshold scale coefficient"
+    },
+    {
+      "name": "transport_exponent",
+      "initial": 2.0,
+      "lower": 1.0,
+      "upper": 4.0,
+      "unit": "1",
+      "role": "charge-power coefficient"
+    },
+    {
+      "name": "drain_coupling",
+      "initial": 1.0,
+      "lower": 0.1,
+      "upper": 3.0,
+      "unit": "1",
+      "role": "drain-side charge reduction coefficient"
+    },
+    {
+      "name": "lambda_per_v",
+      "initial": 0.1,
+      "lower": 0.0,
+      "upper": 20.0,
+      "unit": "1/V",
+      "role": "sampled output modulation coefficient"
+    },
+    {
+      "name": "log_gmin",
+      "initial": -18.0,
+      "lower": -30.0,
+      "upper": -8.0,
+      "unit": "log10(S/cm)",
+      "role": "numerical floor conductance coefficient"
+    },
+    {
+      "name": "length_exponent",
+      "initial": 0.62,
+      "lower": 0.0,
+      "upper": 2.0,
+      "unit": "1",
+      "role": "local 8-12 um current scaling coefficient"
+    },
+    {
+      "name": "length_vth_slope_v",
+      "initial": -0.03,
+      "lower": -0.3,
+      "upper": 0.3,
+      "unit": "V",
+      "role": "local threshold shift per ln(L/Lref)"
+    }
+  ],
+  "validity_domain": {
+    "material": "n-type IGZO only",
+    "evidence_source": "qualified project 2D teaching-model numerical curves",
+    "temperature_k": [
+      300.0,
+      300.0
+    ],
+    "contact": "ideal ohmic nominal only",
+    "traps": "none in nominal model",
+    "dual_gate_stack": "symmetric 30 nm physical Al2O3 per gate with k=6.8",
+    "single_gate_vgs_v": [
+      -1.0,
+      1.0
+    ],
+    "dual_gate_primary_v": [
+      -0.5,
+      1.0
+    ],
+    "dual_gate_secondary_v": [
+      -0.3,
+      0.3
+    ],
+    "vds_v": [
+      0.0,
+      0.2
+    ],
+    "channel_length_um": [
+      8.0,
+      12.0
+    ],
+    "source_width_um": 60.0,
+    "width_scaling": "Linear conversion from the 2D per-width current is a teaching assumption and is not a measured width-dependence validation.",
+    "analysis_type": "DC only",
+    "excluded": [
+      "negative VDS formal accuracy",
+      "capacitance transient noise or AC behavior",
+      "trap contact temperature ferroelectric stress or reliability laws",
+      "experimental process corners uncertainty or extrapolation",
+      "quantitative circuit prediction before M01"
+    ]
+  },
+  "split_summary": {
+    "training_curve_count": 9,
+    "holdout_curve_count": 4,
+    "training_scored_point_count": 163,
+    "holdout_scored_point_count": 70,
+    "zero_vds_invariant_point_count": 7,
+    "repeated_low_vds_audit_point_count": 7,
+    "split_policy": "fixed whole-condition split registered before fitting"
+  },
+  "aggregate_metrics": {
+    "train": {
+      "linear": 0.07992032871127945,
+      "log": 0.08322021984917954
+    },
+    "holdout": {
+      "linear": 0.12343417497579379,
+      "log": 0.14878932576826395
+    }
+  },
+  "vth_criterion_a_per_cm": 1e-05,
+  "gm_evaluation_overdrive_v": 0.2,
+  "source_config": {
+    "path": "config/compact_m00_input_validation.json",
+    "sha256": "407585bca9929dd573665ce6e0c7dcd872aee6cef184ef1cdd25b0b19e1bf27e",
+    "bytes": 22714
+  },
+  "source_registry": {
+    "path": "references/m00_dataset_registry.csv",
+    "sha256": "c7a66848430bee7837f0f8d44da52f1e7578b7aa4d8a70222a82803fadb0f840",
+    "bytes": 5633
+  },
+  "simulator_status": {
+    "reference_python": "RUN_BY_M00",
+    "ngspice": "CANDIDATE_ONLY_NOT_EXECUTED",
+    "aimspice": "CANDIDATE_ONLY_NOT_EXECUTED",
+    "tcad": "NOT_RUN",
+    "circuit": "NOT_RUN"
+  },
+  "prohibited_claims": [
+    "experimental fitting calibration or measured predictive accuracy",
+    "physical VTH SS mobility Ion Ioff DOS contact or temperature parameters",
+    "independent external validation because train and holdout originate from the same frozen teaching model",
+    "AIM-Spice or ngspice validation before M01 execution",
+    "equation identity between native AIM-Spice Level 15 and ngspice behavioral routes",
+    "native HSPICE Level 61 execution",
+    "circuit-ready active-load model quantitative circuit results layout PEX or HZO evidence"
+  ]
+}

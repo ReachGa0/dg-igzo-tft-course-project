@@ -1,0 +1,480 @@
+{
+  "status": "FAIL",
+  "fit_status": "FAIL",
+  "case_id": "IGZO_M00_TEACHING_COMPACT_INPUT_VALIDATION_V1",
+  "stage": "M00",
+  "evidence_level": "E0",
+  "formal_fit_run": true,
+  "formal_fit_run_ordinal": 1,
+  "independent_persisted_evidence_check_complete": false,
+  "start_utc": "2026-08-02T19:53:01.742915+00:00",
+  "end_utc": "2026-08-02T19:53:07.152811+00:00",
+  "wall_seconds": 5.409875505996752,
+  "optimizer": {
+    "case_id": "IGZO_M00_TEACHING_COMPACT_INPUT_VALIDATION_V1",
+    "backend": "scipy.optimize.least_squares",
+    "scipy_version": "1.18.0",
+    "method": "trf",
+    "jacobian": "2-point finite difference",
+    "loss": "linear",
+    "start_utc": "2026-08-02T19:53:01.857182+00:00",
+    "end_utc": "2026-08-02T19:53:01.917464+00:00",
+    "wall_seconds": 0.06027039400214562,
+    "success": true,
+    "status_code": 2,
+    "message": "`ftol` termination condition is satisfied.",
+    "nfev": 18,
+    "njev": 16,
+    "initial_cost": 44.49742376184836,
+    "final_cost": 0.02995394384939566,
+    "optimality": 5.632500411838022e-08,
+    "active_mask": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      0,
+      0,
+      0
+    ],
+    "initial_vector": [
+      -3.0,
+      0.2175,
+      0.132,
+      0.5,
+      0.026,
+      2.0,
+      1.0,
+      0.1,
+      -18.0,
+      0.62,
+      -0.03
+    ],
+    "fitted_vector": [
+      -2.702921436295866,
+      -0.0013497127593725346,
+      -0.020009329011924523,
+      0.5607792480485464,
+      0.04524296281804436,
+      1.7463435465688255,
+      1.1950646712215522,
+      3.6126856452896537e-32,
+      -28.3983301041743,
+      1.7010130815319018,
+      -0.06863546717382345
+    ],
+    "objective_curve_ids": [
+      "train_t01_single_idvg_l10",
+      "train_t01_single_idvd_vgs_0p0",
+      "train_t01_single_idvd_vgs_0p5",
+      "train_t01_single_idvd_vgs_1p0",
+      "train_t02_dual_secondary_m0p3",
+      "train_t02_dual_secondary_p0p3",
+      "train_t03_dual_length_8",
+      "train_t03_dual_idvd_vtg_0p3",
+      "train_t03_dual_idvd_vtg_1p0"
+    ],
+    "objective_curve_count": 9,
+    "objective_scored_point_count": 163,
+    "objective_residual_count": 326,
+    "objective_input_sha256": "04893a198794375e5c7541f23031545dedb336dc82800ee85c51db7243110a6b",
+    "holdout_curve_ids_in_objective": [],
+    "holdout_targets_loaded_before_optimizer_termination": false,
+    "random_seed_or_restart": "none",
+    "tcad_or_spice_execution": false
+  },
+  "holdout_evaluation": {
+    "loaded_after_optimizer_termination": true,
+    "load_utc": "2026-08-02T19:53:01.926976+00:00",
+    "curve_ids": [
+      "holdout_t01_single_idvd_vgs_0p3",
+      "holdout_t02_dual_secondary_0p0",
+      "holdout_t03_dual_length_12",
+      "holdout_t03_dual_idvd_vtg_0p5"
+    ],
+    "scored_point_count": 70,
+    "used_to_change_parameters_or_thresholds": false
+  },
+  "split_summary": {
+    "training_curve_count": 9,
+    "holdout_curve_count": 4,
+    "training_scored_point_count": 163,
+    "holdout_scored_point_count": 70,
+    "zero_vds_invariant_point_count": 7,
+    "repeated_low_vds_audit_point_count": 7,
+    "split_policy": "fixed whole-condition split registered before fitting"
+  },
+  "aggregate_metrics": {
+    "train": {
+      "linear": 0.07992032871127945,
+      "log": 0.08322021984917954
+    },
+    "holdout": {
+      "linear": 0.12343417497579379,
+      "log": 0.14878932576826395
+    }
+  },
+  "holdout_transfer_proxies": [
+    {
+      "curve_id": "holdout_t02_dual_secondary_0p0",
+      "target_vth_proxy_v": 0.26385685799760256,
+      "model_vth_proxy_v": 0.2503327499326584,
+      "vth_absolute_error_v": 0.01352410806494414,
+      "target_gm_proxy_a_per_cm_v": 3.937599666287622e-05,
+      "model_gm_proxy_a_per_cm_v": 2.462914145633535e-05,
+      "gm_relative_error": 0.37451382711143505
+    },
+    {
+      "curve_id": "holdout_t03_dual_length_12",
+      "target_vth_proxy_v": 0.3047418022254981,
+      "model_vth_proxy_v": 0.35936279434484736,
+      "vth_absolute_error_v": 0.05462099211934923,
+      "target_gm_proxy_a_per_cm_v": 3.440200527741121e-05,
+      "model_gm_proxy_a_per_cm_v": 1.67749539962604e-05,
+      "gm_relative_error": 0.5123844130308577
+    }
+  ],
+  "parameters": {
+    "log_beta": -2.702921436295866,
+    "vth_single_v": -0.0013497127593725346,
+    "vth_dual_v": -0.020009329011924523,
+    "eta_dg": 0.5607792480485464,
+    "softplus_scale_v": 0.04524296281804436,
+    "transport_exponent": 1.7463435465688255,
+    "drain_coupling": 1.1950646712215522,
+    "lambda_per_v": 3.6126856452896537e-32,
+    "log_gmin": -28.3983301041743,
+    "length_exponent": 1.7010130815319018,
+    "length_vth_slope_v": -0.06863546717382345
+  },
+  "minimum_normalized_parameter_bound_distance": 1.8063428226448267e-33,
+  "checks": [
+    {
+      "name": "input:committed_static_contract_and_registered_hashes",
+      "status": "PASS",
+      "detail": "contract=PASS registry=13"
+    },
+    {
+      "name": "optimizer:training_only_holdout_isolation",
+      "status": "PASS",
+      "detail": "train=9/163 holdout_loaded=2026-08-02T19:53:01.926976+00:00"
+    },
+    {
+      "name": "optimizer:deterministic_termination_success",
+      "status": "PASS",
+      "detail": "status=2 nfev=18 cost=2.995394385e-02"
+    },
+    {
+      "name": "optimizer:wall_time_budget",
+      "status": "PASS",
+      "detail": "seconds=0.060270"
+    },
+    {
+      "name": "split:required_curves_and_scored_points",
+      "status": "PASS",
+      "detail": "curves=9/4 points=163/70"
+    },
+    {
+      "name": "predictions:all_finite",
+      "status": "PASS",
+      "detail": "rows=247"
+    },
+    {
+      "name": "predictions:nonnegative_for_nonnegative_vds",
+      "status": "PASS",
+      "detail": "formal VDS domain is nonnegative"
+    },
+    {
+      "name": "predictions:zero_vds_invariants",
+      "status": "PASS",
+      "detail": "count=7 maximum=0.000000e+00"
+    },
+    {
+      "name": "predictions:sampled_transfer_and_output_monotonicity",
+      "status": "PASS",
+      "detail": "curves=13"
+    },
+    {
+      "name": "parameters:all_strictly_inside_frozen_bounds",
+      "status": "PASS",
+      "detail": "minimum_normalized_distance=1.806343e-33"
+    },
+    {
+      "name": "metrics:training_aggregate_linear",
+      "status": "PASS",
+      "detail": "value=7.992032871e-02 limit=0.15"
+    },
+    {
+      "name": "metrics:training_aggregate_log",
+      "status": "PASS",
+      "detail": "value=8.322021985e-02 limit=0.45"
+    },
+    {
+      "name": "metrics:holdout_aggregate_linear",
+      "status": "PASS",
+      "detail": "value=1.234341750e-01 limit=0.2"
+    },
+    {
+      "name": "metrics:holdout_aggregate_log",
+      "status": "PASS",
+      "detail": "value=1.487893258e-01 limit=0.6"
+    },
+    {
+      "name": "metrics:training_per_curve_linear_and_log",
+      "status": "PASS",
+      "detail": "maximum=1.379484e-01/1.220016e-01"
+    },
+    {
+      "name": "metrics:holdout_per_curve_linear_and_log",
+      "status": "PASS",
+      "detail": "maximum=1.623628e-01/2.280185e-01"
+    },
+    {
+      "name": "metrics:holdout_transfer_vth",
+      "status": "PASS",
+      "detail": "errors=[0.01352410806494414, 0.05462099211934923]"
+    },
+    {
+      "name": "metrics:holdout_transfer_gm",
+      "status": "FAIL",
+      "detail": "errors=[0.37451382711143505, 0.5123844130308577]"
+    },
+    {
+      "name": "coverage:multiple_vds_in_training_and_holdout",
+      "status": "PASS",
+      "detail": "train=[0.001, 0.005, 0.01, 0.05, 0.1, 0.2] holdout=[0.001, 0.005, 0.01, 0.05, 0.1, 0.2]"
+    },
+    {
+      "name": "reporting:separate_metrics_provenance_and_validity",
+      "status": "PASS",
+      "detail": "curve metrics, parameter provenance and local domain persisted"
+    },
+    {
+      "name": "audit:unscored_zero_and_low_vds_rows_retained",
+      "status": "PASS",
+      "detail": "zero=7 repeated_low_vds=7"
+    },
+    {
+      "name": "boundary:no_tcad_spice_or_circuit_execution",
+      "status": "PASS",
+      "detail": "reference Python kernel only"
+    },
+    {
+      "name": "routes:unexecuted_candidates_generated_only_after_numerical_pass",
+      "status": "FAIL",
+      "detail": "base_pass=False candidates=0/3"
+    },
+    {
+      "name": "artifacts:required_outputs_persisted_without_overwrite",
+      "status": "FAIL",
+      "detail": "files=9/12"
+    }
+  ],
+  "failures": [
+    {
+      "name": "metrics:holdout_transfer_gm",
+      "status": "FAIL",
+      "detail": "errors=[0.37451382711143505, 0.5123844130308577]"
+    },
+    {
+      "name": "routes:unexecuted_candidates_generated_only_after_numerical_pass",
+      "status": "FAIL",
+      "detail": "base_pass=False candidates=0/3"
+    },
+    {
+      "name": "artifacts:required_outputs_persisted_without_overwrite",
+      "status": "FAIL",
+      "detail": "files=9/12"
+    }
+  ],
+  "artifacts": {
+    "input_snapshot.json": {
+      "path": "results/compact/m00_teaching_fit_r01/input_snapshot.json",
+      "sha256": "6f582730c721472a70c8c820cac3087bb2999744753033f15e413317a69aa30d",
+      "bytes": 9819
+    },
+    "selected_rows_manifest.csv": {
+      "path": "results/compact/m00_teaching_fit_r01/selected_rows_manifest.csv",
+      "sha256": "557315a3fe2cc414d0f4cc1932e4b4841532250e5fb76537c1d3ab9cb68bf924",
+      "bytes": 74364
+    },
+    "optimizer_log.json": {
+      "path": "results/compact/m00_teaching_fit_r01/optimizer_log.json",
+      "sha256": "7613e92321f12e63b635804473fa3f7d104604862b123a926d808bcc52c6a890",
+      "bytes": 1866
+    },
+    "m00_compact_model_predictions.csv": {
+      "path": "results/tables/m00_compact_model_predictions.csv",
+      "sha256": "bec7709050481127aed33fe3d40853337c720a882a858673a09141751e943a23",
+      "bytes": 95770
+    },
+    "m00_compact_model_curve_metrics.csv": {
+      "path": "results/tables/m00_compact_model_curve_metrics.csv",
+      "sha256": "9adb1ca1156488ac708e7040a9bb0fa36cd427453ea6b04b266448fef1562b5b",
+      "bytes": 3464
+    },
+    "m00_compact_model_parameters.csv": {
+      "path": "results/tables/m00_compact_model_parameters.csv",
+      "sha256": "5017f2bcb8ca6a389e6ac18ebc5cd563ecc1b74ff4138962148e4c3887515e1e",
+      "bytes": 2427
+    },
+    "igzo_dg_teaching_r01.json": {
+      "path": "models/dual_gate/igzo_dg_teaching_r01.json",
+      "sha256": "7cdd1667cc4bb9f487b06f87c42ed6762dccb84505e53cc9ce9da6a356fef695",
+      "bytes": 6446
+    },
+    "m00_compact_model_fit.png": {
+      "path": "report/assets/m00_compact_model_fit.png",
+      "sha256": "b8a2ab97fb46cee6a8221ab28a85645013d6251050033b1adec78650606e37ef",
+      "bytes": 265081
+    },
+    "m00_compact_model_residuals.png": {
+      "path": "report/assets/m00_compact_model_residuals.png",
+      "sha256": "af3c204a38b957da172d364451209456456c31ba77147095214f7605d71667a0",
+      "bytes": 137253
+    }
+  },
+  "simulator_status": {
+    "reference_python_kernel": "RUN",
+    "tcad": "NOT_RUN",
+    "ngspice": "NOT_RUN",
+    "aimspice": "NOT_RUN",
+    "circuit": "NOT_RUN"
+  },
+  "audit_and_exclusion_contract": {
+    "numerical_reproduction_sets": [
+      {
+        "dataset_id": "T01_D_B_IDVD",
+        "selector": {
+          "mesh_level": "interface_8x"
+        },
+        "row_count": 10,
+        "role": "mesh audit"
+      },
+      {
+        "dataset_id": "T01_D_C_IDVG",
+        "selector": {
+          "mesh_level": "interface_8x"
+        },
+        "row_count": 51,
+        "role": "mesh audit"
+      },
+      {
+        "dataset_id": "T02_C_DG_TRANSFER",
+        "selector": {
+          "family_id": "bottom_primary",
+          "sweep_direction": "forward"
+        },
+        "row_count": 93,
+        "role": "reciprocity audit"
+      },
+      {
+        "dataset_id": "T02_C_DG_TRANSFER",
+        "selector": {
+          "sweep_direction": "reverse"
+        },
+        "row_count": 62,
+        "role": "path audit"
+      },
+      {
+        "dataset_id": "T03_P4_LENGTH_TRANSFER",
+        "selector": {
+          "channel_length_um": 10.0
+        },
+        "row_count": 31,
+        "role": "T02-C duplicate audit"
+      }
+    ],
+    "report_only_challenges": [
+      {
+        "dataset_id": "T03_P1_BIAS_TRANSFER",
+        "row_count": 155,
+        "reason": "secondary-bias interpolation and endpoint response"
+      },
+      {
+        "dataset_id": "T03_P1_CAP_RATIO_TRANSFER",
+        "row_count": 155,
+        "reason": "non-nominal effective coupling allocation"
+      },
+      {
+        "dataset_id": "T03_P3_V2_TRANSFER",
+        "row_count": 93,
+        "reason": "ideal duplicate plus lumped-contact response"
+      },
+      {
+        "dataset_id": "T03_P5_TEMPERATURE_TRANSFER",
+        "row_count": 93,
+        "reason": "V_t-only temperature response"
+      }
+    ],
+    "excluded_physics_variants": [
+      {
+        "dataset_id": "T03_P2_DIT_TRANSFER",
+        "row_count": 124,
+        "reason": "interface charge model differs from nominal"
+      },
+      {
+        "dataset_id": "T03_P2_BULK_V3_TRANSFER",
+        "row_count": 376,
+        "reason": "bulk trap charge model differs from nominal"
+      }
+    ],
+    "completion_rule": "Audit challenge and excluded sets must be listed in the future report but cannot change fit parameters or formal acceptance."
+  },
+  "validity_domain": {
+    "material": "n-type IGZO only",
+    "evidence_source": "qualified project 2D teaching-model numerical curves",
+    "temperature_k": [
+      300.0,
+      300.0
+    ],
+    "contact": "ideal ohmic nominal only",
+    "traps": "none in nominal model",
+    "dual_gate_stack": "symmetric 30 nm physical Al2O3 per gate with k=6.8",
+    "single_gate_vgs_v": [
+      -1.0,
+      1.0
+    ],
+    "dual_gate_primary_v": [
+      -0.5,
+      1.0
+    ],
+    "dual_gate_secondary_v": [
+      -0.3,
+      0.3
+    ],
+    "vds_v": [
+      0.0,
+      0.2
+    ],
+    "channel_length_um": [
+      8.0,
+      12.0
+    ],
+    "source_width_um": 60.0,
+    "width_scaling": "Linear conversion from the 2D per-width current is a teaching assumption and is not a measured width-dependence validation.",
+    "analysis_type": "DC only",
+    "excluded": [
+      "negative VDS formal accuracy",
+      "capacitance transient noise or AC behavior",
+      "trap contact temperature ferroelectric stress or reliability laws",
+      "experimental process corners uncertainty or extrapolation",
+      "quantitative circuit prediction before M01"
+    ]
+  },
+  "allowed_claim": "A later two-level PASS may establish an IGZO-only teaching compact surrogate fit to qualified project numerical curves with condition-held-out numerical errors and an explicit local validity domain.",
+  "prohibited_claims": [
+    "experimental fitting calibration or measured predictive accuracy",
+    "physical VTH SS mobility Ion Ioff DOS contact or temperature parameters",
+    "independent external validation because train and holdout originate from the same frozen teaching model",
+    "AIM-Spice or ngspice validation before M01 execution",
+    "equation identity between native AIM-Spice Level 15 and ngspice behavioral routes",
+    "native HSPICE Level 61 execution",
+    "circuit-ready active-load model quantitative circuit results layout PEX or HZO evidence"
+  ],
+  "next_gate": "Run the independent persisted-evidence checker only if this report passes; M01 and downstream remain closed."
+}

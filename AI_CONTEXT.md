@@ -19,7 +19,7 @@
 - 题目：基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK。
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
-- S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；P2/P3 历史失败保留。M00 输入/验证合同 25/25 静态 PASS、E3，固定 13 表、9 条 train/163 点、4 条 holdout/70 点和 11 个系数；首次状态枚举 FAIL 已保留。合同没有拟合或仿真，M00/C00/L00/V01 仍未完成；G0 仍为 `TEACHING_BASELINE_ONLY`。
+- S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；历史失败保留。M00 输入/验证合同 25/25 静态 PASS、E3；唯一 R01 正式运行的优化正常终止且线性/对数误差通过，但 L=12 um holdout gm 相对误差 `0.512384 > 0.50`，故 21/24、E0/FAIL。独立检查未运行、候选未生成，M00/C00/L00/V01 仍未完成；G0 仍为 `TEACHING_BASELINE_ONLY`。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
@@ -90,7 +90,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. T02-A/B/C、T03-P1/P2/P3/P4/P5 和 M00 输入/验证合同已通过，历史失败继续保留。下一步只按冻结 9/163 train 与 4/70 holdout 运行一次 M00 正式教学代理拟合，PASS 后再做独立落盘检查；本阶段不运行 TCAD 或 SPICE。M01、电路、KLayout、PEX 和 HZO 继续关闭。
+8. T02-A/B/C、T03-P1/P2/P3/P4/P5 和 M00 输入/验证合同已通过，历史失败继续保留。M00 R01 已唯一运行并因 holdout gm 门保持 E0/FAIL；不得重跑 R01、放宽阈值、改变 split、运行 PASS-only 独立检查或提前启动 M01/SPICE。任何 R02 必须先有不利用该 holdout 调参的结构依据和新合同；电路、KLayout、PEX 和 HZO 继续关闭。
 
 ## 原始资产路径
 

@@ -1,19 +1,28 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-09" class="report-chapter">
   <h2>9. 模型验证或结果对比</h2>
-  <p>当前只完成 M00 输入与验证合同，尚未生成拟合参数、残差或仿真器对比结果。本节固定后续必须如何评分，避免在看到结果后换数据、删曲线或放宽门槛。</p>
+  <p>M00 R01 已按提交前冻结合同唯一运行一次。优化只读取 9 条 train/163 点，正常终止并落盘日志后才读取 4 条 holdout/70 点。本节如实报告 E0/FAIL：线性/对数误差和 VTH 门通过，不能覆盖一条 holdout gm 门失败。</p>
   <table>
-    <thead><tr><th>项目</th><th>预注册值</th><th>当前证据</th></tr></thead>
+    <thead><tr><th>项目</th><th>预注册门</th><th>R01 结果</th><th>状态</th></tr></thead>
     <tbody>
-      <tr><td>数据注册</td><td>13 个表，全部固定路径、SHA-256、行数和上游证据</td><td>E3 静态核对</td></tr>
-      <tr><td>训练</td><td>9 条整条件曲线、163 个计分点；每曲线等总权</td><td>已冻结，未优化</td></tr>
-      <tr><td>holdout</td><td>4 条整条件曲线、70 个计分点；不参与初始化、目标函数或重启选择</td><td>已冻结，未评分</td></tr>
-      <tr><td>静态不变量</td><td>7 个 <code>VDS=0</code> 点；模型绝对电流不得超过 <code>1e-18 A/cm</code></td><td>只是已冻结门，尚无模型预测</td></tr>
-      <tr><td>训练聚合误差</td><td>linear NRMSE &lt;= 0.15；log RMSE &lt;= 0.45 decade</td><td>已冻结门，未评分</td></tr>
-      <tr><td>holdout 聚合误差</td><td>linear NRMSE &lt;= 0.20；log RMSE &lt;= 0.60 decade</td><td>已冻结门，未评分</td></tr>
-      <tr><td>附加门</td><td>每曲线误差、holdout VTH/gm、有限非负、transfer/output 采样单调、参数严格位于边界内、局部有效域完整</td><td>已冻结门，未评分</td></tr>
-      <tr><td>双轨对比</td><td>M01 在同一几何、偏压和指标下分别运行 AIM-Spice Level 15 和 ngspice 行为候选</td><td>未运行；不声称方程同一或 HSPICE 已验证</td></tr>
+      <tr><td>数据与隔离</td><td>13 表哈希固定；holdout 不进入目标函数</td><td>247 行选择清单；train 9/163，holdout 4/70；优化日志确认 holdout 后加载</td><td>PASS</td></tr>
+      <tr><td>train 聚合</td><td>linear &lt;= 0.15；log &lt;= 0.45 decade</td><td>0.0799203；0.0832202 decade</td><td>PASS</td></tr>
+      <tr><td>holdout 聚合</td><td>linear &lt;= 0.20；log &lt;= 0.60 decade</td><td>0.123434；0.148789 decade</td><td>PASS</td></tr>
+      <tr><td>逐曲线误差</td><td>train linear/log &lt;= 0.30/0.80；holdout &lt;= 0.35/1.00</td><td>13 条曲线全部通过</td><td>PASS</td></tr>
+      <tr><td>holdout VTH</td><td>绝对误差 &lt;= 0.10 V</td><td>零副栅 0.0135241 V；L=12 um 为 0.0546210 V</td><td>PASS</td></tr>
+      <tr><td>holdout gm</td><td>相对误差 &lt;= 0.50</td><td>零副栅 0.374514；L=12 um 为 <strong>0.512384</strong></td><td><strong>FAIL</strong></td></tr>
+      <tr><td>不变量与参数</td><td>7 个 VDS=0 点 &lt;= 1e-18 A/cm；有限、非负、单调；11 系数严格在界内</td><td>全部通过；系数仍只作失败诊断</td><td>PASS</td></tr>
+      <tr><td>双轨候选/独立检查</td><td>只有 runner 全部门 PASS 后生成/检查</td><td>候选 0/3；PASS-only 独立检查未运行</td><td>NOT RUN</td></tr>
     </tbody>
   </table>
-  <p>静态检查命令 <code>make m00-compact-model-contract-check</code> 最终 25/25 PASS、E3。首次检查因 T01/T02 机器状态枚举字面值不匹配而 24/25 PASS，该 FAIL 已单独保留；修正未改数据、划分、方程、参数边界或验收阈值。</p>
-  <p class="boundary">合同报告的 <code>fit_status</code>、<code>tcad_status</code>、<code>spice_status</code> 和 <code>circuit_status</code> 均为 <code>NOT_RUN_BY_CONTRACT_CHECK</code>。后续即使 M00 通过，也只能称教学紧凑代理在项目同源数值曲线上通过固定 train/holdout 误差门；不是实验拟合、外部独立验证、物理参数提取、AIM-Spice/ngspice 双轨通过或定量电路证据。</p>
+  <p>优化器在 18 次函数评价后正常终止，数值优化本身没有异常。运行器 24 门中 21 门通过；除 L=12 um holdout gm 主门外，另外两项 FAIL 是预注册派生结果：主数值门失败后禁止生成三项 simulator 候选，因此候选存在性与完整产物门同步失败。它们不代表执行了 SPICE。</p>
+  <figure>
+    <img src="assets/m00_compact_model_fit.png" alt="M00 R01 failed teaching-surrogate target and model curves for training and holdout conditions"/>
+    <figcaption>图 9-1 M00 R01 目标点与教学代理曲线。该图是 E0/FAIL 证据；整体曲线接近不覆盖 L=12 um holdout gm 超限。</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/m00_compact_model_residuals.png" alt="M00 R01 per-curve linear and logarithmic residual bars for training and holdout"/>
+    <figcaption>图 9-2 每曲线线性 NRMSE 与对数 RMSE。两类误差均通过，但合同还要求单独的 VTH/gm 门，故不能用本图替代 gm 失败。</figcaption>
+  </figure>
+  <p>失败报告、输入快照、247 行选择清单、优化日志、预测/残差、13 行曲线指标、11 行系数、有效域和两张图均保留。R01 输出拒绝覆盖；没有执行独立检查、TCAD、ngspice、AIM-Spice 或电路。</p>
+  <p class="boundary">R01 保持 E0/FAIL，不得把聚合误差通过写成 M00 通过，也不得把失败系数写成物理 VTH、迁移率、DOS、接触或温度参数。不得重跑 R01、放宽 0.50、改变既有 split 或用 holdout 选择参数。任何 R02 必须先提交新的模型结构合同，并说明独立于本次 holdout 的依据；M01 和下游继续关闭。</p>
 </section>

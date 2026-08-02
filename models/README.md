@@ -6,4 +6,4 @@
 
 每个模型必须同时提供方程、参数来源、有效范围、数值极限测试和证据等级。
 
-当前 M00 已完成 `config/compact_m00_input_validation.json` 和 `references/m00_dataset_registry.csv` 定义的静态输入/验证合同，25/25 PASS、E3，并实现正式运行器与独立检查器。合成自测已通过，但尚未运行正式 9 条 train/163 点优化或 4 条 holdout/70 点评分，没有生成已验证模型，也没有运行 TCAD 或 SPICE。
+当前 M00 静态输入/验证合同 25/25 PASS、E3。R01 已按冻结 9 条 train/163 点和 4 条 holdout/70 点唯一运行，但 L=12 um holdout gm 相对误差 `0.512384` 超过 `0.50`，故运行器 21/24、E0/FAIL。失败参数与预测只作诊断；独立检查和模型候选没有运行/生成，也没有运行 TCAD 或 SPICE。

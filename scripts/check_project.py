@@ -141,8 +141,20 @@ REQUIRED_FILES = [
     "config/compact_m00_input_validation.json",
     "references/m00_dataset_registry.csv",
     "scripts/check_m00_compact_model_contract.py",
+    "models/fit_m00_teaching_compact.py",
+    "scripts/check_m00_compact_model_fit.py",
     "results/reports/m00_compact_model_input_contract.json",
     "results/reports/m00_compact_model_input_contract_dependency_status_mismatch_failed.json",
+    "results/compact/m00_teaching_fit_r01/input_snapshot.json",
+    "results/compact/m00_teaching_fit_r01/selected_rows_manifest.csv",
+    "results/compact/m00_teaching_fit_r01/optimizer_log.json",
+    "results/tables/m00_compact_model_predictions.csv",
+    "results/tables/m00_compact_model_curve_metrics.csv",
+    "results/tables/m00_compact_model_parameters.csv",
+    "models/dual_gate/igzo_dg_teaching_r01.json",
+    "report/assets/m00_compact_model_fit.png",
+    "report/assets/m00_compact_model_residuals.png",
+    "results/reports/m00_compact_model_fit.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -4603,11 +4615,40 @@ def main() -> int:
             / "reports"
             / "m00_compact_model_input_contract_dependency_status_mismatch_failed.json"
         )
+        m00_fit_path = ROOT / "results" / "reports" / "m00_compact_model_fit.json"
+        m00_run_dir = ROOT / "results" / "compact" / "m00_teaching_fit_r01"
+        m00_snapshot_path = m00_run_dir / "input_snapshot.json"
+        m00_manifest_path = m00_run_dir / "selected_rows_manifest.csv"
+        m00_optimizer_path = m00_run_dir / "optimizer_log.json"
+        m00_prediction_path = (
+            ROOT / "results" / "tables" / "m00_compact_model_predictions.csv"
+        )
+        m00_metric_path = (
+            ROOT / "results" / "tables" / "m00_compact_model_curve_metrics.csv"
+        )
+        m00_parameter_path = (
+            ROOT / "results" / "tables" / "m00_compact_model_parameters.csv"
+        )
+        m00_validity_path = (
+            ROOT / "models" / "dual_gate" / "igzo_dg_teaching_r01.json"
+        )
         m00_config = json.loads(m00_config_path.read_text(encoding="utf-8"))
         m00_report = json.loads(m00_report_path.read_text(encoding="utf-8"))
         m00_failure = json.loads(m00_failure_path.read_text(encoding="utf-8"))
+        m00_fit = json.loads(m00_fit_path.read_text(encoding="utf-8"))
+        m00_snapshot = json.loads(m00_snapshot_path.read_text(encoding="utf-8"))
+        m00_optimizer = json.loads(m00_optimizer_path.read_text(encoding="utf-8"))
+        m00_validity = json.loads(m00_validity_path.read_text(encoding="utf-8"))
         with m00_registry_path.open("r", encoding="utf-8", newline="") as stream:
             m00_registry_rows = list(csv.DictReader(stream))
+        with m00_manifest_path.open("r", encoding="utf-8", newline="") as stream:
+            m00_manifest_rows = list(csv.DictReader(stream))
+        with m00_prediction_path.open("r", encoding="utf-8", newline="") as stream:
+            m00_prediction_rows = list(csv.DictReader(stream))
+        with m00_metric_path.open("r", encoding="utf-8", newline="") as stream:
+            m00_metric_rows = list(csv.DictReader(stream))
+        with m00_parameter_path.open("r", encoding="utf-8", newline="") as stream:
+            m00_parameter_rows = list(csv.DictReader(stream))
         m00_experiment = next(
             item for item in experiments["experiments"] if item["id"] == "M00"
         )
@@ -4688,14 +4729,162 @@ def main() -> int:
             and "T02=bidirectional_verified" in m00_failed_checks[0].get("detail", ""),
             f"status={m00_failure.get('status')} failures={len(m00_failed_checks)}",
         )
+        m00_fit_checks = m00_fit.get("checks", [])
+        m00_fit_failures = [
+            item for item in m00_fit_checks if item.get("status") == "FAIL"
+        ]
+        m00_aggregate = m00_fit.get("aggregate_metrics", {})
+        add_check(
+            checks,
+            "m00_fit:r01_formal_runner_holdout_gm_failure",
+            m00_fit.get("status") == "FAIL"
+            and m00_fit.get("fit_status") == "FAIL"
+            and m00_fit.get("evidence_level") == "E0"
+            and m00_fit.get("formal_fit_run") is True
+            and m00_fit.get("formal_fit_run_ordinal") == 1
+            and m00_fit.get("independent_persisted_evidence_check_complete") is False
+            and len(m00_fit_checks) == 24
+            and len(m00_fit_failures) == 3
+            and [item.get("name") for item in m00_fit_failures]
+            == [
+                "metrics:holdout_transfer_gm",
+                "routes:unexecuted_candidates_generated_only_after_numerical_pass",
+                "artifacts:required_outputs_persisted_without_overwrite",
+            ]
+            and m00_optimizer.get("success") is True
+            and m00_optimizer.get("nfev") == 18
+            and m00_optimizer.get("objective_curve_count") == 9
+            and m00_optimizer.get("objective_scored_point_count") == 163
+            and m00_optimizer.get("holdout_curve_ids_in_objective") == []
+            and m00_fit.get("holdout_evaluation", {}).get(
+                "loaded_after_optimizer_termination"
+            )
+            is True
+            and math.isclose(
+                m00_aggregate["train"]["linear"],
+                0.07992032871127945,
+                rel_tol=1e-12,
+            )
+            and math.isclose(
+                m00_aggregate["train"]["log"],
+                0.08322021984917954,
+                rel_tol=1e-12,
+            )
+            and math.isclose(
+                m00_aggregate["holdout"]["linear"],
+                0.12343417497579379,
+                rel_tol=1e-12,
+            )
+            and math.isclose(
+                m00_aggregate["holdout"]["log"],
+                0.14878932576826395,
+                rel_tol=1e-12,
+            ),
+            (
+                f"runner={sum(item.get('status') == 'PASS' for item in m00_fit_checks)}/"
+                f"{len(m00_fit_checks)} nfev={m00_optimizer.get('nfev')} "
+                f"holdout={m00_aggregate.get('holdout')}"
+            ),
+        )
+        m00_role_counts = {
+            role: sum(
+                row.get("selection_role") == role for row in m00_prediction_rows
+            )
+            for role in ("scored", "zero_vds_invariant", "repeated_low_vds_audit")
+        }
+        m00_l12_metric = next(
+            row
+            for row in m00_metric_rows
+            if row["curve_id"] == "holdout_t03_dual_length_12"
+        )
+        m00_t02_metric = next(
+            row
+            for row in m00_metric_rows
+            if row["curve_id"] == "holdout_t02_dual_secondary_0p0"
+        )
+        m00_artifacts = m00_fit.get("artifacts", {})
+        add_check(
+            checks,
+            "m00_fit:r01_persisted_failure_evidence_and_hashes",
+            len(m00_manifest_rows) == 247
+            and len(m00_prediction_rows) == 247
+            and len(m00_metric_rows) == 13
+            and len(m00_parameter_rows) == 11
+            and m00_role_counts
+            == {
+                "scored": 233,
+                "zero_vds_invariant": 7,
+                "repeated_low_vds_audit": 7,
+            }
+            and all(
+                float(row["lower"]) < float(row["value"]) < float(row["upper"])
+                for row in m00_parameter_rows
+            )
+            and math.isclose(
+                float(m00_t02_metric["gm_relative_error"]),
+                0.37451382711143505,
+                rel_tol=1e-12,
+            )
+            and m00_t02_metric["curve_acceptance_status"] == "PASS"
+            and math.isclose(
+                float(m00_l12_metric["gm_relative_error"]),
+                0.5123844130308577,
+                rel_tol=1e-12,
+            )
+            and m00_l12_metric["curve_acceptance_status"] == "FAIL"
+            and len(m00_artifacts) == 9
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                and (ROOT / item["path"]).stat().st_size == int(item["bytes"])
+                for item in m00_artifacts.values()
+            )
+            and m00_snapshot.get("runner", {}).get("sha256")
+            == sha256(ROOT / "models" / "fit_m00_teaching_compact.py")
+            and m00_snapshot.get("independent_checker", {}).get("sha256")
+            == sha256(ROOT / "scripts" / "check_m00_compact_model_fit.py")
+            and m00_validity.get("simulator_status", {}).get("ngspice")
+            == "CANDIDATE_ONLY_NOT_EXECUTED",
+            (
+                f"manifest={len(m00_manifest_rows)} predictions={len(m00_prediction_rows)} "
+                f"metrics={len(m00_metric_rows)} parameters={len(m00_parameter_rows)} "
+                f"gm={m00_l12_metric['gm_relative_error']} artifacts={len(m00_artifacts)}"
+            ),
+        )
+        m00_forbidden_outputs = [
+            ROOT / m00_config["outputs"][key]
+            for key in (
+                "ngspice_candidate",
+                "aimspice_candidate",
+                "aimspice_mapping",
+                "independent_check_report",
+            )
+        ]
+        add_check(
+            checks,
+            "m00_fit:r01_failure_boundary_and_downstream_absence",
+            all(not path.exists() for path in m00_forbidden_outputs)
+            and m00_fit.get("simulator_status", {}).get("tcad") == "NOT_RUN"
+            and m00_fit.get("simulator_status", {}).get("circuit") == "NOT_RUN"
+            and m00_fit.get("simulator_status", {}).get("ngspice") == "NOT_RUN"
+            and m00_fit.get("simulator_status", {}).get("aimspice") == "NOT_RUN"
+            and "R01" in config.get("tcad_track", {}).get(
+                "m00_r01_failure_boundary", ""
+            )
+            and "0.512384" in config.get("tcad_track", {}).get(
+                "m00_r01_failure_boundary", ""
+            ),
+            f"absent={sum(not path.exists() for path in m00_forbidden_outputs)}/4",
+        )
         m00_machine = m00_experiment.get("contract_evidence", {})
+        m00_formal = m00_experiment.get("formal_fit_evidence", {})
         m00_prohibited = " ".join(
             m00_config.get("evidence_boundary", {}).get("prohibited_claims", [])
         )
         add_check(
             checks,
             "m00_contract:machine_state_next_gate_and_boundary",
-            m00_experiment.get("status") == "in_progress"
+            m00_experiment.get("status") == "blocked"
             and m00_experiment.get("current_evidence") == "E0"
             and m00_experiment.get("depends_on") == ["S00", "T01", "T02", "T03"]
             and m00_machine.get("status") == "input_validation_contract_ready"
@@ -4704,8 +4893,22 @@ def main() -> int:
             and m00_machine.get("fit_status") == "NOT_RUN_BY_CONTRACT_CHECK"
             and m00_machine.get("formal_fit_completed") is False
             and m00_machine.get("m01_or_downstream_permitted") is False
+            and m00_formal.get("status") == "failed_holdout_gm_gate"
+            and m00_formal.get("formal_fit_run_completed") is True
+            and m00_formal.get("formal_fit_run_ordinal") == 1
+            and m00_formal.get("formal_fit_passed") is False
+            and m00_formal.get("runner_checks_passed") == 21
+            and m00_formal.get("runner_checks_total") == 24
+            and math.isclose(
+                m00_formal.get("failing_value"), 0.5123844130308577,
+                rel_tol=1e-12,
+            )
+            and m00_formal.get("frozen_limit") == 0.5
+            and m00_formal.get("independent_check_run") is False
+            and m00_formal.get("model_candidates_generated") is False
+            and m00_formal.get("m01_or_downstream_permitted") is False
             and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "run exactly one formal M00 teaching compact-model fit"
+                "preserve the single formal M00 R01 failure"
             )
             and "experimental fitting" in m00_prohibited
             and "independent external validation" in m00_prohibited
