@@ -1,6 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-08" class="report-chapter">
   <h2>8. 参数分析与讨论</h2>
-  <p>本章报告 T03 已关闭的两个参数组：T03-P4-L 沟道长度组，以及由 T03-P1-BIAS 和 T03-P1-CAP-RATIO 组成的数值 P1 组；另外单列 P2-DIT bottom-interface 子阶段和 P2-BULK-TRAPS 方程冒烟。bulk tail/deep traps 的三案例方程门已通过，但正式 NTA/NGA transfer 敏感性尚未运行，所以 P2 整组仍为 partial。全部结果继承 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型；下列 VTH、Delta VTH、SS、gm、耦合斜率和电流均是受限数值代理，不是实验参数。</p>
+  <p>本章报告 T03 已关闭的两个参数组：T03-P4-L 沟道长度组，以及由 T03-P1-BIAS 和 T03-P1-CAP-RATIO 组成的数值 P1 组；另外单列 P2-DIT bottom-interface 子阶段、P2-BULK-TRAPS 方程冒烟和正式输入合同。bulk tail/deep traps 的三案例方程门与 22/22 正式合同已通过，但正式 NTA/NGA transfer 敏感性尚未运行，所以 P2 整组仍为 partial。全部结果继承 300 K、二维 n-IGZO 电子-only 漂移扩散教学模型；下列 VTH、Delta VTH、SS、gm、耦合斜率和电流均是受限数值代理，不是实验参数。</p>
 
   <h3>8.1 沟道长度方向性敏感性</h3>
   <p>每个长度从独立的零偏压平衡态开始，随后执行与 T02-C 相同的低漏压阶梯、负向预处理和 31 点顶栅上扫。三个新器件共完成 123 次 DC 求解和 93 个正式点，并在 <code>VTG=1.0 V</code> 保存一个代表状态。VTH 采用 10 nA*(W/L) 的对数插值代理，gm 在 VTH+0.2 V 处由中心差分和线性插值得到。</p>
@@ -156,6 +156,7 @@
       <tr><td>积分对照</td><td>六个代表点最大相对误差 7.93e-7</td><td>只证明 96 点积分满足预设 1e-5 门</td></tr>
       <tr><td>方程冒烟运行器</td><td>E2 PASS；3 器件、21 次 DC、7257 行状态</td><td>仅为三案例方程与响应门</td></tr>
       <tr><td>独立落盘检查</td><td>E3 PASS；16 项独立复核</td><td>独立重算，不提升教学模型物理等级</td></tr>
+      <tr><td>正式输入合同</td><td>E3 静态 22/22 PASS；8 器件、328 DC、248 点计划</td><td><code>NOT_RUN_BY_CONTRACT_CHECK</code>，计划数不是仿真结果</td></tr>
       <tr><td>正式扫描状态</td><td>NOT RUN</td><td>没有正式 NTA/NGA transfer、SS/VTH 或物理结论</td></tr>
     </tbody>
   </table>
@@ -174,6 +175,20 @@
   <p>21 次求解全部收敛，最大端口电流相对不平衡为 <code>4.69e-15</code>。独立检查从 7257 行二维节点状态重算能量积分、占据密度、<code>dOccupiedBulkTraps/dElectrons</code>、物理陷阱电荷和 Poisson 源，最大节点密度相对误差为 <code>6.72e-16</code>，最大解析导数相对误差为 <code>1.04e-15</code>；零控制对 T02-C 共同偏压电流的相对复现差为 <code>2.29e-15</code>。尾态和深态案例相对零控制均产生非零电流/中心密度响应。</p>
   <p class="boundary">运行器报告为 E2，独立持久化复核为 E3。上述响应只证明冻结准静态方程在未标定教学模型中的数值可运行性，不是物理 DOS、SS、VTH、Ion/Ioff、动态捕获-发射、迟滞或实验校准结果。对应命令为 <code>make t03-p2-bulk-traps-contract-check</code>、<code>make t03-p2-bulk-traps-equation-smoke</code> 和 <code>make t03-p2-bulk-traps-equation-smoke-check</code>。</p>
 
-  <h3>8.16 适用范围和未完成组</h3>
-  <p>T03-P4-L 与数值 P1 已完整关闭，其中 P1 必须同时引用 BIAS 和 CAP-RATIO 两个子阶段。P2 的 bottom-interface DIT 子阶段和 bulk-trap 方程冒烟已关闭各自阶段门，但正式 NTA/NGA transfer 敏感性、动态捕获-发射、迟滞、bias stress、双界面和实验校准证据仍不存在，所以完整 P2 仍为 partial。P3 接触和 P5 温度也未实现，本章不关闭完整 T03。下一门只允许建立另立的正式隔离 NTA/NGA transfer-sensitivity 合同；没有进行实验拟合、紧凑模型、SPICE、电路、版图或 HZO 工作。</p>
+  <h3>8.16 P2-BULK-TRAPS 正式 transfer 合同</h3>
+  <p>正式合同在运行前冻结 NTA 与 NGA 两个完全隔离的 family。NTA family 依次为 <code>0/1e18/5e18/5e19 cm^-3 eV^-1</code>，NGA family 依次为 <code>0/1e16/5e16/5e17 cm^-3 eV^-1</code>；每个 family 使用自己的零控制，另一 bulk family、上下界面 DIT、NTD 和 NGD 均固定为零。</p>
+  <table>
+    <thead><tr><th>冻结项</th><th>正式合同</th><th>证据边界</th></tr></thead>
+    <tbody>
+      <tr><td>规模</td><td>8 个独立器件、328 次 DC、248 个 transfer 点、8 个共同状态、48 个 VTK</td><td>均为计划数量，尚未运行</td></tr>
+      <tr><td>提取</td><td>恒流 VTH、family 内 Delta VTH、VTH+0.2 V gm、一 decade OLS SS、最低栅压电流</td><td>全部是教学模型数值代理；最低栅压电流不是物理 Ioff</td></tr>
+      <tr><td>趋势</td><td>VTH/SS 可能增加、电流/gm 可能降低</td><td>只作预注册诊断，不是完成门；反向/非单调结果必须保留</td></tr>
+      <tr><td>失败保留</td><td>归档输入、日志、已完成表格/状态、失败门报告和可生成图片</td><td>不得删证据、静默放宽阈值或见结果后删点</td></tr>
+      <tr><td>静态检查</td><td>22/22 PASS，E3</td><td><code>simulation=NOT_RUN_BY_CONTRACT_CHECK</code></td></tr>
+    </tbody>
+  </table>
+  <p class="boundary">合同检查命令为 <code>make t03-p2-bulk-traps-formal-contract-check</code>。合同 PASS 只打开下一步正式运行，不证明 NTA/NGA transfer 已收敛，也不支持物理 DOS、SS/VTH/Ion/Ioff、实验拟合、完整 P2/T03、紧凑模型、电路或版图结论。</p>
+
+  <h3>8.17 适用范围和未完成组</h3>
+  <p>T03-P4-L 与数值 P1 已完整关闭，其中 P1 必须同时引用 BIAS 和 CAP-RATIO 两个子阶段。P2 的 bottom-interface DIT 子阶段、bulk-trap 方程冒烟和正式输入合同已关闭各自阶段门，但正式 NTA/NGA transfer 敏感性、动态捕获-发射、迟滞、bias stress、双界面和实验校准证据仍不存在，所以完整 P2 仍为 partial。P3 接触和 P5 温度也未实现，本章不关闭完整 T03。下一门只允许运行合同定义的正式隔离 NTA/NGA transfer sensitivity，再执行独立落盘检查；没有进行实验拟合、紧凑模型、SPICE、电路、版图、PEX 或 HZO 工作。</p>
 </section>

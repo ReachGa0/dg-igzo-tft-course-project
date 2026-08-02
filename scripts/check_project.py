@@ -52,12 +52,16 @@ REQUIRED_FILES = [
     "references/t03_p2_dit_sources.csv",
     "references/t03_p2_bulk_trap_sources.csv",
     "config/tcad_t03_p2_bulk_traps.json",
+    "config/tcad_t03_p2_bulk_traps_formal.json",
     "scripts/check_t03_p2_bulk_traps_contract.py",
     "scripts/check_t03_p2_bulk_traps_equation_smoke.py",
+    "scripts/check_t03_p2_bulk_traps_formal_contract.py",
     "tcad/run_t03_p2_bulk_traps_equation_smoke.py",
     "results/reports/tcad_t03_p2_bulk_traps_input_contract.json",
     "results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json",
     "results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json",
+    "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json",
+    "results/reports/project_check_t03_p2_bulk_formal_boundary_checker_bug_failed.json",
     "results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
     "results/tables/tcad_t03_p2_bulk_traps_integration_samples.csv",
     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
@@ -585,6 +589,13 @@ def main() -> int:
                 "integration_sample_rows": 6,
                 "formal_transfer_sensitivity_completed": False,
             }
+            and sensitivity.get("p2_bulk_formal_contract_evidence")
+            == {
+                "status": "input_contract_ready",
+                "contract_evidence": "E3",
+                "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+                "formal_sensitivity_completed": False,
+            }
             and all(
                 path in sensitivity.get("p2_partial_outputs", [])
                 for path in [
@@ -595,6 +606,8 @@ def main() -> int:
                     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
                     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/solver_log.json",
                     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
+                    "config/tcad_t03_p2_bulk_traps_formal.json",
+                    "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json",
                 ]
             ),
             (
@@ -2546,6 +2559,123 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "t03_p2_bulk_traps:equation_smoke", False, str(error))
+
+    t03_p2_bulk_formal_config_path = (
+        ROOT / "config" / "tcad_t03_p2_bulk_traps_formal.json"
+    )
+    t03_p2_bulk_formal_contract_path = (
+        ROOT
+        / "results"
+        / "reports"
+        / "tcad_t03_p2_bulk_traps_formal_input_contract.json"
+    )
+    try:
+        t03_p2_bulk_formal_config = json.loads(
+            t03_p2_bulk_formal_config_path.read_text(encoding="utf-8")
+        )
+        t03_p2_bulk_formal_contract = json.loads(
+            t03_p2_bulk_formal_contract_path.read_text(encoding="utf-8")
+        )
+        formal_checks = t03_p2_bulk_formal_contract.get("checks", [])
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:formal_contract_evidence",
+            t03_p2_bulk_formal_contract.get("status") == "PASS"
+            and t03_p2_bulk_formal_contract.get("contract_status") == "PASS"
+            and t03_p2_bulk_formal_contract.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and t03_p2_bulk_formal_contract.get("case_id")
+            == "IGZO_T03_P2_BULK_TRAPS_FORMAL_V1"
+            and t03_p2_bulk_formal_contract.get("stage")
+            == "T03-P2-BULK-TRAPS-FORMAL"
+            and t03_p2_bulk_formal_contract.get("evidence_level") == "E3"
+            and t03_p2_bulk_formal_contract.get("config", {}).get("sha256")
+            == sha256(t03_p2_bulk_formal_config_path)
+            and len(formal_checks) == 22
+            and all(item.get("status") == "PASS" for item in formal_checks)
+            and not t03_p2_bulk_formal_contract.get("failures"),
+            (
+                f"status={t03_p2_bulk_formal_contract.get('status')} "
+                f"simulation={t03_p2_bulk_formal_contract.get('simulation_status')} "
+                f"checks={len(formal_checks)}"
+            ),
+        )
+        planned_formal = t03_p2_bulk_formal_contract.get(
+            "planned_formal_sensitivity", {}
+        )
+        formal_budget = t03_p2_bulk_formal_config.get("resource_budget", {})
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:formal_contract_frozen_counts",
+            planned_formal.get("families")
+            == {
+                "NTA": [0.0, 1e18, 5e18, 5e19],
+                "NGA": [0.0, 1e16, 5e16, 5e17],
+            }
+            and planned_formal.get("device_count") == 8
+            and planned_formal.get("reported_point_count") == 248
+            and planned_formal.get("dc_solve_count") == 328
+            and planned_formal.get("state_count") == 8
+            and planned_formal.get("formal_sensitivity_run") is False
+            and formal_budget.get("required_total_device_count") == 8
+            and formal_budget.get("required_total_reported_point_count") == 248
+            and formal_budget.get("required_total_dc_solve_count") == 328,
+            (
+                f"devices={planned_formal.get('device_count')} "
+                f"points={planned_formal.get('reported_point_count')} "
+                f"solves={planned_formal.get('dc_solve_count')} "
+                f"states={planned_formal.get('state_count')}"
+            ),
+        )
+        formal_boundary = t03_p2_bulk_formal_contract.get("evidence_boundary", {})
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:formal_contract_boundary",
+            "without running DEVSIM"
+            in formal_boundary.get("allowed_claim_after_contract_pass", "")
+            and any(
+                "the formal NTA/NGA transfer sensitivity passed before both" in claim
+                for claim in formal_boundary.get("prohibited_claims", [])
+            )
+            and any(
+                "P2, T03" in claim
+                for claim in formal_boundary.get("prohibited_claims", [])
+            )
+            and "Only this formal contract PASS permits"
+            in formal_boundary.get("next_gate", "")
+            and t03_p2_bulk_formal_config.get("status") == "planned",
+            formal_boundary.get("next_gate", ""),
+        )
+        archived_boundary_failure = json.loads(
+            (
+                ROOT
+                / "results"
+                / "reports"
+                / "project_check_t03_p2_bulk_formal_boundary_checker_bug_failed.json"
+            ).read_text(encoding="utf-8")
+        )
+        archived_failed_checks = [
+            item
+            for item in archived_boundary_failure.get("results", [])
+            if item.get("status") == "FAIL"
+        ]
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:formal_contract_checker_failure_preserved",
+            archived_boundary_failure.get("status") == "FAIL"
+            and archived_boundary_failure.get("checks") == 420
+            and archived_boundary_failure.get("failures") == 1
+            and len(archived_failed_checks) == 1
+            and archived_failed_checks[0].get("name")
+            == "t03_p2_bulk_traps:formal_contract_boundary",
+            (
+                f"status={archived_boundary_failure.get('status')} "
+                f"checks={archived_boundary_failure.get('checks')} "
+                f"failures={len(archived_failed_checks)}"
+            ),
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "t03_p2_bulk_traps:formal_contract", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

@@ -1,8 +1,8 @@
 {
   "project": "DG-IGZO-TFT-PDK",
-  "status": "PASS",
-  "checks": 422,
-  "failures": 0,
+  "status": "FAIL",
+  "checks": 420,
+  "failures": 1,
   "results": [
     {
       "name": "directory:config",
@@ -317,7 +317,7 @@
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=77015"
+      "detail": "bytes=73509"
     },
     {
       "name": "file:PROJECT_PLAN.md",
@@ -332,7 +332,7 @@
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=17374"
+      "detail": "bytes=17004"
     },
     {
       "name": "file:Makefile",
@@ -503,11 +503,6 @@
       "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json",
       "status": "PASS",
       "detail": "bytes=11431"
-    },
-    {
-      "name": "file:results/reports/project_check_t03_p2_bulk_formal_boundary_checker_bug_failed.json",
-      "status": "PASS",
-      "detail": "bytes=69562"
     },
     {
       "name": "file:results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
@@ -2041,13 +2036,8 @@
     },
     {
       "name": "t03_p2_bulk_traps:formal_contract_boundary",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "Only this formal contract PASS permits the separate formal NTA/NGA transfer run. P3, P5, M00, M01, SPICE, circuits, layout, PEX, and HZO remain closed until the formal runner and independent persisted-evidence check pass and P2 completion is documented."
-    },
-    {
-      "name": "t03_p2_bulk_traps:formal_contract_checker_failure_preserved",
-      "status": "PASS",
-      "detail": "status=FAIL checks=420 failures=1"
     },
     {
       "name": "tcad:mesh_levels",

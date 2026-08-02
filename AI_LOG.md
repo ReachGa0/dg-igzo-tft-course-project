@@ -16,6 +16,43 @@
 
 ---
 
+## 2026-08-02 | Codex GPT-5 | 完成 T03-P2-BULK-TRAPS 正式隔离输入合同
+
+### 用户目标
+
+按阶段 DAG 自动推进当前下一门：先冻结正式隔离 NTA/NGA transfer-sensitivity 的正式点、提取方法、失败保留、输出文件和证据边界；合同通过后才允许运行正式敏感性，不提前启动 P3/P5、M00/M01、SPICE、电路、版图、PEX 或 HZO。
+
+### 读取的关键输入
+
+- `AGENTS.md`、`ARCHITECTURE.md`、`STATUS.md`、`PROJECT_PLAN.md` 和 `DECISIONS.md` 的阶段门、证据等级、失败保留与 Git 规则。
+- 已通过的 bulk 30/30 静态合同、三案例/21 次 DC 方程冒烟 E2 报告、独立 16/16 E3 报告，以及 T02-C 和 DIT V2 的偏压/提取口径。
+- `config/project.json`、`config/experiments.json` 和 DOI `10.3390/electronics9101652` 的既有两行 E1 NTA/NGA 来源表；没有新增或改写物理输入。
+
+### 修改的文件和产物
+
+- 新增 `config/tcad_t03_p2_bulk_traps_formal.json`：冻结 NTA/NGA 各零控制加三个正式点、严格 family 隔离、8 个计划器件、328 次计划 DC、248 个计划 transfer 点、8 个计划状态、48 个计划 VTK、DIT V2 提取方法、失败归档、14 个输出路径和验收边界。
+- 新增 `scripts/check_t03_p2_bulk_traps_formal_contract.py`、Makefile 目标和 `results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json`；检查器只用标准库做静态验证，不导入或调用 DEVSIM。
+- 更新 `config/project.json`、`config/experiments.json` 和 `scripts/check_project.py`，将机器下一门切换为正式运行并把正式合同报告纳入总门禁。
+- 更新 `STATUS.md`、`README.md`、`AI_CONTEXT.md`、`ARCHITECTURE.md`、`PROJECT_PLAN.md`、`DECISIONS.md`、二维 TCAD 路线、报告第 5/6/8 章和证据矩阵，统一标明合同是 E3 静态证据而非正式仿真。
+- 首次总检查失败已保留为 `results/reports/project_check_t03_p2_bulk_formal_boundary_checker_bug_failed.json`；最终总门禁同时验证该归档仍为 420 项中唯一的边界匹配失败。
+
+### 验证命令和结果
+
+- `make t03-p2-bulk-traps-formal-contract-check`：22/22 PASS，E3，`simulation=NOT_RUN_BY_CONTRACT_CHECK`；冻结规模为 8 个器件、328 次 DC、248 个点。
+- 首次 `make check`：419/420 PASS；失败仅来自新增总检查把禁止结论的前缀子串误写成列表整项相等。失败报告先归档，再把检查改为逐项子串匹配；没有修改合同文本、点集、阈值或物理输入。
+- 修正后 `make check`：422/422 PASS，其中包括对上述失败归档的独立保留检查。
+- `make report-check`：PASS，12 章、5 附录、16 个允许占位符、14 张图片。
+- `python3 -m py_compile`、三份 JSON 解析和 `git diff --check`：PASS。
+- 本阶段没有运行 TCAD、SPICE、P3、P5、M00/M01、电路、版图、PEX 或 HZO。
+
+### 新决策、证据边界和下一步
+
+- ADR-026 固定两个 family 各自零控制；趋势方向只作预注册诊断而非完成门。任何有限、收敛、守恒且可复算的反向或非单调趋势都必须保留。
+- 8/328/248 是正式合同的计划规模，不是已完成仿真；合同 PASS 不支持物理 DOS、SS/VTH/Ion/Ioff、实验校准、完整 P2/T03 或后续领域结论。
+- 下一步只允许运行合同定义的正式隔离 NTA/NGA transfer sensitivity，再执行不导入运行器/DEVSIM 的独立落盘证据检查。两者通过并记录 P2 完成边界前，其余阶段继续关闭。
+
+---
+
 ## 2026-08-02 | Codex GPT-5 | 同步 T03-P2 bulk 方程冒烟机器配置
 
 ### 用户目标

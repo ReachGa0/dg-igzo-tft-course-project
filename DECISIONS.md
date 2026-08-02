@@ -1,5 +1,24 @@
 # 设计决策记录
 
+## ADR-026：正式 bulk transfer 在运行前冻结隔离点、提取和失败保留
+
+- 日期：2026-08-02
+- 状态：通过；只关闭正式输入合同，不代表正式 NTA/NGA 敏感性、P2 或 T03 完成
+
+### 决策
+
+- NTA 与 NGA 继续作为两个完全隔离的 family。NTA family 使用 `0/1e18/5e18/5e19 cm^-3 eV^-1`，NGA family 使用 `0/1e16/5e16/5e17 cm^-3 eV^-1`；每个 family 都单独执行零控制，另一 bulk family、上下界面 DIT、NTD 和 NGD 固定为零。
+- 正式工作量冻结为 8 个独立器件、每器件 41 次 DC、共 328 次 DC、248 个正式 transfer 点、8 个 `VTG=0.3 V` 状态和 48 个 VTK。合同检查只验证这些计划及路径，没有运行 DEVSIM。
+- VTH、Delta VTH、`VTH+0.2 V` gm、`1e-7~1e-6 A/cm` 一 decade OLS SS 和 `VTG=-0.5 V` 最低栅压电流沿用 DIT V2 的冻结提取方法；最低栅压电流不得称为物理 Ioff。
+- 增大受主型占据态后 VTH/SS 可能增加、电流/gm 可能降低，只作为预注册方向性诊断，不是完成门。只要结果有限、收敛、守恒且可独立复算，反向或非单调趋势必须保留并解释。
+- 所有失败必须归档输入快照、截至失败的求解日志、已完成表格和状态、失败门报告及可生成图片。不得删除失败证据、静默放宽阈值、见到结果后删除文献点，或用部分求解器件替代零控制。
+
+### 证据与边界
+
+- `config/tcad_t03_p2_bulk_traps_formal.json` 和 `results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json` 通过 22/22 静态检查，证据等级 E3，仿真状态明确为 `NOT_RUN_BY_CONTRACT_CHECK`。
+- 该 PASS 只允许下一步单独运行正式隔离 NTA/NGA transfer sensitivity，再执行不导入运行器/DEVSIM 的落盘证据复核。运行器和独立检查都通过前，不得声称正式敏感性、物理 DOS/SS/VTH/Ion/Ioff、完整 P2/T03、实验标定或紧凑/电路/版图证据。
+- P3、P5、M00、M01、SPICE、电路、版图、PEX 和 HZO 继续关闭。
+
 ## ADR-025：bulk traps 先冻结隔离的 NTA/NGA 准静态合同
 
 - 日期：2026-08-02
@@ -17,7 +36,7 @@
 
 - 30/30 静态检查 PASS；96 点积分的最大相对误差为 `7.93e-7`，低于冻结的 `1e-5` 门。随后三案例方程冒烟完成 3 器件/21 次 DC，运行器 E2 PASS，独立 16 项检查 E3 PASS。
 - 来源器件为单底栅、100 nm SiO2、`VD=40 V`，与本项目双栅 30/24/30 nm Al2O3/IGZO 栈和 `VDS=0.01 V` 不同；这些点不是项目测量、拟合或 DOS 提取。
-- 下一步建立另立的正式隔离 NTA/NGA transfer-sensitivity 合同；在合同和独立检查通过前不启动 P3/P5、SPICE 或版图。当前冒烟不支持物理 DOS、SS/VTH/Ion/Ioff 或完整 P2 结论。
+- 原定下一步已由 ADR-026 的正式隔离合同关闭；当前只允许运行该合同定义的正式 NTA/NGA transfer sensitivity，再做独立落盘检查。当前冒烟和静态合同都不支持物理 DOS、SS/VTH/Ion/Ioff 或完整 P2 结论。
 
 ## ADR-024：以 V2 关闭 bottom-interface DIT 子阶段，但保留 P2 partial
 

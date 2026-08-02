@@ -19,7 +19,7 @@
 - 题目：基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK。
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
-- S00、T01-A/B/C/D-A/D-B/D-C 和 T02-A/B/C 已完成；T03-P4-L 已完整关闭，T03-P1-BIAS 与 T03-P1-CAP-RATIO 共同关闭数值 P1。T03-P2-DIT 界面子阶段已关闭；bulk-trap 的 30/30 静态合同、三案例方程冒烟运行器和独立落盘检查也已通过（E2/E3），但正式 NTA/NGA transfer 敏感性尚未运行，所以完整 P2 仍为 partial。G0 仍为 `TEACHING_BASELINE_ONLY`；P3/P5、M00/C00/L00/V01 仍未实现。
+- S00、T01-A/B/C/D-A/D-B/D-C 和 T02-A/B/C 已完成；T03-P4-L 已完整关闭，T03-P1-BIAS 与 T03-P1-CAP-RATIO 共同关闭数值 P1。T03-P2-DIT 界面子阶段已关闭；bulk-trap 的 30/30 静态合同、三案例方程冒烟运行器和独立落盘检查已通过（E2/E3），另立的正式隔离 NTA/NGA 合同也以 22/22 E3 静态检查通过。正式合同没有运行 DEVSIM，正式 transfer 敏感性尚未完成，所以完整 P2 仍为 partial。G0 仍为 `TEACHING_BASELINE_ONLY`；P3/P5、M00/C00/L00/V01 仍未实现。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
@@ -65,8 +65,9 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 - T03-P4-L 沟道长度敏感性：E3；V2 合同 25 项 PASS，L=8/10/12 um 三个新器件共 123 次 DC、93 点、3 个状态，运行器 16 项和独立 14 项复算 PASS。开态电流代理与 gm 代理随 L 严格下降；理想 1/L 诊断按原冻结阈值 FAIL（VTH range=12.058 mV，I*L spread=14.315%，gm*L spread=15.461%，log slope=-0.61818，R2=0.999517），该 FAIL 是公开限制而非被放宽的通过。
 - T03-P1-BIAS 固定底栅偏压敏感性：E3；22 项合同冻结 `VBG=-0.4/-0.2/0/+0.2/+0.4 V`，其余输入含对称 `Ctop/Cbottom=1` 代理不变。五个新器件完成 217 次 DC、155 点和 5 个 `VTG=0.3 V` 状态，运行器 14 项和独立 14 项复算 PASS。VTH 代理为 0.600083/0.438180/0.263857/0.068202/-0.155482 V，OLS 斜率 -0.940554 V/V、R2=0.995712；零副栅参考对 T02-C 复现差异为 0。该结果不是物理电容比、实验耦合系数或完整 P1。
 - T03-P1-CAP-RATIO 有效电容分配比敏感性：E3；20 项合同冻结 `Ctop/Cbottom=0.5/0.75/1.0/1.5/2.0`，上下物理介质厚度固定 30 nm，并以 `epsilon_top+epsilon_bottom=13.6` 固定总耦合代理。五个新器件完成 205 次 DC、155 点和 5 个 `VTG=0.3 V` 状态，运行器 16 项和独立 13 项复算 PASS。VTH 代理严格降至 0.209247 V，gm 代理严格升至 4.94347e-5 S/cm；比值 1 对 T02-C 复现差异为 0。它与 BIAS 共同关闭数值 P1，但不是物理电容、材料参数或制造栈验证。
-- T03-P2-DIT 界面子阶段：E3；方程冒烟先以 5 器件/17 次 DC 验证零极限、Gauss 和 T02-C 回归。正式 V2 再运行零控制与 `8.43e11/3.07e12/6.02e12 cm^-2 eV^-1` 三点，4 器件完成 164 次 DC、124 点和 4 状态，合同 21/21、运行器 14/14、独立 16/16 PASS。VTH 代理从 0.263857 V 增至 0.338997 V，SS 代理从 137.594 增至 292.966 mV/dec，gm 代理递减；最低栅压电流递增只是 `Psi_neutral=0 V` 线性化模型的数值响应，不是物理 Ioff。bulk traps 仍缺，所以 P2 仍为 partial。
+- T03-P2-DIT 界面子阶段：E3；方程冒烟先以 5 器件/17 次 DC 验证零极限、Gauss 和 T02-C 回归。正式 V2 再运行零控制与 `8.43e11/3.07e12/6.02e12 cm^-2 eV^-1` 三点，4 器件完成 164 次 DC、124 点和 4 状态，合同 21/21、运行器 14/14、独立 16/16 PASS。VTH 代理从 0.263857 V 增至 0.338997 V，SS 代理从 137.594 增至 292.966 mV/dec，gm 代理递减；最低栅压电流递增只是 `Psi_neutral=0 V` 线性化模型的数值响应，不是物理 Ioff。bulk 正式 transfer 敏感性仍缺，所以 P2 仍为 partial。
 - T03-P2-BULK-TRAPS 方程冒烟：运行器 E2、独立落盘复核 E3；零控制、`NTA=5e18` 尾态参考和 `NGA=5e16` 深态参考完成 3 器件/21 次 DC，7257 行节点状态和 6 行积分样本落盘，所有求解、零极限、解析导数、符号、守恒和非零响应检查通过。正式 NTA/NGA transfer sensitivity、物理 DOS/SS/VTH/Ion/Ioff 和完整 P2 仍关闭。
+- T03-P2-BULK-TRAPS-FORMAL 合同：E3 静态证据；22/22 PASS，冻结 NTA/NGA 各零控制加三个正式点、严格 family 隔离、DIT/NTD/NGD 为零、8 个计划器件、328 次计划 DC、248 个计划 transfer 点、8 个计划状态、DIT V2 提取方法、失败归档与 14 个阶段输出。检查结果为 `NOT_RUN_BY_CONTRACT_CHECK`，不能写成正式敏感性或 P2 完成。
 - 学长 IGZO 曲线：E1/reference_only；元数据不完整。
 - IGZO 单管外部 GDS：E2 基线，可参考但尚未迁入新 PDK。
 - 其余领域任务：E0。
@@ -80,7 +81,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. T02-A/B/C、T03-P4-L、完整数值 P1、T03-P2-DIT 界面子阶段和 T03-P2-BULK-TRAPS 方程冒烟已通过。下一步只能建立另立的正式隔离 NTA/NGA transfer-sensitivity 合同；正式合同和独立检查通过前不得铺开 P3/P5、SPICE、KLayout 或 HZO。
+8. T02-A/B/C、T03-P4-L、完整数值 P1、T03-P2-DIT 界面子阶段、T03-P2-BULK-TRAPS 方程冒烟和正式隔离合同已通过。下一步只能运行合同定义的正式 NTA/NGA transfer sensitivity，再执行独立落盘检查；两者都通过并记录 P2 边界前不得铺开 P3/P5、M00/M01、SPICE、电路、KLayout、PEX 或 HZO。
 
 ## 原始资产路径
 

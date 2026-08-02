@@ -249,7 +249,8 @@
         "T03-P2-DIT literature input contract and quasi-static interface-equation smoke: 4 E1 source rows, 5 devices, 17 DC, 12095 state rows, independent 15/15 PASS",
         "T03-P2-DIT-FORMAL controlled bottom-interface sensitivity: zero control plus 3 literature-constrained values, 4 devices, 164 DC, 124 transfer points, 4 states, independent 16/16 PASS; interface-DIT substage complete",
         "T03-P2-BULK-TRAPS static input contract: 2 E1 source rows, isolated NTA/NGA three-point sets, quasi-static occupancy and 96-point integration, 30/30 PASS",
-        "T03-P2-BULK-TRAPS equation smoke: zero control plus NTA and NGA references, 3 devices, 21 coupled DC solves, 7257 state-node rows, 6 integration samples, E2 runner PASS and independent E3 16/16 PASS"
+        "T03-P2-BULK-TRAPS equation smoke: zero control plus NTA and NGA references, 3 devices, 21 coupled DC solves, 7257 state-node rows, 6 integration samples, E2 runner PASS and independent E3 16/16 PASS",
+        "T03-P2-BULK-TRAPS-FORMAL input contract: isolated NTA/NGA zero controls plus three formal points per family, 8 devices, 328 planned DC solves, 248 planned transfer points, extraction/failure/output/evidence gates frozen as E3 static evidence without DEVSIM"
       ],
       "completed_parameter_groups": ["P1", "P4"],
       "partially_completed_parameter_groups": ["P2"],
@@ -264,6 +265,12 @@
         "state_node_rows": 7257,
         "integration_sample_rows": 6,
         "formal_transfer_sensitivity_completed": false
+      },
+      "p2_bulk_formal_contract_evidence": {
+        "status": "input_contract_ready",
+        "contract_evidence": "E3",
+        "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+        "formal_sensitivity_completed": false
       },
       "first_group_outputs": [
         "config/tcad_t03_p4_channel_length.json",
@@ -333,9 +340,11 @@
         "results/tables/tcad_t03_p2_bulk_traps_integration_samples.csv",
         "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
         "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/solver_log.json",
-        "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv"
+        "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
+        "config/tcad_t03_p2_bulk_traps_formal.json",
+        "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json"
       ],
-      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P1 combines the fixed-secondary-bias substage with a fixed-total-coupling effective capacitance-allocation ratio substage; it is not measured capacitance extraction, measured Al2O3 permittivity, or a fabricated asymmetric stack. P2 remains partial: the bottom-interface DIT substage is E3; the bulk NTA/NGA source/equation contract is E3 static evidence; and the 3-device, 21-DC bulk equation smoke has E2 runner evidence plus an E3 independent persisted-evidence check. The bulk equation smoke verifies only the frozen quasi-static Poisson charge, analytic Jacobian, zero limit, solver convergence, conservation, and nonzero numerical response. Formal isolated NTA/NGA transfer sensitivity has not run, so physical DOS, SS, VTH, Ion/Ioff, dynamic capture-emission, complete P2, P3, P5, and complete T03 remain unverified. Formal DIT metrics remain numerical proxies and source stacks differ. No T03 result is experimental calibration, compact-model, circuit, layout, or HZO evidence.",
+      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P1 combines the fixed-secondary-bias substage with a fixed-total-coupling effective capacitance-allocation ratio substage; it is not measured capacitance extraction, measured Al2O3 permittivity, or a fabricated asymmetric stack. P2 remains partial: the bottom-interface DIT substage is E3; the bulk NTA/NGA source/equation contract is E3 static evidence; and the 3-device, 21-DC bulk equation smoke has E2 runner evidence plus an E3 independent persisted-evidence check. The separate formal NTA/NGA input contract is E3 static evidence only: it freezes two isolated zero controls plus three formal points per family, 8 devices, 328 planned DC solves, 248 planned transfer points, the DIT-V2 extraction methods, failed-run retention, outputs, and acceptance gates without running DEVSIM. Formal isolated NTA/NGA transfer sensitivity has not run, so physical DOS, SS, VTH, Ion/Ioff, dynamic capture-emission, complete P2, P3, P5, and complete T03 remain unverified. Formal DIT metrics remain numerical proxies and source stacks differ. No T03 result is experimental calibration, compact-model, circuit, layout, PEX, or HZO evidence.",
       "acceptance": ["five groups complete", "at least three points per group", "quantitative comparison uses common axes", "each completed group has an independent persisted-evidence check", "failed hypotheses remain visible and do not get silently relaxed"]
     },
     {

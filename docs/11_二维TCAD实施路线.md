@@ -3,7 +3,7 @@
 > 目标：在普通笔记本上建立从二维器件物理到 SPICE 紧凑模型的可复现桥梁。  
 > 工具：DEVSIM 2.10.0 + Python；Gmsh 用于后续非矩形或局部加密网格。  
 > 当前可运行层次：双栅静电 Poisson 基准、已关闭数值阶段门的单栅 IGZO T01 教学漂移扩散模型，以及包含极限回归、非零偏压、上下栅双向曲线、受限提取和二维状态的完整 T02 教学模型。
-> 已完成层次：双栅静电 Poisson 基准、T01 单栅漂移扩散、完整 T02 双栅数值回归、T03-P1 两组数值敏感性，以及 P2-DIT bottom-interface 输入、方程冒烟和正式三点敏感性。T03-P2-BULK-TRAPS 的文献输入合同和三案例方程冒烟也已通过，正式 NTA/NGA transfer 敏感性尚未运行。尚未完成层次：bulk tail/deep traps 的正式敏感性、非理想接触、其余几何/介质、温度、实验标定和参数不确定度模型，以及紧凑模型与电路传递。
+> 已完成层次：双栅静电 Poisson 基准、T01 单栅漂移扩散、完整 T02 双栅数值回归、T03-P1 两组数值敏感性，以及 P2-DIT bottom-interface 输入、方程冒烟和正式三点敏感性。T03-P2-BULK-TRAPS 的文献输入合同、三案例方程冒烟和 22/22 正式隔离输入合同也已通过；正式合同没有运行 DEVSIM，正式 NTA/NGA transfer 敏感性尚未完成。尚未完成层次：bulk tail/deep traps 的正式敏感性、非理想接触、其余几何/介质、温度、实验标定和参数不确定度模型，以及紧凑模型与电路传递。
 
 ## 1. TCAD 在整个项目中的位置
 
@@ -405,11 +405,20 @@ VTH 代理为 `0.263857/0.283583/0.316118/0.338997 V`，SS 代理为 `137.594/16
 make t03-p2-bulk-traps-contract-check
 make t03-p2-bulk-traps-equation-smoke
 make t03-p2-bulk-traps-equation-smoke-check
+make t03-p2-bulk-traps-formal-contract-check
 ```
 
-### 6.8 下一阶段门
+### 6.8 已完成的 P2-BULK-TRAPS 正式输入合同
 
-下一步只允许建立另立的正式隔离 NTA/NGA transfer-sensitivity 合同，先明确正式点、提取口径、失败保留和输出边界，再运行正式敏感性。正式合同和独立检查通过前不并行开启 P3/P5、紧凑模型或电路。
+另立的正式合同以 NTA 和 NGA 两个完全隔离的 family 执行：NTA family 为 `0/1e18/5e18/5e19 cm^-3 eV^-1`，NGA family 为 `0/1e16/5e16/5e17 cm^-3 eV^-1`。每个 family 都使用自己的零控制，另一类 bulk trap、上下界面 DIT、NTD 和 NGD 固定为零。正式计划共 8 个独立器件、328 次 DC、248 个 transfer 点、8 个 `VTG=0.3 V` 状态和 48 个 VTK。
+
+提取口径沿用 DIT V2：`1e-5 A/cm` 恒流 VTH、相对本 family 零控制的 Delta VTH、`VTH+0.2 V` gm、`1e-7~1e-6 A/cm` 固定一 decade OLS SS，以及 `VTG=-0.5 V` 最低栅压电流代理。方向性假设只作诊断，不是完成门；反向或非单调但有限、收敛、守恒且可复算的结果必须保留。任何失败均须归档输入、日志、已完成输出和失败门，不得删除证据或静默改阈值。
+
+合同检查 22/22 PASS，证据等级为 E3，报告明确 `simulation=NOT_RUN_BY_CONTRACT_CHECK`。8/328/248 是冻结的未来运行规模，不是已完成仿真，也不支持物理 DOS、SS/VTH/Ion/Ioff、实验校准、完整 P2 或 T03 结论。
+
+### 6.9 下一阶段门
+
+下一步只允许运行该合同定义的正式隔离 NTA/NGA transfer sensitivity，再执行独立落盘证据检查。运行器和独立检查均通过并记录 P2 完成边界前，不并行开启 P3/P5、M00/M01、SPICE、电路、版图、PEX 或 HZO。
 
 ## 7. TCAD 到 SPICE 怎样传参数
 

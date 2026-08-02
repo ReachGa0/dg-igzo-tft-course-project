@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "case_id": "IGZO_T03_P2_BULK_TRAPS_FORMAL_V1",
+  "revision": 1,
+  "stage": "T03-P2-BULK-TRAPS-FORMAL",
+  "parameter_group_id": "P2",
+  "status": "planned",
+  "evidence_level_before_run": "E0",
+  "contract_evidence_level_after_check": "E3",
+  "dependencies": {
+    "project_config": "config/project.json",
+    "experiments_config": "config/experiments.json",
+    "s00_report": "results/reports/s00_data_audit.json",
+    "t01_baseline_config": "config/tcad_t01_baseline.json",
+    "t02_c_config": "config/tcad_t02_c_bidirectional.json",
+    "t02_c_report": "results/reports/tcad_t02_c_bidirectional.json",
+    "t02_c_check_report": "results/reports/tcad_t02_c_bidirectional_check.json",
+    "dit_formal_config": "config/tcad_t03_p2_dit_formal.json",
+    "bulk_input_config": "config/tcad_t03_p2_bulk_traps.json",
+    "bulk_input_contract_report": "results/reports/tcad_t03_p2_bulk_traps_input_contract.json",
+    "bulk_smoke_report": "results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json",
+    "bulk_smoke_check_report": "results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json",
+    "literature_table": "references/t03_p2_bulk_trap_sources.csv",
+    "required_g0_status": "TEACHING_BASELINE_ONLY",
+    "required_t02_c_status": "PASS",
+    "required_t02_c_check_status": "PASS",
+    "required_bulk_input_contract_status": "PASS",
+    "required_bulk_smoke_status": "PASS",
+    "required_bulk_smoke_check_status": "PASS",
+    "require_formal_bulk_sensitivity_permitted_next": true,
+    "require_p2_still_partial_before_run": true
+  },
+  "scope": {
+    "device": "2D n-IGZO electron-only drift-diffusion teaching model with the T02-A enabled symmetric dual-gate stack",
+    "purpose": "Freeze the formal isolated NTA and NGA transfer-sensitivity points, extraction methods, failure retention, persisted outputs, acceptance gates, and evidence boundary after the separate equation smoke passed.",
+    "changed_variable_families": [
+      "NTA_conduction_band_tail_peak_cm^-3_eV^-1",
+      "NGA_gaussian_deep_state_peak_cm^-3_eV^-1"
+    ],
+    "one_active_family_per_device": true,
+    "fixed_variables": [
+      "NGA = 0 cm^-3 eV^-1 throughout every NTA-family device",
+      "NTA = 0 cm^-3 eV^-1 throughout every NGA-family device",
+      "bottom and top interface D_it = 0 cm^-2 eV^-1",
+      "donor-like NTD and NGD = 0 and deferred",
+      "channel length = 10 um and width = 60 um",
+      "channel thickness = 24 nm",
+      "top and bottom physical Al2O3 thickness = 30 nm",
+      "top and bottom dielectric relative permittivity = 6.8",
+      "interface_4x mesh",
+      "source voltage = 0 V and drain voltage = 0.01 V",
+      "top gate is swept and bottom gate is fixed at 0 V",
+      "300 K constant teaching mobility = 35.5 cm2/(V*s)",
+      "ideal ohmic source and drain",
+      "Poisson plus electron continuity with quasi-static occupied bulk-trap charge",
+      "no recombination, dynamic capture-emission, ferroelectric polarization, or non-ideal contacts"
+    ],
+    "prohibited_work_before_contract_pass": [
+      "formal NTA or NGA DEVSIM transfer run",
+      "simultaneous nonzero NTA and NGA in one attribution device",
+      "simultaneous interface D_it and bulk-trap variation",
+      "donor-like NTD or NGD scan",
+      "P3, P5, compact-model, SPICE, circuit, layout, PEX, or HZO work"
+    ],
+    "prohibited_claims_after_future_run": [
+      "project-device DOS measurement, extraction, fitting, or calibration",
+      "physical or measured SS, VTH, Ioff, Ion, mobility, or process prediction",
+      "dynamic capture-emission, hysteresis, bias-stress, reliability, or complete four-band DOS validation",
+      "experimental calibration, uncertainty validation, compact-model, circuit, layout, PEX, or HZO evidence"
+    ]
+  },
+  "sensitivity_families": [
+    {
+      "family_id": "NTA",
+      "parameter_name": "acceptor_like_conduction_band_exponential_tail_peak",
+      "parameter_symbol": "NTA",
+      "unit": "cm^-3 eV^-1",
+      "execution_values_cm3_ev": [0.0, 1e18, 5e18, 5e19],
+      "formal_values_cm3_ev": [1e18, 5e18, 5e19],
+      "zero_control_cm3_ev": 0.0,
+      "inactive_family": "NGA",
+      "inactive_family_value_cm3_ev": 0.0,
+      "width_ev": 0.08,
+      "peak_depth_below_ec_ev": null,
+      "value_source_type": "E1_primary_literature_points_for_controlled_sensitivity_only",
+      "value_source_reference": "references/t03_p2_bulk_trap_sources.csv"
+    },
+    {
+      "family_id": "NGA",
+      "parameter_name": "acceptor_like_gaussian_deep_state_peak",
+      "parameter_symbol": "NGA",
+      "unit": "cm^-3 eV^-1",
+      "execution_values_cm3_ev": [0.0, 1e16, 5e16, 5e17],
+      "formal_values_cm3_ev": [1e16, 5e16, 5e17],
+      "zero_control_cm3_ev": 0.0,
+      "inactive_family": "NTA",
+      "inactive_family_value_cm3_ev": 0.0,
+      "width_ev": 0.2,
+      "peak_depth_below_ec_ev": 0.5,
+      "value_source_type": "E1_primary_literature_points_for_controlled_sensitivity_only",
+      "value_source_reference": "references/t03_p2_bulk_trap_sources.csv"
+    }
+  ],
+  "bulk_trap_model_inheritance": {
+    "source_config": "config/tcad_t03_p2_bulk_traps.json",
+    "model_kind": "quasi_static_energy_resolved_acceptor_occupancy_added_to_poisson",
+    "energy_variable": "epsilon=Ec-E",
+    "energy_domain_ev": [0.0, 3.0],
+    "integration_method": "fixed_order_gauss_legendre",
+    "integration_order": 96,
+    "electron_occupancy_formula": "f_t(epsilon,n)=1/(1+(Nc/n)*exp(-epsilon/(k_B*T)))",
+    "physical_trapped_charge_density_formula": "rho_trap=-q*(n_TA+n_GA)",
+    "poisson_insertion": "PotentialNodeCharge=q*(Electrons+OccupiedBulkTraps-NetDoping)",
+    "analytic_electrons_jacobian_required": true,
+    "zero_density_limit_must_exactly_restore_t02_c": true
+  },
+  "bias_protocol": {
+    "source_v": 0.0,
+    "drain_v": 0.01,
+    "low_vds_values_v": [0.0, 0.001, 0.005, 0.01],
+    "primary_gate": "top_gate",
+    "secondary_gate": "bottom_gate",
+    "fixed_secondary_gate_v": 0.0,
+    "primary_negative_preconditioning_v": [-0.1, -0.2, -0.3, -0.4, -0.5],
+    "primary_gate_grid": {
+      "start_v": -0.5,
+      "stop_v": 1.0,
+      "step_v": 0.05,
+      "point_count": 31
+    },
+    "reverse_paths": [],
+    "common_state_primary_gate_v": 0.3,
+    "execution_order": [
+      "run the NTA family from a fresh device for each of its four values while NGA and both interface D_it values remain zero",
+      "run the NGA family from a fresh device for each of its four values while NTA and both interface D_it values remain zero",
+      "for every device solve all-zero-bias Poisson and coupled equilibrium",
+      "apply the T02-C low-VDS ladder with both gates at 0 V",
+      "precondition the top gate from 0 V down to -0.5 V",
+      "sweep the exact 31-point top-gate grid upward from -0.5 V to 1.0 V",
+      "save the VTG=0.3 V state and delete the device before the next value"
+    ]
+  },
+  "extraction_methods": {
+    "source": "config/tcad_t03_p2_dit_formal.json",
+    "constant_current_vth_proxy": {
+      "name": "constant_current_log_interpolation",
+      "criterion_formula": "10 nA * (W/L) terminal current",
+      "criterion_prefactor_a": 1e-8,
+      "expected_terminal_current_a": 6e-8,
+      "expected_current_per_width_a_per_cm": 1e-5,
+      "interpolation": "linear primary-gate-voltage interpolation in log10(abs(drain current per unit width))"
+    },
+    "delta_vth_proxy": {
+      "name": "within-family constant-current threshold shift",
+      "reference_rule": "Use the separately executed zero control of the same family",
+      "definition": "VTH(value) minus VTH(family zero control)"
+    },
+    "gm_proxy": {
+      "name": "central_difference_then_linear_interpolation",
+      "evaluation_overdrive_v": 0.2,
+      "definition": "central-difference derivative of abs(drain current) versus primary-gate voltage, linearly interpolated at VTH + 0.2 V",
+      "reported_units": ["S/cm", "S terminal"]
+    },
+    "ss_proxy": {
+      "name": "fixed_current_window_ols",
+      "lower_current_a_per_cm": 1e-7,
+      "upper_current_a_per_cm": 1e-6,
+      "endpoint_method": "log-current interpolation to exact fixed-window endpoints",
+      "fit": "ordinary least squares of top-gate voltage versus log10(abs(drain current per unit width))",
+      "minimum_augmented_sample_count": 4,
+      "reported_unit": "mV/dec"
+    },
+    "low_gate_current_proxy": {
+      "name": "fixed_lowest_gate_voltage_current",
+      "evaluation_top_gate_v": -0.5,
+      "definition": "abs(drain current) at VTG=-0.5 V, VBG=0 V, and VDS=0.01 V",
+      "reported_units": ["A/cm", "A terminal"],
+      "physical_ioff_claim_permitted": false
+    }
+  },
+  "directional_hypotheses": {
+    "completion_gate": false,
+    "registered": [
+      "Increasing occupied acceptor-like bulk states may increase the VTH and SS numerical proxies.",
+      "Increasing occupied acceptor-like bulk states may reduce common-bias mobile-electron density, drain-current, and gm numerical proxies."
+    ],
+    "failure_rule": "A finite, converged, conserved, independently reproducible contrary or non-monotonic trend is retained and reported rather than converted into a stage failure.",
+    "reason": "The source stack, drain bias, and material assumptions differ from the project teaching stack, so direction is diagnostic rather than a completion gate."
+  },
+  "state_output_contract": {
+    "common_primary_gate_v": 0.3,
+    "required_state_count_per_family": 4,
+    "required_total_state_count": 8,
+    "required_vtk_file_count_per_state": 6,
+    "required_total_vtk_file_count": 48,
+    "state_id_pattern": "p2_bulk_<family_lower>_<zero_or_value_token>_common_primary",
+    "potential": {
+      "location": "bottom_oxide, channel, and top_oxide nodes",
+      "unit": "V"
+    },
+    "electron_density": {
+      "location": "channel nodes",
+      "unit": "cm^-3"
+    },
+    "occupied_bulk_trap_density": {
+      "location": "channel nodes",
+      "unit": "cm^-3"
+    },
+    "electron_current_density": {
+      "location": "channel triangular elements",
+      "unit": "A/cm^2",
+      "source_model": "DEVSIM ElectronCurrent edge model projected by element_from_edge_model"
+    }
+  },
+  "failure_retention": {
+    "preserve_every_failed_run": true,
+    "never_delete_or_overwrite_failed_evidence": true,
+    "archive_directory_pattern": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v<revision>_<failure_slug>",
+    "archive_report_pattern": "results/reports/tcad_t03_p2_bulk_traps_formal_v<revision>_<failure_slug>.json",
+    "required_failure_artifacts": [
+      "input snapshot",
+      "solver log through the failure",
+      "all completed transfer rows and metrics",
+      "all completed state files and manifest entries",
+      "runner report with the exact failed acceptance gate",
+      "figures when enough persisted data exist"
+    ],
+    "acceptance_change_rule": "Any extraction-window or threshold change requires a new config revision, a recorded rationale, preservation of the prior failed contract/report, and a complete rerun.",
+    "prohibited_recovery": [
+      "delete failed evidence",
+      "silently relax an acceptance threshold",
+      "drop a literature point after seeing its result",
+      "reuse a partially solved device as a replacement control"
+    ]
+  },
+  "resource_budget": {
+    "required_family_count": 2,
+    "required_device_count_per_family": 4,
+    "required_total_device_count": 8,
+    "required_formal_device_count": 6,
+    "required_control_device_count": 2,
+    "required_reported_point_count_per_device": 31,
+    "required_total_reported_point_count": 248,
+    "required_dc_solve_count_per_device": 41,
+    "required_total_dc_solve_count": 328,
+    "maximum_wall_seconds": 600.0,
+    "laptop_target": true
+  },
+  "acceptance": {
+    "required_family_order": ["NTA", "NGA"],
+    "required_nta_values_cm3_ev": [0.0, 1e18, 5e18, 5e19],
+    "required_nga_values_cm3_ev": [0.0, 1e16, 5e16, 5e17],
+    "required_formal_points_per_family": 3,
+    "required_control_points_per_family": 1,
+    "required_primary_gate_point_count": 31,
+    "required_total_reported_point_count": 248,
+    "required_total_dc_solve_count": 328,
+    "maximum_relative_terminal_current_imbalance": 1e-5,
+    "maximum_zero_equilibrium_absolute_terminal_current_a_per_cm": 1e-18,
+    "maximum_zero_equilibrium_absolute_potential_v": 1e-10,
+    "maximum_each_zero_control_t02_c_current_relative_difference": 1e-6,
+    "maximum_each_zero_control_t02_c_center_potential_difference_v": 1e-7,
+    "maximum_each_zero_control_t02_c_center_density_relative_difference": 1e-6,
+    "maximum_each_zero_control_t02_c_vth_difference_v": 1e-4,
+    "maximum_each_zero_control_t02_c_gm_relative_difference": 1e-4,
+    "maximum_pairwise_zero_control_current_relative_difference": 1e-10,
+    "maximum_pairwise_zero_control_metric_relative_difference": 1e-10,
+    "minimum_ss_fit_r_squared": 0.98,
+    "minimum_augmented_ss_sample_count": 4,
+    "minimum_each_family_maximum_common_state_current_relative_response": 1e-3,
+    "require_positive_drain_and_negative_source_current": true,
+    "require_strict_primary_gate_current_increase": true,
+    "require_vth_bracket_for_every_device": true,
+    "require_positive_finite_gm": true,
+    "require_positive_finite_ss": true,
+    "require_finite_positive_low_gate_current": true,
+    "require_all_dc_solves_converged": true,
+    "require_exact_isolation_for_every_device": true,
+    "require_both_interface_dit_zero": true,
+    "require_independent_persisted_evidence_check": true,
+    "require_two_png_figures": true
+  },
+  "outputs": {
+    "contract_report": "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json",
+    "run_directory": "results/tcad/t03_sensitivity/p2_bulk_traps_formal",
+    "config_snapshot": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/input_snapshot.json",
+    "solver_log": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/solver_log.json",
+    "state_manifest": "results/tcad/t03_sensitivity/p2_bulk_traps_formal/state_manifest.json",
+    "curve_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_transfer.csv",
+    "metric_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_metrics.csv",
+    "reference_comparison_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_t02_c_reproduction.csv",
+    "zero_control_comparison_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_zero_control_comparison.csv",
+    "state_summary_csv": "results/tables/tcad_t03_p2_bulk_traps_formal_state_summary.csv",
+    "sensitivity_figure_png": "report/assets/tcad_t03_p2_bulk_traps_formal_sensitivity.png",
+    "state_figure_png": "report/assets/tcad_t03_p2_bulk_traps_formal_states.png",
+    "report": "results/reports/tcad_t03_p2_bulk_traps_formal.json",
+    "check_report": "results/reports/tcad_t03_p2_bulk_traps_formal_check.json"
+  },
+  "evidence_boundary": {
+    "allowed_claim_after_contract_pass": "The formal isolated NTA/NGA transfer-sensitivity points, unchanged teaching-model equations, extraction methods, failure-retention policy, output files, laptop budget, acceptance gates, and evidence boundary have been frozen and statically checked without running DEVSIM.",
+    "allowed_claim_after_future_run_and_independent_check": "The isolated NTA and NGA literature-constrained point sets completed controlled transfer sensitivities in the frozen quasi-static teaching model; VTH, SS, low-gate current, gm, and internal-state responses remain numerical proxies.",
+    "prohibited_claims": [
+      "the formal NTA/NGA transfer sensitivity passed before both the runner and independent persisted-evidence check pass",
+      "project-device DOS was measured, extracted, fitted, calibrated, or assigned physical uncertainty",
+      "SS, VTH, Ioff, Ion, mobility, or process behavior was physically or experimentally validated",
+      "dynamic capture-emission, hysteresis, bias-stress, reliability, NTD, NGD, or complete four-band DOS was validated",
+      "P2, T03, compact-model, circuit, layout, PEX, or HZO work completed before its own stage gate"
+    ],
+    "next_gate": "Only this formal contract PASS permits the separate formal NTA/NGA transfer run. P3, P5, M00, M01, SPICE, circuits, layout, PEX, and HZO remain closed until the formal runner and independent persisted-evidence check pass and P2 completion is documented."
+  }
+}
