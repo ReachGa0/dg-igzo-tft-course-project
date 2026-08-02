@@ -74,14 +74,26 @@ REQUIRED_FILES = [
     "results/reports/tcad_t03_p2_bulk_traps_formal_v1_runner_completed_without_exception.json",
     "results/reports/tcad_t03_p2_bulk_traps_formal_v2.json",
     "results/reports/tcad_t03_p2_bulk_traps_formal_v2_runner_completed_without_exception.json",
+    "results/reports/tcad_t03_p2_bulk_traps_formal_v3.json",
+    "results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json",
     "results/reports/project_check_t03_p2_bulk_formal_boundary_checker_bug_failed.json",
     "results/reports/project_check_t03_p2_bulk_v2_failure_checker_math_import_bug_failed.json",
     "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3_checker_v2_curve_loader_bug_failed.json",
     "results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
     "results/tables/tcad_t03_p2_bulk_traps_integration_samples.csv",
+    "results/tables/tcad_t03_p2_bulk_traps_formal_v3_transfer.csv",
+    "results/tables/tcad_t03_p2_bulk_traps_formal_v3_metrics.csv",
+    "results/tables/tcad_t03_p2_bulk_traps_formal_v3_t02_c_reproduction.csv",
+    "results/tables/tcad_t03_p2_bulk_traps_formal_v3_zero_control_comparison.csv",
+    "results/tables/tcad_t03_p2_bulk_traps_formal_v3_state_summary.csv",
     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/solver_log.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/input_snapshot.json",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/solver_log.json",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/state_manifest.json",
+    "report/assets/tcad_t03_p2_bulk_traps_formal_v3_sensitivity.png",
+    "report/assets/tcad_t03_p2_bulk_traps_formal_v3_states.png",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal/state_manifest.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/input_snapshot.json",
@@ -326,6 +338,7 @@ REQUIRED_DIRS = [
     "results/tcad/t03_sensitivity/p2_dit_formal_v1_failed",
     "results/tcad/t03_sensitivity/p2_dit_formal_v1_ss_linearity_failed",
     "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke",
+    "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3",
     "tcad/structures",
     "tcad/physics",
     "tcad/tests",
@@ -592,16 +605,12 @@ def main() -> int:
         add_check(
             checks,
             "experiments:t03_completed_and_partial_groups_are_distinct",
-            sensitivity.get("completed_parameter_groups") == ["P1", "P4"]
-            and sensitivity.get("partially_completed_parameter_groups") == ["P2"]
+            sensitivity.get("completed_parameter_groups") == ["P1", "P2", "P4"]
+            and sensitivity.get("partially_completed_parameter_groups") == []
             and sensitivity.get("remaining_parameter_groups")
-            == ["P2", "P3", "P5"]
+            == ["P3", "P5"]
             and sensitivity.get("remaining_substages")
-            == [
-                "T03-P2-BULK-TRAPS formal isolated NTA/NGA transfer sensitivity",
-                "T03-P3",
-                "T03-P5",
-            ]
+            == ["T03-P3", "T03-P5"]
             and sensitivity.get("p2_bulk_equation_smoke_evidence")
             == {
                 "status": "smoke_verified",
@@ -611,7 +620,7 @@ def main() -> int:
                 "coupled_dc_solves": 21,
                 "state_node_rows": 7257,
                 "integration_sample_rows": 6,
-                "formal_transfer_sensitivity_completed": False,
+                "equation_smoke_itself_completes_formal_transfer_sensitivity": False,
             }
             and sensitivity.get("p2_bulk_formal_contract_evidence")
             == {
@@ -621,7 +630,7 @@ def main() -> int:
                 "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
                 "v1_failure_preserved": True,
                 "v2_failure_preserved": True,
-                "formal_sensitivity_completed": False,
+                "formal_sensitivity_completed": True,
             }
             and sensitivity.get("p2_bulk_formal_v1_failure_evidence")
             == {
@@ -659,8 +668,29 @@ def main() -> int:
                 "independent_persisted_check_run": False,
                 "formal_sensitivity_completed": False,
             }
+            and sensitivity.get("p2_bulk_formal_v3_evidence")
+            == {
+                "status": "formal_sensitivity_verified",
+                "runner_evidence": "E2",
+                "independent_persisted_check_evidence": "E3",
+                "runner_checks_passed": 17,
+                "independent_checks_passed": 16,
+                "devices": 8,
+                "converged_dc_records": 456,
+                "transfer_points": 376,
+                "states": 8,
+                "vtk_files": 48,
+                "wall_seconds": 36.66947608400005,
+                "maximum_relative_terminal_current_imbalance": 6.012869303315774e-9,
+                "zero_controls_exactly_reproduce_t02_c": True,
+                "nta_diagnostic": "VTH and SS proxies strictly increase while gm proxy strictly decreases",
+                "nga_diagnostic": "VTH proxy strictly increases and gm proxy strictly decreases while SS proxy mildly decreases",
+                "formal_sensitivity_completed": True,
+                "complete_p2_trap_group": True,
+                "complete_t03_five_group_sensitivity": False,
+            }
             and all(
-                path in sensitivity.get("p2_partial_outputs", [])
+                path in sensitivity.get("p2_outputs", [])
                 for path in [
                     "results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json",
                     "results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json",
@@ -680,6 +710,18 @@ def main() -> int:
                     "results/reports/tcad_t03_p2_bulk_traps_formal_v2_runner_completed_without_exception.json",
                     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/failure_archive_manifest.json",
                     "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3.json",
+                    "results/reports/tcad_t03_p2_bulk_traps_formal_v3.json",
+                    "results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json",
+                    "results/tables/tcad_t03_p2_bulk_traps_formal_v3_transfer.csv",
+                    "results/tables/tcad_t03_p2_bulk_traps_formal_v3_metrics.csv",
+                    "results/tables/tcad_t03_p2_bulk_traps_formal_v3_t02_c_reproduction.csv",
+                    "results/tables/tcad_t03_p2_bulk_traps_formal_v3_zero_control_comparison.csv",
+                    "results/tables/tcad_t03_p2_bulk_traps_formal_v3_state_summary.csv",
+                    "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/input_snapshot.json",
+                    "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/solver_log.json",
+                    "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/state_manifest.json",
+                    "report/assets/tcad_t03_p2_bulk_traps_formal_v3_sensitivity.png",
+                    "report/assets/tcad_t03_p2_bulk_traps_formal_v3_states.png",
                 ]
             ),
             (
@@ -2937,6 +2979,189 @@ def main() -> int:
                 f"report={v2_report.get('status')} records={len(v2_solver_records)} "
                 f"rows={len(v2_curve_rows)} states={len(v2_entries)} "
                 f"vth={v2_vth:.12f} gm_eval={v2_vth + 0.2:.12f}"
+            ),
+        )
+        v3_report_path = (
+            ROOT / "results/reports/tcad_t03_p2_bulk_traps_formal_v3.json"
+        )
+        v3_check_path = (
+            ROOT / "results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json"
+        )
+        v3_run_dir = (
+            ROOT / "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3"
+        )
+        v3_report = json.loads(v3_report_path.read_text(encoding="utf-8"))
+        v3_check = json.loads(v3_check_path.read_text(encoding="utf-8"))
+        v3_solver_log = json.loads(
+            (v3_run_dir / "solver_log.json").read_text(encoding="utf-8")
+        )
+        v3_state_manifest = json.loads(
+            (v3_run_dir / "state_manifest.json").read_text(encoding="utf-8")
+        )
+        v3_table_paths = {
+            "curves": ROOT
+            / "results/tables/tcad_t03_p2_bulk_traps_formal_v3_transfer.csv",
+            "metrics": ROOT
+            / "results/tables/tcad_t03_p2_bulk_traps_formal_v3_metrics.csv",
+            "t02_c": ROOT
+            / "results/tables/tcad_t03_p2_bulk_traps_formal_v3_t02_c_reproduction.csv",
+            "zero": ROOT
+            / "results/tables/tcad_t03_p2_bulk_traps_formal_v3_zero_control_comparison.csv",
+            "states": ROOT
+            / "results/tables/tcad_t03_p2_bulk_traps_formal_v3_state_summary.csv",
+        }
+        v3_tables = {}
+        for table_id, table_path in v3_table_paths.items():
+            with table_path.open("r", encoding="utf-8", newline="") as stream:
+                v3_tables[table_id] = list(csv.DictReader(stream))
+        v3_solver_records = [
+            record
+            for run in v3_solver_log.get("runs", [])
+            for record in run.get("solver_records", [])
+        ]
+        v3_runner_checks = v3_report.get("checks", {})
+        v3_summary = v3_report.get("summary_metrics", {})
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:formal_v3_runner_evidence",
+            v3_report.get("status") == "PASS"
+            and v3_report.get("case_id") == "IGZO_T03_P2_BULK_TRAPS_FORMAL_V3"
+            and v3_report.get("stage") == "T03-P2-BULK-TRAPS-FORMAL"
+            and v3_report.get("evidence_level") == "E2"
+            and v3_report.get("formal_sensitivity_run") is True
+            and v3_report.get("independent_persisted_evidence_check_complete")
+            is False
+            and len(v3_runner_checks) == 17
+            and all(
+                item.get("status") == "PASS"
+                for item in v3_runner_checks.values()
+            )
+            and not v3_report.get("failures")
+            and v3_summary.get("device_count") == 8
+            and v3_summary.get("dc_solve_count") == 456
+            and v3_summary.get("reported_point_count") == 376
+            and v3_summary.get("state_count") == 8
+            and v3_summary.get("vtk_file_count") == 48
+            and math.isclose(
+                v3_summary.get("maximum_relative_terminal_current_imbalance"),
+                6.012869303315774e-9,
+                rel_tol=1e-12,
+            )
+            and len(v3_solver_log.get("runs", [])) == 8
+            and len(v3_solver_records) == 456
+            and all(record.get("converged") is True for record in v3_solver_records),
+            (
+                f"status={v3_report.get('status')} checks={len(v3_runner_checks)} "
+                f"devices={v3_summary.get('device_count')} "
+                f"records={len(v3_solver_records)} points={len(v3_tables['curves'])}"
+            ),
+        )
+        v3_independent_checks = v3_check.get("checks", [])
+        v3_recomputed = v3_check.get("recomputed_diagnostics", {})
+        v3_completion = v3_check.get("t03_p2_completion", {})
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:formal_v3_independent_completion",
+            v3_check.get("status") == "PASS"
+            and v3_check.get("evidence_level") == "E3"
+            and v3_check.get("independent_of_simulation_runner") is True
+            and v3_check.get("runner_imported") is False
+            and v3_check.get("devsim_imported") is False
+            and len(v3_independent_checks) == 16
+            and all(item.get("status") == "PASS" for item in v3_independent_checks)
+            and not v3_check.get("failures")
+            and v3_recomputed.get("device_count") == 8
+            and v3_recomputed.get("dc_solve_count") == 456
+            and v3_recomputed.get("curve_point_count") == 376
+            and v3_recomputed.get("metric_row_count") == 8
+            and v3_recomputed.get("state_count") == 8
+            and v3_recomputed.get("vtk_file_count") == 48
+            and v3_completion.get("bulk_formal_runner_passed") is True
+            and v3_completion.get("bulk_formal_independent_check_passed") is True
+            and v3_completion.get("complete_p2_trap_group") is True
+            and v3_completion.get("complete_t03_five_group_sensitivity") is False
+            and v3_completion.get("p3_or_p5_permitted_after_documentation") is True
+            and v3_completion.get("experimental_calibration_permitted") is False,
+            (
+                f"status={v3_check.get('status')} checks={len(v3_independent_checks)} "
+                f"p2={v3_completion.get('complete_p2_trap_group')} "
+                f"t03={v3_completion.get('complete_t03_five_group_sensitivity')}"
+            ),
+        )
+        v3_metrics_by_family = {
+            family: sorted(
+                (
+                    row
+                    for row in v3_tables["metrics"]
+                    if row["bulk_family_id"] == family
+                ),
+                key=lambda row: float(row["bulk_value_cm3_ev"]),
+            )
+            for family in ("NTA", "NGA")
+        }
+        nta_vth = [float(row["vth_proxy_v"]) for row in v3_metrics_by_family["NTA"]]
+        nta_ss = [float(row["ss_proxy_mv_per_dec"]) for row in v3_metrics_by_family["NTA"]]
+        nta_gm = [float(row["gm_proxy_s_per_cm"]) for row in v3_metrics_by_family["NTA"]]
+        nga_vth = [float(row["vth_proxy_v"]) for row in v3_metrics_by_family["NGA"]]
+        nga_ss = [float(row["ss_proxy_mv_per_dec"]) for row in v3_metrics_by_family["NGA"]]
+        nga_gm = [float(row["gm_proxy_s_per_cm"]) for row in v3_metrics_by_family["NGA"]]
+        v3_manifest_entries = v3_state_manifest.get("entries", [])
+        v3_artifact_hashes = v3_check.get("artifact_hashes", {})
+        v3_figures = v3_report.get("figures", [])
+        add_check(
+            checks,
+            "t03_p2_bulk_traps:formal_v3_artifacts_diagnostics_and_boundary",
+            len(v3_tables["curves"]) == 376
+            and len(v3_tables["metrics"]) == 8
+            and len(v3_tables["t02_c"]) == 62
+            and len(v3_tables["zero"]) == 47
+            and len(v3_tables["states"]) == 8
+            and all(len(rows) == 4 for rows in v3_metrics_by_family.values())
+            and all(
+                row.get("parameter_claim_status")
+                == "NUMERICAL_PROXY_NOT_PHYSICALLY_VALIDATED"
+                for row in v3_tables["metrics"]
+            )
+            and all(lower < upper for lower, upper in zip(nta_vth, nta_vth[1:]))
+            and all(lower < upper for lower, upper in zip(nta_ss, nta_ss[1:]))
+            and all(lower > upper for lower, upper in zip(nta_gm, nta_gm[1:]))
+            and all(lower < upper for lower, upper in zip(nga_vth, nga_vth[1:]))
+            and all(lower > upper for lower, upper in zip(nga_ss, nga_ss[1:]))
+            and all(lower > upper for lower, upper in zip(nga_gm, nga_gm[1:]))
+            and v3_state_manifest.get("entry_count") == 8
+            and len(v3_manifest_entries) == 8
+            and sum(
+                int(entry.get("vtk_file_count", 0))
+                for entry in v3_manifest_entries
+            )
+            == 48
+            and all(
+                (ROOT / entry["node_csv"]).is_file()
+                and (ROOT / entry["element_csv"]).is_file()
+                and (ROOT / entry["bulk_node_csv"]).is_file()
+                for entry in v3_manifest_entries
+            )
+            and len(v3_artifact_hashes) == 8
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                for item in v3_artifact_hashes.values()
+            )
+            and len(v3_figures) == 2
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                for item in v3_figures
+            )
+            and "numerical proxies"
+            in v3_check.get("evidence_boundary", {}).get("allowed_claim", "")
+            and "Document P2 completion"
+            in v3_check.get("evidence_boundary", {}).get("next_gate", ""),
+            (
+                f"tables={[len(v3_tables[key]) for key in v3_tables]} "
+                f"states={len(v3_manifest_entries)} vtk="
+                f"{sum(int(entry.get('vtk_file_count', 0)) for entry in v3_manifest_entries)} "
+                f"NGA_SS={nga_ss}"
             ),
         )
         v3_contract_checker_failure = json.loads(

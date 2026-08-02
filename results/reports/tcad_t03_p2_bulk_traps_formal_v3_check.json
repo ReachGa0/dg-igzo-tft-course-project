@@ -1,0 +1,163 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_T03_P2_BULK_TRAPS_FORMAL_V3",
+  "stage": "T03-P2-BULK-TRAPS-FORMAL",
+  "parameter_group_id": "P2",
+  "evidence_level": "E3",
+  "independent_of_simulation_runner": true,
+  "runner_imported": false,
+  "devsim_imported": false,
+  "checks": [
+    {
+      "name": "identity:runner_report_contract_and_stage_are_passed",
+      "status": "PASS",
+      "detail": "report=PASS contract=PASS runner_checks=17"
+    },
+    {
+      "name": "inputs:snapshot_hashes_match_persisted_inputs",
+      "status": "PASS",
+      "detail": "inputs=32"
+    },
+    {
+      "name": "artifacts:runner_report_hashes_match_all_primary_outputs",
+      "status": "PASS",
+      "detail": "artifacts=8"
+    },
+    {
+      "name": "curves:headers_exact_grid_bias_and_isolation_match_contract",
+      "status": "PASS",
+      "detail": "fields=29 rows=376 grid=True isolation=True"
+    },
+    {
+      "name": "solver:eight_fresh_runs_and_frozen_record_budget_converged",
+      "status": "PASS",
+      "detail": "runs=8 records=456 wall=36.66947608400005"
+    },
+    {
+      "name": "solver:zero_bias_current_and_internal_potential_semantics_match_v2",
+      "status": "PASS",
+      "detail": "current=1.940916e-20 controls=[0.0, 0.0] nonzero=[0.007510383288112417, 0.0309456452616627, 0.12032088368471258, 0.0027395792012018983, 0.014396996266743897, 0.15750389258195557]"
+    },
+    {
+      "name": "transport:finite_directional_conserved_and_monotonic_curves",
+      "status": "PASS",
+      "detail": "imbalance=6.012869e-09 monotonic=True"
+    },
+    {
+      "name": "metrics:independent_vth_gm_ss_and_low_gate_extraction_matches",
+      "status": "PASS",
+      "detail": "metrics=8 max_relative_error=0.000000e+00 delta=True report=True"
+    },
+    {
+      "name": "controls:both_zero_curves_independently_reproduce_t02_c",
+      "status": "PASS",
+      "detail": "[{\"bulk_family_id\": \"NTA\", \"maximum_center_density_relative_difference\": 0.0, \"maximum_center_potential_difference_v\": 0.0, \"maximum_current_relative_difference\": 0.0}, {\"bulk_family_id\": \"NGA\", \"maximum_center_density_relative_difference\": 0.0, \"maximum_center_potential_difference_v\": 0.0, \"maximum_current_relative_difference\": 0.0}]"
+    },
+    {
+      "name": "controls:two_fresh_zero_devices_match_each_other",
+      "status": "PASS",
+      "detail": "{\"maximum_current_relative_difference\": 0.0, \"metric_relative_differences\": {\"gm_proxy_s_per_cm\": 0.0, \"low_gate_current_proxy_a_per_cm\": 0.0, \"ss_proxy_mv_per_dec\": 0.0, \"vth_proxy_v\": 0.0}}"
+    },
+    {
+      "name": "states:eight_manifests_csv_families_and_48_vtk_are_complete",
+      "status": "PASS",
+      "detail": "entries=8 state_rows=8 vtk=48 files=True fields=True"
+    },
+    {
+      "name": "states:independent_96_point_occupancy_derivative_and_charge_recompute",
+      "status": "PASS",
+      "detail": "max_density_error=6.693267e-16 max_derivative_error=1.169576e-15 max_charge_error=5.935724e-16"
+    },
+    {
+      "name": "states:center_summaries_zero_limits_and_family_responses_match",
+      "status": "PASS",
+      "detail": "center=True responses={\"NGA\": 0.9470071113032454, \"NTA\": 0.9898578071569152}"
+    },
+    {
+      "name": "figures:two_nontrivial_png_outputs_match_hashes",
+      "status": "PASS",
+      "detail": "[{\"dimensions\": [2340, 1476], \"path\": \"report/assets/tcad_t03_p2_bulk_traps_formal_v3_sensitivity.png\", \"sha256\": \"8d6069e620088a300c2f862871dc89697a04379556c89cda6f4126f1e628ac07\"}, {\"dimensions\": [2520, 3240], \"path\": \"report/assets/tcad_t03_p2_bulk_traps_formal_v3_states.png\", \"sha256\": \"26d92c7e5522bf16018892bef6f5a8bfd458e9af12e9e546bbec36e68f05eaed\"}]"
+    },
+    {
+      "name": "diagnostics:trend_directions_are_recorded_but_not_completion_gates",
+      "status": "PASS",
+      "detail": "{\"NGA\": {\"gm_proxy_strictly_decreases\": true, \"ss_proxy_strictly_increases\": false, \"vth_proxy_strictly_increases\": true}, \"NTA\": {\"gm_proxy_strictly_decreases\": true, \"ss_proxy_strictly_increases\": true, \"vth_proxy_strictly_increases\": true}}"
+    },
+    {
+      "name": "boundary:runner_alone_does_not_close_p2_or_later_stages",
+      "status": "PASS",
+      "detail": "The isolated NTA and NGA literature-constrained point sets completed controlled transfer sensitivities in the frozen quasi-static teaching model; VTH, SS, low-gate current, gm, and internal-state responses remain numerical proxies."
+    }
+  ],
+  "failures": [],
+  "recomputed_diagnostics": {
+    "device_count": 8,
+    "dc_solve_count": 456,
+    "curve_point_count": 376,
+    "metric_row_count": 8,
+    "state_count": 8,
+    "vtk_file_count": 48,
+    "maximum_relative_terminal_current_imbalance": 6.012869303315774e-09,
+    "maximum_metric_relative_error": 0.0,
+    "maximum_node_density_relative_error": 6.693266503876017e-16,
+    "maximum_derivative_relative_error": 1.1695758307644876e-15,
+    "maximum_potential_node_charge_relative_error": 5.935723556368443e-16,
+    "family_common_state_current_relative_responses": {
+      "NTA": 0.9898578071569152,
+      "NGA": 0.9470071113032454
+    }
+  },
+  "t03_p2_completion": {
+    "bulk_formal_runner_passed": true,
+    "bulk_formal_independent_check_passed": true,
+    "complete_p2_trap_group": true,
+    "complete_t03_five_group_sensitivity": false,
+    "p3_or_p5_permitted_after_documentation": true,
+    "experimental_calibration_permitted": false
+  },
+  "evidence_boundary": {
+    "allowed_claim": "The isolated NTA and NGA literature-constrained point sets completed controlled transfer sensitivities in the frozen quasi-static teaching model; VTH, SS, low-gate current, gm, and internal-state responses remain numerical proxies.",
+    "prohibited_claims": [
+      "the formal NTA/NGA transfer sensitivity passed before both the runner and independent persisted-evidence check pass",
+      "project-device DOS was measured, extracted, fitted, calibrated, or assigned physical uncertainty",
+      "SS, VTH, Ioff, Ion, mobility, or process behavior was physically or experimentally validated",
+      "dynamic capture-emission, hysteresis, bias-stress, reliability, NTD, NGD, or complete four-band DOS was validated",
+      "P2, T03, compact-model, circuit, layout, PEX, or HZO work completed before its own stage gate"
+    ],
+    "next_gate": "Document P2 completion and preserve its numerical-proxy boundary before opening exactly one of P3 or P5. M00, M01, SPICE, circuits, layout, PEX, and HZO remain closed."
+  },
+  "artifact_hashes": {
+    "config_snapshot": {
+      "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/input_snapshot.json",
+      "sha256": "a0d6d52340710f233847d08070d87ca26f5ec67f50e9bf22362ea13b0a7ca6c7"
+    },
+    "solver_log": {
+      "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/solver_log.json",
+      "sha256": "dd9a56656e545697f252a9f2d5644a5a056be4414a93161acf828dd419bece59"
+    },
+    "state_manifest": {
+      "path": "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/state_manifest.json",
+      "sha256": "bb366ca3e4920ee3691ae47c499a0f7111e99df10e45fa865d40c64212d17dae"
+    },
+    "curve_csv": {
+      "path": "results/tables/tcad_t03_p2_bulk_traps_formal_v3_transfer.csv",
+      "sha256": "af4eab4d415d3b08701aa290a3d7b796f0471ca258711036937112dbff756414"
+    },
+    "metric_csv": {
+      "path": "results/tables/tcad_t03_p2_bulk_traps_formal_v3_metrics.csv",
+      "sha256": "8312b6a0408f56c7908155e1201c39f1f4bff215eb6107ede2fab193af770452"
+    },
+    "reference_comparison_csv": {
+      "path": "results/tables/tcad_t03_p2_bulk_traps_formal_v3_t02_c_reproduction.csv",
+      "sha256": "24b812ebde1052492bf7b8ea5e52ca1c66b035620ff24b6957a60d4637a06548"
+    },
+    "zero_control_comparison_csv": {
+      "path": "results/tables/tcad_t03_p2_bulk_traps_formal_v3_zero_control_comparison.csv",
+      "sha256": "398da52b227d7c2f882a4207dd48294948ab91ad798e0a472e98f8385d67045a"
+    },
+    "state_summary_csv": {
+      "path": "results/tables/tcad_t03_p2_bulk_traps_formal_v3_state_summary.csv",
+      "sha256": "46a0fa29de4fcbd410763e6e89fa2a351bf6b0833f615706bddc930737c82889"
+    }
+  }
+}

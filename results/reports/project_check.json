@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 449,
+  "checks": 465,
   "failures": 0,
   "results": [
     {
@@ -235,6 +235,11 @@
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke"
     },
     {
+      "name": "directory:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3"
+    },
+    {
       "name": "directory:tcad/structures",
       "status": "PASS",
       "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/structures"
@@ -302,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=19315"
+      "detail": "bytes=20194"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=16640"
+      "detail": "bytes=16875"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=11549"
+      "detail": "bytes=11959"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=88198"
+      "detail": "bytes=91785"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4575"
+      "detail": "bytes=4500"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=38624"
+      "detail": "bytes=40835"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=19653"
+      "detail": "bytes=20837"
     },
     {
       "name": "file:Makefile",
@@ -342,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=6867"
+      "detail": "bytes=7176"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=32643"
+      "detail": "bytes=34989"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -565,6 +570,16 @@
       "detail": "bytes=534493"
     },
     {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_v3.json",
+      "status": "PASS",
+      "detail": "bytes=575879"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json",
+      "status": "PASS",
+      "detail": "bytes=8130"
+    },
+    {
       "name": "file:results/reports/project_check_t03_p2_bulk_formal_boundary_checker_bug_failed.json",
       "status": "PASS",
       "detail": "bytes=69562"
@@ -590,6 +605,31 @@
       "detail": "bytes=589"
     },
     {
+      "name": "file:results/tables/tcad_t03_p2_bulk_traps_formal_v3_transfer.csv",
+      "status": "PASS",
+      "detail": "bytes=140863"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_bulk_traps_formal_v3_metrics.csv",
+      "status": "PASS",
+      "detail": "bytes=3907"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_bulk_traps_formal_v3_t02_c_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=9564"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_bulk_traps_formal_v3_zero_control_comparison.csv",
+      "status": "PASS",
+      "detail": "bytes=7177"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_bulk_traps_formal_v3_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=7476"
+    },
+    {
       "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
       "status": "PASS",
       "detail": "bytes=1570"
@@ -603,6 +643,31 @@
       "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
       "status": "PASS",
       "detail": "bytes=1556173"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/input_snapshot.json",
+      "status": "PASS",
+      "detail": "bytes=46156"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/solver_log.json",
+      "status": "PASS",
+      "detail": "bytes=6593381"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=31675"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p2_bulk_traps_formal_v3_sensitivity.png",
+      "status": "PASS",
+      "detail": "bytes=464549"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p2_bulk_traps_formal_v3_states.png",
+      "status": "PASS",
+      "detail": "bytes=2242748"
     },
     {
       "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal/state_manifest.json",
@@ -702,7 +767,7 @@
     {
       "name": "file:docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
       "status": "PASS",
-      "detail": "bytes=29899"
+      "detail": "bytes=31352"
     },
     {
       "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
@@ -922,7 +987,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=19342"
+      "detail": "bytes=20876"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -1742,7 +1807,7 @@
     {
       "name": "experiments:t03_completed_and_partial_groups_are_distinct",
       "status": "PASS",
-      "detail": "complete=['P1', 'P4'] partial=['P2'] remaining=['T03-P2-BULK-TRAPS formal isolated NTA/NGA transfer sensitivity', 'T03-P3', 'T03-P5']"
+      "detail": "complete=['P1', 'P2', 'P4'] partial=[] remaining=['T03-P3', 'T03-P5']"
     },
     {
       "name": "senior:manifest",
@@ -2168,6 +2233,21 @@
       "name": "t03_p2_bulk_traps:formal_v2_extraction_grid_failure_preserved",
       "status": "PASS",
       "detail": "report=FAIL records=440 rows=360 states=8 vth=1.466667576519 gm_eval=1.666667576519"
+    },
+    {
+      "name": "t03_p2_bulk_traps:formal_v3_runner_evidence",
+      "status": "PASS",
+      "detail": "status=PASS checks=17 devices=8 records=456 points=376"
+    },
+    {
+      "name": "t03_p2_bulk_traps:formal_v3_independent_completion",
+      "status": "PASS",
+      "detail": "status=PASS checks=16 p2=True t03=False"
+    },
+    {
+      "name": "t03_p2_bulk_traps:formal_v3_artifacts_diagnostics_and_boundary",
+      "status": "PASS",
+      "detail": "tables=[376, 8, 62, 47, 8] states=8 vtk=48 NGA_SS=[137.59377510040815, 137.2844922332411, 137.07607384779467, 132.8739589427829]"
     },
     {
       "name": "t03_p2_bulk_traps:v3_contract_checker_csv_loader_bug_preserved",

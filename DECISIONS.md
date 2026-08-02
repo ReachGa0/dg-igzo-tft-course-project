@@ -1,5 +1,27 @@
 # 设计决策记录
 
+## ADR-030：以 V3 两级证据门关闭数值 P2 并顺序进入 P3 合同
+
+- 日期：2026-08-02
+- 状态：通过；只关闭冻结准静态教学模型边界内的 P2，不代表物理陷阱校准或完整 T03
+
+### 决策
+
+- V3 按 ADR-029 的统一 `VTG=-0.5~1.8 V/0.05 V` 合同运行全部 8 个隔离器件，不补跑单点、不改变密度、方程、提取方法或验收阈值。运行器完成 456 次收敛 DC、376 个 transfer 点、8 状态和 48 VTK，17/17 PASS、E2。
+- 只有运行器 PASS 后才执行独立检查。独立检查不导入运行器或 DEVSIM，重算输入/输出哈希、曲线、提取、T02-C 双零控制、96 点占据积分及导数、状态和图像，16/16 PASS、E3。
+- 两个零控制对 T02-C 的 31 个共同点及 VTH/gm 完全复现，并在 47 点 V3 网格上彼此完全一致；该控制链与有限、单调、守恒、状态/VTK 完整性共同关闭数值 P2。
+- NTA 的 VTH/SS 代理严格增加且 gm 代理严格下降；NGA 的 VTH 代理严格增加、gm 代理严格下降，但 SS 代理由 `137.594` 轻微下降至 `132.874 mV/dec`。方向假设按冻结合同只作诊断，不是完成门；如实保留 NGA-SS 结果，不将其解释为真实深态机制或通过实验验证的物理规律。
+- V1/V2 的 E0/FAIL 输入、运行器、日志、曲线、状态、VTK 和报告继续作为正式失败证据保留；V3 PASS 不覆盖或改写这些历史结论。
+- P2 完成仅允许声称文献约束 NTA/NGA 点在未校准准静态教学模型中完成受控 transfer sensitivity，VTH、SS、gm、最低栅压电流和内部状态仍为数值代理。测量/拟合 DOS、动态捕获-发射、迟滞、bias stress、物理 Ion/Ioff、实验校准和不确定度仍未验证。
+- 阶段 DAG 下一步只建立正式 T03-P3 接触敏感性合同；合同通过并提交前不运行 P3。P5、M00/M01、SPICE、电路、版图、PEX 和 HZO 继续关闭。
+
+### 依据
+
+- `results/reports/tcad_t03_p2_bulk_traps_formal_v3.json`
+- `results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json`
+- `results/tables/tcad_t03_p2_bulk_traps_formal_v3_metrics.csv`
+- `results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/state_manifest.json`
+
 ## ADR-029：以统一 1.8 V 网格建立 bulk 正式 V3 恢复合同
 
 - 日期：2026-08-02

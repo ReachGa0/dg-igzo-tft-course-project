@@ -253,12 +253,13 @@
         "T03-P2-BULK-TRAPS-FORMAL V1 failed run preserved: 8 devices, 328 converged DC records, 248 transfer points, 8 states and 48 VTK; NTA=5e19 did not bracket the unchanged VTH criterion and the nonzero-trap zero-bias internal-potential gate was invalid, so runner remained E0/FAIL",
         "T03-P2-BULK-TRAPS-FORMAL V2 input contract: all V1 density points and extraction thresholds retained, common VTG grid extended to 1.7 V, zero internal-potential regression limited to exact zero controls, 8 devices, 440 planned DC solves and 360 planned transfer points frozen as E3 static evidence without V2 DEVSIM",
         "T03-P2-BULK-TRAPS-FORMAL V2 failed run preserved: 8 devices, 440 converged DC records, 360 transfer points, 8 states and 48 VTK; NTA=5e19 bracketed VTH but its VTH+0.2 V gm evaluation was outside the central-difference grid, so runner remained E0/FAIL and no independent check was run",
-        "T03-P2-BULK-TRAPS-FORMAL V3 input contract: user-approved common VTG grid extended uniformly to 1.8 V while all density points, equations, extraction methods and thresholds remain unchanged; 8 devices, 456 planned DC solves and 376 planned transfer points frozen as E3 static evidence without V3 DEVSIM"
+        "T03-P2-BULK-TRAPS-FORMAL V3 input contract: user-approved common VTG grid extended uniformly to 1.8 V while all density points, equations, extraction methods and thresholds remain unchanged; 8 devices, 456 planned DC solves and 376 planned transfer points frozen as E3 static evidence without V3 DEVSIM",
+        "T03-P2-BULK-TRAPS-FORMAL V3 controlled isolated sensitivity: 8 devices, 456 converged DC solves, 376 transfer points, 8 states and 48 VTK; runner 17/17 PASS at E2 and independent persisted-evidence check 16/16 PASS at E3; P2 complete within the numerical-proxy boundary"
       ],
-      "completed_parameter_groups": ["P1", "P4"],
-      "partially_completed_parameter_groups": ["P2"],
-      "remaining_substages": ["T03-P2-BULK-TRAPS formal isolated NTA/NGA transfer sensitivity", "T03-P3", "T03-P5"],
-      "remaining_parameter_groups": ["P2", "P3", "P5"],
+      "completed_parameter_groups": ["P1", "P2", "P4"],
+      "partially_completed_parameter_groups": [],
+      "remaining_substages": ["T03-P3", "T03-P5"],
+      "remaining_parameter_groups": ["P3", "P5"],
       "p2_bulk_equation_smoke_evidence": {
         "status": "smoke_verified",
         "runner_evidence": "E2",
@@ -267,7 +268,7 @@
         "coupled_dc_solves": 21,
         "state_node_rows": 7257,
         "integration_sample_rows": 6,
-        "formal_transfer_sensitivity_completed": false
+        "equation_smoke_itself_completes_formal_transfer_sensitivity": false
       },
       "p2_bulk_formal_contract_evidence": {
         "status": "input_contract_ready_v3",
@@ -276,7 +277,7 @@
         "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
         "v1_failure_preserved": true,
         "v2_failure_preserved": true,
-        "formal_sensitivity_completed": false
+        "formal_sensitivity_completed": true
       },
       "p2_bulk_formal_v1_failure_evidence": {
         "status": "FAIL_PRESERVED",
@@ -311,6 +312,26 @@
         "wall_seconds": 28.414362409002933,
         "independent_persisted_check_run": false,
         "formal_sensitivity_completed": false
+      },
+      "p2_bulk_formal_v3_evidence": {
+        "status": "formal_sensitivity_verified",
+        "runner_evidence": "E2",
+        "independent_persisted_check_evidence": "E3",
+        "runner_checks_passed": 17,
+        "independent_checks_passed": 16,
+        "devices": 8,
+        "converged_dc_records": 456,
+        "transfer_points": 376,
+        "states": 8,
+        "vtk_files": 48,
+        "wall_seconds": 36.66947608400005,
+        "maximum_relative_terminal_current_imbalance": 6.012869303315774e-9,
+        "zero_controls_exactly_reproduce_t02_c": true,
+        "nta_diagnostic": "VTH and SS proxies strictly increase while gm proxy strictly decreases",
+        "nga_diagnostic": "VTH proxy strictly increases and gm proxy strictly decreases while SS proxy mildly decreases",
+        "formal_sensitivity_completed": true,
+        "complete_p2_trap_group": true,
+        "complete_t03_five_group_sensitivity": false
       },
       "first_group_outputs": [
         "config/tcad_t03_p4_channel_length.json",
@@ -349,7 +370,7 @@
         "report/assets/tcad_t03_p1_cap_ratio_sensitivity.png",
         "report/assets/tcad_t03_p1_cap_ratio_state_maps.png"
       ],
-      "p2_partial_outputs": [
+      "p2_outputs": [
         "references/t03_p2_dit_sources.csv",
         "config/tcad_t03_p2_interface_trap.json",
         "results/reports/tcad_t03_p2_dit_input_contract.json",
@@ -397,9 +418,21 @@
         "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/failure_archive_manifest.json",
         "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/state_manifest.json",
         "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_v2_transfer.csv",
-        "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3.json"
+        "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v3.json",
+        "results/reports/tcad_t03_p2_bulk_traps_formal_v3.json",
+        "results/reports/tcad_t03_p2_bulk_traps_formal_v3_check.json",
+        "results/tables/tcad_t03_p2_bulk_traps_formal_v3_transfer.csv",
+        "results/tables/tcad_t03_p2_bulk_traps_formal_v3_metrics.csv",
+        "results/tables/tcad_t03_p2_bulk_traps_formal_v3_t02_c_reproduction.csv",
+        "results/tables/tcad_t03_p2_bulk_traps_formal_v3_zero_control_comparison.csv",
+        "results/tables/tcad_t03_p2_bulk_traps_formal_v3_state_summary.csv",
+        "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/input_snapshot.json",
+        "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/solver_log.json",
+        "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3/state_manifest.json",
+        "report/assets/tcad_t03_p2_bulk_traps_formal_v3_sensitivity.png",
+        "report/assets/tcad_t03_p2_bulk_traps_formal_v3_states.png"
       ],
-      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P2 remains partial: the bottom-interface DIT substage is E3, and the bulk equation smoke has E2 runner plus E3 independent evidence. Formal bulk V1 completed all 8 devices, 328 converged DC records and 248 transfer points but remains E0/FAIL because NTA=5e19 did not bracket the unchanged VTH criterion and the inherited nonzero-trap internal-potential gate was invalid. V2 completed all 8 devices, 440 converged DC records and 360 transfer points but also remains E0/FAIL because the diagnostic VTH+0.2 V gm evaluation lacked a central-difference upper neighbor on the 1.7 V grid. V1 and V2 exact inputs, runners, logs, curves, states and reports are preserved; no V2 independent check was run. The V3 E3 static contract changes only the common stop to the user-approved 1.8 V and freezes 8 planned devices, 456 planned DC solves and 376 planned transfer points; V3 has not run at contract-check time. Formal bulk sensitivity, physical DOS, SS, VTH, Ion/Ioff, dynamic capture-emission, complete P2, P3, P5 and complete T03 remain unverified. No T03 result is experimental calibration, compact-model, circuit, layout, PEX or HZO evidence.",
+      "evidence_boundary": "P4, numerical P1, and P2 are complete with E3 persisted-evidence checks. P2 comprises the bottom-interface DIT substage, the bulk equation smoke, and the formal isolated NTA/NGA V3 transfer sensitivity. Formal bulk V1 completed all 8 devices, 328 converged DC records and 248 transfer points but remains E0/FAIL because NTA=5e19 did not bracket the unchanged VTH criterion and the inherited nonzero-trap internal-potential gate was invalid. V2 completed all 8 devices, 440 converged DC records and 360 transfer points but also remains E0/FAIL because the diagnostic VTH+0.2 V gm evaluation lacked a central-difference upper neighbor on the 1.7 V grid. V1 and V2 exact inputs, runners, logs, curves, states and reports are preserved; no V2 independent check was run. The V3 E3 static contract changed only the common stop to the user-approved 1.8 V. Its subsequent runner completed all 8 devices, 456 converged DC records, 376 transfer points, 8 states and 48 VTK files; the E2 runner passed 17/17 and the independent E3 persisted-evidence check passed 16/16. The NTA and NGA VTH/gm/SS/current/state results remain numerical proxies from an uncalibrated quasi-static teaching model. In particular, the mildly decreasing NGA SS proxy is a recorded diagnostic, not a validated physical mechanism. P3, P5, complete T03, measured or fitted DOS, physical SS/VTH/Ioff/Ion, dynamic capture-emission, experimental calibration, compact-model, circuit, layout, PEX and HZO evidence remain unverified.",
       "acceptance": ["five groups complete", "at least three points per group", "quantitative comparison uses common axes", "each completed group has an independent persisted-evidence check", "failed hypotheses remain visible and do not get silently relaxed"]
     },
     {
