@@ -1,0 +1,2213 @@
+{
+  "project": "DG-IGZO-TFT-PDK",
+  "status": "FAIL",
+  "checks": 441,
+  "failures": 1,
+  "results": [
+    {
+      "name": "directory:config",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/config"
+    },
+    {
+      "name": "directory:docs",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/docs"
+    },
+    {
+      "name": "directory:references",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/references"
+    },
+    {
+      "name": "directory:data/raw",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/raw"
+    },
+    {
+      "name": "directory:data/processed",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/processed"
+    },
+    {
+      "name": "directory:data/raw/senior_reference",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/raw/senior_reference"
+    },
+    {
+      "name": "directory:data/processed/senior_reference",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/processed/senior_reference"
+    },
+    {
+      "name": "directory:models/level61",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/models/level61"
+    },
+    {
+      "name": "directory:models/dual_gate",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/models/dual_gate"
+    },
+    {
+      "name": "directory:models/ferroelectric",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/models/ferroelectric"
+    },
+    {
+      "name": "directory:spice/models",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/models"
+    },
+    {
+      "name": "directory:spice/netlists/devices",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/netlists/devices"
+    },
+    {
+      "name": "directory:spice/netlists/cells",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/netlists/cells"
+    },
+    {
+      "name": "directory:spice/netlists/blocks",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/netlists/blocks"
+    },
+    {
+      "name": "directory:pdk/tech",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/tech"
+    },
+    {
+      "name": "directory:pdk/drc",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/drc"
+    },
+    {
+      "name": "directory:pdk/lvs",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/lvs"
+    },
+    {
+      "name": "directory:pdk/pcells",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/pcells"
+    },
+    {
+      "name": "directory:layout/cells",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/layout/cells"
+    },
+    {
+      "name": "directory:layout/blocks",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/layout/blocks"
+    },
+    {
+      "name": "directory:layout/gds",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/layout/gds"
+    },
+    {
+      "name": "directory:verification/drc",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/verification/drc"
+    },
+    {
+      "name": "directory:verification/lvs",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/verification/lvs"
+    },
+    {
+      "name": "directory:verification/simulation",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/verification/simulation"
+    },
+    {
+      "name": "directory:scripts",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/scripts"
+    },
+    {
+      "name": "directory:tests",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tests"
+    },
+    {
+      "name": "directory:results/figures",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/figures"
+    },
+    {
+      "name": "directory:results/tables",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tables"
+    },
+    {
+      "name": "directory:results/reports",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/reports"
+    },
+    {
+      "name": "directory:results/tcad/dg_electrostatic",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/dg_electrostatic"
+    },
+    {
+      "name": "directory:results/tcad/t01_single_gate/t01_b_smoke",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_b_smoke"
+    },
+    {
+      "name": "directory:results/tcad/t01_single_gate/t01_c_transfer",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_c_transfer"
+    },
+    {
+      "name": "directory:results/tcad/t01_single_gate/t01_d_mesh_refinement",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_d_mesh_refinement"
+    },
+    {
+      "name": "directory:results/tcad/t01_single_gate/t01_d_idvd",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_d_idvd"
+    },
+    {
+      "name": "directory:results/tcad/t02_dual_gate/t02_a_limit_regression",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_a_limit_regression"
+    },
+    {
+      "name": "directory:results/tcad/t02_dual_gate/t02_b_minimal_bias",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_b_minimal_bias"
+    },
+    {
+      "name": "directory:results/tcad/t02_dual_gate/t02_c_bidirectional",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_c_bidirectional"
+    },
+    {
+      "name": "directory:results/tcad/t03_sensitivity/p4_channel_length",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p4_channel_length"
+    },
+    {
+      "name": "directory:results/tcad/t03_sensitivity/p4_channel_length_v1_failed",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p4_channel_length_v1_failed"
+    },
+    {
+      "name": "directory:results/tcad/t03_sensitivity/p1_secondary_bias",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p1_secondary_bias"
+    },
+    {
+      "name": "directory:results/tcad/t03_sensitivity/p1_capacitance_ratio",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p1_capacitance_ratio"
+    },
+    {
+      "name": "directory:results/tcad/t03_sensitivity/p2_dit_equation_smoke",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_equation_smoke"
+    },
+    {
+      "name": "directory:results/tcad/t03_sensitivity/p2_dit_formal",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal"
+    },
+    {
+      "name": "directory:results/tcad/t03_sensitivity/p2_dit_formal_v1_failed",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal_v1_failed"
+    },
+    {
+      "name": "directory:results/tcad/t03_sensitivity/p2_dit_formal_v1_ss_linearity_failed",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal_v1_ss_linearity_failed"
+    },
+    {
+      "name": "directory:results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke"
+    },
+    {
+      "name": "directory:tcad/structures",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/structures"
+    },
+    {
+      "name": "directory:tcad/physics",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/physics"
+    },
+    {
+      "name": "directory:tcad/tests",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/tests"
+    },
+    {
+      "name": "directory:ppt",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/ppt"
+    },
+    {
+      "name": "directory:report",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report"
+    },
+    {
+      "name": "directory:report/src",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/src"
+    },
+    {
+      "name": "directory:report/chapters",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/chapters"
+    },
+    {
+      "name": "directory:report/appendices",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/appendices"
+    },
+    {
+      "name": "directory:report/assets",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/assets"
+    },
+    {
+      "name": "directory:report/final",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/final"
+    },
+    {
+      "name": "file:AGENTS.md",
+      "status": "PASS",
+      "detail": "bytes=6740"
+    },
+    {
+      "name": "file:CLAUDE.md",
+      "status": "PASS",
+      "detail": "bytes=251"
+    },
+    {
+      "name": "file:.github/copilot-instructions.md",
+      "status": "PASS",
+      "detail": "bytes=206"
+    },
+    {
+      "name": "file:README.md",
+      "status": "PASS",
+      "detail": "bytes=18866"
+    },
+    {
+      "name": "file:ARCHITECTURE.md",
+      "status": "PASS",
+      "detail": "bytes=16446"
+    },
+    {
+      "name": "file:AI_CONTEXT.md",
+      "status": "PASS",
+      "detail": "bytes=11232"
+    },
+    {
+      "name": "file:AI_LOG.md",
+      "status": "PASS",
+      "detail": "bytes=81035"
+    },
+    {
+      "name": "file:PROJECT_PLAN.md",
+      "status": "PASS",
+      "detail": "bytes=4582"
+    },
+    {
+      "name": "file:DECISIONS.md",
+      "status": "PASS",
+      "detail": "bytes=36690"
+    },
+    {
+      "name": "file:STATUS.md",
+      "status": "PASS",
+      "detail": "bytes=19319"
+    },
+    {
+      "name": "file:Makefile",
+      "status": "PASS",
+      "detail": "bytes=5739"
+    },
+    {
+      "name": "file:config/project.json",
+      "status": "PASS",
+      "detail": "bytes=6944"
+    },
+    {
+      "name": "file:config/experiments.json",
+      "status": "PASS",
+      "detail": "bytes=32094"
+    },
+    {
+      "name": "file:config/s00_data_audit.json",
+      "status": "PASS",
+      "detail": "bytes=17721"
+    },
+    {
+      "name": "file:config/tcad_baseline.json",
+      "status": "PASS",
+      "detail": "bytes=1780"
+    },
+    {
+      "name": "file:config/tcad_t01_baseline.json",
+      "status": "PASS",
+      "detail": "bytes=9230"
+    },
+    {
+      "name": "file:config/tcad_t01_b_smoke.json",
+      "status": "PASS",
+      "detail": "bytes=2734"
+    },
+    {
+      "name": "file:config/tcad_t01_c_transfer.json",
+      "status": "PASS",
+      "detail": "bytes=3915"
+    },
+    {
+      "name": "file:config/tcad_t01_d_mesh_refinement.json",
+      "status": "PASS",
+      "detail": "bytes=5213"
+    },
+    {
+      "name": "file:config/tcad_t01_d_idvd.json",
+      "status": "PASS",
+      "detail": "bytes=5409"
+    },
+    {
+      "name": "file:config/tcad_t01_d_extraction.json",
+      "status": "PASS",
+      "detail": "bytes=8872"
+    },
+    {
+      "name": "file:config/tcad_t02_a_dual_gate_contract.json",
+      "status": "PASS",
+      "detail": "bytes=8857"
+    },
+    {
+      "name": "file:config/tcad_t02_b_minimal_bias.json",
+      "status": "PASS",
+      "detail": "bytes=6232"
+    },
+    {
+      "name": "file:config/tcad_t02_c_bidirectional.json",
+      "status": "PASS",
+      "detail": "bytes=13446"
+    },
+    {
+      "name": "file:config/tcad_t03_p4_channel_length.json",
+      "status": "PASS",
+      "detail": "bytes=12975"
+    },
+    {
+      "name": "file:config/tcad_t03_p4_channel_length_v1_failed.json",
+      "status": "PASS",
+      "detail": "bytes=10401"
+    },
+    {
+      "name": "file:config/tcad_t03_p1_secondary_bias.json",
+      "status": "PASS",
+      "detail": "bytes=13173"
+    },
+    {
+      "name": "file:config/tcad_t03_p1_capacitance_ratio.json",
+      "status": "PASS",
+      "detail": "bytes=14905"
+    },
+    {
+      "name": "file:config/tcad_t03_p2_interface_trap.json",
+      "status": "PASS",
+      "detail": "bytes=10868"
+    },
+    {
+      "name": "file:config/tcad_t03_p2_dit_formal.json",
+      "status": "PASS",
+      "detail": "bytes=16045"
+    },
+    {
+      "name": "file:references/papers_manifest.csv",
+      "status": "PASS",
+      "detail": "bytes=2493"
+    },
+    {
+      "name": "file:references/senior_work_manifest.csv",
+      "status": "PASS",
+      "detail": "bytes=11469"
+    },
+    {
+      "name": "file:references/t03_p2_dit_sources.csv",
+      "status": "PASS",
+      "detail": "bytes=2905"
+    },
+    {
+      "name": "file:references/t03_p2_bulk_trap_sources.csv",
+      "status": "PASS",
+      "detail": "bytes=2110"
+    },
+    {
+      "name": "file:config/tcad_t03_p2_bulk_traps.json",
+      "status": "PASS",
+      "detail": "bytes=15371"
+    },
+    {
+      "name": "file:config/tcad_t03_p2_bulk_traps_formal.json",
+      "status": "PASS",
+      "detail": "bytes=19518"
+    },
+    {
+      "name": "file:config/tcad_t03_p2_bulk_traps_formal_v1_failed.json",
+      "status": "PASS",
+      "detail": "bytes=16287"
+    },
+    {
+      "name": "file:scripts/check_t03_p2_bulk_traps_contract.py",
+      "status": "PASS",
+      "detail": "bytes=27654"
+    },
+    {
+      "name": "file:scripts/check_t03_p2_bulk_traps_equation_smoke.py",
+      "status": "PASS",
+      "detail": "bytes=23154"
+    },
+    {
+      "name": "file:scripts/check_t03_p2_bulk_traps_formal_contract.py",
+      "status": "PASS",
+      "detail": "bytes=29747"
+    },
+    {
+      "name": "file:scripts/check_t03_p2_bulk_traps_formal.py",
+      "status": "PASS",
+      "detail": "bytes=43364"
+    },
+    {
+      "name": "file:tcad/run_t03_p2_bulk_traps_equation_smoke.py",
+      "status": "PASS",
+      "detail": "bytes=47047"
+    },
+    {
+      "name": "file:tcad/run_t03_p2_bulk_traps_formal.py",
+      "status": "PASS",
+      "detail": "bytes=62697"
+    },
+    {
+      "name": "file:tcad/run_t03_p2_bulk_traps_formal_v1_failed.py",
+      "status": "PASS",
+      "detail": "bytes=60584"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=15966"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json",
+      "status": "PASS",
+      "detail": "bytes=53988"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json",
+      "status": "PASS",
+      "detail": "bytes=5924"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=11431"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json",
+      "status": "PASS",
+      "detail": "bytes=14198"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal.json",
+      "status": "PASS",
+      "detail": "bytes=402580"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_v1_runner_completed_without_exception.json",
+      "status": "PASS",
+      "detail": "bytes=402580"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_v2.json",
+      "status": "PASS",
+      "detail": "bytes=534493"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_v2_runner_completed_without_exception.json",
+      "status": "PASS",
+      "detail": "bytes=534493"
+    },
+    {
+      "name": "file:results/reports/project_check_t03_p2_bulk_formal_boundary_checker_bug_failed.json",
+      "status": "PASS",
+      "detail": "bytes=69562"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
+      "status": "PASS",
+      "detail": "bytes=1759"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_bulk_traps_integration_samples.csv",
+      "status": "PASS",
+      "detail": "bytes=589"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
+      "status": "PASS",
+      "detail": "bytes=1570"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/solver_log.json",
+      "status": "PASS",
+      "detail": "bytes=253043"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
+      "status": "PASS",
+      "detail": "bytes=1556173"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=31459"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=3366"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/input_snapshot.json",
+      "status": "PASS",
+      "detail": "bytes=37289"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=31459"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_transfer.csv",
+      "status": "PASS",
+      "detail": "bytes=92995"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/failure_archive_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=3405"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/input_snapshot.json",
+      "status": "PASS",
+      "detail": "bytes=42208"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=31675"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_v2_transfer.csv",
+      "status": "PASS",
+      "detail": "bytes=134875"
+    },
+    {
+      "name": "file:docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
+      "status": "PASS",
+      "detail": "bytes=2074"
+    },
+    {
+      "name": "file:docs/02_\u6587\u732e\u8c03\u7814\u77e9\u9635.md",
+      "status": "PASS",
+      "detail": "bytes=6167"
+    },
+    {
+      "name": "file:docs/03_\u96c6\u6210\u7535\u8def\u8bbe\u8ba1\u5168\u6d41\u7a0b.md",
+      "status": "PASS",
+      "detail": "bytes=4676"
+    },
+    {
+      "name": "file:docs/04_\u57fa\u7840\u77e5\u8bc6\u901f\u67e5.md",
+      "status": "PASS",
+      "detail": "bytes=1460"
+    },
+    {
+      "name": "file:docs/05_\u9a8c\u8bc1\u4e0e\u9a8c\u6536\u6807\u51c6.md",
+      "status": "PASS",
+      "detail": "bytes=9956"
+    },
+    {
+      "name": "file:docs/06_\u660e\u65e5\u6c47\u62a5\u7a3f.md",
+      "status": "PASS",
+      "detail": "bytes=4120"
+    },
+    {
+      "name": "file:docs/07_PPT\u4e0e\u62a5\u544a\u63d0\u7eb2.md",
+      "status": "PASS",
+      "detail": "bytes=3719"
+    },
+    {
+      "name": "file:docs/08_\u98ce\u9669\u4e0e\u964d\u7ea7\u7b56\u7565.md",
+      "status": "PASS",
+      "detail": "bytes=3750"
+    },
+    {
+      "name": "file:docs/09_\u77e5\u8bc6\u70b9\u8be6\u89e3\u4e0e\u5b9e\u9a8c\u8bbe\u8ba1\u539f\u7406.md",
+      "status": "PASS",
+      "detail": "bytes=12684"
+    },
+    {
+      "name": "file:docs/10_\u5b66\u957f\u8d44\u6599\u5bf9\u7167\u4e0e\u6570\u636e\u7ee7\u627f\u8bf4\u660e.md",
+      "status": "PASS",
+      "detail": "bytes=6383"
+    },
+    {
+      "name": "file:docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
+      "status": "PASS",
+      "detail": "bytes=29618"
+    },
+    {
+      "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
+      "status": "PASS",
+      "detail": "bytes=9515"
+    },
+    {
+      "name": "file:scripts/import_senior_reference.py",
+      "status": "PASS",
+      "detail": "bytes=19542"
+    },
+    {
+      "name": "file:scripts/audit_s00_data.py",
+      "status": "PASS",
+      "detail": "bytes=16336"
+    },
+    {
+      "name": "file:scripts/check_t01_a_contract.py",
+      "status": "PASS",
+      "detail": "bytes=10849"
+    },
+    {
+      "name": "file:scripts/check_t01_b_smoke.py",
+      "status": "PASS",
+      "detail": "bytes=8167"
+    },
+    {
+      "name": "file:scripts/check_t01_c_transfer.py",
+      "status": "PASS",
+      "detail": "bytes=12609"
+    },
+    {
+      "name": "file:scripts/check_t01_d_mesh_refinement.py",
+      "status": "PASS",
+      "detail": "bytes=19187"
+    },
+    {
+      "name": "file:scripts/check_t01_d_idvd.py",
+      "status": "PASS",
+      "detail": "bytes=22569"
+    },
+    {
+      "name": "file:scripts/check_t01_d_extraction.py",
+      "status": "PASS",
+      "detail": "bytes=34844"
+    },
+    {
+      "name": "file:scripts/check_t02_a_contract.py",
+      "status": "PASS",
+      "detail": "bytes=15073"
+    },
+    {
+      "name": "file:scripts/check_t02_a_limit_regression.py",
+      "status": "PASS",
+      "detail": "bytes=19601"
+    },
+    {
+      "name": "file:scripts/check_t02_b_contract.py",
+      "status": "PASS",
+      "detail": "bytes=13609"
+    },
+    {
+      "name": "file:scripts/check_t02_b_minimal_bias.py",
+      "status": "PASS",
+      "detail": "bytes=17259"
+    },
+    {
+      "name": "file:scripts/check_t02_c_contract.py",
+      "status": "PASS",
+      "detail": "bytes=19296"
+    },
+    {
+      "name": "file:scripts/check_t02_c_bidirectional.py",
+      "status": "PASS",
+      "detail": "bytes=37123"
+    },
+    {
+      "name": "file:scripts/check_t03_p4_l_contract.py",
+      "status": "PASS",
+      "detail": "bytes=20558"
+    },
+    {
+      "name": "file:scripts/check_t03_p4_channel_length.py",
+      "status": "PASS",
+      "detail": "bytes=32019"
+    },
+    {
+      "name": "file:scripts/check_t03_p1_bias_contract.py",
+      "status": "PASS",
+      "detail": "bytes=20804"
+    },
+    {
+      "name": "file:scripts/check_t03_p1_secondary_bias.py",
+      "status": "PASS",
+      "detail": "bytes=34140"
+    },
+    {
+      "name": "file:scripts/check_t03_p1_cap_ratio_contract.py",
+      "status": "PASS",
+      "detail": "bytes=17096"
+    },
+    {
+      "name": "file:scripts/check_t03_p1_capacitance_ratio.py",
+      "status": "PASS",
+      "detail": "bytes=30133"
+    },
+    {
+      "name": "file:scripts/check_t03_p2_dit_contract.py",
+      "status": "PASS",
+      "detail": "bytes=17074"
+    },
+    {
+      "name": "file:scripts/check_t03_p2_dit_equation_smoke.py",
+      "status": "PASS",
+      "detail": "bytes=16147"
+    },
+    {
+      "name": "file:scripts/check_t03_p2_dit_formal_contract.py",
+      "status": "PASS",
+      "detail": "bytes=18397"
+    },
+    {
+      "name": "file:scripts/check_t03_p2_dit_formal.py",
+      "status": "PASS",
+      "detail": "bytes=28344"
+    },
+    {
+      "name": "file:scripts/build_self_contained_report.py",
+      "status": "PASS",
+      "detail": "bytes=11722"
+    },
+    {
+      "name": "file:tcad/README.md",
+      "status": "PASS",
+      "detail": "bytes=14572"
+    },
+    {
+      "name": "file:tcad/run_dg_electrostatic.py",
+      "status": "PASS",
+      "detail": "bytes=19065"
+    },
+    {
+      "name": "file:tcad/run_t01_single_gate_smoke.py",
+      "status": "PASS",
+      "detail": "bytes=32592"
+    },
+    {
+      "name": "file:tcad/run_t01_single_gate_transfer.py",
+      "status": "PASS",
+      "detail": "bytes=25730"
+    },
+    {
+      "name": "file:tcad/run_t01_single_gate_mesh_refinement.py",
+      "status": "PASS",
+      "detail": "bytes=32038"
+    },
+    {
+      "name": "file:tcad/run_t01_single_gate_idvd.py",
+      "status": "PASS",
+      "detail": "bytes=33186"
+    },
+    {
+      "name": "file:tcad/run_t01_single_gate_extraction.py",
+      "status": "PASS",
+      "detail": "bytes=61026"
+    },
+    {
+      "name": "file:tcad/run_t02_dual_gate_limit_regression.py",
+      "status": "PASS",
+      "detail": "bytes=40965"
+    },
+    {
+      "name": "file:tcad/run_t02_dual_gate_minimal_bias.py",
+      "status": "PASS",
+      "detail": "bytes=28886"
+    },
+    {
+      "name": "file:tcad/run_t02_dual_gate_bidirectional.py",
+      "status": "PASS",
+      "detail": "bytes=81700"
+    },
+    {
+      "name": "file:tcad/run_t03_p4_channel_length.py",
+      "status": "PASS",
+      "detail": "bytes=56968"
+    },
+    {
+      "name": "file:tcad/run_t03_p1_secondary_bias.py",
+      "status": "PASS",
+      "detail": "bytes=34989"
+    },
+    {
+      "name": "file:tcad/run_t03_p1_capacitance_ratio.py",
+      "status": "PASS",
+      "detail": "bytes=35682"
+    },
+    {
+      "name": "file:tcad/run_t03_p2_dit_equation_smoke.py",
+      "status": "PASS",
+      "detail": "bytes=40814"
+    },
+    {
+      "name": "file:tcad/run_t03_p2_dit_formal.py",
+      "status": "PASS",
+      "detail": "bytes=38102"
+    },
+    {
+      "name": "file:report/manifest.json",
+      "status": "PASS",
+      "detail": "bytes=2539"
+    },
+    {
+      "name": "file:report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
+      "status": "PASS",
+      "detail": "bytes=2698"
+    },
+    {
+      "name": "file:report/evidence_matrix.csv",
+      "status": "PASS",
+      "detail": "bytes=18567"
+    },
+    {
+      "name": "file:data/processed/s00/source_inventory.csv",
+      "status": "PASS",
+      "detail": "bytes=22740"
+    },
+    {
+      "name": "file:data/processed/s00/unit_table.csv",
+      "status": "PASS",
+      "detail": "bytes=7069"
+    },
+    {
+      "name": "file:data/processed/s00/dataset_boundary.csv",
+      "status": "PASS",
+      "detail": "bytes=2303"
+    },
+    {
+      "name": "file:data/processed/s00/conflict_register.csv",
+      "status": "PASS",
+      "detail": "bytes=1893"
+    },
+    {
+      "name": "file:results/reports/s00_data_audit.json",
+      "status": "PASS",
+      "detail": "bytes=1834"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=4266"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_b_smoke.json",
+      "status": "PASS",
+      "detail": "bytes=8638"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_b_smoke_check.json",
+      "status": "PASS",
+      "detail": "bytes=1748"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_b_bias_points.csv",
+      "status": "PASS",
+      "detail": "bytes=1849"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_b_mesh_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=463"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_c_transfer.json",
+      "status": "PASS",
+      "detail": "bytes=19678"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_c_transfer_check.json",
+      "status": "PASS",
+      "detail": "bytes=2440"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_c_idvg.csv",
+      "status": "PASS",
+      "detail": "bytes=4025"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_c_mesh_comparison.csv",
+      "status": "PASS",
+      "detail": "bytes=1498"
+    },
+    {
+      "name": "file:results/tcad/t01_single_gate/t01_c_transfer/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=6084"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_d_mesh_refinement.json",
+      "status": "PASS",
+      "detail": "bytes=41405"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_d_mesh_refinement_check.json",
+      "status": "PASS",
+      "detail": "bytes=2519"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_mesh_bias_points.csv",
+      "status": "PASS",
+      "detail": "bytes=7026"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_mesh_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=808"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_mesh_comparison.csv",
+      "status": "PASS",
+      "detail": "bytes=4428"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_t01_c_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=659"
+    },
+    {
+      "name": "file:results/tcad/t01_single_gate/t01_d_mesh_refinement/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=6393"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_d_idvd.json",
+      "status": "PASS",
+      "detail": "bytes=40073"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_d_idvd_check.json",
+      "status": "PASS",
+      "detail": "bytes=3219"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_idvd_points.csv",
+      "status": "PASS",
+      "detail": "bytes=8378"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_idvd_curve_metrics.csv",
+      "status": "PASS",
+      "detail": "bytes=1634"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_idvd_mesh_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=345"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_idvd_mesh_comparison.csv",
+      "status": "PASS",
+      "detail": "bytes=1862"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_idvd_da_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=820"
+    },
+    {
+      "name": "file:report/assets/tcad_t01_d_idvd.png",
+      "status": "PASS",
+      "detail": "bytes=112217"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_d_extraction.json",
+      "status": "PASS",
+      "detail": "bytes=120400"
+    },
+    {
+      "name": "file:results/reports/tcad_t01_d_extraction_check.json",
+      "status": "PASS",
+      "detail": "bytes=3407"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_extraction_idvg.csv",
+      "status": "PASS",
+      "detail": "bytes=26369"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_extraction_mesh_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=328"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_extraction_mesh_comparison.csv",
+      "status": "PASS",
+      "detail": "bytes=8565"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_extraction_parameter_proxies.csv",
+      "status": "PASS",
+      "detail": "bytes=1767"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_extraction_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=1985"
+    },
+    {
+      "name": "file:results/tables/tcad_t01_d_extraction_db_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=822"
+    },
+    {
+      "name": "file:results/tcad/t01_single_gate/t01_d_extraction/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=8741"
+    },
+    {
+      "name": "file:report/assets/tcad_t01_dc_extraction.png",
+      "status": "PASS",
+      "detail": "bytes=150616"
+    },
+    {
+      "name": "file:report/assets/tcad_t01_dc_state_maps.png",
+      "status": "PASS",
+      "detail": "bytes=859334"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_a_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=9930"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_a_limit_regression.json",
+      "status": "PASS",
+      "detail": "bytes=18564"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_a_limit_regression_check.json",
+      "status": "PASS",
+      "detail": "bytes=3064"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_a_disabled_regression.csv",
+      "status": "PASS",
+      "detail": "bytes=3220"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_a_topology_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=907"
+    },
+    {
+      "name": "file:results/tcad/t02_dual_gate/t02_a_limit_regression/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=2324"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_b_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=9741"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_b_minimal_bias.json",
+      "status": "PASS",
+      "detail": "bytes=14273"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_b_minimal_bias_check.json",
+      "status": "PASS",
+      "detail": "bytes=3171"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_b_minimal_bias.csv",
+      "status": "PASS",
+      "detail": "bytes=1447"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_b_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=938"
+    },
+    {
+      "name": "file:results/tcad/t02_dual_gate/t02_b_minimal_bias/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=5346"
+    },
+    {
+      "name": "file:report/assets/tcad_t02_b_minimal_bias.png",
+      "status": "PASS",
+      "detail": "bytes=111482"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_c_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=19944"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_c_bidirectional.json",
+      "status": "PASS",
+      "detail": "bytes=292720"
+    },
+    {
+      "name": "file:results/reports/tcad_t02_c_bidirectional_check.json",
+      "status": "PASS",
+      "detail": "bytes=9749"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_c_bidirectional_families.csv",
+      "status": "PASS",
+      "detail": "bytes=85118"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_c_coupling_metrics.csv",
+      "status": "PASS",
+      "detail": "bytes=2494"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_c_reverse_comparison.csv",
+      "status": "PASS",
+      "detail": "bytes=12851"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_c_reciprocal_comparison.csv",
+      "status": "PASS",
+      "detail": "bytes=20538"
+    },
+    {
+      "name": "file:results/tables/tcad_t02_c_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=3821"
+    },
+    {
+      "name": "file:results/tcad/t02_dual_gate/t02_c_bidirectional/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=19276"
+    },
+    {
+      "name": "file:report/assets/tcad_t02_c_bidirectional_families.png",
+      "status": "PASS",
+      "detail": "bytes=329111"
+    },
+    {
+      "name": "file:report/assets/tcad_t02_c_state_maps.png",
+      "status": "PASS",
+      "detail": "bytes=828743"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p4_l_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=13432"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p4_l_sensitivity.json",
+      "status": "PASS",
+      "detail": "bytes=116751"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p4_l_sensitivity_check.json",
+      "status": "PASS",
+      "detail": "bytes=4390"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p4_l_input_contract_v1_failed.json",
+      "status": "PASS",
+      "detail": "bytes=12422"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p4_l_sensitivity_v1_failed.json",
+      "status": "PASS",
+      "detail": "bytes=113034"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p4_l_transfer_curves.csv",
+      "status": "PASS",
+      "detail": "bytes=31194"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p4_l_metrics.csv",
+      "status": "PASS",
+      "detail": "bytes=2201"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p4_l_t02_c_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=4809"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p4_l_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=2099"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p4_channel_length/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=9510"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p4_channel_length_v1_failed/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=9510"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p4_l_sensitivity.png",
+      "status": "PASS",
+      "detail": "bytes=308514"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p4_l_state_maps.png",
+      "status": "PASS",
+      "detail": "bytes=873279"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p4_l_sensitivity_v1_failed.png",
+      "status": "PASS",
+      "detail": "bytes=308514"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p4_l_state_maps_v1_failed.png",
+      "status": "PASS",
+      "detail": "bytes=873279"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p1_bias_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=12584"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p1_bias_sensitivity.json",
+      "status": "PASS",
+      "detail": "bytes=191049"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p1_bias_sensitivity_check.json",
+      "status": "PASS",
+      "detail": "bytes=4444"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p1_bias_transfer_curves.csv",
+      "status": "PASS",
+      "detail": "bytes=53441"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p1_bias_metrics.csv",
+      "status": "PASS",
+      "detail": "bytes=2186"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p1_bias_t02_c_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=4809"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p1_bias_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=3239"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p1_secondary_bias/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=15951"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p1_bias_sensitivity.png",
+      "status": "PASS",
+      "detail": "bytes=297552"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p1_bias_state_maps.png",
+      "status": "PASS",
+      "detail": "bytes=1073893"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p1_cap_ratio_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=11112"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p1_cap_ratio_sensitivity.json",
+      "status": "PASS",
+      "detail": "bytes=231719"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p1_cap_ratio_sensitivity_check.json",
+      "status": "PASS",
+      "detail": "bytes=4590"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p1_cap_ratio_transfer_curves.csv",
+      "status": "PASS",
+      "detail": "bytes=61751"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p1_cap_ratio_metrics.csv",
+      "status": "PASS",
+      "detail": "bytes=2211"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p1_cap_ratio_t02_c_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=4809"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p1_cap_ratio_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=3703"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p1_capacitance_ratio/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=17329"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p1_cap_ratio_sensitivity.png",
+      "status": "PASS",
+      "detail": "bytes=302230"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p1_cap_ratio_state_maps.png",
+      "status": "PASS",
+      "detail": "bytes=1314666"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=11025"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_equation_smoke.json",
+      "status": "PASS",
+      "detail": "bytes=21743"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_equation_smoke_check.json",
+      "status": "PASS",
+      "detail": "bytes=4921"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_dit_equation_smoke_cases.csv",
+      "status": "PASS",
+      "detail": "bytes=2704"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_dit_interface_samples.csv",
+      "status": "PASS",
+      "detail": "bytes=35483"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_dit_equation_smoke/input_snapshot.json",
+      "status": "PASS",
+      "detail": "bytes=1357"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_dit_equation_smoke/solver_log.json",
+      "status": "PASS",
+      "detail": "bytes=173682"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_dit_equation_smoke/state_nodes.csv",
+      "status": "PASS",
+      "detail": "bytes=1928726"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_formal_input_contract.json",
+      "status": "PASS",
+      "detail": "bytes=11728"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_formal.json",
+      "status": "PASS",
+      "detail": "bytes=152009"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_formal_check.json",
+      "status": "PASS",
+      "detail": "bytes=5977"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_formal_v1_failed.json",
+      "status": "PASS",
+      "detail": "bytes=42127"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_formal_input_contract_v1_ss_linearity_failed.json",
+      "status": "PASS",
+      "detail": "bytes=10812"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_dit_formal_v1_ss_linearity_failed.json",
+      "status": "PASS",
+      "detail": "bytes=152072"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_dit_formal_transfer.csv",
+      "status": "PASS",
+      "detail": "bytes=44613"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_dit_formal_metrics.csv",
+      "status": "PASS",
+      "detail": "bytes=2315"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_dit_formal_t02_c_reproduction.csv",
+      "status": "PASS",
+      "detail": "bytes=4818"
+    },
+    {
+      "name": "file:results/tables/tcad_t03_p2_dit_formal_state_summary.csv",
+      "status": "PASS",
+      "detail": "bytes=2769"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_dit_formal/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=12976"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p2_dit_formal_sensitivity.png",
+      "status": "PASS",
+      "detail": "bytes=313277"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p2_dit_formal_states.png",
+      "status": "PASS",
+      "detail": "bytes=1136111"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p2_dit_formal_sensitivity_v1_ss_linearity_failed.png",
+      "status": "PASS",
+      "detail": "bytes=309286"
+    },
+    {
+      "name": "file:report/assets/tcad_t03_p2_dit_formal_states_v1_ss_linearity_failed.png",
+      "status": "PASS",
+      "detail": "bytes=1136111"
+    },
+    {
+      "name": "file:models/level61/README.md",
+      "status": "PASS",
+      "detail": "bytes=354"
+    },
+    {
+      "name": "file:spice/models/README.md",
+      "status": "PASS",
+      "detail": "bytes=263"
+    },
+    {
+      "name": "file:spice/netlists/devices/README.md",
+      "status": "PASS",
+      "detail": "bytes=199"
+    },
+    {
+      "name": "file:spice/netlists/cells/README.md",
+      "status": "PASS",
+      "detail": "bytes=664"
+    },
+    {
+      "name": "file:spice/netlists/blocks/README.md",
+      "status": "PASS",
+      "detail": "bytes=334"
+    },
+    {
+      "name": "file:pdk/tech/README.md",
+      "status": "PASS",
+      "detail": "bytes=193"
+    },
+    {
+      "name": "file:pdk/tech/layers.csv",
+      "status": "PASS",
+      "detail": "bytes=608"
+    },
+    {
+      "name": "file:pdk/drc/README.md",
+      "status": "PASS",
+      "detail": "bytes=193"
+    },
+    {
+      "name": "handoff:agents_contract",
+      "status": "PASS",
+      "detail": "markers=6/6"
+    },
+    {
+      "name": "handoff:claude_pointer",
+      "status": "PASS",
+      "detail": "points to AGENTS.md"
+    },
+    {
+      "name": "handoff:copilot_pointer",
+      "status": "PASS",
+      "detail": "points to AGENTS.md"
+    },
+    {
+      "name": "config:json",
+      "status": "PASS",
+      "detail": "DG-IGZO-TFT-PDK"
+    },
+    {
+      "name": "config:deadline_order",
+      "status": "PASS",
+      "detail": "2026-07-30 < 2026-08-06 < 2026-08-13"
+    },
+    {
+      "name": "config:device_counts",
+      "status": "PASS",
+      "detail": "{\"FULL_ADDER_1BIT\": 33, \"INV\": 2, \"NAND2\": 3, \"NOR2\": 3, \"RING5\": 10, \"XOR2\": 12}"
+    },
+    {
+      "name": "config:igzo_only_devices",
+      "status": "PASS",
+      "detail": "IGZO_TFT"
+    },
+    {
+      "name": "config:active_load_logic",
+      "status": "PASS",
+      "detail": "dual_gate_igzo_active_load"
+    },
+    {
+      "name": "config:teaching_baseline",
+      "status": "PASS",
+      "detail": "{\"allowed_use\": \"T01 teaching-parameter initialization and sanity checks\", \"evidence_level\": \"E1\", \"mobility_cm2_vs\": 35.5, \"prohibited_use\": \"experimental fitting or calibrated dual-gate prediction\", \"source_type\": \"course_parameter_summary\", \"vth_v\": 0.21}"
+    },
+    {
+      "name": "source:papers_wsl",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u8bba\u6587"
+    },
+    {
+      "name": "source:ngspice",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/ngspice_results"
+    },
+    {
+      "name": "source:aimspice",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/AIMSPICE_improved"
+    },
+    {
+      "name": "source:klayout_pdk",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u6570\u636e/klayout_oxide_pdk"
+    },
+    {
+      "name": "source:senior_reference",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b66\u957f"
+    },
+    {
+      "name": "source:teacher_requirements",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/deepseek_work/\u5927\u5b66\u8bfe\u7a0b/\u6c27\u5316\u7269/\u5b9e\u9a8c/\u5b9e\u9a8c\u8bfe\u7a0b\u9879\u76ee\u4e0e\u62a5\u544a\u8981\u6c42(1).html"
+    },
+    {
+      "name": "config:final_report_format",
+      "status": "PASS",
+      "detail": "single_self_contained_html"
+    },
+    {
+      "name": "config:report_authoring_mode",
+      "status": "PASS",
+      "detail": "chapter_sources"
+    },
+    {
+      "name": "config:parameter_groups_minimum",
+      "status": "PASS",
+      "detail": "5"
+    },
+    {
+      "name": "papers:count",
+      "status": "PASS",
+      "detail": "rows=13"
+    },
+    {
+      "name": "papers:unique",
+      "status": "PASS",
+      "detail": "unique=13"
+    },
+    {
+      "name": "papers:sources",
+      "status": "PASS",
+      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u8bba\u6587"
+    },
+    {
+      "name": "papers:doi",
+      "status": "PASS",
+      "detail": "all 13 DOI fields populated"
+    },
+    {
+      "name": "baseline:manifest",
+      "status": "PASS",
+      "detail": "files=7"
+    },
+    {
+      "name": "baseline:hashes",
+      "status": "PASS",
+      "detail": "all imported files match manifest"
+    },
+    {
+      "name": "baseline:igzo_only_selection",
+      "status": "PASS",
+      "detail": "destinations=7"
+    },
+    {
+      "name": "experiments:parameter_groups",
+      "status": "PASS",
+      "detail": "groups=7"
+    },
+    {
+      "name": "experiments:ids_unique",
+      "status": "PASS",
+      "detail": "experiments=17"
+    },
+    {
+      "name": "experiments:complete_stage_set",
+      "status": "PASS",
+      "detail": "stages=17"
+    },
+    {
+      "name": "experiments:project_id",
+      "status": "PASS",
+      "detail": "DG-IGZO-TFT-PDK"
+    },
+    {
+      "name": "experiments:dependencies_exist",
+      "status": "PASS",
+      "detail": "all dependencies reference known stages"
+    },
+    {
+      "name": "experiments:dependency_dag",
+      "status": "PASS",
+      "detail": "dependency graph is acyclic"
+    },
+    {
+      "name": "experiments:high_difficulty_five_groups",
+      "status": "PASS",
+      "detail": "P1,P2,P3,P4,P5"
+    },
+    {
+      "name": "experiments:t03_completed_and_partial_groups_are_distinct",
+      "status": "PASS",
+      "detail": "complete=['P1', 'P4'] partial=['P2'] remaining=['T03-P2-BULK-TRAPS formal isolated NTA/NGA transfer sensitivity', 'T03-P3', 'T03-P5']"
+    },
+    {
+      "name": "senior:manifest",
+      "status": "PASS",
+      "detail": "files=23"
+    },
+    {
+      "name": "senior:source_hashes",
+      "status": "PASS",
+      "detail": "all referenced source files match"
+    },
+    {
+      "name": "senior_csv:inverter_vtc_reference.csv",
+      "status": "PASS",
+      "detail": "rows=181"
+    },
+    {
+      "name": "senior_csv:igzo_tcad_transfer_reference.csv",
+      "status": "PASS",
+      "detail": "rows=123"
+    },
+    {
+      "name": "s00:audit_config",
+      "status": "PASS",
+      "detail": "S00_DATA_UNIT_AUDIT_V1"
+    },
+    {
+      "name": "s00:source_inventory_hashes",
+      "status": "PASS",
+      "detail": "records=50"
+    },
+    {
+      "name": "s00:unit_table",
+      "status": "PASS",
+      "detail": "records=23"
+    },
+    {
+      "name": "s00:scope_registers",
+      "status": "PASS",
+      "detail": "datasets=8 conflicts=6"
+    },
+    {
+      "name": "s00:teaching_only_gate",
+      "status": "PASS",
+      "detail": "TEACHING_BASELINE_ONLY"
+    },
+    {
+      "name": "s00:audit_report",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_a:contract_status",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_a:simulation_not_run",
+      "status": "PASS",
+      "detail": "NOT_RUN"
+    },
+    {
+      "name": "t01_a:single_gate_contract",
+      "status": "PASS",
+      "detail": "single gate, electron-only transport"
+    },
+    {
+      "name": "t01_b:smoke_status",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_b:independent_check",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_b:authorized_scope",
+      "status": "PASS",
+      "detail": "['T01_A_STAGE_0', 'T01_A_STAGE_1']"
+    },
+    {
+      "name": "t01_b:acceptance_checks",
+      "status": "PASS",
+      "detail": "checks=10"
+    },
+    {
+      "name": "t01_b:raw_outputs",
+      "status": "PASS",
+      "detail": "files=5"
+    },
+    {
+      "name": "t01_c:transfer_status",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_c:independent_check",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_c:authorized_scope",
+      "status": "PASS",
+      "detail": "['T01_A_STAGE_0', 'T01_A_STAGE_1', 'T01_A_STAGE_2']"
+    },
+    {
+      "name": "t01_c:acceptance_checks",
+      "status": "PASS",
+      "detail": "checks=10"
+    },
+    {
+      "name": "t01_c:mesh_warning_boundary",
+      "status": "PASS",
+      "detail": "relative=0.27506363605264056 log_decades=0.13970011480759403"
+    },
+    {
+      "name": "t01_c:raw_outputs",
+      "status": "PASS",
+      "detail": "files=26"
+    },
+    {
+      "name": "t01_d_a:mesh_refinement_status",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_d_a:independent_check",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_d_a:limited_mesh_convergence_gate",
+      "status": "PASS",
+      "detail": "current=0.00016386503623487094 potential=3.264798378088685e-05"
+    },
+    {
+      "name": "t01_d_a:baseline_reproduction_and_node_growth",
+      "status": "PASS",
+      "detail": "reproduction_rows=3 node_counts=[656, 902, 1394, 2378]"
+    },
+    {
+      "name": "t01_d_a:acceptance_checks",
+      "status": "PASS",
+      "detail": "checks=10"
+    },
+    {
+      "name": "t01_d_a:raw_outputs",
+      "status": "PASS",
+      "detail": "files=32"
+    },
+    {
+      "name": "t01_d_b:idvd_status",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_d_b:independent_check",
+      "status": "PASS",
+      "detail": "status=PASS checks=16"
+    },
+    {
+      "name": "t01_d_b:limited_idvd_gate",
+      "status": "PASS",
+      "detail": "points=30 mesh_current=0.00016386503623099576"
+    },
+    {
+      "name": "t01_d_b:acceptance_checks",
+      "status": "PASS",
+      "detail": "checks=11"
+    },
+    {
+      "name": "t01_d_b:raw_outputs",
+      "status": "PASS",
+      "detail": "files=9 figure=/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/assets/tcad_t01_d_idvd.png"
+    },
+    {
+      "name": "t01_d_c:completion_status",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "t01_d_c:independent_check",
+      "status": "PASS",
+      "detail": "status=PASS checks=17"
+    },
+    {
+      "name": "t01_d_c:complete_teaching_model_gate",
+      "status": "PASS",
+      "detail": "requirements={'complete_low_vds_bias_sweep': 'PASS', 'terminal_current_conservation': 'PASS', 'mesh_metrics_and_proxy_comparison': 'PASS', 'potential_electron_density_current_density_states': 'PASS'} next=True"
+    },
+    {
+      "name": "t01_d_c:numerical_proxy_boundary",
+      "status": "PASS",
+      "detail": "proxies=2 metrics={'maximum_relative_terminal_current_imbalance': 6.764128298832434e-08, 'maximum_monotonic_relative_current_drop': 0.0, 'vth_proxy_mesh_difference_v': 1.698290302742933e-05, 'ss_proxy_mesh_relative_difference': 2.491027011902834e-09, 'mobility_proxy_mesh_relative_difference': 0.0002652936540328361, 'maximum_t01_db_anchor_relative_current_difference': 5.891989412981156e-15, 'maximum_t01_db_anchor_potential_difference_v': 1.3877787807814457e-17, 'production_vth_proxy_minus_teaching_target_v': 0.007534909382601207}"
+    },
+    {
+      "name": "t01_d_c:checks_and_raw_outputs",
+      "status": "PASS",
+      "detail": "checks=12 states=3 vtk=15"
+    },
+    {
+      "name": "t02_a:input_contract",
+      "status": "PASS",
+      "detail": "status=PASS checks=16"
+    },
+    {
+      "name": "t02_a:simulation_and_independent_check",
+      "status": "PASS",
+      "detail": "simulation=PASS independent=PASS checks=14"
+    },
+    {
+      "name": "t02_a:disabled_limit_gate",
+      "status": "PASS",
+      "detail": "completion={'status': 'PASS', 'input_contract_frozen': True, 'disabled_top_stack_returns_t01': True, 'enabled_zero_bias_topology_smoke': True, 't02_b_minimal_bias_family_permitted_next': True, 't02_complete': False, 'nonzero_dual_gate_coupling_verified': False, 'experimental_calibration_permitted': False} metrics={'maximum_relative_terminal_current_imbalance': 6.098202582518323e-14, 'maximum_disabled_t01_relative_current_difference': 7.13240068130798e-15, 'maximum_disabled_t01_center_potential_difference_v': 4.163336342344337e-17, 'maximum_disabled_t01_center_density_relative_difference': 2.2073752570506506e-16}"
+    },
+    {
+      "name": "t02_a:topology_modes",
+      "status": "PASS",
+      "detail": "disabled_nodes=1394 enabled_nodes=2419"
+    },
+    {
+      "name": "t02_a:checks_and_raw_outputs",
+      "status": "PASS",
+      "detail": "checks=10 states=1 vtk=6"
+    },
+    {
+      "name": "t02_b:input_contract",
+      "status": "PASS",
+      "detail": "status=PASS checks=17"
+    },
+    {
+      "name": "t02_b:simulation_and_independent_check",
+      "status": "PASS",
+      "detail": "simulation=PASS independent=PASS checks=14"
+    },
+    {
+      "name": "t02_b:minimal_top_gate_response_gate",
+      "status": "PASS",
+      "detail": "completion={'status': 'PASS', 'minimal_nonzero_top_gate_family_completed': True, 'top_gate_response_direction_verified': True, 't02_c_bidirectional_family_permitted_next': True, 't02_complete': False, 'delta_vth_verified': False, 'gm_verified': False, 'experimental_calibration_permitted': False} metrics={'maximum_relative_terminal_current_imbalance': 1.4054453248161712e-14, 'endpoint_current_ratio': 9.680225922252978, 'endpoint_center_potential_increase_v': 0.05521219168741342, 'endpoint_center_density_ratio': 8.375585509971744}"
+    },
+    {
+      "name": "t02_b:topology_and_bias_grid",
+      "status": "PASS",
+      "detail": "nodes=2419 points=4"
+    },
+    {
+      "name": "t02_b:checks_and_raw_outputs",
+      "status": "PASS",
+      "detail": "checks=10 states=2 vtk=12"
+    },
+    {
+      "name": "t02_c:input_contract",
+      "status": "PASS",
+      "detail": "status=PASS checks=21"
+    },
+    {
+      "name": "t02_c:simulation_and_independent_check",
+      "status": "PASS",
+      "detail": "simulation=PASS independent=PASS checks=17"
+    },
+    {
+      "name": "t02_c:complete_numerical_gate",
+      "status": "PASS",
+      "detail": "completion={'status': 'PASS', 'bidirectional_gate_families_completed': True, 'negative_primary_gate_paths_verified': True, 'reverse_path_numerical_independence_verified': True, 'delta_vth_numerical_proxy_verified': True, 'gm_numerical_proxy_verified': True, 'representative_internal_states_verified': True, 'complete_t02_numerical_stage_gate': 'PASS', 't02_complete': True, 't03_controlled_sensitivity_permitted_next': True, 'experimental_calibration_permitted': False, 'physical_parameter_validation_permitted': False, 'compact_model_calibrated': False} metrics={'maximum_relative_terminal_current_imbalance': 3.7120922806537963e-08, 'maximum_monotonic_relative_current_drop': 0.0, 'maximum_forward_reverse_relative_current_difference': 8.188149530303124e-11, 'maximum_forward_reverse_vth_difference_v': 3.885780586188048e-16, 'maximum_reciprocal_top_bottom_relative_current_difference': 3.69517802320258e-08, 'maximum_reciprocal_top_bottom_vth_difference_v': 2.220446049250313e-16, 'maximum_reciprocal_top_bottom_gm_relative_difference': 2.763801466329719e-14, 'maximum_t02_b_anchor_relative_current_difference': 2.484807250940542e-15, 'maximum_t02_b_anchor_potential_difference_v': 6.938893903907228e-18, 'maximum_zero_equilibrium_absolute_terminal_current_a_per_cm': 0.0, 'maximum_zero_equilibrium_absolute_potential_v': 0.0, 'coupling_proxies': {'top_primary': {'slope_v_per_v': -0.935347761062, 'r_squared': 0.9976383149643229}, 'bottom_primary': {'slope_v_per_v': -0.9353477610620005, 'r_squared': 0.9976383149643229}}}"
+    },
+    {
+      "name": "t02_c:families_and_limited_extraction",
+      "status": "PASS",
+      "detail": "points=248 forward=186 reverse=62 metrics=6"
+    },
+    {
+      "name": "t02_c:checks_and_raw_outputs",
+      "status": "PASS",
+      "detail": "checks=15 states=6 state_csv=12 vtk=36 figures=2"
+    },
+    {
+      "name": "t03_p4_l:contract_and_simulation",
+      "status": "PASS",
+      "detail": "contract=PASS simulation=PASS runner_checks=16"
+    },
+    {
+      "name": "t03_p4_l:independent_check_and_completion_boundary",
+      "status": "PASS",
+      "detail": "independent=PASS completion={'status': 'PASS', 'p4_channel_length_three_point_group_complete': True, 'complete_t03_five_group_sensitivity': False, 'another_t03_group_permitted_next': True, 'experimental_calibration_permitted': False, 'physical_short_channel_claim_permitted': False, 'compact_model_calibrated': False}"
+    },
+    {
+      "name": "t03_p4_l:failed_ideal_scaling_diagnostic_is_not_silently_relaxed",
+      "status": "PASS",
+      "detail": "diagnostic=FAIL completion_gate=False"
+    },
+    {
+      "name": "t03_p4_l:raw_outputs_and_figures_exist",
+      "status": "PASS",
+      "detail": "states=3 state_csv=6 vtk=18 figures=2"
+    },
+    {
+      "name": "t03_p1_bias:contract_and_simulation",
+      "status": "PASS",
+      "detail": "contract=PASS simulation=PASS runner_checks=14"
+    },
+    {
+      "name": "t03_p1_bias:independent_check_and_partial_completion_boundary",
+      "status": "PASS",
+      "detail": "independent=PASS completion={'status': 'PASS', 'p1_bias_five_point_substage_complete': True, 'complete_p1_bias_and_capacitance_group': False, 'capacitance_ratio_substage_permitted_next': True, 'complete_t03_five_group_sensitivity': False, 'experimental_calibration_permitted': False, 'physical_capacitance_ratio_claim_permitted': False, 'compact_model_calibrated': False}"
+    },
+    {
+      "name": "t03_p1_bias:raw_outputs_and_figures_exist",
+      "status": "PASS",
+      "detail": "states=5 state_csv=10 vtk=30 figures=2"
+    },
+    {
+      "name": "t03_p1_bias:fixed_ratio_is_not_complete_p1",
+      "status": "PASS",
+      "detail": "changed=fixed_bottom_gate_bias_v ratio=1.0"
+    },
+    {
+      "name": "t03_p1_cap_ratio:contract_and_simulation",
+      "status": "PASS",
+      "detail": "contract=PASS simulation=PASS runner_checks=16"
+    },
+    {
+      "name": "t03_p1_cap_ratio:independent_check_and_numerical_p1_boundary",
+      "status": "PASS",
+      "detail": "independent=PASS completion={'status': 'PASS', 'p1_bias_five_point_substage_complete': True, 'p1_capacitance_ratio_five_point_substage_complete': True, 'complete_p1_numerical_group': True, 'complete_t03_five_group_sensitivity': False, 'one_of_p2_p3_p5_permitted_next': True, 'experimental_calibration_permitted': False, 'physical_capacitance_ratio_claim_permitted': False, 'compact_model_calibrated': False}"
+    },
+    {
+      "name": "t03_p1_cap_ratio:fixed_sum_encoding_and_p1_p4_ownership",
+      "status": "PASS",
+      "detail": "ratios=[0.5, 0.75, 1.0, 1.5, 2.0] sum=13.6"
+    },
+    {
+      "name": "t03_p1_cap_ratio:raw_outputs_and_figures_exist",
+      "status": "PASS",
+      "detail": "states=5 state_csv=10 vtk=30 figures=2"
+    },
+    {
+      "name": "t03_p2_dit:contract_and_equation_smoke",
+      "status": "PASS",
+      "detail": "contract=PASS smoke=PASS runner_checks=14"
+    },
+    {
+      "name": "t03_p2_dit:independent_check_and_partial_boundary",
+      "status": "PASS",
+      "detail": "independent=PASS completion={'status': 'PARTIAL', 'dit_literature_input_contract_passed': True, 'dit_interface_equation_smoke_passed': True, 'formal_three_point_dit_sensitivity_complete': False, 'bulk_tail_and_deep_traps_complete': False, 'complete_p2_trap_group': False, 'complete_t03_five_group_sensitivity': False, 'formal_three_point_dit_sensitivity_permitted_next': True, 'experimental_calibration_permitted': False}"
+    },
+    {
+      "name": "t03_p2_dit:persisted_outputs_counts_and_hashes",
+      "status": "PASS",
+      "detail": "cases=5 interfaces=195 states=12095 dc=17"
+    },
+    {
+      "name": "t03_p2_dit:single_interface_literature_range_and_closed_scan",
+      "status": "PASS",
+      "detail": "active=bottom_oxide_channel future_points=[843000000000.0, 3070000000000.0, 6020000000000.0]"
+    },
+    {
+      "name": "t03_p2_dit_formal:contract_run_and_independent_check",
+      "status": "PASS",
+      "detail": "contract=PASS run=PASS independent=PASS"
+    },
+    {
+      "name": "t03_p2_dit_formal:persisted_counts_hashes_states_and_figures",
+      "status": "PASS",
+      "detail": "curves=124 metrics=4 states=4 vtk=24"
+    },
+    {
+      "name": "t03_p2_dit_formal:controlled_grid_proxies_and_t02_c_regression",
+      "status": "PASS",
+      "detail": "VTH=[0.26385685799760256, 0.2835825707187407, 0.3161183956423358, 0.3389973181484732] SS=[137.59377510040815, 168.65702039999738, 231.49262773326376, 292.96619438917816] I_low=[2.100900501789906e-10, 1.4088216236003817e-09, 1.0917683993621227e-08, 2.963382973868361e-08] gm=[3.937599666287622e-05, 3.891387993744876e-05, 3.80152069036908e-05, 3.725313928093527e-05]"
+    },
+    {
+      "name": "t03_p2_dit_formal:failure_history_and_partial_p2_boundary",
+      "status": "PASS",
+      "detail": "completion={'status': 'PARTIAL', 'dit_literature_input_contract_passed': True, 'dit_interface_equation_smoke_passed': True, 'formal_three_point_dit_sensitivity_complete': True, 'interface_dit_substage_complete': True, 'bulk_tail_and_deep_traps_complete': False, 'complete_p2_trap_group': False, 'complete_t03_five_group_sensitivity': False, 'bulk_trap_contract_permitted_next': True, 'experimental_calibration_permitted': False}"
+    },
+    {
+      "name": "t03_p2_bulk_traps:static_contract_only",
+      "status": "PASS",
+      "detail": "contract=PASS simulation=NOT_RUN_BY_CONTRACT_CHECK checks=30"
+    },
+    {
+      "name": "t03_p2_bulk_traps:source_equations_points_and_integration",
+      "status": "PASS",
+      "detail": "sources=2 tail=[1e+18, 5e+18, 5e+19] deep=[1e+16, 5e+16, 5e+17] integration_error=7.928944251344545e-07"
+    },
+    {
+      "name": "t03_p2_bulk_traps:equation_smoke_is_next_and_p2_remains_partial",
+      "status": "PASS",
+      "detail": "Only this contract PASS permits the separate T03-P2-BULK-TRAPS equation smoke. The smoke and its independent persisted-evidence check must pass before any formal NTA/NGA transfer scan; P3, P5, SPICE, and layout remain closed."
+    },
+    {
+      "name": "t03_p2_bulk_traps:equation_smoke_evidence",
+      "status": "PASS",
+      "detail": "runner=PASS independent=PASS devices=3 solves=21"
+    },
+    {
+      "name": "t03_p2_bulk_traps:equation_smoke_boundary",
+      "status": "PASS",
+      "detail": "Only a passed equation smoke plus its independent persisted-evidence check permits a separate formal isolated NTA/NGA transfer-sensitivity contract; P3, P5, SPICE, and layout remain closed."
+    },
+    {
+      "name": "t03_p2_bulk_traps:formal_contract_evidence",
+      "status": "PASS",
+      "detail": "status=PASS simulation=NOT_RUN_BY_CONTRACT_CHECK checks=23"
+    },
+    {
+      "name": "t03_p2_bulk_traps:formal_contract_frozen_counts",
+      "status": "PASS",
+      "detail": "devices=8 points=360 solves=440 states=8"
+    },
+    {
+      "name": "t03_p2_bulk_traps:formal_contract_boundary",
+      "status": "PASS",
+      "detail": "Only this V2 formal contract PASS permits a complete fresh V2 formal NTA/NGA transfer run. P3, P5, M00, M01, SPICE, circuits, layout, PEX, and HZO remain closed until the V2 runner and independent persisted-evidence check pass and P2 completion is documented."
+    },
+    {
+      "name": "t03_p2_bulk_traps:formal_v1_failure_inputs_and_outputs_preserved",
+      "status": "PASS",
+      "detail": "report=FAIL rows=248 states=8 vtk=48"
+    },
+    {
+      "name": "t03_p2_bulk_traps:formal_contract",
+      "status": "FAIL",
+      "detail": "name 'math' is not defined"
+    },
+    {
+      "name": "tcad:mesh_levels",
+      "status": "PASS",
+      "detail": "coarse,fine"
+    },
+    {
+      "name": "tcad:evidence_boundary",
+      "status": "PASS",
+      "detail": "Two-dimensional electrostatic Laplace/Poisson benchmark only. No mobile charge, traps, contact transport or drain-current prediction is included."
+    },
+    {
+      "name": "tcad:smoke_status",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "tcad:smoke_outputs",
+      "status": "PASS",
+      "detail": "files=5"
+    },
+    {
+      "name": "report:authoring_and_submission_modes",
+      "status": "PASS",
+      "detail": "chapter_sources -> single_self_contained_html"
+    },
+    {
+      "name": "report:required_sections",
+      "status": "PASS",
+      "detail": "chapters=12"
+    },
+    {
+      "name": "report:required_appendices",
+      "status": "PASS",
+      "detail": "appendices=5"
+    },
+    {
+      "name": "report:chapter_and_appendix_sources",
+      "status": "PASS",
+      "detail": "valid_sources=17/17"
+    },
+    {
+      "name": "report:shell_contract",
+      "status": "PASS",
+      "detail": "empty content and TOC containers"
+    },
+    {
+      "name": "report:print_chapter_breaks",
+      "status": "PASS",
+      "detail": "chapter print pagination declared"
+    },
+    {
+      "name": "report:no_forbidden_image_sources",
+      "status": "PASS",
+      "detail": "count=0"
+    },
+    {
+      "name": "report:placeholder_guard",
+      "status": "PASS",
+      "detail": "chapter drafts intentionally remain non-final until placeholders are resolved"
+    },
+    {
+      "name": "report:current_scope_title",
+      "status": "PASS",
+      "detail": "report shell and chapter placeholders use current scope"
+    }
+  ]
+}

@@ -16,6 +16,49 @@
 
 ---
 
+## 2026-08-02 | Codex GPT-5 | 保留 bulk 正式 V2 提取网格失败并暂停阶段 DAG
+
+### 用户目标
+
+在已推送的 V2 正式隔离合同之后继续按阶段门运行；若阶段门失败则保留全部证据并暂停，不放宽阈值、不提前运行独立检查或进入 P3/P5、M00/M01、SPICE、电路、版图、PEX 和 HZO。
+
+### 读取的关键输入
+
+- 提交 `b5fd84b` 中 23/23 E3 V2 合同、统一 `VTG=-0.5~1.7 V/0.05 V` 网格、8 器件/440 DC/360 点计划、失败保留和独立检查门。
+- V1 失败归档、T02-C 恒流 VTH 与 `VTH+0.2 V` 中心差分 gm 口径、bulk NTA/NGA 文献点和准静态 Poisson 体电荷方程。
+- `AGENTS.md`、ADR-027 和用户自动执行规则中的“阶段门失败即暂停并报告”要求。
+
+### 运行结果与保留产物
+
+- `make t03-p2-bulk-traps-formal` 完成 8 个新器件、每器件 55 次、共 440 条全部收敛的 DC 记录，落盘 360 个 transfer 点、8 个共同状态和 48 个 VTK；墙钟 `28.414 s`，最大端口相对不平衡为 `6.01e-9`。
+- `NTA=5e19 cm^-3 eV^-1` 在 `VTG=1.7 V` 达 `1.419007e-5 A/cm`，已经包络不变的 `1e-5 A/cm` VTH 判据。1.45/1.50 V 包络给出的诊断 VTH 为 `1.4666676 V`。
+- 不变的 gm 评价点为 `VTH+0.2 V=1.6666676 V`，高于 45 点网格的倒数第二点 1.65 V，缺少冻结中心差分所需的上邻点。运行器因此按合同返回 E0/FAIL；这不是求解不收敛、VTH 未包络、守恒或陷阱方程失败。
+- 标准目录 `results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2/` 保留 75 个文件，版本化目录 `results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/` 保留 84 个文件，合计 159 个；标准与版本化 E0 报告、输入快照、运行器哈希、求解日志、曲线、状态和 VTK 均落盘。
+- 指标、T02-C 回归和双零控制比较因提取异常保持空数据行，两张计划图没有生成。没有运行 `make t03-p2-bulk-traps-formal-check`，也没有生成独立检查报告；不把级联缺失误写成物理或求解失败。
+
+### 修改的文件
+
+- 新增 ADR-028；同步 `config/project.json`、`config/experiments.json` 和 `scripts/check_project.py`，登记 V2 E0/FAIL、结果路径、诊断 VTH/gm 评价点、失败原因和“独立检查未运行”。
+- 更新 `STATUS.md`、`README.md`、`AI_CONTEXT.md`、`ARCHITECTURE.md`、`PROJECT_PLAN.md`、二维 TCAD 路线、报告第 5/6/8 章、附录 D 和证据矩阵，统一把 V2 的 8/440/360 写成已完成失败计算而非 PASS。
+- 总检查首次因新增 V2 证据复算缺少标准库 `math` 导入而 440 项通过、1 项异常；原始 441 项 FAIL 报告已保留为 `results/reports/project_check_t03_p2_bulk_v2_failure_checker_math_import_bug_failed.json`。修正只增加导入，没有修改任何仿真输入、结果、阈值或失败判定，并将该检查器故障也纳入最终总门禁。
+
+### 验证命令和结果
+
+- `make t03-p2-bulk-traps-formal`：命令按预期返回非零；8 器件、440 次 DC、360 点全部计算完成，运行器 E0/FAIL，失败包完整保留。
+- 未运行 `make t03-p2-bulk-traps-formal-check`；独立报告与两张 V2 图确认不存在。
+- 修正检查器前 `make check`：FAIL，归档报告为 441 项中唯一 `math` 导入异常；修正后 `make check`：444/444 PASS，包括 V1/V2 两次失败、两个检查器故障归档和 V2 独立检查未运行的断言。
+- `make report-check`：PASS，12 章、5 附录、16 个允许占位符、14 张既有图片。
+- Python 编译、JSON/证据矩阵 CSV 解析和 `git diff --check`：PASS。
+- 没有建立或运行 V3，也没有启动 P3、P5、M00/M01、SPICE、电路、版图、PEX 或 HZO。
+
+### 证据边界和待决定事项
+
+- V2 的 8/440/360、8 状态和 48 VTK 是已完成但 E0/FAIL 的计算证据；求解收敛和 VTH 包络都不能替代冻结 gm 提取门与独立复核。
+- 当前暂停等待是否建立统一扩展栅压网格的恢复合同。最小上限 1.75 V 可提供 1.70 V 上邻点；1.8 V 可留一个额外步长余量。无论选择何者，都必须对全部 8 个器件统一应用，并保持密度点、方程、提取方法和阈值不变。
+- 获得明确恢复决定前不修改当前 V2 配置/运行器、不重跑、不执行独立检查，也不进入后续阶段。
+
+---
+
 ## 2026-08-02 | Codex GPT-5 | 保留 bulk 正式 V1 失败并建立 V2 恢复合同
 
 ### 用户目标

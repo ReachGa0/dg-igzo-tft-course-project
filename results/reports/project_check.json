@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 435,
+  "checks": 444,
   "failures": 0,
   "results": [
     {
@@ -302,37 +302,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=18250"
+      "detail": "bytes=18866"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=16158"
+      "detail": "bytes=16446"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=10858"
+      "detail": "bytes=11232"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=81035"
+      "detail": "bytes=85400"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4623"
+      "detail": "bytes=4582"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=34809"
+      "detail": "bytes=36690"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=18317"
+      "detail": "bytes=19350"
     },
     {
       "name": "file:Makefile",
@@ -342,12 +342,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=6447"
+      "detail": "bytes=6944"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=30353"
+      "detail": "bytes=32094"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -540,9 +540,24 @@
       "detail": "bytes=402580"
     },
     {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_v2.json",
+      "status": "PASS",
+      "detail": "bytes=534493"
+    },
+    {
+      "name": "file:results/reports/tcad_t03_p2_bulk_traps_formal_v2_runner_completed_without_exception.json",
+      "status": "PASS",
+      "detail": "bytes=534493"
+    },
+    {
       "name": "file:results/reports/project_check_t03_p2_bulk_formal_boundary_checker_bug_failed.json",
       "status": "PASS",
       "detail": "bytes=69562"
+    },
+    {
+      "name": "file:results/reports/project_check_t03_p2_bulk_v2_failure_checker_math_import_bug_failed.json",
+      "status": "PASS",
+      "detail": "bytes=73222"
     },
     {
       "name": "file:results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
@@ -593,6 +608,26 @@
       "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_transfer.csv",
       "status": "PASS",
       "detail": "bytes=92995"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/failure_archive_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=3405"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/input_snapshot.json",
+      "status": "PASS",
+      "detail": "bytes=42208"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/state_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=31675"
+    },
+    {
+      "name": "file:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_v2_transfer.csv",
+      "status": "PASS",
+      "detail": "bytes=134875"
     },
     {
       "name": "file:docs/01_\u9009\u9898\u8bba\u8bc1\u4e0e\u521b\u65b0\u70b9.md",
@@ -647,7 +682,7 @@
     {
       "name": "file:docs/11_\u4e8c\u7ef4TCAD\u5b9e\u65bd\u8def\u7ebf.md",
       "status": "PASS",
-      "detail": "bytes=29105"
+      "detail": "bytes=29618"
     },
     {
       "name": "file:docs/12_\u8bfe\u7a0b\u8981\u6c42\u6620\u5c04\u4e0e\u5b8c\u6574\u5b9e\u9a8c\u77e9\u9635.md",
@@ -867,7 +902,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=17830"
+      "detail": "bytes=18567"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -2110,9 +2145,19 @@
       "detail": "report=FAIL rows=248 states=8 vtk=48"
     },
     {
+      "name": "t03_p2_bulk_traps:formal_v2_extraction_grid_failure_preserved",
+      "status": "PASS",
+      "detail": "report=FAIL records=440 rows=360 states=8 vth=1.466667576519 gm_eval=1.666667576519"
+    },
+    {
       "name": "t03_p2_bulk_traps:formal_contract_checker_failure_preserved",
       "status": "PASS",
       "detail": "status=FAIL checks=420 failures=1"
+    },
+    {
+      "name": "t03_p2_bulk_traps:v2_failure_checker_math_import_bug_preserved",
+      "status": "PASS",
+      "detail": "status=FAIL checks=441 failures=1"
     },
     {
       "name": "tcad:mesh_levels",

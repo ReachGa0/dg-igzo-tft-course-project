@@ -251,7 +251,8 @@
         "T03-P2-BULK-TRAPS static input contract: 2 E1 source rows, isolated NTA/NGA three-point sets, quasi-static occupancy and 96-point integration, 30/30 PASS",
         "T03-P2-BULK-TRAPS equation smoke: zero control plus NTA and NGA references, 3 devices, 21 coupled DC solves, 7257 state-node rows, 6 integration samples, E2 runner PASS and independent E3 16/16 PASS",
         "T03-P2-BULK-TRAPS-FORMAL V1 failed run preserved: 8 devices, 328 converged DC records, 248 transfer points, 8 states and 48 VTK; NTA=5e19 did not bracket the unchanged VTH criterion and the nonzero-trap zero-bias internal-potential gate was invalid, so runner remained E0/FAIL",
-        "T03-P2-BULK-TRAPS-FORMAL V2 input contract: all V1 density points and extraction thresholds retained, common VTG grid extended to 1.7 V, zero internal-potential regression limited to exact zero controls, 8 devices, 440 planned DC solves and 360 planned transfer points frozen as E3 static evidence without V2 DEVSIM"
+        "T03-P2-BULK-TRAPS-FORMAL V2 input contract: all V1 density points and extraction thresholds retained, common VTG grid extended to 1.7 V, zero internal-potential regression limited to exact zero controls, 8 devices, 440 planned DC solves and 360 planned transfer points frozen as E3 static evidence without V2 DEVSIM",
+        "T03-P2-BULK-TRAPS-FORMAL V2 failed run preserved: 8 devices, 440 converged DC records, 360 transfer points, 8 states and 48 VTK; NTA=5e19 bracketed VTH but its VTH+0.2 V gm evaluation was outside the central-difference grid, so runner remained E0/FAIL and no independent check was run"
       ],
       "completed_parameter_groups": ["P1", "P4"],
       "partially_completed_parameter_groups": ["P2"],
@@ -288,6 +289,25 @@
         "maximum_current_a_per_cm": 3.137504658975777e-6,
         "constant_current_criterion_a_per_cm": 1e-5,
         "maximum_nonzero_trap_zero_equilibrium_internal_potential_v": 0.15750389258195557,
+        "formal_sensitivity_completed": false
+      },
+      "p2_bulk_formal_v2_failure_evidence": {
+        "status": "FAIL_PRESERVED",
+        "evidence_level": "E0",
+        "devices": 8,
+        "converged_dc_records": 440,
+        "transfer_points": 360,
+        "states": 8,
+        "vtk_files": 48,
+        "maximum_gate_v": 1.7,
+        "failed_case": "NTA=5e19 cm^-3 eV^-1",
+        "constant_current_criterion_a_per_cm": 1e-5,
+        "maximum_current_a_per_cm": 1.4190074297322551e-5,
+        "diagnostic_bracket_vth_v": 1.466667576519075,
+        "gm_evaluation_v": 1.666667576519075,
+        "failure_reason": "VTH+0.2 V gm evaluation is outside the frozen central-difference grid",
+        "wall_seconds": 28.414362409002933,
+        "independent_persisted_check_run": false,
         "formal_sensitivity_completed": false
       },
       "first_group_outputs": [
@@ -367,9 +387,14 @@
         "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
         "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/state_manifest.json",
         "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_transfer.csv",
-        "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json"
+        "results/reports/tcad_t03_p2_bulk_traps_formal_input_contract_v2.json",
+        "results/reports/tcad_t03_p2_bulk_traps_formal_v2.json",
+        "results/reports/tcad_t03_p2_bulk_traps_formal_v2_runner_completed_without_exception.json",
+        "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/failure_archive_manifest.json",
+        "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/state_manifest.json",
+        "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v2_runner_completed_without_exception/external_artifacts/tcad_t03_p2_bulk_traps_formal_v2_transfer.csv"
       ],
-      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P2 remains partial: the bottom-interface DIT substage is E3, and the bulk equation smoke has E2 runner plus E3 independent evidence. Formal bulk V1 completed all 8 devices, 328 converged DC records, 248 transfer points, 8 states and 48 VTK but remains E0/FAIL: NTA=5e19 did not bracket the unchanged VTH criterion by 1.0 V, and nonzero occupied trap charge produced finite zero-external-bias internal potential that invalidated the inherited near-zero internal-potential gate. V1 inputs, logs, curves, states and reports are preserved. V2 keeps all density points, equations and extraction thresholds, extends the common gate grid to 1.7 V, applies near-zero internal potential only to exact zero controls, and freezes 8 devices, 440 planned DC solves and 360 planned transfer points as E3 static evidence without a V2 simulation. Formal V2 sensitivity, physical DOS, SS, VTH, Ion/Ioff, dynamic capture-emission, complete P2, P3, P5 and complete T03 remain unverified. No T03 result is experimental calibration, compact-model, circuit, layout, PEX or HZO evidence.",
+      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P2 remains partial: the bottom-interface DIT substage is E3, and the bulk equation smoke has E2 runner plus E3 independent evidence. Formal bulk V1 completed all 8 devices, 328 converged DC records, 248 transfer points, 8 states and 48 VTK but remains E0/FAIL because NTA=5e19 did not bracket the unchanged VTH criterion by 1.0 V and the inherited near-zero internal-potential gate was inapplicable to nonzero occupied trap charge. V2 retained all density points, equations and thresholds and completed all 8 devices, 440 converged DC records, 360 transfer points, 8 states and 48 VTK, but also remains E0/FAIL: NTA=5e19 bracketed VTH at the diagnostic 1.4666676 V, while the unchanged VTH+0.2 V gm evaluation at 1.6666676 V lacked the upper central-difference neighbor on the 1.7 V grid. V1 and V2 inputs, logs, curves, states and reports are preserved; no V2 independent persisted-evidence check was run. Formal bulk sensitivity, physical DOS, SS, VTH, Ion/Ioff, dynamic capture-emission, complete P2, P3, P5 and complete T03 remain unverified. No T03 result is experimental calibration, compact-model, circuit, layout, PEX or HZO evidence.",
       "acceptance": ["five groups complete", "at least three points per group", "quantitative comparison uses common axes", "each completed group has an independent persisted-evidence check", "failed hypotheses remain visible and do not get silently relaxed"]
     },
     {
