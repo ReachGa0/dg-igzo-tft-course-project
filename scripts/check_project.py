@@ -570,13 +570,37 @@ def main() -> int:
             == ["P2", "P3", "P5"]
             and sensitivity.get("remaining_substages")
             == [
-                "T03-P2-BULK-TRAPS equation smoke and formal scans",
+                "T03-P2-BULK-TRAPS formal isolated NTA/NGA transfer sensitivity",
                 "T03-P3",
                 "T03-P5",
-            ],
+            ]
+            and sensitivity.get("p2_bulk_equation_smoke_evidence")
+            == {
+                "status": "smoke_verified",
+                "runner_evidence": "E2",
+                "independent_persisted_check_evidence": "E3",
+                "devices": 3,
+                "coupled_dc_solves": 21,
+                "state_node_rows": 7257,
+                "integration_sample_rows": 6,
+                "formal_transfer_sensitivity_completed": False,
+            }
+            and all(
+                path in sensitivity.get("p2_partial_outputs", [])
+                for path in [
+                    "results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json",
+                    "results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json",
+                    "results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
+                    "results/tables/tcad_t03_p2_bulk_traps_integration_samples.csv",
+                    "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
+                    "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/solver_log.json",
+                    "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv",
+                ]
+            ),
             (
                 f"complete={sensitivity.get('completed_parameter_groups')} "
-                f"partial={sensitivity.get('partially_completed_parameter_groups')}"
+                f"partial={sensitivity.get('partially_completed_parameter_groups')} "
+                f"remaining={sensitivity.get('remaining_substages')}"
             ),
         )
     except Exception as error:  # noqa: BLE001

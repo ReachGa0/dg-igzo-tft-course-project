@@ -248,12 +248,23 @@
         "T03-P1-CAP-RATIO fixed-total-coupling allocation sensitivity: Ctop/Cbottom=0.5/0.75/1.0/1.5/2.0, 205 DC, 155 formal points, 5 states, independent 13/13 PASS",
         "T03-P2-DIT literature input contract and quasi-static interface-equation smoke: 4 E1 source rows, 5 devices, 17 DC, 12095 state rows, independent 15/15 PASS",
         "T03-P2-DIT-FORMAL controlled bottom-interface sensitivity: zero control plus 3 literature-constrained values, 4 devices, 164 DC, 124 transfer points, 4 states, independent 16/16 PASS; interface-DIT substage complete",
-        "T03-P2-BULK-TRAPS static input contract: 2 E1 source rows, isolated NTA/NGA three-point sets, quasi-static occupancy and 96-point integration, 30/30 PASS; equation smoke completed separately with 3 devices and 21 DC solves"
+        "T03-P2-BULK-TRAPS static input contract: 2 E1 source rows, isolated NTA/NGA three-point sets, quasi-static occupancy and 96-point integration, 30/30 PASS",
+        "T03-P2-BULK-TRAPS equation smoke: zero control plus NTA and NGA references, 3 devices, 21 coupled DC solves, 7257 state-node rows, 6 integration samples, E2 runner PASS and independent E3 16/16 PASS"
       ],
       "completed_parameter_groups": ["P1", "P4"],
       "partially_completed_parameter_groups": ["P2"],
-      "remaining_substages": ["T03-P2-BULK-TRAPS equation smoke and formal scans", "T03-P3", "T03-P5"],
+      "remaining_substages": ["T03-P2-BULK-TRAPS formal isolated NTA/NGA transfer sensitivity", "T03-P3", "T03-P5"],
       "remaining_parameter_groups": ["P2", "P3", "P5"],
+      "p2_bulk_equation_smoke_evidence": {
+        "status": "smoke_verified",
+        "runner_evidence": "E2",
+        "independent_persisted_check_evidence": "E3",
+        "devices": 3,
+        "coupled_dc_solves": 21,
+        "state_node_rows": 7257,
+        "integration_sample_rows": 6,
+        "formal_transfer_sensitivity_completed": false
+      },
       "first_group_outputs": [
         "config/tcad_t03_p4_channel_length.json",
         "results/reports/tcad_t03_p4_l_input_contract.json",
@@ -315,9 +326,16 @@
         "report/assets/tcad_t03_p2_dit_formal_states.png",
         "references/t03_p2_bulk_trap_sources.csv",
         "config/tcad_t03_p2_bulk_traps.json",
-        "results/reports/tcad_t03_p2_bulk_traps_input_contract.json"
+        "results/reports/tcad_t03_p2_bulk_traps_input_contract.json",
+        "results/reports/tcad_t03_p2_bulk_traps_equation_smoke.json",
+        "results/reports/tcad_t03_p2_bulk_traps_equation_smoke_check.json",
+        "results/tables/tcad_t03_p2_bulk_traps_equation_smoke_cases.csv",
+        "results/tables/tcad_t03_p2_bulk_traps_integration_samples.csv",
+        "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/input_snapshot.json",
+        "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/solver_log.json",
+        "results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke/state_nodes.csv"
       ],
-      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P1 combines the fixed-secondary-bias substage with a fixed-total-coupling effective capacitance-allocation ratio substage; it is not measured capacitance extraction, measured Al2O3 permittivity, or a fabricated asymmetric stack. P2 remains partial: the bottom-interface DIT substage is E3, and the bulk NTA/NGA source/equation contract is E3 static evidence, but no bulk-trap DEVSIM equation smoke or formal sensitivity has run. Formal DIT VTH, SS, lowest-gate current, and gm are numerical proxies; source stacks differ. P3, P5 and complete T03 remain incomplete. No T03 result is experimental calibration, physical Ion/Ioff, compact-model, circuit, layout, or HZO evidence.",
+      "evidence_boundary": "P4 and the numerical P1 group are complete with E3 persisted-evidence checks. P1 combines the fixed-secondary-bias substage with a fixed-total-coupling effective capacitance-allocation ratio substage; it is not measured capacitance extraction, measured Al2O3 permittivity, or a fabricated asymmetric stack. P2 remains partial: the bottom-interface DIT substage is E3; the bulk NTA/NGA source/equation contract is E3 static evidence; and the 3-device, 21-DC bulk equation smoke has E2 runner evidence plus an E3 independent persisted-evidence check. The bulk equation smoke verifies only the frozen quasi-static Poisson charge, analytic Jacobian, zero limit, solver convergence, conservation, and nonzero numerical response. Formal isolated NTA/NGA transfer sensitivity has not run, so physical DOS, SS, VTH, Ion/Ioff, dynamic capture-emission, complete P2, P3, P5, and complete T03 remain unverified. Formal DIT metrics remain numerical proxies and source stacks differ. No T03 result is experimental calibration, compact-model, circuit, layout, or HZO evidence.",
       "acceptance": ["five groups complete", "at least three points per group", "quantitative comparison uses common axes", "each completed group has an independent persisted-evidence check", "failed hypotheses remain visible and do not get silently relaxed"]
     },
     {

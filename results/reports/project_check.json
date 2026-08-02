@@ -317,7 +317,7 @@
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=71196"
+      "detail": "bytes=73509"
     },
     {
       "name": "file:PROJECT_PLAN.md",
@@ -332,7 +332,7 @@
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=16188"
+      "detail": "bytes=16455"
     },
     {
       "name": "file:Makefile",
@@ -342,12 +342,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=5539"
+      "detail": "bytes=5631"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=26547"
+      "detail": "bytes=27918"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1607,7 +1607,7 @@
     {
       "name": "experiments:t03_completed_and_partial_groups_are_distinct",
       "status": "PASS",
-      "detail": "complete=['P1', 'P4'] partial=['P2']"
+      "detail": "complete=['P1', 'P4'] partial=['P2'] remaining=['T03-P2-BULK-TRAPS formal isolated NTA/NGA transfer sensitivity', 'T03-P3', 'T03-P5']"
     },
     {
       "name": "senior:manifest",

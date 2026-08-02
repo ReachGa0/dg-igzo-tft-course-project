@@ -16,6 +16,41 @@
 
 ---
 
+## 2026-08-02 | Codex GPT-5 | 同步 T03-P2 bulk 方程冒烟机器配置
+
+### 用户目标
+
+只修正 `config/project.json` 和 `config/experiments.json` 中滞后的 T03-P2 阶段状态，保留已完成的 bulk 方程冒烟历史并把下一门改为正式隔离 NTA/NGA transfer-sensitivity 合同；不运行 TCAD/SPICE，不修改物理输入、仿真结果或历史证据。
+
+### 读取的关键输入
+
+- `AGENTS.md` 的阶段门、证据边界、修改后检查和 Git 保存规则。
+- `STATUS.md`、ADR-025、最新 `AI_LOG.md` 和提交 `924462b` 所确认的 bulk 方程冒烟完成事实。
+- 已落盘的 E2 运行报告、E3 独立检查报告、案例/积分 CSV、输入快照、求解日志和 7257 行二维节点状态路径。
+
+### 修改的文件
+
+- `config/project.json`：将 `tcad_track.next_scope` 更新为建立正式隔离 NTA/NGA transfer-sensitivity 合同，并把 bulk 方程冒烟的 E2/E3 完成事实和未完成边界写入 `evidence_boundary`。
+- `config/experiments.json`：将 bulk 静态合同和方程冒烟分别保留为完成历史；从 `remaining_substages` 删除 equation smoke，只保留 formal NTA/NGA sensitivity、T03-P3 和 T03-P5；补齐 7 个冒烟结果路径及结构化 E2/E3 证据摘要。
+- `scripts/check_project.py`：同步机器阶段断言，并检查 bulk 冒烟 E2/E3 摘要和结果路径已登记。
+- `STATUS.md`：登记机器配置一致性修正，不改变当前 partial P2 状态。
+
+### 验证命令和结果
+
+- `python3 -m json.tool config/project.json`：PASS。
+- `python3 -m json.tool config/experiments.json`：PASS。
+- `make check`：414/414 PASS。
+- `git diff --check`：PASS，无输出。
+- 本次未运行 TCAD、SPICE、P3、P5、电路、版图或 HZO。
+
+### 证据边界与下一步
+
+- 本次只修正机器配置和结构检查的一致性，不产生新的器件数值证据，也不提升既有 E2/E3 的物理证据等级。
+- bulk 方程冒烟仍只验证冻结准静态体电荷方程、解析 Jacobian、零极限、收敛、守恒和非零数值响应；正式 NTA/NGA transfer sensitivity、完整 P2/T03 和物理 DOS/SS/VTH/Ion/Ioff 仍未完成。
+- 下一步只允许建立正式隔离 NTA/NGA transfer-sensitivity 合同；合同通过前 P3、P5、SPICE、电路、版图和 HZO 保持关闭。
+
+---
+
 ## 2026-08-02 | Codex GPT-5 | 完成 T03-P2-BULK-TRAPS 方程冒烟与独立复核
 
 ### 用户目标

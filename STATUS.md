@@ -59,6 +59,7 @@
 - [x] T03-P2-BULK-TRAPS 已冻结 DOI `10.3390/electronics9101652` 的受主型导带指数尾态 NTA 与高斯深态 NGA；两类各取零控制 + 三个文献点，扫描时另一类和双界面 DIT 固定为零，NTD/NGD 延后。
 - [x] bulk-trap 合同固定 `epsilon=Ec-E`、准静态占据和 Poisson 体电荷 Jacobian；96 点 Gauss-Legendre 对独立 32768 区间 Simpson 参考的最大相对误差为 `7.93e-7`，30/30 静态检查 PASS，明确 `simulation=NOT_RUN_BY_CONTRACT_CHECK`。
 - [x] bulk-trap 方程冒烟完成零控制、`NTA=5e18 cm^-3 eV^-1` 尾态参考和 `NGA=5e16 cm^-3 eV^-1` 深态参考三个器件，共 21 次耦合 DC；7257 行二维节点状态和 6 行积分样本已落盘，运行器 E2 PASS，独立 16 项检查 E3 PASS。
+- [x] `config/project.json` 与 `config/experiments.json` 已同步登记 bulk 方程冒烟的完成历史、结果路径和 E2/E3 边界；机器配置的下一门现为正式隔离 NTA/NGA transfer-sensitivity 合同，未改变物理输入或既有仿真证据。
 
 ## 后续领域实现
 
