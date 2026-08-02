@@ -96,9 +96,32 @@ REQUIRED_FILES = [
     "report/assets/tcad_t03_p2_bulk_traps_formal_v3_states.png",
     "references/t03_p3_contact_sources.csv",
     "config/tcad_t03_p3_contact_resistance.json",
+    "config/tcad_t03_p3_contact_resistance_v1_failed.json",
     "scripts/check_t03_p3_contact_contract.py",
+    "scripts/check_t03_p3_contact_contract_v1.py",
+    "scripts/check_t03_p3_contact_resistance.py",
+    "tcad/run_t03_p3_contact_resistance.py",
+    "tcad/run_t03_p3_contact_resistance_v1_failed.py",
     "results/reports/tcad_t03_p3_contact_input_contract.json",
+    "results/reports/tcad_t03_p3_contact_input_contract_v1.json",
+    "results/reports/tcad_t03_p3_contact_input_contract_v2.json",
     "results/reports/tcad_t03_p3_contact_input_contract_v1_checker_initial_assertions_failed.json",
+    "results/reports/tcad_t03_p3_contact_resistance.json",
+    "results/reports/tcad_t03_p3_contact_resistance_device_terminal_current_conservation.json",
+    "results/reports/report_check_t03_p3_v1_appendix_image_path_failed.json",
+    "results/tables/tcad_t03_p3_contact_transfer.csv",
+    "results/tables/tcad_t03_p3_contact_output.csv",
+    "results/tables/tcad_t03_p3_contact_metrics.csv",
+    "results/tables/tcad_t03_p3_contact_circuit_balance.csv",
+    "results/tables/tcad_t03_p3_contact_t02_c_reproduction.csv",
+    "results/tables/tcad_t03_p3_contact_state_summary.csv",
+    "results/tcad/t03_sensitivity/p3_contact_resistance/input_snapshot.json",
+    "results/tcad/t03_sensitivity/p3_contact_resistance/solver_log.json",
+    "results/tcad/t03_sensitivity/p3_contact_resistance/state_manifest.json",
+    "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/failure_archive_manifest.json",
+    "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/failure_archive_supplement.json",
+    "report/assets/tcad_t03_p3_contact_sensitivity.png",
+    "report/assets/tcad_t03_p3_contact_states.png",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal/state_manifest.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/failure_archive_manifest.json",
     "results/tcad/t03_sensitivity/p2_bulk_traps_formal_v1_runner_completed_without_exception/input_snapshot.json",
@@ -696,10 +719,17 @@ def main() -> int:
             }
             and sensitivity.get("p3_contact_contract_evidence")
             == {
-                "status": "input_contract_ready",
+                "status": "input_contract_ready_v2_after_v1_failure",
+                "revision": 2,
                 "contract_evidence": "E3",
-                "contract_checks_passed": 30,
+                "contract_checks_passed": 34,
                 "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+                "v1_failure_preserved": True,
+                "relative_current_gate_domain": "external VDS>0",
+                "zero_vds_absolute_current_gate_domain": "external VDS=0",
+                "relative_threshold_changed": False,
+                "zero_vds_absolute_threshold_changed": False,
+                "physical_input_changed": False,
                 "literature_source_rows": 2,
                 "r_pair_w_values_kohm_um": [0.0, 0.5, 4.5],
                 "planned_devices": 12,
@@ -711,13 +741,62 @@ def main() -> int:
                 "complete_p3_contact_group": False,
                 "complete_t03_five_group_sensitivity": False,
             }
+            and sensitivity.get("p3_contact_v1_failure_evidence")
+            == {
+                "status": "FAIL_PRESERVED",
+                "evidence_level": "E0",
+                "devices": 12,
+                "converged_dc_solves": 243,
+                "transfer_points": 93,
+                "output_points": 63,
+                "states": 3,
+                "vtk_files": 18,
+                "runner_checks_passed": 24,
+                "runner_checks_total": 25,
+                "failed_gate": "device_terminal_current_conservation",
+                "failure_classification": "acceptance_gate_applicability_bug",
+                "maximum_all_point_relative_terminal_current_imbalance": 1.672051696284307,
+                "maximum_nonzero_vds_relative_terminal_current_imbalance": 3.3534440908787024e-11,
+                "maximum_zero_vds_absolute_current_a_per_cm": 1.0845387955775905e-19,
+                "maximum_circuit_kcl_relative_residual": 2.421775820902517e-12,
+                "maximum_circuit_ohms_law_relative_residual": 1.2092244533030856e-12,
+                "maximum_circuit_voltage_partition_absolute_residual_v": 0.0,
+                "independent_persisted_check_run": False,
+                "failure_archive_manifest_preserved": True,
+                "failure_archive_filename_collision_supplemented": True,
+                "formal_sensitivity_completed": False,
+                "complete_p3_contact_group": False,
+                "complete_t03_five_group_sensitivity": False,
+            }
             and sensitivity.get("p3_outputs")
             == [
                 "references/t03_p3_contact_sources.csv",
                 "config/tcad_t03_p3_contact_resistance.json",
+                "config/tcad_t03_p3_contact_resistance_v1_failed.json",
                 "scripts/check_t03_p3_contact_contract.py",
+                "scripts/check_t03_p3_contact_contract_v1.py",
+                "tcad/run_t03_p3_contact_resistance.py",
+                "tcad/run_t03_p3_contact_resistance_v1_failed.py",
+                "scripts/check_t03_p3_contact_resistance.py",
                 "results/reports/tcad_t03_p3_contact_input_contract_v1_checker_initial_assertions_failed.json",
                 "results/reports/tcad_t03_p3_contact_input_contract.json",
+                "results/reports/tcad_t03_p3_contact_input_contract_v1.json",
+                "results/reports/tcad_t03_p3_contact_resistance.json",
+                "results/reports/tcad_t03_p3_contact_resistance_device_terminal_current_conservation.json",
+                "results/tcad/t03_sensitivity/p3_contact_resistance/input_snapshot.json",
+                "results/tcad/t03_sensitivity/p3_contact_resistance/solver_log.json",
+                "results/tcad/t03_sensitivity/p3_contact_resistance/state_manifest.json",
+                "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/failure_archive_manifest.json",
+                "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/failure_archive_supplement.json",
+                "results/tables/tcad_t03_p3_contact_transfer.csv",
+                "results/tables/tcad_t03_p3_contact_output.csv",
+                "results/tables/tcad_t03_p3_contact_metrics.csv",
+                "results/tables/tcad_t03_p3_contact_circuit_balance.csv",
+                "results/tables/tcad_t03_p3_contact_t02_c_reproduction.csv",
+                "results/tables/tcad_t03_p3_contact_state_summary.csv",
+                "report/assets/tcad_t03_p3_contact_sensitivity.png",
+                "report/assets/tcad_t03_p3_contact_states.png",
+                "results/reports/tcad_t03_p3_contact_input_contract_v2.json",
             ]
             and all(
                 path in sensitivity.get("p2_outputs", [])
@@ -3281,8 +3360,39 @@ def main() -> int:
         add_check(checks, "t03_p2_bulk_traps:formal_contract", False, str(error))
 
     p3_config_path = ROOT / "config" / "tcad_t03_p3_contact_resistance.json"
-    p3_contract_path = (
-        ROOT / "results" / "reports" / "tcad_t03_p3_contact_input_contract.json"
+    p3_v1_config_path = (
+        ROOT / "config" / "tcad_t03_p3_contact_resistance_v1_failed.json"
+    )
+    p3_v1_contract_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p3_contact_input_contract_v1.json"
+    )
+    p3_v2_contract_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p3_contact_input_contract_v2.json"
+    )
+    p3_v1_report_path = (
+        ROOT / "results" / "reports" / "tcad_t03_p3_contact_resistance.json"
+    )
+    p3_v1_versioned_report_path = (
+        ROOT
+        / "results"
+        / "reports"
+        / "tcad_t03_p3_contact_resistance_device_terminal_current_conservation.json"
+    )
+    p3_v1_run_dir = (
+        ROOT / "results" / "tcad" / "t03_sensitivity" / "p3_contact_resistance"
+    )
+    p3_v1_archive_dir = (
+        ROOT
+        / "results"
+        / "tcad"
+        / "t03_sensitivity"
+        / "p3_contact_resistance_device_terminal_current_conservation"
+    )
+    p3_report_check_failure_path = (
+        ROOT
+        / "results"
+        / "reports"
+        / "report_check_t03_p3_v1_appendix_image_path_failed.json"
     )
     p3_failed_checker_path = (
         ROOT
@@ -3292,15 +3402,45 @@ def main() -> int:
     )
     try:
         p3_config = json.loads(p3_config_path.read_text(encoding="utf-8"))
-        p3_contract = json.loads(p3_contract_path.read_text(encoding="utf-8"))
+        p3_v1_config = json.loads(p3_v1_config_path.read_text(encoding="utf-8"))
+        p3_v1_contract = json.loads(p3_v1_contract_path.read_text(encoding="utf-8"))
+        p3_contract = json.loads(p3_v2_contract_path.read_text(encoding="utf-8"))
+        p3_v1_report = json.loads(p3_v1_report_path.read_text(encoding="utf-8"))
+        p3_v1_versioned_report = json.loads(
+            p3_v1_versioned_report_path.read_text(encoding="utf-8")
+        )
+        p3_v1_snapshot = json.loads(
+            (p3_v1_run_dir / "input_snapshot.json").read_text(encoding="utf-8")
+        )
+        p3_v1_solver_log = json.loads(
+            (p3_v1_run_dir / "solver_log.json").read_text(encoding="utf-8")
+        )
+        p3_v1_state_manifest = json.loads(
+            (p3_v1_run_dir / "state_manifest.json").read_text(encoding="utf-8")
+        )
+        p3_v1_archive_manifest = json.loads(
+            (p3_v1_archive_dir / "failure_archive_manifest.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        p3_v1_archive_supplement = json.loads(
+            (p3_v1_archive_dir / "failure_archive_supplement.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        p3_report_check_failure = json.loads(
+            p3_report_check_failure_path.read_text(encoding="utf-8")
+        )
         p3_failed_checker = json.loads(
             p3_failed_checker_path.read_text(encoding="utf-8")
         )
         p3_contract_checks = p3_contract.get("checks", [])
         add_check(
             checks,
-            "t03_p3_contact:static_contract",
-            p3_config.get("case_id") == "IGZO_T03_P3_CONTACT_RESISTANCE_V1"
+            "t03_p3_contact:v2_static_recovery_contract",
+            p3_config.get("schema_version") == 2
+            and p3_config.get("revision") == 2
+            and p3_config.get("case_id") == "IGZO_T03_P3_CONTACT_RESISTANCE_V2"
             and p3_config.get("stage") == "T03-P3-CONTACT-RESISTANCE"
             and p3_contract.get("status") == "PASS"
             and p3_contract.get("contract_status") == "PASS"
@@ -3310,7 +3450,7 @@ def main() -> int:
             and p3_contract.get("case_id") == p3_config.get("case_id")
             and p3_contract.get("config", {}).get("sha256")
             == sha256(p3_config_path)
-            and len(p3_contract_checks) == 30
+            and len(p3_contract_checks) == 34
             and all(item.get("status") == "PASS" for item in p3_contract_checks)
             and not p3_contract.get("failures"),
             (
@@ -3340,21 +3480,38 @@ def main() -> int:
             and p3_config.get("failure_retention", {}).get(
                 "relax_preregistered_thresholds_after_failure_permitted"
             )
-            is False,
+            is False
+            and p3_config.get("acceptance", {}).get(
+                "maximum_relative_device_terminal_current_imbalance"
+            )
+            == 1e-5
+            and p3_config.get("acceptance", {}).get(
+                "relative_device_terminal_current_imbalance_gate_domain"
+            )
+            == "external VDS>0"
+            and p3_config.get("acceptance", {}).get(
+                "maximum_zero_external_vds_absolute_current_a_per_cm"
+            )
+            == 1e-16
+            and p3_config.get("acceptance", {}).get(
+                "zero_external_vds_absolute_current_gate_domain"
+            )
+            == "external VDS=0",
             f"values={p3_values} plan={planned}",
         )
         p3_inputs = p3_contract.get("inputs", {})
         add_check(
             checks,
             "t03_p3_contact:input_hashes_and_next_gate",
-            len(p3_inputs) == 20
+            len(p3_inputs) == 31
             and all(
                 (ROOT / item["path"]).is_file()
                 and sha256(ROOT / item["path"]) == item["sha256"]
                 for item in p3_inputs.values()
             )
-            and "implement and run only the formal T03-P3"
-            in config.get("tcad_track", {}).get("next_scope", "")
+            and config.get("tcad_track", {}).get("next_scope", "").startswith(
+                "run exactly one formal T03-P3 V2"
+            )
             and "without running DEVSIM"
             in p3_contract.get("evidence_boundary", {}).get(
                 "contract_allowed_claim", ""
@@ -3364,6 +3521,156 @@ def main() -> int:
                 "future_run_allowed_claim", ""
             ),
             f"inputs={len(p3_inputs)} next={config.get('tcad_track', {}).get('next_scope')}",
+        )
+
+        expected_v1_hashes = p3_config.get("remediation", {}).get(
+            "expected_v1_hashes", {}
+        )
+        v1_runner_checks = p3_v1_report.get("checks", {})
+        v1_all_points = [
+            *p3_v1_report.get("transfer_points", []),
+            *p3_v1_report.get("output_points", []),
+        ]
+        v1_nonzero_points = [
+            row for row in v1_all_points if float(row["external_vds_v"]) > 1e-12
+        ]
+        v1_zero_points = [
+            row
+            for row in p3_v1_report.get("output_points", [])
+            if math.isclose(
+                float(row["external_vds_v"]), 0.0, rel_tol=0.0, abs_tol=1e-12
+            )
+        ]
+        v1_max_nonzero = max(
+            float(row["relative_current_imbalance"]) for row in v1_nonzero_points
+        )
+        v1_max_zero = max(
+            abs(float(row["external_drain_current_a_per_cm"]))
+            for row in v1_zero_points
+        )
+        add_check(
+            checks,
+            "t03_p3_contact:v1_single_gate_failure_and_numerical_evidence",
+            p3_v1_config.get("case_id") == "IGZO_T03_P3_CONTACT_RESISTANCE_V1"
+            and p3_v1_contract.get("status") == "PASS"
+            and len(p3_v1_contract.get("checks", [])) == 30
+            and p3_v1_report == p3_v1_versioned_report
+            and p3_v1_report.get("status") == "FAIL"
+            and p3_v1_report.get("evidence_level") == "E0"
+            and p3_v1_report.get("failures")
+            == ["device_terminal_current_conservation"]
+            and len(v1_runner_checks) == 25
+            and sum(
+                item.get("status") == "PASS" for item in v1_runner_checks.values()
+            )
+            == 24
+            and len(p3_v1_solver_log.get("runs", [])) == 12
+            and len(p3_v1_solver_log.get("solver_records", [])) == 243
+            and all(
+                record.get("converged")
+                for record in p3_v1_solver_log.get("solver_records", [])
+            )
+            and len(p3_v1_report.get("transfer_points", [])) == 93
+            and len(p3_v1_report.get("output_points", [])) == 63
+            and len(v1_nonzero_points) == 147
+            and len(v1_zero_points) == 9
+            and math.isclose(
+                v1_max_nonzero,
+                3.3534440908787024e-11,
+                rel_tol=1e-12,
+                abs_tol=0.0,
+            )
+            and math.isclose(
+                v1_max_zero,
+                1.0845387955775905e-19,
+                rel_tol=1e-12,
+                abs_tol=0.0,
+            )
+            and p3_v1_state_manifest.get("entry_count") == 3
+            and sum(
+                len(entry.get("vtk_files", []))
+                for entry in p3_v1_state_manifest.get("entries", [])
+            )
+            == 18
+            and p3_v1_report.get("independent_persisted_evidence_check_complete")
+            is False,
+            (
+                f"runner={sum(item.get('status') == 'PASS' for item in v1_runner_checks.values())}/"
+                f"{len(v1_runner_checks)} devices={len(p3_v1_solver_log.get('runs', []))} "
+                f"dc={len(p3_v1_solver_log.get('solver_records', []))} "
+                f"nonzero={v1_max_nonzero:.6e} zero={v1_max_zero:.6e}"
+            ),
+        )
+        add_check(
+            checks,
+            "t03_p3_contact:v1_hashes_and_failure_archive_supplement",
+            len(expected_v1_hashes) == 11
+            and all(
+                (ROOT / path).is_file()
+                and sha256(ROOT / path) == expected_hash
+                for path, expected_hash in expected_v1_hashes.items()
+            )
+            and p3_v1_snapshot.get("case_id")
+            == "IGZO_T03_P3_CONTACT_RESISTANCE_V1"
+            and p3_v1_archive_manifest.get("status") == "FAIL_PRESERVED"
+            and p3_v1_archive_manifest.get("failed_gate")
+            == "device_terminal_current_conservation"
+            and p3_v1_archive_supplement.get("status")
+            == "FAIL_PRESERVED_WITH_SUPPLEMENT"
+            and p3_v1_archive_supplement.get("original_manifest_collision", {}).get(
+                "present"
+            )
+            is True
+            and p3_v1_archive_supplement.get("original_manifest_collision", {}).get(
+                "original_manifest_preserved_unmodified"
+            )
+            is True
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                for item in [
+                    *p3_v1_archive_supplement.get("unique_recovery_copies", []),
+                    *p3_v1_archive_supplement.get("primary_v1_evidence", []),
+                ]
+            ),
+            (
+                f"hashes={len(expected_v1_hashes)} "
+                f"archive={p3_v1_archive_manifest.get('status')} "
+                f"supplement={p3_v1_archive_supplement.get('status')}"
+            ),
+        )
+        v2_noncontract_paths = [
+            ROOT / value
+            for name, value in p3_config.get("outputs", {}).items()
+            if name != "contract_report"
+        ]
+        add_check(
+            checks,
+            "t03_p3_contact:v2_simulation_and_independent_check_not_run",
+            all(not path.exists() for path in v2_noncontract_paths)
+            and p3_contract.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and p3_config.get("remediation", {}).get("physical_input_changed")
+            is False
+            and p3_config.get("remediation", {}).get("relative_threshold_changed")
+            is False
+            and p3_config.get("remediation", {}).get(
+                "zero_vds_absolute_threshold_changed"
+            )
+            is False,
+            f"absent_v2_outputs={sum(not path.exists() for path in v2_noncontract_paths)}/{len(v2_noncontract_paths)}",
+        )
+        add_check(
+            checks,
+            "t03_p3_contact:report_image_path_failure_is_preserved",
+            p3_report_check_failure.get("status") == "FAIL_PRESERVED"
+            and p3_report_check_failure.get("exit_code") == 2
+            and p3_report_check_failure.get("failure_classification")
+            == "report_source_image_path_error"
+            and p3_report_check_failure.get("tcad_or_spice_run") is False
+            and p3_report_check_failure.get("physical_input_changed") is False
+            and p3_report_check_failure.get("simulation_result_changed") is False
+            and p3_report_check_failure.get("acceptance_threshold_changed") is False,
+            p3_report_check_failure.get("error", "missing error"),
         )
         failed_checks = [
             item
@@ -3388,7 +3695,7 @@ def main() -> int:
             f"status={p3_failed_checker.get('status')} failed_checks={len(failed_checks)}",
         )
     except Exception as error:  # noqa: BLE001
-        add_check(checks, "t03_p3_contact:contract", False, str(error))
+        add_check(checks, "t03_p3_contact:v2_contract_and_v1_failure", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

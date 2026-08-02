@@ -16,6 +16,39 @@
 
 ---
 
+## 2026-08-02 | Codex GPT-5 | 保留 P3 V1 失败并建立 V2 适用域恢复合同
+
+### 用户目标
+
+按阶段 DAG 继续 T03-P3；可由现有代码和证据保守解决的问题直接处理。V1 任一门失败时保留全部结果，不放宽预注册阈值，不提前运行独立检查或进入 P5、M00/M01、SPICE、电路、版图、PEX 和 HZO。
+
+### V1 正式运行与失败保留
+
+- 实现正式 runner、独立落盘 checker 和 Makefile 目标。V1 完成 12 个隔离器件、243 次全部收敛 DC、93 个 transfer 点、63 个 output 点、3 状态和 18 VTK，墙钟 `26.973 s`；runner 24/25 PASS，保持 E0/FAIL。
+- 唯一失败门 `device_terminal_current_conservation` 把相对端口不平衡用于 9 个 `external VDS=0` 点。该处电流约为 `1e-20 A/cm` 数值噪声，最大相对比值为 `1.6720517`；147 个非零漏压点最大相对不平衡为 `3.35344e-11`，零漏压最大绝对电流为 `1.08454e-19 A/cm`，分别通过不变的 `1e-5` 和 `1e-16 A/cm` 门。
+- 其余完成门原样通过，包括 circuit KCL `2.42178e-12`、Ohm 定律 `1.20922e-12`、压降分配 0、243 次收敛、方向/最小响应、T02-C 回归、3 状态、18 VTK 和两张图。通过项不覆盖唯一失败，未运行 V1 独立检查，P3/T03 均未关闭。
+- V1 活动配置、运行器、合同、报告、快照、求解日志、6 张表、状态、VTK 和图片全部冻结。失败归档的 report/config 同 basename 导致外部副本覆盖；原 manifest、标准报告、版本化报告和原始结果均未改写。新增 supplement 披露冲突，并用唯一名称恢复与原 manifest 哈希一致的 pre-archive report、最终报告、配置和运行器副本。
+
+### V2 恢复合同
+
+- V2 保持 `R_pair*W=0/0.5/4.5 kOhm*um`、总源漏对称分摊、二维 n-IGZO 方程、自洽 device-circuit 实现、网格、偏压、提取方法、所有数值阈值和 12 器件/243 DC/156 点/3 状态/18 VTK 预算不变。
+- 唯一验收语义修正是把不变的 `1e-5` 相对门限定到 `external VDS>0`，把不变的 `1e-16 A/cm` 绝对门限定到 `external VDS=0`。V2 输出和失败归档全部使用独立 `_v2` 路径，归档外部文件名包含 artifact 角色，避免同名覆盖。
+- `make t03-p3-contact-contract-check`：34/34 PASS、E3、`simulation=NOT_RUN_BY_CONTRACT_CHECK`。新增 4 项复核 V1 冻结哈希、单一失败门、归档 supplement 和 V1→V2 不变章节；本里程碑没有运行 V2 DEVSIM。
+
+### 文档与验证
+
+- 同步 `config/project.json`、`config/experiments.json`、`STATUS.md`、`README.md`、`AI_CONTEXT.md`、`ARCHITECTURE.md`、`PROJECT_PLAN.md`、ADR-032、二维 TCAD 路线、课程矩阵、报告第 5/6/8 章、附录 D 和证据矩阵。V1 图只作为 E0 失败证据放在附录，不写成 P3 PASS。
+- `scripts/check_project.py` 独立复算 V1 243 条求解、156 点、24/25 门、关键数值、11 个冻结哈希、archive supplement，并确认所有 V2 运行/独立检查输出尚不存在。最终 `make check` 为 501/501 PASS。
+- 首次 `make report-check` 因附录图片写成 `../assets/...` 而失败；失败记录保存为 `results/reports/report_check_t03_p3_v1_appendix_image_path_failed.json`。只把两处路径改为报告约定的 `assets/...` 后复跑 PASS：12 章、5 附录、16 个允许占位符、18 张图片。
+- Python 编译和活动 JSON 解析 PASS。没有运行 V2 正式敏感性、V1/V2 独立结果检查、P5、M00/M01、SPICE、电路、版图、PEX 或 HZO。
+
+### 证据边界和下一步
+
+- V1 的 12/243/156 是已完成但 E0/FAIL 的计算证据；V2 的 12/243/156 仍是静态合同计划量。两者都不能称为项目 TLM/接触电阻提取、Ti/Ni 比较、势垒/注入验证、物理 Ion、实验校准或完整 P3/T03。
+- 下一步只允许运行一次正式 P3 V2。只有 V2 runner PASS 后才执行不导入 runner/DEVSIM 的独立落盘检查；任一门失败继续完整归档并停止在 P3。
+
+---
+
 ## 2026-08-02 | Codex GPT-5 | 建立 T03-P3 对称串联接触电阻正式合同
 
 ### 用户目标

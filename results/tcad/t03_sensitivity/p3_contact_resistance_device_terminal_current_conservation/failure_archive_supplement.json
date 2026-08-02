@@ -1,0 +1,125 @@
+{
+  "status": "FAIL_PRESERVED_WITH_SUPPLEMENT",
+  "case_id": "IGZO_T03_P3_CONTACT_RESISTANCE_V1",
+  "failed_gate": "device_terminal_current_conservation",
+  "reason": "The V1 runner completed all 12 devices, 243 converged DC solves and 156 reported points, but applied the relative terminal-current conservation gate to nine external-VDS=0 points whose absolute currents were at numerical-noise scale. The maximum relative ratio was 1.672051696284307 at currents of order 1e-20 A/cm; the maximum nonzero-VDS relative imbalance was 3.3534440908787024e-11 and the separate zero-VDS absolute-current gate passed at 1.0845387955775905e-19 A/cm.",
+  "original_manifest": {
+    "path": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/failure_archive_manifest.json",
+    "sha256": "7e453fad7f22bd5ea18f7922e9311e709b94457f6252e7b887c7c2a89cac508e"
+  },
+  "original_manifest_collision": {
+    "present": true,
+    "destination": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_resistance.json",
+    "cause": "The V1 runner copied the standard report and formal config into one external-artifact basename; the later config copy overwrote the report copy.",
+    "effect": "The original manifest records the pre-archive report hash f1c3f8ed..., while the collided destination contains the V1 config hash 4aa64aae.... The standard report, versioned outer failure report, active run directory and all numerical outputs remained intact.",
+    "original_manifest_preserved_unmodified": true,
+    "original_failed_outputs_deleted_or_rewritten": false
+  },
+  "unique_recovery_copies": [
+    {
+      "role": "v1_frozen_config",
+      "path": "config/tcad_t03_p3_contact_resistance_v1_failed.json",
+      "sha256": "4aa64aae897a9302e39f41c548c7691f1cc13b5fbf12b5ff0a32cf3fe30b3cff"
+    },
+    {
+      "role": "v1_frozen_runner",
+      "path": "tcad/run_t03_p3_contact_resistance_v1_failed.py",
+      "sha256": "8d1362742d2001b94f66b9099b2814bc479d1dd6293a66492f36ff00c6cb5ca2"
+    },
+    {
+      "role": "v1_pre_archive_report_reconstructed_by_removing_only_failure_archive_and_using_the_original_json_writer",
+      "path": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_resistance_v1_pre_archive_report.json",
+      "sha256": "f1c3f8ed9a95f8e92d8901574dca844e9fed11f268ed08471d2d0ea75ddbb52a",
+      "exactly_matches_original_manifest_hash": true
+    },
+    {
+      "role": "v1_final_report_with_failure_archive_metadata",
+      "path": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_resistance_v1_final_report.json",
+      "sha256": "d5e0d189bc69eede80787dfc34f5556c119ff3807b1a978e0fef85d01e384b98"
+    },
+    {
+      "role": "v1_config_copy_in_failure_archive",
+      "path": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_resistance_v1_config.json",
+      "sha256": "4aa64aae897a9302e39f41c548c7691f1cc13b5fbf12b5ff0a32cf3fe30b3cff"
+    },
+    {
+      "role": "v1_runner_copy_in_failure_archive",
+      "path": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/run_t03_p3_contact_resistance_v1.py",
+      "sha256": "8d1362742d2001b94f66b9099b2814bc479d1dd6293a66492f36ff00c6cb5ca2"
+    },
+    {
+      "role": "v1_frozen_contract_report",
+      "path": "results/reports/tcad_t03_p3_contact_input_contract_v1.json",
+      "sha256": "82553acc696b1e0d350c37dbe5e6e208e72189b7b5b68a5e6391ff9cdd6f7623"
+    },
+    {
+      "role": "v1_frozen_contract_checker",
+      "path": "scripts/check_t03_p3_contact_contract_v1.py",
+      "sha256": "9a4446e9bb2e678983fcadf114c0b3922a8464f02fa3c5ffdbf3724760c87315"
+    }
+  ],
+  "primary_v1_evidence": [
+    {
+      "path": "results/tcad/t03_sensitivity/p3_contact_resistance/input_snapshot.json",
+      "sha256": "456fca04d8b1afdb657b42ffc2381b9a29213bee97ea9cc7fd5329f24186c256"
+    },
+    {
+      "path": "results/tcad/t03_sensitivity/p3_contact_resistance/solver_log.json",
+      "sha256": "bc5f68d00112de06e0c4b96fc8b362e0475734e15a13fd469622babc5c20042e"
+    },
+    {
+      "path": "results/tcad/t03_sensitivity/p3_contact_resistance/state_manifest.json",
+      "sha256": "265fae69ce968661bc63005322a31e86ca984b19da0cac88b4dd34f8c76867e2"
+    },
+    {
+      "path": "results/reports/tcad_t03_p3_contact_resistance.json",
+      "sha256": "d5e0d189bc69eede80787dfc34f5556c119ff3807b1a978e0fef85d01e384b98"
+    },
+    {
+      "path": "results/reports/tcad_t03_p3_contact_resistance_device_terminal_current_conservation.json",
+      "sha256": "d5e0d189bc69eede80787dfc34f5556c119ff3807b1a978e0fef85d01e384b98"
+    },
+    {
+      "path": "results/tables/tcad_t03_p3_contact_transfer.csv",
+      "sha256": "ee8b2a3b772c575838ce0ebd0edf8921608001b4bae2baba5c4dbeb941a25ea9"
+    },
+    {
+      "path": "results/tables/tcad_t03_p3_contact_output.csv",
+      "sha256": "10c642f9e6daeda4314c344bd67e75046ba3156c1d100985a7e5e03d6f12cd4f"
+    },
+    {
+      "path": "results/tables/tcad_t03_p3_contact_metrics.csv",
+      "sha256": "a99885c8ca0a1beaf871e53a3c280e49c51b7af08c5ec3040d04dde2908bf730"
+    },
+    {
+      "path": "results/tables/tcad_t03_p3_contact_circuit_balance.csv",
+      "sha256": "0119ab2c617beef2264c5faeaa40aaaf3f1bd21b7812571d74202fd9fd84b238"
+    },
+    {
+      "path": "results/tables/tcad_t03_p3_contact_t02_c_reproduction.csv",
+      "sha256": "42432c9a4cc230b9a551938c6c1b98ebf62428e62df748b0bb891d5fbf0dbf46"
+    },
+    {
+      "path": "results/tables/tcad_t03_p3_contact_state_summary.csv",
+      "sha256": "4d270e86f467cd0b92ad2719375764936f57b42da03828a84c1ddfe06f600bc2"
+    },
+    {
+      "path": "report/assets/tcad_t03_p3_contact_sensitivity.png",
+      "sha256": "d12158a33038596a9ca4bdd09afed2ec5e6d1455bb18461f7dce45df48d650c6"
+    },
+    {
+      "path": "report/assets/tcad_t03_p3_contact_states.png",
+      "sha256": "9470da0efa6b0384ebb7d27b95fb159de2c32976e0178adbaeae42dcd5a0d6c2"
+    }
+  ],
+  "recovery_boundary": {
+    "v1_status": "E0_FAIL",
+    "independent_checker_run_for_v1": false,
+    "threshold_relaxed": false,
+    "physical_input_changed": false,
+    "permitted_next_action": "Create and pass a new V2 static contract that changes only the applicability domain: use the unchanged relative terminal-current imbalance threshold at external VDS>0 and the unchanged absolute current threshold at external VDS=0.",
+    "p3_complete": false,
+    "t03_complete": false,
+    "p5_or_downstream_open": false
+  }
+}

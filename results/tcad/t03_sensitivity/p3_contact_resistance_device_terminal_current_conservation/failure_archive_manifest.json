@@ -1,0 +1,74 @@
+{
+  "status": "FAIL_PRESERVED",
+  "directory": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation",
+  "report": "results/reports/tcad_t03_p3_contact_resistance_device_terminal_current_conservation.json",
+  "failed_gate": "device_terminal_current_conservation",
+  "copied_external_artifacts": [
+    {
+      "name": "transfer_csv",
+      "source": "results/tables/tcad_t03_p3_contact_transfer.csv",
+      "archive": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_transfer.csv",
+      "sha256": "ee8b2a3b772c575838ce0ebd0edf8921608001b4bae2baba5c4dbeb941a25ea9"
+    },
+    {
+      "name": "output_csv",
+      "source": "results/tables/tcad_t03_p3_contact_output.csv",
+      "archive": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_output.csv",
+      "sha256": "10c642f9e6daeda4314c344bd67e75046ba3156c1d100985a7e5e03d6f12cd4f"
+    },
+    {
+      "name": "metric_csv",
+      "source": "results/tables/tcad_t03_p3_contact_metrics.csv",
+      "archive": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_metrics.csv",
+      "sha256": "a99885c8ca0a1beaf871e53a3c280e49c51b7af08c5ec3040d04dde2908bf730"
+    },
+    {
+      "name": "circuit_balance_csv",
+      "source": "results/tables/tcad_t03_p3_contact_circuit_balance.csv",
+      "archive": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_circuit_balance.csv",
+      "sha256": "0119ab2c617beef2264c5faeaa40aaaf3f1bd21b7812571d74202fd9fd84b238"
+    },
+    {
+      "name": "reference_comparison_csv",
+      "source": "results/tables/tcad_t03_p3_contact_t02_c_reproduction.csv",
+      "archive": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_t02_c_reproduction.csv",
+      "sha256": "42432c9a4cc230b9a551938c6c1b98ebf62428e62df748b0bb891d5fbf0dbf46"
+    },
+    {
+      "name": "state_summary_csv",
+      "source": "results/tables/tcad_t03_p3_contact_state_summary.csv",
+      "archive": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_state_summary.csv",
+      "sha256": "4d270e86f467cd0b92ad2719375764936f57b42da03828a84c1ddfe06f600bc2"
+    },
+    {
+      "name": "sensitivity_figure_png",
+      "source": "report/assets/tcad_t03_p3_contact_sensitivity.png",
+      "archive": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_sensitivity.png",
+      "sha256": "d12158a33038596a9ca4bdd09afed2ec5e6d1455bb18461f7dce45df48d650c6"
+    },
+    {
+      "name": "state_figure_png",
+      "source": "report/assets/tcad_t03_p3_contact_states.png",
+      "archive": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_states.png",
+      "sha256": "9470da0efa6b0384ebb7d27b95fb159de2c32976e0178adbaeae42dcd5a0d6c2"
+    },
+    {
+      "name": "report",
+      "source": "results/reports/tcad_t03_p3_contact_resistance.json",
+      "archive": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_resistance.json",
+      "sha256": "f1c3f8ed9a95f8e92d8901574dca844e9fed11f268ed08471d2d0ea75ddbb52a"
+    },
+    {
+      "name": "runner_script",
+      "source": "tcad/run_t03_p3_contact_resistance.py",
+      "archive": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/run_t03_p3_contact_resistance.py",
+      "sha256": "8d1362742d2001b94f66b9099b2814bc479d1dd6293a66492f36ff00c6cb5ca2"
+    },
+    {
+      "name": "formal_config",
+      "source": "config/tcad_t03_p3_contact_resistance.json",
+      "archive": "results/tcad/t03_sensitivity/p3_contact_resistance_device_terminal_current_conservation/external_artifacts/tcad_t03_p3_contact_resistance.json",
+      "sha256": "4aa64aae897a9302e39f41c548c7691f1cc13b5fbf12b5ff0a32cf3fe30b3cff"
+    }
+  ]
+}

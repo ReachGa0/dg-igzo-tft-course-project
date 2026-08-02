@@ -1,0 +1,274 @@
+{
+  "case_id": "IGZO_T03_P3_CONTACT_RESISTANCE_V1",
+  "stage": "T03-P3-CONTACT-RESISTANCE",
+  "entry_count": 3,
+  "entries": [
+    {
+      "state_id": "contact_ideal_control_output_vtg_1p0_vds_0p2",
+      "state_label": "ideal_control at VTG=1.0 V, external VDS=0.2 V",
+      "parameter_group_id": "P3",
+      "case_id": "ideal_control",
+      "r_pair_w_kohm_um": 0.0,
+      "r_pair_ohm": 0.0,
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P3_CONTACT_RESISTANCE",
+      "vbg_v": 0.0,
+      "vtg_v": 1.0,
+      "external_vds_v": 0.2,
+      "internal_source_v": 0.0,
+      "internal_drain_v": 0.2,
+      "internal_device_vds_v": 0.2,
+      "absolute_external_drain_current_a_per_cm": 0.0005748690048001235,
+      "absolute_external_drain_current_terminal_a": 3.449214028800741e-06,
+      "relative_current_imbalance": 9.429993297885926e-16,
+      "source_kcl_relative_residual": 0.0,
+      "drain_kcl_relative_residual": 0.0,
+      "circuit_ohms_law_relative_residual": 0.0,
+      "voltage_partition_residual_v": 0.0,
+      "center_channel_potential_v": 0.16677904600954305,
+      "center_channel_electron_density_cm3": 1.1261521939241883e+17,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 1.0,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 3.493105639159464e+18,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 11.162563494048785,
+      "median_cell_current_density_magnitude_a_per_cm2": 88.64268623648279,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 2028.2414803865809,
+      "node_csv": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_ideal_control_output_vtg_1p0_vds_0p2_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_ideal_control_output_vtg_1p0_vds_0p2_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "09e902a04154d9c94897138c0a72753f4d4e0b8077d124c514cd03674a8adee3",
+      "element_csv_sha256": "3ba9c18d555cb82acedfa410f467267c38f4643fc54e2eeb20e3bbb9f13181c7",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_ideal_control_output_vtg_1p0_vds_0p2.visit",
+          "sha256": "1d1a4e2607507e4b7df30f3a816c413041f6d7def8ece661888bb24ea573db90"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_ideal_control_output_vtg_1p0_vds_0p2.vtm",
+          "sha256": "11ee3500caf640911977108ec3b688e36c9e268c2e3cf1597b98143eae875ca4"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_ideal_control_output_vtg_1p0_vds_0p2_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_ideal_control_output_vtg_1p0_vds_0p2_1.vtu",
+          "sha256": "fd305c6d5fc5650a610dee1671b5f1dab209547afb45f01a223d152a59dec5fd"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_ideal_control_output_vtg_1p0_vds_0p2_2.vtu",
+          "sha256": "0f1392529501fd13029351a0e665d7bbdf947d2e48deae6324ee5edb797992f1"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_ideal_control_output_vtg_1p0_vds_0p2_3.vtu",
+          "sha256": "df2d2d5574af9cbe7ff4d0446ed727ea428c7cdf31d6a64c658eddab8248e95b"
+        }
+      ],
+      "circuit_state": {
+        "external_source_v": 0.0,
+        "external_drain_v": 0.2,
+        "internal_source_v": 0.0,
+        "internal_drain_v": 0.2,
+        "source_resistor_current_external_to_internal_a": 0.0,
+        "drain_resistor_current_external_to_internal_a": 0.0,
+        "source_current_terminal_a": -3.4492140288007443e-06,
+        "drain_current_terminal_a": 3.449214028800741e-06,
+        "source_kcl_residual_a": 0.0,
+        "drain_kcl_residual_a": 0.0,
+        "source_drop_v": 0.0,
+        "drain_drop_v": 0.0,
+        "total_resistor_drop_v": 0.0,
+        "total_resistor_power_w": 0.0
+      },
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of en0/en1/en2 vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "contact_literature_low_magnitude_proxy_output_vtg_1p0_vds_0p2",
+      "state_label": "literature_low_magnitude_proxy at VTG=1.0 V, external VDS=0.2 V",
+      "parameter_group_id": "P3",
+      "case_id": "literature_low_magnitude_proxy",
+      "r_pair_w_kohm_um": 0.5,
+      "r_pair_ohm": 8.333333333333334,
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P3_CONTACT_RESISTANCE",
+      "vbg_v": 0.0,
+      "vtg_v": 1.0,
+      "external_vds_v": 0.2,
+      "internal_source_v": 1.4369846635225835e-05,
+      "internal_drain_v": 0.1999856301533648,
+      "internal_device_vds_v": 0.19997126030672957,
+      "absolute_external_drain_current_a_per_cm": 0.0005747938654088179,
+      "absolute_external_drain_current_terminal_a": 3.448763192452908e-06,
+      "relative_current_imbalance": 1.1317471229940486e-15,
+      "source_kcl_relative_residual": 1.2280242219987507e-15,
+      "drain_kcl_relative_residual": 3.747929925540191e-13,
+      "circuit_ohms_law_relative_residual": 1.873277269206127e-13,
+      "voltage_partition_residual_v": 0.0,
+      "center_channel_potential_v": 0.1667779810972617,
+      "center_channel_electron_density_cm3": 1.1261571578222502e+17,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 1.0,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 3.4930545204504243e+18,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 11.162032501553083,
+      "median_cell_current_density_magnitude_a_per_cm2": 88.63152538375769,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 2027.9741989478694,
+      "node_csv": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_low_magnitude_proxy_output_vtg_1p0_vds_0p2_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_low_magnitude_proxy_output_vtg_1p0_vds_0p2_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "2ee0278a38db15cea51c16e949ffad9c281f4080b11643783a6201fd3785b51b",
+      "element_csv_sha256": "ddf86023b57d3a0f756bf7f466ae8210a9a5289657691e6b221bb4d13c70d093",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_low_magnitude_proxy_output_vtg_1p0_vds_0p2.visit",
+          "sha256": "d5d09e745a03ac91198c9a9d6c2389e2ed8abe84517c03580dac969c1306909e"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_low_magnitude_proxy_output_vtg_1p0_vds_0p2.vtm",
+          "sha256": "207098898dd94359cada91d8fd5bf0f54ec560f5f0ad3db7e06a9eebc42e9e6c"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_low_magnitude_proxy_output_vtg_1p0_vds_0p2_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_low_magnitude_proxy_output_vtg_1p0_vds_0p2_1.vtu",
+          "sha256": "4cc39ffb0fdcb6d3e61d23ab5aa23a9574500a7cf372e3d3563045339479c4d7"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_low_magnitude_proxy_output_vtg_1p0_vds_0p2_2.vtu",
+          "sha256": "73dfecbe8618451619173ee032d2acf3016cb5b240753afdfc89ad0049c206af"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_low_magnitude_proxy_output_vtg_1p0_vds_0p2_3.vtu",
+          "sha256": "ab69f2f05e1fa7a6d882c9913f448306f51c4a24fa37285c03a42aecc355322c"
+        }
+      ],
+      "circuit_state": {
+        "external_source_v": 0.0,
+        "external_drain_v": 0.2,
+        "internal_source_v": 1.4369846635225835e-05,
+        "internal_drain_v": 0.1999856301533648,
+        "source_resistor_current_external_to_internal_a": -3.4487631924542e-06,
+        "drain_resistor_current_external_to_internal_a": 3.448763192452908e-06,
+        "source_current_terminal_a": -3.4487631924542043e-06,
+        "drain_current_terminal_a": 3.4487631924542005e-06,
+        "source_kcl_residual_a": -4.235164736271502e-21,
+        "drain_kcl_residual_a": 1.2925722775100623e-18,
+        "source_drop_v": 1.4369846635225835e-05,
+        "drain_drop_v": 1.4369846635220451e-05,
+        "total_resistor_drop_v": 2.8739693270446286e-05,
+        "total_resistor_power_w": 9.911639631352025e-11
+      },
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of en0/en1/en2 vectors",
+        "local_unit": "A/cm^2"
+      }
+    },
+    {
+      "state_id": "contact_literature_high_magnitude_proxy_output_vtg_1p0_vds_0p2",
+      "state_label": "literature_high_magnitude_proxy at VTG=1.0 V, external VDS=0.2 V",
+      "parameter_group_id": "P3",
+      "case_id": "literature_high_magnitude_proxy",
+      "r_pair_w_kohm_um": 4.5,
+      "r_pair_ohm": 75.0,
+      "mesh_level": "interface_4x",
+      "stage_id": "T03_P3_CONTACT_RESISTANCE",
+      "vbg_v": 0.0,
+      "vtg_v": 1.0,
+      "external_vds_v": 0.2,
+      "internal_source_v": 0.00012919350597605155,
+      "internal_drain_v": 0.19987080649402397,
+      "internal_device_vds_v": 0.19974161298804793,
+      "absolute_external_drain_current_a_per_cm": 0.0005741933598935045,
+      "absolute_external_drain_current_terminal_a": 3.445160159361027e-06,
+      "relative_current_imbalance": 1.1329307319260683e-15,
+      "source_kcl_relative_residual": 2.458617039770116e-16,
+      "drain_kcl_relative_residual": 1.017867454464827e-13,
+      "circuit_ohms_law_relative_residual": 5.0352476974494515e-14,
+      "voltage_partition_residual_v": 0.0,
+      "center_channel_potential_v": 0.1667694760651961,
+      "center_channel_electron_density_cm3": 1.126196802565885e+17,
+      "node_row_count": 2419,
+      "channel_node_count": 1353,
+      "channel_element_count": 2560,
+      "minimum_potential_v": 0.0,
+      "maximum_potential_v": 1.0,
+      "minimum_electron_density_cm3": 1e+16,
+      "maximum_electron_density_cm3": 3.4926459199641697e+18,
+      "minimum_cell_current_density_magnitude_a_per_cm2": 11.157780865281529,
+      "median_cell_current_density_magnitude_a_per_cm2": 88.54232385028232,
+      "maximum_cell_current_density_magnitude_a_per_cm2": 2025.838134030882,
+      "node_csv": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_high_magnitude_proxy_output_vtg_1p0_vds_0p2_nodes.csv",
+      "element_csv": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_high_magnitude_proxy_output_vtg_1p0_vds_0p2_current_elements.csv",
+      "vtk_file_count": 6,
+      "node_csv_sha256": "e518460e72cd4ce6300a17d48d82df6bdc26143b0fbc472eccffd3dc55c94b77",
+      "element_csv_sha256": "fee1da096afc1e674f871154411f19ad91bf15a4ea38d6b3255707f744842026",
+      "vtk_files": [
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_high_magnitude_proxy_output_vtg_1p0_vds_0p2.visit",
+          "sha256": "3660d47d9ee22558f1d26737f2d901017afd65c1a9d6d63b0fe9ef3ab1bc29bf"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_high_magnitude_proxy_output_vtg_1p0_vds_0p2.vtm",
+          "sha256": "988630fa36b90aa7d5023ce2b32df5b7eb792f5848e75b95a935dde55b203bd2"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_high_magnitude_proxy_output_vtg_1p0_vds_0p2_0.vtu",
+          "sha256": "7948eba8115b629b45b801c262d4725adf94f68141c1dd2674eae76c4c47f001"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_high_magnitude_proxy_output_vtg_1p0_vds_0p2_1.vtu",
+          "sha256": "31b0c10c1e1e9ca733fc178e87f7f1838648fa8b8699fab6341baa271bc401c5"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_high_magnitude_proxy_output_vtg_1p0_vds_0p2_2.vtu",
+          "sha256": "b85858ad7377c75a38496a5dcb9c7e1c3a1a819dd53c55fb18b6012880c2d3bf"
+        },
+        {
+          "path": "results/tcad/t03_sensitivity/p3_contact_resistance/t03_p3_contact_literature_high_magnitude_proxy_output_vtg_1p0_vds_0p2_3.vtu",
+          "sha256": "44e3c7da5b91c7507379aa1ca0844fb171e01ffccbec0d034c351b842d2ed213"
+        }
+      ],
+      "circuit_state": {
+        "external_source_v": 0.0,
+        "external_drain_v": 0.2,
+        "internal_source_v": 0.00012919350597605155,
+        "internal_drain_v": 0.19987080649402397,
+        "source_resistor_current_external_to_internal_a": -3.445160159361375e-06,
+        "drain_resistor_current_external_to_internal_a": 3.445160159361027e-06,
+        "source_current_terminal_a": -3.445160159361374e-06,
+        "drain_current_terminal_a": 3.4451601593613778e-06,
+        "source_kcl_residual_a": 8.470329472543003e-22,
+        "drain_kcl_residual_a": 3.5067164016328034e-19,
+        "source_drop_v": 0.00012919350597605155,
+        "drain_drop_v": 0.00012919350597603851,
+        "total_resistor_drop_v": 0.00025838701195209004,
+        "total_resistor_power_w": 8.901846392737272e-10
+      },
+      "current_projection": {
+        "source_edge_model": "ElectronCurrent",
+        "api": "element_from_edge_model",
+        "raw_values_per_triangle": 3,
+        "cell_center_reduction": "arithmetic mean of en0/en1/en2 vectors",
+        "local_unit": "A/cm^2"
+      }
+    }
+  ]
+}

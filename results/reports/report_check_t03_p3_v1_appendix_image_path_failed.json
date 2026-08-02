@@ -1,0 +1,15 @@
+{
+  "status": "FAIL_PRESERVED",
+  "date": "2026-08-02",
+  "command": "make report-check",
+  "exit_code": 2,
+  "failure_classification": "report_source_image_path_error",
+  "error": "Report image escapes report/: ../assets/tcad_t03_p3_contact_sensitivity.png",
+  "affected_source": "report/appendices/D_\u8865\u5145\u7ed3\u679c\u4e0e\u5931\u8d25\u6848\u4f8b.xhtml",
+  "cause": "The new appendix used ../assets paths while the report assembler resolves image paths from the report root and requires assets/... paths.",
+  "correction": "Change only the two new appendix image references from ../assets/... to assets/....",
+  "tcad_or_spice_run": false,
+  "physical_input_changed": false,
+  "simulation_result_changed": false,
+  "acceptance_threshold_changed": false
+}

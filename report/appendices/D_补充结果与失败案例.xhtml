@@ -67,4 +67,26 @@
   <h3>D.7 T03-P3 首次静态检查器失败</h3>
   <p>P3 合同首次静态检查通过 27/30 项，失败来自检查器实现而不是 DEVSIM 或物理模型：其一错误要求 T02-C 独立报告具有未定义的顶层 <code>evidence_level</code>；其二用子串搜索金属名，把案例标签 <code>literature_*</code> 中的字母错误识别为 <code>Ti</code>；其三把合同中的 <code>barrier-height</code> 连字符写成下划线。失败报告以独立文件保留。</p>
   <p>修正只删除不存在字段的假设、改用下划线分词后的完整 token 比较，并统一连字符拼写；没有改变 `R_pair*W` 三点、对称分摊、器件-电路模型、偏压、提取、243 次计划 DC、156 个计划点或任何验收阈值。修正后 30/30 PASS、E3、<code>NOT_RUN_BY_CONTRACT_CHECK</code>。这仍然不是 P3 仿真或接触参数验证。</p>
+
+  <h3>D.8 T03-P3 V1 零漏压适用域失败与 V2 恢复合同</h3>
+  <p>V1 随后按 30/30 静态合同完成 12 个器件、243 次全部收敛 DC、93 个 transfer 点、63 个 output 点、3 个完整状态和 18 个 VTK。运行器 25 项中 24 项通过，唯一失败来自把相对端口守恒比值用于 9 个外部漏压为零的点。此时绝对电流已在数值噪声量级，相对分母失去解释意义；V1 仍按预注册规则保持 E0/FAIL，且没有运行独立检查。</p>
+  <table>
+    <thead><tr><th>V1 量</th><th>观测值</th><th>冻结判定</th></tr></thead>
+    <tbody>
+      <tr><td>全部点最大相对端口不平衡</td><td>1.6720517，出现在 VDS=0 噪声点</td><td>V1 错误适用相对门，runner FAIL</td></tr>
+      <tr><td>非零漏压最大相对端口不平衡</td><td>3.35344e-11</td><td>低于不变的 1e-5 门</td></tr>
+      <tr><td>零漏压最大绝对电流</td><td>1.08454e-19 A/cm</td><td>低于不变的 1e-16 A/cm 门</td></tr>
+      <tr><td>circuit KCL / Ohm / 压降分配</td><td>2.42178e-12 / 1.20922e-12 / 0 V</td><td>三项均通过，但不能覆盖唯一失败门</td></tr>
+      <tr><td>高电阻 transfer 电流相对降低</td><td>0.161396%</td><td>超过冻结的 0.1% 最小响应</td></tr>
+    </tbody>
+  </table>
+  <figure>
+    <img src="assets/tcad_t03_p3_contact_sensitivity.png" alt="T03-P3 V1 E0 failure contact sensitivity curves and numerical resistance proxies"/>
+    <figcaption>图 D-1 V1 已计算的三点接触串联电阻教学敏感性。曲线和方向门可见不等于 P3 PASS；V1 因零漏压相对守恒适用域错误保持 E0/FAIL。</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/tcad_t03_p3_contact_states.png" alt="T03-P3 V1 E0 failure potential density and current-density states"/>
+    <figcaption>图 D-2 V1 的三个 <code>VTG=1 V, external VDS=0.2 V</code> 二维状态。局部电流密度是教学模型场量，不是项目接触参数或物理 Ion。</figcaption>
+  </figure>
+  <p>V2 合同只把不变的相对门限定到 <code>external VDS&gt;0</code>、把不变的绝对电流门限定到 <code>external VDS=0</code>，并把全部输出与失败归档改为独立 <code>v2</code> 路径；三点、器件方程、偏压、提取、阈值和 12/243/156 预算均未改变。34/34 静态检查 PASS、E3、<code>NOT_RUN_BY_CONTRACT_CHECK</code>。V1 失败归档中报告与配置同 basename 的副本冲突已由 supplement 披露并用唯一文件名补齐，原 manifest 和原始结果未改写。首次报告检查还发现两张附录图误用 <code>../assets</code> 路径；该非仿真实现失败已单独保留，只修正引用为报告约定的 <code>assets</code> 后通过结构检查。</p>
 </section>

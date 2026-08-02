@@ -49,9 +49,11 @@
       <tr><td>未实现物理</td><td>barrier height=null；热发射、隧穿、接触区材料/网格和 current crowding 均未加入</td><td>只能称为对称 lumped series-resistance 教学代理</td></tr>
       <tr><td>偏压与提取</td><td>31 点 transfer；VTG=0.3/0.5/1.0 V 的 7 点 output；用 VTG=1 V、外部 VDS=1/5/10 mV 过原点 OLS 提取总线性电阻宽度积代理</td><td>外部高栅电流与输出电流不是物理 Ion</td></tr>
       <tr><td>电路闭合</td><td>保存内外源漏电压、两个电阻电流、器件端电流、KCL、Ohm 定律、压降分配和功耗</td><td>只有运行器与独立检查均 PASS 才可声称受控数值敏感性</td></tr>
-      <tr><td>当前证据</td><td>30/30 静态检查 PASS、E3；12 器件、243 DC、156 点、3 状态为未来计划</td><td><code>NOT_RUN_BY_CONTRACT_CHECK</code>，尚无 P3 仿真结果</td></tr>
+      <tr><td>V1 运行证据</td><td>12 器件、243 次收敛 DC、156 点、3 状态、18 VTK；24/25 runner，E0/FAIL</td><td>唯一失败为零漏压点误用相对守恒；未运行独立检查，不关闭 P3</td></tr>
+      <tr><td>V2 恢复合同</td><td>相对门仍为 1e-5 且仅用于 VDS&gt;0；零漏压绝对门仍为 1e-16 A/cm；其他合同项不变</td><td>34/34 E3 静态 PASS，<code>NOT_RUN_BY_CONTRACT_CHECK</code></td></tr>
     </tbody>
   </table>
+  <p>V1 的 9 个 <code>VDS=0</code> 点电流约为舍入噪声量级，最大相对比值为 1.67205；非零漏压最大相对不平衡为 3.35344e-11，零漏压最大绝对电流为 1.08454e-19 A/cm。V2 只修正验收适用域和输出/归档命名，不改器件方程、接触点、偏压、提取、阈值或预算。V1 原始失败证据与归档碰撞补充均保留。</p>
   <table>
     <thead><tr><th>T02-A/B/C 拓扑与偏压合同</th><th>实现</th><th>证据边界</th></tr></thead>
     <tbody>

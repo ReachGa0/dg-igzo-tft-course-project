@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the frozen T03-P3 contact-resistance contract without DEVSIM."""
+"""Validate the frozen T03-P3 V2 recovery contract without DEVSIM."""
 
 from __future__ import annotations
 
@@ -91,13 +91,26 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         "p2_bulk_config",
         "p2_bulk_report",
         "p2_bulk_check_report",
+        "v1_frozen_config",
+        "v1_frozen_runner",
+        "v1_frozen_contract_checker",
+        "v1_frozen_contract_report",
+        "v1_run_report",
+        "v1_versioned_run_report",
+        "v1_input_snapshot",
+        "v1_solver_log",
+        "v1_state_manifest",
+        "v1_failure_archive_manifest",
+        "v1_failure_archive_supplement",
         "literature_table",
         "senior_manifest",
     )
     paths = {name: ROOT / dependency[name] for name in input_names}
     loaded: dict[str, Any] = {}
     for name, path in paths.items():
-        if name == "literature_table":
+        if name in {"v1_frozen_runner", "v1_frozen_contract_checker"}:
+            loaded[name] = None
+        elif name == "literature_table":
             loaded[name] = load_csv(path)
         elif name == "senior_manifest":
             loaded[name] = load_csv(path, encoding="utf-8-sig")
@@ -122,6 +135,15 @@ def check_contract(config_path: Path) -> dict[str, Any]:
     bulk_config = loaded["p2_bulk_config"]
     bulk_report = loaded["p2_bulk_report"]
     bulk_check = loaded["p2_bulk_check_report"]
+    v1_config = loaded["v1_frozen_config"]
+    v1_contract = loaded["v1_frozen_contract_report"]
+    v1_report = loaded["v1_run_report"]
+    v1_versioned_report = loaded["v1_versioned_run_report"]
+    v1_snapshot = loaded["v1_input_snapshot"]
+    v1_solver_log = loaded["v1_solver_log"]
+    v1_state_manifest = loaded["v1_state_manifest"]
+    v1_archive_manifest = loaded["v1_failure_archive_manifest"]
+    v1_archive_supplement = loaded["v1_failure_archive_supplement"]
     literature = loaded["literature_table"]
     senior_manifest = loaded["senior_manifest"]
     t03 = next(item for item in experiments["experiments"] if item["id"] == "T03")
@@ -130,12 +152,13 @@ def check_contract(config_path: Path) -> dict[str, Any]:
 
     add_check(
         checks,
-        "identity:t03_p3_contact_resistance_v1",
-        config.get("schema_version") == 1
-        and config.get("case_id") == "IGZO_T03_P3_CONTACT_RESISTANCE_V1"
+        "identity:t03_p3_contact_resistance_v2_recovery",
+        config.get("schema_version") == 2
+        and config.get("revision") == 2
+        and config.get("case_id") == "IGZO_T03_P3_CONTACT_RESISTANCE_V2"
         and config.get("stage") == "T03-P3-CONTACT-RESISTANCE"
         and config.get("parameter_group_id") == "P3"
-        and config.get("status") == "planned"
+        and config.get("status") == "planned_after_v1_gate_applicability_failure"
         and config.get("evidence_level_before_run") == "E0"
         and config.get("contract_evidence_level_after_check") == "E3",
         f"case={config.get('case_id')} stage={config.get('stage')}",
@@ -145,6 +168,160 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         "dependencies:all_declared_inputs_exist",
         all(path.is_file() for path in paths.values()),
         "; ".join(f"{name}={path.relative_to(ROOT)}" for name, path in paths.items()),
+    )
+
+    remediation = config["remediation"]
+    expected_v1_hashes = remediation["expected_v1_hashes"]
+    actual_v1_hashes = {
+        relative: sha256(ROOT / relative) for relative in expected_v1_hashes
+    }
+    add_check(
+        checks,
+        "remediation:v1_frozen_inputs_reports_and_archive_hashes_are_exact",
+        actual_v1_hashes == expected_v1_hashes
+        and v1_config.get("case_id") == "IGZO_T03_P3_CONTACT_RESISTANCE_V1"
+        and v1_contract.get("status") == "PASS"
+        and v1_contract.get("contract_status") == "PASS"
+        and v1_contract.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+        and v1_contract.get("config", {}).get("sha256")
+        == expected_v1_hashes[dependency["v1_frozen_config"]]
+        and len(v1_contract.get("checks", [])) == 30
+        and all(item.get("status") == "PASS" for item in v1_contract["checks"]),
+        f"frozen_hashes={len(actual_v1_hashes)} v1_contract_checks={len(v1_contract.get('checks', []))}",
+    )
+
+    v1_checks = v1_report.get("checks", {})
+    v1_nonzero_rows = [
+        row
+        for row in [
+            *v1_report.get("transfer_points", []),
+            *v1_report.get("output_points", []),
+        ]
+        if float(row["external_vds_v"]) > 1.0e-12
+    ]
+    v1_zero_rows = [
+        row
+        for row in v1_report.get("output_points", [])
+        if close(float(row["external_vds_v"]), 0.0, abs_tol=1.0e-12)
+    ]
+    v1_max_nonzero = max(
+        float(row["relative_current_imbalance"]) for row in v1_nonzero_rows
+    )
+    v1_max_zero = max(
+        abs(float(row["external_drain_current_a_per_cm"])) for row in v1_zero_rows
+    )
+    v1_summary = v1_report.get("summary_metrics", {})
+    add_check(
+        checks,
+        "remediation:v1_single_gate_failure_and_completed_work_are_preserved",
+        v1_report == v1_versioned_report
+        and v1_report.get("status") == "FAIL"
+        and v1_report.get("evidence_level") == "E0"
+        and v1_report.get("failures") == ["device_terminal_current_conservation"]
+        and len(v1_checks) == 25
+        and sum(item.get("status") == "PASS" for item in v1_checks.values()) == 24
+        and v1_checks["device_terminal_current_conservation"]["status"] == "FAIL"
+        and len(v1_solver_log.get("runs", [])) == 12
+        and len(v1_solver_log.get("solver_records", [])) == 243
+        and all(record.get("converged") for record in v1_solver_log["solver_records"])
+        and len(v1_report.get("transfer_points", [])) == 93
+        and len(v1_report.get("output_points", [])) == 63
+        and v1_state_manifest.get("entry_count") == 3
+        and sum(len(entry.get("vtk_files", [])) for entry in v1_state_manifest["entries"])
+        == 18
+        and len(v1_nonzero_rows) == 147
+        and len(v1_zero_rows) == 9
+        and close(v1_max_nonzero, 3.3534440908787024e-11, rel_tol=1e-12)
+        and close(v1_max_zero, 1.0845387955775905e-19, rel_tol=1e-12)
+        and close(
+            v1_summary["maximum_relative_terminal_current_imbalance"],
+            1.672051696284307,
+            rel_tol=1e-12,
+        )
+        and v1_report.get("independent_persisted_evidence_check_complete") is False
+        and v1_report.get("t03_p3_completion", {}).get("complete_p3_contact_group")
+        is False,
+        (
+            f"runner={sum(item.get('status') == 'PASS' for item in v1_checks.values())}/"
+            f"{len(v1_checks)} devices={len(v1_solver_log.get('runs', []))} "
+            f"dc={len(v1_solver_log.get('solver_records', []))} "
+            f"nonzero={v1_max_nonzero:.6e} zero={v1_max_zero:.6e}"
+        ),
+    )
+
+    collision = v1_archive_supplement["original_manifest_collision"]
+    unique_copies = v1_archive_supplement["unique_recovery_copies"]
+    primary_evidence = v1_archive_supplement["primary_v1_evidence"]
+    add_check(
+        checks,
+        "remediation:v1_failure_archive_collision_is_disclosed_and_supplemented",
+        v1_archive_manifest.get("status") == "FAIL_PRESERVED"
+        and v1_archive_manifest.get("failed_gate")
+        == "device_terminal_current_conservation"
+        and v1_archive_supplement.get("status")
+        == "FAIL_PRESERVED_WITH_SUPPLEMENT"
+        and v1_archive_supplement.get("original_manifest", {}).get("sha256")
+        == expected_v1_hashes[dependency["v1_failure_archive_manifest"]]
+        and collision.get("present") is True
+        and collision.get("original_manifest_preserved_unmodified") is True
+        and collision.get("original_failed_outputs_deleted_or_rewritten") is False
+        and sha256(ROOT / collision["destination"])
+        == expected_v1_hashes[dependency["v1_frozen_config"]]
+        and all(
+            (ROOT / item["path"]).is_file()
+            and sha256(ROOT / item["path"]) == item["sha256"]
+            for item in [*unique_copies, *primary_evidence]
+        )
+        and v1_archive_supplement["recovery_boundary"]["v1_status"]
+        == "E0_FAIL"
+        and v1_archive_supplement["recovery_boundary"]["threshold_relaxed"]
+        is False
+        and v1_archive_supplement["recovery_boundary"]["physical_input_changed"]
+        is False,
+        f"archive_entries={len(v1_archive_manifest.get('copied_external_artifacts', []))} supplement_copies={len(unique_copies)} primary={len(primary_evidence)}",
+    )
+
+    unchanged_sections = (
+        "scope",
+        "literature_mapping",
+        "sensitivity",
+        "contact_model_contract",
+        "inheritance",
+        "bias_protocol",
+        "extraction_methods",
+        "diagnostic_hypotheses",
+        "state_output_contract",
+        "resource_budget",
+        "implementation_contract",
+    )
+    v2_acceptance_without_domains = dict(config["acceptance"])
+    v2_acceptance_without_domains.pop(
+        "relative_device_terminal_current_imbalance_gate_domain"
+    )
+    v2_acceptance_without_domains.pop("zero_external_vds_absolute_current_gate_domain")
+    v2_retention_without_path = dict(config["failure_retention"])
+    v1_retention_without_path = dict(v1_config["failure_retention"])
+    v2_retention_without_path.pop("failure_archive_directory_template")
+    v1_retention_without_path.pop("failure_archive_directory_template")
+    add_check(
+        checks,
+        "remediation:v2_changes_only_gate_domains_metadata_and_unique_paths",
+        all(config[name] == v1_config[name] for name in unchanged_sections)
+        and all(
+            config["dependencies"].get(name) == value
+            for name, value in v1_config["dependencies"].items()
+        )
+        and v2_acceptance_without_domains == v1_config["acceptance"]
+        and v2_retention_without_path == v1_retention_without_path
+        and config["failure_retention"]["failure_archive_directory_template"]
+        == "results/tcad/t03_sensitivity/p3_contact_resistance_v2_<failure_slug>"
+        and remediation["relative_threshold_changed"] is False
+        and remediation["zero_vds_absolute_threshold_changed"] is False
+        and remediation["physical_input_changed"] is False
+        and remediation["scan_or_bias_changed"] is False
+        and remediation["extraction_changed"] is False
+        and remediation["resource_budget_changed"] is False,
+        f"unchanged_sections={len(unchanged_sections)} acceptance_thresholds_unchanged={v2_acceptance_without_domains == v1_config['acceptance']}",
     )
 
     t02_completion = t02_c_report.get("t02_c_completion", {})
@@ -213,7 +390,25 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         t03.get("completed_parameter_groups") == ["P1", "P2", "P4"]
         and t03.get("partially_completed_parameter_groups") == []
         and t03.get("remaining_parameter_groups") == ["P3", "P5"]
-        and t03.get("remaining_substages") == ["T03-P3", "T03-P5"],
+        and t03.get("remaining_substages") == ["T03-P3", "T03-P5"]
+        and t03.get("p3_contact_contract_evidence", {}).get("status")
+        == "input_contract_ready_v2_after_v1_failure"
+        and t03.get("p3_contact_contract_evidence", {}).get("revision") == 2
+        and t03.get("p3_contact_contract_evidence", {}).get(
+            "contract_checks_passed"
+        )
+        == 34
+        and t03.get("p3_contact_contract_evidence", {}).get("simulation_status")
+        == "NOT_RUN_BY_CONTRACT_CHECK"
+        and t03.get("p3_contact_v1_failure_evidence", {}).get("status")
+        == "FAIL_PRESERVED"
+        and t03.get("p3_contact_v1_failure_evidence", {}).get(
+            "independent_persisted_check_run"
+        )
+        is False
+        and project.get("tcad_track", {}).get("next_scope", "").startswith(
+            "run exactly one formal T03-P3 V2"
+        ),
         (
             f"complete={t03.get('completed_parameter_groups')} "
             f"remaining={t03.get('remaining_substages')}"
@@ -519,6 +714,14 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         and acceptance["required_total_dc_solve_count"] == 243
         and acceptance["required_total_device_count"] == 12
         and close(acceptance["maximum_relative_device_terminal_current_imbalance"], 1e-5)
+        and acceptance["relative_device_terminal_current_imbalance_gate_domain"]
+        == "external VDS>0"
+        and close(
+            acceptance["maximum_zero_external_vds_absolute_current_a_per_cm"],
+            1e-16,
+        )
+        and acceptance["zero_external_vds_absolute_current_gate_domain"]
+        == "external VDS=0"
         and acceptance["maximum_circuit_kcl_relative_residual"] <= 1e-6
         and acceptance["maximum_circuit_ohms_law_relative_residual"] <= 1e-8
         and acceptance["maximum_circuit_voltage_partition_absolute_residual_v"] <= 1e-9
@@ -610,6 +813,7 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         "outputs:paths_are_unique_and_stage_scoped",
         len(output_paths) == len(set(output_paths))
         and all("t03_p3" in value or "p3_contact_resistance" in value for value in output_paths)
+        and all("v2" in value for value in output_paths)
         and config["outputs"]["contract_report"].endswith(".json")
         and config["outputs"]["transfer_csv"].endswith(".csv")
         and config["outputs"]["output_csv"].endswith(".csv")
@@ -633,7 +837,9 @@ def check_contract(config_path: Path) -> dict[str, Any]:
         and "complete P3 before runner" in prohibited
         and "complete T03" in prohibited
         and "P5" in prohibited
-        and "circuit-cell" in prohibited,
+        and "circuit-cell" in prohibited
+        and "V1 remains E0/FAIL" in boundary["v1_failure_boundary"]
+        and "one formal P3 V2" in boundary["next_gate"],
         boundary["contract_allowed_claim"],
     )
 
@@ -666,6 +872,7 @@ def check_contract(config_path: Path) -> dict[str, Any]:
             "vtk_files": acceptance["required_vtk_file_count"],
         },
         "source_boundary": config["literature_mapping"],
+        "remediation": remediation,
         "failure_retention": retention,
         "evidence_boundary": boundary,
     }
