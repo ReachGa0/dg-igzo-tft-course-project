@@ -16,6 +16,27 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 教学模型边界受限收口并开放 C00 静态合同门
+
+### 决策输入
+
+在 R03 独立 E3 提交 `5d2134c` 已推送并同步后，读取 `AGENTS.md`、架构 DAG、M01/C00 机器配置、原 M01 合同验收和 ADR-081。冻结验收要求为同目标条件、明确模型边界、两路输出与差异持久化、语法/工具预检持久化；合同明确 M01 目标是可审计比较与限制说明，不强制方程一致。
+
+### 决策与机器状态
+
+- R03 42/30/24 E3/E2/E3 已满足全部四项验收，并独立复现 portable IGZO 候选在 247 行教学域内的机器精度级路线一致。因此 M01 登记 `M01_TEACHING_MODEL_ONLY_PASS` 与 `done_with_limitation/E3`。
+- 在 `config/experiments.json` 中保存旧根状态 `preflight_failed_tool_provenance/E0`，绑定提交 `5d2134c`、R03 候选及三份报告哈希，逐项登记验收、过度结论禁令和 C00 权限。全部历史失败、R02 路线分歧和根因边界不改写。
+- C00 只切换为 `contract_planning_open/E0`，entry gate 允许建立静态合同但明确 `circuit_execution_permitted=false`、`downstream_permitted=false`。`config/project.json` 下一门只允许建立并提交双栅 IGZO 有源负载 INV 合同。
+
+### 文档、检查与边界
+
+- 更新项目检查器，使 M01 历史静态合同检查同时验证受限收口、R03 三报告/候选哈希、四项验收、C00 entry gate 和 no-execution 边界；R03 verified 状态接受新的 C00-contract next scope。
+- 更新 STATUS、AI 上下文、README、架构、计划、ADR-082、报告第 5/6/8/9/10 章和证据矩阵。
+- 相关 JSON/Python 语法检查通过；`make check` 返回 763/763 PASS，`make report-check` 返回 12 章、5 附录、15 个既有占位和 30 张图 PASS，`git diff --check` 通过。检查没有启动 simulator、生成电路网表或创建电路数值输出。
+- 本决定不建立原生 AIM-Spice Level 15、HSPICE Level 61、方程身份、物理参数、实验校准、外部验证或电路结果。下一步先提交推送本收口，再建立 C00 静态合同；合同 PASS 提交前不运行电路。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 完成 M01 R03 可移植完整器件独立复核（E3，24/24 PASS）
 
 ### 目标与输入

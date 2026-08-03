@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_PORTABLE_DEVICE_R03_VERIFIED_E3_PENDING_CLOSURE_DECISION`
+- 当前阶段：`M01_DONE_WITH_LIMITATION_C00_CONTRACT_NEXT`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 只关闭 hash-bound Xyce 工具/parser 预检。正式器件 DC R01 固定为 39/40、E0/FAIL且不重跑；R02 40/30/24 完整落盘但路线分歧。根因 R02 的 40/30/22 E3/E2/E3 链仅在预注册最小点确认三参数 `limit` 语义问题，完整 R02 247 行路线一致仍为 false。`M01_OPEN_SOURCE_DEVICE_DC_R03` 的 42/30/24 静态、runner、独立三门已按门唯一通过，E3 独立重算确认新显式 clamp 候选在冻结 247 行教学域内的机器精度级路线一致。当前必须先提交推送该 E3 状态，再单独判断 M01 教学边界收口和 C00 是否开放；正式敏感性、P2、T03 及 M01/C00、电路、版图、PEX 和 HZO 此刻继续关闭。
+- 当前原则：M00 R02 与 M01 只在冻结 IGZO 教学数值域内受限关闭，全部历史失败不可改写。M01 的同目标、模型边界、两路输出/差异和工具预检四项冻结验收均已满足，且合同从未要求强制方程一致；R03 42/30/24 E3/E2/E3 独立复现机器精度级路线一致。因此 M01 记为 `DONE_WITH_LIMITATION`，不是方程身份、物理参数、实验校准或外部验证。下一门只开放建立 C00 双栅 IGZO 有源负载反相器静态合同；电路网表执行、C01/C02/C03、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -16,6 +16,10 @@
 - [x] runner E2 提交 `6f4e89b` 推送并同步后，唯一运行 `make m01-open-source-device-dc-r03-check` 返回 24/24 PASS、E3，启动 0 个进程；报告 `results/reports/m01_open_source_cross_check_r03_check.json` SHA-256 为 `5419f34b20861561137ad19768af4783e4e7372265cc42ccb5abf27c2691a937`。checker 独立再生两份 247 器件网表，解析 raw/PRN，精确重算 247+247 行、30 指标、247 差异，复核 14/14 产物哈希和两图尺寸。
 - [x] 独立 E3 在冻结 IGZO 教学域内复现机器精度级路线一致，但不证明方程身份、原生 HSPICE Level 61、物理参数、实验校准、外部验证或正式 M01 通过。R02 路线分歧、根因 R02 最小点边界和所有历史失败均不可改写；M01/C00 在本 E3 状态提交推送并另行记录收口决策前保持关闭。
 - [x] 独立 E3 登记后的 JSON/Python 语法检查通过，`make check` 为 763/763 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 张图 PASS，`git diff --check` 通过；登记检查没有启动任何 simulator 或下游进程。
+- [x] 独立 E3 提交 `5d2134c` 推送并同步后，按冻结 M01 验收单独作出 `M01_TEACHING_MODEL_ONLY_PASS` 决策：同一 247 行目标、明确模型边界、两路输出与差异完整落盘、R11 工具/parser 预检均满足；原合同明确 M01 验收是可审计比较与限制说明，不要求强制方程一致。
+- [x] M01 只在 R03 portable IGZO 教学候选、ngspice/GPL-Xyce 行为路线和登记有效域内 `DONE_WITH_LIMITATION/E3`。未授权 AIM-Spice、全部 build/tool/合同失败、R01 39/40、R02 路线分歧及根因历史均原样保留；不声称原生 AIM-Spice Level 15、HSPICE Level 61、方程身份、物理参数、实验校准、外部验证或电路验证。
+- [x] C00 状态仅切为 `contract_planning_open/E0`：允许建立并静态检查双栅 IGZO 有源负载反相器合同，当前 `circuit_execution_permitted=false`，不得生成或运行正式电路网表，也不得打开 C01/C02/C03、版图、PEX 或 HZO。
+- [x] 收口登记后的 JSON/Python 语法检查通过，`make check` 为 763/763 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 张图 PASS，`git diff --check` 通过；没有启动 simulator、生成电路网表或创建电路数值输出。
 - [x] runner E2 登记后的纯静态验证为：相关 JSON/Python 语法通过，`make check` 763/763 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 张图 PASS，`git diff --check` 通过；检查阶段没有启动 TCAD/SPICE 或下游进程。
 - [x] R03 实施登记后的 `make check` 为 763/763 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 28 张图 PASS，`git diff --check` 通过；静态合同没有启动任何仿真，剩余 17 个未来输出路径保持缺失。
 - [x] 静态 PASS 登记后的首次项目总检查因历史 next-scope 白名单和 R03 ready-state 断言滞后返回 14 项失败；归档报告 `results/reports/project_check_m01_open_source_device_dc_r03_static_pass_next_scope_stale_failed.json`、SHA-256 `b80e696b376fdb087117ca386490a4b6dbb13516d2b1fe209ba92a3b51c87403` 已保留。修正只扩展已登记 R03 runner scope 并绑定归档，随后 `make check` 恢复 763/763。
@@ -93,9 +97,9 @@
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送 R03 24/24 E3 独立复核登记后，按冻结 M01 验收边界单独决定是否关闭 M01、是否允许建立 C00 静态合同；R01/R11/正式器件 DC R02、根因 R02、R03 runner 和独立 checker 均不重跑，P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 在决策提交前继续关闭。
-- M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
-- P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败、28/30 干跑失败和 R10 runner 失败均保留。
+- 下一步：提交并推送 M01 `DONE_WITH_LIMITATION` 与 C00 entry-gate 决策后，建立独立版本化 C00 双栅 IGZO 有源负载反相器静态合同，先冻结拓扑、偏压、尺寸、VTC/瞬态提取、失败保留、输出、资源预算和证据边界；合同 PASS 状态另行提交前不得运行电路。
+- M01 当前根状态为 `done_with_limitation/E3`，历史根状态 `preflight_failed_tool_provenance/E0` 及 Xyce R01/R05 `preflight_failed_build` 均作为不可改写子证据保留；14/29、9/20、19/29 和 R02/R03/R04 checker 失败不被改标，也不代表物理参数、实验拟合或电路证据。
+- P3、P5 已完成并冻结，不得借本阶段重跑；C00 只开放静态合同建立，SPICE 电路执行、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败、28/30 干跑失败和 R10 runner 失败均保留。
 
 ## 已完成
 
@@ -207,7 +211,7 @@
 - [x] T01 单栅 IGZO 漂移扩散（教学参数 E2 数值门完成；不等同实验标定或物理参数验证）。
 - [x] T02 双栅电流与阈值耦合（冻结教学模型数值门完成；不等同实验标定、物理电容比、迟滞或紧凑模型验证）。
 - [x] T03 五组器件参数分析（P1/P2/P3/P4/P5 DONE；P2/P3 历史 FAIL 保留；各完成组均有独立 E3 落盘检查）。
-- [ ] M00/M01 紧凑模型拟合与双轨对照（M00 R01 正式拟合保持 E0/FAIL，R02 runner 24/24 E2、独立检查 20/20 E3，只在教学数值域内关闭；M01 历史失败保留，R11 工具/parser 预检 36/32/25 完成，正式器件 DC R01 静态 39/40 E0/FAIL，R02 40/30/24 完成并由独立 E3 确认路线分歧。根因 R01 38/40 E0/FAIL 已冻结，根因 R02 静态 40/40 E3 只打开提交后的两进程探针，正式 M01 仍未收口）。
+- [x] M00/M01 紧凑模型拟合与双轨对照（两阶段均只在冻结教学数值域内 `DONE_WITH_LIMITATION`。M00 R01、M01 全部历史失败和 R02 路线分歧保留；R03 42/30/24 E3/E2/E3 独立复现 portable 候选机器精度级路线一致。该关闭不等于物理参数、实验校准、原生 Level 61 或电路验证）。
 - [ ] C00/C01 单极性标准单元。
 - [ ] C02/C03 环振和全加器。
 - [ ] L00/V00/V01 PCell、GDS、DRC、几何 LVS。
@@ -246,8 +250,8 @@
 2. 双栅实测数据缺失时只能做文献约束敏感性。
 3. 需要老师确认 DEVSIM、单极性有源负载逻辑和 KLayout 几何 LVS 的接受度。
 4. 复杂电路跨线层和顶栅实际工艺尚未明确。
-5. M00 R01 的 `L=12 um` holdout gm 相对误差 `0.512384` 超过冻结 `0.50`，该失败永久保留；M01 全部工具/合同历史失败同样保留，未授权 AIM-Spice 永久排除。开源 R02 正式器件 DC 的路线分歧不可改写；R03 42/30/24 已独立复现机器精度级一致，但需在本 E3 提交后单独记录 M01 教学边界收口决定，且不能替代正式敏感性或物理校准。
+5. M00 R01 的 `L=12 um` holdout gm 相对误差 `0.512384` 超过冻结 `0.50`，该失败永久保留；M01 全部工具/合同历史失败和 R02 路线分歧同样保留，未授权 AIM-Spice 永久排除。M01 的受限关闭只允许 C00 合同建立，不能替代正式敏感性、物理校准或电路验证。
 
 ## 下一步
 
-提交并推送 `M01_OPEN_SOURCE_DEVICE_DC_R03` 的 24/24 E3 独立复核登记后，依据冻结合同单独记录 M01 是否在教学模型边界内关闭及 C00 是否可开放。决策前不运行 C00，也不重跑 R03、正式器件 DC R02 或根因 R02；P2/T03 正式敏感性、电路、版图、PEX 和 HZO 保持关闭。
+提交并推送 M01 `DONE_WITH_LIMITATION` 和 C00 entry-gate 决策后，建立并静态检查版本化 C00 双栅 IGZO 有源负载反相器合同。合同 PASS 状态提交前不生成或运行正式电路网表；R03、正式器件 DC R02 和根因 R02 不重跑，C01/C02/C03、版图、PEX 和 HZO 保持关闭。

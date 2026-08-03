@@ -1,5 +1,14 @@
 # 设计决策记录
 
+## ADR-082：M01 仅在冻结教学域受限关闭，C00 只开放静态合同
+
+- 日期：2026-08-03
+- 状态：已实施；M01=`DONE_WITH_LIMITATION/E3`，C00=`CONTRACT_PLANNING_OPEN/E0`，电路执行仍关闭。
+- 独立 E3 提交 `5d2134c` 推送并同步后，按既有 M01 验收逐项判断：同一 247 行目标条件、明确模型边界、两路输出与差异持久化、R11 语法/工具预检持久化均满足。`config/m01_simulator_cross_check_contract.json` 预先规定 M01 验收是完整可审计的两路线比较及限制说明，不以强制方程一致为门槛。
+- R03 42/30/24 E3/E2/E3 还独立复现最大绝对/对数差 `4.3706900078321897e-19 A/cm`/`2.7533531010703882e-14 decade`。因此接受范围仅为 R03 portable IGZO 教学候选、冻结 247 行与 ngspice/GPL-Xyce 行为路线，并登记 `M01_TEACHING_MODEL_ONLY_PASS`。
+- 旧根状态 `preflight_failed_tool_provenance/E0`、未授权 AIM-Spice、全部 Xyce build/tool 失败、R01 39/40、R02 路线分歧及根因链均继续作为不可改写历史证据，不因受限关闭而改标。
+- 本决定不建立原生 AIM-Spice Level 15、HSPICE Level 61、方程身份、物理 IGZO 参数、实验校准、外部验证、正式电路结果或流片能力。C00 只允许建立并静态检查版本化双栅 IGZO 有源负载反相器合同；合同 PASS 状态另行提交前不得生成或运行正式电路网表，C01/C02/C03、版图、PEX 和 HZO 均关闭。
+
 ## ADR-081：R03 独立 E3 复现机器精度级路线一致，收口决定另设提交门
 
 - 日期：2026-08-03

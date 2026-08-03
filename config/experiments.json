@@ -2,7 +2,7 @@
   "schema_version": 2,
   "project_id": "DG-IGZO-TFT-PDK",
   "principle": "Each experiment has dependencies, one declared variable group, controls, outputs, acceptance criteria and an evidence boundary.",
-  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified", "limit_regression_verified", "minimal_bias_verified", "bidirectional_verified", "partial_verified"],
+  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified", "limit_regression_verified", "minimal_bias_verified", "bidirectional_verified", "partial_verified", "done_with_limitation", "contract_planning_open"],
   "parameter_groups": [
     {
       "id": "P1",
@@ -781,14 +781,47 @@
       "id": "M01",
       "track": "compact_model",
       "name": "aimspice_ngspice_cross_check",
-      "status": "preflight_failed_tool_provenance",
-      "current_evidence": "E0",
+      "status": "done_with_limitation",
+      "current_evidence": "E3",
+      "historical_root_status": "preflight_failed_tool_provenance",
+      "historical_root_evidence": "E0",
       "depends_on": ["M00"],
       "purpose": "Compare two simulator routes under identical targets without claiming equation identity.",
       "changed_variables": ["simulator_model_route"],
       "controls": ["dataset", "geometry", "bias", "metrics"],
       "required_outputs": ["curve_overlay", "metric_difference_table", "syntax_mapping"],
       "acceptance": ["same target conditions used", "model boundary stated", "both route outputs and route differences persisted", "syntax and tool preflight persisted"],
+      "teaching_model_closure": {
+        "status": "closed_with_limitations",
+        "decision": "M01_TEACHING_MODEL_ONLY_PASS",
+        "current_evidence": "E3",
+        "decision_basis_commit": "5d2134c13dedfc5e21e3818de971818422a6f55b",
+        "accepted_contract_id": "M01_OPEN_SOURCE_DEVICE_DC_R03",
+        "accepted_candidate_path": "spice/models/igzo_dg_behavioral_r03_portable.inc",
+        "accepted_candidate_sha256": "dd56c4c5b9f67d628eb2677705139769642b2e0eb66fca5b453b3cc6be351fd6",
+        "static_report_sha256": "a30611ad98941bcc576335e2b47f702c4c210d32d16247f42b65356a07c0237a",
+        "runner_report_sha256": "df188515d5749735fc479998d42d8b4b92ce84d2f40687801c531cc563249c79",
+        "independent_report_sha256": "5419f34b20861561137ad19768af4783e4e7372265cc42ccb5abf27c2691a937",
+        "checks": {"static": 42, "runner": 30, "independent": 24},
+        "evidence_levels": {"static": "E3", "runner": "E2", "independent": "E3"},
+        "acceptance_evaluation": {
+          "same_target_conditions_used": true,
+          "model_boundary_stated": true,
+          "both_route_outputs_and_route_differences_persisted": true,
+          "syntax_and_tool_preflight_persisted": true,
+          "machine_precision_route_agreement_independently_reproduced": true
+        },
+        "historical_failures_preserved": true,
+        "aimspice_route_accepted": false,
+        "open_source_routes": ["ngspice_behavioral", "xyce_source_behavioral"],
+        "equation_identity_claimed": false,
+        "physical_parameter_claimed": false,
+        "experimental_calibration_claimed": false,
+        "external_validation_claimed": false,
+        "c00_contract_planning_permitted": true,
+        "c00_circuit_execution_permitted": false,
+        "evidence_boundary": "M01 closes only for the frozen IGZO-only teaching candidate, 247 registered target rows, ngspice/Xyce behavioral routes and persisted numerical comparison. Historical failures remain immutable. This is not native AIM-Spice Level 15 or HSPICE Level 61, equation identity, measured or fitted physical parameters, experimental calibration, external validation, foundry sign-off or circuit validation. Only a separately committed C00 static contract may follow; no C00 circuit execution is permitted by this closure decision."
+      },
       "contract_evidence": {
         "status": "simulator_cross_check_contract_ready",
         "revision": 3,
@@ -855,7 +888,7 @@
         },
         "next_gate": "establish and commit an explicitly open-source second-simulator recovery contract before any device-level numerical execution"
       },
-      "evidence_boundary": "The revision-3 M01 contract, open-source recovery contract and R11 36/32/25 tool/parser chain remain immutable; R11 does not establish formal device DC. M01_OPEN_SOURCE_DEVICE_DC_R01 remains 39/40 E0/FAIL and is not rerun. R02 now has 40/40 E3 static, 30/30 E2 runner and 24/24 E3 independent persisted-evidence PASS. Exactly one serial ngspice and one serial GPL Xyce device-only DC process produced complete finite outputs, and the independent checker launched zero processes while exactly regenerating netlists, parsing both raw formats, recomputing 247+247 rows, 30 metrics, 247 differences, 14 hashes and both figure dimensions. The verified routes do not agree: ngspice remains near its numerical floor while Xyce follows the frozen candidate; maximum absolute/log differences are 4.6825230492225607e-4 A/cm and 16.670479923821013 decade. Since the contract pre-registered these thresholds as diagnostic-only, the chain verifies execution and evidence integrity, not route agreement, equation identity, physical parameters, experimental calibration or circuit readiness. M01 and C00 remain closed pending a versioned root-cause contract for the route divergence. External baselines remain reference-only; unauthorized AIM-Spice, SnO, HZO and circuit assets are excluded.",
+      "evidence_boundary": "M01 is closed with limitations only within the frozen IGZO teaching-model boundary. The original revision-3 contract, unauthorized AIM-Spice provenance failure, all Xyce build/tool failures, R11 36/32/25 preflight, formal device R01 39/40 failure, formal device R02 40/30/24 divergence and root-cause R01/R02 histories remain immutable. M01_OPEN_SOURCE_DEVICE_DC_R03 completed 42/30/24 at E3/E2/E3 using exactly one serial ngspice and one serial GPL Xyce device-only DC process; the zero-process independent checker regenerated both 247-device netlists, parsed raw/PRN, exactly recomputed 247+247 rows, 30 metrics and 247 differences, and verified all 14 hashes and figure dimensions. It independently reproduced maximum absolute/log differences of 4.3706900078321897e-19 A/cm and 2.7533531010703882e-14 decade. This satisfies the frozen M01 acceptance of same targets, explicit model boundary, persisted route outputs/differences and persisted syntax/tool preflight; forced equation agreement was never the acceptance rule. The closure is not native AIM-Spice Level 15 or HSPICE Level 61, equation identity, physical parameters, experimental calibration, external validation, circuit readiness, layout, PEX, HZO or foundry sign-off. C00 may proceed only to a separately committed static contract; circuit execution remains closed.",
       "open_source_recovery_contract": {
         "status": "contract_ready",
         "revision": 1,
@@ -1903,7 +1936,8 @@
           "interpretation": "the portable clamp produced machine-precision two-route agreement in the one formal runner, independently reproduced from persisted evidence"
         },
         "evidence_boundary": "The one permitted R03 independent checker returned 24/24 PASS at E3 with zero process invocations after the 42/42 E3 static and 30/30 E2 runner states were separately committed. It independently regenerated both 247-device netlists, parsed both native outputs, exactly recomputed the two 247-row route tables, 30 metric rows and 247 route-difference rows, and verified all 14 runner artifact hashes and both figure dimensions. This independently reproduces the machine-precision two-route agreement for the frozen IGZO-only teaching candidate. It does not establish equation identity, native HSPICE Level 61, physical parameters, experimental calibration, external validation, P2/T03 closure, circuit readiness, layout, PEX or HZO evidence. M01 and C00 remain closed until this E3 state is committed and a separate closure decision is recorded.",
-        "next_gate": "Commit and push this 24/24 E3 independently verified state before deciding whether M01 closes within the declared teaching-model boundary and whether C00 may open. Do not run C00 before that decision."
+        "m01_teaching_model_closure_recorded": true,
+        "next_gate": "M01 is closed with limitations within the frozen teaching-model boundary. Establish and commit a C00 active-load inverter static contract before any circuit execution."
       },
       "route_divergence_root_cause_r01": {
         "status": "contract_failed_static_checker",
@@ -2095,7 +2129,7 @@
       "id": "C00",
       "track": "circuit",
       "name": "dual_gate_igzo_active_load_inverter",
-      "status": "planned",
+      "status": "contract_planning_open",
       "current_evidence": "E0",
       "depends_on": ["M01", "T02"],
       "parameter_group_ids": ["P6"],
@@ -2103,7 +2137,19 @@
       "changed_variables": ["V_top_load", "Wload/Wdriver", "VDD", "Cload"],
       "controls": ["model_revision", "input_slew", "measurement_thresholds"],
       "required_outputs": ["VTC", "VOH_VOL", "VM_gain_noise_margin", "delay", "static_dynamic_power"],
-      "acceptance": ["logic levels are separable", "gain and margins reported", "static-current tradeoff reported"]
+      "acceptance": ["logic levels are separable", "gain and margins reported", "static-current tradeoff reported"],
+      "entry_gate": {
+        "status": "PASS",
+        "source_stage": "M01",
+        "source_decision": "M01_TEACHING_MODEL_ONLY_PASS",
+        "source_commit": "5d2134c13dedfc5e21e3818de971818422a6f55b",
+        "accepted_candidate_path": "spice/models/igzo_dg_behavioral_r03_portable.inc",
+        "accepted_candidate_sha256": "dd56c4c5b9f67d628eb2677705139769642b2e0eb66fca5b453b3cc6be351fd6",
+        "contract_planning_permitted": true,
+        "circuit_execution_permitted": false,
+        "downstream_permitted": false,
+        "next_gate": "Establish and commit a C00 active-load inverter static contract before any circuit netlist or simulator execution."
+      }
     },
     {
       "id": "C01",

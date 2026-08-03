@@ -821,6 +821,8 @@ def main() -> int:
             "run the independent persisted-evidence checker for M01 open-source device DC revision-3 portable"
         ) or current_next_scope.startswith(
             "commit and push the independently verified M01 open-source device DC revision-3 portable E3 state"
+        ) or current_next_scope.startswith(
+            "establish and commit a C00 dual-gate IGZO active-load inverter static contract"
         )
         r08_scope_active = current_next_scope.startswith(
             "establish and commit M01 Xyce build/tool preflight revision-8"
@@ -5482,6 +5484,9 @@ def main() -> int:
         m01_contract = json.loads(m01_contract_path.read_text(encoding="utf-8"))
         m01_report = json.loads(m01_contract_report_path.read_text(encoding="utf-8"))
         m01_experiment = experiment_map["M01"]
+        m01_closure = m01_experiment.get("teaching_model_closure", {})
+        c00_experiment = experiment_map["C00"]
+        c00_entry_gate = c00_experiment.get("entry_gate", {})
         m01_preflight_machine = m01_experiment.get("preflight_execution_chain", {})
         m01_checks = m01_report.get("checks", [])
         m01_future_paths = [
@@ -5503,8 +5508,54 @@ def main() -> int:
             and m01_report.get("circuit_status") == "NOT_RUN_BY_CONTRACT_CHECK"
             and len(m01_checks) == 32
             and all(item.get("status") == "PASS" for item in m01_checks)
-            and m01_experiment.get("status") == "preflight_failed_tool_provenance"
-            and m01_experiment.get("current_evidence") == "E0"
+            and m01_experiment.get("status") == "done_with_limitation"
+            and m01_experiment.get("current_evidence") == "E3"
+            and m01_experiment.get("historical_root_status")
+            == "preflight_failed_tool_provenance"
+            and m01_experiment.get("historical_root_evidence") == "E0"
+            and m01_closure.get("status") == "closed_with_limitations"
+            and m01_closure.get("decision") == "M01_TEACHING_MODEL_ONLY_PASS"
+            and m01_closure.get("current_evidence") == "E3"
+            and m01_closure.get("decision_basis_commit")
+            == "5d2134c13dedfc5e21e3818de971818422a6f55b"
+            and m01_closure.get("accepted_candidate_sha256")
+            == sha256(ROOT / m01_closure.get("accepted_candidate_path", "missing"))
+            and m01_closure.get("static_report_sha256")
+            == sha256(ROOT / "results/reports/m01_open_source_device_dc_contract_r03.json")
+            and m01_closure.get("runner_report_sha256")
+            == sha256(ROOT / "results/reports/m01_open_source_cross_check_r03.json")
+            and m01_closure.get("independent_report_sha256")
+            == sha256(ROOT / "results/reports/m01_open_source_cross_check_r03_check.json")
+            and m01_closure.get("checks")
+            == {"static": 42, "runner": 30, "independent": 24}
+            and m01_closure.get("acceptance_evaluation")
+            == {
+                "same_target_conditions_used": True,
+                "model_boundary_stated": True,
+                "both_route_outputs_and_route_differences_persisted": True,
+                "syntax_and_tool_preflight_persisted": True,
+                "machine_precision_route_agreement_independently_reproduced": True,
+            }
+            and m01_closure.get("historical_failures_preserved") is True
+            and m01_closure.get("aimspice_route_accepted") is False
+            and m01_closure.get("equation_identity_claimed") is False
+            and m01_closure.get("physical_parameter_claimed") is False
+            and m01_closure.get("experimental_calibration_claimed") is False
+            and m01_closure.get("external_validation_claimed") is False
+            and m01_closure.get("c00_contract_planning_permitted") is True
+            and m01_closure.get("c00_circuit_execution_permitted") is False
+            and c00_experiment.get("status") == "contract_planning_open"
+            and c00_experiment.get("current_evidence") == "E0"
+            and c00_entry_gate.get("status") == "PASS"
+            and c00_entry_gate.get("source_decision")
+            == "M01_TEACHING_MODEL_ONLY_PASS"
+            and c00_entry_gate.get("source_commit")
+            == "5d2134c13dedfc5e21e3818de971818422a6f55b"
+            and c00_entry_gate.get("accepted_candidate_sha256")
+            == m01_closure.get("accepted_candidate_sha256")
+            and c00_entry_gate.get("contract_planning_permitted") is True
+            and c00_entry_gate.get("circuit_execution_permitted") is False
+            and c00_entry_gate.get("downstream_permitted") is False
             and m01_experiment.get("contract_evidence", {}).get("status")
             == "simulator_cross_check_contract_ready"
             and m01_experiment.get("contract_evidence", {}).get("revision") == 3
@@ -5517,6 +5568,10 @@ def main() -> int:
             and m01_experiment.get("contract_evidence", {}).get("circuit_or_downstream_permitted") is False
             and config.get("tcad_track", {}).get("m01_contract_boundary", "").startswith(
                 "The E3 M01 revision-3 contract freezes"
+            )
+            and "DONE_WITH_LIMITATION"
+            in config.get("tcad_track", {}).get(
+                "m01_teaching_model_closure_boundary", ""
             )
             and m01_report.get("config", {}).get("sha256") == sha256(m01_contract_path)
             and m01_report.get("checker", {}).get("sha256") == sha256(m01_checker_path)
@@ -9735,8 +9790,13 @@ def main() -> int:
             )
         ) or (
             r03_verified_state
-            and r03_next_scope.startswith(
-                "commit and push the independently verified M01 open-source device DC revision-3 portable E3 state"
+            and (
+                r03_next_scope.startswith(
+                    "commit and push the independently verified M01 open-source device DC revision-3 portable E3 state"
+                )
+                or r03_next_scope.startswith(
+                    "establish and commit a C00 dual-gate IGZO active-load inverter static contract"
+                )
             )
         )
         add_check(

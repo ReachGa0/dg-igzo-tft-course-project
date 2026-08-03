@@ -317,4 +317,8 @@
       <p>runner PASS 提交 <code>6f4e89b</code> 推送并同步后，R03 标准库独立 checker 唯一返回 24/24 PASS、E3，启动 0 个进程。报告 <code>results/reports/m01_open_source_cross_check_r03_check.json</code> SHA-256 为 <code>5419f34b20861561137ad19768af4783e4e7372265cc42ccb5abf27c2691a937</code>。checker 独立再生两份 247 器件网表，解析 ngspice raw 与 Xyce PRN，精确重算两份 247 行路线表、30 行指标、247 行差异，并复核 14/14 runner 产物哈希和两张 <code>2240 x 1760</code> PNG 尺寸。</p>
       <p>独立重算复现最大绝对路线差 <code>4.3706900078321897e-19 A/cm</code> 与最大对数差 <code>2.7533531010703882e-14 decade</code>，因此 R03 的机器精度级路线一致从 runner E2 观察提升为落盘证据完整性 E3。R02 的数值分歧和根因最小点边界继续作为不可改写历史证据。</p>
       <p class="boundary">该 E3 仍不证明方程身份、原生 HSPICE Level 61、物理 IGZO 参数、实验校准、外部验证、正式敏感性、P2/T03、电路、版图、PEX 或 HZO。按独立报告 next gate，先提交推送本 E3，再单独判断 M01 是否在声明的教学模型边界内关闭及 C00 是否可开放；决策前不运行 C00，也不重跑 R03。</p>
+      <h3>8.32 M01 教学模型边界受限收口</h3>
+      <p>独立 E3 提交 <code>5d2134c</code> 推送并同步后，项目按冻结 M01 验收单独决策。同一 247 行目标条件、明确模型边界、两路输出与差异完整持久化、R11 语法/工具预检持久化四项均满足；原 M01 合同预先声明验收目标是完整可审计的两路线比较和限制说明，而非强制方程一致。</p>
+      <p>R03 还以 42/30/24 E3/E2/E3 独立复现机器精度级路线一致。因此机器状态登记 <code>M01_TEACHING_MODEL_ONLY_PASS</code> 与 <code>done_with_limitation/E3</code>，接受范围仅限 R03 portable IGZO 教学候选、冻结 247 行和 ngspice/GPL-Xyce 行为路线。</p>
+      <p class="boundary">旧 <code>preflight_failed_tool_provenance/E0</code> 根状态、未授权 AIM-Spice、全部 build/tool/合同失败、R01 39/40、R02 路线分歧与根因链仍是不可改写历史。本收口不证明原生 AIM-Spice Level 15、HSPICE Level 61、方程身份、物理参数、实验校准、外部验证或电路结果；它只开放建立 C00 双栅 IGZO 有源负载 INV 静态合同。合同 PASS 状态另行提交前不得运行电路。</p>
 </section>
