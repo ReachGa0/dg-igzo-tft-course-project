@@ -266,6 +266,11 @@ REQUIRED_FILES = [
     "results/compact/m01_xyce_build_preflight_r10/xyce_version.log",
     "results/compact/m01_xyce_build_preflight_r10/xyce_license.log",
     "results/compact/m01_xyce_build_preflight_r10/xyce_bsource_self_test.log",
+    "config/m01_xyce_build_preflight_r11.json",
+    "scripts/m01_xyce_r11_common.py",
+    "scripts/check_m01_xyce_build_preflight_r11_contract.py",
+    "scripts/run_m01_xyce_build_preflight_r11.py",
+    "scripts/check_m01_xyce_build_preflight_r11.py",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -7814,6 +7819,221 @@ def main() -> int:
         add_check(
             checks,
             "m01_xyce_preflight_r10:implementation_state_and_unexecuted_chain",
+            False,
+            str(error),
+        )
+
+    m01_xyce_r11_config_path = ROOT / "config" / "m01_xyce_build_preflight_r11.json"
+    m01_xyce_r11_contract_report_path = (
+        ROOT / "results" / "reports" / "m01_xyce_build_preflight_contract_r11.json"
+    )
+    m01_xyce_r11_contract_checker_path = (
+        ROOT / "scripts" / "check_m01_xyce_build_preflight_r11_contract.py"
+    )
+    m01_xyce_r11_runner_path = ROOT / "scripts" / "run_m01_xyce_build_preflight_r11.py"
+    m01_xyce_r11_checker_path = ROOT / "scripts" / "check_m01_xyce_build_preflight_r11.py"
+    m01_xyce_r11_common_path = ROOT / "scripts" / "m01_xyce_r11_common.py"
+    try:
+        r11_config = json.loads(m01_xyce_r11_config_path.read_text(encoding="utf-8"))
+        r11_machine = experiment_map["M01"].get("xyce_build_preflight_r11", {})
+        r11_outputs = r11_config["outputs"]
+        r11_future_paths = [
+            ROOT / value for key, value in r11_outputs.items() if key != "contract_report"
+        ]
+        r11_formal_paths = [
+            ROOT / value for value in r11_config.get("formal_outputs_that_must_remain_absent", [])
+        ]
+        r11_contract_exists = m01_xyce_r11_contract_report_path.is_file()
+        r11_contract_report = (
+            json.loads(m01_xyce_r11_contract_report_path.read_text(encoding="utf-8"))
+            if r11_contract_exists
+            else {}
+        )
+        r11_r07 = r11_config["r07_failure_binding"]
+        r11_r10 = r11_config["r10_failure_binding"]
+        r11_r10_static_path = ROOT / r11_r10["static_contract_report_path"]
+        r11_r10_failure_path = ROOT / r11_r10["runner_failure_report_path"]
+        r11_r10_failure_log_path = ROOT / r11_r10["runner_failure_log_path"]
+        r11_r10_static = json.loads(r11_r10_static_path.read_text(encoding="utf-8"))
+        r11_r10_failure = json.loads(r11_r10_failure_path.read_text(encoding="utf-8"))
+        r11_r10_summary = r11_r10_failure.get("summary", {})
+        r11_r10_bindings = [
+            (r11_r10["config_path"], r11_r10["config_sha256"]),
+            (r11_r10["common_hash_helper_path"], r11_r10["common_hash_helper_sha256"]),
+            (r11_r10["contract_checker_path"], r11_r10["contract_checker_sha256"]),
+            (r11_r10["runner_path"], r11_r10["runner_sha256"]),
+            (r11_r10["independent_checker_path"], r11_r10["independent_checker_sha256"]),
+            (r11_r10["static_contract_report_path"], r11_r10["static_contract_report_sha256"]),
+            (r11_r10["runner_failure_report_path"], r11_r10["runner_failure_report_sha256"]),
+            (r11_r10["runner_failure_log_path"], r11_r10["runner_failure_log_sha256"]),
+        ]
+        r11_r10_partial_directory = ROOT / r11_r10["partial_run_directory"]
+        r11_r10_tree = (
+            digest_r10_tree(r11_r10_partial_directory)
+            if r11_r10_partial_directory.is_dir()
+            else {}
+        )
+        r11_r10_binding_ok = (
+            r11_r10["bound_commit"] == "63be6a45e583b61027b18614cec4f83ce93848ad"
+            and r11_r10["must_remain_unchanged"] is True
+            and r11_r10["runner_rerun"] is False
+            and r11_r10["independent_checker_run"] is False
+            and r11_r10_static.get("status") == "PASS"
+            and r11_r10_static.get("evidence_level") == "E3"
+            and r11_r10_static.get("summary", {}).get("passed") == 36
+            and r11_r10_static.get("summary", {}).get("failed") == 0
+            and r11_r10_failure.get("status") == "FAIL"
+            and r11_r10_failure.get("evidence_level") == "E0"
+            and r11_r10_failure.get("failure_category")
+            == "runner_unicode_path_ascii_encoding"
+            and r11_r10_summary.get("process_invocations") == 3
+            and r11_r10_summary.get("build_processes_invoked") == 0
+            and r11_r10_summary.get("controlled_bsource_self_test_invoked") is True
+            and r11_r10_summary.get("device_syntax_only_invoked") is False
+            and r11_r10_summary.get("formal_device_dc_invoked") is False
+            and all(
+                (ROOT / path).is_file() and sha256(ROOT / path) == expected
+                for path, expected in r11_r10_bindings
+            )
+            and all(
+                r11_r10_tree.get(key) == value
+                for key, value in r11_r10["partial_run_tree"].items()
+            )
+        )
+        r11_machine_planned = (
+            r11_machine.get("status") == "contract_planned"
+            and r11_machine.get("revision") == 11
+            and r11_machine.get("current_evidence") == "E0"
+            and r11_machine.get("contract_check_completed") is False
+            and r11_machine.get("contract_status") == "NOT_RUN"
+            and r11_machine.get("result_paths") == []
+            and r11_machine.get("artifact_hashes") == {}
+        )
+        r11_static_pass = (
+            r11_contract_exists
+            and r11_contract_report.get("status") == "PASS"
+            and r11_contract_report.get("contract_status") == "PASS"
+            and r11_contract_report.get("evidence_level") == "E3"
+            and r11_contract_report.get("build_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and r11_contract_report.get("preflight_id") == "M01_XYCE_BUILD_PREFLIGHT_R11"
+            and len(r11_contract_report.get("checks", [])) == 36
+            and all(item.get("status") == "PASS" for item in r11_contract_report.get("checks", []))
+            and r11_contract_report.get("summary", {}).get("passed") == 36
+            and r11_contract_report.get("summary", {}).get("failed") == 0
+            and r11_contract_report.get("summary", {}).get("build_processes_invoked") == 0
+            and r11_contract_report.get("summary", {}).get("simulator_processes_invoked") == 0
+            and r11_contract_report.get("summary", {}).get("device_netlist_created") is False
+            and r11_contract_report.get("summary", {}).get("numerical_outputs_created") is False
+            and r11_contract_report.get("config", {}).get("sha256")
+            == sha256(m01_xyce_r11_config_path)
+            and r11_contract_report.get("checker", {}).get("sha256")
+            == sha256(m01_xyce_r11_contract_checker_path)
+        )
+        r11_ready_state = (
+            r11_static_pass
+            and r11_machine.get("status") == "contract_ready"
+            and r11_machine.get("revision") == 11
+            and r11_machine.get("current_evidence") == "E3"
+            and r11_machine.get("contract_check_completed") is True
+            and r11_machine.get("contract_status") == "PASS"
+            and r11_machine.get("contract_checks_passed") == 36
+            and r11_machine.get("contract_checks_failed") == 0
+            and r11_machine.get("preflight_run_completed") is False
+            and r11_machine.get("result_paths")
+            == ["results/reports/m01_xyce_build_preflight_contract_r11.json"]
+            and r11_machine.get("artifact_hashes", {}).get("contract_report_sha256")
+            == sha256(m01_xyce_r11_contract_report_path)
+        )
+        r11_runner_source = m01_xyce_r11_runner_path.read_text(encoding="utf-8")
+        r11_checker_source = m01_xyce_r11_checker_path.read_text(encoding="utf-8")
+        r11_contract_source = m01_xyce_r11_contract_checker_path.read_text(encoding="utf-8")
+        r11_common_source = m01_xyce_r11_common_path.read_text(encoding="utf-8")
+        r11_candidate_contract = r11_config["device_syntax_check"]
+        r11_candidate = ROOT / r11_candidate_contract["candidate_path"]
+        r11_next_scope = config.get("tcad_track", {}).get("next_scope", "")
+        r11_next_scope_valid = (
+            r11_machine_planned
+            and r11_next_scope.startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-11 path-safe parser contract"
+            )
+        ) or (
+            r11_ready_state
+            and r11_next_scope.startswith("execute M01 Xyce build/tool preflight revision-11")
+        )
+        r11_expected_archive_paths = [
+            r11_r10["static_contract_report_path"],
+            r11_r10["runner_failure_report_path"],
+            r11_r10["runner_failure_log_path"],
+            r11_r10["partial_run_directory"],
+        ]
+        add_check(
+            checks,
+            "m01_xyce_preflight_r11:path_safe_contract_and_unexecuted_chain",
+            r11_config.get("preflight_id") == "M01_XYCE_BUILD_PREFLIGHT_R11"
+            and r11_config.get("revision") == 11
+            and r11_config.get("status") == "preflight_planned"
+            and r11_config.get("scope", {}).get("active_material_scope") == "IGZO only"
+            and r11_config.get("scope", {}).get("formal_m01_numerical_run") is False
+            and r11_config.get("scope", {}).get("circuit_or_downstream_permitted") is False
+            and (r11_machine_planned or r11_ready_state)
+            and (not r11_contract_exists if r11_machine_planned else r11_contract_exists)
+            and all(not path.exists() for path in r11_future_paths)
+            and all(not path.exists() for path in r11_formal_paths)
+            and r11_r10_binding_ok
+            and r11_machine.get("r10_runner_failure_preserved") is True
+            and r11_machine.get("r10_failure_bound_commit") == r11_r10["bound_commit"]
+            and r11_machine.get("r10_failure_archive_paths") == r11_expected_archive_paths
+            and r11_machine.get("r10_partial_run_tree_sha256")
+            == r11_r10["partial_run_tree"]["tree_sha256"]
+            and r11_machine.get("r10_runner_rerun") is False
+            and r11_machine.get("r10_independent_checker_run") is False
+            and r11_candidate.is_file()
+            and sha256(r11_candidate) == r11_candidate_contract["candidate_sha256"]
+            and r11_candidate_contract.get("include_path_mode") == "repository_relative_ascii"
+            and r11_candidate_contract.get("include_path")
+            == r11_candidate_contract.get("candidate_path")
+            and r11_candidate_contract.get("include_path", "").isascii()
+            and not Path(r11_candidate_contract.get("include_path", "")).is_absolute()
+            and r11_candidate_contract.get("runner_working_directory") == "project_root"
+            and r11_candidate_contract.get("netlist_encoding") == "ascii"
+            and r11_candidate_contract.get("absolute_project_path_forbidden") is True
+            and "EXPECTED_CHECK_COUNT = 36" in r11_contract_source
+            and "EXPECTED_CHECK_COUNT = 32" in r11_runner_source
+            and "EXPECTED_CHECK_COUNT = 25" in r11_checker_source
+            and "EXPECTED_RUNNER_CHECK_COUNT = 32" in r11_checker_source
+            and "candidate_relative_path" in r11_runner_source
+            and "candidate_include_path = candidate_relative_path.as_posix()" in r11_runner_source
+            and "candidate_include_path.isascii()" in r11_runner_source
+            and "not candidate_relative_path.is_absolute()" in r11_runner_source
+            and "str(ROOT) not in device_syntax_text" in r11_runner_source
+            and "def read_xyce_prn" in r11_common_source
+            and "import subprocess" not in r11_checker_source
+            and "import subprocess" not in r11_common_source
+            and re.search(r"^(?:import|from)\s+subprocess\b", r11_contract_source, re.MULTILINE) is None
+            and "m01-xyce-build-preflight-r11-contract-check:" in makefile_source
+            and "m01-xyce-build-preflight-r11:" in makefile_source
+            and "m01-xyce-build-preflight-r11-check:" in makefile_source
+            and r11_machine.get("ngspice_invoked") is False
+            and r11_machine.get("aimspice_invoked") is False
+            and r11_machine.get("build_processes_invoked") == 0
+            and r11_machine.get("simulator_processes_invoked") == 0
+            and r11_machine.get("device_netlist_invoked") is False
+            and r11_machine.get("numerical_outputs_created") is False
+            and r11_machine.get("proprietary_binary_accepted") is False
+            and r11_machine.get("circuit_or_downstream_permitted") is False
+            and "not parser execution"
+            in config.get("tcad_track", {}).get(
+                "m01_xyce_build_preflight_r11_contract_boundary", ""
+            )
+            and r11_next_scope_valid,
+            f"planned={r11_machine_planned} ready={r11_ready_state} "
+            f"r10_binding={r11_r10_binding_ok} "
+            f"future_absent={sum(not path.exists() for path in r11_future_paths)}/{len(r11_future_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(
+            checks,
+            "m01_xyce_preflight_r11:path_safe_contract_and_unexecuted_chain",
             False,
             str(error),
         )

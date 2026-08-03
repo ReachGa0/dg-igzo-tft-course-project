@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`M01_R10_XYCE_RUNNER_FAILURE_E0_NEXT_R11`：T01/T02/T03 数值门已关闭，历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。Xyce build/tool R01 执行 14/29、独立 9/20 E0/FAIL；R02/R03/R04 静态合同分别唯一检查 22/25、21/25、25/26 E0/FAIL。R05 静态合同 27/27 E3 后，runner 唯一运行 19/29 E0/FAIL；R06 静态合同 36/37 E0/FAIL。R07 静态合同 39/39 E3 后 runner 唯一返回 42/47 E0/FAIL，原因是 `.prn`/`.csv` 输出合同缺陷；R08 静态 checker 唯一执行因预期 36、实际注册 30 而在写报告前失败，归档保留；R09 静态 checker 唯一返回 34/36 E0/FAIL。R10 静态合同唯一返回 36/36 PASS、E3；runner 唯一运行通过版本、许可证和 1.25 V B-source 自测后，因中文绝对路径不能按 ASCII 写入 parser-only 网表而失败，parser 命令与独立检查未运行。R10 不重跑，下一阶段建立路径安全 R11。
+`M01_R11_PATH_SAFE_STATIC_CONTRACT_PLANNED_E0`：T01/T02/T03 数值门已关闭，历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。Xyce build/tool R01 执行 14/29、独立 9/20 E0/FAIL；R02/R03/R04 静态合同分别唯一检查 22/25、21/25、25/26 E0/FAIL。R05 静态合同 27/27 E3 后，runner 唯一运行 19/29 E0/FAIL；R06 静态合同 36/37 E0/FAIL。R07 静态合同 39/39 E3 后 runner 唯一返回 42/47 E0/FAIL，原因是 `.prn`/`.csv` 输出合同缺陷；R08 静态 checker 唯一执行因预期 36、实际注册 30 而在写报告前失败，归档保留；R09 静态 checker 唯一返回 34/36 E0/FAIL。R10 静态合同唯一返回 36/36 PASS、E3；runner 唯一运行通过版本、许可证和 1.25 V B-source 自测后，因中文绝对路径不能按 ASCII 写入 parser-only 网表而失败，parser 命令与独立检查未运行。R10 不重跑。R11 已建立独立路径安全合同，静态 checker/runner/独立检查均未运行；下一门为实施提交后的 36 项静态检查。
 
 ## 截止日期
 
@@ -46,7 +46,7 @@
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
 | M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
-| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；R07 runner 42/47 E0/FAIL；R08 checker 30/36 E0/FAIL；R09 checker 34/36 E0/FAIL；R10 static 36/36 E3、runner Unicode 路径 E0/FAIL | revision-3 32/32、开源恢复 30/30；R01 执行 14/29、独立 9/20，R02/R03/R04 静态合同 22/25、21/25、25/26 均保留。R05 合同 27/27 E3、runner 19/29 E0/FAIL；R06 静态合同 36/37；R07 build/tool 生成器/Xyce 安装成功但 self-test 输出合同失败；R08/R09 checker 失败；R10 三个 Xyce 工具命令通过但 parser-only 网表写入失败，正式器件 DC 与独立检查未运行；下一门 R11 |
+| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；R07 runner 42/47 E0/FAIL；R08 checker 30/36 E0/FAIL；R09 checker 34/36 E0/FAIL；R10 static 36/36 E3、runner Unicode 路径 E0/FAIL；R11 contract planned E0 | revision-3 32/32、开源恢复 30/30；R01 执行 14/29、独立 9/20，R02/R03/R04 静态合同 22/25、21/25、25/26 均保留。R05 合同 27/27 E3、runner 19/29 E0/FAIL；R06 静态合同 36/37；R07 build/tool 生成器/Xyce 安装成功但 self-test 输出合同失败；R08/R09 checker 失败；R10 三个 Xyce 工具命令通过但 parser-only 网表写入失败；R11 只实施相对 ASCII include 合同，静态/runner/独立检查均未运行，正式器件 DC 继续关闭 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-M00 R01/R02 和 M01 R01/R02/R03/R04/R05/R06/R07/R08/R09/R10 均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。M01 revision-3、开源恢复、Xyce build/tool R01 合同、R05 合同、R07 与 R10 静态合同分别为 32/32、30/30、25/25、27/27、39/39、36/36 E3；R01 执行/独立检查 14/29、9/20，R02/R03/R04 静态合同 22/25、21/25、25/26，R05 runner 19/29，R06 静态合同 36/37，R07 runner 42/47，R08 checker 注册 30/36，R09 checker 34/36，R10 runner 为 Unicode 路径写入失败，证据均保留。下一步提交 R10 失败归档并建立全新 R11 路径安全合同；R11 静态 PASS 提交前不得执行 runner，正式 M01 器件 DC、电路、版图、PEX 和 HZO 继续关闭。
+M00 R01/R02 和 M01 R01/R02/R03/R04/R05/R06/R07/R08/R09/R10 均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。M01 revision-3、开源恢复、Xyce build/tool R01 合同、R05 合同、R07 与 R10 静态合同分别为 32/32、30/30、25/25、27/27、39/39、36/36 E3；R01 执行/独立检查 14/29、9/20，R02/R03/R04 静态合同 22/25、21/25、25/26，R05 runner 19/29，R06 静态合同 36/37，R07 runner 42/47，R08 checker 注册 30/36，R09 checker 34/36，R10 runner 为 Unicode 路径写入失败，证据均保留。R11 路径安全合同已实施但未检查；下一步提交并推送实施，再唯一执行 36 项静态检查。R11 静态 PASS 提交前不得执行 runner，正式 M01 器件 DC、电路、版图、PEX 和 HZO 继续关闭。

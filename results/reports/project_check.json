@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 694,
+  "checks": 700,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=26719"
+      "detail": "bytes=26885"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=24223"
+      "detail": "bytes=24375"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=20507"
+      "detail": "bytes=20790"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=171574"
+      "detail": "bytes=173499"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=6202"
+      "detail": "bytes=6436"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=97365"
+      "detail": "bytes=98630"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=49023"
+      "detail": "bytes=50100"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=11898"
+      "detail": "bytes=12304"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=38036"
+      "detail": "bytes=39060"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=97071"
+      "detail": "bytes=99863"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1500,6 +1500,31 @@
       "detail": "bytes=793"
     },
     {
+      "name": "file:config/m01_xyce_build_preflight_r11.json",
+      "status": "PASS",
+      "detail": "bytes=16871"
+    },
+    {
+      "name": "file:scripts/m01_xyce_r11_common.py",
+      "status": "PASS",
+      "detail": "bytes=3021"
+    },
+    {
+      "name": "file:scripts/check_m01_xyce_build_preflight_r11_contract.py",
+      "status": "PASS",
+      "detail": "bytes=28571"
+    },
+    {
+      "name": "file:scripts/run_m01_xyce_build_preflight_r11.py",
+      "status": "PASS",
+      "detail": "bytes=26795"
+    },
+    {
+      "name": "file:scripts/check_m01_xyce_build_preflight_r11.py",
+      "status": "PASS",
+      "detail": "bytes=17076"
+    },
+    {
       "name": "file:scripts/check_t03_p5_temperature.py",
       "status": "PASS",
       "detail": "bytes=35919"
@@ -1892,7 +1917,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=61544"
+      "detail": "bytes=62578"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3252,7 +3277,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "preserve and commit the M01 Xyce build/tool preflight revision-10 runner Unicode-path failure without rerunning R10, then establish revision-11 with a new path-safe parser namespace; do not run formal M01, SPICE, circuit, layout, PEX or HZO stages"
+      "detail": "establish and commit M01 Xyce build/tool preflight revision-11 path-safe parser contract after preserving R10; do not rerun R10 or run the R11 runner/independent checker before a committed 36/36 static PASS, and do not run formal M01, SPICE, circuit, layout, PEX or HZO stages"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3322,7 +3347,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "preserve and commit the M01 Xyce build/tool preflight revision-10 runner Unicode-path failure without rerunning R10, then establish revision-11 with a new path-safe parser namespace; do not run formal M01, SPICE, circuit, layout, PEX or HZO stages"
+      "detail": "establish and commit M01 Xyce build/tool preflight revision-11 path-safe parser contract after preserving R10; do not rerun R10 or run the R11 runner/independent checker before a committed 36/36 static PASS, and do not run formal M01, SPICE, circuit, layout, PEX or HZO stages"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3408,6 +3433,11 @@
       "name": "m01_xyce_preflight_r10:implementation_state_and_unexecuted_chain",
       "status": "PASS",
       "detail": "planned=False ready=False failed=True r08_binding=True r09_binding=True future_absent=7/7"
+    },
+    {
+      "name": "m01_xyce_preflight_r11:path_safe_contract_and_unexecuted_chain",
+      "status": "PASS",
+      "detail": "planned=True ready=False r10_binding=True future_absent=16/16"
     },
     {
       "name": "tcad:mesh_levels",

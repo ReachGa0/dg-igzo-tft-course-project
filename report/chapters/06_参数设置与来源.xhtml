@@ -30,6 +30,7 @@
       <tr><td>M01 Xyce build/tool R08 contract</td><td>只复用哈希绑定的 R07 generator/Xyce 安装；固定 `.prn` 列名 <code>V(NOUT)</code>、1.25 V 容差、IGZO candidate hash、四条 Xyce 命令和新的 R08 输出根</td><td>唯一静态执行因 checker 预期 36、实际注册 30 在报告前失败；无 R08 runner/独立检查或正式器件输出。R09 以新命名空间修正注册表，不改变物理输入、候选或阈值</td></tr>
       <tr><td>M01 Xyce build/tool R09 contract</td><td>绑定 R08 30/36 失败归档与 R07 `.prn` 观察/完整安装树；新 <code>r09</code> 输出根、36 项静态 checker、32 项 runner、25 项独立检查</td><td>静态唯一返回 34/36、E0/FAIL；复用黑名单和 next_gate 两项断言失败，报告/日志保留。不是 Xyce parser、器件、SPICE、物理参数或实验校准证据；R10 需新命名空间修正</td></tr>
       <tr><td>M01 Xyce build/tool R10 contract/runner</td><td>绑定 R09/R08/R07 失败哈希；新 <code>r10</code> 输出根，保持 36/32/25、固定列 <code>.prn</code>、1.25 V、自测顺序和冻结 IGZO candidate 不变</td><td>静态唯一 36/36 PASS、E3；runner 的前三个工具命令通过，但绝对中文路径的 ASCII 网表写入在 parser-only 前失败。0 个 build、3 个 Xyce 工具进程、无正式数值输出；R10 归档后转入路径安全 R11</td></tr>
+      <tr><td>M01 Xyce build/tool R11 contract implementation</td><td>绑定提交 <code>63be6a4</code> 的 R10 静态/失败归档；同一 candidate 使用 <code>spice/models/igzo_dg_behavioral_r02.inc</code> 仓库相对 ASCII include 与 project-root cwd</td><td>当前 E0，仅实施 36/32/25 检查链；静态合同、runner、独立检查和全部 R11 输出均未运行/生成。物理输入、阈值和 no-downstream 门不变</td></tr>
       <tr><td>学长 IGZO/VTC 表</td><td>已保留来源行和质量标记</td><td>导入、对数作图和数据质量参考</td><td>缺少完整条件，仅 reference_only</td></tr>
     </tbody>
   </table>

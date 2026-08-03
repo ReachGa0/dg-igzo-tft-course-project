@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 建立 M01 Xyce R11 路径安全合同（未执行）
+
+### 目标与实施
+
+承接已提交的 R10 Unicode 路径 runner 失败 `63be6a4`，不修改或重跑 R10/R09/R08/R07，不启动任何 TCAD、Xyce、ngspice、AIM-Spice、器件或下游进程。新增 `config/m01_xyce_build_preflight_r11.json`、公共哈希/固定列解析模块、36 项静态 checker、32 项 runner、25 项独立 checker 和三个 Make 入口。R11 哈希绑定 R10 配置/源码、36/36 E3 静态报告、E0 失败报告/日志和 8 文件部分树；唯一恢复变化是将同一冻结 IGZO candidate 表示为仓库相对 ASCII `.include`，固定未来进程 cwd 为 project root，并禁止绝对工程路径进入网表。
+
+### 机器状态、文档与验证
+
+`config/project.json` 和 `config/experiments.json` 登记 `contract_planned/E0`、R10 不重跑和 R11 未执行链；项目检查器验证 R10 归档 SHA-256、部分树摘要、相对 ASCII 路径合同、36/32/25 注册、输出不存在和下游关闭。同步 `STATUS.md`、README、AI 上下文、架构、计划、ADR-062、报告第 5/6/8/9 章和证据矩阵。系统 shell 无 `python` 命令，改用 Makefile 固定虚拟环境解释器后，三个 JSON 与五个 Python 文件语法检查通过；`make check` 为 700/700 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 26 张图片 PASS。
+
+### 证据边界与下一门
+
+本里程碑没有运行 R11 36 项静态合同、runner 或独立 checker，也没有生成任何 R11 报告/输出。当前 E0 只表示路径安全合同已实施，不表示 parser 执行、IGZO 方程/器件曲线、物理参数、实验校准、正式 M01、SPICE 或电路结果。下一步提交并推送本实施状态，再唯一运行 `make m01-xyce-build-preflight-r11-contract-check`；只有 36/36 PASS 状态另行提交并推送后，才允许一次 R11 runner。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R10 runner Unicode 路径失败
 
 ### 唯一执行事实与根因

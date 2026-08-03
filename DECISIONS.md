@@ -1,5 +1,16 @@
 # 设计决策记录
 
+## ADR-062：R11 只修正 parser include 的 Unicode 路径表示
+
+- 日期：2026-08-03
+- 状态：已实施，36 项静态合同尚未运行；当前证据 E0。
+- R11 使用全新 config/common/static-checker/runner/independent-checker/report/output 命名空间，绑定提交 `63be6a4` 下不可改写的 R10 配置、源码、36/36 E3 静态报告、E0 Unicode 路径失败报告/日志和 8 文件部分运行树。
+- 唯一恢复变化是把冻结候选 `spice/models/igzo_dg_behavioral_r02.inc` 写成仓库相对 ASCII `.include`，并显式固定未来 runner 的 cwd 为 project root；生成前同时断言路径相对、ASCII、与配置一致，且网表不含绝对工程路径。
+- R07 Xyce 二进制/完整安装树哈希、四命令白名单、1.25 V B-source 自测、36/32/25 注册、阈值、失败保留、no-build/no-ngspice/no-AIM-Spice/no-formal-DC 和 downstream closure 全部不变。R10 不重跑，R11 当前没有任何报告、Xyce 进程、parser-only 结果、器件曲线或正式 M01 输出。
+- 下一门是提交并推送 R11 实施后唯一运行纯静态 36 项合同。只有 36/36 PASS 状态另行提交并推送后，才允许一次 R11 runner；这仍不开放正式器件 DC、电路、版图、PEX 或 HZO。
+
+---
+
 ## ADR-061：保留 R10 Unicode 路径运行器失败并转入 R11
 
 - 日期：2026-08-03
