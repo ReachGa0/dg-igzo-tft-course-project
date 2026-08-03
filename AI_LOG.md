@@ -16,6 +16,24 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 建立 M01 Xyce build/tool R04 合同修正版
+
+### 用户目标与读取输入
+
+在 R03 静态合同唯一返回 21/25、E0/FAIL 后，按阶段 DAG 建立 revision-4 合同；只修正 R03 暴露的计划状态、wrapper 文件名和证据边界断言，保留 R01/R02/R03 失败，不运行构建、模拟器或器件网表。读取了 R01/R02/R03 配置与不可变报告、R04 runner/checker、项目/实验配置和报告章节。
+
+### 实现与边界
+
+- 新增 `config/m01_xyce_build_preflight_r04.json`、R04 合同 checker、runner wrapper、标准库独立 checker 和三个 Make 入口。R04 使用独立 `r04` 构建/输出根，显式注册用户目录 BLAS/LAPACK，合同冻结 26 项，未来 runner/独立检查分别冻结 29/20 项。
+- R04 将机器状态固定为 `contract_planned/E0`，实际 wrapper 导入文件名与已审阅实现一致，并把 R03 的 21/25、4 项失败报告按 SHA-256 不可变绑定；输出拒绝覆盖，失败日志和部分构建状态必须保留。
+- R04 仍只允许后续工具预检链，不是 Xyce 二进制、IGZO 器件仿真、SPICE 数值、物理参数、实验校准或电路证据。R01/R02/R03、正式 M01、P3、P5、C00、SPICE、电路、版图、PEX 和 HZO 均保持关闭。
+
+### 验证与下一步
+
+R04 脚本与 `scripts/check_project.py` 已通过 `python3 -m py_compile`；合同报告尚未生成，未运行 R04 build/tool、Xyce、ngspice/AIM-Spice、自测、候选解析、器件 DC 或任何数值输出。待 `make check`、`make report-check` 和 `git diff --check` 通过并提交推送后，只运行 `make m01-xyce-build-preflight-r04-contract-check` 一次；该检查若通过才打开 R04 工具预检门。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce build/tool R03 合同检查失败
 
 ### 唯一静态检查与失败保留

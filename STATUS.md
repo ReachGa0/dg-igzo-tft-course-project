@@ -15,10 +15,11 @@
 - [x] M01 Xyce build/tool R02 静态合同检查已唯一运行：22/25、E0/FAIL。BLAS/LAPACK 路径、R01 失败绑定和 R02 输出隔离门通过；失败仅为候选注释 `translation` 被 `tran` 子串误判，以及 wrapper 静态 no-formal 标记缺失。报告 `results/reports/m01_xyce_build_preflight_contract_r02.json` 原样保留，未运行任何 R02 configure/build、Xyce、自测、器件网表或数值输出。
 - [x] M01 Xyce build/tool R03 合同已建立并按规则唯一执行静态检查：配置固定显式 BLAS/LAPACK、独立 `r03` 构建/输出根、R01/R02 失败绑定、token-safe 候选词边界和 runner/独立 checker no-formal 静态标记；报告 21/25、E0/FAIL，失败已保留，未运行 configure/build、Xyce、自测、器件网表或数值输出。
 - [x] M01 Xyce build/tool R03 静态合同已唯一运行：21/25、E0/FAIL，报告 `results/reports/m01_xyce_build_preflight_contract_r03.json`、SHA-256 `be516ad9d0f8998cf3b0e9e441f45312d9d7db21e1934fa3df5cfc18b4f6c3c3` 原样保留。失败为 R03 checker 的 planned-state 断言、错误包装器文件名断言和缺失 R01 字面量断言；没有运行 configure/build、Xyce、自测、器件网表、ngspice/AIM-Spice 或数值输出。
+- [x] M01 Xyce build/tool R04 合同已建立但尚未执行：绑定 R03 的 21/25 失败报告，合同登记 26 项检查，修正实际 wrapper 文件名、`contract_planned` 状态和 R03 边界绑定；保留 token-safe 候选检查、显式 BLAS/LAPACK、serial 两任务和独立 `r04` 输出根。R04 报告尚未生成，未运行任何构建、Xyce、自测、器件网表或数值输出。
 
 ### 下一步与关闭条件
 
-- 下一步：建立并提交 M01 Xyce build/tool R04 合同，绑定并保留 R03 的 21/25 checker 失败，只修正上述 checker 断言；推送后才允许 R04 静态合同检查一次。不得重跑 R01/R02/R03。
+- 下一步：提交并推送已建立的 M01 Xyce build/tool R04 合同，随后只运行 R04 静态合同检查一次；不得重跑 R01/R02/R03。
 - M01 仍为 `preflight_failed_build/E0`；R01 的 25/25 静态合同与 14/29、9/20 E0/FAIL 构建门、R02 的 22/25 E0/FAIL 合同门和 R03 的 21/25 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5、C00、SPICE 电路、版图、PEX 和 HZO 继续关闭；历史 AIM-Spice 预检、M01 revision-1/2 合同失败和本次 28/30 干跑失败均保留。
 

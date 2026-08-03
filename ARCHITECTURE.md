@@ -256,6 +256,7 @@ report/                 章节/附录源、组装清单、证据矩阵和最终�
 | M01 Xyce 构建/工具预检 R02 合同 | E0/FAIL | 22/25 静态检查；显式 BLAS/LAPACK 和 R01 失败绑定通过，候选 `translation` 被 `tran` 子串规则误判、wrapper 静态标记缺失。无 R02 构建、Xyce、自测、器件 DC 或正式数值输出 |
 | M01 Xyce 构建/工具预检 R03 合同 | E0/FAIL | 合同已建立并唯一检查 21/25；固定 token-safe 候选范围、完整 no-formal wrapper 标记、显式 BLAS/LAPACK 和独立 `r03` 根；R01/R02/R03 失败不可改写。无 R03 构建、自测、器件 DC 或正式数值输出 |
 | M01 Xyce 构建/工具预检 R03 合同失败 | E0/FAIL | 21/25 静态检查；四项失败是 R03 checker 的 planned-state、wrapper 文件名和边界字面量断言。报告不可改写；无构建、Xyce、自测、器件 DC 或正式数值输出 |
+| M01 Xyce 构建/工具预检 R04 合同 | E0，待唯一静态检查 | 26 项合同已建立，绑定 R03 21/25 失败并修正实际 wrapper 文件名、`contract_planned` 状态和 R03 边界断言；无 R04 合同报告、构建、自测、器件 DC 或正式数值输出 |
 | 有源负载单元与模块 | E0 | 架构已定，待实现 |
 | IGZO 器件 GDS 基线 | E2 | 外部基线可复用，需迁入新 PDK |
 | 电路级 DRC/LVS | E0 | 待实现 |

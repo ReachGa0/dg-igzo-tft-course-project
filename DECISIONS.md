@@ -1,5 +1,19 @@
 # 设计决策记录
 
+## ADR-047：R04 绑定 R03 失败并修正合同接口断言
+
+- 日期：2026-08-03
+- 状态：R04 合同已实现，静态检查尚未运行；R01/R02/R03 失败保持不可改写
+
+### 修正范围
+
+- R04 使用 26 项静态检查和独立 `r04` 输出命名空间，绑定 R03 报告 `be516ad9d0f8998cf3b0e9e441f45312d9d7db21e1934fa3df5cfc18b4f6c3c3` 及其 21/25、E0/FAIL 状态。
+- 只修正三类已观测 checker 断言：实际机器状态 `contract_planned`、实际包装器底层文件名 `run_m01_xyce_build_preflight.py`/`check_m01_xyce_build_preflight.py`，以及 R03 失败边界的显式字面量绑定。IGZO 候选、BLAS/LAPACK、serial 两任务、MPI/Fortran、物理输入、split、阈值和 no-downstream 规则不变。
+
+### 阶段门
+
+- 提交并推送 R04 后只允许静态合同检查一次；检查器不得构建或启动任何模拟器，不得创建器件网表或数值输出。R04 PASS 也只打开后续 build/tool 预检门。
+
 ## ADR-046：保留 R03 Xyce 合同检查器失败并转入 R04
 
 - 日期：2026-08-03
