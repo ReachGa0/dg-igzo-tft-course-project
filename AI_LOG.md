@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce build/tool R03 合同检查失败
+
+### 唯一静态检查与失败保留
+
+在合同实施提交 `b9a103b` 推送后，按门只运行一次 `make m01-xyce-build-preflight-r03-contract-check`。检查器生成 `results/reports/m01_xyce_build_preflight_contract_r03.json`，返回 `21/25`、E0/FAIL，SHA-256 为 `be516ad9d0f8998cf3b0e9e441f45312d9d7db21e1934fa3df5cfc18b4f6c3c3`；报告原样保留，不重跑 R03。
+
+四个失败都是合同 checker 自身断言缺陷：实验状态断言期待 `preflight_planned` 而注册状态为 `contract_planned`，runner/checker wrapper 静态检查寻找不存在的 R01 文件名，形式门要求证据边界中出现未登记的 `R01` 字面量。R03 没有运行 configure/build、SuiteSparse/Trilinos/Xyce、B-source 自测、parser-only 网表、ngspice/AIM-Spice、器件 DC 或任何数值输出。
+
+### 当前边界与下一步
+
+已同步 `config/project.json`、`config/experiments.json`、STATUS/README/AI_CONTEXT/ARCHITECTURE/PROJECT_PLAN/DECISIONS、报告第 5/6/8/9 章、证据矩阵和总检查器。M01 仍为 `preflight_failed_build/E0`，R01/R02/R03 失败不可改写。下一步建立 R04 新命名空间，只修正上述 checker 断言；R04 提交推送并静态检查通过前，不运行任何 build/tool、器件网表、SPICE、电路、版图、PEX 或 HZO。
+
+收口验证：`make check` 为 628 项 PASS，`make report-check` 为 12 章/5 附录/15 个允许占位/26 图 PASS，Python/JSON/CSV 解析和 `git diff --check` PASS。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M01 Xyce build/tool R03 合同修正版
 
 ### 用户目标与读取输入

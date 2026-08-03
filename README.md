@@ -4,7 +4,7 @@
 
 **基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK**
 
-S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R01 因 L=12 um holdout gm 相对误差 `0.512384 > 0.50` 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。纯源码 Xyce build/tool R01 合同为 25/25 静态 PASS、E3，但唯一执行在 SuiteSparse CMake 因未显式传入用户目录 BLAS/LAPACK 而为 14/29、E0/FAIL，独立检查为 9/20、E0/FAIL；R02 静态合同又为 22/25、E0/FAIL，R01/R02 报告、日志、manifest、cache 和失败边界保留。R03 合同已建立但尚未执行，使用 token-safe 范围检查、完整 wrapper no-formal 标记和独立 `r03` 输出根；Xyce 尚未编译或运行。G0 仍为 `TEACHING_BASELINE_ONLY`：实验标定、物理参数验证、正式 M01 器件 DC、电路和版图尚未完成。所有 `TODO/E0` 内容都不得写成已完成结果。
+S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R01 因 L=12 um holdout gm 相对误差 `0.512384 > 0.50` 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。纯源码 Xyce build/tool R01 合同为 25/25 静态 PASS、E3，但唯一执行在 SuiteSparse CMake 因未显式传入用户目录 BLAS/LAPACK 而为 14/29、E0/FAIL，独立检查为 9/20、E0/FAIL；R02 静态合同 22/25、E0/FAIL，R03 静态合同 21/25、E0/FAIL，三份失败报告及其日志/manifest/cache/边界均保留。R03 失败是 checker 断言缺陷，不是构建或仿真失败；下一步建立 R04 修正版，Xyce 尚未编译或运行。G0 仍为 `TEACHING_BASELINE_ONLY`：实验标定、物理参数验证、正式 M01 器件 DC、电路和版图尚未完成。所有 `TODO/E0` 内容都不得写成已完成结果。
 
 ## 2. 为什么这个题目仍然成立
 

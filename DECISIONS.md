@@ -1,5 +1,20 @@
 # 设计决策记录
 
+## ADR-046：保留 R03 Xyce 合同检查器失败并转入 R04
+
+- 日期：2026-08-03
+- 状态：R03 静态合同唯一检查 21/25、E0/FAIL；无构建或模拟器执行，R04 只修正 checker 断言
+
+### 失败与保留
+
+- 在提交 `b9a103b` 推送后，`make m01-xyce-build-preflight-r03-contract-check` 只生成 `results/reports/m01_xyce_build_preflight_contract_r03.json`，返回 21/25。报告 SHA-256 为 `be516ad9d0f8998cf3b0e9e441f45312d9d7db21e1934fa3df5cfc18b4f6c3c3`，必须原样保留。
+- 四个失败均属于 checker 合同断言：实验记录仍期待 `preflight_planned` 而实际机器枚举为 `contract_planned`，两个 wrapper 静态检查寻找不存在的 R01 文件名，形式门要求证据边界中有未登记的 `R01` 字面量。R03 没有调用 subprocess、构建依赖、启动 Xyce/ngspice/AIM-Spice、生成器件网表或数值输出。
+
+### R04 范围
+
+- R04 使用新的配置、checker、wrapper、报告和输出命名空间，绑定 R03 报告哈希；只把上述状态/文件名/字面量断言改为实际已提交接口，不改变 IGZO 候选、BLAS/LAPACK 路径、构建预算、物理输入、split、阈值或失败保留规则。
+- R01 14/29、9/20，R02 22/25 和 R03 21/25 都是不可改写的 E0 失败证据。R04 合同即使通过，也只打开后续 build/tool 预检门，不是 Xyce 二进制、器件仿真、SPICE 数值、物理参数、实验校准或电路证据。
+
 ## ADR-045：R03 只修正 Xyce 预检合同边界，不重跑历史失败
 
 - 日期：2026-08-03

@@ -200,6 +200,7 @@ REQUIRED_FILES = [
     "scripts/check_m01_xyce_build_preflight_r03_contract.py",
     "scripts/run_m01_xyce_build_preflight_r03.py",
     "scripts/check_m01_xyce_build_preflight_r03.py",
+    "results/reports/m01_xyce_build_preflight_contract_r03.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -5243,6 +5244,9 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "establish and commit M01 Xyce build/tool preflight revision-3"
                 )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "establish and commit M01 Xyce build/tool preflight revision-4"
+                )
             )
             and "M01" in config.get("tcad_track", {}).get(
                 "m00_r02_formal_result_boundary", ""
@@ -5695,6 +5699,9 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "execute M01 Xyce build/tool preflight revision-3"
                 )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "establish and commit M01 Xyce build/tool preflight revision-4"
+                )
             ),
             f"contract_checks={sum(item.get('status') == 'PASS' for item in r02_contract_checks)}/{len(r02_contract_checks)} future_absent="
             f"{sum(not path.exists() for path in r02_future_paths)}/{len(r02_future_paths)}",
@@ -5761,10 +5768,34 @@ def main() -> int:
                 "results/reports/m01_xyce_build_preflight_contract_r03.json"
             ]
         )
+        r03_failed_state = (
+            r03_contract_exists
+            and r03_contract_report.get("status") == "FAIL"
+            and r03_contract_report.get("contract_status") == "FAIL"
+            and r03_contract_report.get("evidence_level") == "E0"
+            and r03_contract_report.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(r03_contract_checks) == 25
+            and sum(item.get("status") == "PASS" for item in r03_contract_checks) == 21
+            and sum(item.get("status") == "FAIL" for item in r03_contract_checks) == 4
+            and r03_contract_report.get("config", {}).get("sha256") == sha256(m01_xyce_r03_config_path)
+            and r03_contract_report.get("checker", {}).get("sha256") == sha256(m01_xyce_r03_contract_checker_path)
+            and r03_machine.get("status") == "contract_failed_checker"
+            and r03_machine.get("current_evidence") == "E0"
+            and r03_machine.get("contract_check_completed") is True
+            and r03_machine.get("contract_status") == "FAIL"
+            and r03_machine.get("contract_checks_passed") == 21
+            and r03_machine.get("contract_checks_failed") == 4
+            and r03_machine.get("artifact_hashes", {}).get("contract_report_sha256")
+            == sha256(m01_xyce_r03_contract_report_path)
+            and r03_machine.get("result_paths") == [
+                "results/reports/m01_xyce_build_preflight_contract_r03.json"
+            ]
+        )
         next_scope = config.get("tcad_track", {}).get("next_scope", "")
         next_scope_valid = (
             (r03_planned_state and next_scope.startswith("establish and commit M01 Xyce build/tool preflight revision-3"))
             or (r03_ready_state and next_scope.startswith("execute M01 Xyce build/tool preflight revision-3"))
+            or (r03_failed_state and next_scope.startswith("establish and commit M01 Xyce build/tool preflight revision-4"))
         )
         add_check(
             checks,
@@ -5804,8 +5835,9 @@ def main() -> int:
             and "m01-xyce-build-preflight-r03-contract-check:" in makefile_source
             and "m01-xyce-build-preflight-r03:" in makefile_source
             and "m01-xyce-build-preflight-r03-check:" in makefile_source
+            and (r03_planned_state or r03_ready_state or r03_failed_state)
             and next_scope_valid,
-            f"planned={r03_planned_state} ready={r03_ready_state} future_absent="
+            f"planned={r03_planned_state} ready={r03_ready_state} failed={r03_failed_state} future_absent="
             f"{sum(not path.exists() for path in r03_future_paths)}/{len(r03_future_paths)}",
         )
     except Exception as error:  # noqa: BLE001

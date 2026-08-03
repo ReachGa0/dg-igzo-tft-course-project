@@ -85,10 +85,10 @@
       <tr><td>M01 开源恢复合同</td><td>以同一 <code>IGZO_DG_BEHAVIORAL_R02</code> 候选文本建立 ngspice 和纯源码 Xyce 7.10.0 B-level 1 两条路线；冻结 247 行、批处理模板、工具指纹、自测和输出/失败保留</td><td>30/30 静态 PASS、E3；GPL-3.0-or-later 源码归档与 SHA-256 已记录，专有 XyceNF 和未授权 AIM-Spice 排除。源码审阅不是 Xyce 二进制、器件网表、SPICE 数值或物理校准证据</td></tr>
       <tr><td>M01 Xyce 构建/工具预检合同</td><td>固定 Xyce 7.10.0、Trilinos 14.4、SuiteSparse 7.8.3、CMake 3.30.5 的实际归档哈希；serial 两任务、MPI/Fortran 关闭；先标量 B-source 自测，再用 <code>-syntax</code> 解析冻结 IGZO 候选</td><td>25/25 静态 PASS、E3；旧恢复合同中的 archive hash 转录串原样保留，新合同用重复重算值。R01 执行 14/29、独立 9/20 均 E0/FAIL，SuiteSparse CMake 未找到显式用户目录 BLAS/LAPACK；失败 artifacts 保留，当前没有 Xyce 二进制、自测、器件 DC 或正式 M01 数值</td></tr>
       <tr><td>M01 Xyce R02 合同失败</td><td>R02 显式加入用户目录 <code>libblas.so</code>/<code>liblapack.so</code>，使用新 build/output 根并绑定 R01 失败</td><td>静态检查 22/25、E0/FAIL；`translation` 注释触发过宽 <code>tran</code> 子串规则，wrapper 静态 no-formal 标记缺失。报告保留；未执行 R02 configure/build、Xyce、自测、器件 DC 或数值输出</td></tr>
-      <tr><td>M01 Xyce R03 合同实施</td><td>完整词边界候选检查、runner/独立 checker no-formal 标记、显式 BLAS/LAPACK 和独立 <code>r03</code> 构建/输出根；绑定 R01/R02 失败</td><td>合同已建立但静态检查尚未运行；尚无 R03 报告、构建、Xyce、自测、器件 DC 或数值输出，R01/R02 证据不可改写</td></tr>
+      <tr><td>M01 Xyce R03 合同失败</td><td>完整词边界候选检查、runner/独立 checker no-formal 标记、显式 BLAS/LAPACK 和独立 <code>r03</code> 构建/输出根；绑定 R01/R02 失败</td><td>静态检查 21/25、E0/FAIL；planned-state、wrapper 文件名和边界字面量断言失败。报告保留；未执行 R03 configure/build、Xyce、自测、器件 DC 或数值输出，R04 待建立</td></tr>
     </tbody>
   </table>
-  <p class="boundary">M01 开源恢复合同为 30/30 E3，R01 构建/工具预检合同为 25/25 E3。R01 执行在 SuiteSparse BLAS 发现门以 runner 14/29、独立 9/20 失败；R02 静态合同又以 22/25 在候选 token 和 wrapper marker 门失败。两次报告、命令日志、manifest 和部分 cache 均保留；这些不是 Xyce 数值或器件结果，也没有启动 ngspice/AIM-Spice。R03 合同已建立但尚未执行；提交推送后才允许一次 R03 静态合同检查，在其通过和后续独立预检前不得进行正式 M01 数值执行。</p>
+  <p class="boundary">M01 开源恢复合同为 30/30 E3，R01 构建/工具预检合同为 25/25 E3。R01 执行在 SuiteSparse BLAS 发现门以 runner 14/29、独立 9/20 失败；R02 静态合同以 22/25 失败，R03 静态合同又以 21/25 失败。三次报告、命令日志、manifest 和部分 cache 均保留；这些不是 Xyce 数值或器件结果，也没有启动 ngspice/AIM-Spice。R04 只修正 R03 checker 断言；在 R04 静态合同和后续独立预检前不得进行正式 M01 数值执行。</p>
   <table>
     <thead><tr><th>T02-A/B/C 拓扑与偏压合同</th><th>实现</th><th>证据边界</th></tr></thead>
     <tbody>

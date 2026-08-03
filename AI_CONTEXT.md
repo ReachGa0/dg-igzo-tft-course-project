@@ -84,7 +84,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 - M01 开源恢复合同：`make m01-open-source-recovery-contract-check` 为 30/30、E3。它绑定 revision-3 合同与 R01 11/13 失败哈希，冻结 ngspice + Xyce 7.10.0 纯源码路线、同一 `IGZO_DG_BEHAVIORAL_R02` 文本、247 行目标、批处理模板、输出/失败保留和 no-device-execution 门。Xyce 源码审阅支持 `limit`/`sgn`/`.func`/B-level 1/`-l`/`-o` 的语法能力，但不代表二进制、器件网表或数值结果；首次 28/30 干跑失败报告保留。
 - M01 Xyce build/tool 合同：`make m01-xyce-build-preflight-contract-check` 为 25/25、E3。它冻结四个官方包的 URL/稳定路径/实际 SHA-256、用户目录 serial 两任务构建、MPI/Fortran 关闭、SuiteSparse AMD -> Trilinos -> Xyce 顺序、版本/GPL 指纹、1.25 V 标量 B-source 自测、随后 `-syntax` 的冻结 IGZO 候选解析、排他输出和 20 项独立检查。旧合同记录的 `...541cfecf...` 与实际重算 `...541fecf...` 差异明确保留；该合同未启动任何模拟器或创建网表，Xyce 尚未构建。
 - M01 Xyce build/tool R01 执行：提交 `ee5116e` 后唯一运行在 SuiteSparse CMake 因未显式传入用户目录 `BLAS_LIBRARIES` 停止，runner 14/29、独立落盘检查 9/20，均 E0/FAIL。报告、日志、manifest 和部分 build cache 保留；没有 Xyce 二进制、自测、候选解析、器件 DC 或正式数值输出。不得重跑 R01；下一步只建立 R02 显式 BLAS/LAPACK 合同。
-- M01 Xyce build/tool R02 静态合同：显式 BLAS/LAPACK 已注册，但合同唯一检查 22/25、E0/FAIL；候选注释 `translation` 被过宽的 `tran` 子串规则误判，R02 wrapper 还缺少静态 no-formal 标记。报告原样保留，未运行 R02 构建或任何模拟器。R03 合同已建立但尚未执行，修正为 token-safe 范围检查、完整 wrapper 标记和独立 `r03` 输出根；提交推送后才允许唯一一次 R03 静态合同检查。
+- M01 Xyce build/tool R02 静态合同：显式 BLAS/LAPACK 已注册，但合同唯一检查 22/25、E0/FAIL；候选注释 `translation` 被过宽的 `tran` 子串规则误判，R02 wrapper 还缺少静态 no-formal 标记。报告原样保留，未运行 R02 构建或任何模拟器。R03 静态合同随后唯一检查 21/25、E0/FAIL；失败为 planned-state、wrapper 文件名和证据边界字面量断言，报告原样保留，未运行构建或模拟器。下一步只建立 R04 修正版，不重跑 R01/R02/R03。
 - 学长 IGZO 曲线：E1/reference_only；元数据不完整。
 - IGZO 单管外部 GDS：E2 基线，可参考但尚未迁入新 PDK。
 - 其余领域任务：E0。
@@ -98,7 +98,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. T02-A/B/C、T03-P1/P2/P3/P4/P5、M00 R02 两级数值门和 M01 revision-3/开源恢复静态合同已完成，历史失败继续保留。M00 R01/R02 和 M01 Xyce build/tool R01/R02 均不得重跑；不得放宽阈值、改变 split 或用 holdout 调参。R03 合同已建立但尚未执行；提交推送后只运行一次静态合同检查，R03 两级门前不得传入器件网表。M01 数值执行、电路、KLayout、PEX 和 HZO 继续关闭。
+8. T02-A/B/C、T03-P1/P2/P3/P4/P5、M00 R02 两级数值门和 M01 revision-3/开源恢复静态合同已完成，历史失败继续保留。M00 R01/R02 和 M01 Xyce build/tool R01/R02/R03 均不得重跑；不得放宽阈值、改变 split 或用 holdout 调参。R04 修正版提交推送后只运行一次静态合同检查，R04 两级门前不得传入器件网表。M01 数值执行、电路、KLayout、PEX 和 HZO 继续关闭。
 
 ## 原始资产路径
 

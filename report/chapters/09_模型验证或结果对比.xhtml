@@ -109,5 +109,5 @@
       <tr><td>R02 合同结果</td><td>显式传入用户目录 BLAS/LAPACK，隔离 R02 构建/输出根并绑定 R01 失败</td><td>静态合同 22/25、E0/FAIL；候选注释的 `translation` 被过宽 `tran` 子串规则误判，wrapper 静态 no-formal marker 缺失。无 R02 构建、Xyce、自测、器件网表或数值输出，报告保留</td></tr>
     </tbody>
   </table>
-  <p class="boundary">25/25 R01 合同检查没有启动模拟器；R01 执行只探测工具并在 SuiteSparse 配置阶段停止。R02 静态合同检查也没有启动模拟器或构建，只保留 22/25 的合同失败报告。R03 合同已建立但尚未执行，使用完整词边界、wrapper no-formal 标记和独立 <code>r03</code> 输出根；提交推送后才允许一次 R03 静态合同检查。两级失败证据不得重跑或覆盖；R03 合同与后续独立预检 PASS 前，正式两路线器件 DC、C00、电路、版图、PEX 和 HZO 继续关闭。</p>
+  <p class="boundary">25/25 R01 合同检查没有启动模拟器；R01 执行只探测工具并在 SuiteSparse 配置阶段停止。R02 静态合同以 22/25 失败，R03 静态合同又以 21/25 失败；两次静态检查都没有启动模拟器或构建，失败报告均保留。R04 只修正 R03 checker 的 planned-state、wrapper 文件名和边界字面量断言，使用新命名空间；R04 合同与后续独立预检 PASS 前，正式两路线器件 DC、C00、电路、版图、PEX 和 HZO 继续关闭。</p>
 </section>
