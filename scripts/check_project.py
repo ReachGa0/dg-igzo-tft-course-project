@@ -316,6 +316,12 @@ REQUIRED_FILES = [
     "report/assets/m01_open_source_route_difference_r02.png",
     "results/reports/m01_open_source_cross_check_r02.json",
     "results/reports/m01_open_source_cross_check_r02_check.json",
+    "config/m01_open_source_device_dc_r03.json",
+    "scripts/m01_open_source_device_dc_r03_common.py",
+    "scripts/check_m01_open_source_device_dc_r03_contract.py",
+    "scripts/run_m01_open_source_device_dc_r03.py",
+    "scripts/check_m01_open_source_device_dc_r03.py",
+    "spice/models/igzo_dg_behavioral_r03_portable.inc",
     "config/m01_route_divergence_root_cause_r01.json",
     "scripts/m01_route_divergence_root_cause_r01_common.py",
     "scripts/check_m01_route_divergence_root_cause_r01_contract.py",
@@ -861,6 +867,8 @@ def main() -> int:
             "run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-2"
         ) or current_next_scope.startswith(
             "establish and commit a new portable full-device candidate and a separate formal 247-row ngspice/Xyce contract"
+        ) or current_next_scope.startswith(
+            "run the 42-check static contract for M01 open-source device DC revision-3 portable"
         )
         dependencies_valid = all(
             set(item.get("depends_on", [])) <= set(experiment_map)
@@ -8286,6 +8294,9 @@ def main() -> int:
                 or r11_next_scope.startswith(
                     "establish and commit a new portable full-device candidate and a separate formal 247-row ngspice/Xyce contract"
                 )
+                or r11_next_scope.startswith(
+                    "run the 42-check static contract for M01 open-source device DC revision-3 portable"
+                )
             )
         )
         r11_expected_archive_paths = [
@@ -8716,6 +8727,9 @@ def main() -> int:
                 )
                 or device_dc_next_scope.startswith(
                     "establish and commit a new portable full-device candidate and a separate formal 247-row ngspice/Xyce contract"
+                )
+                or device_dc_next_scope.startswith(
+                    "run the 42-check static contract for M01 open-source device DC revision-3 portable"
                 )
             )
         ) or (
@@ -9359,6 +9373,206 @@ def main() -> int:
             str(error),
         )
 
+    m01_device_dc_r03_config_path = (
+        ROOT / "config" / "m01_open_source_device_dc_r03.json"
+    )
+    m01_device_dc_r03_common_path = (
+        ROOT / "scripts" / "m01_open_source_device_dc_r03_common.py"
+    )
+    m01_device_dc_r03_contract_checker_path = (
+        ROOT / "scripts" / "check_m01_open_source_device_dc_r03_contract.py"
+    )
+    m01_device_dc_r03_runner_path = (
+        ROOT / "scripts" / "run_m01_open_source_device_dc_r03.py"
+    )
+    m01_device_dc_r03_independent_path = (
+        ROOT / "scripts" / "check_m01_open_source_device_dc_r03.py"
+    )
+    try:
+        r03_config = json.loads(
+            m01_device_dc_r03_config_path.read_text(encoding="utf-8")
+        )
+        r03_machine = experiment_map["M01"].get("open_source_device_dc_r03", {})
+        r03_outputs = r03_config["outputs"]
+        r03_source_paths = [
+            "config/m01_open_source_device_dc_r03.json",
+            "scripts/m01_open_source_device_dc_r03_common.py",
+            "scripts/check_m01_open_source_device_dc_r03_contract.py",
+            "scripts/run_m01_open_source_device_dc_r03.py",
+            "scripts/check_m01_open_source_device_dc_r03.py",
+            "spice/models/igzo_dg_behavioral_r03_portable.inc",
+        ]
+        r03_output_values = list(r03_outputs.values())
+        r03_output_paths = [ROOT / value for value in r03_output_values]
+        r03_contract_source = m01_device_dc_r03_contract_checker_path.read_text(
+            encoding="ascii"
+        )
+        r03_runner_source = m01_device_dc_r03_runner_path.read_text(
+            encoding="ascii"
+        )
+        r03_independent_source = m01_device_dc_r03_independent_path.read_text(
+            encoding="ascii"
+        )
+        portable = r03_config["portable_revision_binding"]
+        r03_bound_artifacts = (
+            portable["device_r02_artifacts"]
+            + portable["root_cause_r02_artifacts"]
+        )
+        r03_bound_artifacts_ok = (
+            portable["bound_commit"]
+            == "2ffac206074b8eafc3e02bc72eabf6db83b2d056"
+            and len(portable["device_r02_artifacts"]) == 8
+            and len(portable["root_cause_r02_artifacts"]) == 8
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                for item in r03_bound_artifacts
+            )
+            and portable["device_r02_checks"]
+            == {"static": 40, "runner": 30, "independent": 24}
+            and portable["root_cause_r02_checks"]
+            == {"static": 40, "runner": 30, "independent": 22}
+            and portable["root_cause_hypothesis"]
+            == "THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH"
+            and portable["root_cause_independently_supported"] is True
+            and portable["full_247_row_route_agreement_established"] is False
+            and portable["must_remain_unchanged"] is True
+        )
+        source_candidate = ROOT / portable["source_candidate_path"]
+        candidate = ROOT / r03_config["device_contract"]["candidate_path"]
+        source_candidate_text = source_candidate.read_text(encoding="ascii")
+        candidate_text = candidate.read_text(encoding="ascii")
+        transformed_candidate = source_candidate_text
+        replacements_ok = True
+        for replacement in portable["candidate_replacements"]:
+            replacements_ok = (
+                replacements_ok
+                and transformed_candidate.count(replacement["old"]) == 1
+            )
+            transformed_candidate = transformed_candidate.replace(
+                replacement["old"], replacement["new"], 1
+            )
+        source_parameter_and_bids = [
+            line
+            for line in source_candidate_text.splitlines()
+            if line.startswith(".param ") or line.startswith("BIDS ")
+        ]
+        candidate_parameter_and_bids = [
+            line
+            for line in candidate_text.splitlines()
+            if line.startswith(".param ") or line.startswith("BIDS ")
+        ]
+        r03_implemented_state = (
+            r03_machine.get("status") == "contract_implemented"
+            and r03_machine.get("revision") == 3
+            and r03_machine.get("current_evidence") == "E0"
+            and r03_machine.get("contract_check_completed") is False
+            and r03_machine.get("contract_status") == "NOT_RUN"
+            and r03_machine.get("contract_checks_passed") == 0
+            and r03_machine.get("contract_checks_failed") == 0
+            and r03_machine.get("formal_run_completed") is False
+            and r03_machine.get("formal_run_status") == "NOT_RUN"
+            and r03_machine.get("independent_check_completed") is False
+            and r03_machine.get("independent_check_status") == "NOT_RUN"
+            and r03_machine.get("runner_processes_invoked") == 0
+            and r03_machine.get("independent_processes_invoked") == 0
+            and r03_machine.get("ngspice_invoked") is False
+            and r03_machine.get("xyce_invoked") is False
+            and r03_machine.get("aimspice_invoked") is False
+            and r03_machine.get("tcad_invoked") is False
+            and r03_machine.get("circuit_or_downstream_permitted") is False
+            and r03_machine.get("result_paths") == r03_source_paths
+            and r03_machine.get("future_outputs_absent") is True
+            and all(not path.exists() for path in r03_output_paths)
+        )
+        r03_next_scope = config.get("tcad_track", {}).get("next_scope", "")
+        add_check(
+            checks,
+            "m01_open_source_device_dc_r03:portable_contract_implementation",
+            r03_config.get("contract_id") == "M01_OPEN_SOURCE_DEVICE_DC_R03"
+            and r03_config.get("revision") == 3
+            and r03_config.get("status") == "contract_planned"
+            and r03_config.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and r03_config.get("scope", {}).get("active_material_scope")
+            == "IGZO only"
+            and r03_config.get("scope", {}).get("execution_scope")
+            == "compact-model device-only DC cross-check"
+            and r03_config.get("registered_checks")
+            == {"static_contract": 42, "runner": 30, "independent": 24}
+            and r03_implemented_state
+            and r03_bound_artifacts_ok
+            and all((ROOT / path).is_file() for path in r03_source_paths)
+            and sha256(source_candidate) == portable["source_candidate_sha256"]
+            and sha256(candidate)
+            == r03_config["device_contract"]["candidate_sha256"]
+            == r03_machine.get("portable_candidate_sha256")
+            and len(portable["candidate_replacements"]) == 5
+            and sum(
+                item["role"] == portable["semantic_replacement_role"]
+                for item in portable["candidate_replacements"]
+            )
+            == 1
+            and replacements_ok
+            and candidate_text == transformed_candidate
+            and source_parameter_and_bids == candidate_parameter_and_bids
+            and "limit(x/s,-60,60)" not in candidate_text
+            and "min(max(x/s,-60),60)" in candidate_text
+            and len(r03_output_values) == len(set(r03_output_values)) == 18
+            and "EXPECTED_CHECK_COUNT = 42" in r03_contract_source
+            and "EXPECTED_CHECK_COUNT = 30" in r03_runner_source
+            and "EXPECTED_CHECK_COUNT = 24" in r03_independent_source
+            and re.search(
+                r"^(?:import|from)\s+subprocess\b",
+                r03_contract_source,
+                re.MULTILINE,
+            )
+            is None
+            and re.search(
+                r"^(?:import|from)\s+subprocess\b",
+                r03_independent_source,
+                re.MULTILINE,
+            )
+            is None
+            and re.search(
+                r"^(?:import|from)\s+run_m01_open_source_device_dc_r03\b",
+                r03_independent_source,
+                re.MULTILINE,
+            )
+            is None
+            and "import subprocess" in r03_runner_source
+            and "m01-open-source-device-dc-r03-contract-check:"
+            in makefile_source
+            and "m01-open-source-device-dc-r03:" in makefile_source
+            and "m01-open-source-device-dc-r03-check:" in makefile_source
+            and r03_machine.get("expected_contract_check_count") == 42
+            and r03_machine.get("expected_runner_check_count") == 30
+            and r03_machine.get("expected_independent_check_count") == 24
+            and r03_machine.get("bound_r02_device_and_root_cause_evidence")
+            is True
+            and r03_machine.get("next_gate") == r03_config.get("next_gate")
+            and "E0 implementation"
+            in config.get("tcad_track", {}).get(
+                "m01_open_source_device_dc_r03_contract_boundary", ""
+            )
+            and "all R03 static, runner, independent"
+            in config.get("tcad_track", {}).get(
+                "m01_open_source_device_dc_r03_contract_boundary", ""
+            )
+            and r03_next_scope.startswith(
+                "run the 42-check static contract for M01 open-source device DC revision-3 portable"
+            ),
+            f"implemented={r03_implemented_state} bindings={r03_bound_artifacts_ok} "
+            f"future_absent={sum(not path.exists() for path in r03_output_paths)}/{len(r03_output_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(
+            checks,
+            "m01_open_source_device_dc_r03:portable_contract_implementation",
+            False,
+            str(error),
+        )
+
     m01_rca_r01_config_path = ROOT / "config" / "m01_route_divergence_root_cause_r01.json"
     m01_rca_r01_common_path = ROOT / "scripts" / "m01_route_divergence_root_cause_r01_common.py"
     m01_rca_r01_contract_path = ROOT / "scripts" / "check_m01_route_divergence_root_cause_r01_contract.py"
@@ -9609,6 +9823,7 @@ def main() -> int:
                 or rca_next_scope.startswith("execute the committed M01 route-divergence root-cause revision-2 probe")
                 or rca_next_scope.startswith("run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-2")
                 or rca_next_scope.startswith("establish and commit a new portable full-device candidate and a separate formal 247-row ngspice/Xyce contract")
+                or rca_next_scope.startswith("run the 42-check static contract for M01 open-source device DC revision-3 portable")
             )
         ) or rca_verified_state
         contract_source = m01_rca_r01_contract_path.read_text(encoding="ascii")

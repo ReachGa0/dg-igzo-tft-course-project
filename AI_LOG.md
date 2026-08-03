@@ -16,6 +16,25 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 建立 M01 R03 可移植完整器件合同（E0 实施，静态未运行）
+
+### 目标与输入
+
+承接提交 `2ffac20` 的 M01 正式器件 R02 40/30/24 E3/E2/E3 证据和路线分歧根因 R02 40/30/22 E3/E2/E3 证据。按 `AGENTS.md`、`config/project.json`、`config/experiments.json` 和阶段 DAG，建立新的便携完整器件候选与独立 247 行 ngspice/Xyce 合同；不重跑旧 R02，不启动任何仿真或下游阶段。
+
+### 实现范围
+
+- 新增 `config/m01_open_source_device_dc_r03.json`、R03 common、42 项静态 checker、30 项未来 runner、24 项未来独立 checker，以及三个 Make 入口。
+- 新增 `spice/models/igzo_dg_behavioral_r03_portable.inc`。它由 R02 候选的五处登记替换得到：版本/执行注释、子电路开始/结束标识和唯一语义替换 `limit(x/s,-60,60)` -> `min(max(x/s,-60),60)`；`.param` 与 `BIDS` 行逐字节保持不变。候选 SHA-256 为 `dd56c4c5b9f67d628eb2677705139769642b2e0eb66fca5b453b3cc6be351fd6`。
+- `config/experiments.json` 登记 `open_source_device_dc_r03` 为 `contract_implemented/E0`，绑定 R02/RCA R02 16 个历史产物哈希、42/30/24 注册、247 行/13 曲线/2 路预算和 18 个排他未来输出；`config/project.json` 下一门改为提交后的 42 项静态合同。
+- 更新 `STATUS.md`、`README.md`、`AI_CONTEXT.md`、`ARCHITECTURE.md`、`PROJECT_PLAN.md`、ADR-078、报告第 5/6/8/9 章和 `report/evidence_matrix.csv`，明确 R03 只是合同实现，不是器件仿真、路线一致、方程身份、物理参数、实验校准、P2/T03、M01 或电路证据。
+
+### 验证与边界
+
+`python3 -m json.tool`、五份 R03 Python 文件和 `scripts/check_project.py` 的语法检查通过；`make check` 返回 `763/763 PASS`，`make report-check` 返回 `12 chapters / 5 appendices / 15 placeholders / 28 images PASS`，`git diff --check` 通过。项目检查没有启动 simulator/subprocess；R03 静态 checker、ngspice、Xyce、网表、数值表、图和独立检查均未运行，18 个未来输出路径保持缺失。下一步是提交并推送该 E0 实现，之后唯一运行 42 项静态合同；静态 PASS 提交前不执行任一路线。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 路线分歧根因 R02 独立复核 22/22 PASS（E3）
 
 ### 唯一独立执行与证据

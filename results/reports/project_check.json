@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 756,
+  "checks": 763,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=28833"
+      "detail": "bytes=29508"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=24865"
+      "detail": "bytes=24831"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=22806"
+      "detail": "bytes=23312"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=202044"
+      "detail": "bytes=204265"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=5120"
+      "detail": "bytes=5254"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=119138"
+      "detail": "bytes=120636"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=65726"
+      "detail": "bytes=67066"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=13940"
+      "detail": "bytes=14364"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=55054"
+      "detail": "bytes=55975"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=127455"
+      "detail": "bytes=131859"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1750,6 +1750,36 @@
       "detail": "bytes=4552"
     },
     {
+      "name": "file:config/m01_open_source_device_dc_r03.json",
+      "status": "PASS",
+      "detail": "bytes=19189"
+    },
+    {
+      "name": "file:scripts/m01_open_source_device_dc_r03_common.py",
+      "status": "PASS",
+      "detail": "bytes=15945"
+    },
+    {
+      "name": "file:scripts/check_m01_open_source_device_dc_r03_contract.py",
+      "status": "PASS",
+      "detail": "bytes=39021"
+    },
+    {
+      "name": "file:scripts/run_m01_open_source_device_dc_r03.py",
+      "status": "PASS",
+      "detail": "bytes=25405"
+    },
+    {
+      "name": "file:scripts/check_m01_open_source_device_dc_r03.py",
+      "status": "PASS",
+      "detail": "bytes=18952"
+    },
+    {
+      "name": "file:spice/models/igzo_dg_behavioral_r03_portable.inc",
+      "status": "PASS",
+      "detail": "bytes=1103"
+    },
+    {
       "name": "file:config/m01_route_divergence_root_cause_r01.json",
       "status": "PASS",
       "detail": "bytes=13427"
@@ -2177,7 +2207,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=85294"
+      "detail": "bytes=86422"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3537,7 +3567,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "establish and commit a new portable full-device candidate and a separate formal 247-row ngspice/Xyce contract after the independently verified M01 route-divergence R02 diagnosis; do not execute either route before the new static contract passes and is committed, while keeping P2, T03, C00, circuit, layout, PEX and HZO closed"
+      "detail": "run the 42-check static contract for M01 open-source device DC revision-3 portable after the committed implementation; preserve the immutable R02 divergence and root-cause E3 chains, while keeping P2, T03, C00, circuit, layout, PEX and HZO closed"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3607,7 +3637,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "establish and commit a new portable full-device candidate and a separate formal 247-row ngspice/Xyce contract after the independently verified M01 route-divergence R02 diagnosis; do not execute either route before the new static contract passes and is committed, while keeping P2, T03, C00, circuit, layout, PEX and HZO closed"
+      "detail": "run the 42-check static contract for M01 open-source device DC revision-3 portable after the committed implementation; preserve the immutable R02 divergence and root-cause E3 chains, while keeping P2, T03, C00, circuit, layout, PEX and HZO closed"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3708,6 +3738,11 @@
       "name": "m01_open_source_device_dc_r02:contract_runner_independent_chain",
       "status": "PASS",
       "detail": "implemented=False ready=False runner=False verified=True r01_binding=True future_absent=0/18"
+    },
+    {
+      "name": "m01_open_source_device_dc_r03:portable_contract_implementation",
+      "status": "PASS",
+      "detail": "implemented=True bindings=True future_absent=18/18"
     },
     {
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",

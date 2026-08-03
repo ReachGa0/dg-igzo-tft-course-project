@@ -131,6 +131,7 @@
       <tr><td>route-divergence root-cause R02 minimal probe</td><td>静态 PASS 提交 <code>283cf32</code> 后唯一运行；一个 ngspice 与一个 Xyce 串行进程，三表达式点、支路哨兵、原始/portable 候选和 26 行表</td><td>30/30 PASS、E2；ngspice 三参数 <code>limit=-15/60.25/135</code>，Xyce 与 clamp 一致，portable 与支路哨兵通过。支持最小点语义假设，不证明完整路线一致、物理参数、实验校准、正式敏感性或电路；独立复核未运行</td></tr>
       <tr><td>route-divergence R02 probe-registration project-check failure</td><td>首次 E2 状态登记误改三个不可变历史机器块；归档失败并只恢复历史状态、精确登记 R02</td><td>753/756，E0，零模拟器进程；报告 SHA-256 <code>6821a18e...3684</code>。随后 756/756 PASS；探针结果、物理输入和阈值不变</td></tr>
       <tr><td>route-divergence root-cause R02 independent check</td><td>探针提交 <code>406cfce</code> 后唯一运行；标准库零进程再生两网表、重算 9 哈希和 26 行表并复现分类</td><td>22/22 PASS、E3；报告 SHA-256 <code>06878ca5...d556</code>。最小根因诊断关闭，但完整 247 行一致为 false；新候选、正式 M01 与 C00 未开放</td></tr>
+      <tr><td>portable full-device R03 implementation</td><td>绑定 R02 正式器件和根因 R02 的 16 个哈希条目；新候选以五处登记替换建立，静态/runner/independent 注册为 42/30/24，输出路径独立且排他</td><td>E0 implementation only；静态合同与两路线均未运行，18 个未来输出缺失。不得解释为器件仿真、路线一致、物理参数、实验校准、正式敏感性、M01 或电路验证</td></tr>
     </tbody>
   </table>
   <figure>
@@ -141,5 +142,5 @@
     <img src="assets/m01_open_source_route_difference_r02.png" alt="M01 R02 per-row logarithmic difference between ngspice and Xyce" />
     <figcaption>图 9-2 247 行 ngspice-Xyce 对数差。最大差为 16.6705 decade；该量按执行前合同只作诊断，不是 runner PASS 门，也不支持方程身份或物理校准结论。</figcaption>
   </figure>
-  <p class="boundary">Xyce build/tool 历史与 R11 36/32/25 工具/parser 链均保留。正式双路线器件 DC R01 静态 checker 唯一返回 39/40、E0/FAIL并冻结。R02 静态/runner/独立三门唯一 40/30/24 PASS；两个模拟器都完成并落盘有限数据，独立 E3 又从原生输出精确复算，但结果明显分歧。根因 R01 静态合同唯一返回 38/40、E0/FAIL并冻结；根因 R02 静态/探针/独立三门唯一 40/30/22 PASS，E3 独立重算只确认预注册最小点的表达式语义根因，完整 247 行一致仍为 false。新可移植完整器件候选及其独立静态合同尚未建立；正式敏感性、P2/T03、M01 收口、C00、电路、版图、PEX 和 HZO 继续关闭。</p>
+  <p class="boundary">Xyce build/tool 历史与 R11 36/32/25 工具/parser 链均保留。正式双路线器件 DC R01 静态 checker 唯一返回 39/40、E0/FAIL并冻结。R02 静态/runner/独立三门唯一 40/30/24 PASS；两个模拟器都完成并落盘有限数据，独立 E3 又从原生输出精确复算，但结果明显分歧。根因 R01 静态合同唯一返回 38/40、E0/FAIL并冻结；根因 R02 静态/探针/独立三门唯一 40/30/22 PASS，E3 独立重算只确认预注册最小点的表达式语义诊断，完整 247 行一致仍为 false。R03 目前只有 E0 可移植候选/合同实现，静态合同、路线和独立检查均未运行；正式敏感性、P2/T03、M01 收口、C00、电路、版图、PEX 和 HZO 继续关闭。</p>
 </section>

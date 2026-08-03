@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`M01_ROUTE_DIVERGENCE_R02_VERIFIED_E3_NEXT_PORTABLE_DEVICE_CONTRACT`：T01/T02/T03 数值门和 R11 工具/parser 预检已关闭，历史失败保留。正式器件 DC R01 固定为 39/40 E0/FAIL；R02 40/30/24 完成并独立重算全部器件级产物，但 ngspice/Xyce 数值不一致。根因 R01 静态合同唯一返回 38/40 E0/FAIL；根因 R02 40/30/22 以 E3/E2/E3 完整通过，只在预注册点确认表达式语义根因。下一门为新可移植完整器件候选与独立 247 行合同，M01/C00 不关闭。
+`M01_PORTABLE_DEVICE_R03_IMPLEMENTED_E0_NEXT_STATIC`：T01/T02/T03 数值门和 R11 工具/parser 预检已关闭，历史失败保留。正式器件 DC R01 固定为 39/40 E0/FAIL；R02 40/30/24 完成并独立重算全部器件级产物，但 ngspice/Xyce 数值不一致。根因 R01 静态合同唯一返回 38/40 E0/FAIL；根因 R02 40/30/22 以 E3/E2/E3 完整通过，只在预注册点确认表达式语义诊断。R03 已完成 E0 可移植完整器件候选与 42/30/24 合同实现；下一门为提交后的 42 项静态合同，M01/C00 不关闭。
 
 ## 截止日期
 
@@ -46,7 +46,7 @@
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
 | M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
-| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；R11 preflight E3；device-DC R02 independent E3；root-cause R01 static E0/FAIL；root-cause R02 independent E3 | 历史失败全部保留；正式器件 DC R01 静态固定 39/40 E0/FAIL。R02 40/30/24 完成，器件级执行/落盘完整但路线不一致。根因 R01 静态固定 38/40 E0/FAIL；R02 40/30/22 以 E3/E2/E3 完成，只在预注册点确认表达式语义根因。完整 247 行 portable 候选尚未建立或执行，M01/C00 保持关闭 |
+| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；R11 preflight E3；device-DC R02 independent E3；root-cause R01 static E0/FAIL；root-cause R02 independent E3；R03 implementation E0 | 历史失败全部保留；正式器件 DC R01 静态固定 39/40 E0/FAIL。R02 40/30/24 完成，器件级执行/落盘完整但路线不一致。根因 R01 静态固定 38/40 E0/FAIL；R02 40/30/22 以 E3/E2/E3 完成，只在预注册点确认表达式语义诊断。R03 仅完成五处登记替换的可移植候选和 42/30/24 静态合同实现，尚未运行静态合同或任一路线；M01/C00 保持关闭 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-M00 与 M01 历史运行均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。R02 根因独立复核已唯一 22/22 E3；先提交并推送该诊断，再建立新可移植完整器件候选及独立正式 247 行静态合同。合同 PASS 提交前不执行任一路线；P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 继续关闭。
+M00 与 M01 历史运行均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。R02 根因独立复核已唯一 22/22 E3；R03 当前只完成 E0 候选/合同实现。先提交并推送该实现，再唯一运行 42 项静态合同；合同 PASS 提交前不执行任一路线，P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 继续关闭。

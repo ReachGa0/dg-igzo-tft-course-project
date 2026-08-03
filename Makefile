@@ -4,6 +4,8 @@ DEVSIM_MATH_LIBS ?= liblapack.so.3:libblas.so.3
 
 .PHONY: all import-baseline import-senior s00-audit s00-audit-check t01-a-check t01-b-smoke t01-b-check t01-c-transfer t01-c-check t01-d-mesh t01-d-mesh-check t01-d-idvd t01-d-idvd-check t01-d-extract t01-d-extract-check t02-a-contract-check t02-a-regression t02-a-regression-check t02-b-contract-check t02-b-minimal t02-b-minimal-check t02-c-contract-check t02-c-bidirectional t02-c-bidirectional-check t03-p4-l-contract-check t03-p4-l-sensitivity t03-p4-l-sensitivity-check t03-p1-bias-contract-check t03-p1-bias-sensitivity t03-p1-bias-sensitivity-check t03-p1-cap-ratio-contract-check t03-p1-cap-ratio-sensitivity t03-p1-cap-ratio-sensitivity-check t03-p2-dit-contract-check t03-p2-dit-equation-smoke t03-p2-dit-equation-smoke-check t03-p2-dit-formal-contract-check t03-p2-dit-formal t03-p2-dit-formal-check t03-p2-bulk-traps-contract-check t03-p2-bulk-traps-equation-smoke t03-p2-bulk-traps-equation-smoke-check t03-p2-bulk-traps-formal-contract-check t03-p2-bulk-traps-formal t03-p2-bulk-traps-formal-check t03-p3-contact-contract-check t03-p3-contact-sensitivity t03-p3-contact-sensitivity-check t03-p5-temperature-contract-check t03-p5-temperature-sensitivity t03-p5-temperature-sensitivity-check m00-compact-model-contract-check m00-compact-model-r02-contract-check m00-compact-model-self-test m00-compact-model-fit m00-compact-model-fit-check m00-compact-model-r02-self-test m00-compact-model-r02-fit m00-compact-model-r02-fit-check m01-simulator-cross-check-contract-check m01-simulator-preflight m01-open-source-recovery-contract-check m01-xyce-build-preflight-contract-check m01-xyce-build-preflight m01-xyce-build-preflight-check m01-xyce-build-preflight-r02-contract-check m01-xyce-build-preflight-r02 m01-xyce-build-preflight-r02-check m01-xyce-build-preflight-r03-contract-check m01-xyce-build-preflight-r03 m01-xyce-build-preflight-r03-check m01-xyce-build-preflight-r04-contract-check m01-xyce-build-preflight-r04 m01-xyce-build-preflight-r04-check m01-xyce-build-preflight-r05-contract-check m01-xyce-build-preflight-r05 m01-xyce-build-preflight-r05-check m01-xyce-build-preflight-r06-contract-check m01-xyce-build-preflight-r06 m01-xyce-build-preflight-r06-check m01-xyce-build-preflight-r07-contract-check m01-xyce-build-preflight-r07 m01-xyce-build-preflight-r07-check m01-xyce-build-preflight-r08-contract-check m01-xyce-build-preflight-r08 m01-xyce-build-preflight-r08-check m01-xyce-build-preflight-r09-contract-check m01-xyce-build-preflight-r09 m01-xyce-build-preflight-r09-check m01-xyce-build-preflight-r10-contract-check m01-xyce-build-preflight-r10 m01-xyce-build-preflight-r10-check m01-xyce-build-preflight-r11-contract-check m01-xyce-build-preflight-r11 m01-xyce-build-preflight-r11-check m01-open-source-device-dc-r01-contract-check m01-open-source-device-dc-r01 m01-open-source-device-dc-r01-check m01-open-source-device-dc-r02-contract-check m01-open-source-device-dc-r02 m01-open-source-device-dc-r02-check m01-route-divergence-r01-contract-check m01-route-divergence-r01 m01-route-divergence-r01-check m01-route-divergence-r02-contract-check m01-route-divergence-r02 m01-route-divergence-r02-check tcad-smoke report-check report check status
 
+.PHONY: m01-open-source-device-dc-r03-contract-check m01-open-source-device-dc-r03 m01-open-source-device-dc-r03-check
+
 all: import-baseline import-senior check
 
 import-baseline:
@@ -308,6 +310,15 @@ m01-open-source-device-dc-r02:
 
 m01-open-source-device-dc-r02-check:
 	"$(PYTHON)" scripts/check_m01_open_source_device_dc_r02.py
+
+m01-open-source-device-dc-r03-contract-check:
+	"$(PYTHON)" scripts/check_m01_open_source_device_dc_r03_contract.py
+
+m01-open-source-device-dc-r03:
+	"$(PYTHON)" scripts/run_m01_open_source_device_dc_r03.py
+
+m01-open-source-device-dc-r03-check:
+	"$(PYTHON)" scripts/check_m01_open_source_device_dc_r03.py
 
 m01-route-divergence-r01-contract-check:
 	"$(PYTHON)" scripts/check_m01_route_divergence_root_cause_r01_contract.py
