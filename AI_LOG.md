@@ -16,6 +16,24 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 实现 M01 Xyce R06 纯源码恢复合同
+
+### 用户目标与输入
+
+用户确认本机 AIM-Spice 缺少合法授权，允许改用开源软件。按 ADR-050 和提交 `6779aab` 后的干净同步状态，只建立 R06 工具恢复合同，不运行 TCAD、SPICE、Xyce、ngspice、器件网表或正式 M01 数值。读取 R05 配置、27/27 E3 合同报告、19/29 E0 runner 报告、原始日志和 build/source manifest，核对成功安装的 SuiteSparse/Trilinos 前缀与 R05 partial Xyce 根。
+
+### 来源、实现与阶段边界
+
+- 从 GNU 官方 HTTPS 下载 M4 1.4.19 和 Bison 3.8.2，从 westes/flex 官方 GitHub release 下载 Flex 2.6.4；只解压到独立 `*-r06` 源目录并记录归档、`configure` 和许可证 SHA-256，未配置、编译或安装。R06 不修改系统 `/usr`，也不调用或接受 AIM-Spice。
+- 新增 `config/m01_xyce_build_preflight_r06.json`、确定性树哈希公共模块、37 项静态合同 checker、47 项专用 runner、25 项标准库独立 checker 和三个 Make 入口。R06 runner 按 M4、Bison、Flex 顺序在用户目录源码构建，先做最小 Bison/Flex 生成冒烟，再用新根构建 Xyce；只复用完整哈希绑定的 R05 SuiteSparse/Trilinos，禁止重建依赖或复用 R05 partial Xyce。
+- R05 SuiteSparse 完整树为 23 文件/4 链接/345258 bytes、SHA-256 `a47a4179b7e02550fb5f243a81ba367f02206adc77bff9bf9f0ddd4ba168160f`；Trilinos 为 4556 文件/12 链接/359196044 bytes、SHA-256 `5d4b574b82f90da30537bf3a649d6977a550cdb527eeadbf2d29a21dc949afb1`。当前 R06 合同报告、build/install 根和全部输出均不存在，机器状态为 `contract_planned/E0`。
+
+### 失败保留与验证
+
+首次开发期 `make check` 为 655/656，原因是总检查器把 R06 合同 checker 中审计用的 `import subprocess` 字符串误判为真实 import；失败报告保存为 `results/reports/project_check_m01_xyce_r06_contract_source_subprocess_literal_failed.json`，SHA-256 `01edeac834ba5f215f53f0badf0ec0af960d49f2050e0d890196ded403b9373d`。修正只将断言收窄为行首真实 import 匹配，没有改变合同、物理输入或验收门槛；最终 `make check` 为 657/657 PASS，`make report-check` 为 12 章/5 附录/15 个允许占位/26 图 PASS，Python/JSON/CSV/XHTML 结构与 `git diff --check` 通过。下一步先提交推送；提交前不得运行 R06 静态合同，合同 PASS 状态再次提交前不得构建工具链或 Xyce。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R05 build/tool 失败
 
 ### 唯一执行与失败定位

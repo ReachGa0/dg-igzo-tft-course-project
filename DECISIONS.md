@@ -1,5 +1,22 @@
 # 设计决策记录
 
+## ADR-051：R06 采用纯源码生成器工具链并完整哈希复用 R05 依赖
+
+- 日期：2026-08-03
+- 状态：R06 合同、runner 与独立 checker 已实现，静态合同尚未运行，当前 E0
+
+### 工具与复用决策
+
+- 不修改系统 `/usr`，也不使用本机缺少可审计合法授权来源的 AIM-Spice。R06 固定 GNU M4 1.4.19、GNU Bison 3.8.2 和 Flex 2.6.4 官方 HTTPS 归档、实际 SHA-256、解压树 `configure` 与许可证哈希；未来在用户目录按 M4、Bison、Flex 顺序源码构建，并显式设置 `M4` 与 `BISON_PKGDATADIR`。
+- R05 成功安装的 SuiteSparse 与 Trilinos 以相对路径、模式、大小、逐文件内容哈希和符号链接目标形成完整树摘要；R06 只允许复用这两个前缀，禁止重建它们，禁止复用 R05 partial Xyce。所有 R06 generator/Xyce build、install、report 和 output 根均为新的 `r06` 命名空间，最多两任务、MPI/Fortran 关闭。
+- 工具链安装后先运行最小 Bison/Flex C 源生成冒烟，再配置 Xyce；Xyce 生成后仍先做 1.25 V 标量 B-source 自测，再做冻结 IGZO 候选的 `-syntax` parser-only 检查。两者都不是正式器件 DC 或 SPICE 路线数值。
+
+### 阶段门与失败保留
+
+- R06 静态合同、未来 runner 与独立落盘检查分别冻结 37/47/25 项。当前只完成实现和官方源码准备，合同报告、构建根、工具链前缀、Xyce 前缀及全部 R06 输出均不存在；不得写成合同通过、Xyce 已构建或 M01 数值完成。
+- 开发期首次 `make check` 为 655/656，原因是总检查器把合同 checker 中审计用的 `import subprocess` 字符串误判为真实 import。报告已归档；修正为行首 import 匹配后 657/657 PASS。该失败不是 R06 静态合同、构建或模拟器失败，也没有放宽门槛。
+- 先提交推送合同实施，再唯一运行 R06 静态合同。只有 37/37 PASS 且状态提交后才执行一次 runner；runner PASS 才执行独立检查。正式 M01 器件 DC、C00、电路、版图、PEX 和 HZO 继续关闭。
+
 ## ADR-050：保留 R05 生成器工具链失败并转入 R06
 
 - 日期：2026-08-03

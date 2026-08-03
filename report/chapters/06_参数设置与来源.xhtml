@@ -24,6 +24,7 @@
       <tr><td>M01 Xyce build/tool R03 合同失败</td><td>完整词边界候选检查、runner/独立 checker no-formal 标记、显式 BLAS/LAPACK、独立 <code>r03</code> 根和 R01/R02 失败绑定</td><td>静态检查 21/25、E0/FAIL；checker 的 planned-state、wrapper 文件名和边界字面量断言失败。报告原样保留，物理输入和验收阈值不变</td></tr>
       <tr><td>M01 Xyce build/tool R04 合同失败</td><td>绑定 R03 21/25 失败；26 项静态检查、实际 wrapper 文件名、显式 BLAS/LAPACK 和独立 <code>r04</code> 根</td><td>唯一静态检查 25/26、E0/FAIL；checker 将实际 <code>contract_planned</code> 状态断言为 <code>preflight_planned</code>。无 R04 构建、Xyce、自测、器件网表或数值输出</td></tr>
       <tr><td>M01 Xyce build/tool R05</td><td>绑定 R04 25/26 失败；27 项静态检查、显式 BLAS/LAPACK、serial 两任务和独立 <code>r05</code> 根</td><td>合同 27/27 E3；runner 19/29 E0/FAIL。SuiteSparse/Trilinos 安装和 Xyce 配置通过，build 因缺失 M4 与 Bison 默认数据路径停止；物理输入和验收阈值不变</td></tr>
+      <tr><td>M01 Xyce build/tool R06</td><td>M4 1.4.19/Bison 3.8.2/Flex 2.6.4 官方归档与许可证哈希；R05 SuiteSparse/Trilinos 完整树哈希；新 generator/Xyce <code>r06</code> 根；serial 两任务</td><td>37/47/25 项链已实现但静态合同尚未运行，E0。源码只下载/解压；不修改系统工具，不重建成功依赖，不复用 partial Xyce，不改变 IGZO 候选、物理输入或阈值</td></tr>
       <tr><td>学长 IGZO/VTC 表</td><td>已保留来源行和质量标记</td><td>导入、对数作图和数据质量参考</td><td>缺少完整条件，仅 reference_only</td></tr>
     </tbody>
   </table>
