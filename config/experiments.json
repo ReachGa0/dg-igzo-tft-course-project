@@ -813,7 +813,25 @@
           "results/reports/m01_simulator_cross_check_contract.json"
         ]
       },
-      "evidence_boundary": "The 32-check E3 revision-3 contract freezes all 247 selected R02 target rows, of which 233 are scored (163 train and 70 holdout) and 14 are retained zero-VDS/repeated-low-VDS audits, plus 13 curves, W/L/bias/temperature mapping, the R02 ngspice behavioral candidate, the R02 AIM-Spice Level-15 candidate and mapping, tool fingerprints, syntax/preflight rules, route-to-target metrics, route-difference reporting, exclusive outputs, failure retention and the no-circuit boundary. The contract invokes neither simulator. External ngspice/AIM-Spice folders are reference-only, SnO/HZO/old circuit assets are excluded, and generated candidates are not equation-identical or physical parameters. Revision-1 and revision-2 contract failures are preserved as separate reports. A future M01 run may report two executed simulator routes against the frozen IGZO teaching targets; it may not claim experimental calibration, equation identity, native Level 61 behavior for ngspice, circuit readiness or foundry validation. C00 and all downstream stages remain closed until M01 execution and independent persisted-evidence checks pass."
+      "preflight_execution_chain": {
+        "status": "implemented_not_run",
+        "revision": 1,
+        "current_evidence": "E0",
+        "expected_check_count": 13,
+        "formal_preflight_run_completed": false,
+        "ngspice_version_probe_permitted_after_commit": true,
+        "aimspice_process_invocation_permitted": false,
+        "device_netlist_invocation_permitted": false,
+        "numerical_curve_generation_permitted": false,
+        "reported_aimspice_license_provenance_auditable": false,
+        "documented_aimspice_batch_cli_established": false,
+        "circuit_or_downstream_permitted": false,
+        "result_paths": [
+          "config/m01_simulator_preflight_r01.json",
+          "scripts/run_m01_simulator_preflight.py"
+        ]
+      },
+      "evidence_boundary": "The 32-check E3 revision-3 contract freezes all 247 selected R02 target rows, of which 233 are scored (163 train and 70 holdout) and 14 are retained zero-VDS/repeated-low-VDS audits, plus 13 curves, W/L/bias/temperature mapping, the R02 ngspice behavioral candidate, the R02 AIM-Spice Level-15 candidate and mapping, tool fingerprints, syntax/preflight rules, route-to-target metrics, route-difference reporting, exclusive outputs, failure retention and the no-circuit boundary. The contract invokes neither simulator. Revision-1 and revision-2 contract failures are preserved. The R01 tool/provenance preflight execution chain is implemented but not run: it permits only ngspice --version, statically fingerprints but never invokes the reported unauthorized AIM-Spice installation, and forbids all device netlists and numerical curves. The AIM-Spice provenance and documented batch-CLI gates are frozen as unmet, so this implemented-not-run state remains E0 and is not simulator evidence. After the committed preflight preserves that failure, only a separately contracted open-source second route may be considered. External baseline folders remain reference-only, SnO/HZO/old circuit assets are excluded, and generated candidates are not equation-identical or physical parameters. M01, C00 and all downstream stages remain closed."
     },
     {
       "id": "C00",

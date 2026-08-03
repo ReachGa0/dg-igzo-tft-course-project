@@ -19,7 +19,7 @@
 - 题目：基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK。
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
-- S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；历史失败保留。M00 R01 因 L=12 um holdout gm `0.512384 > 0.50` 保持 21/24、E0/FAIL。R02 结构恢复合同 27/27 静态 PASS、E3，原数据/split/指标/阈值不变，只将 `Lref/L` 指数固定为 1.0、移除一个训练不可稳健识别的长度自由度，参数数为 10；唯一正式 runner 24/24 E2、独立检查 20/20 E3。M00 仅在冻结 IGZO 教学数值曲线与局部有效域内关闭；候选已生成未执行。M01 revision-3 合同 32/32 静态 PASS、E3，合同没有调用模拟器；v1/v2 合同失败归档保留，下一步是工具预检与两路器件级 DC。C00/L00/V01 仍未完成，G0 仍为 `TEACHING_BASELINE_ONLY`。
+- S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；历史失败保留。M00 R01 因 L=12 um holdout gm `0.512384 > 0.50` 保持 21/24、E0/FAIL。R02 结构恢复合同 27/27 静态 PASS、E3，原数据/split/指标/阈值不变，只将 `Lref/L` 指数固定为 1.0、移除一个训练不可稳健识别的长度自由度，参数数为 10；唯一正式 runner 24/24 E2、独立检查 20/20 E3。M00 仅在冻结 IGZO 教学数值曲线与局部有效域内关闭；候选已生成未执行。M01 revision-3 合同 32/32 静态 PASS、E3。用户披露本机 AIM-Spice 未获授权后，R01 工具/来源预检链已实现但未运行、仍为 E0；只允许 `ngspice --version`，AIM-Spice 只读指纹且禁止启动，所有器件网表和数值曲线均禁止。预期失败落盘后才可建立开源第二路线合同。C00/L00/V01 仍未完成，G0 仍为 `TEACHING_BASELINE_ONLY`。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
@@ -79,6 +79,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 - T03-P5-TEMPERATURE 正式敏感性：运行器 E2、独立检查 E3；3 器件完成 123 次收敛 DC、93 点、3 状态、7257 节点行、7680 单元行和 18 VTK，墙钟 `9.127 s`，runner 14/14、independent 15/15 PASS。最大端口相对不平衡 `4.37301e-10`，300 K 对 T02-C 的曲线/状态/VTH/gm 差异为 0。VTH/SS 代理随温度增加，gm/高栅电流代理下降，低栅电流代理增加；这些只关闭 `V_t-only` 数值 P5 和完整数值 T03，不是物理温度模型或实验校准。
 - M00 R02 正式拟合：runner E2、独立检查 E3；唯一正式运行先优化 9 条 train/163 点，优化结束后才加载 4 条 holdout/70 点，24/24 PASS。train aggregate linear/log 为 `0.0830935/0.0838732` decade，holdout 为 `0.109299/0.142615` decade；holdout gm 相对误差为 `0.363249/0.419248`，均通过不变 `0.50` 门。独立标准库检查重算 247 行、13 条曲线指标、10 参数、VTH/gm、图、候选状态和哈希，20/20 PASS。`lambda_per_v` 与 `log_gmin` 接近下界，只作教学代理诊断；两路候选未执行。该证据不改写 R01 失败，也不是实验拟合、物理参数、外部验证、双仿真器验证或电路证据。
 - M01 双仿真器对照合同：revision-3 静态 32/32 PASS、E3；冻结 R02 247 个选定行，其中 233 个 scored（163 train/70 holdout）和 14 个零漏压/低漏压审计，13 条曲线、同一 W/L/偏压/300 K/端口映射、ngspice 行为候选、AIM-Spice Level 15 候选、工具指纹、语法/指标/失败保留和 no-circuit 边界。合同只生成 `results/reports/m01_simulator_cross_check_contract_v3.json`，没有执行任一模拟器；v1/v2 检查失败报告保留。
+- M01 R01 预检执行链：`config/m01_simulator_preflight_r01.json`、`scripts/run_m01_simulator_preflight.py` 和 `make m01-simulator-preflight` 已实现但未运行。13 项门只允许一个 ngspice 版本探针，禁止 AIM-Spice 进程、器件网表、数值曲线和下游；授权来源不可审计与 batch/CLI 未建立将使原路线预检失败。失败是工具/来源门，不是数值仿真失败；开源替代工具必须另建合同。
 - 学长 IGZO 曲线：E1/reference_only；元数据不完整。
 - IGZO 单管外部 GDS：E2 基线，可参考但尚未迁入新 PDK。
 - 其余领域任务：E0。
@@ -92,7 +93,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. T02-A/B/C、T03-P1/P2/P3/P4/P5、M00 R02 两级数值门和 M01 revision-3 静态合同已完成，历史失败继续保留。R01 已唯一运行并保持 E0/FAIL，不得重跑、放宽阈值、改变 split 或运行其 PASS-only 独立检查；R02 也不得重跑或用 holdout 调参。下一步只做 M01 合同声明的工具/语法预检和两路器件级 DC；电路、KLayout、PEX 和 HZO 继续关闭。
+8. T02-A/B/C、T03-P1/P2/P3/P4/P5、M00 R02 两级数值门和 M01 revision-3 静态合同已完成，历史失败继续保留。R01 已唯一运行并保持 E0/FAIL，不得重跑、放宽阈值、改变 split 或运行其 PASS-only 独立检查；R02 也不得重跑或用 holdout 调参。下一步只运行已提交的 M01 R01 工具/来源预检，不得传入器件网表；保留预期失败并提交后，才建立开源第二路线恢复合同。M01 数值执行、电路、KLayout、PEX 和 HZO 继续关闭。
 
 ## 原始资产路径
 

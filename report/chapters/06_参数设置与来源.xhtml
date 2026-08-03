@@ -17,6 +17,7 @@
       <tr><td>M00 输入注册与划分</td><td>13 个表的哈希/行数；5 个正式数据集；9 条 train/163 点；4 条 holdout/70 点；7 个零漏压点</td><td>R01 唯一教学紧凑代理拟合的固定输入与验收合同</td><td>合同 25/25 E3；R01 因 L=12 um holdout gm `0.512384 &gt; 0.50` 为 E0/FAIL。所有曲线均来自项目教学模型，失败系数不是物理参数或实验标定</td></tr>
       <tr><td>M00 R02 长度结构</td><td><code>Lref/L</code> 指数固定 1.0；移除 <code>length_exponent</code>；保留 <code>length_vth_slope_v</code> 零初值训练；参数 10 个</td><td>消除“1 个非参考训练长度、2 个长度自由度”的结构混淆；正式 runner 24/24 E2、独立检查 20/20 E3</td><td>固定因子不是从 R01 holdout 或拟合系数选择，也不证明物理反长度缩放。原 split、权重、指标和阈值全部不变；<code>lambda_per_v</code> 与 <code>log_gmin</code> 接近下界，只作教学代理诊断。两路候选均未执行，10 个系数不是物理参数或实验标定</td></tr>
       <tr><td>M01 双仿真器合同</td><td>R02 247 个选定行；233 个 scored 行（163 train/70 holdout）+ 7 个零漏压不变量 + 7 个低漏压审计；ngspice 行为候选与 AIM-Spice Level 15 候选</td><td>冻结同一 W/L、VBG/VTG/VDS、300 K、源极 0 V、<code>|ID|/W</code> 和线性/对数路线差异表</td><td>32/32 静态 E3，合同不运行模拟器；外部目录只作 reference-only，SnO/HZO/电路排除。两路方程不声称相同，未来结果也不等于实验拟合或物理参数</td></tr>
+      <tr><td>M01 R01 工具/来源门</td><td>ngspice 固定路径、字节数、SHA-256 和 <code>--version</code>；AIM-Spice 仅固定文件指纹，不允许进程调用</td><td>预检执行链已实现未运行；器件网表与数值曲线禁止</td><td>用户披露 AIM-Spice 副本未授权，故来源不可审计；batch/CLI 也未建立。这两门预期失败，只能形成 E0 工具/来源失败证据，不能形成 Level 15、器件或 M01 结果。开源替代路线须另建合同</td></tr>
       <tr><td>学长 IGZO/VTC 表</td><td>已保留来源行和质量标记</td><td>导入、对数作图和数据质量参考</td><td>缺少完整条件，仅 reference_only</td></tr>
     </tbody>
   </table>

@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`M01_CONTRACT_E3_NO_SIM_EXECUTION`：T01/T02/T03 数值门已关闭，历史失败保留。R01 唯一正式运行因 `L=12 um` holdout gm `0.512384 > 0.50` 保持 21/24、E0/FAIL。R02 以 27/27 E3 合同固定 `Lref/L` 指数 1.0、移除 `length_exponent`，原 split、指标和门槛不变；唯一正式 runner 24/24 E2、独立持久化检查 20/20 E3。M00 只在冻结 IGZO 教学数值域内关闭；M01 revision-3 合同 32/32 E3，合同未调用模拟器。
+`M01_PREFLIGHT_CHAIN_READY_NO_NUMERICAL_EXECUTION`：T01/T02/T03 数值门已关闭，历史失败保留。R01 唯一正式运行因 `L=12 um` holdout gm `0.512384 > 0.50` 保持 21/24、E0/FAIL。R02 以 27/27 E3 合同固定 `Lref/L` 指数 1.0、移除 `length_exponent`，原 split、指标和门槛不变；唯一正式 runner 24/24 E2、独立持久化检查 20/20 E3。M00 只在冻结 IGZO 教学数值域内关闭；M01 revision-3 合同 32/32 E3。用户披露 AIM-Spice 未授权后，R01 工具/来源预检链已实现但未运行、E0，禁止 AIM-Spice 进程、器件网表和数值输出。
 
 ## 截止日期
 
@@ -46,7 +46,7 @@
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
 | M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
-| M01 | AIM-Spice/ngspice 对照 | CONTRACT READY，E3；未运行 | 依赖 M00；32/32 静态合同冻结 247 选定行（233 scored + 14 审计）、同几何/偏压/目标行、路线映射、语法、指标差异、失败保留和 no-circuit 边界；v1/v2 失败归档保留 |
+| M01 | 双仿真器对照 | PREFLIGHT CHAIN READY，合同 E3 / 预检 E0；未运行数值网表 | 32/32 静态合同冻结 247 选定行；R01 工具/来源预检链只允许 `ngspice --version`，禁止启动未授权 AIM-Spice 和器件网表。预期失败保留后另建开源第二路线合同 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-R01 不重跑、不放宽 `0.50`、不改变 split 或用 holdout 选参数。R02 已完成唯一正式运行和独立落盘检查（24/24 E2、20/20 E3），结果仅关闭冻结教学数值域。M01 revision-3 合同已 32/32 E3；下一步只做工具/语法预检和两路器件级 DC，电路、版图、PEX 和 HZO 继续关闭。
+R01 不重跑、不放宽 `0.50`、不改变 split 或用 holdout 选参数。R02 已完成唯一正式运行和独立落盘检查（24/24 E2、20/20 E3），结果仅关闭冻结教学数值域。M01 revision-3 合同已 32/32 E3；下一步只运行已提交的 R01 工具/来源预检，不传入器件网表，并保留 AIM-Spice 授权来源和 batch/CLI 的预期失败。失败收口后另建开源第二路线合同；M01 数值对照、电路、版图、PEX 和 HZO 继续关闭。

@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "M01",
+  "preflight_id": "M01_SIMULATOR_PREFLIGHT_R01",
+  "revision": 1,
+  "status": "preflight_planned",
+  "evidence_level_before_run": "E0",
+  "bound_contract_commit": "49b93a456b490b56f7d431ee24e11b3a388c66b5",
+  "contract": {
+    "path": "config/m01_simulator_cross_check_contract.json",
+    "sha256": "0fff841f651b8a965d9411f64f58ff02b40c3063f4556616dfca45b42d933bd9",
+    "report": "results/reports/m01_simulator_cross_check_contract_v3.json",
+    "report_sha256": "558a13869df1e35e59a6853c95e3105ef4428ee5a74dd80a5d461a4d77a1a204",
+    "revision": 3,
+    "checks_passed": 32
+  },
+  "preflight_rules": {
+    "device_netlist_invocation_permitted": false,
+    "numerical_curve_generation_permitted": false,
+    "ngspice_version_probe_only": true,
+    "aimspice_process_invocation_by_runner": false,
+    "auditable_software_provenance_required": true,
+    "documented_batch_cli_required": true,
+    "either_route_failure_stops_m01": true,
+    "circuit_or_downstream_permitted": false
+  },
+  "routes": {
+    "ngspice_behavioral": {
+      "tool_path": "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+      "tool_sha256": "820658317b0b54035208da41936fd6871ce924036e5ea4113a4168b821b7fc45",
+      "tool_bytes": 8300800,
+      "allowed_probe_argv": [
+        "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+        "--version"
+      ],
+      "required_version_token": "ngspice-42",
+      "candidate_path": "spice/models/igzo_dg_behavioral_r02.inc",
+      "candidate_sha256": "0a2d626fb37fc4fc9c1af8bdd326d5750eeca22d8b9cd3e570481ef671c47f9d"
+    },
+    "aimspice_level15": {
+      "tool_path": "/mnt/c/Program Files (x86)/AIM-Software/AIM-Spice/bin64/aimspice.exe",
+      "tool_sha256": "cabb6ccc73dd25f68af92d2751b640ed5a5cf992cc6fb5332b939b756cbf5820",
+      "tool_bytes": 6270976,
+      "candidate_path": "models/level61/igzo_level15_r02.inc",
+      "candidate_sha256": "b31e959396c624f9b739b1a12b27623b920d46c89e61ea16c66d44458802e754",
+      "license_provenance": {
+        "source": "user disclosure in the active project session on 2026-08-03",
+        "status": "USER_DISCLOSED_UNAUTHORIZED_COPY",
+        "auditable_for_formal_project_evidence": false
+      },
+      "documented_batch_cli_status": "NOT_ESTABLISHED",
+      "prior_exploratory_probe": {
+        "occurred_before_user_disclosure": true,
+        "arguments_limited_to_help_or_version_forms": true,
+        "netlist_argument_supplied": false,
+        "numerical_output_created": false,
+        "formal_evidence_permitted": false
+      },
+      "runner_must_not_invoke": true
+    }
+  },
+  "outputs": {
+    "run_directory": "results/compact/m01_simulator_cross_check_r01",
+    "preflight_log": "results/compact/m01_simulator_cross_check_r01/syntax_preflight.log",
+    "preflight_report": "results/reports/m01_simulator_preflight_r01.json"
+  },
+  "numerical_outputs_that_must_remain_absent": [
+    "results/tables/m01_ngspice_r02_raw.csv",
+    "results/tables/m01_aimspice_r02_raw.csv",
+    "results/tables/m01_route_metrics_r02.csv",
+    "results/tables/m01_route_difference_r02.csv",
+    "results/compact/m01_simulator_cross_check_r01/ngspice.log",
+    "results/compact/m01_simulator_cross_check_r01/aimspice.log",
+    "report/assets/m01_simulator_cross_check_r02.png",
+    "report/assets/m01_route_difference_r02.png",
+    "results/reports/m01_simulator_cross_check_r02.json",
+    "results/reports/m01_simulator_cross_check_r02_check.json"
+  ],
+  "failure_boundary": "The user disclosed that the installed AIM-Spice copy is unauthorized. Formal project evidence requires auditable software provenance and a documented reproducible batch interface, so the AIM-Spice route must fail preflight even if its executable exists or opens. The runner may invoke only ngspice --version and must not invoke AIM-Spice or any device netlist. This is a tool/provenance gate failure, not a numerical simulator failure and not an IGZO device result.",
+  "next_gate_after_failure": "Preserve this E0/FAIL report, keep M01 and C00/downstream closed, then establish and commit a new contract for an explicitly open-source second simulator route before any device-level numerical execution. The replacement route must not be described as native AIM-Spice Level 15 or HSPICE Level 61."
+}

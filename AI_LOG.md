@@ -16,6 +16,25 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 实现 M01 工具/来源预检执行链
+
+### 用户目标与新约束
+
+用户披露本机 AIM-Spice 副本未获授权，并允许必要时改用开源软件。按既有阶段 DAG 先固化原 M01 路线的工具/来源失败门，不直接执行候选器件网表，也不提前把开源工具当成 M01 结果。
+
+### 实现与机器状态
+
+- 新增 `config/m01_simulator_preflight_r01.json` 和 `scripts/run_m01_simulator_preflight.py`，Makefile 新增 `m01-simulator-preflight`。预检绑定已推送提交 `49b93a4` 的 revision-3 合同及两个 IGZO-only 候选哈希，排他创建日志和报告，计划检查数为 13。
+- 运行器只允许固定 ngspice 二进制执行 `--version`；AIM-Spice 只读取路径、字节数和 SHA-256，源码中不存在其 subprocess 调用。授权来源不可审计与文档化 batch/CLI 未建立两门将保持 FAIL；所有器件网表、数值曲线、路线表、图片、C00 和下游禁止。
+- 用户披露前曾探索 AIM-Spice 的帮助/版本形式入口，没有传入网表或生成数值结果；这些探索不进入正式证据。当前预检执行链尚未运行，机器状态为 `implemented_not_run/E0`，不是 simulator、SPICE 数值或 M01 证据。
+- 已在用户目录验证一个来自发行版软件包的 GNUCAP 开源候选，但它尚未写入正式恢复合同、未读取项目候选网表、未运行项目数值，因此不能称为第二路线可用或 M01 结果。原预检失败落盘并提交后才允许冻结替代路线。
+
+### 验证与下一步
+
+- `make check` 为 602/602 PASS；`make report-check` 为 12 章、5 附录、15 个允许占位、26 张图 PASS。`git diff --check`、两个 Python 文件编译、3 个活动 JSON、56 行/10 列证据矩阵 CSV 和 12 个报告 XHTML 解析均 PASS。
+- 预检目录、预检报告和 10 个声明的数值输出均保持不存在。没有运行 `make m01-simulator-preflight`，没有调用 TCAD、AIM-Spice 或任何 SPICE 器件网表。
+- 下一步先提交并推送本执行链，再唯一运行无网表 R01 预检并保留预期 E0/FAIL；随后更新证据、检查、提交，才建立开源第二仿真器恢复合同。M01 数值执行、C00、电路、版图、PEX 和 HZO 继续关闭。
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M01 双仿真器对照合同
 
 ### 用户目标

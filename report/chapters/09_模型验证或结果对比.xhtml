@@ -73,4 +73,17 @@
   </table>
   <p>合同检查共 32/32 PASS、E3，报告为 <code>results/reports/m01_simulator_cross_check_contract_v3.json</code>；revision-1 和 revision-2 的合同检查失败报告分别保留，失败原因是检查器/合同口径修正而非模拟器运行失败。当前没有 ngspice/AIM-Spice 原始输出、叠图、路线差异表或独立数值检查，不能把 M01 写成已完成，也不能打开 C00。</p>
   <p class="boundary">即使未来两路均运行并通过持久化检查，也只能说明两个不同方程路线在冻结 IGZO 教学目标上的可复现数值对照。不得声称行为模型为原生 HSPICE Level 61、两路方程身份相同、实验拟合、物理参数提取、真实电路可用性或 foundry sign-off。</p>
+  <h3>9.4 M01 R01 工具/来源预检执行链</h3>
+  <p>用户披露本机 AIM-Spice 副本未获授权后，项目不再允许该安装进入正式证据链。R01 预检配置和运行器已实现并绑定已提交的 revision-3 合同，但本节记录时尚未运行，因此证据等级为 E0；它不是语法通过、模拟器通过或器件结果。</p>
+  <table>
+    <thead><tr><th>预检项</th><th>冻结行为</th><th>当前状态与边界</th></tr></thead>
+    <tbody>
+      <tr><td>ngspice</td><td>固定路径、字节数和 SHA-256；唯一允许命令为 <code>ngspice --version</code></td><td>提交后才运行一次版本探针；不传入网表</td></tr>
+      <tr><td>AIM-Spice</td><td>只读取可执行文件路径、字节数和 SHA-256；正式 runner 禁止启动其进程</td><td>授权来源不可审计且 batch/CLI 未建立，两门预期 FAIL</td></tr>
+      <tr><td>输出</td><td>排他创建 <code>syntax_preflight.log</code> 和 R01 JSON 报告</td><td>当前均不存在；两路原始 CSV、指标、叠图和数值报告必须继续不存在</td></tr>
+      <tr><td>后续门</td><td>预检任一失败即停止 M01</td><td>失败保留并提交后，另建开源第二仿真器恢复合同；C00 和下游保持关闭</td></tr>
+    </tbody>
+  </table>
+  <p>用户披露前对 AIM-Spice 入口的探索只使用帮助或版本形式参数，没有传入器件网表或产生数值曲线，且不允许成为正式证据。预检执行链的静态可检查性也不能把预计的失败改写为通过。</p>
+  <p class="boundary">R01 预检未来的 FAIL 只能说明原 AIM-Spice 路线不满足项目工具来源与可复现批处理门，不说明 ngspice 或 AIM-Spice 的 IGZO 数值失败。开源候选在独立合同、提交、正式运行和持久化检查前同样不是 M01 第二路线证据。</p>
 </section>

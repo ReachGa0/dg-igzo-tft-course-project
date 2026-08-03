@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 597,
+  "checks": 602,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=22083"
+      "detail": "bytes=22651"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=18937"
+      "detail": "bytes=19523"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=15647"
+      "detail": "bytes=16383"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=128945"
+      "detail": "bytes=131223"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4798"
+      "detail": "bytes=5112"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=66436"
+      "detail": "bytes=68228"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=33510"
+      "detail": "bytes=34827"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=7626"
+      "detail": "bytes=7728"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=16925"
+      "detail": "bytes=17939"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=57337"
+      "detail": "bytes=58318"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1095,6 +1095,16 @@
       "detail": "bytes=10791"
     },
     {
+      "name": "file:config/m01_simulator_preflight_r01.json",
+      "status": "PASS",
+      "detail": "bytes=4306"
+    },
+    {
+      "name": "file:scripts/run_m01_simulator_preflight.py",
+      "status": "PASS",
+      "detail": "bytes=10906"
+    },
+    {
       "name": "file:scripts/check_t03_p5_temperature.py",
       "status": "PASS",
       "detail": "bytes=35919"
@@ -1487,7 +1497,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=37898"
+      "detail": "bytes=38772"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -2107,7 +2117,7 @@
     {
       "name": "file:models/level61/README.md",
       "status": "PASS",
-      "detail": "bytes=1016"
+      "detail": "bytes=1341"
     },
     {
       "name": "file:spice/models/README.md",
@@ -2847,7 +2857,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "establish the M01 simulator cross-check contract for the passed R02 teaching surrogate; freeze identical geometry, bias, target rows, route mapping, syntax checks, metric differences, failure retention and the no-circuit boundary before any ngspice or AIM-Spice execution"
+      "detail": "run the committed M01 R01 tool/provenance preflight only; permit one ngspice --version probe, do not invoke AIM-Spice or any device netlist, preserve the expected tool/provenance failure, and keep M01 numerical execution plus C00/downstream closed"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -2917,12 +2927,27 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "establish the M01 simulator cross-check contract for the passed R02 teaching surrogate; freeze identical geometry, bias, target rows, route mapping, syntax checks, metric differences, failure retention and the no-circuit boundary before any ngspice or AIM-Spice execution"
+      "detail": "run the committed M01 R01 tool/provenance preflight only; permit one ngspice --version probe, do not invoke AIM-Spice or any device netlist, preserve the expected tool/provenance failure, and keep M01 numerical execution plus C00/downstream closed"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
       "status": "PASS",
       "detail": "checks=32/32 future_absent=13/13"
+    },
+    {
+      "name": "m01_preflight_chain:committed_contract_binding_and_exclusive_outputs",
+      "status": "PASS",
+      "detail": "outputs_absent=3/3 numerical_absent=10/10"
+    },
+    {
+      "name": "m01_preflight_chain:single_version_probe_and_no_aimspice_or_netlist",
+      "status": "PASS",
+      "detail": "one ngspice version subprocess; AIM-Spice and device netlists prohibited"
+    },
+    {
+      "name": "m01_preflight_chain:machine_state_boundary_and_make_target",
+      "status": "PASS",
+      "detail": "status=implemented_not_run evidence=E0"
     },
     {
       "name": "tcad:mesh_levels",
