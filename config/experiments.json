@@ -1026,7 +1026,7 @@
         "next_gate": "Establish and commit M01 Xyce build/tool preflight revision-4 with corrected planned-state and wrapper source assertions; preserve R03 21/25 failure and do not rerun R01/R02/R03 or execute a device netlist."
       },
       "xyce_build_preflight_r04": {
-        "status": "contract_planned",
+        "status": "contract_failed_checker",
         "revision": 4,
         "current_evidence": "E0",
         "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R04",
@@ -1036,6 +1036,51 @@
         "independent_checker_path": "scripts/check_m01_xyce_build_preflight_r04.py",
         "contract_report_path": "results/reports/m01_xyce_build_preflight_contract_r04.json",
         "expected_contract_check_count": 26,
+        "expected_runner_check_count": 29,
+        "expected_independent_check_count": 20,
+        "formal_run_completed": false,
+        "preflight_run_completed": false,
+        "contract_check_completed": true,
+        "contract_status": "FAIL",
+        "contract_checks_passed": 25,
+        "contract_checks_failed": 1,
+        "device_netlist_invoked": false,
+        "numerical_outputs_created": false,
+        "ngspice_invoked": false,
+        "aimspice_invoked": false,
+        "serial_build": true,
+        "mpi_build": false,
+        "fortran_build": false,
+        "explicit_blas_lapack_paths": true,
+        "xyce_release": "Release-7.10.0",
+        "trilinos_release": "14.4",
+        "suitesparse_release": "7.8.3",
+        "max_parallel_jobs": 2,
+        "proprietary_binary_accepted": false,
+        "circuit_or_downstream_permitted": false,
+        "r01_failure_preserved": true,
+        "r02_failure_preserved": true,
+        "r03_failure_preserved": true,
+        "result_paths": [
+          "results/reports/m01_xyce_build_preflight_contract_r04.json"
+        ],
+        "artifact_hashes": {
+          "contract_report_sha256": "bc5dcd446fa9bc613504458cac4ac58351e1a594f6764cba5bb9f4e448e7448e"
+        },
+        "failure_category": "contract_checker_machine_status_literal",
+        "next_gate": "Establish and commit M01 Xyce build/tool preflight revision-5 with the registered contract_planned machine status; preserve R04 25/26 failure and do not rerun R01/R02/R03/R04 or execute a device netlist."
+      },
+      "xyce_build_preflight_r05": {
+        "status": "contract_planned",
+        "revision": 5,
+        "current_evidence": "E0",
+        "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R05",
+        "contract_path": "config/m01_xyce_build_preflight_r05.json",
+        "contract_checker_path": "scripts/check_m01_xyce_build_preflight_r05_contract.py",
+        "runner_path": "scripts/run_m01_xyce_build_preflight_r05.py",
+        "independent_checker_path": "scripts/check_m01_xyce_build_preflight_r05.py",
+        "contract_report_path": "results/reports/m01_xyce_build_preflight_contract_r05.json",
+        "expected_contract_check_count": 27,
         "expected_runner_check_count": 29,
         "expected_independent_check_count": 20,
         "formal_run_completed": false,
@@ -1058,11 +1103,12 @@
         "r01_failure_preserved": true,
         "r02_failure_preserved": true,
         "r03_failure_preserved": true,
+        "r04_failure_preserved": true,
         "result_paths": [
-          "results/reports/m01_xyce_build_preflight_contract_r04.json"
+          "results/reports/m01_xyce_build_preflight_contract_r05.json"
         ],
         "artifact_hashes": {},
-        "next_gate": "Commit the revision-4 contract, then run its static contract check exactly once. Formal R04 build/tool execution and formal M01 device DC remain closed until this contract passes."
+        "next_gate": "Commit the revision-5 contract, then run its static contract check exactly once. Formal R05 build/tool execution and formal M01 device DC remain closed until this contract passes."
       }
     },
     {

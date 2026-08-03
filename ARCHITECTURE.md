@@ -1,11 +1,11 @@
 # 双栅 IGZO 课程项目总体架构
 
-> 当前阶段：T02-C 和 T03-P1/P2/P3/P4/P5 已关闭冻结教学模型的数值门，历史失败继续保留。M00 R01 因 L=12 um holdout gm `0.512384 > 0.50` 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。纯源码 Xyce 构建/工具预检合同和执行链现已 25/25 静态 PASS、E3，固定 Xyce 7.10.0、Trilinos 14.4、SuiteSparse 7.8.3、CMake 3.30.5 的实际包哈希、串行两任务、MPI/Fortran 关闭、标量 B-source 自测及随后 parser-only `-syntax`。旧恢复合同中的 archive 哈希转录串原样保留，新合同以重复重算值为构建输入。Xyce 尚未构建或运行，下一步只在执行链提交推送后唯一运行 build/tool preflight。G0 仍不允许实验校准、物理参数验证或定量电路预测。
+> 当前阶段：T02-C 和 T03-P1/P2/P3/P4/P5 已关闭冻结教学模型的数值门，历史失败继续保留。M00 R01 因 L=12 um holdout gm `0.512384 > 0.50` 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。纯源码 Xyce 构建/工具 R01 合同为 25/25 E3，实际预检在 SuiteSparse BLAS 门失败；R02/R03/R04 静态修正版又分别在 checker 门失败并保留。R05 合同已建立，固定 Xyce 7.10.0、Trilinos 14.4、SuiteSparse 7.8.3、CMake 3.30.5、串行两任务、MPI/Fortran 关闭、标量 B-source 自测及随后 parser-only `-syntax`，但尚未执行静态检查。Xyce 尚未构建或运行。G0 仍不允许实验校准、物理参数验证或定量电路预测。
 > 正式题目：**基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK**。
 > 实施原则：普通笔记本可运行、二维优先、证据可追溯、基础闭环先于 HZO 扩展。
 
-> R01 Xyce build/tool 执行已唯一完成但在 SuiteSparse CMake 的 BLAS 发现门以 14/29、独立 9/20 失败；报告、日志、manifest 和部分 cache 保留。下一步只建立 R02 显式 BLAS/LAPACK 合同，不重跑 R01。
-> R02 合同随后唯一检查为 22/25、E0/FAIL：候选注释词法和 wrapper 静态 no-formal 标记失败；没有执行 R02 构建。R03 静态合同又唯一检查为 21/25、E0/FAIL，失败来自 planned-state、wrapper 文件名和边界字面量断言；未执行构建或模拟器。R04 只修正这些 checker 断言，不改变器件输入或门槛。
+> R01 Xyce build/tool 执行已唯一完成但在 SuiteSparse CMake 的 BLAS 发现门以 14/29、独立 9/20 失败；报告、日志、manifest 和部分 cache 保留，R01 不重跑。
+> R02/R03/R04 合同唯一检查分别为 22/25、21/25、25/26 E0/FAIL；失败来自候选 token、wrapper 文件名/标记、边界或机器状态字面量断言，均未执行对应构建或模拟器。R05 只修正 R04 残留的 `contract_planned` 状态断言，不改变器件输入或门槛。
 
 ## 1. 项目最终要回答什么
 
@@ -256,7 +256,8 @@ report/                 章节/附录源、组装清单、证据矩阵和最终�
 | M01 Xyce 构建/工具预检 R02 合同 | E0/FAIL | 22/25 静态检查；显式 BLAS/LAPACK 和 R01 失败绑定通过，候选 `translation` 被 `tran` 子串规则误判、wrapper 静态标记缺失。无 R02 构建、Xyce、自测、器件 DC 或正式数值输出 |
 | M01 Xyce 构建/工具预检 R03 合同 | E0/FAIL | 合同已建立并唯一检查 21/25；固定 token-safe 候选范围、完整 no-formal wrapper 标记、显式 BLAS/LAPACK 和独立 `r03` 根；R01/R02/R03 失败不可改写。无 R03 构建、自测、器件 DC 或正式数值输出 |
 | M01 Xyce 构建/工具预检 R03 合同失败 | E0/FAIL | 21/25 静态检查；四项失败是 R03 checker 的 planned-state、wrapper 文件名和边界字面量断言。报告不可改写；无构建、Xyce、自测、器件 DC 或正式数值输出 |
-| M01 Xyce 构建/工具预检 R04 合同 | E0，待唯一静态检查 | 26 项合同已建立，绑定 R03 21/25 失败并修正实际 wrapper 文件名、`contract_planned` 状态和 R03 边界断言；无 R04 合同报告、构建、自测、器件 DC 或正式数值输出 |
+| M01 Xyce 构建/工具预检 R04 合同 | E0/FAIL | 唯一静态检查 25/26；只因 checker 仍期待 `preflight_planned` 而实际机器状态为 `contract_planned`。报告不可改写；无 R04 构建、自测、器件 DC 或正式数值输出 |
+| M01 Xyce 构建/工具预检 R05 合同 | E0，待唯一静态检查 | 27 项合同已建立，绑定 R04 25/26 失败并断言实际 `contract_planned` 状态；使用独立 `r05` 根，无 R05 合同报告、构建、自测、器件 DC 或正式数值输出 |
 | 有源负载单元与模块 | E0 | 架构已定，待实现 |
 | IGZO 器件 GDS 基线 | E2 | 外部基线可复用，需迁入新 PDK |
 | 电路级 DRC/LVS | E0 | 待实现 |
@@ -279,7 +280,7 @@ report/                 章节/附录源、组装清单、证据矩阵和最终�
 1. S00：向老师确认主 IGZO 数据集与双栅数据边界。
 2. T01：只做单栅漂移扩散最小收敛案例。
 3. T03：在已通过的 T02 基线上逐组完成双栅、陷阱、接触、几何/介质和温度敏感性，每次只改变一个变量；五组数值门均已关闭，历史失败继续保留。
-4. M00/M01：M00 R01 已在固定 holdout gm 门失败并永久保留；R02 以不变 split/阈值完成 24/24 runner 和 20/20 独立检查，只在教学数值域内关闭 M00。M01 revision-3 合同、开源恢复合同和 Xyce build/tool R01 合同分别为 32/32、30/30、25/25 E3；R01 执行 14/29、独立 9/20 E0/FAIL，R02 静态合同 22/25 E0/FAIL，R03 静态合同 21/25 E0/FAIL，所有 artifacts 保留。下一步建立 R04 checker 修正版，提交推送后才允许一次 R04 静态检查。不得重跑既有正式运行、改 split/阈值、提前运行正式 M01 数值对照或启动电路。
+4. M00/M01：M00 R01 已在固定 holdout gm 门失败并永久保留；R02 以不变 split/阈值完成 24/24 runner 和 20/20 独立检查，只在教学数值域内关闭 M00。M01 revision-3 合同、开源恢复合同和 Xyce build/tool R01 合同分别为 32/32、30/30、25/25 E3；R01 执行 14/29、独立 9/20 E0/FAIL，R02/R03/R04 静态合同分别为 22/25、21/25、25/26 E0/FAIL，所有 artifacts 保留。下一步提交 R05 checker 修正版，远端同步后才允许一次 R05 静态检查。不得重跑既有正式运行、改 split/阈值、提前运行正式 M01 数值对照或启动电路。
 5. C00：先把一个有源负载反相器做完整。
 6. L00/V00/V01：对同一个 INV 完成 GDS/DRC/LVS 最小闭环。
 7. 扩展基础门、环振和全加器。

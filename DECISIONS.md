@@ -1,9 +1,24 @@
 # 设计决策记录
 
+## ADR-048：保留 R04 状态断言失败并转入 R05
+
+- 日期：2026-08-03
+- 状态：R04 静态合同唯一检查 25/26、E0/FAIL；无构建或模拟器执行，R05 只修正机器状态字面量
+
+### 失败判定
+
+- R04 报告 `results/reports/m01_xyce_build_preflight_contract_r04.json` 的 SHA-256 为 `bc5dcd446fa9bc613504458cac4ac58351e1a594f6764cba5bb9f4e448e7448e`，25 项 PASS，唯一 FAIL 为 `experiment:r04_is_planned_and_prior_failures_bound`。
+- 失败来自 checker 将实验机器记录的 `contract_planned` 错写成 `preflight_planned`；不是 SuiteSparse/Trilinos/Xyce 构建、自测、候选解析、器件 DC 或 SPICE 数值失败。R04 配置、checker 和报告不得改写或重跑。
+
+### R05 范围与阶段门
+
+- R05 使用新的配置、checker、wrapper、报告、构建和输出命名空间，新增对 R04 报告哈希及 25/26 状态的不可变绑定。唯一接口修正是按已提交机器配置断言 `contract_planned`；物理输入、IGZO 候选、BLAS/LAPACK、两任务预算、MPI/Fortran、阈值和 no-downstream 规则不变。
+- 提交并推送 R05 后只运行 27 项静态合同检查一次。即使 PASS，也只打开 R05 build/tool 预检门；正式 M01 器件 DC、C00、电路、版图、PEX 和 HZO 仍关闭。
+
 ## ADR-047：R04 绑定 R03 失败并修正合同接口断言
 
 - 日期：2026-08-03
-- 状态：R04 合同已实现，静态检查尚未运行；R01/R02/R03 失败保持不可改写
+- 状态：R04 合同已实现并唯一检查 25/26、E0/FAIL；R01/R02/R03/R04 失败保持不可改写
 
 ### 修正范围
 
@@ -12,7 +27,7 @@
 
 ### 阶段门
 
-- 提交并推送 R04 后只允许静态合同检查一次；检查器不得构建或启动任何模拟器，不得创建器件网表或数值输出。R04 PASS 也只打开后续 build/tool 预检门。
+- 提交并推送 R04 后执行的唯一静态合同检查没有构建或启动任何模拟器，也没有创建器件网表或数值输出；其 25/26 失败按 ADR-048 转入 R05。
 
 ## ADR-046：保留 R03 Xyce 合同检查器失败并转入 R04
 

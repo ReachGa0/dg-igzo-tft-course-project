@@ -16,6 +16,20 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R04 合同失败并建立 R05
+
+### 唯一静态检查与失败保留
+
+在合同实施提交 `d23cb23` 推送后，按门只运行一次 `make m01-xyce-build-preflight-r04-contract-check`。检查器生成 `results/reports/m01_xyce_build_preflight_contract_r04.json`，返回 25/26、E0/FAIL，SHA-256 为 `bc5dcd446fa9bc613504458cac4ac58351e1a594f6764cba5bb9f4e448e7448e`；R04 配置、checker 和报告原样保留，不重跑 R04。
+
+唯一失败是 checker 自身仍把 `config/experiments.json` 中登记的 `contract_planned` 状态断言为 `preflight_planned`。其余 25 项通过；没有运行 configure/build、SuiteSparse/Trilinos/Xyce、B-source 自测、parser-only 网表、ngspice/AIM-Spice、器件 DC 或任何数值输出。
+
+### R05 修正与下一步
+
+新增独立 R05 配置、合同 checker、runner wrapper、标准库独立 checker 和 Make 入口；使用独立 `r05` 构建/输出根，将合同扩展为 27 项并按 SHA-256 绑定 R04 25/26 失败，只把机器状态断言改为实际注册值 `contract_planned`。同步项目/实验机器状态、总检查器、STATUS/README/AI_CONTEXT/ARCHITECTURE/PROJECT_PLAN/DECISIONS、报告第 5/6/8/9 章和证据矩阵。R05 脚本通过 Python 语法编译，`make check` 为 639 项 PASS，`make report-check` 为 12 章/5 附录/15 个允许占位/26 图 PASS，JSON/CSV 和 `git diff --check` 通过。R05 报告尚未生成，正式 build/tool 和 M01 器件 DC 继续关闭；提交推送后只运行 R05 静态合同一次。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M01 Xyce build/tool R04 合同修正版
 
 ### 用户目标与读取输入

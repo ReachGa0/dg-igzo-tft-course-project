@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_R03_XYCE_CONTRACT_FAILED_E0_NEXT_R04_CONTRACT`
+- 当前阶段：`M01_R04_XYCE_CONTRACT_FAILED_E0_NEXT_R05_CONTRACT`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02 静态合同 22/25、E0/FAIL；R03 静态合同又唯一运行 21/25、E0/FAIL，四项均为 checker 口径/静态字符串缺陷，未启动构建或模拟器。R01/R02/R03 报告均保留，下一步建立 R04；不得重跑或覆盖既有失败。C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26，均为 E0/FAIL 且未启动构建或模拟器。R04 唯一失败是 checker 把注册机器状态 `contract_planned` 写成 `preflight_planned`。R01/R02/R03/R04 报告均保留，下一步建立 R05；不得重跑或覆盖既有失败。C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -15,12 +15,13 @@
 - [x] M01 Xyce build/tool R02 静态合同检查已唯一运行：22/25、E0/FAIL。BLAS/LAPACK 路径、R01 失败绑定和 R02 输出隔离门通过；失败仅为候选注释 `translation` 被 `tran` 子串误判，以及 wrapper 静态 no-formal 标记缺失。报告 `results/reports/m01_xyce_build_preflight_contract_r02.json` 原样保留，未运行任何 R02 configure/build、Xyce、自测、器件网表或数值输出。
 - [x] M01 Xyce build/tool R03 合同已建立并按规则唯一执行静态检查：配置固定显式 BLAS/LAPACK、独立 `r03` 构建/输出根、R01/R02 失败绑定、token-safe 候选词边界和 runner/独立 checker no-formal 静态标记；报告 21/25、E0/FAIL，失败已保留，未运行 configure/build、Xyce、自测、器件网表或数值输出。
 - [x] M01 Xyce build/tool R03 静态合同已唯一运行：21/25、E0/FAIL，报告 `results/reports/m01_xyce_build_preflight_contract_r03.json`、SHA-256 `be516ad9d0f8998cf3b0e9e441f45312d9d7db21e1934fa3df5cfc18b4f6c3c3` 原样保留。失败为 R03 checker 的 planned-state 断言、错误包装器文件名断言和缺失 R01 字面量断言；没有运行 configure/build、Xyce、自测、器件网表、ngspice/AIM-Spice 或数值输出。
-- [x] M01 Xyce build/tool R04 合同已建立但尚未执行：绑定 R03 的 21/25 失败报告，合同登记 26 项检查，修正实际 wrapper 文件名、`contract_planned` 状态和 R03 边界绑定；保留 token-safe 候选检查、显式 BLAS/LAPACK、serial 两任务和独立 `r04` 输出根。R04 报告尚未生成，未运行任何构建、Xyce、自测、器件网表或数值输出。
+- [x] M01 Xyce build/tool R04 静态合同已唯一运行：25/26、E0/FAIL，报告 `results/reports/m01_xyce_build_preflight_contract_r04.json`、SHA-256 `bc5dcd446fa9bc613504458cac4ac58351e1a594f6764cba5bb9f4e448e7448e` 原样保留。唯一失败是实验机器状态断言仍期待 `preflight_planned`，而注册状态为 `contract_planned`；其余 25 项通过。没有运行 configure/build、Xyce、自测、器件网表、ngspice/AIM-Spice 或数值输出。
+- [x] M01 Xyce build/tool R05 合同已建立但尚未执行：绑定 R04 的 25/26 失败报告，合同登记 27 项检查并明确断言 `contract_planned`；保留实际 wrapper 文件名、token-safe 候选检查、显式 BLAS/LAPACK、serial 两任务和独立 `r05` 输出根。R05 报告尚未生成，未运行任何构建、Xyce、自测、器件网表或数值输出。
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送已建立的 M01 Xyce build/tool R04 合同，随后只运行 R04 静态合同检查一次；不得重跑 R01/R02/R03。
-- M01 仍为 `preflight_failed_build/E0`；R01 的 25/25 静态合同与 14/29、9/20 E0/FAIL 构建门、R02 的 22/25 E0/FAIL 合同门和 R03 的 21/25 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
+- 下一步：提交并推送已建立的 M01 Xyce build/tool R05 合同，随后只运行 R05 静态合同检查一次；不得重跑 R01/R02/R03/R04。
+- M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01 子门为 `preflight_failed_build`；R01 的 25/25 静态合同与 14/29、9/20 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5、C00、SPICE 电路、版图、PEX 和 HZO 继续关闭；历史 AIM-Spice 预检、M01 revision-1/2 合同失败和本次 28/30 干跑失败均保留。
 
 ## 已完成
@@ -171,8 +172,8 @@
 2. 双栅实测数据缺失时只能做文献约束敏感性。
 3. 需要老师确认 DEVSIM、单极性有源负载逻辑和 KLayout 几何 LVS 的接受度。
 4. 复杂电路跨线层和顶栅实际工艺尚未明确。
-5. M00 R01 的 `L=12 um` holdout gm 相对误差 `0.512384` 超过冻结 `0.50`，该失败永久保留；M01 原工具/来源预检以 11/13、E0/FAIL 落盘，Xyce build/tool R01 又以 14/29、独立 9/20 在 SuiteSparse BLAS 发现门失败，R02 静态合同再以 22/25 在 token/marker 门失败。全部失败保留。本机 AIM-Spice 来源不可审计且可复现 batch/CLI 未建立，原第二路线关闭；R03 只修正合同检查器边界，器件网表仍未执行。
+5. M00 R01 的 `L=12 um` holdout gm 相对误差 `0.512384` 超过冻结 `0.50`，该失败永久保留；M01 原工具/来源预检以 11/13、E0/FAIL 落盘，Xyce build/tool R01 又以 14/29、独立 9/20 在 SuiteSparse BLAS 发现门失败，R02/R03/R04 静态合同分别以 22/25、21/25、25/26 在 checker 门失败。全部失败保留。本机 AIM-Spice 来源不可审计且可复现 batch/CLI 未建立，原第二路线关闭；器件网表仍未执行。
 
 ## 下一步
 
-先建立并提交 M01 Xyce build/tool R03 合同，保留 R01 构建失败与 R02 22/25 合同失败，修正 token-safe 候选范围和包装器静态边界标记；远端同步后只运行 R03 静态合同检查一次。不得重跑或覆盖 R01/R02；不得运行正式 M01 器件 DC、改变原 split/阈值，或启动 C00、电路、版图、PEX、HZO。
+先提交并推送 M01 Xyce build/tool R05 合同，绑定 R04 25/26 失败并只修正机器状态字面量；远端同步后只运行 R05 静态合同检查一次。不得重跑或覆盖 R01/R02/R03/R04；不得运行正式 M01 器件 DC、改变原 split/阈值，或启动 C00、电路、版图、PEX、HZO。
