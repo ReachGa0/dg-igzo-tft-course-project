@@ -301,4 +301,8 @@
   <h3>8.27 R02 探针状态登记失败保留</h3>
   <p>登记 30/30 E2 探针状态后的首次项目总检查返回 756 总检查、3 项失败。原因是过宽机器状态补丁临时改变了不可变的开源恢复状态、R11 证据等级和 R01 根因 runner 标志；不是探针 runner、模拟器、器件或数值诊断失败。</p>
   <p class="boundary">失败报告 <code>results/reports/project_check_m01_route_divergence_r02_probe_registration_scope_failed.json</code> SHA-256 为 <code>6821a18e74ae21b433f1e732005391e619c5db7a39540b2f6b6b93df35ee3684</code>，记录零模拟器进程并原样保留。修正仅恢复三个历史机器块并精确登记 R02 E2，随后项目检查恢复 756/756；探针产物、诊断、输入和阈值未改变。</p>
+  <h3>8.28 M01 路线分歧根因 R02 独立复核</h3>
+  <p>E2 探针提交 <code>406cfce</code> 推送并同步后，标准库独立 checker 唯一返回 22/22 PASS、E3，启动 0 个进程。报告 <code>results/reports/m01_route_divergence_root_cause_r02_check.json</code> SHA-256 为 <code>06878ca53aefc1dea557b6eb5838ea48e1bf7459a825d1ee99d996ef1b74d556</code>。checker 独立再生两份最小网表、重算 9 个 runner 产物哈希、解析两路各 13 个观测量并精确复算 26 行表。</p>
+  <p>独立重算复现了三参数 <code>limit</code> 语义分歧、两路显式 clamp、portable 候选和支路电流哨兵的原结论。因此 `THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH` 在预注册最小点获得 E3 支持，同时报告明确保持完整 R02 247 行路线一致为 false。</p>
+  <p class="boundary">该 E3 只关闭最小数值根因诊断，不把诊断副本提升为接受的完整器件模型，也不建立物理 IGZO 参数、实验校准、正式敏感性、P2/T03、正式 M01 或电路证据。下一门必须先建立并提交新可移植完整器件候选及独立正式 247 行静态合同；该合同 PASS 提交前不得运行任一路线。</p>
 </section>

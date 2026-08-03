@@ -1866,9 +1866,9 @@
         "next_gate": "Commit and push the R01 38/40 static checker failure, then establish M01 route-divergence root-cause revision-2 in a new namespace. R02 may correct only the immutable R02 diagnostic evidence source; do not run any root-cause probe before a separately committed static PASS."
       },
       "route_divergence_root_cause_r02": {
-        "status": "formal_probe_passed",
+        "status": "verified",
         "revision": 2,
-        "current_evidence": "E2",
+        "current_evidence": "E3",
         "contract_id": "M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R02",
         "contract_path": "config/m01_route_divergence_root_cause_r02.json",
         "common_path": "scripts/m01_route_divergence_root_cause_r02_common.py",
@@ -1889,8 +1889,11 @@
         "runner_status": "PASS",
         "runner_checks_passed": 30,
         "runner_checks_failed": 0,
-        "independent_check_completed": false,
-        "independent_check_status": "NOT_RUN",
+        "independent_check_completed": true,
+        "independent_check_status": "PASS",
+        "independent_checks_passed": 22,
+        "independent_checks_failed": 0,
+        "independent_processes_invoked": 0,
         "processes_invoked": 2,
         "ngspice_invoked": true,
         "xyce_invoked": true,
@@ -1922,7 +1925,8 @@
           "results/compact/m01_route_divergence_root_cause_r02/xyce_probe.prn",
           "results/tables/m01_route_divergence_root_cause_r02.csv",
           "results/reports/m01_route_divergence_root_cause_r02.json",
-          "results/reports/project_check_m01_route_divergence_r02_probe_registration_scope_failed.json"
+          "results/reports/project_check_m01_route_divergence_r02_probe_registration_scope_failed.json",
+          "results/reports/m01_route_divergence_root_cause_r02_check.json"
         ],
         "future_outputs_absent": false,
         "contract_report_sha256": "2870566c9bd6b3f5b0b4db796492afc75a55a5500d630dfa291e81a9ddb21169",
@@ -1930,6 +1934,7 @@
         "runner_report_sha256": "7b878ee2e109afb01d998f6a41c38723e5ed3d2f964ca859809dec205a019ddd",
         "runner_processes_invoked": 2,
         "runner_elapsed_seconds": 2.4304592609405518,
+        "independent_report_sha256": "06878ca53aefc1dea557b6eb5838ea48e1bf7459a825d1ee99d996ef1b74d556",
         "artifact_hashes": {
           "ngspice_netlist_sha256": "9829142cb0c2a561b86de06a86cef5250727a582fbbfb590d9739d6c371fe83d",
           "xyce_netlist_sha256": "b5e48472fd4b4a43b58fdbd74ea0273016a6ad9142cae3ac0863c4cfcc5b6127",
@@ -1944,6 +1949,7 @@
         "diagnosis": {
           "hypothesis": "THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH",
           "supported": true,
+          "independently_supported": true,
           "branch_current_extraction_alternative_eliminated": true,
           "full_r02_route_agreement_established": false
         },
@@ -1963,8 +1969,8 @@
           "simulator_processes_invoked_by_project_check": 0,
           "preserved": true
         },
-        "evidence_boundary": "The one permitted R02 static contract returned 40/40 PASS at E3 with zero simulator processes, then the one permitted minimal probe returned 30/30 PASS at E2 with exactly one serial ngspice and one serial Xyce process. At the three pre-registered expression points, ngspice's three-argument limit returned -15, 60.25 and 135 rather than -60, 0.25 and 60, while explicit clamp and portable candidates passed; Xyce's three-argument points matched clamp and the 1 V/1 kOhm branch sentinel passed on both routes. This supports the registered expression-semantics hypothesis and eliminates the pre-registered branch-current extraction alternative only at these probes. It does not establish full 247-row route agreement, physical IGZO parameters, experimental calibration, formal sensitivity, P2/T03, formal M01 or circuit evidence; independent persisted-evidence checking is still required.",
-        "next_gate": "Commit and push this E2 probe result, then run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-2. Preserve all probe artifacts and failures; P2/T03, C00, circuit, layout, PEX and HZO remain closed."
+        "evidence_boundary": "The one permitted R02 static contract returned 40/40 PASS at E3 with zero simulator processes, the one permitted minimal probe returned 30/30 PASS at E2 with exactly one serial ngspice and one serial Xyce process, and the one permitted independent persisted-evidence checker returned 22/22 PASS at E3 with zero process invocations. It independently regenerated both netlists, recomputed all nine runner artifact hashes and all 26 probe rows, and reproduced the registered THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH classification. This establishes the numerical expression-semantics cause and the bounded portable-expression remedy only at the pre-registered probes, while the full 247-row route agreement remains false. It does not establish an accepted full-device candidate, physical IGZO parameters, experimental calibration, formal sensitivity, P2/T03, formal M01 or circuit evidence.",
+        "next_gate": "Commit and push this E3 diagnosis, then establish a new portable full-device candidate and a separate formal 247-row ngspice/Xyce contract. Do not execute either route before that new static contract passes and is committed; P2/T03, C00, circuit, layout, PEX and HZO remain closed."
       }
     },
     {

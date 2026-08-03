@@ -859,6 +859,8 @@ def main() -> int:
             "execute the committed M01 route-divergence root-cause revision-2 probe"
         ) or current_next_scope.startswith(
             "run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-2"
+        ) or current_next_scope.startswith(
+            "establish and commit a new portable full-device candidate and a separate formal 247-row ngspice/Xyce contract"
         )
         dependencies_valid = all(
             set(item.get("depends_on", [])) <= set(experiment_map)
@@ -8281,6 +8283,9 @@ def main() -> int:
                 or r11_next_scope.startswith(
                     "run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-2"
                 )
+                or r11_next_scope.startswith(
+                    "establish and commit a new portable full-device candidate and a separate formal 247-row ngspice/Xyce contract"
+                )
             )
         )
         r11_expected_archive_paths = [
@@ -8708,6 +8713,9 @@ def main() -> int:
                 )
                 or device_dc_next_scope.startswith(
                     "run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-2"
+                )
+                or device_dc_next_scope.startswith(
+                    "establish and commit a new portable full-device candidate and a separate formal 247-row ngspice/Xyce contract"
                 )
             )
         ) or (
@@ -9600,6 +9608,7 @@ def main() -> int:
                 rca_next_scope.startswith("establish and commit M01 route-divergence root-cause revision-2")
                 or rca_next_scope.startswith("execute the committed M01 route-divergence root-cause revision-2 probe")
                 or rca_next_scope.startswith("run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-2")
+                or rca_next_scope.startswith("establish and commit a new portable full-device candidate and a separate formal 247-row ngspice/Xyce contract")
             )
         ) or rca_verified_state
         contract_source = m01_rca_r01_contract_path.read_text(encoding="ascii")
@@ -9795,6 +9804,12 @@ def main() -> int:
             and rca_r02_independent_report.get("summary", {}).get("passed") == 22
             and rca_r02_independent_report.get("summary", {}).get("failed") == 0
             and rca_r02_independent_report.get("processes_invoked") == 0
+            and rca_r02_independent_report.get("config", {}).get("sha256") == sha256(m01_rca_r02_config_path)
+            and rca_r02_independent_report.get("runner_report", {}).get("sha256") == sha256(rca_r02_run_report_path)
+            and len(rca_r02_independent_report.get("checks", [])) == 22
+            and all(item.get("status") == "PASS" for item in rca_r02_independent_report.get("checks", []))
+            and rca_r02_independent_report.get("diagnosis", {}).get("independently_supported") is True
+            and rca_r02_independent_report.get("diagnosis", {}).get("full_r02_route_agreement_established") is False
         )
         rca_r02_implemented_state = (
             rca_r02_machine.get("status") == "contract_implemented"
@@ -9851,8 +9866,12 @@ def main() -> int:
             and rca_r02_machine.get("independent_checks_passed") == 22
             and rca_r02_machine.get("independent_checks_failed") == 0
             and rca_r02_machine.get("independent_processes_invoked") == 0
+            and rca_r02_machine.get("independent_report_sha256") == sha256(rca_r02_independent_report_path)
+            and rca_r02_static_pass_failure_ok
+            and rca_r02_probe_registration_failure_ok
             and all(path.is_file() for path in rca_r02_run_paths)
             and rca_r02_independent_report_path.is_file()
+            and rca_r02_outputs["independent_report"] in rca_r02_machine.get("result_paths", [])
         )
         rca_r02_next_scope = config.get("tcad_track", {}).get("next_scope", "")
         rca_r02_next_scope_valid = (

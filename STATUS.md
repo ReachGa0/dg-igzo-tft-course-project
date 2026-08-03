@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_ROUTE_DIVERGENCE_R02_PROBE_PASS_E2_NEXT_INDEPENDENT`
+- 当前阶段：`M01_ROUTE_DIVERGENCE_R02_VERIFIED_E3_NEXT_PORTABLE_DEVICE_CONTRACT`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 只关闭 hash-bound Xyce 工具/parser 预检。正式器件 DC R01 固定为 39/40、E0/FAIL且不重跑；R02 40/30/24 完整落盘但路线分歧。`M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01` 静态合同唯一返回 38/40、E0/FAIL：checker 错读 R02 runner 报告不存在的 `route_diagnostics` 字段，`result:static_ready` 连带失败；零模拟器、零网表、零数值输出。R01 冻结。R02 静态合同 40/40 E3 后，唯一探针 30/30 E2 支持三参数 `limit` 语义假设并排除支路提取替代解释，仅限预注册最小点；完整路线一致性仍未建立。下一门为独立落盘复核，正式敏感性、P2、T03 及 M01/C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 只关闭 hash-bound Xyce 工具/parser 预检。正式器件 DC R01 固定为 39/40、E0/FAIL且不重跑；R02 40/30/24 完整落盘但路线分歧。`M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01` 静态合同唯一返回 38/40、E0/FAIL并冻结。R02 静态/探针/独立三门唯一返回 40/40 E3、30/30 E2、22/22 E3；零进程独立复核确认三参数 `limit` 语义根因和 bounded portable 写法仅在预注册最小点成立，完整 247 行路线一致仍为 false。下一门为建立新可移植完整器件候选及独立 247 行静态合同，正式敏感性、P2、T03 及 M01/C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -76,10 +76,12 @@
 - [x] R02 最小根因探针在静态 PASS 提交 `283cf32` 推送并同步后唯一运行，返回 30/30 PASS、E2；报告 `results/reports/m01_route_divergence_root_cause_r02.json` SHA-256 为 `7b878ee2e109afb01d998f6a41c38723e5ed3d2f964ca859809dec205a019ddd`。恰好一个 ngspice 和一个 Xyce 串行进程完成 3 个表达式点、1 个 1 V/1 kOhm 支路哨兵、3 个原始候选点和 3 个 portable 点；所有网表、日志、raw/PRN、命令记录和 26 行探针表均已落盘。
 - [x] 探针诊断显示 ngspice 三参数 `limit` 观测为 `-15/60.25/135`，显式 clamp 和 portable 候选分别通过；Xyce 三参数点与 clamp 一致；两路支路电流哨兵均通过。该结果支持预注册表达式语义假设并在这些点排除支路电流提取替代解释，但不建立完整 247 行路线一致、物理 IGZO 参数、实验校准、正式敏感性、P2/T03、M01 或电路证据。
 - [x] 登记 R02 探针状态后的首次 `make check` 返回 756 总检查、3 项失败：一次过宽机器状态补丁临时改动了不可变的开源恢复、R11 和 R01 历史块。失败报告 `results/reports/project_check_m01_route_divergence_r02_probe_registration_scope_failed.json` SHA-256 为 `6821a18e74ae21b433f1e732005391e619c5db7a39540b2f6b6b93df35ee3684`，记录 0 个模拟器进程并已保留。修正只精确恢复三个历史块且仅登记 R02 E2，随后 `make check` 恢复 756/756；探针产物、诊断、输入和阈值未改。
+- [x] E2 探针提交 `406cfce` 推送并与 `origin/main` 同步后，唯一执行 22 项标准库独立 checker，返回 22/22 PASS、E3；报告 `results/reports/m01_route_divergence_root_cause_r02_check.json` SHA-256 为 `06878ca53aefc1dea557b6eb5838ea48e1bf7459a825d1ee99d996ef1b74d556`，启动 0 个进程。checker 独立再生两份网表、重算 9 个 runner 产物哈希和全部 26 行探针表，并复现 `THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH` 分类。
+- [x] 独立 E3 只关闭最小数值根因诊断：支路提取替代解释在预注册点被排除，portable clamp 在这些点通过；完整 247 行路线一致明确仍为 false。该结果不是接受的新完整器件候选、物理 IGZO 参数、实验校准、正式敏感性、P2/T03、正式 M01 或电路证据。
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送 R02 30/30 E2 探针结果，再唯一运行 22 项独立落盘复核；保留全部探针输出和失败。R01/R11/正式器件 DC R02 均不重跑，P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 继续关闭。
+- 下一步：提交并推送 R02 22/22 E3 独立诊断，再建立新可移植完整器件候选及独立正式 247 行 ngspice/Xyce 静态合同。新合同 PASS 状态另行提交前不得执行任一路线；R01/R11/正式器件 DC R02 均不重跑，P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 继续关闭。
 - M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败、28/30 干跑失败和 R10 runner 失败均保留。
 

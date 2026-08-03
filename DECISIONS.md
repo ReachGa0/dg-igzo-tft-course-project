@@ -1,5 +1,15 @@
 # 设计决策记录
 
+## ADR-077：R02 独立 E3 关闭最小根因诊断并转入新 247 行合同
+
+- 日期：2026-08-03
+- 状态：`M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R02` 静态/runner/独立三门唯一返回 40/40 E3、30/30 E2、22/22 E3；完整 247 行路线一致仍为 false。
+- E2 提交 `406cfce` 推送并同步后，标准库独立 checker 唯一运行且启动零进程。报告 `results/reports/m01_route_divergence_root_cause_r02_check.json` SHA-256 为 `06878ca53aefc1dea557b6eb5838ea48e1bf7459a825d1ee99d996ef1b74d556`；它独立再生两份最小网表、重算 9 个 runner 产物哈希和 26 行表，并复现 `THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH` 分类。
+- 该 E3 只证明预注册点上的数值表达式语义根因和 bounded portable clamp；不接受一个完整器件模型，不证明物理 IGZO 参数、实验校准、正式敏感性、P2/T03、完整路线一致、正式 M01 或电路结果。
+- 下一门是在新命名空间建立可移植完整器件候选及独立正式 247 行 ngspice/Xyce 合同。旧正式器件 R02 与根因 R02 均不重跑；新静态 PASS 提交前不得执行任一路线，C00、版图、PEX 和 HZO 继续关闭。
+
+---
+
 ## ADR-076：R02 最小探针支持表达式语义根因，结论限于预注册点
 
 - 日期：2026-08-03

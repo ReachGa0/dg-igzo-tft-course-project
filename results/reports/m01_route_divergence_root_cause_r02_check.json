@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "M01",
+  "contract_id": "M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R02",
+  "status": "PASS",
+  "evidence_level": "E3",
+  "config": {
+    "path": "config/m01_route_divergence_root_cause_r02.json",
+    "sha256": "40d0e53e69c154722cd58c7d1950836785da29511e654719fe530e538ecdca8f"
+  },
+  "runner_report": {
+    "path": "results/reports/m01_route_divergence_root_cause_r02.json",
+    "sha256": "7b878ee2e109afb01d998f6a41c38723e5ed3d2f964ca859809dec205a019ddd"
+  },
+  "summary": {
+    "passed": 22,
+    "failed": 0,
+    "total": 22
+  },
+  "processes_invoked": 0,
+  "checks": [
+    {
+      "name": "result:runner_passed_30_of_30",
+      "status": "PASS",
+      "detail": "runner=30/30"
+    },
+    {
+      "name": "identity:config_and_runner_report",
+      "status": "PASS",
+      "detail": "M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R02"
+    },
+    {
+      "name": "binding:static_contract_pass",
+      "status": "PASS",
+      "detail": "static=40/40"
+    },
+    {
+      "name": "binding:r02_independent_unchanged",
+      "status": "PASS",
+      "detail": "R02 reports/candidate/raw remain immutable"
+    },
+    {
+      "name": "execution:two_exact_commands",
+      "status": "PASS",
+      "detail": "commands=2"
+    },
+    {
+      "name": "execution:scope_audit",
+      "status": "PASS",
+      "detail": "two minimal processes; machine=formal_probe_passed"
+    },
+    {
+      "name": "tools:hash_bound_binaries",
+      "status": "PASS",
+      "detail": "ngspice and GPL Xyce"
+    },
+    {
+      "name": "netlists:exact_regeneration",
+      "status": "PASS",
+      "detail": "both minimal netlists reproduce byte-for-byte"
+    },
+    {
+      "name": "netlists:minimal_scope",
+      "status": "PASS",
+      "detail": "3 original + 3 portable probes; no compatibility switch"
+    },
+    {
+      "name": "artifacts:all_runner_hashes_recomputed",
+      "status": "PASS",
+      "detail": "hashes=9/9"
+    },
+    {
+      "name": "raw:independent_parser_cardinality",
+      "status": "PASS",
+      "detail": "observables=13/13 per route"
+    },
+    {
+      "name": "table:exact_recomputation",
+      "status": "PASS",
+      "detail": "rows=26/26"
+    },
+    {
+      "name": "controls:branch_sentinel",
+      "status": "PASS",
+      "detail": "max_abs=0"
+    },
+    {
+      "name": "controls:explicit_clamp",
+      "status": "PASS",
+      "detail": "max_abs=7.10543e-15"
+    },
+    {
+      "name": "xyce:limit_matches",
+      "status": "PASS",
+      "detail": "max_abs=0"
+    },
+    {
+      "name": "ngspice:limit_mismatch",
+      "status": "PASS",
+      "detail": "max_abs=75"
+    },
+    {
+      "name": "candidate:portable_both_routes",
+      "status": "PASS",
+      "detail": "max_rel=3.17805e-15"
+    },
+    {
+      "name": "candidate:xyce_original",
+      "status": "PASS",
+      "detail": "max_rel=1.77971e-15"
+    },
+    {
+      "name": "candidate:ngspice_original_mismatch",
+      "status": "PASS",
+      "detail": "max_rel=1"
+    },
+    {
+      "name": "classification:independently_reproduced",
+      "status": "PASS",
+      "detail": "THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH"
+    },
+    {
+      "name": "boundary:no_downstream_or_overclaim",
+      "status": "PASS",
+      "detail": "minimal numerical diagnosis only"
+    },
+    {
+      "name": "independence:no_runner_or_process_import",
+      "status": "PASS",
+      "detail": "standard-library persisted-evidence path; zero process invocation"
+    }
+  ],
+  "diagnosis": {
+    "hypothesis": "THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH",
+    "independently_supported": true,
+    "full_r02_route_agreement_established": false
+  },
+  "evidence_boundary": "R02 is a schema-only revision bound to the immutable R01 38/40 E0 static failure. It changes only the R02 diagnostic evidence source: instead of reading a nonexistent route_diagnostics object from the R02 runner report, the static checker hash-binds and recomputes maxima from the already persisted 247-row ngspice, Xyce and route-difference CSV files that the immutable runner report registered and the 24/24 independent checker reproduced. The hypothesis, three expression points, branch sentinel, three original/portable candidate points, tools, exact two-process serial budget, thresholds, failure retention and all no-downstream rules remain unchanged. Static checking invokes no simulator and creates no probe netlist or numerical output. A future runner may invoke ngspice and Xyce once each only after a separately committed 40/40 E3 PASS. Even a complete chain can establish only the numerical expression-semantics cause and a bounded portable-expression remedy at those probes. It cannot establish physical IGZO parameters, experimental calibration, full 247-row route agreement, formal M01 closure, circuit readiness, layout, PEX or HZO evidence.",
+  "next_gate": "Commit this E3 diagnosis before defining a new portable full-device candidate and a separate formal 247-row contract."
+}

@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 路线分歧根因 R02 独立复核 22/22 PASS（E3）
+
+### 唯一独立执行与证据
+
+E2 探针提交 `406cfce` 已推送并与 `origin/main` 同步；随后唯一执行 `make m01-route-divergence-r02-check`，标准库 checker 返回 22/22 PASS、E3，启动 0 个进程。报告 `results/reports/m01_route_divergence_root_cause_r02_check.json` SHA-256 为 `06878ca53aefc1dea557b6eb5838ea48e1bf7459a825d1ee99d996ef1b74d556`。
+
+### 独立重算与边界
+
+checker 未导入 runner 或 `subprocess`，独立再生两份最小网表、复核两条已落盘命令、重算 9 个 runner 产物哈希、解析两路各 13 个观测量并精确复算 26 行探针表。它复现 `THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH` 分类，同时保持 `full_r02_route_agreement_established=false`。该 E3 只关闭预注册最小点的数值根因诊断，不接受完整器件候选，也不是物理参数、实验校准、正式敏感性、P2/T03、正式 M01 或电路证据。
+
+### 状态与下一门
+
+将 R02 登记为 `verified/E3`，记录独立报告哈希、22/22 和零进程；更新 STATUS、README、AI 上下文、架构、计划、ADR-077、报告第 5/6/8/9 章和证据矩阵。下一门是在新命名空间建立可移植完整器件候选及独立正式 247 行静态合同；新合同 PASS 状态提交前不执行 ngspice/Xyce，旧 R02、C00、版图、PEX 与 HZO 均保持关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 路线分歧根因 R02 最小探针 30/30 PASS（E2）
 
 ### 唯一探针执行与落盘
