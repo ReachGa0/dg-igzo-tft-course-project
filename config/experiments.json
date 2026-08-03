@@ -2,7 +2,7 @@
   "schema_version": 2,
   "project_id": "DG-IGZO-TFT-PDK",
   "principle": "Each experiment has dependencies, one declared variable group, controls, outputs, acceptance criteria and an evidence boundary.",
-  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified", "limit_regression_verified", "minimal_bias_verified", "bidirectional_verified", "partial_verified", "done_with_limitation", "contract_planning_open"],
+  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified", "limit_regression_verified", "minimal_bias_verified", "bidirectional_verified", "partial_verified", "done_with_limitation", "contract_planning_open", "contract_implemented", "contract_ready", "formal_run_passed"],
   "parameter_groups": [
     {
       "id": "P1",
@@ -2129,7 +2129,7 @@
       "id": "C00",
       "track": "circuit",
       "name": "dual_gate_igzo_active_load_inverter",
-      "status": "contract_planning_open",
+      "status": "contract_implemented",
       "current_evidence": "E0",
       "depends_on": ["M01", "T02"],
       "parameter_group_ids": ["P6"],
@@ -2148,7 +2148,48 @@
         "contract_planning_permitted": true,
         "circuit_execution_permitted": false,
         "downstream_permitted": false,
-        "next_gate": "Establish and commit a C00 active-load inverter static contract before any circuit netlist or simulator execution."
+        "next_gate": "The C00 R01 contract implementation is present, but circuit execution remains closed until its 48-check static PASS is committed and pushed."
+      },
+      "active_load_inverter_r01": {
+        "contract_id": "C00_ACTIVE_LOAD_INVERTER_R01",
+        "revision": 1,
+        "status": "contract_implemented",
+        "current_evidence": "E0",
+        "config_path": "config/c00_active_load_inverter_r01.json",
+        "config_sha256": "bad17ed448a0dac92e8158991f8f3427816259cbc01a60dc6549731da27eab82",
+        "common_path": "scripts/c00_active_load_inverter_r01_common.py",
+        "common_sha256": "88202e47cf98bbb5fccb801e6862247b52bcfec74cb3c5fd9fe9cedc61c91010",
+        "contract_checker_path": "scripts/check_c00_active_load_inverter_r01_contract.py",
+        "contract_checker_sha256": "561ec0901f221aafb4700e3f3baeeab5e6ee9132d76c22b195bffd2ab60566b6",
+        "runner_path": "scripts/run_c00_active_load_inverter_r01.py",
+        "runner_sha256": "6fd587b67f94a98e6af6de0d5712442109169acd92b5790dcaeba91fcab47e2c",
+        "independent_checker_path": "scripts/check_c00_active_load_inverter_r01.py",
+        "independent_checker_sha256": "8b9134bafe7913f87e4eae8bf9f9ac8d8c5d518da4205caac1ee94cd9f444030",
+        "expected_contract_check_count": 48,
+        "expected_runner_check_count": 36,
+        "expected_independent_check_count": 29,
+        "contract_check_completed": false,
+        "formal_run_completed": false,
+        "independent_check_completed": false,
+        "simulator_processes_invoked": 0,
+        "circuit_netlists_created": 0,
+        "circuit_execution_permitted": false,
+        "independent_check_permitted": false,
+        "downstream_permitted": false,
+        "dc_case_count": 18,
+        "transient_case_count": 36,
+        "dc_points_per_case": 101,
+        "transient_points_per_case": 601,
+        "anchor_case_id": "v200_t100_r0125_c1000",
+        "result_paths": [
+          "config/c00_active_load_inverter_r01.json",
+          "scripts/c00_active_load_inverter_r01_common.py",
+          "scripts/check_c00_active_load_inverter_r01_contract.py",
+          "scripts/run_c00_active_load_inverter_r01.py",
+          "scripts/check_c00_active_load_inverter_r01.py"
+        ],
+        "evidence_boundary": "E0 implementation only: the versioned topology, P6 grids, extraction, failure retention, four-process serial budget and 48/36/29 gates are registered. No C00 netlist, simulator process, circuit number, physical parameter or calibration evidence exists.",
+        "next_gate": "Run the 48-check zero-process static contract exactly once after this implementation state is committed and pushed."
       }
     },
     {

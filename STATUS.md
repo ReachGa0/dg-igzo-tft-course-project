@@ -1,11 +1,18 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_DONE_WITH_LIMITATION_C00_CONTRACT_NEXT`
+- 当前阶段：`C00_R01_CONTRACT_IMPLEMENTED_STATIC_CHECK_NEXT`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R02 与 M01 只在冻结 IGZO 教学数值域内受限关闭，全部历史失败不可改写。M01 的同目标、模型边界、两路输出/差异和工具预检四项冻结验收均已满足，且合同从未要求强制方程一致；R03 42/30/24 E3/E2/E3 独立复现机器精度级路线一致。因此 M01 记为 `DONE_WITH_LIMITATION`，不是方程身份、物理参数、实验校准或外部验证。下一门只开放建立 C00 双栅 IGZO 有源负载反相器静态合同；电路网表执行、C01/C02/C03、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R02 与 M01 只在冻结 IGZO 教学数值域内受限关闭，全部历史失败不可改写。C00 R01 已实现版本化合同和 48/36/29 三门，但仍是 E0；T02 entry evidence 只按真实 E2 登记。下一门先提交推送本实现，再唯一运行 48 项零进程静态合同。静态 PASS 状态另行提交前不得生成或运行正式电路网表，C01/C02/C03、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
+
+- [x] 新增 `C00_ACTIVE_LOAD_INVERTER_R01` 配置、pure common、48 项零进程静态 checker、36 项未来 runner、29 项未来独立 checker 和三个 Make 入口；所有未来输出使用独立 C00 R01 命名空间并拒绝覆盖。
+- [x] 固定 2-TFT 双栅 IGZO 有源负载拓扑：驱动 `D/TG/BG/S=VOUT/VIN/0/0`，负载 `VDD/V_TOP_LOAD/VDD/VOUT`；`Wdriver=60 um`、`L=10 um`，负载宽度由 `Wload/Wdriver` 决定，不允许电阻负载进入正式结果。
+- [x] 预注册 `VDD=0.1/0.2 V`、三档负载顶栅比例、三档负载/驱动宽度比和 `Cload=0.5/1 pF`，形成 18 个 DC 与 36 个瞬态计划案例；锚点固定为 `v200_t100_r0125_c1000`，禁止运行后换最佳案例。
+- [x] 冻结 VOH/VOL/VM/增益/VIL/VIH/NML/NMH、静态功耗、tPHL/tPLH 和第二周期动态功耗提取；两路线锚点必须同时通过登记电平、增益、噪声裕量和延迟门，路线差异只作诊断且不得运行后放宽阈值。
+- [x] 冻结一个 ngspice DC、一个 ngspice 瞬态、一个 GPL Xyce DC 和一个 GPL Xyce 瞬态共四个严格串行进程；AIM-Spice、TCAD、C01+、版图、PEX、SnO 和 HZO 预算均为 0。当前没有执行静态合同、生成正式网表或创建数值输出。
+- [x] 开发期 JSON/Python 语法与纯内存网表生成检查通过：18/36 案例和四份 ASCII 文本结构成立，未落盘 C00 网表；`make check` 为 764/764 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过。发现 T02 真实证据为 E2 后已修正合同元数据，未虚构 E3。
 
 - [x] 新增 `M01_OPEN_SOURCE_DEVICE_DC_R03` 配置、common、42 项静态 checker、30 项 runner、24 项未来独立 checker 和三个 Make 入口；全部使用独立 R03 输出命名空间。静态报告与 runner 的 15 个文件产物已落盘，当前只剩独立检查报告未生成。
 - [x] 新候选 `spice/models/igzo_dg_behavioral_r03_portable.inc` 精确由 R02 五处登记替换得到：四处版本/子电路标识和唯一语义变化 `limit(x/s,-60,60)` -> `min(max(x/s,-60),60)`；所有 `.param` 与 `BIDS` 行逐字节不变。
@@ -254,4 +261,4 @@
 
 ## 下一步
 
-提交并推送 M01 `DONE_WITH_LIMITATION` 和 C00 entry-gate 决策后，建立并静态检查版本化 C00 双栅 IGZO 有源负载反相器合同。合同 PASS 状态提交前不生成或运行正式电路网表；R03、正式器件 DC R02 和根因 R02 不重跑，C01/C02/C03、版图、PEX 和 HZO 保持关闭。
+提交并推送 C00 R01 `contract_implemented/E0` 状态后，唯一运行 `make c00-active-load-inverter-r01-contract-check`。48/48 静态 PASS 状态另行提交前不生成或运行正式电路网表；R03、正式器件 DC R02 和根因 R02 不重跑，C01/C02/C03、版图、PEX 和 HZO 保持关闭。

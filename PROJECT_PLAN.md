@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`M01_DONE_WITH_LIMITATION_C00_CONTRACT_NEXT`：T01/T02/T03 数值门已关闭，历史失败保留。M01 R03 42/30/24 E3/E2/E3 满足同目标、模型边界、两路输出/差异和 R11 工具预检四项冻结验收；提交 `5d2134c` 后单独记录 `M01_TEACHING_MODEL_ONLY_PASS`。M01 只在冻结 IGZO 教学域 `DONE_WITH_LIMITATION`，R01/R02/根因与工具失败不改写。下一门仅建立 C00 有源负载 INV 静态合同，电路执行及下游关闭。
+`C00_R01_CONTRACT_IMPLEMENTED_STATIC_CHECK_NEXT`：T01/T02/T03 数值门已关闭，历史失败保留；M01 只在冻结 IGZO 教学域 `DONE_WITH_LIMITATION`。C00 R01 已实现 2-TFT 有源负载拓扑、18/36 计划案例、48/36/29 三门和四进程串行预算，当前仍为 E0。下一门是先提交推送实现，再唯一运行零进程静态合同；正式电路执行及下游关闭。
 
 ## 截止日期
 
@@ -47,7 +47,7 @@
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
 | M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
 | M01 | 双仿真器对照 | DONE_WITH_LIMITATION，R03 independent E3 | R03 42/30/24 E3/E2/E3 满足冻结四项验收；仅关闭 portable IGZO 教学候选、247 行和两条开源行为路线。全部历史失败与 R02 分歧保留；不证明方程身份、物理参数、校准或电路验证 |
-| C00 | 有源负载 INV | CONTRACT_PLANNING_OPEN，E0 | M01 教学域 entry gate PASS；只允许建立静态合同，`circuit_execution_permitted=false`，尚无网表/VTC/瞬态/功耗证据 |
+| C00 | 有源负载 INV | CONTRACT_IMPLEMENTED，E0 | R01 固定 2-TFT 端口、P6 小网格、锚点、48/36/29 三门和失败保留；静态 checker 未运行，`circuit_execution_permitted=false`，18/36 是计划案例数，尚无网表/VTC/瞬态/功耗证据 |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
 | C03 | 一位全加器 | TODO | 依赖 C01 |

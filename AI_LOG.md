@@ -16,6 +16,26 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 实现 C00 R01 双栅 IGZO 有源负载反相器静态合同链
+
+### 目标与输入
+
+在 M01 收口提交 `d03b06e` 已推送并同步、C00 仅开放合同规划的状态上，读取架构、P6 变量、T02/M01 机器证据、portable R03 模型端口、ngspice/Xyce 路线和现有三门脚本模式。T02 entry evidence 按机器事实使用 `bidirectional_verified/E2`，未提升为 E3。
+
+### 合同实现
+
+- 新增 `config/c00_active_load_inverter_r01.json`、deterministic common、48 项静态 checker、36 项未来 runner、29 项未来独立 checker和三个 Make 入口。静态 checker 不导入 subprocess，独立 checker 不导入 common/runner 或 subprocess；runner 独占四个严格串行进程。
+- 固定 2-TFT 端口：驱动 `VOUT/VIN/0/0`，负载 `VDD/V_TOP_LOAD/VDD/VOUT`；正式路径禁用电阻负载。冻结 `VDD=0.1/0.2 V`、三档负载顶栅、三档尺寸比、`Cload=0.5/1 pF`，形成 18 个 DC 和 36 个瞬态计划案例。
+- 锚点运行前固定为 `v200_t100_r0125_c1000`。冻结 VTC、电平、VM、增益、单位增益交点、噪声裕量、静态/动态功耗和双边延迟门；两个路线都必须通过锚点，路线差异只作诊断。失败网表、日志、raw、部分表和报告拒绝覆盖且必须保留。
+
+### 状态、验证与边界
+
+- C00 登记为 `contract_implemented/E0`，`circuit_execution_permitted=false`；AIM-Spice、TCAD、SnO、HZO、C01+、版图和 PEX 预算均为 0。18/36 是计划案例数，不是仿真结果。
+- JSON/Python 语法与纯内存 generator 自检通过，得到 18/36 案例和四份 ASCII 文本；未创建 C00 结果目录、正式网表或数值输出。只读复用 M01 PRN 的开发自测发现 parser 原先只识别含电压/时间的表头，随后扩展为同时识别纯电流固定列表；这不是 C00 阶段运行且未改变任何参数或门槛。`make check` 返回 764/764 PASS，`make report-check` 返回 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过。
+- 更新 README、AI_CONTEXT、架构、计划、ADR-083、STATUS 和报告第 5/6/9/10 章。下一门是先提交推送本实现，再唯一运行 48 项零进程静态合同；静态 PASS 状态提交前不运行电路。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 教学模型边界受限收口并开放 C00 静态合同门
 
 ### 决策输入

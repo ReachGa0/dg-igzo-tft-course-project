@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 763,
+  "checks": 764,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=30476"
+      "detail": "bytes=30782"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=26331"
+      "detail": "bytes=26391"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=23078"
+      "detail": "bytes=23481"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=213949"
+      "detail": "bytes=216231"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4934"
+      "detail": "bytes=4937"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=126440"
+      "detail": "bytes=128041"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=70854"
+      "detail": "bytes=72306"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=14364"
+      "detail": "bytes=14778"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=62265"
+      "detail": "bytes=62297"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=138555"
+      "detail": "bytes=141142"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2842,7 +2842,7 @@
     {
       "name": "file:spice/netlists/cells/README.md",
       "status": "PASS",
-      "detail": "bytes=664"
+      "detail": "bytes=999"
     },
     {
       "name": "file:spice/netlists/blocks/README.md",
@@ -3567,7 +3567,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "establish and commit a C00 dual-gate IGZO active-load inverter static contract; do not execute any circuit netlist before that contract passes and its state is committed"
+      "detail": "run the 48-check static contract for C00 active-load inverter revision-1 after committing and pushing its implementation; do not create or execute a circuit netlist before that static PASS is committed"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3637,7 +3637,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "establish and commit a C00 dual-gate IGZO active-load inverter static contract; do not execute any circuit netlist before that contract passes and its state is committed"
+      "detail": "run the 48-check static contract for C00 active-load inverter revision-1 after committing and pushing its implementation; do not create or execute a circuit netlist before that static PASS is committed"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3743,6 +3743,11 @@
       "name": "m01_open_source_device_dc_r03:portable_contract_implementation",
       "status": "PASS",
       "detail": "implemented=False ready=False runner=False verified=True static=True run=True bindings=True future_absent=0/18"
+    },
+    {
+      "name": "c00_active_load_inverter_r01:versioned_contract_chain",
+      "status": "PASS",
+      "detail": "implemented=True ready=False runner=False verified=False bindings=True"
     },
     {
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",

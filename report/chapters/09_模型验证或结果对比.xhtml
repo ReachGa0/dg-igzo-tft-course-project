@@ -135,6 +135,7 @@
       <tr><td>portable full-device R03 two-route runner</td><td>静态 PASS 提交 <code>e664629</code> 后唯一运行；一个 ngspice 与一个 GPL Xyce 串行进程，两个 247 器件网表、247+247 行、30 指标、247 差异、14 哈希和两图落盘</td><td>30/30 PASS、E2；报告 SHA-256 <code>df188515...249c79</code>。最大绝对/对数差 <code>4.37069e-19 A/cm</code>/<code>2.75335e-14 decade</code>，为 runner 机器精度级一致观察；独立 E3 未运行，不证明方程身份、物理参数、实验校准、正式敏感性、M01 或电路验证</td></tr>
       <tr><td>portable full-device R03 independent check</td><td>runner 提交 <code>6f4e89b</code> 后唯一运行；零进程独立再生两网表、解析 raw/PRN、重算 247+247 行、30 指标、247 差异、14 哈希和两图尺寸</td><td>24/24 PASS、E3；报告 SHA-256 <code>5419f34b...a937</code>。复现机器精度级路线一致并验证落盘完整性；不证明方程身份、物理参数、实验校准或自动完成 M01 收口，C00 待单独决定</td></tr>
       <tr><td>M01 teaching-model closure decision</td><td>提交 <code>5d2134c</code> 后逐项核对原 M01 四项验收，绑定 R03 候选与三报告哈希，并保留全部历史失败</td><td><code>M01_TEACHING_MODEL_ONLY_PASS</code>、E3；只关闭冻结教学域。C00 仅可建立静态合同，尚无电路网表、VTC、瞬态、功耗或噪声容限证据</td></tr>
+      <tr><td>C00 active-load inverter R01 implementation</td><td>冻结 2-TFT 端口、18 个 DC/36 个瞬态计划案例、锚点、提取/验收、排他失败保留、四进程串行预算和 48/36/29 三门代码</td><td>E0；静态合同尚未执行，所有 C00 运行输出均缺失。该行只证明实现范围已登记，不是结构检查 PASS 或电路仿真结果</td></tr>
     </tbody>
   </table>
   <figure>
@@ -153,5 +154,5 @@
     <img src="assets/m01_open_source_route_difference_r03.png" alt="M01 R03 per-row logarithmic difference between ngspice and Xyce" />
     <figcaption>图 9-8 R03 的 247 行 ngspice-Xyce 对数差，最大值为 <code>2.75335e-14 decade</code>。该 diagnostic-only 机器精度级差异已由 24/24 E3 独立落盘重算复现，但仍不支持方程身份或物理校准结论。</figcaption>
   </figure>
-  <p class="boundary">Xyce build/tool 历史与 R11 36/32/25 工具/parser 链均保留。正式器件 R01 39/40 E0/FAIL、R02 40/30/24 路线分歧和根因链不可改写。R03 42/30/24 E3/E2/E3 独立复现新显式 clamp 候选机器精度级一致，满足冻结四项验收，因此 M01 只在教学域 <code>DONE_WITH_LIMITATION</code>。该结论不代表方程身份、物理参数、校准或电路验证；C00 仅开放静态合同，电路、C01/C02/C03、版图、PEX 和 HZO 仍关闭。</p>
+  <p class="boundary">Xyce build/tool 历史与 R11 36/32/25 工具/parser 链均保留。正式器件 R01 39/40 E0/FAIL、R02 40/30/24 路线分歧和根因链不可改写。R03 42/30/24 E3/E2/E3 满足冻结四项验收，因此 M01 只在教学域 <code>DONE_WITH_LIMITATION</code>。C00 R01 当前仅为 <code>contract_implemented/E0</code>；48 项静态 PASS 提交前不生成或运行电路，C01/C02/C03、版图、PEX 和 HZO 仍关闭。</p>
 </section>
