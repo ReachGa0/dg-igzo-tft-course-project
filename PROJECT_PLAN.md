@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`C00_R01_STATIC_FAIL_R02_CONTRACT_NEXT`：C00 R01 静态合同唯一返回 46/48 E0/FAIL，`nor` 子串误命中 `NORM`，最终门连带失败；0 进程、0 网表。R01 原样保留。下一门先提交失败，再建立 R02，只修正标识符整词匹配；正式电路执行及下游关闭。
+`C00_R02_CONTRACT_IMPLEMENTED_STATIC_CHECK_NEXT`：C00 R01 46/48 E0 词法失败已冻结。R02 在新命名空间绑定 R01，只把禁止范围检查改为 ASCII 标识符整词匹配；50/36/29 三门已实现但均未运行。下一门先提交推送 R02 实现，再唯一运行 50 项零进程静态合同；正式电路执行及下游关闭。
 
 ## 截止日期
 
@@ -47,7 +47,7 @@
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
 | M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
 | M01 | 双仿真器对照 | DONE_WITH_LIMITATION，R03 independent E3 | R03 42/30/24 E3/E2/E3 满足冻结四项验收；仅关闭 portable IGZO 教学候选、247 行和两条开源行为路线。全部历史失败与 R02 分歧保留；不证明方程身份、物理参数、校准或电路验证 |
-| C00 | 有源负载 INV | R01 STATIC FAIL，E0 | 46/48；主失败是 scope checker 的 `nor`/`NORM` 子串冲突，结果门连带失败。0 进程、0 网表；R02 只修正 token-safe 匹配，`circuit_execution_permitted=false` |
+| C00 | 有源负载 INV | R02 CONTRACT IMPLEMENTED，E0 | R01 46/48 词法失败冻结；R02 绑定五源/报告/提交并只修正 ASCII 标识符整词匹配。50/36/29 三门未运行，拓扑、18/36 案例、锚点、提取、阈值和四进程预算不变，`circuit_execution_permitted=false` |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
 | C03 | 一位全加器 | TODO | 依赖 C01 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-M00/M01 历史运行均不重跑、不放宽门槛。M01 已仅在冻结教学域 `DONE_WITH_LIMITATION`；先提交并推送该收口与 C00 entry gate，再建立版本化 C00 双栅 IGZO 有源负载 INV 静态合同。合同 PASS 状态提交前不运行电路，C01/C02/C03、版图、PEX 和 HZO 继续关闭。
+M00/M01 历史运行均不重跑、不放宽门槛。M01 已仅在冻结教学域 `DONE_WITH_LIMITATION`。当前先提交并推送 C00 R02 token-safe 实现，再唯一运行 50 项静态合同；只有 50/50 E3 状态另行提交推送后才允许四个串行电路进程。C01/C02/C03、版图、PEX 和 HZO 继续关闭。

@@ -2129,7 +2129,7 @@
       "id": "C00",
       "track": "circuit",
       "name": "dual_gate_igzo_active_load_inverter",
-      "status": "contract_failed_static_checker",
+      "status": "contract_implemented",
       "current_evidence": "E0",
       "depends_on": ["M01", "T02"],
       "parameter_group_ids": ["P6"],
@@ -2148,7 +2148,7 @@
         "contract_planning_permitted": true,
         "circuit_execution_permitted": false,
         "downstream_permitted": false,
-        "next_gate": "The C00 R01 contract implementation is present, but circuit execution remains closed until its 48-check static PASS is committed and pushed."
+        "next_gate": "The C00 R02 token-safe recovery contract implementation is present, but circuit execution remains closed until its 50-check static PASS is committed and pushed."
       },
       "active_load_inverter_r01": {
         "contract_id": "C00_ACTIVE_LOAD_INVERTER_R01",
@@ -2198,7 +2198,56 @@
           "results/reports/c00_active_load_inverter_contract_r01.json"
         ],
         "evidence_boundary": "The committed R01 static contract ran exactly once and returned 46/48 E0/FAIL with zero simulator processes and zero circuit netlists. The sole primary failure is an over-broad substring scope scan: forbidden token 'nor' matched the registered DC node 'NORM'; the result gate failed derivatively. This is not topology, model, threshold, convergence or circuit evidence. R01 is immutable and must not be rerun.",
-        "next_gate": "Commit and push the immutable R01 46/48 failure, then establish C00 R02 with only token-safe forbidden-scope matching in a new namespace."
+        "next_gate": "Keep the immutable R01 46/48 failure bound while C00 R02 advances through its separate token-safe contract chain; never rerun R01."
+      },
+      "active_load_inverter_r02": {
+        "contract_id": "C00_ACTIVE_LOAD_INVERTER_R02",
+        "revision": 2,
+        "status": "contract_implemented",
+        "current_evidence": "E0",
+        "config_path": "config/c00_active_load_inverter_r02.json",
+        "config_sha256": "e51a30524e1073e01b95646a40bc0ae158f4d55f266f584dd52988b87d02f3f4",
+        "common_path": "scripts/c00_active_load_inverter_r02_common.py",
+        "common_sha256": "e22aec6a4a2ed3bd84c58663ab8b81876702576c1f992673dac506d7c562b35b",
+        "contract_checker_path": "scripts/check_c00_active_load_inverter_r02_contract.py",
+        "contract_checker_sha256": "76cc0a151ae37925ec6fbae58b09daf0af02fb9d819cd95160c20fb4c9cb7fe9",
+        "runner_path": "scripts/run_c00_active_load_inverter_r02.py",
+        "runner_sha256": "c2845714490eb9be5ed675c8b3a0a73b5a6355954b7550762826b5bf3459698b",
+        "independent_checker_path": "scripts/check_c00_active_load_inverter_r02.py",
+        "independent_checker_sha256": "0bd436f57345d3e075c4e188c2220dd8ac0381f49782a627f8d5924aa2e6e11f",
+        "expected_contract_check_count": 50,
+        "expected_runner_check_count": 36,
+        "expected_independent_check_count": 29,
+        "contract_check_completed": false,
+        "contract_check_status": "NOT_RUN",
+        "formal_run_completed": false,
+        "formal_run_status": "NOT_RUN",
+        "independent_check_completed": false,
+        "independent_check_status": "NOT_RUN",
+        "simulator_processes_invoked": 0,
+        "circuit_netlists_created": 0,
+        "circuit_execution_permitted": false,
+        "independent_check_permitted": false,
+        "downstream_permitted": false,
+        "dc_case_count": 18,
+        "transient_case_count": 36,
+        "dc_points_per_case": 101,
+        "transient_points_per_case": 601,
+        "anchor_case_id": "v200_t100_r0125_c1000",
+        "r01_failure_registration_commit": "60cdcbc305b45f37b3b54a494933f0a7b07c4017",
+        "r01_failure_report_path": "results/reports/c00_active_load_inverter_contract_r01.json",
+        "r01_failure_report_sha256": "53f408e870e5f84993dd635cf95086c9b4db263ea5b8bead6cc2f5ed44a08493",
+        "correction_scope": "Replace arbitrary substring matching with case-insensitive exact equality over ASCII identifiers; retain all circuit inputs, extraction rules, thresholds and process budgets.",
+        "result_paths": [
+          "config/c00_active_load_inverter_r02.json",
+          "scripts/c00_active_load_inverter_r02_common.py",
+          "scripts/check_c00_active_load_inverter_r02_contract.py",
+          "scripts/run_c00_active_load_inverter_r02.py",
+          "scripts/check_c00_active_load_inverter_r02.py",
+          "results/reports/c00_active_load_inverter_contract_r01.json"
+        ],
+        "evidence_boundary": "R02 is an E0 implementation state. It hash-binds the immutable R01 46/48 E0 lexical failure and changes only forbidden-scope matching from arbitrary substrings to case-insensitive exact ASCII identifier equality. The two-TFT topology, 18/36 planned cases, fixed anchor, extraction, acceptance thresholds, open-source routes, four-process serial budget and failure retention are unchanged. No R02 static checker, simulator, circuit netlist, numerical circuit output or independent checker has run. This is not circuit performance, physical IGZO parameter, experimental calibration, native Level 15/61, equation identity, C01+, layout, PEX or HZO evidence.",
+        "next_gate": "Commit and push the R02 implementation, then run its 50-check zero-process static contract exactly once. Do not execute a circuit netlist before that static PASS is separately committed and pushed."
       }
     },
     {

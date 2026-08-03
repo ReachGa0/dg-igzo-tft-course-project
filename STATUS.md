@@ -1,11 +1,18 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`C00_R01_STATIC_FAIL_R02_CONTRACT_NEXT`
+- 当前阶段：`C00_R02_CONTRACT_IMPLEMENTED_STATIC_CHECK_NEXT`
 - 整体状态：`YELLOW`
-- 当前原则：C00 R01 静态合同唯一返回 46/48 E0/FAIL，主失败为 `nor` 子串误命中 DC 节点 `NORM`，最终门连带失败；0 进程、0 网表。R01 不重跑且全部运行权限继续为 false。下一门先提交失败，再以新 R02 命名空间只修正 token-safe 匹配，不改变拓扑、扫描、锚点、提取或验收阈值。
+- 当前原则：C00 R01 的 46/48 E0 词法失败已由提交 `60cdcbc` 冻结。R02 已在新命名空间实现并绑定 R01，只把禁止范围检查改为 ASCII 标识符不区分大小写的整词相等；拓扑、18/36 案例、锚点、提取、阈值和四进程预算不变。R02 仍为 E0，50 项静态门尚未运行，电路与下游权限保持关闭。
 
 ## 本次里程碑
+
+- [x] 新增 `C00_ACTIVE_LOAD_INVERTER_R02` 配置、pure common、50 项零进程静态 checker、36 项未来 runner、29 项未来独立 checker 和三个 Make 入口；所有 R02 输出使用独立命名空间并拒绝覆盖。
+- [x] R02 哈希绑定实现提交 `4097b9d`、失败登记提交 `60cdcbc`、R01 五个源文件和 46/48 报告 `53f408e...a08493`。静态门新增“R01 不可变失败”与“仅 token-safe 修正”两项检查。
+- [x] 禁止范围规则统一为正则 `[A-Za-z_][A-Za-z0-9_]*` 提取 ASCII 标识符后进行不区分大小写的精确相等；合法节点 `NORM` 不再被禁止词 `nor` 的子串规则误判。该修正不改变任何物理、电路、扫描、提取或验收输入。
+- [x] `config/experiments.json` 登记 R02 `contract_implemented/E0`、五个源哈希、50/36/29 三门和零执行状态；R01 仍为 `contract_failed_static_checker/E0`。当前没有 R02 静态报告、运行目录、正式网表、数值表、图片或独立报告。
+- [x] R02 JSON/Python 语法、纯内存 18/36 案例与四文本 token-safe 自检通过；`make check` 为 765/765 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 图 PASS。检查没有启动模拟器或落盘 R02 网表。
+- [ ] 下一门：先提交并推送 R02 实现，再唯一运行 `make c00-active-load-inverter-r02-contract-check`。只有 50/50 E3 静态 PASS 另行提交推送后，才允许四个串行电路进程。
 
 - [x] 实现提交 `4097b9d` 推送并与 `origin/main` 同步后，唯一运行 `make c00-active-load-inverter-r01-contract-check`，返回 46/48、E0/FAIL；报告 `results/reports/c00_active_load_inverter_contract_r01.json` SHA-256 为 `53f408e870e5f84993dd635cf95086c9b4db263ea5b8bead6cc2f5ed44a08493`。
 - [x] 唯一主失败 `netlist:forbidden_scopes_absent` 来自普通子串规则：禁止词 `nor` 命中 DC 控制节点 `NORM`；`result:static_contract_ready` 为派生失败。其余 46 项通过，未否定拓扑、模型、P6 网格、锚点、提取、阈值、资源或失败保留合同。

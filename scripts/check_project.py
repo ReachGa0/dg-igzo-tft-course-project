@@ -835,6 +835,14 @@ def main() -> int:
             "preserve and commit the C00 active-load inverter revision-1 46/48 static checker failure"
         ) or current_next_scope.startswith(
             "establish C00 active-load inverter revision-2 with token-safe forbidden-scope matching"
+        ) or current_next_scope.startswith(
+            "run the 50-check static contract for C00 active-load inverter revision-2"
+        ) or current_next_scope.startswith(
+            "execute the committed C00 active-load inverter revision-2 four-process runner"
+        ) or current_next_scope.startswith(
+            "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-2"
+        ) or current_next_scope.startswith(
+            "commit and close C00 revision-2 within the teaching-model evidence boundary"
         )
         r08_scope_active = current_next_scope.startswith(
             "establish and commit M01 Xyce build/tool preflight revision-8"
@@ -9834,6 +9842,18 @@ def main() -> int:
                 or r03_next_scope.startswith(
                     "establish C00 active-load inverter revision-2 with token-safe forbidden-scope matching"
                 )
+                or r03_next_scope.startswith(
+                    "run the 50-check static contract for C00 active-load inverter revision-2"
+                )
+                or r03_next_scope.startswith(
+                    "execute the committed C00 active-load inverter revision-2 four-process runner"
+                )
+                or r03_next_scope.startswith(
+                    "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-2"
+                )
+                or r03_next_scope.startswith(
+                    "commit and close C00 revision-2 within the teaching-model evidence boundary"
+                )
             )
         )
         add_check(
@@ -10039,9 +10059,7 @@ def main() -> int:
             and all(not path.exists() for path in c00_run_artifact_paths)
         )
         c00_failed_state = (
-            c00_experiment.get("status") == "contract_failed_static_checker"
-            and c00_experiment.get("current_evidence") == "E0"
-            and c00_machine.get("status") == "contract_failed_static_checker"
+            c00_machine.get("status") == "contract_failed_static_checker"
             and c00_machine.get("current_evidence") == "E0"
             and c00_machine.get("contract_check_completed") is True
             and c00_machine.get("contract_check_status") == "FAIL"
@@ -10126,8 +10144,25 @@ def main() -> int:
             )
         ) or (
             c00_failed_state
-            and c00_next_scope.startswith(
-                "preserve and commit the C00 active-load inverter revision-1 46/48 static checker failure"
+            and (
+                c00_next_scope.startswith(
+                    "preserve and commit the C00 active-load inverter revision-1 46/48 static checker failure"
+                )
+                or c00_next_scope.startswith(
+                    "establish C00 active-load inverter revision-2 with token-safe forbidden-scope matching"
+                )
+                or c00_next_scope.startswith(
+                    "run the 50-check static contract for C00 active-load inverter revision-2"
+                )
+                or c00_next_scope.startswith(
+                    "execute the committed C00 active-load inverter revision-2 four-process runner"
+                )
+                or c00_next_scope.startswith(
+                    "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-2"
+                )
+                or c00_next_scope.startswith(
+                    "commit and close C00 revision-2 within the teaching-model evidence boundary"
+                )
             )
         ) or (
             c00_ready_state
@@ -10220,6 +10255,269 @@ def main() -> int:
         add_check(
             checks,
             "c00_active_load_inverter_r01:versioned_contract_chain",
+            False,
+            str(error),
+        )
+
+    c00_r02_config_path = ROOT / "config" / "c00_active_load_inverter_r02.json"
+    c00_r02_common_path = ROOT / "scripts" / "c00_active_load_inverter_r02_common.py"
+    c00_r02_contract_path = ROOT / "scripts" / "check_c00_active_load_inverter_r02_contract.py"
+    c00_r02_runner_path = ROOT / "scripts" / "run_c00_active_load_inverter_r02.py"
+    c00_r02_independent_path = ROOT / "scripts" / "check_c00_active_load_inverter_r02.py"
+    try:
+        c00_r02_config = json.loads(c00_r02_config_path.read_text(encoding="utf-8"))
+        c00_experiment = experiment_map["C00"]
+        c00_r02_machine = c00_experiment.get("active_load_inverter_r02", {})
+        c00_r01_machine = c00_experiment.get("active_load_inverter_r01", {})
+        c00_r02_outputs = c00_r02_config["outputs"]
+        c00_r02_contract_report_path = ROOT / c00_r02_outputs["contract_report"]
+        c00_r02_run_report_path = ROOT / c00_r02_outputs["run_report"]
+        c00_r02_independent_report_path = ROOT / c00_r02_outputs["independent_report"]
+        c00_r02_contract_report = (
+            json.loads(c00_r02_contract_report_path.read_text(encoding="utf-8"))
+            if c00_r02_contract_report_path.is_file()
+            else {}
+        )
+        c00_r02_run_report = (
+            json.loads(c00_r02_run_report_path.read_text(encoding="utf-8"))
+            if c00_r02_run_report_path.is_file()
+            else {}
+        )
+        c00_r02_independent_report = (
+            json.loads(c00_r02_independent_report_path.read_text(encoding="utf-8"))
+            if c00_r02_independent_report_path.is_file()
+            else {}
+        )
+        c00_r02_sources = [
+            "config/c00_active_load_inverter_r02.json",
+            "scripts/c00_active_load_inverter_r02_common.py",
+            "scripts/check_c00_active_load_inverter_r02_contract.py",
+            "scripts/run_c00_active_load_inverter_r02.py",
+            "scripts/check_c00_active_load_inverter_r02.py",
+        ]
+        c00_r02_artifact_keys = [
+            key
+            for key in c00_r02_outputs
+            if key
+            not in {
+                "run_directory",
+                "contract_report",
+                "run_report",
+                "independent_report",
+            }
+        ]
+        c00_r02_artifact_paths = [
+            ROOT / c00_r02_outputs[key] for key in c00_r02_artifact_keys
+        ]
+        c00_r02_binding = c00_r02_config["r01_failure_binding"]
+        c00_r01_report_path = ROOT / c00_r02_binding["failure_report_path"]
+        c00_r01_report = json.loads(c00_r01_report_path.read_text(encoding="utf-8"))
+        c00_r02_base_paths = c00_r02_sources + [c00_r02_binding["failure_report_path"]]
+        c00_r02_source_hashes_ok = (
+            c00_r02_machine.get("config_sha256") == sha256(c00_r02_config_path)
+            and c00_r02_machine.get("common_sha256") == sha256(c00_r02_common_path)
+            and c00_r02_machine.get("contract_checker_sha256")
+            == sha256(c00_r02_contract_path)
+            and c00_r02_machine.get("runner_sha256") == sha256(c00_r02_runner_path)
+            and c00_r02_machine.get("independent_checker_sha256")
+            == sha256(c00_r02_independent_path)
+        )
+        c00_r01_binding_ok = (
+            c00_r02_binding.get("failure_registration_commit")
+            == c00_r02_machine.get("r01_failure_registration_commit")
+            == "60cdcbc305b45f37b3b54a494933f0a7b07c4017"
+            and c00_r02_binding.get("failure_report_sha256")
+            == c00_r02_machine.get("r01_failure_report_sha256")
+            == c00_r01_machine.get("contract_report_sha256")
+            == sha256(c00_r01_report_path)
+            and c00_r01_report.get("status") == "FAIL"
+            and c00_r01_report.get("summary")
+            == {"passed": 46, "failed": 2, "total": 48}
+            and c00_r01_machine.get("failure_category")
+            == "FORBIDDEN_TOKEN_SUBSTRING_COLLISION_NOR_IN_NORM"
+            and c00_r01_machine.get("simulator_processes_invoked") == 0
+            and c00_r01_machine.get("circuit_netlists_created") == 0
+        )
+        c00_r02_implemented_state = (
+            c00_experiment.get("status") == "contract_implemented"
+            and c00_experiment.get("current_evidence") == "E0"
+            and c00_r02_machine.get("status") == "contract_implemented"
+            and c00_r02_machine.get("current_evidence") == "E0"
+            and c00_r02_machine.get("contract_check_completed") is False
+            and c00_r02_machine.get("formal_run_completed") is False
+            and c00_r02_machine.get("independent_check_completed") is False
+            and c00_r02_machine.get("simulator_processes_invoked") == 0
+            and c00_r02_machine.get("circuit_netlists_created") == 0
+            and c00_r02_machine.get("circuit_execution_permitted") is False
+            and c00_r02_machine.get("downstream_permitted") is False
+            and not c00_r02_contract_report_path.exists()
+            and not (ROOT / c00_r02_outputs["run_directory"]).exists()
+            and not c00_r02_run_report_path.exists()
+            and not c00_r02_independent_report_path.exists()
+            and all(not path.exists() for path in c00_r02_artifact_paths)
+        )
+        c00_r02_ready_state = (
+            c00_experiment.get("status") == "contract_ready"
+            and c00_experiment.get("current_evidence") == "E3"
+            and c00_r02_machine.get("status") == "contract_ready"
+            and c00_r02_machine.get("current_evidence") == "E3"
+            and c00_r02_machine.get("contract_check_completed") is True
+            and c00_r02_machine.get("contract_check_status") == "PASS"
+            and c00_r02_machine.get("contract_checks_passed") == 50
+            and c00_r02_machine.get("contract_checks_failed") == 0
+            and c00_r02_machine.get("circuit_execution_permitted") is True
+            and c00_r02_machine.get("formal_run_completed") is False
+            and c00_r02_contract_report.get("status") == "PASS"
+            and c00_r02_contract_report.get("summary")
+            == {"passed": 50, "failed": 0, "total": 50}
+            and c00_r02_machine.get("contract_report_sha256")
+            == sha256(c00_r02_contract_report_path)
+            and not (ROOT / c00_r02_outputs["run_directory"]).exists()
+            and all(not path.exists() for path in c00_r02_artifact_paths)
+            and not c00_r02_run_report_path.exists()
+            and not c00_r02_independent_report_path.exists()
+        ) if c00_r02_contract_report_path.is_file() else False
+        c00_r02_runner_state = (
+            c00_experiment.get("status") == "formal_run_passed"
+            and c00_experiment.get("current_evidence") == "E2"
+            and c00_r02_machine.get("status") == "formal_run_passed"
+            and c00_r02_machine.get("current_evidence") == "E2"
+            and c00_r02_machine.get("formal_run_completed") is True
+            and c00_r02_machine.get("formal_run_status") == "PASS"
+            and c00_r02_machine.get("runner_checks_passed") == 36
+            and c00_r02_machine.get("runner_checks_failed") == 0
+            and c00_r02_machine.get("simulator_processes_invoked") == 4
+            and c00_r02_machine.get("independent_check_permitted") is True
+            and c00_r02_machine.get("independent_check_completed") is False
+            and c00_r02_run_report.get("status") == "PASS"
+            and c00_r02_run_report.get("summary", {}).get("passed") == 36
+            and c00_r02_machine.get("runner_report_sha256")
+            == sha256(c00_r02_run_report_path)
+            and all(path.is_file() for path in c00_r02_artifact_paths)
+            and not c00_r02_independent_report_path.exists()
+        ) if c00_r02_run_report_path.is_file() else False
+        c00_r02_verified_state = (
+            c00_experiment.get("status") == "verified"
+            and c00_experiment.get("current_evidence") == "E3"
+            and c00_r02_machine.get("status") == "verified"
+            and c00_r02_machine.get("current_evidence") == "E3"
+            and c00_r02_machine.get("independent_check_completed") is True
+            and c00_r02_machine.get("independent_check_status") == "PASS"
+            and c00_r02_machine.get("independent_checks_passed") == 29
+            and c00_r02_machine.get("independent_checks_failed") == 0
+            and c00_r02_machine.get("independent_processes_invoked") == 0
+            and c00_r02_independent_report.get("status") == "PASS"
+            and c00_r02_independent_report.get("summary")
+            == {"passed": 29, "failed": 0, "total": 29}
+            and c00_r02_machine.get("independent_report_sha256")
+            == sha256(c00_r02_independent_report_path)
+        ) if c00_r02_independent_report_path.is_file() else False
+        c00_r02_next_scope = config.get("tcad_track", {}).get("next_scope", "")
+        c00_r02_scope_ok = (
+            c00_r02_implemented_state
+            and c00_r02_next_scope.startswith(
+                "run the 50-check static contract for C00 active-load inverter revision-2"
+            )
+        ) or (
+            c00_r02_ready_state
+            and c00_r02_next_scope.startswith(
+                "execute the committed C00 active-load inverter revision-2 four-process runner"
+            )
+        ) or (
+            c00_r02_runner_state
+            and c00_r02_next_scope.startswith(
+                "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-2"
+            )
+        ) or (
+            c00_r02_verified_state
+            and c00_r02_next_scope.startswith(
+                "commit and close C00 revision-2 within the teaching-model evidence boundary"
+            )
+        )
+        if c00_r02_implemented_state:
+            c00_r02_expected_paths = c00_r02_base_paths
+        elif c00_r02_ready_state:
+            c00_r02_expected_paths = c00_r02_base_paths + [c00_r02_outputs["contract_report"]]
+        elif c00_r02_runner_state:
+            c00_r02_expected_paths = (
+                c00_r02_base_paths
+                + [c00_r02_outputs["contract_report"]]
+                + [c00_r02_outputs[key] for key in c00_r02_artifact_keys]
+                + [c00_r02_outputs["run_report"]]
+            )
+        elif c00_r02_verified_state:
+            c00_r02_expected_paths = (
+                c00_r02_base_paths
+                + [c00_r02_outputs["contract_report"]]
+                + [c00_r02_outputs[key] for key in c00_r02_artifact_keys]
+                + [c00_r02_outputs["run_report"], c00_r02_outputs["independent_report"]]
+            )
+        else:
+            c00_r02_expected_paths = []
+        c00_r02_contract_source = c00_r02_contract_path.read_text(encoding="ascii")
+        c00_r02_runner_source = c00_r02_runner_path.read_text(encoding="ascii")
+        c00_r02_independent_source = c00_r02_independent_path.read_text(encoding="ascii")
+        add_check(
+            checks,
+            "c00_active_load_inverter_r02:token_safe_versioned_contract_chain",
+            c00_r02_config.get("contract_id") == "C00_ACTIVE_LOAD_INVERTER_R02"
+            and c00_r02_config.get("revision") == 2
+            and c00_r02_config.get("registered_checks")
+            == {"static_contract": 50, "runner": 36, "independent": 29}
+            and c00_r02_config.get("scope", {}).get("active_material_scope")
+            == "IGZO only"
+            and c00_r02_config.get("topology_contract", {}).get("device_count_per_case")
+            == 2
+            and c00_r02_config.get("sweep_contract", {}).get("dc_case_count") == 18
+            and c00_r02_config.get("sweep_contract", {}).get("transient_case_count") == 36
+            and c00_r02_config.get("resource_budget", {}).get("max_serial_simulator_processes")
+            == 4
+            and c00_r02_config.get("resource_budget", {}).get("parallel_simulator_processes")
+            == 0
+            and c00_r02_config.get("netlist_contract", {}).get("forbidden_match_policy")
+            == "case-insensitive exact equality over ASCII identifiers matching [A-Za-z_][A-Za-z0-9_]*"
+            and c00_r02_machine.get("expected_contract_check_count") == 50
+            and c00_r02_machine.get("expected_runner_check_count") == 36
+            and c00_r02_machine.get("expected_independent_check_count") == 29
+            and c00_r02_machine.get("result_paths") == c00_r02_expected_paths
+            and c00_r02_source_hashes_ok
+            and c00_r01_binding_ok
+            and all((ROOT / path).is_file() for path in c00_r02_sources)
+            and "EXPECTED_CHECK_COUNT = 50" in c00_r02_contract_source
+            and "EXPECTED_CHECK_COUNT = 36" in c00_r02_runner_source
+            and "EXPECTED_CHECK_COUNT = 29" in c00_r02_independent_source
+            and "forbidden_tokens_absent" in c00_r02_contract_source
+            and "forbidden_tokens_absent" in c00_r02_runner_source
+            and "forbidden_tokens_absent" in c00_r02_independent_source
+            and re.search(
+                r"^(?:import|from)\s+subprocess\b",
+                c00_r02_contract_source,
+                re.MULTILINE,
+            ) is None
+            and re.search(
+                r"^(?:import|from)\s+subprocess\b",
+                c00_r02_independent_source,
+                re.MULTILINE,
+            ) is None
+            and "import subprocess" in c00_r02_runner_source
+            and "c00-active-load-inverter-r02-contract-check:" in makefile_source
+            and "c00-active-load-inverter-r02:" in makefile_source
+            and "c00-active-load-inverter-r02-check:" in makefile_source
+            and (
+                c00_r02_implemented_state
+                or c00_r02_ready_state
+                or c00_r02_runner_state
+                or c00_r02_verified_state
+            )
+            and c00_r02_scope_ok,
+            f"implemented={c00_r02_implemented_state} ready={c00_r02_ready_state} "
+            f"runner={c00_r02_runner_state} verified={c00_r02_verified_state} "
+            f"source_bindings={c00_r02_source_hashes_ok} r01_binding={c00_r01_binding_ok}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(
+            checks,
+            "c00_active_load_inverter_r02:token_safe_versioned_contract_chain",
             False,
             str(error),
         )

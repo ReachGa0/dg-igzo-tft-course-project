@@ -16,6 +16,27 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 实现 C00 R02 token-safe 静态合同链
+
+### 目标与输入
+
+- 从已推送失败登记提交 `60cdcbc` 继续，读取 R01 配置、五个源文件、46/48 报告、C00/M01/T02 机器状态及 ADR-084。R01 报告 SHA-256 为 `53f408e870e5f84993dd635cf95086c9b4db263ea5b8bead6cc2f5ed44a08493`，记录 0 个模拟器进程和 0 个电路网表。
+- 用户授权按既有阶段 DAG 自动推进，但要求严格串行阶段门、保留失败、不放宽门槛，并在静态 PASS 提交前禁止电路、C01+、版图、PEX 和 HZO。
+
+### 实现与状态
+
+- 新增 `config/c00_active_load_inverter_r02.json`、R02 common、50 项静态 checker、36 项未来 runner、29 项未来独立 checker和三个 Make 入口。R02 哈希绑定 R01 实现/失败登记提交、五源与失败报告；全部未来输出使用独立 R02 路径并拒绝覆盖。
+- 唯一语义修正是按 `[A-Za-z_][A-Za-z0-9_]*` 提取 ASCII 标识符，再对禁止词作不区分大小写精确相等。静态 checker 新增 R01 不可变失败绑定和仅修正范围两项；runner 与独立 checker 使用相同规则。2-TFT 端口、portable IGZO 候选、18/36 案例、锚点、提取、阈值、两路线和四进程串行预算不变。
+- `config/experiments.json` 将 C00 根登记为 R02 `contract_implemented/E0`，保留 R01 `contract_failed_static_checker/E0` 子证据；项目检查器分别验证历史 R01 失败和 R02 版本链。当前没有 R02 静态报告、运行目录、正式网表、数值输出或独立报告。
+
+### 验证、边界与下一门
+
+- R02 JSON/Python 语法与纯内存 generator 自检通过：18/36 案例、四份 ASCII 文本及 `NORM` token-safe 行为成立。`make check` 返回 765/765 PASS，`make report-check` 返回 12 章、5 附录、15 个既有占位和 30 图 PASS；未运行 R02 静态 checker、runner、独立 checker或任何 TCAD/SPICE/版图进程。
+- 更新 STATUS、README、AI 上下文、架构、计划、ADR-085、报告第 5/6/9/10 章和证据矩阵。本 E0 只证明合同实现与边界可审查，不是静态 PASS、电路仿真、VTC/延迟/功耗、物理参数、实验校准或下游证据。
+- 下一门是先提交并推送本实现，再唯一运行 `make c00-active-load-inverter-r02-contract-check`；只有 50/50 E3 静态 PASS 另行提交推送后才允许四个串行电路进程。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 保留 C00 R01 静态合同 46/48 词法失败
 
 ### 执行与失败
