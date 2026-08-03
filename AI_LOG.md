@@ -16,6 +16,27 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 完成 M01 R03 可移植完整器件独立复核（E3，24/24 PASS）
+
+### 目标与输入
+
+在 R03 runner PASS 提交 `6f4e89b` 已推送并与 `origin/main` 同步后，按阶段门唯一运行 24 项标准库独立落盘 checker。输入为已提交的 42/42 E3 静态报告、30/30 E2 runner 报告、两路原生输出和 14 个 hash-bound 产物；不导入 runner、不调用 subprocess，也不启动 ngspice、Xyce、TCAD、AIM-Spice 或下游流程。
+
+### 独立复核结果
+
+- `make m01-open-source-device-dc-r03-check` 唯一返回 `24/24 PASS`、E3，启动 0 个进程。报告 `results/reports/m01_open_source_cross_check_r03_check.json` SHA-256 为 `5419f34b20861561137ad19768af4783e4e7372265cc42ccb5abf27c2691a937`。
+- checker 独立再生两个 247 器件 ASCII 网表，解析 ngspice raw 与 Xyce PRN，精确重算两份 247 行路线表、30 行指标、247 行差异，复核 14/14 runner 产物哈希和两张 PNG 的 `2240 x 1760` 尺寸。
+- 独立结果复现最大绝对/对数路线差 `4.3706900078321897e-19 A/cm`/`2.7533531010703882e-14 decade`，因此机器精度级路线一致从 runner E2 观察提升为持久化证据完整性 E3；R02 历史路线分歧不改写。
+
+### 登记、边界与下一门
+
+- 更新 `config/experiments.json` 为 `verified/E3`，登记 24/24、零进程、独立报告哈希和完整结果路径；更新 `config/project.json` 与项目检查器，要求 verified 状态精确绑定 42/30/24、三份报告、全部运行产物和独立复核 next scope。
+- 更新 STATUS、AI 上下文、README、架构、计划、ADR-081、报告第 5/6/8/9 章和证据矩阵。该 E3 不建立方程身份、物理参数、实验校准、外部验证、正式敏感性、P2/T03 或电路证据。
+- 相关 JSON/Python 语法检查通过；`make check` 返回 763/763 PASS，`make report-check` 返回 12 章、5 附录、15 个既有占位和 30 张图 PASS，`git diff --check` 通过。这些验证没有启动 simulator 或下游进程。
+- 下一门不是直接运行 C00，而是先提交推送本 E3 状态，再按冻结 M01 验收边界单独决定教学模型内收口和 C00 开放；R03 与历史 runner/checker 均不重跑。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 完成 M01 R03 可移植完整器件两路线 runner（E2，30/30 PASS）
 
 ### 目标与输入

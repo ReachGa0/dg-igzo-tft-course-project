@@ -313,4 +313,8 @@
       <p>静态 PASS 登记提交 <code>e664629</code> 推送并同步后，R03 runner 唯一启动一个 ngspice 与一个 GPL Xyce 串行器件 DC 进程并返回 30/30 PASS、E2。报告 <code>results/reports/m01_open_source_cross_check_r03.json</code> SHA-256 为 <code>df188515d5749735fc479998d42d8b4b92ce84d2f40687801c531cc563249c79</code>；两份 247 器件 ASCII 网表、两份有限 247 行路线表、30 行指标、247 行差异、14 个哈希绑定运行产物和两张非空图均落盘。</p>
       <p>两路最大电流分别为 <code>4.6825230492225634e-4</code> 与 <code>4.6825230492225607e-4 A/cm</code>；最大绝对路线差为 <code>4.3706900078321897e-19 A/cm</code>，最大对数差为 <code>2.7533531010703882e-14 decade</code>。因此 runner 在显式 clamp 候选上观察到机器精度级路线一致；R02 的历史路线分歧仍保留且不被改写。</p>
       <p class="boundary">路线差值按执行前合同只作诊断，不是 PASS 阈值。24 项独立 checker 尚未运行，因此本 E2 只证明完整有限的教学模型器件级执行，不证明方程身份、原生 HSPICE Level 61、物理 IGZO 参数、实验校准、外部验证、正式敏感性、P2/T03、正式 M01、C00、电路、版图、PEX 或 HZO。先提交并推送 E2 状态及全部产物，再唯一运行零进程独立落盘复核；runner 不重跑。</p>
+      <h3>8.31 M01 R03 独立落盘复核边界</h3>
+      <p>runner PASS 提交 <code>6f4e89b</code> 推送并同步后，R03 标准库独立 checker 唯一返回 24/24 PASS、E3，启动 0 个进程。报告 <code>results/reports/m01_open_source_cross_check_r03_check.json</code> SHA-256 为 <code>5419f34b20861561137ad19768af4783e4e7372265cc42ccb5abf27c2691a937</code>。checker 独立再生两份 247 器件网表，解析 ngspice raw 与 Xyce PRN，精确重算两份 247 行路线表、30 行指标、247 行差异，并复核 14/14 runner 产物哈希和两张 <code>2240 x 1760</code> PNG 尺寸。</p>
+      <p>独立重算复现最大绝对路线差 <code>4.3706900078321897e-19 A/cm</code> 与最大对数差 <code>2.7533531010703882e-14 decade</code>，因此 R03 的机器精度级路线一致从 runner E2 观察提升为落盘证据完整性 E3。R02 的数值分歧和根因最小点边界继续作为不可改写历史证据。</p>
+      <p class="boundary">该 E3 仍不证明方程身份、原生 HSPICE Level 61、物理 IGZO 参数、实验校准、外部验证、正式敏感性、P2/T03、电路、版图、PEX 或 HZO。按独立报告 next gate，先提交推送本 E3，再单独判断 M01 是否在声明的教学模型边界内关闭及 C00 是否可开放；决策前不运行 C00，也不重跑 R03。</p>
 </section>

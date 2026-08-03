@@ -819,6 +819,8 @@ def main() -> int:
             "execute the committed M01 open-source device DC revision-3 portable two-route runner"
         ) or current_next_scope.startswith(
             "run the independent persisted-evidence checker for M01 open-source device DC revision-3 portable"
+        ) or current_next_scope.startswith(
+            "commit and push the independently verified M01 open-source device DC revision-3 portable E3 state"
         )
         r08_scope_active = current_next_scope.startswith(
             "establish and commit M01 Xyce build/tool preflight revision-8"
@@ -9684,15 +9686,33 @@ def main() -> int:
             and r03_machine.get("status") == "verified"
             and r03_machine.get("revision") == 3
             and r03_machine.get("current_evidence") == "E3"
+            and r03_machine.get("contract_check_completed") is True
+            and r03_machine.get("contract_status") == "PASS"
+            and r03_machine.get("contract_checks_passed") == 42
+            and r03_machine.get("contract_checks_failed") == 0
             and r03_machine.get("formal_run_completed") is True
             and r03_machine.get("formal_run_status") == "PASS"
+            and r03_machine.get("runner_checks_passed") == 30
+            and r03_machine.get("runner_checks_failed") == 0
+            and r03_machine.get("runner_processes_invoked") == 2
+            and r03_machine.get("ngspice_invoked") is True
+            and r03_machine.get("xyce_invoked") is True
             and r03_machine.get("independent_check_completed") is True
             and r03_machine.get("independent_check_status") == "PASS"
             and r03_machine.get("independent_checks_passed") == 24
             and r03_machine.get("independent_checks_failed") == 0
             and r03_machine.get("independent_processes_invoked") == 0
+            and r03_machine.get("contract_report_sha256")
+            == sha256(r03_contract_report_path)
+            and r03_machine.get("runner_report_sha256")
+            == sha256(r03_run_report_path)
             and r03_machine.get("independent_report_sha256")
             == sha256(r03_independent_report_path)
+            and r03_machine.get("result_paths")
+            == r03_source_paths
+            + [r03_static_failure["path"], r03_outputs["contract_report"]]
+            + [r03_outputs[key] for key in r03_run_artifact_keys]
+            + [r03_outputs["independent_check_report"]]
             and r03_run_directory.is_dir()
             and all(path.is_file() for path in r03_run_output_paths)
             and r03_independent_report_path.is_file()
@@ -9713,7 +9733,12 @@ def main() -> int:
             and r03_next_scope.startswith(
                 "run the independent persisted-evidence checker for M01 open-source device DC revision-3 portable"
             )
-        ) or r03_verified_state
+        ) or (
+            r03_verified_state
+            and r03_next_scope.startswith(
+                "commit and push the independently verified M01 open-source device DC revision-3 portable E3 state"
+            )
+        )
         add_check(
             checks,
             "m01_open_source_device_dc_r03:portable_contract_implementation",
@@ -9821,7 +9846,13 @@ def main() -> int:
                         "m01_open_source_device_dc_r03_runner_pass_boundary", ""
                     )
                 )
-                or r03_verified_state
+                or (
+                    r03_verified_state
+                    and "24/24 PASS at E3"
+                    in config.get("tcad_track", {}).get(
+                        "m01_open_source_device_dc_r03_independent_pass_boundary", ""
+                    )
+                )
             )
             and r03_next_scope_valid,
             f"implemented={r03_implemented_state} ready={r03_ready_state} "

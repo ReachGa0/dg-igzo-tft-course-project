@@ -1788,9 +1788,9 @@
         "next_gate": "Commit and push the 24/24 E3 independent result, then establish a versioned M01 route-divergence root-cause contract before any new simulator run or C00/downstream work."
       },
       "open_source_device_dc_r03": {
-        "status": "formal_run_passed",
+        "status": "verified",
         "revision": 3,
-        "current_evidence": "E2",
+        "current_evidence": "E3",
         "contract_id": "M01_OPEN_SOURCE_DEVICE_DC_R03",
         "contract_path": "config/m01_open_source_device_dc_r03.json",
         "common_path": "scripts/m01_open_source_device_dc_r03_common.py",
@@ -1812,9 +1812,9 @@
         "formal_run_status": "PASS",
         "runner_checks_passed": 30,
         "runner_checks_failed": 0,
-        "independent_check_completed": false,
-        "independent_check_status": "NOT_RUN",
-        "independent_checks_passed": 0,
+        "independent_check_completed": true,
+        "independent_check_status": "PASS",
+        "independent_checks_passed": 24,
         "independent_checks_failed": 0,
         "independent_processes_invoked": 0,
         "target_row_count": 247,
@@ -1867,7 +1867,8 @@
           "results/tables/m01_open_source_route_difference_r03.csv",
           "report/assets/m01_open_source_cross_check_r03.png",
           "report/assets/m01_open_source_route_difference_r03.png",
-          "results/reports/m01_open_source_cross_check_r03.json"
+          "results/reports/m01_open_source_cross_check_r03.json",
+          "results/reports/m01_open_source_cross_check_r03_check.json"
         ],
         "future_outputs_absent": false,
         "contract_processes_invoked": 0,
@@ -1881,6 +1882,7 @@
           "preserved": true
         },
         "runner_report_sha256": "df188515d5749735fc479998d42d8b4b92ce84d2f40687801c531cc563249c79",
+        "independent_report_sha256": "5419f34b20861561137ad19768af4783e4e7372265cc42ccb5abf27c2691a937",
         "runner_elapsed_seconds": 9.070427417755127,
         "persisted_counts": {
           "device_netlists": 2,
@@ -1892,16 +1894,16 @@
         },
         "route_diagnostics": {
           "agreement_observed_by_runner": true,
-          "independent_verification_completed": false,
+          "independent_verification_completed": true,
           "thresholds_are_pass_gates": false,
           "ngspice_current_max_a_per_cm": 0.00046825230492225634,
           "xyce_current_max_a_per_cm": 0.00046825230492225607,
           "maximum_absolute_difference_a_per_cm": 4.3706900078321897e-19,
           "maximum_log_difference_dec": 2.7533531010703882e-14,
-          "interpretation": "the portable clamp produced machine-precision route agreement in the one formal runner; preserve for independent persisted-evidence verification"
+          "interpretation": "the portable clamp produced machine-precision two-route agreement in the one formal runner, independently reproduced from persisted evidence"
         },
-        "evidence_boundary": "The one permitted R03 two-route runner returned 30/30 PASS at E2 after exactly one serial ngspice and one serial GPL Xyce device-only DC process. It persisted two 247-device netlists, two finite 247-row route tables, 30 metric rows, 247 route-difference rows and two figures. The runner observed machine-precision route agreement after the portable clamp replacement, but independent persisted-evidence verification remains unrun. This is teaching-model device-only numerical evidence, not equation identity, physical parameters, experimental calibration, external validation, P2/T03 closure, C00, circuit, layout, PEX or HZO evidence.",
-        "next_gate": "Run the 24-check independent persisted-evidence checker for M01 open-source device DC revision-3 portable exactly once after this E2 state is committed and pushed. Do not run C00."
+        "evidence_boundary": "The one permitted R03 independent checker returned 24/24 PASS at E3 with zero process invocations after the 42/42 E3 static and 30/30 E2 runner states were separately committed. It independently regenerated both 247-device netlists, parsed both native outputs, exactly recomputed the two 247-row route tables, 30 metric rows and 247 route-difference rows, and verified all 14 runner artifact hashes and both figure dimensions. This independently reproduces the machine-precision two-route agreement for the frozen IGZO-only teaching candidate. It does not establish equation identity, native HSPICE Level 61, physical parameters, experimental calibration, external validation, P2/T03 closure, circuit readiness, layout, PEX or HZO evidence. M01 and C00 remain closed until this E3 state is committed and a separate closure decision is recorded.",
+        "next_gate": "Commit and push this 24/24 E3 independently verified state before deciding whether M01 closes within the declared teaching-model boundary and whether C00 may open. Do not run C00 before that decision."
       },
       "route_divergence_root_cause_r01": {
         "status": "contract_failed_static_checker",

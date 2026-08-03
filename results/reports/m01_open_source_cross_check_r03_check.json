@@ -1,0 +1,150 @@
+{
+  "schema_version": "1.0",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "M01",
+  "contract_id": "M01_OPEN_SOURCE_DEVICE_DC_R03",
+  "status": "PASS",
+  "evidence_level": "E3",
+  "config": {
+    "path": "config/m01_open_source_device_dc_r03.json",
+    "sha256": "160ffcfaa068bdea52ced7c0ae56c104e38c0bc63b7b9831b8778c476f521b68"
+  },
+  "runner": {
+    "path": "scripts/run_m01_open_source_device_dc_r03.py",
+    "sha256": "b371ef88d5eba824d2e9d6849f62d673992605142efa109824d2b43003de1017"
+  },
+  "runner_report": {
+    "path": "results/reports/m01_open_source_cross_check_r03.json",
+    "sha256": "df188515d5749735fc479998d42d8b4b92ce84d2f40687801c531cc563249c79"
+  },
+  "summary": {
+    "passed": 24,
+    "failed": 0,
+    "total": 24
+  },
+  "processes_invoked": 0,
+  "checks": [
+    {
+      "name": "result:runner_passed_30_of_30",
+      "status": "PASS",
+      "detail": "passed=30/30 machine=formal_run_passed"
+    },
+    {
+      "name": "identity:config_and_runner_hashes",
+      "status": "PASS",
+      "detail": "contract=M01_OPEN_SOURCE_DEVICE_DC_R03"
+    },
+    {
+      "name": "binding:static_contract_pass",
+      "status": "PASS",
+      "detail": "static=42/42"
+    },
+    {
+      "name": "binding:r11_preflight_unchanged",
+      "status": "PASS",
+      "detail": "bound=4"
+    },
+    {
+      "name": "execution:two_exact_commands",
+      "status": "PASS",
+      "detail": "commands=2"
+    },
+    {
+      "name": "execution:process_and_scope_audit",
+      "status": "PASS",
+      "detail": "processes=2 machine=formal_run_passed"
+    },
+    {
+      "name": "tools:hash_bound_binaries",
+      "status": "PASS",
+      "detail": "ngspice and GPL Xyce"
+    },
+    {
+      "name": "targets:hashes_counts_and_order",
+      "status": "PASS",
+      "detail": "rows=247 prediction_uid_map=247"
+    },
+    {
+      "name": "candidate:igzo_hash_and_scope",
+      "status": "PASS",
+      "detail": "dd56c4c5b9f67d628eb2677705139769642b2e0eb66fca5b453b3cc6be351fd6"
+    },
+    {
+      "name": "netlists:exact_deterministic_regeneration",
+      "status": "PASS",
+      "detail": "sha256=b6896e1430091479ea2680e48c4b11cf42fd2ce4583648b0a0a40d84b6e31e71/5639280b33b48d467e227ce6cf6f229242bc575c191535c4574175dffddf42ee"
+    },
+    {
+      "name": "netlists:device_dc_scope",
+      "status": "PASS",
+      "detail": "247 IGZO devices per route"
+    },
+    {
+      "name": "raw:simulator_artifacts_hash_bound",
+      "status": "PASS",
+      "detail": "bytes=11720/13377"
+    },
+    {
+      "name": "raw:independent_parser_cardinality",
+      "status": "PASS",
+      "detail": "rows=247/247"
+    },
+    {
+      "name": "tables:raw_schema_and_counts",
+      "status": "PASS",
+      "detail": "fields=22 rows=247/247"
+    },
+    {
+      "name": "tables:raw_exact_recomputation",
+      "status": "PASS",
+      "detail": "both route tables reproduce raw simulator files"
+    },
+    {
+      "name": "extraction:zero_vds_invariants",
+      "status": "PASS",
+      "detail": "rows=14 max=0"
+    },
+    {
+      "name": "metrics:schema_and_count",
+      "status": "PASS",
+      "detail": "fields=13 rows=30"
+    },
+    {
+      "name": "metrics:exact_recomputation",
+      "status": "PASS",
+      "detail": "26 curve and four equal-curve aggregate rows"
+    },
+    {
+      "name": "differences:schema_and_count",
+      "status": "PASS",
+      "detail": "fields=13 rows=247"
+    },
+    {
+      "name": "differences:exact_recomputation",
+      "status": "PASS",
+      "detail": "all route differences reproduce"
+    },
+    {
+      "name": "diagnostics:finite_and_not_a_tuned_gate",
+      "status": "PASS",
+      "detail": "finite diagnostics retained without post-run tuning"
+    },
+    {
+      "name": "figures:png_hashes_and_dimensions",
+      "status": "PASS",
+      "detail": "dimensions=(2240, 1760)/(2240, 1760)"
+    },
+    {
+      "name": "artifacts:all_runner_hashes_recomputed",
+      "status": "PASS",
+      "detail": "hashes=14/14"
+    },
+    {
+      "name": "boundary:no_downstream_or_overclaim",
+      "status": "PASS",
+      "detail": "device-only numerical evidence; no calibration/circuit/layout claim"
+    }
+  ],
+  "evidence_boundary": "E3 independently establishes persisted-evidence integrity for the two device-only open-source routes. It does not establish equation identity, physical parameters, experimental calibration, external validation, circuit readiness, layout, PEX or HZO evidence.",
+  "next_gate": "Commit and push this E3 state before deciding whether M01 closes within the declared teaching-model boundary and whether C00 may open."
+}

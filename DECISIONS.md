@@ -1,5 +1,14 @@
 # 设计决策记录
 
+## ADR-081：R03 独立 E3 复现机器精度级路线一致，收口决定另设提交门
+
+- 日期：2026-08-03
+- 状态：已实施，E3；R03 静态/runner/独立三门唯一返回 42/42 E3、30/30 E2、24/24 E3，M01/C00 尚未关闭。
+- runner PASS 提交 `6f4e89b` 推送并同步后，唯一执行 `make m01-open-source-device-dc-r03-check`。标准库 checker 启动 0 个进程并返回 24/24 PASS；报告 `results/reports/m01_open_source_cross_check_r03_check.json` SHA-256 为 `5419f34b20861561137ad19768af4783e4e7372265cc42ccb5abf27c2691a937`。
+- checker 独立再生两个 247 器件 ASCII 网表，解析 ngspice raw 与 Xyce PRN，精确重算两份 247 行路线表、30 行指标和 247 行差异，并复核全部 14 个 runner 哈希和两张 PNG 尺寸。最大绝对/对数路线差仍为 `4.3706900078321897e-19 A/cm`/`2.7533531010703882e-14 decade`。
+- 该 E3 在冻结 IGZO-only 教学模型和预注册 247 行域内独立复现机器精度级两路线一致；R02 的历史路线分歧与根因最小点边界继续保留。它不证明方程身份、原生 HSPICE Level 61、物理 IGZO 参数、实验校准、外部验证、正式敏感性、P2/T03、电路、版图、PEX 或 HZO。
+- 按独立报告的 next gate，必须先提交并推送本 E3 登记，之后才能单独判断 M01 是否在声明的教学模型边界内关闭、C00 是否可开放。该判断前不运行 C00，R03 runner/独立 checker 和所有历史 revision 均不重跑。
+
 ## ADR-080：R03 runner 的机器精度级路线一致只打开独立落盘复核
 
 - 日期：2026-08-03
