@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_ROUTE_DIVERGENCE_R01_STATIC_FAILED_E0_NEXT_R02`
+- 当前阶段：`M01_ROUTE_DIVERGENCE_R02_IMPLEMENTED_E0_NEXT_STATIC`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 只关闭 hash-bound Xyce 工具/parser 预检。正式器件 DC R01 固定为 39/40、E0/FAIL且不重跑；R02 40/30/24 完整落盘但路线分歧。`M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01` 静态合同唯一返回 38/40、E0/FAIL：checker 错读 R02 runner 报告不存在的 `route_diagnostics` 字段，`result:static_ready` 连带失败；零模拟器、零网表、零数值输出。R01 冻结，根因假设未被验证；M01/C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 只关闭 hash-bound Xyce 工具/parser 预检。正式器件 DC R01 固定为 39/40、E0/FAIL且不重跑；R02 40/30/24 完整落盘但路线分歧。`M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01` 静态合同唯一返回 38/40、E0/FAIL：checker 错读 R02 runner 报告不存在的 `route_diagnostics` 字段，`result:static_ready` 连带失败；零模拟器、零网表、零数值输出。R01 冻结。R02 只完成 schema-only 合同实现，绑定 R01 失败和三个实际诊断 CSV 的字节哈希，尚未运行静态合同；正式敏感性/探针、P2、T03 及 M01/C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -69,10 +69,12 @@
 - [x] E0 实施态收口验证：`make check` 755/755 PASS，`make report-check` 以 12 章、5 附录、15 个既有占位、28 张图 PASS；JSON/Python 语法和 `git diff --check` 通过。这些仍是实施/结构验证，不是根因静态合同或数值探针结果。
 - [x] 实施提交 `015253f` 推送并确认与 `origin/main` 同步后，唯一执行 `make m01-route-divergence-r01-contract-check` 返回 38/40、E0/FAIL；报告 SHA-256 为 `3aba1c829ca3aea4002f7ee285155a26c68837c9833ab88be3f475f336a34378`。主失败 `observation:r02_divergence_values` 来自 checker 读取不可改写 R02 runner 报告中不存在的顶层 `route_diagnostics`，`result:static_ready` 仅为连带失败；其余 38 项通过。
 - [x] R01 静态报告记录 0 个模拟器进程、0 个网表和 0 个数值输出；runner/独立报告、探针目录和探针表均不存在。该失败不支持也不否定三参数 `limit` 假设，不是器件、路线、物理参数或校准结果。R01 不重跑；R02 只能在新命名空间修正诊断证据读取来源。
+- [x] 建立 `M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R02` 新命名空间：配置、common、40 项静态 checker、30 项最小 runner、22 项独立 checker 和三个 Make 入口均已实现。R02 只修正 R01 暴露的诊断证据来源，哈希绑定实际落盘的 ngspice/Xyce/route-difference 三份 CSV，并使失败 `next_gate` 按状态生成；表达式点、候选、工具、进程预算、阈值、失败保留和 IGZO 范围不变。
+- [x] R02 实施态绑定 R01 提交 `203acaa`、R01 38/40 E0/FAIL 报告和三份既有诊断 CSV；静态/runner/独立报告、探针网表、日志和新增数值输出均不存在。`make check` 为 756/756 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位、28 张图 PASS，`git diff --check` 通过；这些是结构/实施证据，不是 R02 静态 PASS 或敏感性结果。
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送 R01 38/40 静态失败状态，再建立 `M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R02` schema-only 修订，只把 R02 诊断读取改为哈希绑定的实际落盘表/既有机器字段。R02 静态 PASS 状态另行提交推送前，不允许两进程最小根因探针；R01/R11/正式器件 DC R02 均不重跑，C00、电路、版图、PEX 和 HZO 继续关闭。
+- 下一步：提交并推送 `M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R02` E0 实施态，再唯一运行 40 项纯静态合同。只有 R02 静态 40/40 E3 状态另行提交推送后，才允许按合同运行一次两进程最小根因探针；R01/R11/正式器件 DC R02 均不重跑，P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 继续关闭。
 - M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败、28/30 干跑失败和 R10 runner 失败均保留。
 
@@ -186,7 +188,7 @@
 - [x] T01 单栅 IGZO 漂移扩散（教学参数 E2 数值门完成；不等同实验标定或物理参数验证）。
 - [x] T02 双栅电流与阈值耦合（冻结教学模型数值门完成；不等同实验标定、物理电容比、迟滞或紧凑模型验证）。
 - [x] T03 五组器件参数分析（P1/P2/P3/P4/P5 DONE；P2/P3 历史 FAIL 保留；各完成组均有独立 E3 落盘检查）。
-- [ ] M00/M01 紧凑模型拟合与双轨对照（M00 R01 正式拟合保持 E0/FAIL，R02 runner 24/24 E2、独立检查 20/20 E3，只在教学数值域内关闭；M01 历史失败保留，R11 工具/parser 预检 36/32/25 完成，正式器件 DC R01 静态 39/40 E0/FAIL，R02 40/30/24 完成并由独立 E3 确认路线分歧。根因 R01 40/30/22 链已实现但静态合同未运行，正式 M01 仍未收口）。
+- [ ] M00/M01 紧凑模型拟合与双轨对照（M00 R01 正式拟合保持 E0/FAIL，R02 runner 24/24 E2、独立检查 20/20 E3，只在教学数值域内关闭；M01 历史失败保留，R11 工具/parser 预检 36/32/25 完成，正式器件 DC R01 静态 39/40 E0/FAIL，R02 40/30/24 完成并由独立 E3 确认路线分歧。根因 R01 38/40 E0/FAIL 已冻结，R02 仅完成 E0 schema-only 实现且静态未运行，正式 M01 仍未收口）。
 - [ ] C00/C01 单极性标准单元。
 - [ ] C02/C03 环振和全加器。
 - [ ] L00/V00/V01 PCell、GDS、DRC、几何 LVS。
@@ -216,7 +218,7 @@
 - M00 R01 的聚合误差通过不能覆盖 `L=12 um` holdout gm 门失败。其 11 个系数、预测和图是已计算但未接受的 E0/FAIL 诊断，不是 M00 模型、实验标定、外部独立验证、物理参数提取、双仿真器验证或电路可用性。
 - M00 R02 的 27/27 静态合同、24/24 runner 和 20/20 独立复核只证明结构正则化教学代理对冻结项目数值曲线的局部一致性；`Lref/L` 固定指数、10 个系数及近下界诊断不能写成物理缩放规律、实验拟合、外部验证、原生 Level 61 或电路模型。候选文件尚未执行。
 - M01 R01 的 11/13 只证明 ngspice 版本探针通过且原 AIM-Spice 路线不满足来源/批处理门。它不是 AIM-Spice 或 ngspice 数值失败、Level 15 执行、IGZO 曲线或第二路线通过；开源候选工具在独立合同、提交和正式运行前也不得写成 M01 结果。
-- M01 根因 R01 当前只是 E0 实施和静态文档/源码假设。未运行的三参数 `limit` 语义探针不能写成已确认根因；未运行的 `min(max(...))` 诊断副本也不是已接受模型、路线一致或物理修正。
+- M01 根因 R01 当前是不可改写的 38/40 E0/FAIL；R02 仅为 E0 schema-only 实现。未运行的三参数 `limit` 语义探针不能写成已确认根因；未运行的 `min(max(...))` 诊断副本也不是已接受模型、路线一致或物理修正。
 - 尚未生成的有源负载网表、标准单元版图和 LVS 报告。
 
 ## 当前阻塞
@@ -225,8 +227,8 @@
 2. 双栅实测数据缺失时只能做文献约束敏感性。
 3. 需要老师确认 DEVSIM、单极性有源负载逻辑和 KLayout 几何 LVS 的接受度。
 4. 复杂电路跨线层和顶栅实际工艺尚未明确。
-5. M00 R01 的 `L=12 um` holdout gm 相对误差 `0.512384` 超过冻结 `0.50`，该失败永久保留；M01 全部工具/合同历史失败同样保留，未授权 AIM-Spice 永久排除。开源 R02 正式器件 DC 已执行且落盘完整，但 ngspice/Xyce 数值分歧使 M01/C00 继续关闭；当前根因假设必须先通过版本化静态合同和最小数值探针，不能以源码阅读直接确认。
+5. M00 R01 的 `L=12 um` holdout gm 相对误差 `0.512384` 超过冻结 `0.50`，该失败永久保留；M01 全部工具/合同历史失败同样保留，未授权 AIM-Spice 永久排除。开源 R02 正式器件 DC 已执行且落盘完整，但 ngspice/Xyce 数值分歧使 M01/C00 继续关闭；当前根因假设必须先通过已提交的 R02 静态合同和随后最小数值探针，不能以源码阅读直接确认。
 
 ## 下一步
 
-先提交并推送 `M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01` 38/40 E0 静态失败状态，再建立 R02 新命名空间，只修正不存在的 R02 runner `route_diagnostics` 字段读取。R02 静态 PASS 状态另行提交推送前，不得执行 ngspice/Xyce 根因探针；正式器件 DC R02 247 行不重跑，不改候选、探针、工具、预算或阈值，C00、电路、版图、PEX 和 HZO 保持关闭。
+先提交并推送 `M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R02` E0 schema-only 实施态，再唯一运行 40 项纯静态合同。R02 静态 PASS 状态另行提交推送前，不得执行 ngspice/Xyce 根因探针；正式器件 DC R02 247 行不重跑，不改候选、探针、工具、预算或阈值，P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 保持关闭。

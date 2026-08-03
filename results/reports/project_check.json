@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 755,
+  "checks": 756,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=27164"
+      "detail": "bytes=27751"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=23447"
+      "detail": "bytes=23911"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=22452"
+      "detail": "bytes=22646"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=194870"
+      "detail": "bytes=196659"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4872"
+      "detail": "bytes=5038"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=113525"
+      "detail": "bytes=114770"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=61438"
+      "detail": "bytes=62431"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=13537"
+      "detail": "bytes=13940"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=51083"
+      "detail": "bytes=52212"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=119826"
+      "detail": "bytes=122999"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2177,7 +2177,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=78736"
+      "detail": "bytes=79918"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3537,7 +3537,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "establish and commit M01 route-divergence root-cause revision-2 as a schema-only correction bound to the immutable R01 38/40 static failure; correct only the R02 diagnostic evidence source, run no simulator before a separately committed R02 static PASS, and keep C00, circuit, layout, PEX and HZO closed"
+      "detail": "establish and commit M01 route-divergence root-cause revision-2 schema-only contract implementation bound to the immutable R01 38/40 static failure; correct only the R02 diagnostic evidence source and status-aware failure gate, run no simulator before a separately committed R02 static PASS, and keep C00, circuit, layout, PEX and HZO closed"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3607,7 +3607,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "establish and commit M01 route-divergence root-cause revision-2 as a schema-only correction bound to the immutable R01 38/40 static failure; correct only the R02 diagnostic evidence source, run no simulator before a separately committed R02 static PASS, and keep C00, circuit, layout, PEX and HZO closed"
+      "detail": "establish and commit M01 route-divergence root-cause revision-2 schema-only contract implementation bound to the immutable R01 38/40 static failure; correct only the R02 diagnostic evidence source and status-aware failure gate, run no simulator before a separately committed R02 static PASS, and keep C00, circuit, layout, PEX and HZO closed"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3713,6 +3713,11 @@
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",
       "status": "PASS",
       "detail": "implemented=False ready=False failed=True runner=False verified=False r02_binding=True implementation_failure=True source_scan_failure=True future_absent=12/13"
+    },
+    {
+      "name": "m01_route_divergence_r02:contract_runner_independent_chain",
+      "status": "PASS",
+      "detail": "implemented=True ready=False runner=False verified=False r01_binding=True"
     },
     {
       "name": "tcad:mesh_levels",

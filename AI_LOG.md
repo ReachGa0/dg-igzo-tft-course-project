@@ -16,6 +16,24 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 建立 M01 路线分歧根因 R02 schema-only 合同（静态未执行）
+
+### 目标与边界
+
+承接不可改写的 `M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01` 38/40、E0/FAIL 静态报告，只修正 R01 checker 读取不存在顶层 `route_diagnostics` 的证据来源。R02 绑定提交 `203acaa`、R01 配置/源码/报告哈希，以及已由正式器件 R02 runner 和独立检查落盘的三份诊断 CSV；不改变 IGZO 候选、表达式点、工具、两进程预算、阈值、失败保留或下游关闭门。
+
+### 实施与验证
+
+新增 R02 配置、公共模块、40 项静态 checker、30 项未来 runner、22 项未来独立 checker 和三个 Make 入口。静态 checker 现在从哈希绑定的 ngspice/Xyce 原始表与路线差异表重算最大电流/差异，并生成状态一致的 `next_gate`；未来 runner/独立 checker 仍被静态 PASS 和提交门锁住。R02 静态报告、探针网表、日志和新增数值输出均不存在。
+
+更新 `config/project.json`、`config/experiments.json`、`STATUS.md`、README、AI 上下文、架构、计划、ADR-074、报告第 5/6/8/9 章和 `report/evidence_matrix.csv`，登记 R02 为 E0 实施态，明确正式敏感性、P2、T03、M01、C00、电路、版图、PEX 和 HZO 尚未完成。实施验证：`make check` 756/756 PASS，`make report-check` 12 章/5 附录/15 个既有占位/28 张图 PASS，JSON/Python 语法及 `git diff --check` 通过；没有运行任何 TCAD/SPICE 仿真。
+
+### 下一步
+
+先提交并推送 R02 实施态，再唯一执行 40 项纯静态合同。只有已提交的 R02 40/40 E3 静态 PASS 才能打开一次两进程最小根因探针；R01、正式器件 DC R02、P2/T03 后续敏感性及所有下游阶段均不重跑/不启动。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 路线分歧根因 R01 静态合同失败（保留，转 R02）
 
 ### 唯一静态执行与失败分类
