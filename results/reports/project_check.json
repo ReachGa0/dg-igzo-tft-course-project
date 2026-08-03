@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=26039"
+      "detail": "bytes=25558"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=23082"
+      "detail": "bytes=22967"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=21830"
+      "detail": "bytes=21807"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=180092"
+      "detail": "bytes=181698"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4973"
+      "detail": "bytes=4893"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=103737"
+      "detail": "bytes=104938"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=53047"
+      "detail": "bytes=53774"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=41157"
+      "detail": "bytes=42260"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=106421"
+      "detail": "bytes=107313"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2022,7 +2022,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=67755"
+      "detail": "bytes=68769"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3382,7 +3382,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "commit and push the M01 open-source device DC R01 contract implementation, then run its 40-check static contract exactly once; do not execute either ngspice or Xyce device route before the static PASS is committed, and do not run C00, circuit, layout, PEX or HZO stages"
+      "detail": "preserve and commit the M01 open-source device DC R01 39/40 static checker failure, then establish and commit revision-2 in a new namespace; do not execute either ngspice or Xyce device route, and do not run C00, circuit, layout, PEX or HZO stages"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3452,7 +3452,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "commit and push the M01 open-source device DC R01 contract implementation, then run its 40-check static contract exactly once; do not execute either ngspice or Xyce device route before the static PASS is committed, and do not run C00, circuit, layout, PEX or HZO stages"
+      "detail": "preserve and commit the M01 open-source device DC R01 39/40 static checker failure, then establish and commit revision-2 in a new namespace; do not execute either ngspice or Xyce device route, and do not run C00, circuit, layout, PEX or HZO stages"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3547,7 +3547,7 @@
     {
       "name": "m01_open_source_device_dc_r01:contract_runner_independent_chain",
       "status": "PASS",
-      "detail": "implemented=True ready=False runner=False verified=False future_absent=18/18"
+      "detail": "implemented=False failed=True ready=False runner=False verified=False future_absent=17/18"
     },
     {
       "name": "tcad:mesh_levels",

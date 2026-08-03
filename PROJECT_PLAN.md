@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`M01_DEVICE_DC_R01_CONTRACT_IMPLEMENTED_E0_NEXT_STATIC`：T01/T02/T03 数值门已关闭，历史失败保留。M00 R02 只在冻结教学数值域内关闭。R11 已完成 36/32/25 工具/parser 证据链。正式 `M01_OPEN_SOURCE_DEVICE_DC_R01` 已实施 40/30/24 三门，冻结同一 IGZO 候选、247 行、每路线一个 247 器件 ASCII 单点 DC 网表、ngspice/Xyce 各一进程、提取/指标/失败/输出边界；合同、runner 和独立检查尚未运行。下一门是实施提交后的唯一静态合同，40/40 PASS 状态提交前不执行任一路线。
+`M01_DEVICE_DC_R01_STATIC_FAILED_E0_NEXT_R02`：T01/T02/T03 数值门和 R11 工具/parser 预检已关闭，历史失败保留。正式 R01 静态合同在实施提交 `b8c3a03` 后唯一返回 39/40、E0/FAIL；唯一失败为 checker 读取 R11 独立报告不存在的顶层 `processes_invoked`。0 个 build/simulator process、0 个器件网表和 0 个数值输出；R01 冻结且不重跑。下一门是先提交该失败，再以 R02 新命名空间只修正 schema 断言。
 
 ## 截止日期
 
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-M00 与 M01 历史运行均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。先提交并推送 `M01_OPEN_SOURCE_DEVICE_DC_R01` E0 实施态，再唯一运行 40 项静态合同；PASS 状态另行提交前不执行 ngspice/Xyce 两路线。电路、版图、PEX 和 HZO 继续关闭。
+M00 与 M01 历史运行均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。先提交并推送 R01 39/40 静态失败，再建立 R02，只修正 R11 独立报告的持久化 schema 断言；R02 静态 PASS 提交前不执行 ngspice/Xyce 两路线。电路、版图、PEX 和 HZO 继续关闭。

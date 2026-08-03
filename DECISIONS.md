@@ -1,9 +1,19 @@
 # 设计决策记录
 
+## ADR-067：R01 39/40 schema 断言失败冻结，R02 只修正持久化字段读取
+
+- 日期：2026-08-03
+- R01 实施提交 `b8c3a03` 推送后，40 项静态合同唯一返回 39/40、E0/FAIL。唯一失败项要求不可改写的 R11 独立报告具有顶层 `processes_invoked=0`，但该报告没有此字段；它通过已登记的 no-runner/no-process 检查表达同一边界。
+- R01 报告哈希为 `7baba2fcd7bc186bfa30780882816c27d33708c91957e0a53db51c8c435b16ba`，记录零 build/simulator process、零器件网表、零数值输出，并证明运行前正式路径全缺失。该失败是 checker-schema 缺陷，不是器件、模拟器、输入、物理或权限失败。
+- R01 config/checker/common/runner/independent 与报告全部冻结且不得重跑。R02 必须使用新 config/source/output 命名空间，只把错误字段读取替换为对 R11 25/25 报告既有 summary/检查项的 schema-aware 复核；247 行、候选字节、两进程预算、网表、提取、阈值、失败保留和证据边界不变。
+- R02 静态 PASS 状态提交并推送前，ngspice/Xyce 正式路线、独立 checker、C00、版图、PEX 和 HZO 均保持关闭。
+
+---
+
 ## ADR-066：正式 M01 采用两份 247 器件单点 DC 网表和严格两进程预算
 
 - 日期：2026-08-03
-- 状态：`M01_OPEN_SOURCE_DEVICE_DC_R01` 已实施、E0；40 项静态合同尚未运行，正式器件 DC 继续关闭。
+- 状态：R01 后续唯一静态检查为 39/40、E0/FAIL；本 ADR 的器件/进程/提取合同不变，正式器件 DC 继续关闭。
 - 两路线使用完全相同的 `IGZO_DG_BEHAVIORAL_R02` 候选字节和 247 行冻结目标，但不宣称方程身份。选择清单唯一决定执行顺序；预测表按稳定 `row_uid` 连接，不能要求两文件物理排序相同。
 - 每路线生成一个 ASCII 仓库相对网表，包含 247 个独立 IGZO 子电路、各自 VDS/VTG/VBG 源和一个 dummy 单点 DC sweep。ngspice 与 GPL Xyce 各启动一次且串行，总进程预算 2；AIM-Spice、TCAD、电路、瞬态、SnO、HZO 和下游进程为 0。
 - 提取固定为 `abs(I(VDS))/(W_um*1e-4)`；输出固定为每路线 247 原始行、26 曲线 + 4 split 聚合指标行、247 路线差异行和两图。路线对目标误差与路线差异必须报告但不是事后调参门；完整、有限、零 VDS 和落盘完整性才是执行门。

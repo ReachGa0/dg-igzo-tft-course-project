@@ -20,7 +20,7 @@
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
 - S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，仅在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。R07 build/tool runner 唯一返回 42/47、E0/FAIL，实际固定列 `.prn` 输出已保留；R08 静态 checker 唯一执行因 36/30 注册表缺陷中止并已归档，R08 不重跑；R09 静态 checker 唯一返回 34/36、E0/FAIL，两个合同断言失败已归档，R09 不重跑；R10 静态合同唯一返回 36/36 PASS、E3，runner 随后在版本/许可证/B-source 三条 Xyce 命令通过且观测 1.25 V 后，因含中文绝对路径的 parser-only 网表不能按 ASCII 写入而失败。parser-only、独立检查和正式器件 DC 未运行，部分目录已哈希保留，R10 不重跑。R11 静态合同唯一返回 36/36 PASS、E3，runner 唯一返回 32/32 PASS、E2，独立落盘复核唯一返回 25/25 PASS、E3；4 个允许的 Xyce 工具/parser 进程均通过，完成相对 ASCII include 的 parser-only syntax，独立复核零进程。Xyce 二进制和完整安装树只能按新合同哈希绑定复用，正式 M01 器件 DC、C00/L00/V01 仍未完成，G0 仍为 `TEACHING_BASELINE_ONLY`。
-- `M01_OPEN_SOURCE_DEVICE_DC_R01` 已实施 40 项静态合同、30 项未来 runner 和 24 项未来独立 checker，冻结同一 IGZO 候选、247 行、两份 247 器件 ASCII 单点 DC 网表、ngspice/Xyce 各一进程及提取/指标/失败/输出边界。当前 E0，静态合同和两路线均未运行；首次项目检查器排序假设失败已归档，按 `row_uid` 修正后 722/722 PASS。
+- `M01_OPEN_SOURCE_DEVICE_DC_R01` 静态合同在实施提交 `b8c3a03` 后唯一返回 39/40、E0/FAIL。唯一失败为错误要求 R11 独立报告存在顶层 `processes_invoked`；报告记录零 build/simulator process、零器件网表和零数值输出。R01 冻结不重跑；R02 只能在新命名空间修正该 schema 断言，物理/数据/阈值/路线和边界不得改变。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
@@ -102,7 +102,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. T02-A/B/C、T03-P1/P2/P3/P4/P5、M00 R02 数值门与 R11 工具/parser 预检已完成，历史失败继续保留且不得重跑。`M01_OPEN_SOURCE_DEVICE_DC_R01` 当前仅实施 E0；先提交实施态，再唯一运行 40 项静态合同。40/40 PASS 状态提交前不得执行 ngspice/Xyce 两路线，不得放宽阈值、改变 split、用 holdout 调参或打开电路、KLayout、PEX、HZO。
+8. T02-A/B/C、T03-P1/P2/P3/P4/P5、M00 R02 数值门与 R11 工具/parser 预检已完成，历史失败继续保留且不得重跑。正式 R01 静态合同固定为 39/40 E0/FAIL；先提交失败，再实施 R02 schema-only 修正。R02 静态 PASS 提交前不得执行 ngspice/Xyce 两路线，不得放宽阈值、改变 split、用 holdout 调参或打开电路、KLayout、PEX、HZO。
 
 ## 原始资产路径
 

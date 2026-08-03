@@ -855,7 +855,7 @@
         },
         "next_gate": "establish and commit an explicitly open-source second-simulator recovery contract before any device-level numerical execution"
       },
-      "evidence_boundary": "The revision-3 M01 contract remains 32/32 E3 static evidence, the R01 tool/provenance preflight remains an 11/13 E0/FAIL preserved run, and the open-source recovery contract remains 30/30 E3. All historical Xyce build/checker failures remain preserved. R11 completed its one 36/36 E3 static check, one 32/32 E2 tool/parser runner and one 25/25 E3 independent persisted-evidence check; four allowlisted Xyce tool/parser processes returned zero, the 1.25 V self-test and repository-relative ASCII include syntax passed, and the independent checker started zero processes. R11 therefore closes only the hash-bound Xyce tool/parser preflight, not formal device DC or numerical M01. M01_OPEN_SOURCE_DEVICE_DC_R01 is now implemented at E0 with a 40-check static contract, 30-check future runner and 24-check future independent checker. It freezes the same 247 IGZO rows, one ngspice and one GPL Xyce device-only DC process, exact extraction/metrics, exclusive outputs and failure retention. Its static contract has not run and no formal netlist, raw table, metric, route difference, figure or run report exists. External baselines remain reference-only; unauthorized AIM-Spice, SnO, HZO and circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
+      "evidence_boundary": "The revision-3 M01 contract remains 32/32 E3 static evidence, the R01 tool/provenance preflight remains an 11/13 E0/FAIL preserved run, and the open-source recovery contract remains 30/30 E3. All historical Xyce build/checker failures remain preserved. R11 completed its one 36/36 E3 static check, one 32/32 E2 tool/parser runner and one 25/25 E3 independent persisted-evidence check; R11 closes only the hash-bound Xyce tool/parser preflight, not formal device DC or numerical M01. The one permitted M01_OPEN_SOURCE_DEVICE_DC_R01 static invocation returned 39/40 E0/FAIL. Its sole failed assertion expected a nonexistent top-level processes_invoked field in the immutable R11 independent report even though that report passed its no-runner/no-process check. The R01 report records zero build/simulator processes, zero device netlists and zero numerical outputs; only its own report was created. R01 is immutable and no ngspice/Xyce formal route ran. Revision-2 may correct only this persisted-schema assertion in a new namespace while retaining all 247 IGZO rows, candidate bytes, process budget, extraction, thresholds and downstream closure. External baselines remain reference-only; unauthorized AIM-Spice, SnO, HZO and circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
       "open_source_recovery_contract": {
         "status": "contract_ready",
         "revision": 1,
@@ -1608,7 +1608,7 @@
         "next_gate": "Commit and push the R11 25/25 E3 independent persisted-evidence PASS, then establish a formal M01 two-route device-only DC execution contract. Do not execute either device route until that new static contract passes and its PASS state is committed."
       },
       "open_source_device_dc_r01": {
-        "status": "contract_implemented",
+        "status": "contract_failed_static_checker",
         "revision": 1,
         "current_evidence": "E0",
         "contract_id": "M01_OPEN_SOURCE_DEVICE_DC_R01",
@@ -1623,8 +1623,10 @@
         "expected_contract_check_count": 40,
         "expected_runner_check_count": 30,
         "expected_independent_check_count": 24,
-        "contract_check_completed": false,
-        "contract_status": "NOT_RUN",
+        "contract_check_completed": true,
+        "contract_status": "FAIL",
+        "contract_checks_passed": 39,
+        "contract_checks_failed": 1,
         "formal_run_completed": false,
         "formal_run_status": "NOT_RUN",
         "independent_check_completed": false,
@@ -1650,17 +1652,28 @@
           "simulator_processes_invoked": 0,
           "preserved": true
         },
+        "contract_failure": {
+          "path": "results/reports/m01_open_source_device_dc_contract_r01.json",
+          "sha256": "7baba2fcd7bc186bfa30780882816c27d33708c91957e0a53db51c8c435b16ba",
+          "failed_check": "binding:r11_no_formal_or_independent_process",
+          "failure_category": "r11_independent_report_nonexistent_top_level_processes_invoked_assertion",
+          "simulator_processes_invoked": 0,
+          "device_netlists_created": 0,
+          "numerical_outputs_created": 0,
+          "preserved": true
+        },
         "result_paths": [
           "config/m01_open_source_device_dc_r01.json",
           "scripts/m01_open_source_device_dc_r01_common.py",
           "scripts/check_m01_open_source_device_dc_r01_contract.py",
           "scripts/run_m01_open_source_device_dc_r01.py",
           "scripts/check_m01_open_source_device_dc_r01.py",
-          "results/reports/project_check_m01_device_dc_r01_prediction_order_assumption_failed.json"
+          "results/reports/project_check_m01_device_dc_r01_prediction_order_assumption_failed.json",
+          "results/reports/m01_open_source_device_dc_contract_r01.json"
         ],
-        "future_outputs_absent": true,
-        "evidence_boundary": "E0 implementation only. The registered static checker, future two-route runner and future independent checker have not run. No simulator, device netlist, numerical table, route metric, route-difference figure, circuit or downstream output was created. A later static PASS would freeze execution only; it would not be device numerical evidence or physical/experimental validation.",
-        "next_gate": "Commit and push this implementation, then run the 40-check static contract exactly once. Do not execute either device route until the static PASS state is committed and pushed."
+        "future_outputs_absent": false,
+        "evidence_boundary": "The one permitted R01 static checker returned 39/40 E0/FAIL because it required a nonexistent top-level processes_invoked field in the immutable R11 independent report. The R11 25/25 report instead proves its zero-process boundary through its registered independence check. The R01 report is preserved and records zero simulator/build processes, zero device netlists and zero numerical outputs. No runner or independent checker ran. This is a checker-schema assertion failure, not device, SPICE, physical-parameter or experimental evidence.",
+        "next_gate": "Preserve and commit the M01 open-source device DC R01 39/40 static checker failure, then establish and commit revision-2 in a new namespace. Do not execute either route."
       }
     },
     {

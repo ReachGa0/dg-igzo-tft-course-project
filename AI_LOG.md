@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 正式器件 DC R01 静态合同 39/40 失败
+
+### 唯一执行与结果
+
+R01 实施提交 `b8c3a03` 已推送并与 `origin/main` 同步；运行前 18 个预注册输出路径全部缺失。随后唯一执行 `make m01-open-source-device-dc-r01-contract-check`，纯静态 checker 返回 39/40、E0/FAIL。报告 `results/reports/m01_open_source_device_dc_contract_r01.json` 的 SHA-256 为 `7baba2fcd7bc186bfa30780882816c27d33708c91957e0a53db51c8c435b16ba`。
+
+### 失败原因与证据边界
+
+唯一失败项是 `binding:r11_no_formal_or_independent_process`：R01 checker 要求不可改写的 R11 独立报告存在顶层 `processes_invoked=0`，但 R11 25/25 报告没有该字段，而是以通过的 independence 检查和 summary 表达零进程边界。其余 39 项通过。R01 报告记录 0 个 build/simulator process、0 个器件网表、0 个数值输出和运行前全部未来输出缺失；运行后 18 个路径中只存在该静态报告。没有调用 ngspice、Xyce、TCAD、AIM-Spice、电路或下游工具。
+
+### 下一门
+
+R01 报告与源码冻结且不得重跑。失败登记后 `make check` 为 722/722 PASS，`make report-check` 为 12 章/5 附录/15 个既有占位/26 张图片 PASS，`git diff --check` 通过。先提交并推送本失败状态，再建立 `M01_OPEN_SOURCE_DEVICE_DC_R02` 新命名空间，只修正 R11 独立报告持久化 schema 断言；247 行目标、IGZO 候选、命令、两进程预算、提取、阈值、失败保留和证据边界均不变。R02 静态 PASS 提交前不运行正式两路线。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 开源两路线器件 DC R01 合同实施
 
 ### 实施内容

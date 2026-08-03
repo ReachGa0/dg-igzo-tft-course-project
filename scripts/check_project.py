@@ -812,6 +812,14 @@ def main() -> int:
             "execute the committed M01 open-source device DC R01 two-route runner"
         ) or current_next_scope.startswith(
             "run the 24-check independent persisted-evidence checker for M01 open-source device DC R01"
+        ) or current_next_scope.startswith(
+            "preserve and commit the M01 open-source device DC R01 39/40 static checker failure"
+        ) or current_next_scope.startswith(
+            "establish and commit M01 open-source device DC revision-2"
+        ) or current_next_scope.startswith(
+            "execute the committed M01 open-source device DC revision-2 two-route runner"
+        ) or current_next_scope.startswith(
+            "run the independent persisted-evidence checker for M01 open-source device DC revision-2"
         )
         dependencies_valid = all(
             set(item.get("depends_on", [])) <= set(experiment_map)
@@ -8210,6 +8218,18 @@ def main() -> int:
                 or r11_next_scope.startswith(
                     "run the 24-check independent persisted-evidence checker for M01 open-source device DC R01"
                 )
+                or r11_next_scope.startswith(
+                    "preserve and commit the M01 open-source device DC R01 39/40 static checker failure"
+                )
+                or r11_next_scope.startswith(
+                    "establish and commit M01 open-source device DC revision-2"
+                )
+                or r11_next_scope.startswith(
+                    "execute the committed M01 open-source device DC revision-2 two-route runner"
+                )
+                or r11_next_scope.startswith(
+                    "run the independent persisted-evidence checker for M01 open-source device DC revision-2"
+                )
             )
         )
         r11_expected_archive_paths = [
@@ -8466,6 +8486,65 @@ def main() -> int:
             and device_dc_machine.get("result_paths") == device_dc_source_paths
             and all(not path.exists() for path in device_dc_all_output_paths)
         )
+        device_dc_contract_failed_state = (
+            device_dc_contract_report.get("status") == "FAIL"
+            and device_dc_contract_report.get("evidence_level") == "E0"
+            and device_dc_contract_report.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and device_dc_contract_report.get("summary", {}).get("passed") == 39
+            and device_dc_contract_report.get("summary", {}).get("failed") == 1
+            and device_dc_contract_report.get("summary", {}).get("total") == 40
+            and device_dc_contract_report.get("summary", {}).get(
+                "build_processes_invoked"
+            )
+            == 0
+            and device_dc_contract_report.get("summary", {}).get(
+                "simulator_processes_invoked"
+            )
+            == 0
+            and device_dc_contract_report.get("summary", {}).get(
+                "device_netlists_created"
+            )
+            == 0
+            and device_dc_contract_report.get("summary", {}).get(
+                "numerical_outputs_created"
+            )
+            == 0
+            and device_dc_contract_report.get("summary", {}).get(
+                "formal_device_dc_invoked"
+            )
+            is False
+            and device_dc_contract_report.get("future_outputs_absent_before_report")
+            is True
+            and [
+                item.get("name")
+                for item in device_dc_contract_report.get("checks", [])
+                if item.get("status") == "FAIL"
+            ]
+            == ["binding:r11_no_formal_or_independent_process"]
+            and sha256(device_dc_contract_report_path)
+            == "7baba2fcd7bc186bfa30780882816c27d33708c91957e0a53db51c8c435b16ba"
+            and device_dc_machine.get("status") == "contract_failed_static_checker"
+            and device_dc_machine.get("current_evidence") == "E0"
+            and device_dc_machine.get("contract_check_completed") is True
+            and device_dc_machine.get("contract_status") == "FAIL"
+            and device_dc_machine.get("contract_checks_passed") == 39
+            and device_dc_machine.get("contract_checks_failed") == 1
+            and device_dc_machine.get("formal_run_completed") is False
+            and device_dc_machine.get("formal_run_status") == "NOT_RUN"
+            and device_dc_machine.get("independent_check_completed") is False
+            and device_dc_machine.get("runner_processes_invoked") == 0
+            and device_dc_machine.get("contract_failure", {}).get("sha256")
+            == "7baba2fcd7bc186bfa30780882816c27d33708c91957e0a53db51c8c435b16ba"
+            and device_dc_machine.get("contract_failure", {}).get("preserved") is True
+            and device_dc_machine.get("result_paths")
+            == device_dc_source_paths + [device_dc_outputs["contract_report"]]
+            and all(
+                not path.exists()
+                for path in device_dc_all_output_paths
+                if path != device_dc_contract_report_path
+            )
+        )
         device_dc_ready_state = (
             device_dc_contract_pass
             and device_dc_machine.get("status") == "contract_ready"
@@ -8553,6 +8632,22 @@ def main() -> int:
                 "commit and push the M01 open-source device DC R01 contract implementation"
             )
         ) or (
+            device_dc_contract_failed_state
+            and (
+                device_dc_next_scope.startswith(
+                    "preserve and commit the M01 open-source device DC R01 39/40 static checker failure"
+                )
+                or device_dc_next_scope.startswith(
+                    "establish and commit M01 open-source device DC revision-2"
+                )
+                or device_dc_next_scope.startswith(
+                    "execute the committed M01 open-source device DC revision-2 two-route runner"
+                )
+                or device_dc_next_scope.startswith(
+                    "run the independent persisted-evidence checker for M01 open-source device DC revision-2"
+                )
+            )
+        ) or (
             device_dc_ready_state
             and device_dc_next_scope.startswith(
                 "execute the committed M01 open-source device DC R01 two-route runner"
@@ -8581,6 +8676,7 @@ def main() -> int:
             == {"static_contract": 40, "runner": 30, "independent": 24}
             and (
                 device_dc_implemented_state
+                or device_dc_contract_failed_state
                 or device_dc_ready_state
                 or device_dc_runner_state
                 or device_dc_verified_state
@@ -8701,8 +8797,12 @@ def main() -> int:
             in config.get("tcad_track", {}).get(
                 "m01_open_source_device_dc_r01_contract_boundary", ""
             )
+            and "39/40 E0/FAIL"
+            in config.get("tcad_track", {}).get(
+                "m01_open_source_device_dc_r01_static_failure_boundary", ""
+            )
             and device_dc_next_scope_valid,
-            f"implemented={device_dc_implemented_state} ready={device_dc_ready_state} "
+            f"implemented={device_dc_implemented_state} failed={device_dc_contract_failed_state} ready={device_dc_ready_state} "
             f"runner={device_dc_runner_state} verified={device_dc_verified_state} "
             f"future_absent={sum(not path.exists() for path in device_dc_all_output_paths)}/{len(device_dc_all_output_paths)}",
         )

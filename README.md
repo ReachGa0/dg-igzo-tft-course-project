@@ -4,7 +4,7 @@
 
 **基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK**
 
-S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R01 因 L=12 um holdout gm 相对误差 `0.512384 > 0.50` 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。全部 Xyce 历史 build/checker 失败继续保留；R11 静态 36/36 E3、runner 32/32 E2、独立复核 25/25 E3，只关闭 hash-bound 工具/parser 预检。正式 `M01_OPEN_SOURCE_DEVICE_DC_R01` 已实施 40 项静态合同、30 项 runner 和 24 项独立检查：同一 IGZO 候选、247 行、两份 247 器件 ASCII DC 网表、ngspice/Xyce 各一进程、固定提取/指标/失败/输出。静态合同尚未运行，正式器件 DC、数值输出、电路和版图仍未完成。首次项目检查排序假设失败已归档，UID 修正后总检查 722/722 PASS。G0 仍为 `TEACHING_BASELINE_ONLY`，所有 `TODO/E0` 内容都不得写成已完成结果。
+S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 R11 静态 36/36 E3、runner 32/32 E2、独立复核 25/25 E3，只关闭 hash-bound 工具/parser 预检。正式 `M01_OPEN_SOURCE_DEVICE_DC_R01` 静态合同在提交 `b8c3a03` 后唯一返回 39/40、E0/FAIL；唯一失败是 checker 要求 R11 独立报告中不存在的顶层 `processes_invoked`。报告记录零 build/simulator process、零器件网表和零数值输出。R01 不重跑，R02 只允许在新命名空间修正该 schema 断言；正式器件 DC、电路和版图仍未完成。G0 仍为 `TEACHING_BASELINE_ONLY`，所有 `TODO/E0` 内容都不得写成已完成结果。
 
 ## 2. 为什么这个题目仍然成立
 
@@ -115,7 +115,7 @@ VTH = 0.21 V
 | M01 Xyce build/tool R07 静态合同 | E3，39/39 PASS | 实施提交 `d421277` 后唯一检查；哈希绑定 R06 失败并修正 runner 路径断言，0 个构建/模拟器进程、无器件网表和数值输出。该 PASS 只打开 R07 build/tool 门 |
 | M01 Xyce build/tool R07 runner | E0，42/47 FAIL | M4/Bison/Flex、Xyce 7.10.0 安装、版本/许可证和 B-source 命令返回码通过；Xyce 实际写出 `.prn`，runner 预注册 `.csv` 导致 self-test 观察值为空，停止 parser-only。失败 artifacts 保留，独立检查未运行 |
 | M01 Xyce build/tool R08/R09/R10/R11 合同链 | R08/R09 E0/FAIL；R10 static E3、runner E0/FAIL；R11 static/independent E3、runner E2 | R08 30/36 注册缺陷与 R09 34/36 两项断言失败均已保留；R10 静态合同唯一运行 36/36 PASS，runner 的版本/许可证/B-source 三命令通过并观测 1.25 V，但中文绝对路径的 ASCII 写入失败发生在 parser-only 命令前。R11 静态合同 36/36 PASS 后，runner 32/32 PASS，4 个允许的 Xyce 工具/parser 进程均通过并完成相对 ASCII include 的 parser-only syntax；独立检查 25/25 PASS、E3 且零进程。无正式器件 DC、M01 数值或下游证据 |
-| M01 正式开源两路线器件 DC R01 合同 | E0，已实施未检查 | 冻结 247 行/13 曲线、233 scored + 14 audit、同一 IGZO 候选、ngspice/Xyce 各一进程、两份 ASCII 网表、提取/指标/路线差异、排他输出和失败保留。首次项目检查器排序假设失败已保留，UID 修正后 `make check` 722/722；静态合同、两路线和独立复核均未运行 |
+| M01 正式开源两路线器件 DC R01 合同 | E0，39/40 FAIL | 实施提交 `b8c3a03` 后唯一静态检查；39 项通过，唯一失败为对 R11 独立报告不存在的顶层 `processes_invoked` 字段断言。报告 `7baba2f...b16ba` 记录 0 个 build/simulator process、0 个器件网表和 0 个数值输出；R01 冻结，两路线未运行，R02 只修正 schema 断言 |
 | 有源负载逻辑电路 | E0 | 架构已定，待实现 |
 | IGZO 单管 GDS 外部基线 | E2 | 可复用，需迁入新教学 PDK |
 | 标准单元 DRC/LVS | E0 | 待实现 |
@@ -138,7 +138,7 @@ VTH = 0.21 V
 1. 冻结主 IGZO 数据集、单位和来源。
 2. T03-P1/P2/P3/P4/P5 数值五组已完成，bulk 与 contact 历史失败继续保留；不同时改变多个参数组。
 3. M00 R01 已唯一运行并保持 E0/FAIL；R02 已完成 24/24 runner E2 和 20/20 独立检查 E3，原 split/阈值不改，M00 仅在冻结教学数值域内关闭。
-4. M01 revision-3 双轨合同已通过静态门，但原 AIM-Spice 路线在 R01 工具/来源门失败并因授权来源不可审计永久排除；开源恢复合同 30/30、E3 冻结 ngspice + 纯源码 GPL Xyce 7.10.0 路线和同一 IGZO 行为候选。Xyce 历史 build/tool 失败均保留；R11 以 36/36 静态 E3、32/32 runner E2 和 25/25 独立 E3 关闭工具/parser 预检。正式 `M01_OPEN_SOURCE_DEVICE_DC_R01` 已实施但仍为 E0，下一步先提交实施态，再唯一运行 40 项静态合同；40/40 PASS 提交前不得执行任一路线。R07/R08/R09/R10/R11 均不得重跑，C00 和下游继续关闭。
+4. M01 revision-3 与开源恢复静态合同已通过，AIM-Spice 因授权来源不可审计永久排除；R11 以 36/32/25 关闭工具/parser 预检。正式 R01 静态合同唯一返回 39/40 E0/FAIL，失败仅为 R11 独立报告 schema 断言；先提交失败，再建立 R02 新命名空间修正。R01/R11 及更早 revision 均不得重跑，R02 静态 PASS 提交前不得执行任一路线，C00 和下游继续关闭。
 5. 只做一个完整 C00 反相器。
 6. 对同一个 INV 建立 GDS、DRC 和几何 LVS 最小闭环。
 7. 扩展基础门、环振和全加器。
