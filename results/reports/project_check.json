@@ -7,287 +7,287 @@
     {
       "name": "directory:config",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/config"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/config"
     },
     {
       "name": "directory:docs",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/docs"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/docs"
     },
     {
       "name": "directory:references",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/references"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/references"
     },
     {
       "name": "directory:data/raw",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/raw"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/raw"
     },
     {
       "name": "directory:data/processed",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/processed"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/processed"
     },
     {
       "name": "directory:data/raw/senior_reference",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/raw/senior_reference"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/raw/senior_reference"
     },
     {
       "name": "directory:data/processed/senior_reference",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/processed/senior_reference"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/data/processed/senior_reference"
     },
     {
       "name": "directory:models/level61",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/models/level61"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/models/level61"
     },
     {
       "name": "directory:models/dual_gate",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/models/dual_gate"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/models/dual_gate"
     },
     {
       "name": "directory:models/ferroelectric",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/models/ferroelectric"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/models/ferroelectric"
     },
     {
       "name": "directory:spice/models",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/models"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/models"
     },
     {
       "name": "directory:spice/netlists/devices",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/netlists/devices"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/netlists/devices"
     },
     {
       "name": "directory:spice/netlists/cells",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/netlists/cells"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/netlists/cells"
     },
     {
       "name": "directory:spice/netlists/blocks",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/netlists/blocks"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/spice/netlists/blocks"
     },
     {
       "name": "directory:pdk/tech",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/tech"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/tech"
     },
     {
       "name": "directory:pdk/drc",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/drc"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/drc"
     },
     {
       "name": "directory:pdk/lvs",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/lvs"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/lvs"
     },
     {
       "name": "directory:pdk/pcells",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/pcells"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/pdk/pcells"
     },
     {
       "name": "directory:layout/cells",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/layout/cells"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/layout/cells"
     },
     {
       "name": "directory:layout/blocks",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/layout/blocks"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/layout/blocks"
     },
     {
       "name": "directory:layout/gds",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/layout/gds"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/layout/gds"
     },
     {
       "name": "directory:verification/drc",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/verification/drc"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/verification/drc"
     },
     {
       "name": "directory:verification/lvs",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/verification/lvs"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/verification/lvs"
     },
     {
       "name": "directory:verification/simulation",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/verification/simulation"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/verification/simulation"
     },
     {
       "name": "directory:scripts",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/scripts"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/scripts"
     },
     {
       "name": "directory:tests",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tests"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tests"
     },
     {
       "name": "directory:results/figures",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/figures"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/figures"
     },
     {
       "name": "directory:results/tables",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tables"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tables"
     },
     {
       "name": "directory:results/reports",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/reports"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/reports"
     },
     {
       "name": "directory:results/tcad/dg_electrostatic",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/dg_electrostatic"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/dg_electrostatic"
     },
     {
       "name": "directory:results/tcad/t01_single_gate/t01_b_smoke",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_b_smoke"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_b_smoke"
     },
     {
       "name": "directory:results/tcad/t01_single_gate/t01_c_transfer",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_c_transfer"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_c_transfer"
     },
     {
       "name": "directory:results/tcad/t01_single_gate/t01_d_mesh_refinement",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_d_mesh_refinement"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_d_mesh_refinement"
     },
     {
       "name": "directory:results/tcad/t01_single_gate/t01_d_idvd",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_d_idvd"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t01_single_gate/t01_d_idvd"
     },
     {
       "name": "directory:results/tcad/t02_dual_gate/t02_a_limit_regression",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_a_limit_regression"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_a_limit_regression"
     },
     {
       "name": "directory:results/tcad/t02_dual_gate/t02_b_minimal_bias",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_b_minimal_bias"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_b_minimal_bias"
     },
     {
       "name": "directory:results/tcad/t02_dual_gate/t02_c_bidirectional",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_c_bidirectional"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t02_dual_gate/t02_c_bidirectional"
     },
     {
       "name": "directory:results/tcad/t03_sensitivity/p4_channel_length",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p4_channel_length"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p4_channel_length"
     },
     {
       "name": "directory:results/tcad/t03_sensitivity/p4_channel_length_v1_failed",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p4_channel_length_v1_failed"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p4_channel_length_v1_failed"
     },
     {
       "name": "directory:results/tcad/t03_sensitivity/p1_secondary_bias",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p1_secondary_bias"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p1_secondary_bias"
     },
     {
       "name": "directory:results/tcad/t03_sensitivity/p1_capacitance_ratio",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p1_capacitance_ratio"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p1_capacitance_ratio"
     },
     {
       "name": "directory:results/tcad/t03_sensitivity/p2_dit_equation_smoke",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_equation_smoke"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_equation_smoke"
     },
     {
       "name": "directory:results/tcad/t03_sensitivity/p2_dit_formal",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal"
     },
     {
       "name": "directory:results/tcad/t03_sensitivity/p2_dit_formal_v1_failed",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal_v1_failed"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal_v1_failed"
     },
     {
       "name": "directory:results/tcad/t03_sensitivity/p2_dit_formal_v1_ss_linearity_failed",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal_v1_ss_linearity_failed"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_dit_formal_v1_ss_linearity_failed"
     },
     {
       "name": "directory:results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_bulk_traps_equation_smoke"
     },
     {
       "name": "directory:results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/tcad/t03_sensitivity/p2_bulk_traps_formal_v3"
     },
     {
       "name": "directory:tcad/structures",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/structures"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/structures"
     },
     {
       "name": "directory:tcad/physics",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/physics"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/physics"
     },
     {
       "name": "directory:tcad/tests",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/tests"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/tcad/tests"
     },
     {
       "name": "directory:ppt",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/ppt"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/ppt"
     },
     {
       "name": "directory:report",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report"
     },
     {
       "name": "directory:report/src",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/src"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/src"
     },
     {
       "name": "directory:report/chapters",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/chapters"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/chapters"
     },
     {
       "name": "directory:report/appendices",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/appendices"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/appendices"
     },
     {
       "name": "directory:report/assets",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/assets"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/assets"
     },
     {
       "name": "directory:report/final",
       "status": "PASS",
-      "detail": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/final"
+      "detail": "/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/final"
     },
     {
       "name": "file:AGENTS.md",
@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=25615"
+      "detail": "bytes=25747"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=23796"
+      "detail": "bytes=23859"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=19634"
+      "detail": "bytes=19755"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=164947"
+      "detail": "bytes=166424"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=5742"
+      "detail": "bytes=5837"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=92081"
+      "detail": "bytes=93203"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=46100"
+      "detail": "bytes=46693"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=34018"
+      "detail": "bytes=34843"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=92162"
+      "detail": "bytes=94847"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1812,7 +1812,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=56816"
+      "detail": "bytes=57751"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -2807,7 +2807,7 @@
     {
       "name": "t01_d_b:raw_outputs",
       "status": "PASS",
-      "detail": "files=9 figure=/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/assets/tcad_t01_d_idvd.png"
+      "detail": "files=9 figure=/mnt/c/users/reachgao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/report/assets/tcad_t01_d_idvd.png"
     },
     {
       "name": "t01_d_c:completion_status",
@@ -3172,7 +3172,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "establish and commit M01 Xyce build/tool preflight revision-9 output/parser recovery contract bound to the R08 30/36 checker registry failure; do not rerun R07 or R08 or run either recovery runner/independent checker"
+      "detail": "preserve and commit the M01 Xyce build/tool preflight revision-9 34/36 static contract assertion failure, then establish revision-10 with a new contract namespace; do not rerun R09 or run its runner/independent checker"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3242,7 +3242,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "establish and commit M01 Xyce build/tool preflight revision-9 output/parser recovery contract bound to the R08 30/36 checker registry failure; do not rerun R07 or R08 or run either recovery runner/independent checker"
+      "detail": "preserve and commit the M01 Xyce build/tool preflight revision-9 34/36 static contract assertion failure, then establish revision-10 with a new contract namespace; do not rerun R09 or run its runner/independent checker"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3322,7 +3322,7 @@
     {
       "name": "m01_xyce_preflight_r09:implementation_state_and_unexecuted_chain",
       "status": "PASS",
-      "detail": "planned=True r08_binding=True future_absent=16/16"
+      "detail": "planned=False failed=True r08_binding=True future_absent=16/16"
     },
     {
       "name": "tcad:mesh_levels",

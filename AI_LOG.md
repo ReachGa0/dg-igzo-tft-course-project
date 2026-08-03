@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R09 静态合同断言失败
+
+### 唯一执行与根因
+
+实施提交 `9285865` 推送并同步后，按阶段门唯一执行 `make m01-xyce-build-preflight-r09-contract-check`。静态 checker 正常生成报告并返回 `34/36`、E0/FAIL；失败项是 `reuse:allowlist_and_namespace_denylist` 未把保留的 R08 失败归档列入允许模式，以及 `boundary:evidence_and_next_gate` 发现 R09 `next_gate` 缺少独立检查字样。
+
+### 保留与边界
+
+报告 `results/reports/m01_xyce_build_preflight_contract_r09.json`（SHA-256 `d216379f5269a765f01ee644f0f32610c05171cd71cd47b25787536ca3fc4453`）和日志 `results/compact/m01_xyce_build_preflight_r09_contract_assertions_failed.log`（SHA-256 `6bc9e5427c43b2f049c3ff9907fd13de743167849febeaee0d03432c8ba1c4fb`）已登记。报告记录 0 个 build/simulator process、无器件网表和数值输出；R09 runner/独立 checker 未运行，R08/R07 均未重跑。该结果是合同断言缺陷，不是 Xyce、parser、器件收敛、SPICE、物理参数或权限证据。
+
+### 下一门
+
+R09 配置/checker/runner/common/report 保持不可改写；R10 必须使用新命名空间，只修正 R09 两项断言并继续保留 R08/R07 失败证据。正式 M01 器件 DC、SPICE 数值、电路、版图、PEX 和 HZO 继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M01 Xyce R09 注册修复合同（未执行）
 
 ### 用户目标与读取

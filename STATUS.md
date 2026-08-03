@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_R09_XYCE_STATIC_CONTRACT_IMPLEMENTED_E0_NEXT_STATIC`
+- 当前阶段：`M01_R09_XYCE_STATIC_CONTRACT_FAILURE_E0_NEXT_R10`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同 27/27 E3 后，build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37 E0/FAIL并冻结。R07 静态合同 39/39 E3 后，build/tool runner 唯一运行 42/47 E0/FAIL：M4/Bison/Flex、Xyce 安装、版本/许可证和 B-source 进程均通过，但 runner 误把 Xyce 实际 `.prn` 输出预注册为 `.csv`，停止在 parser-only 门前。R08 静态合同唯一执行在报告生成前因 checker 预期 36 项、实际注册 30 项而中止，属于 E0 checker 注册缺陷；失败报告和日志保留，R08 runner/独立检查未运行。R09 已建立新配置、36 项静态 checker、32 项 runner、25 项独立 checker 和新 Make 入口，当前仍未运行静态合同。无正式器件网表、M01 数值输出、ngspice、AIM-Spice 或下游证据，C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同 27/27 E3 后，build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37 E0/FAIL并冻结。R07 静态合同 39/39 E3 后，build/tool runner 唯一运行 42/47 E0/FAIL：M4/Bison/Flex、Xyce 安装、版本/许可证和 B-source 进程均通过，但 runner 误把 Xyce 实际 `.prn` 输出预注册为 `.csv`，停止在 parser-only 门前。R08 静态合同唯一执行在报告生成前因 checker 预期 36 项、实际注册 30 项而中止，属于 E0 checker 注册缺陷；失败报告和日志保留，R08 runner/独立检查未运行。R09 静态合同唯一返回 34/36、E0/FAIL，两个失败是复用黑名单与 next_gate 断言缺陷；报告/日志保留，R09 runner/独立检查未运行。无正式器件网表、M01 数值输出、ngspice、AIM-Spice 或下游证据，C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -29,10 +29,11 @@
 - [x] R08 输出/parser 恢复合同已实现但尚未执行：配置绑定真实 R07 提交 `9a7375ef30ae90adf5214b3c7421a5f7a8cab726`、R07 42/47 失败报告和完整 generator/Xyce 安装树；新 runner 只登记 Xyce 版本、许可证、标量 B-source `.prn` 解析和冻结 IGZO 候选 `-syntax` 四条命令，禁止构建、ngspice、AIM-Spice、正式器件 DC 和下游输出。静态/runner/独立检查冻结为 36/32/25 项，R08 输出根当前全部不存在。
 - [x] R08 静态合同按提交 `95d6563` 唯一执行一次，但 checker 在写报告前发现注册表错误并返回 `expected=36 actual=30`。该 E0 checker 失败不是 Xyce/权限/器件失败；归档 `results/reports/m01_xyce_build_preflight_contract_r08_registry_mismatch_failed.json` 与对应日志，未启动 build、Xyce、ngspice、AIM-Spice、器件网表、R08 runner 或独立检查。R08 源码和配置不重跑，R09 使用新命名空间修正注册缺陷。
 - [x] R09 输出/parser 合同已建立但尚未执行：新配置绑定 R08 30/36 注册表失败、R07 42/47 `.prn` 观察和完整 hash-bound Xyce 安装树；静态 checker 补齐至 36 项，runner/独立 checker 仍冻结为 32/25 项，所有 R09 报告、输出目录和正式 M01 输出均不存在。该状态只表示 E0 实施链，不表示静态 PASS、Xyce parser 运行、器件曲线或 M01 完成。
+- [x] R09 静态合同在提交 `9285865` 后唯一执行并返回 `34/36`、E0/FAIL。失败项为 `reuse:allowlist_and_namespace_denylist`（未允许保留的 R08 失败归档路径）和 `boundary:evidence_and_next_gate`（R09 next_gate 缺少独立检查字样）；报告 `results/reports/m01_xyce_build_preflight_contract_r09.json` 与日志 `results/compact/m01_xyce_build_preflight_r09_contract_assertions_failed.log` 已保留。检查记录 0 个 build/simulator process、无器件网表/数值输出，R09 runner/独立检查未运行，R10 只修正这两个合同断言。
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送 R09 新合同实施，然后按门唯一运行 R09 36 项静态检查；只有提交的 36/36 PASS 才能开启 R09 runner。R08/R07 及其 runner/独立检查不重跑，正式 M01 器件 DC 和下游继续关闭。
+- 下一步：提交并推送 R09 `34/36` 失败归档，然后建立并提交 R10 新命名空间，唯一运行 R10 36 项静态合同。R09/R08/R07 及其 runner/独立检查不重跑，正式 M01 器件 DC 和下游继续关闭。
 - M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败和本次 28/30 干跑失败均保留。
 

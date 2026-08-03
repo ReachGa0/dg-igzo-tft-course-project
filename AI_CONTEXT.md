@@ -19,7 +19,7 @@
 - 题目：基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK。
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
-- S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，仅在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。R07 build/tool runner 唯一返回 42/47、E0/FAIL，实际固定列 `.prn` 输出已保留；R08 静态 checker 唯一执行因 36/30 注册表缺陷中止并已归档，R08 不重跑；R09 新合同已建立但尚未执行其静态检查。Xyce 二进制和完整安装树只能按新合同哈希绑定复用，正式 M01 器件 DC、C00/L00/V01 仍未完成，G0 仍为 `TEACHING_BASELINE_ONLY`。
+- S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，仅在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。R07 build/tool runner 唯一返回 42/47、E0/FAIL，实际固定列 `.prn` 输出已保留；R08 静态 checker 唯一执行因 36/30 注册表缺陷中止并已归档，R08 不重跑；R09 静态 checker 唯一返回 34/36、E0/FAIL，两个合同断言失败已归档，R09 不重跑；R10 尚未建立。Xyce 二进制和完整安装树只能按新合同哈希绑定复用，正式 M01 器件 DC、C00/L00/V01 仍未完成，G0 仍为 `TEACHING_BASELINE_ONLY`。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
@@ -86,7 +86,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 - M01 Xyce build/tool R01 执行：提交 `ee5116e` 后唯一运行在 SuiteSparse CMake 因未显式传入用户目录 `BLAS_LIBRARIES` 停止，runner 14/29、独立落盘检查 9/20，均 E0/FAIL。报告、日志、manifest 和部分 build cache 保留；没有 Xyce 二进制、自测、候选解析、器件 DC 或正式数值输出。R01 不得重跑，后续 revision 必须绑定该失败。
 - M01 Xyce build/tool R02/R03/R04 静态合同：唯一检查分别为 22/25、21/25、25/26 E0/FAIL，报告原样保留。R05 静态合同唯一检查 27/27 PASS、E3；随后 runner 唯一运行 19/29 E0/FAIL。SuiteSparse AMD-only、serial MPI/Fortran-off Trilinos 安装和 Xyce 配置通过；Xyce build 在 Bison/Flex 生成步骤因 `/usr/bin/m4` 与默认 `/usr/share/bison` 缺失停止。没有二进制、自测、parser-only 候选、正式器件 DC 或数值输出，独立检查未运行。
 - M01 Xyce build/tool R06：静态合同在提交 `ce4687e` 后唯一运行并返回 36/37、E0/FAIL。唯一失败是 checker 自相矛盾地禁止独立 checker 出现其为哈希绑定而必须登记的 runner 路径字面量；其余来源、许可证、R05 失败、依赖树、隔离根和 no-execution 门通过。报告记录 0 个构建/模拟器进程、无器件网表和数值输出；R06 build/install/output 根为空，runner/独立检查未运行。本机 AIM-Spice 因缺少可审计合法授权来源永久排除。该失败已提交冻结，R07 状态见下一条。
-- M01 Xyce build/tool R07：静态合同在提交 `d421277` 后唯一返回 39/39 PASS、E3；随后 build/tool runner 在提交 `7d5337a` 后唯一返回 42/47、E0/FAIL，当前 `preflight_failed_self_test/E0`。M4/Bison/Flex、串行纯源码 Xyce 7.10.0、版本/许可证和 B-source 命令成功；Xyce 实际输出 `bsource_self_test.prn`，R07 误注册 `.csv` 并用 CSV parser，故观察值为空，parser-only 门未执行。报告 SHA-256 为 `7e2c17794b013c9928e3b707c674d3da4413c98aa2ab4ec25d2d145856d0a6e6`，所有 R07 logs/manifest/`.prn`/完整安装树保留，独立 checker 未运行。R08 只在新命名空间修正 `.prn` output/parser，但其静态 checker 已唯一中止于 30/36 注册缺陷；R09 现在承接该失败并保持 R07 不重跑。
+- M01 Xyce build/tool R07：静态合同在提交 `d421277` 后唯一返回 39/39 PASS、E3；随后 build/tool runner 在提交 `7d5337a` 后唯一返回 42/47、E0/FAIL，当前 `preflight_failed_self_test/E0`。M4/Bison/Flex、串行纯源码 Xyce 7.10.0、版本/许可证和 B-source 命令成功；Xyce 实际输出 `bsource_self_test.prn`，R07 误注册 `.csv` 并用 CSV parser，故观察值为空，parser-only 门未执行。报告 SHA-256 为 `7e2c17794b013c9928e3b707c674d3da4413c98aa2ab4ec25d2d145856d0a6e6`，所有 R07 logs/manifest/`.prn`/完整安装树保留，独立 checker 未运行。R08 只在新命名空间修正 `.prn` output/parser，但其静态 checker 已唯一中止于 30/36 注册缺陷；R09 静态 checker 又唯一返回 34/36，两个断言失败已归档，R10 承接且不重跑 R09。
 - 学长 IGZO 曲线：E1/reference_only；元数据不完整。
 - IGZO 单管外部 GDS：E2 基线，可参考但尚未迁入新 PDK。
 - 其余领域任务：E0。
@@ -100,7 +100,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. T02-A/B/C、T03-P1/P2/P3/P4/P5、M00 R02 两级数值门和 M01 revision-3/开源恢复/R05/R07 静态合同已完成，历史失败继续保留。M00 R01/R02、M01 Xyce build/tool R01/R02/R03/R04/R05/R06/R07/R08 均不得重跑；不得放宽阈值、改变 split 或用 holdout 调参。R09 新 output/parser 合同已建立但静态门尚未执行；只有提交 36/36 PASS 后才可运行 R09 runner，正式 M01 数值执行、电路、KLayout、PEX 和 HZO 继续关闭。
+8. T02-A/B/C、T03-P1/P2/P3/P4/P5、M00 R02 两级数值门和 M01 revision-3/开源恢复/R05/R07 静态合同已完成，历史失败继续保留。M00 R01/R02、M01 Xyce build/tool R01/R02/R03/R04/R05/R06/R07/R08/R09 均不得重跑；不得放宽阈值、改变 split 或用 holdout 调参。R10 只在新命名空间修正 R09 两项合同断言；R10 静态 PASS 提交前不得执行工具/parser runner，正式 M01 数值执行、电路、KLayout、PEX 和 HZO 继续关闭。
 
 ## 原始资产路径
 

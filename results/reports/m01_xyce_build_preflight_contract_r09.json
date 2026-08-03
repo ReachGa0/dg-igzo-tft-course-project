@@ -1,0 +1,225 @@
+{
+  "status": "FAIL",
+  "contract_status": "FAIL",
+  "evidence_level": "E0",
+  "stage_id": "M01",
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R09",
+  "build_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "checks": [
+    {
+      "name": "identity:revision_9_xyce_parser_recovery",
+      "status": "PASS",
+      "detail": "stage=M01 revision=9"
+    },
+    {
+      "name": "identity:machine_contract_planned",
+      "status": "PASS",
+      "detail": "{\"aimspice_invoked\": false, \"artifact_hashes\": {}, \"build_processes_invoked\": 0, \"circuit_or_downstream_permitted\": false, \"common_hash_helper_path\": \"scripts/m01_xyce_r09_common.py\", \"contract_check_completed\": false, \"contract_checker_path\": \"scripts/check_m01_xyce_build_preflight_r09_contract.py\", \"contract_checks_failed\": 0, \"contract_checks_passed\": 0, \"contract_path\": \"config/m01_xyce_build_preflight_r09.json\", \"contract_report_path\": \"results/reports/m01_xyce_build_preflight_contract_r09.json\", \"contract_status\": \"NOT_RUN\", \"current_evidence\": \"E0\", \"device_netlist_invoked\": false, \"expected_contract_check_count\": 36, \"expected_independent_check_count\": 25, \"expected_runner_check_count\": 32, \"formal_run_completed\": false, \"independent_checker_path\": \"scripts/check_m01_xyce_build_preflight_r09.py\", \"next_gate\": \"Commit and push the R09 implementation, then run its 36-check static contract exactly once. Do not run R09 tool/parser runner until that PASS state is committed.\", \"ngspice_invoked\": false, \"numerical_outputs_created\": false, \"preflight_id\": \"M01_XYCE_BUILD_PREFLIGHT_R09\", \"preflight_run_completed\": false, \"proprietary_binary_accepted\": false, \"r07_failure_preserved\": true, \"r07_independent_checker_run\": false, \"r07_runner_rerun\": false, \"r08_contract_failure_preserved\": true, \"r08_failure_archive_hashes\": {\"log_sha256\": \"344eb8810a4fdf1c5fc2f870a0e3ca84bdf77383d63f73a0e03d758834fc2b6e\", \"report_sha256\": \"283438f5c4dcc53f184a9c85327bc90f2465855266d0ccff0d3afc0e91489189\"}, \"r08_failure_archive_paths\": [\"results/reports/m01_xyce_build_preflight_contract_r08_registry_mismatch_failed.json\", \"results/compact/m01_xyce_build_preflight_r08_contract_registry_mismatch_failed.log\"], \"r08_failure_bound_commit\": \"95d656324fb5c4a301ed903961512a446b90669a\", \"r08_independent_checker_run\": false, \"r08_runner_rerun\": false, \"r09_output_namespace\": \"results/compact/m01_xyce_build_preflight_r09\", \"result_paths\": [], \"revision\": 9, \"runner_path\": \"scripts/run_m01_xyce_build_preflight_r09.py\", \"simulator_processes_invoked\": 0, \"status\": \"contract_planned\"}"
+    },
+    {
+      "name": "binding:r07_failure_report",
+      "status": "PASS",
+      "detail": "immutable R07 42/47 E0 runner failure"
+    },
+    {
+      "name": "binding:r07_artifacts_hash_bound",
+      "status": "PASS",
+      "detail": "artifacts=11/11"
+    },
+    {
+      "name": "binding:r07_prn_failure_observation",
+      "status": "PASS",
+      "detail": "R07 retained fixed-column .prn observation and stopped before syntax"
+    },
+    {
+      "name": "binding:r07_generator_tree",
+      "status": "PASS",
+      "detail": "fa3d78e39aa7b55608c2dfd85587e6c2778e5d9e0e54aeb54838db017e558a47"
+    },
+    {
+      "name": "binding:r07_xyce_tree",
+      "status": "PASS",
+      "detail": "09b9805db763a6ce93666ad0f63c4e7378d5d1dd756895d91ff615681a417db4"
+    },
+    {
+      "name": "binding:r08_registry_failure",
+      "status": "PASS",
+      "detail": "immutable R08 30/36 checker registry failure is preserved"
+    },
+    {
+      "name": "binding:r08_sources_immutable",
+      "status": "PASS",
+      "detail": "artifacts=7/7"
+    },
+    {
+      "name": "boundary:r08_rerun_prohibited",
+      "status": "PASS",
+      "detail": "R08 remains closed after its pre-report registry abort"
+    },
+    {
+      "name": "scope:igzo_2d_laptop_tool_only",
+      "status": "PASS",
+      "detail": "{\"active_material_scope\": \"IGZO only\", \"circuit_or_downstream_permitted\": false, \"device_netlist_execution\": false, \"dimension\": \"2D project route; this recovery revision is tool/output only\", \"formal_m01_numerical_run\": false, \"fortran_build\": false, \"laptop_target\": true, \"mpi_build\": false, \"serial_build\": false}"
+    },
+    {
+      "name": "reuse:no_build_or_dependency_rebuild",
+      "status": "PASS",
+      "detail": "only complete hash-bound R07 installs may be reused"
+    },
+    {
+      "name": "reuse:allowlist_and_namespace_denylist",
+      "status": "FAIL",
+      "detail": "[\"results/compact/m01_xyce_build_preflight_r07\", \"results/reports/m01_xyce_build_preflight_r07.json\", \"results/reports/m01_xyce_build_preflight_check_r07.json\", \"results/compact/m01_xyce_build_preflight_r09\", \"results/reports/m01_xyce_build_preflight_r09.json\", \"results/reports/m01_xyce_build_preflight_check_r09.json\", \"results/reports/m01_xyce_build_preflight_contract_r08_registry_mismatch_failed.json\", \"results/compact/m01_xyce_build_preflight_r08_contract_registry_mismatch_failed.log\"]"
+    },
+    {
+      "name": "toolchain:binary_hash_and_command_allowlist",
+      "status": "PASS",
+      "detail": "binary=True sha256=e98dc88330b0dfd2439dfb19e0e5c108febfaaaee91c748e6e9e127e71afc93f"
+    },
+    {
+      "name": "self_test:fixed_column_prn_contract",
+      "status": "PASS",
+      "detail": "{\"expected_column\": \"V(NOUT)\", \"expected_value_v\": 1.25, \"forbidden_tokens\": [\"IGZO\", \"SnO\", \"HZO\", \"ferroelectric\", \"tran\", \"noise\", \"circuit\", \"ring\", \"adder\"], \"name\": \"controlled_bsource_expression_r09\", \"output_format\": \"Xyce_PRN_FIXED_COLUMNS\", \"output_suffix\": \".prn\", \"purpose\": \"Reuse the hash-bound Xyce binary and parse its fixed-column .prn output; no project device\", \"tolerance_v\": 1e-09}"
+    },
+    {
+      "name": "self_test:scope_forbids_project_and_downstream_tokens",
+      "status": "PASS",
+      "detail": "[\"IGZO\", \"SnO\", \"HZO\", \"ferroelectric\", \"tran\", \"noise\", \"circuit\", \"ring\", \"adder\"]"
+    },
+    {
+      "name": "candidate:frozen_igzo_hash_and_subckt",
+      "status": "PASS",
+      "detail": "exists=True bytes=1063"
+    },
+    {
+      "name": "candidate:no_forbidden_numerical_or_material_scope",
+      "status": "PASS",
+      "detail": "IGZO candidate is parser-only and excludes downstream/material tokens"
+    },
+    {
+      "name": "paths:exclusive_r09_outputs_absent",
+      "status": "PASS",
+      "detail": "future_absent=16/16"
+    },
+    {
+      "name": "paths:formal_m01_outputs_absent",
+      "status": "PASS",
+      "detail": "formal_absent=8/8"
+    },
+    {
+      "name": "paths:r09_namespace_disjoint_from_r08_failure",
+      "status": "PASS",
+      "detail": "R09 reserves only its own output namespace"
+    },
+    {
+      "name": "retention:r07_and_failure_logs_preserved",
+      "status": "PASS",
+      "detail": "{\"either_self_test_or_syntax_failure_stops_m01\": true, \"exclusive_outputs\": true, \"formal_m01_outputs_must_remain_absent\": true, \"overwrite_existing_outputs\": false, \"retain_failed_self_test_logs\": true, \"retain_failed_syntax_logs\": true, \"retain_r07_failure\": true}"
+    },
+    {
+      "name": "boundary:no_simulator_or_formal_execution",
+      "status": "PASS",
+      "detail": "{\"circuit_or_downstream_permitted\": false, \"controlled_bsource_self_test_is_not_formal_m01\": true, \"device_syntax_check_must_follow_bsource_self_test\": true, \"formal_m01_run_requires_this_preflight_report_and_independent_check\": true, \"reuse_only_hash_bound_r07_prefixes\": true, \"runner_must_not_build\": true, \"runner_must_not_invoke_aimspice\": true, \"runner_must_not_invoke_formal_device_dc\": true, \"runner_must_not_invoke_ngspice\": true}"
+    },
+    {
+      "name": "boundary:evidence_and_next_gate",
+      "status": "FAIL",
+      "detail": "Commit and push the R09 implementation, then run its 36-check static contract exactly once. Do not run the R09 tool/parser runner until the static contract passes and that PASS state is committed."
+    },
+    {
+      "name": "source:runner_registry_and_process_boundary",
+      "status": "PASS",
+      "detail": "runner has an explicit four-command execution registry; build remains config-disabled"
+    },
+    {
+      "name": "source:runner_prn_parser_and_new_namespace",
+      "status": "PASS",
+      "detail": "runner parses fixed-column .prn and writes only R09 paths"
+    },
+    {
+      "name": "source:runner_forbidden_route_invocations",
+      "status": "PASS",
+      "detail": "forbidden routes are represented as asserted no-execution markers"
+    },
+    {
+      "name": "source:independent_checker_registry",
+      "status": "PASS",
+      "detail": "independent checker binds the runner report without importing the runner"
+    },
+    {
+      "name": "source:independent_checker_no_process_import",
+      "status": "PASS",
+      "detail": "checker is standard-library persisted-evidence only"
+    },
+    {
+      "name": "source:common_parser_isolated",
+      "status": "PASS",
+      "detail": "common helper provides fixed-column parsing and tree hashing only"
+    },
+    {
+      "name": "source:contract_checker_no_process",
+      "status": "PASS",
+      "detail": "R09 static contract checker is read-only and process-free"
+    },
+    {
+      "name": "source:r09_namespace_isolated",
+      "status": "PASS",
+      "detail": "R09 execution sources do not silently reuse R08 names"
+    },
+    {
+      "name": "source:makefile_r09_targets",
+      "status": "PASS",
+      "detail": "contract, runner and independent-check targets are registered"
+    },
+    {
+      "name": "project:next_scope_r09_contract",
+      "status": "PASS",
+      "detail": "establish and commit M01 Xyce build/tool preflight revision-9 output/parser recovery contract bound to the R08 30/36 checker registry failure; do not rerun R07 or R08 or run either recovery runner/independent checker"
+    },
+    {
+      "name": "project:evidence_boundary_r09",
+      "status": "PASS",
+      "detail": "project boundary records R09 as tool/output contract only"
+    },
+    {
+      "name": "registry:static_report_is_only_future_artifact",
+      "status": "PASS",
+      "detail": "experiment registry freezes 36/32/25 before execution"
+    }
+  ],
+  "failures": [
+    {
+      "name": "reuse:allowlist_and_namespace_denylist",
+      "status": "FAIL",
+      "detail": "[\"results/compact/m01_xyce_build_preflight_r07\", \"results/reports/m01_xyce_build_preflight_r07.json\", \"results/reports/m01_xyce_build_preflight_check_r07.json\", \"results/compact/m01_xyce_build_preflight_r09\", \"results/reports/m01_xyce_build_preflight_r09.json\", \"results/reports/m01_xyce_build_preflight_check_r09.json\", \"results/reports/m01_xyce_build_preflight_contract_r08_registry_mismatch_failed.json\", \"results/compact/m01_xyce_build_preflight_r08_contract_registry_mismatch_failed.log\"]"
+    },
+    {
+      "name": "boundary:evidence_and_next_gate",
+      "status": "FAIL",
+      "detail": "Commit and push the R09 implementation, then run its 36-check static contract exactly once. Do not run the R09 tool/parser runner until the static contract passes and that PASS state is committed."
+    }
+  ],
+  "summary": {
+    "check_count": 36,
+    "passed": 34,
+    "failed": 2,
+    "build_processes_invoked": 0,
+    "simulator_processes_invoked": 0,
+    "device_netlist_created": false,
+    "numerical_outputs_created": false
+  },
+  "config": {
+    "path": "config/m01_xyce_build_preflight_r09.json",
+    "sha256": "c256101ff7822e53180a3bbbc80003de40eb18d4b1fc31fd91ae4e9013fa600e"
+  },
+  "checker": {
+    "path": "scripts/check_m01_xyce_build_preflight_r09_contract.py",
+    "sha256": "f46de3ce8c9511cf301025878ebb33e663d9226a8d7adf5cd4056e95ebdd18e2"
+  },
+  "runner": {
+    "path": "scripts/run_m01_xyce_build_preflight_r09.py",
+    "sha256": "ba9dbd18c21ab9ed8f7d0caa1d0817ffd6dbe5b839916f6f3a306517de9cde79"
+  },
+  "evidence_boundary": "R09 is a new output/parser recovery contract bound to the immutable R07 42/47 E0 runner failure and the preserved R08 30/36 static checker registry failure. R08's checker, runner, common helper and failure archive are immutable and are not rerun. R07 proved that the hash-bound open-source generator and Xyce 7.10.0 prefixes were built and installed and that Xyce's controlled B-source command returned 0 with a fixed-column .prn value of 1.25 V; the R07 runner defect was its .csv registration/parser. R09 may reuse only those complete prefixes after independent tree and binary hash checks and must use a new output namespace. It may run only Xyce version/license, the scalar B-source self-test and parser-only -syntax on the frozen IGZO behavioral candidate. It must not build, invoke ngspice/AIM-Spice, solve a formal device DC, create formal M01 tables, or run circuit/downstream stages. A passing R09 runner and independent check would establish only tool/output-contract evidence, not an IGZO equation, device curve, physical parameter, experimental calibration or circuit result. M01 remains E0 until the separate formal two-route device-only DC contract passes.",
+  "next_gate": "Commit and push the R09 implementation, then run its 36-check static contract exactly once. Do not run the R09 tool/parser runner until the static contract passes and that PASS state is committed."
+}

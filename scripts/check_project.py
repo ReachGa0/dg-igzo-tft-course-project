@@ -7095,6 +7095,16 @@ def main() -> int:
             and r08_next_scope.startswith(
                 "establish and commit M01 Xyce build/tool preflight revision-9"
             )
+        ) or (
+            r08_failed_state
+            and r08_next_scope.startswith(
+                "preserve and commit the M01 Xyce build/tool preflight revision-9 34/36"
+            )
+        ) or (
+            r08_failed_state
+            and r08_next_scope.startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-10"
+            )
         )
         r08_runner_source = m01_xyce_r08_runner_path.read_text(encoding="utf-8")
         r08_checker_source = m01_xyce_r08_checker_path.read_text(encoding="utf-8")
@@ -7167,6 +7177,11 @@ def main() -> int:
         r09_config = json.loads(m01_xyce_r09_config_path.read_text(encoding="utf-8"))
         r09_machine = experiment_map["M01"].get("xyce_build_preflight_r09", {})
         r09_contract_exists = m01_xyce_r09_contract_report_path.is_file()
+        r09_contract_report = (
+            json.loads(m01_xyce_r09_contract_report_path.read_text(encoding="utf-8"))
+            if r09_contract_exists
+            else {}
+        )
         r09_future_paths = [
             ROOT / value
             for key, value in r09_config.get("outputs", {}).items()
@@ -7229,10 +7244,6 @@ def main() -> int:
         r09_tools = r09_config["toolchain"]
         r09_binary = Path(r09_tools["xyce_binary"])
         r09_candidate = ROOT / r09_config["device_syntax_check"]["candidate_path"]
-        r09_next_scope = config.get("tcad_track", {}).get("next_scope", "")
-        r09_next_scope_valid = r09_next_scope.startswith(
-            "establish and commit M01 Xyce build/tool preflight revision-9"
-        )
         r09_machine_planned = (
             r09_machine.get("status") == "contract_planned"
             and r09_machine.get("revision") == 9
@@ -7241,6 +7252,54 @@ def main() -> int:
             and r09_machine.get("contract_status") == "NOT_RUN"
             and r09_machine.get("result_paths") == []
             and r09_machine.get("artifact_hashes") == {}
+        )
+        r09_next_scope = config.get("tcad_track", {}).get("next_scope", "")
+        r09_failure_log_path = ROOT / r09_machine.get("contract_failure_log_path", "missing")
+        r09_failed_state = (
+            r09_contract_exists
+            and r09_contract_report.get("status") == "FAIL"
+            and r09_contract_report.get("contract_status") == "FAIL"
+            and r09_contract_report.get("evidence_level") == "E0"
+            and r09_contract_report.get("preflight_id") == "M01_XYCE_BUILD_PREFLIGHT_R09"
+            and r09_contract_report.get("summary", {}).get("check_count") == 36
+            and r09_contract_report.get("summary", {}).get("passed") == 34
+            and r09_contract_report.get("summary", {}).get("failed") == 2
+            and r09_contract_report.get("summary", {}).get("build_processes_invoked") == 0
+            and r09_contract_report.get("summary", {}).get("simulator_processes_invoked") == 0
+            and r09_contract_report.get("summary", {}).get("device_netlist_created") is False
+            and r09_contract_report.get("summary", {}).get("numerical_outputs_created") is False
+            and r09_machine.get("status") == "contract_failed_checker"
+            and r09_machine.get("contract_check_completed") is True
+            and r09_machine.get("contract_status") == "FAIL"
+            and r09_machine.get("contract_checks_passed") == 34
+            and r09_machine.get("contract_checks_failed") == 2
+            and r09_machine.get("contract_failure_category") == "contract_assertion_allowlist_and_next_gate"
+            and r09_failure_log_path.is_file()
+            and r09_machine.get("artifact_hashes", {}).get("contract_report_sha256")
+            == sha256(m01_xyce_r09_contract_report_path)
+            and r09_machine.get("artifact_hashes", {}).get("contract_failure_log_sha256")
+            == sha256(r09_failure_log_path)
+            and r09_machine.get("result_paths")
+            == [
+                "results/reports/m01_xyce_build_preflight_contract_r09.json",
+                "results/compact/m01_xyce_build_preflight_r09_contract_assertions_failed.log",
+            ]
+        )
+        r09_next_scope_valid = (
+            r09_machine_planned
+            and r09_next_scope.startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-9"
+            )
+        ) or (
+            r09_failed_state
+            and r09_next_scope.startswith(
+                "preserve and commit the M01 Xyce build/tool preflight revision-9 34/36"
+            )
+        ) or (
+            r09_failed_state
+            and r09_next_scope.startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-10"
+            )
         )
         add_check(
             checks,
@@ -7251,8 +7310,8 @@ def main() -> int:
             and r09_config.get("scope", {}).get("active_material_scope") == "IGZO only"
             and r09_config.get("scope", {}).get("formal_m01_numerical_run") is False
             and r09_config.get("scope", {}).get("circuit_or_downstream_permitted") is False
-            and r09_machine_planned
-            and not r09_contract_exists
+            and (r09_machine_planned or r09_failed_state)
+            and (not r09_contract_exists if r09_machine_planned else r09_contract_exists)
             and all(not path.exists() for path in r09_future_paths)
             and all(not path.exists() for path in r09_formal_paths)
             and r09_r07_binding_ok
@@ -7284,7 +7343,7 @@ def main() -> int:
             and r09_machine.get("simulator_processes_invoked") == 0
             and r09_machine.get("circuit_or_downstream_permitted") is False
             and r09_next_scope_valid,
-            f"planned={r09_machine_planned} r08_binding={r09_r08_binding_ok} future_absent="
+            f"planned={r09_machine_planned} failed={r09_failed_state} r08_binding={r09_r08_binding_ok} future_absent="
             f"{sum(not path.exists() for path in r09_future_paths)}/{len(r09_future_paths)}",
         )
     except Exception as error:  # noqa: BLE001

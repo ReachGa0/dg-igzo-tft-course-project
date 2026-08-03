@@ -1,0 +1,22 @@
+M01 Xyce R09 static contract failure archive
+command=make m01-xyce-build-preflight-r09-contract-check
+implementation_commit=9285865
+preflight_id=M01_XYCE_BUILD_PREFLIGHT_R09
+revision=9
+status=FAIL
+evidence_level=E0
+registered_checks=36
+passed_checks=34
+failed_checks=2
+failure_category=contract_assertion_allowlist_and_next_gate
+failure_names=reuse:allowlist_and_namespace_denylist,boundary:evidence_and_next_gate
+build_processes_invoked=0
+simulator_processes_invoked=0
+device_netlist_created=false
+numerical_outputs_created=false
+r09_runner_run=false
+r09_independent_checker_run=false
+r08_runner_rerun=false
+r08_independent_checker_run=false
+failure_detail=R09 static checker completed and wrote its report, but two checker assertions failed. The reuse allowlist still rejected the intentionally preserved R08 failure archive paths, and the R09 next_gate omitted the independent-check wording required by the static boundary. This is a checker/config contract defect, not Xyce, parser, device, SPICE, physical-parameter or permission evidence.
+next_gate=Preserve the R09 34/36 static contract failure and establish revision-10 in a new namespace; do not rerun R09 or run its runner/independent checker.

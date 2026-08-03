@@ -970,6 +970,16 @@ S00 审计冻结 `IGZO_T01_TEACHING_BASELINE_V1` 作为 T01 的教学参数输�
 ### 后果
 
 报告结构检查可以提前自动化，但在内容仍为空时不能生成“伪最终版”。所有结论继续通过 `report/evidence_matrix.csv` 追溯到数据、脚本和命令。
+## ADR-058：R09 静态合同断言失败保留，转入 R10
+
+- 状态：R09 静态 checker 唯一执行返回 34/36、E0/FAIL；R09 runner 与独立 checker 未运行。
+- 两个失败项均为合同断言缺陷：复用黑名单检查没有允许已经保留的 R08 失败归档路径；R09 `next_gate` 文本没有包含本合同要求的 independent-check wording。
+- 报告 `results/reports/m01_xyce_build_preflight_contract_r09.json` 和日志 `results/compact/m01_xyce_build_preflight_r09_contract_assertions_failed.log` 已按 SHA-256 登记；报告明确 0 个 build/simulator process、无器件网表和数值输出。
+- R09 配置、公共模块、静态 checker、runner、独立 checker 和失败报告保持不可改写，禁止重跑。R10 必须使用新 config/source/output namespace，只修正这两个断言，继续绑定 R09/R08/R07 全部失败证据，不改变 IGZO 候选、物理输入、阈值或 no-downstream 门。
+- 正式 M01 器件 DC、ngspice/AIM-Spice 数值、电路、版图、PEX 和 HZO 继续关闭；R10 只有在实施提交后才可唯一执行 36 项静态合同。
+
+---
+
 ## ADR-057：R09 新命名空间修正 R08 checker 注册缺陷
 
 - 状态：已实施，静态合同尚未运行；当前证据 E0。
