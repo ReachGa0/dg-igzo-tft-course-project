@@ -888,7 +888,7 @@
         "next_gate": "Implement and commit the pure-source Xyce build/tool preflight and self-test chain; do not execute a device netlist until that chain passes."
       },
       "xyce_build_preflight": {
-        "status": "preflight_planned",
+        "status": "preflight_failed_build",
         "revision": 1,
         "current_evidence": "E0",
         "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R01",
@@ -901,6 +901,14 @@
         "expected_runner_check_count": 29,
         "expected_independent_check_count": 20,
         "formal_run_completed": false,
+        "preflight_run_completed": true,
+        "preflight_run_ordinal": 1,
+        "preflight_status": "FAIL",
+        "runner_checks_passed": 14,
+        "runner_checks_failed": 15,
+        "independent_check_status": "FAIL",
+        "independent_checks_passed": 9,
+        "independent_checks_failed": 11,
         "device_netlist_invoked": false,
         "numerical_outputs_created": false,
         "ngspice_invoked": false,
@@ -914,7 +922,21 @@
         "max_parallel_jobs": 2,
         "proprietary_binary_accepted": false,
         "circuit_or_downstream_permitted": false,
-        "next_gate": "Commit this chain, then run the pure-source build/tool preflight exactly once. Formal M01 device DC remains closed until the preflight and independent check pass."
+        "result_paths": [
+          "results/compact/m01_xyce_build_preflight_r01/preflight.log",
+          "results/compact/m01_xyce_build_preflight_r01/source_manifest.json",
+          "results/compact/m01_xyce_build_preflight_r01/build_manifest.json",
+          "results/compact/m01_xyce_build_preflight_r01/suitesparse_configure.log",
+          "results/reports/m01_xyce_build_preflight_r01.json",
+          "results/reports/m01_xyce_build_preflight_check_r01.json"
+        ],
+        "artifact_hashes": {
+          "preflight_report_sha256": "b444a44a96af525b5c5505627f33b62ac3521015d713b85b9ff919354dae8a61",
+          "independent_check_report_sha256": "e12519f3f22e9944b5a5c99d2b28dbb1bc9877a47f53b4ec4b8922b6146419ba",
+          "preflight_log_sha256": "73f53a8c0018b44d82bdd66f20adb9b39d0659507522f018ae60d1b7c4b62cd3"
+        },
+        "failure_category": "user_local_blas_discovery",
+        "next_gate": "Establish and commit M01 Xyce build/tool preflight revision-2 with explicit BLAS/LAPACK paths and unique output roots; do not rerun R01 or execute a device netlist."
       }
     },
     {

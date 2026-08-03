@@ -1,0 +1,8 @@
+argv=["/home/reachgao/.local/toolchain/usr/bin/flex", "--version"]
+cwd=/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目
+returncode=0
+timed_out=false
+elapsed_seconds=0.001406
+output_begin
+flex 2.6.4
+output_end

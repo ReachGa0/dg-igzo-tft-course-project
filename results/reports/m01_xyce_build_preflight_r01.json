@@ -1,0 +1,277 @@
+{
+  "status": "FAIL",
+  "preflight_status": "FAIL",
+  "evidence_level": "E0",
+  "stage_id": "M01",
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R01",
+  "build_status": "FAIL",
+  "bsource_self_test_status": "FAIL",
+  "device_syntax_status": "FAIL",
+  "formal_device_simulation_status": "NOT_RUN_BY_PREFLIGHT",
+  "formal_spice_numerical_status": "NOT_RUN_BY_PREFLIGHT",
+  "circuit_status": "NOT_RUN_BY_PREFLIGHT",
+  "checks": [
+    {
+      "name": "identity:revision_1_xyce_build_preflight",
+      "status": "PASS",
+      "detail": "stage=M01 revision=1"
+    },
+    {
+      "name": "binding:open_source_recovery_contract",
+      "status": "PASS",
+      "detail": "config=True report=True"
+    },
+    {
+      "name": "sources:archive_hashes",
+      "status": "PASS",
+      "detail": "source_archives=3/3 cmake=True"
+    },
+    {
+      "name": "sources:extracted_tree_key_files",
+      "status": "PASS",
+      "detail": "key_files=3/3"
+    },
+    {
+      "name": "toolchain:pinned_paths_exist",
+      "status": "PASS",
+      "detail": "cmake=True, gcc=True, g++=True, make=True, bison=True, flex=True"
+    },
+    {
+      "name": "outputs:formal_outputs_absent_before_build",
+      "status": "PASS",
+      "detail": "absent=8/8"
+    },
+    {
+      "name": "build:exclusive_external_roots_absent",
+      "status": "PASS",
+      "detail": "/home/reachgao/.local/build/suitesparse-7.8.3-r01=False, /home/reachgao/.local/build/trilinos-14.4-serial-r01=False, /home/reachgao/.local/build/xyce-7.10.0-r01=False, /home/reachgao/.local/suitesparse-7.8.3=False, /home/reachgao/.local/trilinos-14.4-serial=False, /home/reachgao/.local/xyce-7.10-pure=False"
+    },
+    {
+      "name": "toolchain:version_probes",
+      "status": "PASS",
+      "detail": "passed=6/6"
+    },
+    {
+      "name": "toolchain:no_mpi_fortran_or_proprietary_requirement",
+      "status": "PASS",
+      "detail": "serial C/C++ build only; proprietary binaries are excluded"
+    },
+    {
+      "name": "build:suitesparse_configure",
+      "status": "FAIL",
+      "detail": "SuiteSparse AMD-only configure"
+    },
+    {
+      "name": "build:suitesparse_install",
+      "status": "FAIL",
+      "detail": "AMD and SuiteSparse_config installed"
+    },
+    {
+      "name": "build:trilinos_configure",
+      "status": "FAIL",
+      "detail": "serial Trilinos 14.4 configure"
+    },
+    {
+      "name": "build:trilinos_install",
+      "status": "FAIL",
+      "detail": "TrilinosConfig.cmake installed"
+    },
+    {
+      "name": "build:xyce_configure",
+      "status": "FAIL",
+      "detail": "Xyce 7.10 configure"
+    },
+    {
+      "name": "build:xyce_install",
+      "status": "FAIL",
+      "detail": "binary=/home/reachgao/.local/xyce-7.10-pure/bin/Xyce"
+    },
+    {
+      "name": "binary:version_fingerprint",
+      "status": "FAIL",
+      "detail": ""
+    },
+    {
+      "name": "binary:license_fingerprint",
+      "status": "FAIL",
+      "detail": "GPL token absent"
+    },
+    {
+      "name": "binary:installed_executable_hash",
+      "status": "FAIL",
+      "detail": "sha256=None bytes=-1"
+    },
+    {
+      "name": "self_test:netlist_scope",
+      "status": "FAIL",
+      "detail": "controlled scalar source only; no project candidate included"
+    },
+    {
+      "name": "self_test:xyce_process_pass",
+      "status": "FAIL",
+      "detail": "return=False log=False output=False"
+    },
+    {
+      "name": "self_test:deterministic_scalar_value",
+      "status": "FAIL",
+      "detail": "observed=None expected=1.25 tolerance=1e-09"
+    },
+    {
+      "name": "device_syntax:netlist_scope_and_candidate_hash",
+      "status": "FAIL",
+      "detail": "frozen IGZO candidate only; parser-only gate"
+    },
+    {
+      "name": "device_syntax:xyce_parser_pass",
+      "status": "FAIL",
+      "detail": "return=False log=False"
+    },
+    {
+      "name": "device_syntax:no_numerical_output",
+      "status": "PASS",
+      "detail": "numerical_output_exists=False"
+    },
+    {
+      "name": "execution:no_formal_m01_outputs_after_preflight",
+      "status": "PASS",
+      "detail": "absent=8/8"
+    },
+    {
+      "name": "execution:invocation_audit",
+      "status": "FAIL",
+      "detail": "commands=7 ngspice=false aimspice=false formal_device_dc=false"
+    },
+    {
+      "name": "gate:m01_and_downstream_remain_closed",
+      "status": "PASS",
+      "detail": "formal M01 requires persisted preflight plus independent check"
+    },
+    {
+      "name": "artifacts:source_and_build_manifests",
+      "status": "PASS",
+      "detail": "sources=/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r01/source_manifest.json build=/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r01/build_manifest.json"
+    },
+    {
+      "name": "artifacts:preflight_log_and_exclusive_report",
+      "status": "PASS",
+      "detail": "log=True report_preexisting=False"
+    }
+  ],
+  "failures": [
+    {
+      "name": "build:suitesparse_configure",
+      "status": "FAIL",
+      "detail": "SuiteSparse AMD-only configure"
+    },
+    {
+      "name": "build:suitesparse_install",
+      "status": "FAIL",
+      "detail": "AMD and SuiteSparse_config installed"
+    },
+    {
+      "name": "build:trilinos_configure",
+      "status": "FAIL",
+      "detail": "serial Trilinos 14.4 configure"
+    },
+    {
+      "name": "build:trilinos_install",
+      "status": "FAIL",
+      "detail": "TrilinosConfig.cmake installed"
+    },
+    {
+      "name": "build:xyce_configure",
+      "status": "FAIL",
+      "detail": "Xyce 7.10 configure"
+    },
+    {
+      "name": "build:xyce_install",
+      "status": "FAIL",
+      "detail": "binary=/home/reachgao/.local/xyce-7.10-pure/bin/Xyce"
+    },
+    {
+      "name": "binary:version_fingerprint",
+      "status": "FAIL",
+      "detail": ""
+    },
+    {
+      "name": "binary:license_fingerprint",
+      "status": "FAIL",
+      "detail": "GPL token absent"
+    },
+    {
+      "name": "binary:installed_executable_hash",
+      "status": "FAIL",
+      "detail": "sha256=None bytes=-1"
+    },
+    {
+      "name": "self_test:netlist_scope",
+      "status": "FAIL",
+      "detail": "controlled scalar source only; no project candidate included"
+    },
+    {
+      "name": "self_test:xyce_process_pass",
+      "status": "FAIL",
+      "detail": "return=False log=False output=False"
+    },
+    {
+      "name": "self_test:deterministic_scalar_value",
+      "status": "FAIL",
+      "detail": "observed=None expected=1.25 tolerance=1e-09"
+    },
+    {
+      "name": "device_syntax:netlist_scope_and_candidate_hash",
+      "status": "FAIL",
+      "detail": "frozen IGZO candidate only; parser-only gate"
+    },
+    {
+      "name": "device_syntax:xyce_parser_pass",
+      "status": "FAIL",
+      "detail": "return=False log=False"
+    },
+    {
+      "name": "execution:invocation_audit",
+      "status": "FAIL",
+      "detail": "commands=7 ngspice=false aimspice=false formal_device_dc=false"
+    }
+  ],
+  "summary": {
+    "check_count": 29,
+    "passed": 14,
+    "failed": 15,
+    "process_invocations": 7,
+    "ngspice_invoked": false,
+    "aimspice_invoked": false,
+    "controlled_bsource_self_test_invoked": false,
+    "device_syntax_only_invoked": false,
+    "formal_device_dc_invoked": false,
+    "formal_m01_outputs_created": false
+  },
+  "config": {
+    "path": "config/m01_xyce_build_preflight_r01.json",
+    "sha256": "1c846f374a2d6ffa480c44e96e90a68f6d1c9346aff3c2a4c338d3d8e5f8465f"
+  },
+  "runner": {
+    "path": "scripts/run_m01_xyce_build_preflight.py",
+    "sha256": "f51091f73905cbbac26da5787e310ece19d751ccadf75f961d6b5fb160c5dc4b"
+  },
+  "preflight_log": {
+    "path": "results/compact/m01_xyce_build_preflight_r01/preflight.log",
+    "sha256": "73f53a8c0018b44d82bdd66f20adb9b39d0659507522f018ae60d1b7c4b62cd3"
+  },
+  "source_manifest": {
+    "path": "results/compact/m01_xyce_build_preflight_r01/source_manifest.json",
+    "sha256": "235fa36c7ff627dc96a675c49f761539eb50fa072580a0bb375b85fa432ff14c"
+  },
+  "build_manifest": {
+    "path": "results/compact/m01_xyce_build_preflight_r01/build_manifest.json",
+    "sha256": "8b805de62c010f0a72dfd764cf5288355e8bf99d8d35f41de312a044176d9d2f"
+  },
+  "xyce_binary": {
+    "path": "/home/reachgao/.local/xyce-7.10-pure/bin/Xyce",
+    "sha256": null,
+    "bytes": null
+  },
+  "observed_self_test_value_v": null,
+  "evidence_boundary": "This is a committed build/tool preflight contract, not a device simulation result. It preserves the prior recovery contract and report unchanged while explicitly correcting their unverified Xyce archive-hash transcription in the new build input. A passing report can establish only that a reproducible pure-source serial Xyce binary was built from the independently rehashed GPL source and that its scalar B-source self-test plus parser-only frozen IGZO candidate syntax check passed. The self-test is not an IGZO equation, device curve, physical parameter, experimental calibration, route comparison or circuit result. Proprietary binaries are excluded, and Xyce source/build evidence does not replace AIM-Spice Level 15 or HSPICE Level 61. M01 remains E0 until both formal device-only routes and an independent persisted-evidence check pass; P3, P5, C00, circuit, layout, PEX and HZO remain closed.",
+  "next_gate": "Retain this failed preflight and stop M01; diagnose without deleting or weakening the registered gate."
+}

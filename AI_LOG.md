@@ -16,6 +16,25 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce 构建预检 R01 失败并转入 R02 合同
+
+### 用户目标与读取输入
+
+按已推送的 `ee5116e` 执行 M01 纯源码 Xyce build/tool 预检；不运行正式器件 DC、ngspice/AIM-Spice、TCAD、电路、版图、PEX 或 HZO。读取 R01 配置、runner、独立 checker、预检报告和命令日志。
+
+### 执行与失败保留
+
+- `make m01-xyce-build-preflight` 唯一运行返回 `14/29`、E0/FAIL；来源归档/哈希和 6 项工具探针通过，SuiteSparse CMake 在 `FindBLAS` 因未发现用户目录 `BLAS_LIBRARIES` 停止。未安装 SuiteSparse，未进入 Trilinos/Xyce，未生成二进制、自测或候选 `-syntax` 日志。
+- `make m01-xyce-build-preflight-check` 读取已落盘证据返回 `9/20`、E0/FAIL。R01 `preflight.log`、`source_manifest.json`、`build_manifest.json`、SuiteSparse 配置日志、报告、独立报告和部分外部 build cache 均保留，未覆盖或清理。
+- 更新 `config/project.json`、`config/experiments.json`、`scripts/check_project.py`、`STATUS.md`、`PROJECT_PLAN.md`，把 M01 机器状态改为 `preflight_failed_build/E0`，登记 R01 两级失败哈希和下一步 R02 显式 BLAS/LAPACK 路径；R01 不重跑。
+
+### 验证与边界
+
+- R01 失败不是 Xyce 数值失败、IGZO 器件结果或正式 M01 失败；没有调用 ngspice、AIM-Spice、TCAD 或任何正式器件网表。
+- 下一步建立并提交新 revision-2 合同，使用新的外部构建/输出根并显式传入已固定的用户目录 BLAS/LAPACK 库；在该合同提交前不重跑任何构建命令。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 实现 M01 纯源码 Xyce 构建/工具预检执行链
 
 ### 用户目标与环境输入

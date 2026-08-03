@@ -5229,6 +5229,9 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "implement and commit the pure-source Xyce build/tool preflight"
                 )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "establish and commit M01 Xyce build/tool preflight revision-2"
+                )
             )
             and "M01" in config.get("tcad_track", {}).get(
                 "m00_r02_formal_result_boundary", ""
@@ -5529,6 +5532,15 @@ def main() -> int:
             for key, value in xyce_preflight_config.get("outputs", {}).items()
             if key != "contract_report"
         ]
+        xyce_run_report_path = ROOT / xyce_preflight_config["outputs"]["preflight_report"]
+        xyce_independent_report_path = ROOT / xyce_preflight_config["outputs"]["independent_check_report"]
+        xyce_run_report = json.loads(xyce_run_report_path.read_text(encoding="utf-8"))
+        xyce_independent_report = json.loads(
+            xyce_independent_report_path.read_text(encoding="utf-8")
+        )
+        xyce_formal_paths = [
+            ROOT / value for value in xyce_preflight_config["formal_outputs_that_must_remain_absent"]
+        ]
         xyce_runner_source = m01_xyce_preflight_runner_path.read_text(encoding="utf-8")
         xyce_checker_source = m01_xyce_preflight_checker_path.read_text(encoding="utf-8")
         makefile_source = (ROOT / "Makefile").read_text(encoding="utf-8")
@@ -5547,7 +5559,7 @@ def main() -> int:
             == sha256(m01_xyce_preflight_config_path)
             and xyce_contract_report.get("checker", {}).get("sha256")
             == sha256(m01_xyce_preflight_contract_checker_path)
-            and xyce_machine.get("status") == "preflight_planned"
+            and xyce_machine.get("status") == "preflight_failed_build"
             and xyce_machine.get("current_evidence") == "E0"
             and xyce_machine.get("expected_contract_check_count") == 25
             and xyce_machine.get("expected_runner_check_count") == 29
@@ -5559,7 +5571,30 @@ def main() -> int:
             and xyce_machine.get("mpi_build") is False
             and xyce_machine.get("fortran_build") is False
             and xyce_machine.get("proprietary_binary_accepted") is False
-            and all(not path.exists() for path in xyce_future_paths)
+            and xyce_machine.get("preflight_run_completed") is True
+            and xyce_machine.get("preflight_run_ordinal") == 1
+            and xyce_machine.get("preflight_status") == "FAIL"
+            and xyce_machine.get("runner_checks_passed") == 14
+            and xyce_machine.get("runner_checks_failed") == 15
+            and xyce_machine.get("independent_check_status") == "FAIL"
+            and xyce_machine.get("independent_checks_passed") == 9
+            and xyce_machine.get("independent_checks_failed") == 11
+            and xyce_run_report.get("status") == "FAIL"
+            and xyce_run_report.get("evidence_level") == "E0"
+            and len(xyce_run_report.get("checks", [])) == 29
+            and sum(item.get("status") == "PASS" for item in xyce_run_report.get("checks", [])) == 14
+            and xyce_run_report.get("summary", {}).get("formal_device_dc_invoked") is False
+            and xyce_run_report.get("summary", {}).get("formal_m01_outputs_created") is False
+            and xyce_independent_report.get("status") == "FAIL"
+            and xyce_independent_report.get("evidence_level") == "E0"
+            and len(xyce_independent_report.get("checks", [])) == 20
+            and sum(item.get("status") == "PASS" for item in xyce_independent_report.get("checks", [])) == 9
+            and xyce_independent_report.get("summary", {}).get("formal_device_dc_invoked") is False
+            and xyce_independent_report.get("summary", {}).get("formal_m01_outputs_created") is False
+            and all((ROOT / value).is_file() for value in xyce_machine.get("result_paths", []))
+            and all(not path.exists() for path in xyce_formal_paths)
+            and sha256(xyce_run_report_path) == xyce_machine.get("artifact_hashes", {}).get("preflight_report_sha256")
+            and sha256(xyce_independent_report_path) == xyce_machine.get("artifact_hashes", {}).get("independent_check_report_sha256")
             and historical_hash.get("historical_contract_and_report_must_remain_unchanged")
             is True
             and historical_hash.get("historical_recorded_xyce_archive_sha256")
@@ -5581,8 +5616,9 @@ def main() -> int:
             and config.get("tcad_track", {})
             .get("m01_xyce_build_preflight_contract_boundary", "")
             .startswith("The revision-1 Xyce build/tool preflight contract pins"),
-            f"checks={sum(item.get('status') == 'PASS' for item in xyce_contract_checks)}/{len(xyce_contract_checks)} future_absent="
-            f"{sum(not path.exists() for path in xyce_future_paths)}/{len(xyce_future_paths)}",
+            f"contract_checks={sum(item.get('status') == 'PASS' for item in xyce_contract_checks)}/{len(xyce_contract_checks)} "
+            f"runner={sum(item.get('status') == 'PASS' for item in xyce_run_report.get('checks', []))}/29 "
+            f"independent={sum(item.get('status') == 'PASS' for item in xyce_independent_report.get('checks', []))}/20",
         )
     except Exception as error:  # noqa: BLE001
         add_check(

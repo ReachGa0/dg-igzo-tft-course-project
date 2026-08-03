@@ -1,0 +1,9 @@
+M01 Xyce build/tool preflight R01
+formal_device_dc_invoked=false
+formal_m01_numerical_run=false
+ngspice_invoked=false
+aimspice_invoked=false
+checks_passed=14/29
+preflight_status=FAIL
+formal_device_dc_invoked=false
+formal_m01_numerical_run=false

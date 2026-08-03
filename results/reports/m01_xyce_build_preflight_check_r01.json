@@ -1,0 +1,195 @@
+{
+  "status": "FAIL",
+  "check_status": "FAIL",
+  "evidence_level": "E0",
+  "stage_id": "M01",
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R01",
+  "simulation_status": "NOT_RUN_BY_INDEPENDENT_CHECK",
+  "checks": [
+    {
+      "name": "result:runner_passed_all_registered_checks",
+      "status": "FAIL",
+      "detail": "passed=14/29"
+    },
+    {
+      "name": "result:tool_only_boundary",
+      "status": "PASS",
+      "detail": "preflight is build, scalar self-test and parser-only syntax evidence"
+    },
+    {
+      "name": "identity:config_and_runner_hashes",
+      "status": "PASS",
+      "detail": "config=1c846f374a2d6ffa480c44e96e90a68f6d1c9346aff3c2a4c338d3d8e5f8465f runner=f51091f73905cbbac26da5787e310ece19d751ccadf75f961d6b5fb160c5dc4b"
+    },
+    {
+      "name": "artifacts:registered_hashes",
+      "status": "PASS",
+      "detail": "preflight log and both manifests match the runner report"
+    },
+    {
+      "name": "sources:all_archives_rehashed",
+      "status": "PASS",
+      "detail": "archives=4"
+    },
+    {
+      "name": "sources:extracted_key_files_rehashed",
+      "status": "PASS",
+      "detail": "Xyce, Trilinos and SuiteSparse source key files match"
+    },
+    {
+      "name": "binary:hash_size_version_license",
+      "status": "FAIL",
+      "detail": "sha256=None bytes=None"
+    },
+    {
+      "name": "build:serial_fortran_off_mpi_off",
+      "status": "PASS",
+      "detail": "serial two-job source build is persisted"
+    },
+    {
+      "name": "build:required_commands_passed",
+      "status": "FAIL",
+      "detail": "required=1/10"
+    },
+    {
+      "name": "build:registered_options_preserved",
+      "status": "FAIL",
+      "detail": "Fortran-off, MPI-off, official cache and parser tools are in persisted argv"
+    },
+    {
+      "name": "execution:no_disqualified_or_formal_route",
+      "status": "FAIL",
+      "detail": "only Xyce scalar self-test and parser-only device syntax were invoked"
+    },
+    {
+      "name": "self_test:netlist_scope",
+      "status": "FAIL",
+      "detail": "controlled scalar B-source netlist contains no project-device token"
+    },
+    {
+      "name": "self_test:persisted_value",
+      "status": "FAIL",
+      "detail": "observed=None expected=1.25 tolerance=1e-09"
+    },
+    {
+      "name": "self_test:registered_log_and_output",
+      "status": "FAIL",
+      "detail": "Xyce log, CSV and runner observation are consistent"
+    },
+    {
+      "name": "device_syntax:frozen_candidate_and_scope",
+      "status": "FAIL",
+      "detail": "parser input binds the frozen IGZO candidate only"
+    },
+    {
+      "name": "device_syntax:log_without_numerical_output",
+      "status": "FAIL",
+      "detail": "-syntax log exists and no DC CSV was created"
+    },
+    {
+      "name": "outputs:formal_m01_outputs_absent",
+      "status": "PASS",
+      "detail": "absent=8/8"
+    },
+    {
+      "name": "boundary:raw_log_records_no_formal_execution",
+      "status": "PASS",
+      "detail": "raw preflight log retains the execution boundary"
+    },
+    {
+      "name": "boundary:no_physical_calibration_or_circuit_claim",
+      "status": "PASS",
+      "detail": "tool preflight remains separate from device and circuit evidence"
+    },
+    {
+      "name": "gate:formal_m01_requires_independent_pass",
+      "status": "FAIL",
+      "detail": "Retain this failed preflight and stop M01; diagnose without deleting or weakening the registered gate."
+    }
+  ],
+  "failures": [
+    {
+      "name": "result:runner_passed_all_registered_checks",
+      "status": "FAIL",
+      "detail": "passed=14/29"
+    },
+    {
+      "name": "binary:hash_size_version_license",
+      "status": "FAIL",
+      "detail": "sha256=None bytes=None"
+    },
+    {
+      "name": "build:required_commands_passed",
+      "status": "FAIL",
+      "detail": "required=1/10"
+    },
+    {
+      "name": "build:registered_options_preserved",
+      "status": "FAIL",
+      "detail": "Fortran-off, MPI-off, official cache and parser tools are in persisted argv"
+    },
+    {
+      "name": "execution:no_disqualified_or_formal_route",
+      "status": "FAIL",
+      "detail": "only Xyce scalar self-test and parser-only device syntax were invoked"
+    },
+    {
+      "name": "self_test:netlist_scope",
+      "status": "FAIL",
+      "detail": "controlled scalar B-source netlist contains no project-device token"
+    },
+    {
+      "name": "self_test:persisted_value",
+      "status": "FAIL",
+      "detail": "observed=None expected=1.25 tolerance=1e-09"
+    },
+    {
+      "name": "self_test:registered_log_and_output",
+      "status": "FAIL",
+      "detail": "Xyce log, CSV and runner observation are consistent"
+    },
+    {
+      "name": "device_syntax:frozen_candidate_and_scope",
+      "status": "FAIL",
+      "detail": "parser input binds the frozen IGZO candidate only"
+    },
+    {
+      "name": "device_syntax:log_without_numerical_output",
+      "status": "FAIL",
+      "detail": "-syntax log exists and no DC CSV was created"
+    },
+    {
+      "name": "gate:formal_m01_requires_independent_pass",
+      "status": "FAIL",
+      "detail": "Retain this failed preflight and stop M01; diagnose without deleting or weakening the registered gate."
+    }
+  ],
+  "summary": {
+    "check_count": 20,
+    "passed": 9,
+    "failed": 11,
+    "simulator_processes_invoked": 0,
+    "formal_device_dc_invoked": false,
+    "formal_m01_outputs_created": false
+  },
+  "config": {
+    "path": "config/m01_xyce_build_preflight_r01.json",
+    "sha256": "1c846f374a2d6ffa480c44e96e90a68f6d1c9346aff3c2a4c338d3d8e5f8465f"
+  },
+  "checker": {
+    "path": "scripts/check_m01_xyce_build_preflight.py",
+    "sha256": "ad56b50a104c1a63e6d649054b47aeb4bebc29262ecb6e251b07d74d2d4890c0"
+  },
+  "runner_report": {
+    "path": "results/reports/m01_xyce_build_preflight_r01.json",
+    "sha256": "b444a44a96af525b5c5505627f33b62ac3521015d713b85b9ff919354dae8a61"
+  },
+  "xyce_binary": {
+    "path": "/home/reachgao/.local/xyce-7.10-pure/bin/Xyce",
+    "sha256": null,
+    "bytes": null
+  },
+  "observed_self_test_value_v": null,
+  "evidence_boundary": "This is a committed build/tool preflight contract, not a device simulation result. It preserves the prior recovery contract and report unchanged while explicitly correcting their unverified Xyce archive-hash transcription in the new build input. A passing report can establish only that a reproducible pure-source serial Xyce binary was built from the independently rehashed GPL source and that its scalar B-source self-test plus parser-only frozen IGZO candidate syntax check passed. The self-test is not an IGZO equation, device curve, physical parameter, experimental calibration, route comparison or circuit result. Proprietary binaries are excluded, and Xyce source/build evidence does not replace AIM-Spice Level 15 or HSPICE Level 61. M01 remains E0 until both formal device-only routes and an independent persisted-evidence check pass; P3, P5, C00, circuit, layout, PEX and HZO remain closed.",
+  "next_gate": "Stop M01 and retain the failed independent check without altering the registered threshold."
+}

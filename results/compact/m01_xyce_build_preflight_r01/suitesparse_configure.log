@@ -1,0 +1,80 @@
+argv=["/home/reachgao/.local/cmake-3.30.5/bin/cmake", "-S", "/home/reachgao/.local/src/suitesparse-7.8.3", "-B", "/home/reachgao/.local/build/suitesparse-7.8.3-r01", "-DCMAKE_INSTALL_PREFIX=/home/reachgao/.local/suitesparse-7.8.3", "-DSUITESPARSE_ENABLE_PROJECTS=suitesparse_config;amd", "-DSUITESPARSE_USE_FORTRAN=OFF", "-DSUITESPARSE_USE_CUDA=OFF", "-DCMAKE_C_COMPILER=/usr/bin/gcc", "-DCMAKE_CXX_COMPILER=/usr/bin/g++", "-DCMAKE_BUILD_TYPE=Release"]
+cwd=/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目
+returncode=1
+timed_out=false
+elapsed_seconds=5.507222
+output_begin
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Source:           /home/reachgao/.local/src/suitesparse-7.8.3 
+-- Build:            /home/reachgao/.local/build/suitesparse-7.8.3-r01 
+-- Install lib:      lib
+-- Install include:  include/suitesparse
+-- Install bin:      bin
+-- Install pkg-file: lib
+-- Install rpath:    $ORIGIN
+-- Build   rpath:    
+-- Build type:       Release 
+-- Fortran:          not enabled
+-- CUDA:             not enabled
+-- Building SuiteSparse_config version: v7.8.3 (Oct 10, 2024)
+-- Source:           /home/reachgao/.local/src/suitesparse-7.8.3 
+-- Build:            /home/reachgao/.local/build/suitesparse-7.8.3-r01 
+-- Install lib:      lib
+-- Install include:  include/suitesparse
+-- Install bin:      bin
+-- Install pkg-file: lib
+-- Install rpath:    $ORIGIN
+-- Build   rpath:    
+-- Build type:       Release 
+-- Fortran:          not enabled
+-- CUDA:             not enabled
+-- C to Fortran calling protocol: 
+--     SUITESPARSE_HAS_FORTRAN  : OFF
+--     FortranCInterface_GLOBAL_MACRO  : (name,NAME) name##_
+--     FortranCInterface_GLOBAL__MACRO : (name,NAME) name##_
+-- Found OpenMP_C: -fopenmp (found version "4.5")
+-- Found OpenMP: TRUE (found version "4.5") found components: C
+-- SuiteSparse_config has OpenMP: ON
+-- Looking for clock_gettime
+-- Looking for clock_gettime - found
+-- Using clock_gettime without librt
+-- Looking for Intel 32-bit BLAS
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Could NOT find BLAS (missing: BLAS_LIBRARIES) 
+-- Looking for 32-bit Apple BLAS
+-- Could NOT find BLAS (missing: BLAS_LIBRARIES) 
+-- Looking for ARM 32-bit BLAS
+-- Could NOT find BLAS (missing: BLAS_LIBRARIES) 
+-- Looking for IBM ESSL 32-bit BLAS
+-- Could NOT find BLAS (missing: BLAS_LIBRARIES) 
+-- Looking for 32-bit OpenBLAS
+-- Could NOT find BLAS (missing: BLAS_LIBRARIES) 
+-- Looking for 32-bit FLAME (BLIS) BLAS
+-- Could NOT find BLAS (missing: BLAS_LIBRARIES) 
+-- Looking for any 32-bit BLAS
+-- Looking for sgemm_
+-- Looking for sgemm_ - not found
+-- Configuring incomplete, errors occurred!
+CMake Error at /home/reachgao/.local/cmake-3.30.5/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake:233 (message):
+  Could NOT find BLAS (missing: BLAS_LIBRARIES)
+Call Stack (most recent call first):
+  /home/reachgao/.local/cmake-3.30.5/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake:603 (_FPHSA_FAILURE_MESSAGE)
+  /home/reachgao/.local/cmake-3.30.5/share/cmake-3.30/Modules/FindBLAS.cmake:1417 (find_package_handle_standard_args)
+  SuiteSparse_config/cmake_modules/SuiteSparseBLAS.cmake:242 (find_package)
+  SuiteSparse_config/CMakeLists.txt:130 (include)
+
+
+output_end

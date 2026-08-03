@@ -83,10 +83,10 @@
       <tr><td>M01 双仿真器对照合同</td><td>冻结 R02 的 247 个选定行（233 scored：163 train/70 holdout；7 个零漏压不变量和 7 个低漏压审计）、13 条曲线、W/L/偏压/温度、ngspice 行为候选和 AIM-Spice Level 15 候选；外部目录仅 reference-only</td><td>revision-3 静态合同 32/32 PASS、E3；合同不调用模拟器。路线差异必须报告但不强行调参，SnO/HZO/电路/瞬态均关闭；v1/v2 合同检查失败报告保留</td></tr>
       <tr><td>M01 R01 工具/来源预检</td><td>绑定已提交 revision-3 合同和两个 IGZO-only 候选；唯一子进程为 <code>ngspice --version</code>，AIM-Spice 只读文件指纹且未启动；器件网表和数值输出关闭</td><td>唯一运行 11/13、E0/FAIL。ngspice 三门通过；未授权 AIM-Spice 的来源不可审计和 batch/CLI 未建立两门失败。报告/原始日志保留，10 个数值输出全缺失；这不是 SPICE 数值或 IGZO 器件证据</td></tr>
       <tr><td>M01 开源恢复合同</td><td>以同一 <code>IGZO_DG_BEHAVIORAL_R02</code> 候选文本建立 ngspice 和纯源码 Xyce 7.10.0 B-level 1 两条路线；冻结 247 行、批处理模板、工具指纹、自测和输出/失败保留</td><td>30/30 静态 PASS、E3；GPL-3.0-or-later 源码归档与 SHA-256 已记录，专有 XyceNF 和未授权 AIM-Spice 排除。源码审阅不是 Xyce 二进制、器件网表、SPICE 数值或物理校准证据</td></tr>
-      <tr><td>M01 Xyce 构建/工具预检合同</td><td>固定 Xyce 7.10.0、Trilinos 14.4、SuiteSparse 7.8.3、CMake 3.30.5 的实际归档哈希；serial 两任务、MPI/Fortran 关闭；先标量 B-source 自测，再用 <code>-syntax</code> 解析冻结 IGZO 候选</td><td>25/25 静态 PASS、E3；旧恢复合同中的 archive hash 转录串原样保留，新合同用重复重算值。runner/独立检查已实现但未运行，当前没有 Xyce 二进制、自测、器件 DC 或正式 M01 数值</td></tr>
+      <tr><td>M01 Xyce 构建/工具预检合同</td><td>固定 Xyce 7.10.0、Trilinos 14.4、SuiteSparse 7.8.3、CMake 3.30.5 的实际归档哈希；serial 两任务、MPI/Fortran 关闭；先标量 B-source 自测，再用 <code>-syntax</code> 解析冻结 IGZO 候选</td><td>25/25 静态 PASS、E3；旧恢复合同中的 archive hash 转录串原样保留，新合同用重复重算值。R01 执行 14/29、独立 9/20 均 E0/FAIL，SuiteSparse CMake 未找到显式用户目录 BLAS/LAPACK；失败 artifacts 保留，当前没有 Xyce 二进制、自测、器件 DC 或正式 M01 数值</td></tr>
     </tbody>
   </table>
-  <p class="boundary">M01 开源恢复合同为 30/30 E3，后续构建/工具预检合同命令为 <code>make m01-xyce-build-preflight-contract-check</code>，25/25 E3。两项静态检查均不调用模拟器。执行链提交推送后才允许唯一运行 <code>make m01-xyce-build-preflight</code>；其受控标量自测和 parser-only <code>-syntax</code> 均不是正式器件 DC。独立检查通过前不得进行正式 M01 数值执行。</p>
+  <p class="boundary">M01 开源恢复合同为 30/30 E3，R01 构建/工具预检合同为 25/25 E3。R01 执行在 SuiteSparse BLAS 发现门以 runner 14/29、独立 9/20 失败；`results/reports/m01_xyce_build_preflight_r01.json`、独立报告、命令日志、manifest 和部分 cache 均保留。该失败不是 Xyce 数值或器件结果，也没有启动 ngspice/AIM-Spice。下一步须建立并提交 R02 显式 BLAS/LAPACK 合同；在 R02 两级检查通过前不得进行正式 M01 数值执行。</p>
   <table>
     <thead><tr><th>T02-A/B/C 拓扑与偏压合同</th><th>实现</th><th>证据边界</th></tr></thead>
     <tbody>
