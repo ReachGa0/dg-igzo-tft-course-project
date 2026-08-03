@@ -316,6 +316,13 @@ REQUIRED_FILES = [
     "report/assets/m01_open_source_route_difference_r02.png",
     "results/reports/m01_open_source_cross_check_r02.json",
     "results/reports/m01_open_source_cross_check_r02_check.json",
+    "config/m01_route_divergence_root_cause_r01.json",
+    "scripts/m01_route_divergence_root_cause_r01_common.py",
+    "scripts/check_m01_route_divergence_root_cause_r01_contract.py",
+    "scripts/run_m01_route_divergence_root_cause_r01.py",
+    "scripts/check_m01_route_divergence_root_cause_r01.py",
+    "results/reports/project_check_m01_route_divergence_r01_implementation_binding_failed.json",
+    "results/reports/project_check_m01_route_divergence_r01_implementation_source_scan_failed.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -9316,6 +9323,273 @@ def main() -> int:
         add_check(
             checks,
             "m01_open_source_device_dc_r02:contract_runner_independent_chain",
+            False,
+            str(error),
+        )
+
+    m01_rca_r01_config_path = ROOT / "config" / "m01_route_divergence_root_cause_r01.json"
+    m01_rca_r01_common_path = ROOT / "scripts" / "m01_route_divergence_root_cause_r01_common.py"
+    m01_rca_r01_contract_path = ROOT / "scripts" / "check_m01_route_divergence_root_cause_r01_contract.py"
+    m01_rca_r01_runner_path = ROOT / "scripts" / "run_m01_route_divergence_root_cause_r01.py"
+    m01_rca_r01_independent_path = ROOT / "scripts" / "check_m01_route_divergence_root_cause_r01.py"
+    try:
+        rca_config = json.loads(m01_rca_r01_config_path.read_text(encoding="utf-8"))
+        rca_machine = experiment_map["M01"].get("route_divergence_root_cause_r01", {})
+        rca_outputs = rca_config["outputs"]
+        rca_contract_report_path = ROOT / rca_outputs["contract_report"]
+        rca_run_report_path = ROOT / rca_outputs["run_report"]
+        rca_independent_report_path = ROOT / rca_outputs["independent_report"]
+        rca_contract_report = (
+            json.loads(rca_contract_report_path.read_text(encoding="utf-8"))
+            if rca_contract_report_path.is_file()
+            else {}
+        )
+        rca_run_report = (
+            json.loads(rca_run_report_path.read_text(encoding="utf-8"))
+            if rca_run_report_path.is_file()
+            else {}
+        )
+        rca_independent_report = (
+            json.loads(rca_independent_report_path.read_text(encoding="utf-8"))
+            if rca_independent_report_path.is_file()
+            else {}
+        )
+        rca_source_paths = [
+            "config/m01_route_divergence_root_cause_r01.json",
+            "scripts/m01_route_divergence_root_cause_r01_common.py",
+            "scripts/check_m01_route_divergence_root_cause_r01_contract.py",
+            "scripts/run_m01_route_divergence_root_cause_r01.py",
+            "scripts/check_m01_route_divergence_root_cause_r01.py",
+            "results/reports/project_check_m01_route_divergence_r01_implementation_binding_failed.json",
+            "results/reports/project_check_m01_route_divergence_r01_implementation_source_scan_failed.json",
+        ]
+        rca_all_output_paths = [ROOT / value for value in rca_outputs.values()]
+        rca_run_keys = [
+            "ngspice_netlist",
+            "xyce_netlist",
+            "ngspice_log",
+            "xyce_log",
+            "ngspice_command_log",
+            "xyce_command_log",
+            "ngspice_raw_output",
+            "xyce_raw_output",
+            "probe_table",
+            "run_report",
+        ]
+        rca_run_paths = [ROOT / rca_outputs[key] for key in rca_run_keys]
+        source_hashes = rca_config["source_hashes"]
+        source_hashes_ok = (
+            source_hashes["common_sha256"] == sha256(m01_rca_r01_common_path)
+            and source_hashes["contract_checker_sha256"] == sha256(m01_rca_r01_contract_path)
+            and source_hashes["runner_sha256"] == sha256(m01_rca_r01_runner_path)
+            and source_hashes["independent_checker_sha256"] == sha256(m01_rca_r01_independent_path)
+        )
+        binding = rca_config["r02_immutable_binding"]
+        binding_pairs = [
+            (binding["config_path"], binding["config_sha256"]),
+            (binding["common_path"], binding["common_sha256"]),
+            (binding["contract_checker_path"], binding["contract_checker_sha256"]),
+            (binding["runner_path"], binding["runner_sha256"]),
+            (binding["independent_checker_path"], binding["independent_checker_sha256"]),
+            (binding["static_report_path"], binding["static_report_sha256"]),
+            (binding["runner_report_path"], binding["runner_report_sha256"]),
+            (binding["independent_report_path"], binding["independent_report_sha256"]),
+            (binding["candidate_path"], binding["candidate_sha256"]),
+            (binding["ngspice_log_path"], binding["ngspice_log_sha256"]),
+            (binding["ngspice_raw_path"], binding["ngspice_raw_sha256"]),
+            (binding["xyce_raw_path"], binding["xyce_raw_sha256"]),
+        ]
+        rca_r02_binding_ok = (
+            binding["bound_commit"] == "6e61c5de59e1f47bac5a0d20d0dc5a2182f58a89"
+            and binding["must_remain_unchanged"] is True
+            and all(
+                (ROOT / path).is_file() and sha256(ROOT / path) == expected
+                for path, expected in binding_pairs
+            )
+        )
+        implementation_failure = rca_config["implementation_project_check_failure"]
+        implementation_failure_path = ROOT / implementation_failure["path"]
+        implementation_failure_report = json.loads(
+            implementation_failure_path.read_text(encoding="utf-8")
+        )
+        implementation_failure_ok = (
+            implementation_failure_path.is_file()
+            and sha256(implementation_failure_path) == implementation_failure["sha256"]
+            and implementation_failure_report.get("status") == "FAIL"
+            and implementation_failure_report.get("checks") == 753
+            and implementation_failure_report.get("failures") == 1
+            and implementation_failure.get("simulator_processes_invoked") == 0
+            and implementation_failure.get("preserved") is True
+        )
+        source_scan_failure = rca_config["implementation_source_scan_failure"]
+        source_scan_failure_path = ROOT / source_scan_failure["path"]
+        source_scan_failure_report = json.loads(
+            source_scan_failure_path.read_text(encoding="utf-8")
+        )
+        source_scan_failure_ok = (
+            source_scan_failure_path.is_file()
+            and sha256(source_scan_failure_path) == source_scan_failure["sha256"]
+            and source_scan_failure_report.get("status") == "FAIL"
+            and source_scan_failure_report.get("checks") == 754
+            and source_scan_failure_report.get("failures") == 1
+            and source_scan_failure.get("simulator_processes_invoked") == 0
+            and source_scan_failure.get("preserved") is True
+        )
+        rca_contract_pass = (
+            rca_contract_report.get("status") == "PASS"
+            and rca_contract_report.get("evidence_level") == "E3"
+            and rca_contract_report.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and rca_contract_report.get("summary", {}).get("passed") == 40
+            and rca_contract_report.get("summary", {}).get("failed") == 0
+            and rca_contract_report.get("summary", {}).get("simulator_processes_invoked") == 0
+            and rca_contract_report.get("summary", {}).get("netlists_created") == 0
+            and rca_contract_report.get("config", {}).get("sha256") == sha256(m01_rca_r01_config_path)
+            and rca_contract_report.get("runner", {}).get("sha256") == sha256(m01_rca_r01_runner_path)
+            and len(rca_contract_report.get("checks", [])) == 40
+            and all(item.get("status") == "PASS" for item in rca_contract_report.get("checks", []))
+        )
+        rca_run_pass = (
+            rca_contract_pass
+            and rca_run_report.get("status") == "PASS"
+            and rca_run_report.get("evidence_level") == "E2"
+            and rca_run_report.get("summary", {}).get("passed") == 30
+            and rca_run_report.get("summary", {}).get("failed") == 0
+            and rca_run_report.get("summary", {}).get("process_invocations") == 2
+            and rca_run_report.get("summary", {}).get("formal_247_row_device_dc_invoked") is False
+            and rca_run_report.get("diagnosis", {}).get("supported") is True
+            and rca_run_report.get("diagnosis", {}).get("full_r02_route_agreement_established") is False
+            and len(rca_run_report.get("checks", [])) == 30
+            and all(item.get("status") == "PASS" for item in rca_run_report.get("checks", []))
+        )
+        rca_verified = (
+            rca_run_pass
+            and rca_independent_report.get("status") == "PASS"
+            and rca_independent_report.get("evidence_level") == "E3"
+            and rca_independent_report.get("summary", {}).get("passed") == 22
+            and rca_independent_report.get("summary", {}).get("failed") == 0
+            and rca_independent_report.get("processes_invoked") == 0
+            and rca_independent_report.get("diagnosis", {}).get("independently_supported") is True
+            and rca_independent_report.get("diagnosis", {}).get("full_r02_route_agreement_established") is False
+        )
+        rca_implemented_state = (
+            rca_machine.get("status") == "contract_implemented"
+            and rca_machine.get("current_evidence") == "E0"
+            and rca_machine.get("contract_check_completed") is False
+            and rca_machine.get("contract_status") == "NOT_RUN"
+            and rca_machine.get("runner_completed") is False
+            and rca_machine.get("independent_check_completed") is False
+            and rca_machine.get("processes_invoked") == 0
+            and rca_machine.get("result_paths") == rca_source_paths
+            and all(not path.exists() for path in rca_all_output_paths)
+        )
+        rca_ready_state = (
+            rca_contract_pass
+            and rca_machine.get("status") == "contract_ready"
+            and rca_machine.get("current_evidence") == "E3"
+            and rca_machine.get("contract_check_completed") is True
+            and rca_machine.get("contract_status") == "PASS"
+            and rca_machine.get("contract_checks_passed") == 40
+            and rca_machine.get("contract_checks_failed") == 0
+            and rca_machine.get("runner_completed") is False
+            and rca_machine.get("processes_invoked") == 0
+            and rca_machine.get("result_paths") == rca_source_paths + [rca_outputs["contract_report"]]
+            and all(path == rca_contract_report_path or not path.exists() for path in rca_all_output_paths)
+        )
+        rca_runner_state = (
+            rca_run_pass
+            and rca_machine.get("status") == "formal_probe_passed"
+            and rca_machine.get("current_evidence") == "E2"
+            and rca_machine.get("runner_completed") is True
+            and rca_machine.get("runner_status") == "PASS"
+            and rca_machine.get("runner_checks_passed") == 30
+            and rca_machine.get("runner_checks_failed") == 0
+            and rca_machine.get("processes_invoked") == 2
+            and rca_machine.get("root_cause_confirmed") is True
+            and rca_machine.get("branch_current_extraction_eliminated") is True
+            and rca_machine.get("portable_probe_validated") is True
+            and rca_machine.get("independent_check_completed") is False
+            and all(path.is_file() for path in rca_run_paths)
+            and not rca_independent_report_path.exists()
+        )
+        rca_verified_state = (
+            rca_verified
+            and rca_machine.get("status") == "verified"
+            and rca_machine.get("current_evidence") == "E3"
+            and rca_machine.get("independent_check_completed") is True
+            and rca_machine.get("independent_check_status") == "PASS"
+            and rca_machine.get("independent_checks_passed") == 22
+            and rca_machine.get("independent_checks_failed") == 0
+            and rca_machine.get("independent_processes_invoked") == 0
+            and all(path.is_file() for path in rca_run_paths)
+            and rca_independent_report_path.is_file()
+        )
+        rca_next_scope = config.get("tcad_track", {}).get("next_scope", "")
+        rca_next_scope_valid = (
+            rca_implemented_state
+            and rca_next_scope.startswith("establish and commit a versioned M01 route-divergence root-cause contract")
+        ) or (
+            rca_ready_state
+            and rca_next_scope.startswith("execute the committed M01 route-divergence root-cause revision-1 probe")
+        ) or (
+            rca_runner_state
+            and rca_next_scope.startswith("run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-1")
+        ) or rca_verified_state
+        contract_source = m01_rca_r01_contract_path.read_text(encoding="ascii")
+        runner_source = m01_rca_r01_runner_path.read_text(encoding="ascii")
+        independent_source = m01_rca_r01_independent_path.read_text(encoding="ascii")
+        makefile_text = (ROOT / "Makefile").read_text(encoding="utf-8")
+        add_check(
+            checks,
+            "m01_route_divergence_r01:contract_runner_independent_chain",
+            rca_config.get("contract_id") == "M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01"
+            and rca_config.get("revision") == 1
+            and rca_config.get("status") == "contract_planned"
+            and rca_config.get("scope", {}).get("active_material_scope") == "IGZO only"
+            and rca_config.get("scope", {}).get("formal_247_row_device_dc_permitted") is False
+            and rca_config.get("hypothesis", {}).get("id") == "THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH"
+            and rca_config.get("hypothesis", {}).get("candidate_file_modification_permitted") is False
+            and rca_config.get("observed_r02_diagnostics", {}).get("root_cause_confirmed_before_probe") is False
+            and rca_config.get("probe_contract", {}).get("expression_inputs") == [-75.0, 0.25, 75.0]
+            and len(rca_config.get("probe_contract", {}).get("candidate_probe_points", [])) == 3
+            and rca_config.get("probe_contract", {}).get("observable_count_per_route") == 13
+            and rca_config.get("registered_checks") == {"static_contract": 40, "runner": 30, "independent": 22}
+            and rca_config.get("resource_budget", {}).get("route_processes") == 2
+            and rca_config.get("resource_budget", {}).get("parallel_route_execution") is False
+            and rca_config.get("no_execution_rules", {}).get("r02_reexecution_permitted") is False
+            and rca_config.get("no_execution_rules", {}).get("formal_247_row_execution_permitted") is False
+            and rca_config.get("no_execution_rules", {}).get("circuit_or_downstream_permitted") is False
+            and source_hashes_ok
+            and rca_r02_binding_ok
+            and implementation_failure_ok
+            and source_scan_failure_ok
+            and re.search(r"^(?:import|from)\s+subprocess\b", contract_source, re.MULTILINE) is None
+            and "FORMAL_ROOT_CAUSE_PROBE" in runner_source
+            and re.search(r"^(?:import|from)\s+subprocess\b", independent_source, re.MULTILINE) is None
+            and re.search(
+                r"^(?:import|from)\s+run_m01_route_divergence_root_cause_r01\b",
+                independent_source,
+                re.MULTILINE,
+            ) is None
+            and all(
+                f"{target}:" in makefile_text
+                for target in (
+                    "m01-route-divergence-r01-contract-check",
+                    "m01-route-divergence-r01",
+                    "m01-route-divergence-r01-check",
+                )
+            )
+            and (rca_implemented_state or rca_ready_state or rca_runner_state or rca_verified_state)
+            and "E0 implementation" in config.get("tcad_track", {}).get("m01_route_divergence_root_cause_r01_contract_boundary", "")
+            and rca_next_scope_valid,
+            f"implemented={rca_implemented_state} ready={rca_ready_state} runner={rca_runner_state} "
+            f"verified={rca_verified_state} r02_binding={rca_r02_binding_ok} implementation_failure={implementation_failure_ok} "
+            f"source_scan_failure={source_scan_failure_ok} "
+            f"future_absent={sum(not path.exists() for path in rca_all_output_paths)}/{len(rca_all_output_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(
+            checks,
+            "m01_route_divergence_r01:contract_runner_independent_chain",
             False,
             str(error),
         )

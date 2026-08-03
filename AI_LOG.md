@@ -16,6 +16,26 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 建立 M01 路线分歧根因 R01 最小合同（未执行）
+
+### 目标与运行前假设
+
+承接提交 `6e61c5d` 中 R02 40/30/24 完整证据链与已确认路线分歧，不重跑 R02 247 行正式 DC，不修改冻结候选或历史证据。读取候选 `spice/models/igzo_dg_behavioral_r02.inc`、ngspice 原始日志/raw、Xyce PRN、R02 三门报告、ngspice 文档线索与本地 Xyce 7.10 源码/单元测试哈希。预先假设为：候选未限定的三参数 `limit(x/s,-60,60)` 在 ngspice-42 默认无 PSPICE 兼容模式与 Xyce 之间具有不同语义。该假设必须由后续数值探针验证，当前不称为已确认根因。
+
+### 实施与失败保留
+
+新增 `config/m01_route_divergence_root_cause_r01.json`、common、40 项静态 checker、30 项最小 runner、22 项独立 checker 和三个 Make 入口。合同冻结三个表达式点 `-75/0.25/75`、一个 1 V/1 kOhm 支路电流哨兵、三个原始候选点与三个只将 clamp 替换为 `min(max(x/s,-60),60)` 的诊断副本点。未来资源预算为一个 ngspice 和一个 Xyce 串行进程；支路提取、显式 clamp、原表达式分歧与可移植表达式解析符合分开验收，失败输出拒绝覆盖并完整保留。
+
+首次实施态 `make check` 返回 752/753，原因是新配置转录不可改写的 Xyce R02 PRN SHA-256 时遗漏最后一位；失败报告 SHA-256 为 `caf2abd409b08a0ed319b904a676264dfd40d4bf405d0aec48ea19f71396e1cf`。恢复该尾位后，第二次检查返回 753/754，原因是全文禁止导入扫描命中静态 checker 自身的审计字面量；失败报告 SHA-256 为 `c6601bb62fdd18394135ebbb5302ede6f3e7b22541a34040befb509ccfcc73e0`。修正只改为匹配真实行首 import，不放宽 no-process 规则。两份失败均哈希绑定且记录零模拟器进程。
+
+### 文档、验证与下一门
+
+更新机器配置、`STATUS.md`、README、AI 上下文、架构、计划、ADR-072、报告第 5/6/8/9 章和证据矩阵。`make check` 最终为 755/755 PASS；`make report-check` 为 12 章/5 附录/15 个既有占位/28 张图 PASS；三个 JSON、五个 Python 文件和 `git diff --check` 通过。本里程碑没有运行 40 项正式静态合同，也没有创建探针网表、启动 ngspice/Xyce/TCAD/AIM-Spice 或生成数值输出。
+
+先提交并推送本 E0 实施态，再唯一执行 `make m01-route-divergence-r01-contract-check`。只有 40/40 E3 静态 PASS 状态另行提交并推送后，才允许两进程最小探针。无论后续结果如何，本合同不会直接建立完整 247 行路线一致、物理 IGZO 参数、实验校准、正式 M01 或电路证据；C00、版图、PEX 和 HZO 继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 正式器件 DC R02 独立复核 24/24 PASS
 
 ### 唯一执行与结果

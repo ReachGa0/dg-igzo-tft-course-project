@@ -39,6 +39,7 @@
       <tr><td>M01 open-source device DC R02 static contract</td><td>同一输入、物理、工具、命令、提取和阈值；实施提交 <code>86c5106</code> 后唯一静态执行</td><td>40/40 PASS、E3；报告 <code>0154abfb...64d2c</code> 记录零 build/simulator process、零网表和零数值输出。runner/独立检查未运行，不是器件、参数或校准结果</td></tr>
       <tr><td>M01 open-source device DC R02 runner</td><td>247 行、同一候选、ngspice/Xyce 精确 argv、各一个进程、<code>abs(I(VDS))/(W_um*1e-4)</code>、1e-20 A/cm 对数底值与 diagnostic-only 差异口径均不变</td><td>30/30 PASS、E2；输出完整但 ngspice 最大电流仅 <code>2.04171e-31 A/cm</code>，Xyce 最大 <code>4.68252e-4 A/cm</code>。随后独立复核精确重算；这不是路线一致、物理参数或实验校准</td></tr>
       <tr><td>M01 open-source device DC R02 independent check</td><td>同一冻结输入、候选、提取和 diagnostic-only 口径；标准库独立再生网表并从原生输出重算全部表、指标与差异</td><td>24/24 PASS、E3，零进程，报告 <code>8afc00ce...e5fac</code>；确认落盘完整及路线分歧。未从结果反推或改变任何输入，不形成路线一致、物理参数、实验拟合、正式 M01 或电路证据</td></tr>
+      <tr><td>M01 route-divergence root-cause R01 implementation</td><td>绑定 R02 候选与原生证据；输入只包含 `-75/0.25/75` 三个表达式点、1 V/1 kOhm 支路哨兵和三个原始/可移植候选点，可移植副本仅用 <code>min(max(x/s,-60),60)</code></td><td>40/30/22 检查链已实现但全部未运行，E0；两次实施期项目检查失败已保留。三参数 <code>limit</code> 语义分歧不是已确认物理或数值结论，诊断副本不是已接受器件模型</td></tr>
       <tr><td>学长 IGZO/VTC 表</td><td>已保留来源行和质量标记</td><td>导入、对数作图和数据质量参考</td><td>缺少完整条件，仅 reference_only</td></tr>
     </tbody>
   </table>

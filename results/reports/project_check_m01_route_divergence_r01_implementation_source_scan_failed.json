@@ -1,8 +1,8 @@
 {
   "project": "DG-IGZO-TFT-PDK",
-  "status": "PASS",
-  "checks": 755,
-  "failures": 0,
+  "status": "FAIL",
+  "checks": 754,
+  "failures": 1,
   "results": [
     {
       "name": "directory:config",
@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=27059"
+      "detail": "bytes=26452"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=23408"
+      "detail": "bytes=22859"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=22355"
+      "detail": "bytes=22000"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=193001"
+      "detail": "bytes=190282"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4776"
+      "detail": "bytes=4712"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=112066"
+      "detail": "bytes=110382"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=60551"
+      "detail": "bytes=59179"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=49959"
+      "detail": "bytes=49642"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=119438"
+      "detail": "bytes=118639"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1752,7 +1752,7 @@
     {
       "name": "file:config/m01_route_divergence_root_cause_r01.json",
       "status": "PASS",
-      "detail": "bytes=13427"
+      "detail": "bytes=13017"
     },
     {
       "name": "file:scripts/m01_route_divergence_root_cause_r01_common.py",
@@ -1762,7 +1762,7 @@
     {
       "name": "file:scripts/check_m01_route_divergence_root_cause_r01_contract.py",
       "status": "PASS",
-      "detail": "bytes=24232"
+      "detail": "bytes=23285"
     },
     {
       "name": "file:scripts/run_m01_route_divergence_root_cause_r01.py",
@@ -1772,17 +1772,12 @@
     {
       "name": "file:scripts/check_m01_route_divergence_root_cause_r01.py",
       "status": "PASS",
-      "detail": "bytes=13772"
+      "detail": "bytes=12783"
     },
     {
       "name": "file:results/reports/project_check_m01_route_divergence_r01_implementation_binding_failed.json",
       "status": "PASS",
       "detail": "bytes=121729"
-    },
-    {
-      "name": "file:results/reports/project_check_m01_route_divergence_r01_implementation_source_scan_failed.json",
-      "status": "PASS",
-      "detail": "bytes=121936"
     },
     {
       "name": "file:scripts/check_t03_p5_temperature.py",
@@ -2177,7 +2172,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=77784"
+      "detail": "bytes=75163"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3711,8 +3706,8 @@
     },
     {
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",
-      "status": "PASS",
-      "detail": "implemented=True ready=False runner=False verified=False r02_binding=True implementation_failure=True source_scan_failure=True future_absent=13/13"
+      "status": "FAIL",
+      "detail": "implemented=True ready=False runner=False verified=False r02_binding=True implementation_failure=True future_absent=13/13"
     },
     {
       "name": "tcad:mesh_levels",
