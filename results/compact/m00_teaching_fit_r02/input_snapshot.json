@@ -1,0 +1,291 @@
+{
+  "case_id": "IGZO_M00_TEACHING_COMPACT_INPUT_VALIDATION_R02",
+  "stage": "M00",
+  "formal_run_revision": 2,
+  "formal_run_ordinal": 1,
+  "start_utc": "2026-08-03T01:08:54.616247+00:00",
+  "training_rows_loaded_utc": "2026-08-03T01:08:54.675567+00:00",
+  "holdout_target_rows_loaded_before_optimizer": false,
+  "command": "make m00-compact-model-r02-fit",
+  "config": {
+    "path": "config/compact_m00_input_validation_r02.json",
+    "sha256": "1f5a169c21e598546338c9845d66663cc985afb2f0d571dbabd5ffc323627359",
+    "bytes": 26279
+  },
+  "contract_report": {
+    "path": "results/reports/m00_compact_model_input_contract_r02.json",
+    "sha256": "7c0abfd8c52f81b92c176ca37192472c8e09fa39b06135f62ef45f9a070ad67c",
+    "bytes": 22225
+  },
+  "dataset_registry": {
+    "path": "references/m00_dataset_registry.csv",
+    "sha256": "c7a66848430bee7837f0f8d44da52f1e7578b7aa4d8a70222a82803fadb0f840",
+    "bytes": 5633
+  },
+  "runner": {
+    "path": "models/fit_m00_teaching_compact_r02.py",
+    "sha256": "6309ff0610629088e051a2acbecc1f3ee6880676040f1b3dfa40d9d1c28f0499",
+    "bytes": 53665
+  },
+  "independent_checker": {
+    "path": "scripts/check_m00_compact_model_fit_r02.py",
+    "sha256": "94dea8002f2d038811287a52b11098c7bdac504ff4b1eb70d5058f2c9eb476ae",
+    "bytes": 37828
+  },
+  "project_config": {
+    "path": "config/project.json",
+    "sha256": "d1b9e5cf41e478c89a2df8b5788692183d449629d25a79da52a87f93133df661",
+    "bytes": 14219
+  },
+  "experiments_config": {
+    "path": "config/experiments.json",
+    "sha256": "9675624661dc85b1162e86b0bfddc37451399ed493830fa1ba1c57a20266edd9",
+    "bytes": 53632
+  },
+  "registered_sources": [
+    {
+      "dataset_id": "T01_D_B_IDVD",
+      "path": "results/tables/tcad_t01_d_idvd_points.csv",
+      "sha256": "5a550fede3cd6db1e9369f9c2783d0899afa274d2e3d130ffb2837e8f12a0ba9",
+      "row_count": 30
+    },
+    {
+      "dataset_id": "T01_D_C_IDVG",
+      "path": "results/tables/tcad_t01_d_extraction_idvg.csv",
+      "sha256": "0eff59db330321d3e5c55d6a51849787d44803e4dc20d863b0acf61d6a2ec2f8",
+      "row_count": 102
+    },
+    {
+      "dataset_id": "T02_C_DG_TRANSFER",
+      "path": "results/tables/tcad_t02_c_bidirectional_families.csv",
+      "sha256": "247d863f6a650545a2a5c407e92f3141113ec21fb0d648c2c9d45024e208f4a9",
+      "row_count": 248
+    },
+    {
+      "dataset_id": "T03_P4_LENGTH_TRANSFER",
+      "path": "results/tables/tcad_t03_p4_l_transfer_curves.csv",
+      "sha256": "3a63699b97ab3fa4e474c077a58e01ed6d9820c4adb2bd86a56fa93dbfdec16d",
+      "row_count": 93
+    },
+    {
+      "dataset_id": "T03_P1_BIAS_TRANSFER",
+      "path": "results/tables/tcad_t03_p1_bias_transfer_curves.csv",
+      "sha256": "0da04b07cecfb63256e664b5262a80cef5810ccc2fc9a46d2370bc488def5eb5",
+      "row_count": 155
+    },
+    {
+      "dataset_id": "T03_P1_CAP_RATIO_TRANSFER",
+      "path": "results/tables/tcad_t03_p1_cap_ratio_transfer_curves.csv",
+      "sha256": "8980c2e627e05acd8ddbb1f77ea4eb398b46a4053713791242b27f346015119a",
+      "row_count": 155
+    },
+    {
+      "dataset_id": "T03_P2_DIT_TRANSFER",
+      "path": "results/tables/tcad_t03_p2_dit_formal_transfer.csv",
+      "sha256": "9cf7e843b22c3bb625945e6abf3e0f1bc5c880e8325b0ea49d877dac9db8f015",
+      "row_count": 124
+    },
+    {
+      "dataset_id": "T03_P2_BULK_V3_TRANSFER",
+      "path": "results/tables/tcad_t03_p2_bulk_traps_formal_v3_transfer.csv",
+      "sha256": "af4eab4d415d3b08701aa290a3d7b796f0471ca258711036937112dbff756414",
+      "row_count": 376
+    },
+    {
+      "dataset_id": "T03_P3_V2_TRANSFER",
+      "path": "results/tables/tcad_t03_p3_contact_v2_transfer.csv",
+      "sha256": "458ea11aa4fc731d9713773c5621d4821830fc400e68c89fad940141e1c32527",
+      "row_count": 93
+    },
+    {
+      "dataset_id": "T03_P3_V2_OUTPUT",
+      "path": "results/tables/tcad_t03_p3_contact_v2_output.csv",
+      "sha256": "74a5f2bf48acd54bb467c8c3622349779c4fb9f130de60213be66c84066b1a82",
+      "row_count": 63
+    },
+    {
+      "dataset_id": "T03_P5_TEMPERATURE_TRANSFER",
+      "path": "results/tables/tcad_t03_p5_temperature_transfer.csv",
+      "sha256": "28fbb62b15c228ca09420764af7dce9f1aca1109269f0b67cf2ff7db2935db9b",
+      "row_count": 93
+    },
+    {
+      "dataset_id": "EXTERNAL_NGSPICE_TRANSFER",
+      "path": "data/raw/baseline/ngspice/data/igzo_transfer.csv",
+      "sha256": "91a390a58775b6c8c534fb66e4d74fc477afaeb9aadcdf3aed54f4f96e702483",
+      "row_count": 635
+    },
+    {
+      "dataset_id": "EXTERNAL_NGSPICE_OUTPUT",
+      "path": "data/raw/baseline/ngspice/data/igzo_output.csv",
+      "sha256": "90f770f523202e99988aaf255107afc5054420e4d7c1cf0d1611d791661c29f5",
+      "row_count": 968
+    }
+  ],
+  "optimizer_input": {
+    "curve_ids": [
+      "train_t01_single_idvg_l10",
+      "train_t01_single_idvd_vgs_0p0",
+      "train_t01_single_idvd_vgs_0p5",
+      "train_t01_single_idvd_vgs_1p0",
+      "train_t02_dual_secondary_m0p3",
+      "train_t02_dual_secondary_p0p3",
+      "train_t03_dual_length_8",
+      "train_t03_dual_idvd_vtg_0p3",
+      "train_t03_dual_idvd_vtg_1p0"
+    ],
+    "curve_count": 9,
+    "scored_point_count": 163,
+    "canonical_sha256": "04893a198794375e5c7541f23031545dedb336dc82800ee85c51db7243110a6b"
+  },
+  "locked_holdout": {
+    "curve_ids": [
+      "holdout_t01_single_idvd_vgs_0p3",
+      "holdout_t02_dual_secondary_0p0",
+      "holdout_t03_dual_length_12",
+      "holdout_t03_dual_idvd_vtg_0p5"
+    ],
+    "curve_count": 4,
+    "planned_scored_point_count": 70,
+    "targets_loaded_before_optimizer": false
+  },
+  "parameter_contract": [
+    {
+      "name": "log_beta",
+      "initial": -3.0,
+      "lower": -8.0,
+      "upper": 1.0,
+      "unit": "log10(A/cm/V^gamma)",
+      "role": "current scale coefficient"
+    },
+    {
+      "name": "vth_single_v",
+      "initial": 0.2175,
+      "lower": -0.5,
+      "upper": 1.0,
+      "unit": "V",
+      "role": "single-gate control offset"
+    },
+    {
+      "name": "vth_dual_v",
+      "initial": 0.132,
+      "lower": -0.5,
+      "upper": 1.0,
+      "unit": "V",
+      "role": "dual-gate control offset"
+    },
+    {
+      "name": "eta_dg",
+      "initial": 0.5,
+      "lower": 0.2,
+      "upper": 0.8,
+      "unit": "1",
+      "role": "equal per-gate nominal control weight"
+    },
+    {
+      "name": "softplus_scale_v",
+      "initial": 0.026,
+      "lower": 0.005,
+      "upper": 0.2,
+      "unit": "V",
+      "role": "smooth subthreshold scale coefficient"
+    },
+    {
+      "name": "transport_exponent",
+      "initial": 2.0,
+      "lower": 1.0,
+      "upper": 4.0,
+      "unit": "1",
+      "role": "charge-power coefficient"
+    },
+    {
+      "name": "drain_coupling",
+      "initial": 1.0,
+      "lower": 0.1,
+      "upper": 3.0,
+      "unit": "1",
+      "role": "drain-side charge reduction coefficient"
+    },
+    {
+      "name": "lambda_per_v",
+      "initial": 0.1,
+      "lower": 0.0,
+      "upper": 20.0,
+      "unit": "1/V",
+      "role": "sampled output modulation coefficient"
+    },
+    {
+      "name": "log_gmin",
+      "initial": -18.0,
+      "lower": -30.0,
+      "upper": -8.0,
+      "unit": "log10(S/cm)",
+      "role": "numerical floor conductance coefficient"
+    },
+    {
+      "name": "length_vth_slope_v",
+      "initial": 0.0,
+      "lower": -0.3,
+      "upper": 0.3,
+      "unit": "V",
+      "role": "sole train-fitted local length coefficient: threshold shift per ln(L/Lref)"
+    }
+  ],
+  "optimization_contract": {
+    "backend": "scipy.optimize.least_squares",
+    "method": "trf",
+    "loss": "linear",
+    "jacobian": "2-point finite difference",
+    "xtol": 1e-12,
+    "ftol": 1e-12,
+    "gtol": 1e-12,
+    "max_nfev": 20000,
+    "random_seed_or_restart": "none",
+    "training_only": true,
+    "holdout_access_during_fit": false,
+    "fixed_length_geometry_exponent": 1.0,
+    "free_length_parameter_count": 1,
+    "r01_holdout_metrics_or_fitted_parameters_used": false,
+    "per_curve_weighting": "Each training curve contributes equal total squared weight; linear and log residual blocks each contribute 0.5 per curve.",
+    "linear_residual": "(I_model-I_target)/max(abs(I_target)) within each scored curve",
+    "log_residual": "log10(max(abs(I_model),floor))-log10(max(abs(I_target),floor))",
+    "current_floor_a_per_cm": 1e-20,
+    "maximum_wall_seconds": 120.0,
+    "tcad_or_spice_execution": false
+  },
+  "acceptance": {
+    "required_training_curve_count": 9,
+    "required_holdout_curve_count": 4,
+    "required_training_scored_point_count": 163,
+    "required_holdout_scored_point_count": 70,
+    "required_zero_vds_invariant_point_count": 7,
+    "maximum_training_aggregate_linear_nrmse": 0.15,
+    "maximum_training_aggregate_log_rmse_dec": 0.45,
+    "maximum_holdout_aggregate_linear_nrmse": 0.2,
+    "maximum_holdout_aggregate_log_rmse_dec": 0.6,
+    "maximum_training_per_curve_linear_nrmse": 0.3,
+    "maximum_training_per_curve_log_rmse_dec": 0.8,
+    "maximum_holdout_per_curve_linear_nrmse": 0.35,
+    "maximum_holdout_per_curve_log_rmse_dec": 1.0,
+    "maximum_holdout_vth_absolute_error_v": 0.1,
+    "maximum_holdout_gm_relative_error": 0.5,
+    "maximum_zero_vds_abs_current_a_per_cm": 1e-18,
+    "require_all_predictions_finite": true,
+    "require_nonnegative_current_for_nonnegative_vds": true,
+    "require_sampled_transfer_and_output_monotonicity": true,
+    "require_all_parameters_strictly_inside_bounds": true,
+    "require_training_and_holdout_metrics_reported_separately": true,
+    "require_multiple_vds_in_training_and_holdout": true,
+    "require_parameter_provenance_and_validity_domain": true
+  },
+  "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "numpy_version": "2.5.1",
+  "scipy_version": "1.18.0",
+  "simulator_execution": {
+    "tcad": false,
+    "ngspice": false,
+    "aimspice": false,
+    "circuit": false
+  }
+}

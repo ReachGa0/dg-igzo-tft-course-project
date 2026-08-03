@@ -1,0 +1,160 @@
+{
+  "status": "PASS",
+  "case_id": "IGZO_M00_TEACHING_COMPACT_INPUT_VALIDATION_R02",
+  "stage": "M00",
+  "evidence_level": "E3",
+  "independent_of_fit_runner": true,
+  "runner_imported": false,
+  "scipy_imported": false,
+  "numpy_imported": false,
+  "checker": {
+    "path": "scripts/check_m00_compact_model_fit_r02.py",
+    "sha256": "94dea8002f2d038811287a52b11098c7bdac504ff4b1eb70d5058f2c9eb476ae"
+  },
+  "checks": [
+    {
+      "name": "runner:formal_e2_pass_and_all_gates",
+      "status": "PASS",
+      "detail": "runner=24/24"
+    },
+    {
+      "name": "inputs:contract_config_registry_and_source_hashes",
+      "status": "PASS",
+      "detail": "contract=PASS sources=13"
+    },
+    {
+      "name": "snapshot:exact_runner_checker_and_machine_inputs",
+      "status": "PASS",
+      "detail": "runner=6309ff0610629088e051a2acbecc1f3ee6880676040f1b3dfa40d9d1c28f0499 checker=94dea8002f2d038811287a52b11098c7bdac504ff4b1eb70d5058f2c9eb476ae"
+    },
+    {
+      "name": "optimizer:deterministic_training_only_and_holdout_late_load",
+      "status": "PASS",
+      "detail": "objective=9/163 nfev=20"
+    },
+    {
+      "name": "selection:manifest_exactly_reconstructs_frozen_rows",
+      "status": "PASS",
+      "detail": "rows=247 fields=19"
+    },
+    {
+      "name": "predictions:source_targets_and_roles_are_exact",
+      "status": "PASS",
+      "detail": "rows=247 fields=23"
+    },
+    {
+      "name": "parameters:frozen_bounds_values_and_nonphysical_provenance",
+      "status": "PASS",
+      "detail": "parameters=10 fields=11"
+    },
+    {
+      "name": "kernel:independent_prediction_recalculation",
+      "status": "PASS",
+      "detail": "maximum_relative_difference=0.000000e+00"
+    },
+    {
+      "name": "residuals:independent_linear_and_log_recalculation",
+      "status": "PASS",
+      "detail": "maximum_absolute_difference=0.000000e+00"
+    },
+    {
+      "name": "metrics:independent_per_curve_recalculation",
+      "status": "PASS",
+      "detail": "curves=13 maximum_difference=0.000000e+00"
+    },
+    {
+      "name": "metrics:equal_curve_training_and_holdout_aggregates",
+      "status": "PASS",
+      "detail": "{\"holdout\": {\"linear\": 0.10929888090067848, \"log\": 0.14261489849118605}, \"train\": {\"linear\": 0.08309352479306589, \"log\": 0.08387320317504947}}"
+    },
+    {
+      "name": "metrics:holdout_vth_and_gm_proxies",
+      "status": "PASS",
+      "detail": "curves=['holdout_t02_dual_secondary_0p0', 'holdout_t03_dual_length_12']"
+    },
+    {
+      "name": "counts:frozen_split_invariants_and_audits",
+      "status": "PASS",
+      "detail": "{\"repeated_low_vds_audit\": 7, \"scored\": 233, \"zero_vds_invariant\": 7}"
+    },
+    {
+      "name": "invariants:finite_nonnegative_zero_vds_and_monotonic",
+      "status": "PASS",
+      "detail": "maximum_zero=0.000000e+00 monotonic=True"
+    },
+    {
+      "name": "acceptance:all_prefrozen_numerical_thresholds",
+      "status": "PASS",
+      "detail": "{\"holdout\": {\"linear\": 0.10929888090067848, \"log\": 0.14261489849118605}, \"train\": {\"linear\": 0.08309352479306589, \"log\": 0.08387320317504947}}"
+    },
+    {
+      "name": "artifacts:runner_hash_manifest_is_complete",
+      "status": "PASS",
+      "detail": "artifacts=12"
+    },
+    {
+      "name": "figures:two_nontrivial_pngs",
+      "status": "PASS",
+      "detail": "dimensions=[(2160, 936), (2160, 1296)] bytes=[264830, 137236]"
+    },
+    {
+      "name": "routes:igzo_only_candidates_are_explicitly_unexecuted_and_distinct",
+      "status": "PASS",
+      "detail": "mapping=CANDIDATE_ONLY_M01_EXECUTION_REQUIRED"
+    },
+    {
+      "name": "validity:local_domain_provenance_and_no_simulator_claim",
+      "status": "PASS",
+      "detail": "{\"aimspice\": \"CANDIDATE_GENERATED_NOT_EXECUTED\", \"circuit\": \"NOT_RUN\", \"ngspice\": \"CANDIDATE_GENERATED_NOT_EXECUTED\", \"reference_python_kernel\": \"RUN\", \"tcad\": \"NOT_RUN\"}"
+    },
+    {
+      "name": "independence:standard_library_recalculation_and_evidence_boundary",
+      "status": "PASS",
+      "detail": "imports=['__future__', 'ast', 'csv', 'hashlib', 'json', 'math', 'pathlib', 'struct', 'sys', 'typing']"
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "check_count": 20,
+    "pass_count": 20,
+    "curve_count": 13,
+    "training_curve_count": 9,
+    "holdout_curve_count": 4,
+    "training_scored_point_count": 163,
+    "holdout_scored_point_count": 70,
+    "persisted_prediction_count": 247,
+    "parameter_count": 10,
+    "aggregate_metrics": {
+      "train": {
+        "linear": 0.08309352479306589,
+        "log": 0.08387320317504947
+      },
+      "holdout": {
+        "linear": 0.10929888090067848,
+        "log": 0.14261489849118605
+      }
+    },
+    "maximum_kernel_relative_difference": 0.0,
+    "maximum_residual_absolute_difference": 0.0
+  },
+  "m00_completion": {
+    "status": "PASS",
+    "complete_m00_r02_reference_kernel_fit": true,
+    "m01_contract_permitted_after_documentation": true,
+    "spice_execution_permitted_in_m00": false,
+    "circuit_or_downstream_permitted": false
+  },
+  "allowed_claim": "A later R02 two-level PASS may establish an IGZO-only structurally regularized teaching compact surrogate fit to qualified project numerical curves with unchanged condition-held-out numerical errors and an explicit local validity domain.",
+  "prohibited_claims": [
+    "experimental fitting calibration or measured predictive accuracy",
+    "physical VTH SS mobility Ion Ioff DOS contact or temperature parameters",
+    "independent external validation because train and holdout originate from the same frozen teaching model",
+    "AIM-Spice or ngspice validation before M01 execution",
+    "equation identity between native AIM-Spice Level 15 and ngspice behavioral routes",
+    "native HSPICE Level 61 execution",
+    "physical inverse-length scaling or proof that fixed Lref/L is the true IGZO law",
+    "reinterpretation replacement or deletion of the R01 E0/FAIL evidence",
+    "circuit-ready active-load model quantitative circuit results layout PEX or HZO evidence"
+  ],
+  "next_gate": "After documentation and commit, establish the M01 simulator cross-check contract; no simulator or circuit evidence is created by this R02 check."
+}

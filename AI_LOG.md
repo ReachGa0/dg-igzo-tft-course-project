@@ -16,6 +16,32 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 完成 M00 R02 正式拟合与独立验证
+
+### 用户目标
+
+在已推送执行链提交 `56a4215` 后继续阶段 DAG；R02 只运行一次，runner 全部通过后才执行独立落盘检查。保留 R01 失败，不改 split/阈值，不提前启动 M01、SPICE 或下游。
+
+### 正式运行与两级证据
+
+- 唯一执行 `make m00-compact-model-r02-fit`。runner 核对提交、合同、注册表和 13 个源表哈希，只将 9 条 train/163 点送入确定性优化；20 次函数评价后正常终止并先落盘优化日志，之后才加载 4 条 holdout/70 点。结果 24/24 PASS、E2，正式运行序号为 1。
+- train aggregate linear NRMSE/log RMSE 为 `0.0830935/0.0838732 decade`，holdout 为 `0.109299/0.142615 decade`。两条 holdout VTH 误差为 `0.0218637/0.00917274 V`，gm 相对误差为 `0.363249/0.419248`，均通过未改变的 `0.50` 门。
+- runner PASS 后唯一执行 `make m00-compact-model-r02-fit-check`。标准库检查器不导入 runner、NumPy、SciPy、DEVSIM 或 subprocess，独立复算 247 行、固定指数核、预测/残差、13 条曲线指标、VTH/gm、10 参数、两张图、候选状态和主产物哈希，20/20 PASS、E3。
+- 12 个 runner 产物、输入快照、选择清单、优化日志、预测/残差、参数、两张图、IGZO-only ngspice 行为候选、AIM-Spice Level-15 候选和映射均已落盘。候选状态严格为 generated-not-executed；没有运行 TCAD、ngspice、AIM-Spice、电路、版图、PEX 或 HZO。
+
+### 结果边界与收口
+
+- R01 的 21/24、E0/FAIL 和全部失败证据保持不变。R02 沿用原 9/163 train、4/70 holdout、底值、权重、优化器、指标和全部阈值；固定 `Lref/L` 只作结构正则化，不是物理缩放律。
+- `lambda_per_v` 的归一化下界距离约 `8.17e-35`，`log_gmin` 约 `4.07e-4`。两者严格在界内且合同没有边界裕量门，但作为近下界教学代理诊断保留；10 个系数都不是物理参数或实验标定。
+- 同步 `config/project.json`、`config/experiments.json`、项目检查器、状态/计划/架构/上下文/决策、报告第 5/6/8/9 章、证据矩阵和 14 个正式结果路径。M00 只在冻结 IGZO 教学数值曲线与局部有效域内关闭，M01 simulator cross-check 合同成为下一门。
+- 正式结果接入总检查时，首次后置 `make check` 的一个新断言把 checker SHA 错误地与独立报告路径比较，因而失败；该临时 `project_check.json` 随修正后的正常检查被项目检查器覆盖。修正只改为对 `scripts/check_m00_compact_model_fit_r02.py` 求哈希，不改模型、结果或门槛；此工具断言错误在本记录中保留，不冒充阶段门或仿真失败。
+
+### 验证与下一步
+
+- 最终 `make check`：591/591 PASS；`make report-check`：12 章、5 附录、15 个允许占位、26 张图 PASS；`git diff --check`、3 个 Python 文件语法、9 个 JSON、4 个 XHTML 和 51 行/10 列证据矩阵解析均 PASS。
+- 两张 R02 图人工核对为非空、标签可读且门限线完整；R01 配置、runner/checker、报告、表、模型和两张失败图相对 `HEAD` 无差异。没有重跑 R01/R02 或独立检查。
+- 下一步先建立并静态验证 M01 simulator cross-check 合同，冻结相同几何、偏压、目标行、路线映射、语法/版本检查、指标差异、失败保留、输出和 no-circuit 边界。合同提交推送前不得执行 ngspice/AIM-Spice；C00 与下游继续关闭。
+
 ## 2026-08-03 | Codex GPT-5 | 实现 M00 R02 正式拟合执行链
 
 ### 用户目标

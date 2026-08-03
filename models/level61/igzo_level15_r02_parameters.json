@@ -1,0 +1,50 @@
+{
+  "mapping_id": "IGZO_M00_TO_AIMSPICE_LEVEL15_R02",
+  "status": "CANDIDATE_ONLY_M01_EXECUTION_REQUIRED",
+  "reference_kernel_parameters": {
+    "log_beta": -2.7143065730738085,
+    "vth_single_v": -0.0009218074646088884,
+    "vth_dual_v": -0.019279920327909043,
+    "eta_dg": 0.5625448525612822,
+    "softplus_scale_v": 0.044946413597477364,
+    "transport_exponent": 1.7346441929471732,
+    "drain_coupling": 1.245313399341948,
+    "lambda_per_v": 1.6332541785846326e-33,
+    "log_gmin": -29.991036836575383,
+    "length_vth_slope_v": -0.04180975787015793
+  },
+  "direct_candidate_mapping": {
+    "VTO": {
+      "source": "vth_dual_v",
+      "value": -0.019279920327909043
+    },
+    "LAMBDA": {
+      "source": "lambda_per_v",
+      "value": 1.6332541785846326e-33
+    },
+    "dual_gate_control_weight": {
+      "source": "eta_dg",
+      "value": 0.5625448525612822
+    }
+  },
+  "fixed_teaching_inputs": {
+    "TOX_effective_nm": 10.0,
+    "physical_Al2O3_nm": 30.0,
+    "EPSI": 6.8,
+    "MUBAND_m2_per_v_s": 0.00355,
+    "fixed_length_geometry_exponent": 1.0
+  },
+  "not_directly_mapped": [
+    "log_beta",
+    "vth_single_v",
+    "softplus_scale_v",
+    "transport_exponent",
+    "drain_coupling",
+    "log_gmin",
+    "length_vth_slope_v"
+  ],
+  "equation_identity_with_reference_kernel": false,
+  "aimspice_executed": false,
+  "ngspice_executed": false,
+  "allowed_claim": "Unexecuted Level 15 mapping candidate for M01 only."
+}

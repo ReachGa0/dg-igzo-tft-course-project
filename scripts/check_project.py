@@ -160,6 +160,20 @@ REQUIRED_FILES = [
     "report/assets/m00_compact_model_fit.png",
     "report/assets/m00_compact_model_residuals.png",
     "results/reports/m00_compact_model_fit.json",
+    "results/compact/m00_teaching_fit_r02/input_snapshot.json",
+    "results/compact/m00_teaching_fit_r02/selected_rows_manifest.csv",
+    "results/compact/m00_teaching_fit_r02/optimizer_log.json",
+    "results/tables/m00_compact_model_predictions_r02.csv",
+    "results/tables/m00_compact_model_curve_metrics_r02.csv",
+    "results/tables/m00_compact_model_parameters_r02.csv",
+    "models/dual_gate/igzo_dg_teaching_r02.json",
+    "spice/models/igzo_dg_behavioral_r02.inc",
+    "models/level61/igzo_level15_r02.inc",
+    "models/level61/igzo_level15_r02_parameters.json",
+    "report/assets/m00_compact_model_fit_r02.png",
+    "report/assets/m00_compact_model_residuals_r02.png",
+    "results/reports/m00_compact_model_fit_r02.json",
+    "results/reports/m00_compact_model_fit_check_r02.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -4649,6 +4663,10 @@ def main() -> int:
         m00_fit = json.loads(m00_fit_path.read_text(encoding="utf-8"))
         m00_r02_config = json.loads(m00_r02_config_path.read_text(encoding="utf-8"))
         m00_r02_report = json.loads(m00_r02_report_path.read_text(encoding="utf-8"))
+        m00_r02_fit_path = ROOT / "results" / "reports" / "m00_compact_model_fit_r02.json"
+        m00_r02_check_path = ROOT / "results" / "reports" / "m00_compact_model_fit_check_r02.json"
+        m00_r02_fit = json.loads(m00_r02_fit_path.read_text(encoding="utf-8"))
+        m00_r02_check = json.loads(m00_r02_check_path.read_text(encoding="utf-8"))
         m00_snapshot = json.loads(m00_snapshot_path.read_text(encoding="utf-8"))
         m00_optimizer = json.loads(m00_optimizer_path.read_text(encoding="utf-8"))
         m00_validity = json.loads(m00_validity_path.read_text(encoding="utf-8"))
@@ -4901,14 +4919,14 @@ def main() -> int:
         m00_r02_recovery = m00_r02_config.get("structure_recovery_contract", {})
         m00_r02_basis = m00_r02_recovery.get("pre_fit_identifiability_basis", {})
         m00_r02_change = m00_r02_recovery.get("r02_change", {})
-        m00_r02_future_outputs = [
+        m00_r02_output_paths = [
             ROOT / value
             for key, value in m00_r02_config["outputs"].items()
             if key != "contract_report"
         ]
         add_check(
             checks,
-            "m00_r02_contract:static_structure_recovery_and_no_execution",
+            "m00_r02_contract:static_structure_recovery",
             m00_r02_report.get("status") == "PASS"
             and m00_r02_report.get("contract_status") == "PASS"
             and m00_r02_report.get("evidence_level") == "E3"
@@ -4930,14 +4948,13 @@ def main() -> int:
             and m00_r02_report.get("config", {}).get("sha256")
             == sha256(m00_r02_config_path)
             and m00_r02_report.get("contract_checker", {}).get("sha256")
-            == sha256(ROOT / "scripts" / "check_m00_compact_model_contract_r02.py")
-            and all(not path.exists() for path in m00_r02_future_outputs),
+            == sha256(ROOT / "scripts" / "check_m00_compact_model_contract_r02.py"),
             (
                 f"checks={len(m00_r02_checks)} parameters="
                 f"{m00_r02_plan.get('parameter_count')} fit="
-                f"{m00_r02_report.get('fit_status')} future_absent="
-                f"{sum(not path.exists() for path in m00_r02_future_outputs)}/"
-                f"{len(m00_r02_future_outputs)}"
+                f"{m00_r02_report.get('fit_status')} formal_outputs_present="
+                f"{sum(path.exists() for path in m00_r02_output_paths)}/"
+                f"{len(m00_r02_output_paths)}"
             ),
         )
         unchanged_r02_sections = (
@@ -5011,8 +5028,8 @@ def main() -> int:
             and "M00_COMPACT_MODEL_R02_SYNTHETIC_SELF_TEST_" in m00_r02_runner_source,
             (
                 f"runner={m00_r02_runner_path.relative_to(ROOT)} "
-                f"outputs_absent={sum(not path.exists() for path in m00_r02_future_outputs)}/"
-                f"{len(m00_r02_future_outputs)}"
+                f"outputs_present={sum(path.exists() for path in m00_r02_output_paths)}/"
+                f"{len(m00_r02_output_paths)}"
             ),
         )
         checker_import_roots = set(
@@ -5039,11 +5056,97 @@ def main() -> int:
             and "m00-compact-model-r02-fit-check:" in makefile_source,
             f"imports={sorted(checker_import_roots)} checks=20 targets=3",
         )
+        m00_r02_fit_checks = m00_r02_fit.get("checks", [])
+        m00_r02_check_checks = m00_r02_check.get("checks", [])
+        m00_r02_artifacts = m00_r02_fit.get("artifacts", {})
+        m00_r02_artifact_hashes_pass = (
+            len(m00_r02_artifacts) == 12
+            and all(
+                (ROOT / item["path"]).is_file()
+                and sha256(ROOT / item["path"]) == item["sha256"]
+                and (ROOT / item["path"]).stat().st_size == int(item["bytes"])
+                for item in m00_r02_artifacts.values()
+            )
+        )
+        add_check(
+            checks,
+            "m00_r02_formal:runner_two_level_input_isolation_and_pass",
+            m00_r02_fit.get("status") == "PASS"
+            and m00_r02_fit.get("fit_status") == "PASS"
+            and m00_r02_fit.get("evidence_level") == "E2"
+            and m00_r02_fit.get("formal_fit_run") is True
+            and m00_r02_fit.get("formal_fit_revision") == 2
+            and m00_r02_fit.get("formal_fit_run_ordinal") == 1
+            and m00_r02_fit.get("independent_persisted_evidence_check_complete") is False
+            and len(m00_r02_fit_checks) == 24
+            and all(item.get("status") == "PASS" for item in m00_r02_fit_checks)
+            and not m00_r02_fit.get("failures")
+            and m00_r02_fit.get("optimizer", {}).get("objective_curve_count") == 9
+            and m00_r02_fit.get("optimizer", {}).get("objective_scored_point_count") == 163
+            and m00_r02_fit.get("optimizer", {}).get("holdout_curve_ids_in_objective") == []
+            and m00_r02_fit.get("holdout_evaluation", {}).get(
+                "loaded_after_optimizer_termination"
+            ) is True
+            and m00_r02_fit.get("holdout_evaluation", {}).get(
+                "used_to_change_parameters_or_thresholds"
+            ) is False
+            and m00_r02_fit.get("split_summary", {}).get("holdout_scored_point_count") == 70
+            and len(m00_r02_fit.get("parameters", {})) == 10
+            and m00_r02_fit.get("simulator_status", {}).get("tcad") == "NOT_RUN"
+            and m00_r02_fit.get("simulator_status", {}).get("circuit") == "NOT_RUN"
+            and m00_r02_fit.get("simulator_status", {}).get("ngspice")
+            == "CANDIDATE_GENERATED_NOT_EXECUTED"
+            and m00_r02_fit.get("simulator_status", {}).get("aimspice")
+            == "CANDIDATE_GENERATED_NOT_EXECUTED"
+            and all(path.exists() for path in m00_r02_output_paths)
+            and m00_r02_artifact_hashes_pass,
+            (
+                f"runner={sum(item.get('status') == 'PASS' for item in m00_r02_fit_checks)}/"
+                f"{len(m00_r02_fit_checks)} train="
+                f"{m00_r02_fit.get('optimizer', {}).get('objective_curve_count')}/"
+                f"{m00_r02_fit.get('optimizer', {}).get('objective_scored_point_count')} "
+                f"artifacts={len(m00_r02_artifacts)}"
+            ),
+        )
+        add_check(
+            checks,
+            "m00_r02_formal:independent_e3_recalculation_and_boundary",
+            m00_r02_check.get("status") == "PASS"
+            and m00_r02_check.get("evidence_level") == "E3"
+            and m00_r02_check.get("independent_of_fit_runner") is True
+            and m00_r02_check.get("runner_imported") is False
+            and m00_r02_check.get("scipy_imported") is False
+            and m00_r02_check.get("numpy_imported") is False
+            and len(m00_r02_check_checks) == 20
+            and all(item.get("status") == "PASS" for item in m00_r02_check_checks)
+            and not m00_r02_check.get("failures")
+            and m00_r02_check.get("summary", {}).get("persisted_prediction_count") == 247
+            and m00_r02_check.get("summary", {}).get("parameter_count") == 10
+            and m00_r02_check.get("m00_completion", {}).get(
+                "complete_m00_r02_reference_kernel_fit"
+            ) is True
+            and m00_r02_check.get("m00_completion", {}).get(
+                "m01_contract_permitted_after_documentation"
+            ) is True
+            and m00_r02_check.get("m00_completion", {}).get(
+                "spice_execution_permitted_in_m00"
+            ) is False
+            and m00_r02_check.get("m00_completion", {}).get(
+                "circuit_or_downstream_permitted"
+            ) is False
+            and m00_r02_check.get("checker", {}).get("sha256")
+            == sha256(m00_r02_checker_path),
+            (
+                f"checks={sum(item.get('status') == 'PASS' for item in m00_r02_check_checks)}/"
+                f"{len(m00_r02_check_checks)} predictions="
+                f"{m00_r02_check.get('summary', {}).get('persisted_prediction_count')}"
+            ),
+        )
         add_check(
             checks,
             "m00_contract:machine_state_next_gate_and_boundary",
-            m00_experiment.get("status") == "in_progress"
-            and m00_experiment.get("current_evidence") == "E0"
+            m00_experiment.get("status") == "verified"
+            and m00_experiment.get("current_evidence") == "E3"
             and m00_experiment.get("depends_on") == ["S00", "T01", "T02", "T03"]
             and m00_machine.get("status") == "input_validation_contract_ready"
             and m00_machine.get("contract_evidence") == "E3"
@@ -5078,27 +5181,34 @@ def main() -> int:
             is False
             and m00_r02_machine.get("r01_failure_preserved") is True
             and m00_r02_machine.get("m01_or_downstream_permitted") is False
-            and m00_r02_execution.get("status") == "execution_chain_ready"
+            and m00_r02_execution.get("status") == "formal_fit_and_independent_check_verified"
             and m00_r02_execution.get("revision") == 2
             and m00_r02_execution.get("execution_chain_evidence")
-            == "E2_SYNTHETIC_SELF_TEST_ONLY"
+            == "E2"
             and m00_r02_execution.get("runner_implemented") is True
             and m00_r02_execution.get("independent_checker_implemented") is True
             and m00_r02_execution.get("synthetic_self_test_passed") is True
             and m00_r02_execution.get("expected_runner_check_count") == 24
             and m00_r02_execution.get("expected_independent_check_count") == 20
-            and m00_r02_execution.get("formal_fit_run_completed") is False
-            and m00_r02_execution.get("formal_fit_run_ordinal") == 0
-            and m00_r02_execution.get("formal_outputs_present") is False
-            and m00_r02_execution.get("holdout_scored") is False
-            and m00_r02_execution.get("model_candidates_generated") is False
+            and m00_r02_execution.get("formal_fit_run_completed") is True
+            and m00_r02_execution.get("formal_fit_run_ordinal") == 1
+            and m00_r02_execution.get("formal_fit_passed") is True
+            and m00_r02_execution.get("runner_checks_passed") == 24
+            and m00_r02_execution.get("runner_checks_total") == 24
+            and m00_r02_execution.get("independent_check_run") is True
+            and m00_r02_execution.get("independent_checks_passed") == 20
+            and m00_r02_execution.get("independent_checks_total") == 20
+            and m00_r02_execution.get("formal_outputs_present") is True
+            and m00_r02_execution.get("holdout_scored") is True
+            and m00_r02_execution.get("model_candidates_generated") is True
+            and m00_r02_execution.get("candidate_execution") is False
+            and m00_r02_execution.get("m01_contract_permitted") is True
             and m00_r02_execution.get("m01_or_downstream_permitted") is False
             and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "run exactly one formal M00 R02 fit"
+                "establish the M01 simulator cross-check contract"
             )
-            and "E2 execution-chain self-test evidence only"
-            in config.get("tcad_track", {}).get(
-                "m00_r02_execution_chain_boundary", ""
+            and "M01" in config.get("tcad_track", {}).get(
+                "m00_r02_formal_result_boundary", ""
             )
             and "experimental fitting" in m00_prohibited
             and "independent external validation" in m00_prohibited

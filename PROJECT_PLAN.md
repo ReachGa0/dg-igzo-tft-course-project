@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`M00_R02_EXECUTION_CHAIN_E2_FORMAL_RUN_NEXT`：T01/T02/T03 数值门已关闭，历史失败保留。R01 唯一正式运行因 `L=12 um` holdout gm `0.512384 > 0.50` 保持 21/24、E0/FAIL。R02 以 27/27 E3 合同固定 `Lref/L` 指数 1.0、移除 `length_exponent`，原 split、指标和门槛不变；版本化 runner/independent checker 已实现并通过合成自测，正式拟合仍为 E0 未运行。
+`M00_R02_E3_M01_CONTRACT_NEXT`：T01/T02/T03 数值门已关闭，历史失败保留。R01 唯一正式运行因 `L=12 um` holdout gm `0.512384 > 0.50` 保持 21/24、E0/FAIL。R02 以 27/27 E3 合同固定 `Lref/L` 指数 1.0、移除 `length_exponent`，原 split、指标和门槛不变；唯一正式 runner 24/24 E2、独立持久化检查 20/20 E3。M00 只在冻结 IGZO 教学数值域内关闭，候选模型尚未执行；下一步建立 M01 simulator cross-check 合同。
 
 ## 截止日期
 
@@ -45,8 +45,8 @@
 | T01 | 单栅漂移扩散 | DONE，E2 教学模型数值门 | `results/reports/tcad_t01_d_extraction.json`；状态、守恒、网格代理比较与独立检查完整，不代表实验标定 |
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
-| M00 | IGZO 教学多曲线代理拟合 | IN PROGRESS，R02 CONTRACT E3 / CHAIN E2 / FIT E0 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS，固定 `Lref/L`、10 个参数，原 9/163 train、4/70 holdout 和所有门槛不变；执行链自测 PASS，正式拟合未运行 |
-| M01 | AIM-Spice/ngspice 对照 | TODO | 依赖 M00 |
+| M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
+| M01 | AIM-Spice/ngspice 对照 | CONTRACT NEXT | 依赖 M00；先冻结同几何/偏压/目标行、路线映射、语法、指标差异、失败保留和 no-circuit 边界，合同通过后才允许仿真 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-R01 不重跑、不放宽 `0.50`、不改变 split 或用 holdout 选参数。R02 合同与版本化执行链已建立并完成合成自测；先提交推送执行链，再只运行一次正式 R02。24/24 runner PASS 后才允许独立落盘检查；M01、TCAD/SPICE、电路、版图、PEX 和 HZO 继续关闭。
+R01 不重跑、不放宽 `0.50`、不改变 split 或用 holdout 选参数。R02 已完成唯一正式运行和独立落盘检查（24/24 E2、20/20 E3），结果仅关闭冻结教学数值域。下一步建立并提交 M01 simulator cross-check 合同；合同通过前不得启动 ngspice/AIM-Spice，电路、版图、PEX 和 HZO 继续关闭。
