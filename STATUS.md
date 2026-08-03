@@ -13,11 +13,12 @@
 - [x] 构建计划为用户目录串行两任务、MPI/Fortran 关闭；先构建 SuiteSparse AMD、Trilinos、Xyce，再做版本/许可证指纹、受控标量 B-source 自测和随后 `-syntax` 的冻结 IGZO 候选解析。正式器件 DC 与 ngspice 路线均未运行。
 - [x] M01 Xyce build/tool R01 已在提交 `ee5116e` 推送后唯一运行：来源/工具 14 项通过，SuiteSparse 配置因 CMake 找不到用户目录 `BLAS_LIBRARIES` 在 5.5 秒停止；runner 14/29、独立检查 9/20，均为 E0/FAIL。R01 的报告、独立报告、日志、命令 manifest 和部分构建 cache 保留，未启动 Xyce/ngspice/AIM-Spice，未创建器件/数值输出。
 - [x] M01 Xyce build/tool R02 静态合同检查已唯一运行：22/25、E0/FAIL。BLAS/LAPACK 路径、R01 失败绑定和 R02 输出隔离门通过；失败仅为候选注释 `translation` 被 `tran` 子串误判，以及 wrapper 静态 no-formal 标记缺失。报告 `results/reports/m01_xyce_build_preflight_contract_r02.json` 原样保留，未运行任何 R02 configure/build、Xyce、自测、器件网表或数值输出。
+- [x] M01 Xyce build/tool R03 合同已建立但尚未执行：配置固定显式 BLAS/LAPACK、独立 `r03` 构建/输出根、R01/R02 失败绑定、token-safe 候选词边界和 runner/独立 checker no-formal 静态标记；合同检查器、runner、独立 checker 与 Make 入口均已登记。R03 报告尚未生成，未运行 R03 合同检查、configure/build、Xyce、自测、器件网表或数值输出。
 
 ### 下一步与关闭条件
 
-- 下一步：建立并提交 M01 Xyce build/tool R03 合同，使用 token-safe 候选范围检查和完整包装器边界标记，保留 R01 构建失败与 R02 合同失败；推送后才允许 R03 静态合同检查一次。不得重跑 R01/R02。
-- M01 仍为 `preflight_failed_build/E0`；R01 的 25/25 静态合同与 14/29、9/20 E0/FAIL 构建门，以及 R02 的 22/25 E0/FAIL 合同门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
+- 下一步：提交并推送已建立的 M01 Xyce build/tool R03 合同，随后只运行 R03 静态合同检查一次；通过后才考虑 R03 build/tool 执行链。不得重跑 R01/R02。
+- M01 仍为 `preflight_failed_build/E0`；R01 的 25/25 静态合同与 14/29、9/20 E0/FAIL 构建门，以及 R02 的 22/25 E0/FAIL 合同门和未执行的 R03 合同，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5、C00、SPICE 电路、版图、PEX 和 HZO 继续关闭；历史 AIM-Spice 预检、M01 revision-1/2 合同失败和本次 28/30 干跑失败均保留。
 
 ## 已完成

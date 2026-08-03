@@ -16,6 +16,24 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 建立 M01 Xyce build/tool R03 合同修正版
+
+### 用户目标与读取输入
+
+在 R02 静态合同唯一返回 22/25、E0/FAIL 后，按阶段 DAG 建立 revision-3 合同；只修正合同检查器的词法边界和包装器静态标记，保留 R01/R02 失败，不运行任何构建、模拟器或器件网表。读取了 R01/R02 配置、报告、失败哈希、runner/checker、项目配置和报告章节。
+
+### 实现与边界
+
+- 新增 `config/m01_xyce_build_preflight_r03.json`、R03 合同 checker、runner wrapper、标准库独立 checker 和三个 Make 入口。R03 使用独立 `r03` 构建/输出根，显式注册用户目录 BLAS/LAPACK，保留 serial 两任务、MPI/Fortran 关闭、IGZO-only 候选和 no-downstream 门。
+- 候选禁用 token 改为词边界匹配，避免 `translation` 注释触发 `tran` 子串误判；runner 继承的 R01 身份门重映射到 R03，两个 wrapper 均有静态 `formal_device_dc_invoked=false`/独立检查计数标记。
+- R01 的 14/29 runner、9/20 独立检查和 R02 的 22/25 合同报告通过路径、哈希和不可覆盖语义绑定。R03 合同报告尚未生成，R03 build/configure、Xyce、B-source 自测、parser-only 网表、ngspice/AIM-Spice、正式 M01 DC 和数值输出均未运行。
+
+### 文档与下一步
+
+同步 `config/project.json`、`config/experiments.json`、STATUS/README/AI_CONTEXT/ARCHITECTURE/PROJECT_PLAN/DECISIONS、报告第 5/6/8/9 章和证据矩阵，机器状态仍为 `preflight_failed_build/E0`。待静态语法和总检查通过后提交推送；远端同步后只运行 `make m01-xyce-build-preflight-r03-contract-check` 一次。该检查若通过，也只打开后续 R03 build/tool 预检门，不是 Xyce 二进制、器件仿真、SPICE 数值、物理参数、实验校准或电路证据。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce build/tool R02 静态合同失败
 
 ### 用户目标与读取输入

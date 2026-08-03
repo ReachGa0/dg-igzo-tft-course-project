@@ -1,5 +1,22 @@
 # 设计决策记录
 
+## ADR-045：R03 只修正 Xyce 预检合同边界，不重跑历史失败
+
+- 日期：2026-08-03
+- 状态：R03 合同已实现，静态检查尚未运行；R01/R02 失败保持 E0/FAIL，M01 数值执行关闭
+
+### 修正范围
+
+- R03 绑定并保持 R01 的 14/29 runner、9/20 独立检查失败和 R02 的 22/25 静态合同失败；两份报告、日志、manifest、partial cache 和哈希均不可覆盖。
+- 候选范围检查改为完整词边界，避免 `translation` 之类普通注释被 `tran` 子串规则误判。runner 与独立 checker 明确登记 `formal_device_dc_invoked=false` 和 20 项独立检查标记，且使用独立 `r03` 构建/输出根。
+- 显式用户目录 `libblas.so`/`liblapack.so`、serial 两任务、MPI/Fortran 关闭、IGZO-only 候选、失败保留和 no-downstream 门均保持不变；不改物理输入、M00 split、器件候选字节或验收阈值。
+
+### 阶段门与证据边界
+
+- 提交并推送 R03 后只允许静态合同检查一次。合同检查自身不得构建 SuiteSparse/Trilinos/Xyce，不得启动 ngspice/AIM-Spice，不得生成器件网表或数值表。
+- 即使 R03 合同 PASS，也只证明预检执行链可审计；后续必须再经过一次 R03 build/tool 运行和独立落盘检查，才可考虑冻结的两路线器件 DC。任何失败继续完整保留并停止。
+- R03 不是 Xyce 二进制、IGZO 方程、器件仿真、SPICE 数值、物理参数、实验校准、M01 完成或电路证据；P3、P5、C00、电路、版图、PEX 和 HZO 继续关闭。
+
 ## ADR-044：纯源码 Xyce 采用串行用户目录构建，先过工具自测再开放器件 DC
 
 - 日期：2026-08-03

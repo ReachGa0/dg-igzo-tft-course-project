@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 622,
+  "checks": 627,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=23797"
+      "detail": "bytes=23765"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=21602"
+      "detail": "bytes=21985"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=18106"
+      "detail": "bytes=18250"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=140646"
+      "detail": "bytes=142494"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=5159"
+      "detail": "bytes=5211"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=73353"
+      "detail": "bytes=74901"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=38163"
+      "detail": "bytes=38548"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=8650"
+      "detail": "bytes=9056"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=22612"
+      "detail": "bytes=23368"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=65794"
+      "detail": "bytes=67613"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1180,6 +1180,26 @@
       "detail": "bytes=1286"
     },
     {
+      "name": "file:config/m01_xyce_build_preflight_r03.json",
+      "status": "PASS",
+      "detail": "bytes=12613"
+    },
+    {
+      "name": "file:scripts/check_m01_xyce_build_preflight_r03_contract.py",
+      "status": "PASS",
+      "detail": "bytes=17064"
+    },
+    {
+      "name": "file:scripts/run_m01_xyce_build_preflight_r03.py",
+      "status": "PASS",
+      "detail": "bytes=2259"
+    },
+    {
+      "name": "file:scripts/check_m01_xyce_build_preflight_r03.py",
+      "status": "PASS",
+      "detail": "bytes=1391"
+    },
+    {
       "name": "file:scripts/check_t03_p5_temperature.py",
       "status": "PASS",
       "detail": "bytes=35919"
@@ -1572,7 +1592,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=43363"
+      "detail": "bytes=44301"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3048,6 +3068,11 @@
       "name": "m01_xyce_preflight_r02:static_contract_and_unexecuted_chain",
       "status": "PASS",
       "detail": "contract_checks=22/25 future_absent=12/12"
+    },
+    {
+      "name": "m01_xyce_preflight_r03:contract_state_and_unexecuted_chain",
+      "status": "PASS",
+      "detail": "planned=True ready=False future_absent=12/12"
     },
     {
       "name": "tcad:mesh_levels",

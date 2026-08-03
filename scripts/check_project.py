@@ -196,6 +196,10 @@ REQUIRED_FILES = [
     "scripts/check_m01_xyce_build_preflight_r02_contract.py",
     "scripts/run_m01_xyce_build_preflight_r02.py",
     "scripts/check_m01_xyce_build_preflight_r02.py",
+    "config/m01_xyce_build_preflight_r03.json",
+    "scripts/check_m01_xyce_build_preflight_r03_contract.py",
+    "scripts/run_m01_xyce_build_preflight_r03.py",
+    "scripts/check_m01_xyce_build_preflight_r03.py",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -5684,8 +5688,13 @@ def main() -> int:
             and "m01-xyce-build-preflight-r02-contract-check:" in makefile_source
             and "m01-xyce-build-preflight-r02:" in makefile_source
             and "m01-xyce-build-preflight-r02-check:" in makefile_source
-            and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "establish and commit M01 Xyce build/tool preflight revision-3"
+            and (
+                config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "establish and commit M01 Xyce build/tool preflight revision-3"
+                )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "execute M01 Xyce build/tool preflight revision-3"
+                )
             ),
             f"contract_checks={sum(item.get('status') == 'PASS' for item in r02_contract_checks)}/{len(r02_contract_checks)} future_absent="
             f"{sum(not path.exists() for path in r02_future_paths)}/{len(r02_future_paths)}",
@@ -5694,6 +5703,115 @@ def main() -> int:
         add_check(
             checks,
             "m01_xyce_preflight_r02:static_contract_and_unexecuted_chain",
+            False,
+            str(error),
+        )
+
+    m01_xyce_r03_config_path = ROOT / "config" / "m01_xyce_build_preflight_r03.json"
+    m01_xyce_r03_contract_report_path = ROOT / "results" / "reports" / "m01_xyce_build_preflight_contract_r03.json"
+    m01_xyce_r03_contract_checker_path = ROOT / "scripts" / "check_m01_xyce_build_preflight_r03_contract.py"
+    m01_xyce_r03_runner_path = ROOT / "scripts" / "run_m01_xyce_build_preflight_r03.py"
+    m01_xyce_r03_checker_path = ROOT / "scripts" / "check_m01_xyce_build_preflight_r03.py"
+    try:
+        r03_config = json.loads(m01_xyce_r03_config_path.read_text(encoding="utf-8"))
+        r03_machine = experiment_map["M01"].get("xyce_build_preflight_r03", {})
+        r03_contract_exists = m01_xyce_r03_contract_report_path.is_file()
+        r03_contract_report = (
+            json.loads(m01_xyce_r03_contract_report_path.read_text(encoding="utf-8"))
+            if r03_contract_exists
+            else {}
+        )
+        r03_contract_checks = r03_contract_report.get("checks", [])
+        r03_future_paths = [
+            ROOT / value
+            for key, value in r03_config.get("outputs", {}).items()
+            if key != "contract_report"
+        ]
+        r03_formal_paths = [
+            ROOT / value for value in r03_config.get("formal_outputs_that_must_remain_absent", [])
+        ]
+        r03_runner_source = m01_xyce_r03_runner_path.read_text(encoding="utf-8")
+        r03_checker_source = m01_xyce_r03_checker_path.read_text(encoding="utf-8")
+        r03_contract_source = m01_xyce_r03_contract_checker_path.read_text(encoding="utf-8")
+        r03_planned_state = (
+            not r03_contract_exists
+            and r03_machine.get("status") == "contract_planned"
+            and r03_machine.get("current_evidence") == "E0"
+            and r03_machine.get("contract_check_completed") is False
+        )
+        r03_ready_state = (
+            r03_contract_exists
+            and r03_contract_report.get("status") == "PASS"
+            and r03_contract_report.get("contract_status") == "PASS"
+            and r03_contract_report.get("evidence_level") == "E3"
+            and r03_contract_report.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(r03_contract_checks) == 25
+            and all(item.get("status") == "PASS" for item in r03_contract_checks)
+            and r03_contract_report.get("config", {}).get("sha256") == sha256(m01_xyce_r03_config_path)
+            and r03_contract_report.get("checker", {}).get("sha256") == sha256(m01_xyce_r03_contract_checker_path)
+            and r03_machine.get("status") == "contract_ready"
+            and r03_machine.get("current_evidence") == "E3"
+            and r03_machine.get("contract_check_completed") is True
+            and r03_machine.get("contract_status") == "PASS"
+            and r03_machine.get("contract_checks_passed") == 25
+            and r03_machine.get("contract_checks_failed") == 0
+            and r03_machine.get("artifact_hashes", {}).get("contract_report_sha256")
+            == sha256(m01_xyce_r03_contract_report_path)
+            and r03_machine.get("result_paths") == [
+                "results/reports/m01_xyce_build_preflight_contract_r03.json"
+            ]
+        )
+        next_scope = config.get("tcad_track", {}).get("next_scope", "")
+        next_scope_valid = (
+            (r03_planned_state and next_scope.startswith("establish and commit M01 Xyce build/tool preflight revision-3"))
+            or (r03_ready_state and next_scope.startswith("execute M01 Xyce build/tool preflight revision-3"))
+        )
+        add_check(
+            checks,
+            "m01_xyce_preflight_r03:contract_state_and_unexecuted_chain",
+            r03_config.get("preflight_id") == "M01_XYCE_BUILD_PREFLIGHT_R03"
+            and r03_config.get("revision") == 3
+            and r03_machine.get("revision") == 3
+            and r03_machine.get("expected_contract_check_count") == 25
+            and r03_machine.get("expected_runner_check_count") == 29
+            and r03_machine.get("expected_independent_check_count") == 20
+            and r03_machine.get("formal_run_completed") is False
+            and r03_machine.get("preflight_run_completed") is False
+            and r03_machine.get("device_netlist_invoked") is False
+            and r03_machine.get("numerical_outputs_created") is False
+            and r03_machine.get("ngspice_invoked") is False
+            and r03_machine.get("aimspice_invoked") is False
+            and r03_machine.get("explicit_blas_lapack_paths") is True
+            and r03_machine.get("r01_failure_preserved") is True
+            and r03_machine.get("r02_failure_preserved") is True
+            and r03_machine.get("serial_build") is True
+            and r03_machine.get("mpi_build") is False
+            and r03_machine.get("fortran_build") is False
+            and r03_machine.get("proprietary_binary_accepted") is False
+            and r03_machine.get("circuit_or_downstream_permitted") is False
+            and all(not path.exists() for path in r03_future_paths)
+            and all(not path.exists() for path in r03_formal_paths)
+            and r03_config.get("build_plan", {}).get("parallel_jobs") == 2
+            and r03_config.get("build_plan", {}).get("suitesparse_cmake_options")
+            and "-DBLAS_LIBRARIES=/home/reachgao/.local/linear-algebra/lib/libblas.so"
+            in r03_config["build_plan"]["suitesparse_cmake_options"]
+            and "-DLAPACK_LIBRARIES=/home/reachgao/.local/linear-algebra/lib/liblapack.so"
+            in r03_config["build_plan"]["suitesparse_cmake_options"]
+            and "formal_device_dc_invoked=false" in r03_runner_source
+            and "EXPECTED_CHECK_COUNT = 20" in r03_checker_source
+            and "import subprocess" not in r03_checker_source
+            and "re.search" in r03_contract_source
+            and "m01-xyce-build-preflight-r03-contract-check:" in makefile_source
+            and "m01-xyce-build-preflight-r03:" in makefile_source
+            and "m01-xyce-build-preflight-r03-check:" in makefile_source
+            and next_scope_valid,
+            f"planned={r03_planned_state} ready={r03_ready_state} future_absent="
+            f"{sum(not path.exists() for path in r03_future_paths)}/{len(r03_future_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(
+            checks,
+            "m01_xyce_preflight_r03:contract_state_and_unexecuted_chain",
             False,
             str(error),
         )
