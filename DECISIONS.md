@@ -1,5 +1,15 @@
 # 设计决策记录
 
+## ADR-086：R02 50/50 静态 PASS 保留，runner 提交自引用转入 R03
+
+- 日期：2026-08-03
+- 状态：R02 静态合同唯一返回 50/50 PASS、E3；runner 未运行并在执行前 Git 门审计中阻塞。
+- 实现提交 `216c6a7` 推送同步后唯一执行 R02 静态 checker。报告 `results/reports/c00_active_load_inverter_contract_r02.json` SHA-256 为 `e820af3b6a80095a907ddbdc7ddab5461937cd99ff1bc442e03a6ffd07bd1a99`，确认 R01 不可变绑定、仅整词修正和全部不变合同，记录 0 个模拟器进程、0 个电路网表。
+- 执行前源码审计发现 runner 要求 `HEAD == origin == machine.static_pass_commit`。`machine.static_pass_commit` 是 tracked 字段；把某提交的哈希写入该提交会改变提交内容和哈希，因此无法形成自洽的同提交等式。用未提交状态、移动引用或改写历史通过该门均违反阶段规则。
+- 阻塞报告 `results/reports/c00_active_load_inverter_r02_runner_gate_self_reference_blocked.json` SHA-256 为 `9c8106232b530a07d5efdcbfc204509ffb2d914b69734742c8388d95cde6ea51`。R02 runner 未调用，运行目录、网表、模拟器进程、数值输出和独立报告均不存在；这不是拓扑、收敛或电路性能失败。
+- 首次状态登记后的项目检查返回 764/765，唯一失败是历史 M01 收口检查未枚举新的 C00 根状态。失败报告 SHA-256 `e6fb9087...f4c6` 原样保留；修正只加入 `static_contract_passed_runner_gate_blocked/E3` 枚举并绑定归档，不改变 R02 合同、报告、输入、阈值或执行权限；随后项目检查恢复为 765/765 PASS。
+- R02 配置、源码、50/50 报告和阻塞报告冻结且不重跑。R03 必须使用新配置/源码/输出命名空间，绑定这两份报告，只把自引用等式换为可验证的“本地 HEAD 与 origin 同步，且已登记静态 PASS 提交已发布”的规则；2-TFT 输入、18/36 案例、锚点、提取、阈值、50/36/29 门、四进程预算和失败保留不变。R03 静态 PASS 提交前不运行电路。
+
 ## ADR-085：C00 R02 只修正 ASCII 标识符匹配并重开静态门
 
 - 日期：2026-08-03

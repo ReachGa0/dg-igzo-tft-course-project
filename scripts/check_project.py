@@ -843,6 +843,10 @@ def main() -> int:
             "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-2"
         ) or current_next_scope.startswith(
             "commit and close C00 revision-2 within the teaching-model evidence boundary"
+        ) or current_next_scope.startswith(
+            "preserve and commit the C00 active-load inverter revision-2 50/50 static PASS and runner Git self-reference blocker"
+        ) or current_next_scope.startswith(
+            "establish and commit C00 active-load inverter revision-3 with corrected committed-state binding"
         )
         r08_scope_active = current_next_scope.startswith(
             "establish and commit M01 Xyce build/tool preflight revision-8"
@@ -5572,6 +5576,7 @@ def main() -> int:
                 ("formal_run_passed", "E2"),
                 ("verified", "E3"),
                 ("contract_failed_static_checker", "E0"),
+                ("static_contract_passed_runner_gate_blocked", "E3"),
             }
             and c00_entry_gate.get("status") == "PASS"
             and c00_entry_gate.get("source_decision")
@@ -9854,6 +9859,12 @@ def main() -> int:
                 or r03_next_scope.startswith(
                     "commit and close C00 revision-2 within the teaching-model evidence boundary"
                 )
+                or r03_next_scope.startswith(
+                    "preserve and commit the C00 active-load inverter revision-2 50/50 static PASS and runner Git self-reference blocker"
+                )
+                or r03_next_scope.startswith(
+                    "establish and commit C00 active-load inverter revision-3 with corrected committed-state binding"
+                )
             )
         )
         add_check(
@@ -10163,6 +10174,12 @@ def main() -> int:
                 or c00_next_scope.startswith(
                     "commit and close C00 revision-2 within the teaching-model evidence boundary"
                 )
+                or c00_next_scope.startswith(
+                    "preserve and commit the C00 active-load inverter revision-2 50/50 static PASS and runner Git self-reference blocker"
+                )
+                or c00_next_scope.startswith(
+                    "establish and commit C00 active-load inverter revision-3 with corrected committed-state binding"
+                )
             )
         ) or (
             c00_ready_state
@@ -10312,6 +10329,21 @@ def main() -> int:
         c00_r02_binding = c00_r02_config["r01_failure_binding"]
         c00_r01_report_path = ROOT / c00_r02_binding["failure_report_path"]
         c00_r01_report = json.loads(c00_r01_report_path.read_text(encoding="utf-8"))
+        c00_r02_runner_audit_record = c00_r02_machine.get("runner_gate_audit", {})
+        c00_r02_runner_audit_path = ROOT / c00_r02_runner_audit_record.get(
+            "path", "results/reports/c00_active_load_inverter_r02_runner_gate_self_reference_blocked.json"
+        )
+        c00_r02_runner_audit = (
+            json.loads(c00_r02_runner_audit_path.read_text(encoding="utf-8"))
+            if c00_r02_runner_audit_path.is_file()
+            else {}
+        )
+        c00_r02_registration_failure = c00_r02_machine.get(
+            "static_pass_registration_project_check_failure", {}
+        )
+        c00_r02_registration_failure_path = ROOT / c00_r02_registration_failure.get(
+            "path", "results/reports/project_check_c00_r02_static_blocked_m01_scope_stale_failed.json"
+        )
         c00_r02_base_paths = c00_r02_sources + [c00_r02_binding["failure_report_path"]]
         c00_r02_source_hashes_ok = (
             c00_r02_machine.get("config_sha256") == sha256(c00_r02_config_path)
@@ -10356,6 +10388,57 @@ def main() -> int:
             and not c00_r02_independent_report_path.exists()
             and all(not path.exists() for path in c00_r02_artifact_paths)
         )
+        c00_r02_blocked_state = (
+            c00_experiment.get("status") == "static_contract_passed_runner_gate_blocked"
+            and c00_experiment.get("current_evidence") == "E3"
+            and c00_r02_machine.get("status")
+            == "static_contract_passed_runner_gate_blocked"
+            and c00_r02_machine.get("current_evidence") == "E3"
+            and c00_r02_machine.get("contract_check_completed") is True
+            and c00_r02_machine.get("contract_check_status") == "PASS"
+            and c00_r02_machine.get("contract_checks_passed") == 50
+            and c00_r02_machine.get("contract_checks_failed") == 0
+            and c00_r02_machine.get("contract_report_sha256")
+            == sha256(c00_r02_contract_report_path)
+            and c00_r02_contract_report.get("status") == "PASS"
+            and c00_r02_contract_report.get("evidence_level") == "E3"
+            and c00_r02_contract_report.get("summary")
+            == {"passed": 50, "failed": 0, "total": 50}
+            and c00_r02_contract_report.get("simulator_processes_invoked") == 0
+            and c00_r02_contract_report.get("circuit_netlists_created") == 0
+            and c00_r02_runner_audit_record.get("status") == "BLOCKED"
+            and c00_r02_runner_audit_record.get("failure_category")
+            == "STATIC_PASS_COMMIT_SELF_REFERENCE_UNSATISFIABLE"
+            and c00_r02_runner_audit_record.get("sha256")
+            == sha256(c00_r02_runner_audit_path)
+            and c00_r02_runner_audit_record.get("runner_invoked") is False
+            and c00_r02_runner_audit_record.get("simulator_processes_invoked") == 0
+            and c00_r02_runner_audit_record.get("circuit_netlists_created") == 0
+            and c00_r02_runner_audit_record.get("preserved") is True
+            and c00_r02_runner_audit.get("status") == "BLOCKED"
+            and c00_r02_runner_audit.get("failure_category")
+            == "STATIC_PASS_COMMIT_SELF_REFERENCE_UNSATISFIABLE"
+            and c00_r02_runner_audit.get("audited_runner", {}).get("sha256")
+            == sha256(c00_r02_runner_path)
+            and c00_r02_runner_audit.get("runner_invoked") is False
+            and c00_r02_runner_audit.get("simulator_processes_invoked") == 0
+            and c00_r02_runner_audit.get("circuit_netlists_created") == 0
+            and c00_r02_registration_failure.get("sha256")
+            == sha256(c00_r02_registration_failure_path)
+            and c00_r02_registration_failure.get("failure_category")
+            == "historical_m01_c00_root_state_allowlist_stale_after_r02_blocker"
+            and c00_r02_registration_failure.get("failed_checks") == 1
+            and c00_r02_registration_failure.get("simulator_processes_invoked") == 0
+            and c00_r02_registration_failure.get("preserved") is True
+            and c00_r02_machine.get("formal_run_completed") is False
+            and c00_r02_machine.get("independent_check_completed") is False
+            and c00_r02_machine.get("circuit_execution_permitted") is False
+            and c00_r02_machine.get("downstream_permitted") is False
+            and not (ROOT / c00_r02_outputs["run_directory"]).exists()
+            and all(not path.exists() for path in c00_r02_artifact_paths)
+            and not c00_r02_run_report_path.exists()
+            and not c00_r02_independent_report_path.exists()
+        ) if c00_r02_contract_report_path.is_file() and c00_r02_runner_audit_path.is_file() and c00_r02_registration_failure_path.is_file() else False
         c00_r02_ready_state = (
             c00_experiment.get("status") == "contract_ready"
             and c00_experiment.get("current_evidence") == "E3"
@@ -10419,6 +10502,16 @@ def main() -> int:
                 "run the 50-check static contract for C00 active-load inverter revision-2"
             )
         ) or (
+            c00_r02_blocked_state
+            and (
+                c00_r02_next_scope.startswith(
+                    "preserve and commit the C00 active-load inverter revision-2 50/50 static PASS and runner Git self-reference blocker"
+                )
+                or c00_r02_next_scope.startswith(
+                    "establish and commit C00 active-load inverter revision-3 with corrected committed-state binding"
+                )
+            )
+        ) or (
             c00_r02_ready_state
             and c00_r02_next_scope.startswith(
                 "execute the committed C00 active-load inverter revision-2 four-process runner"
@@ -10436,6 +10529,12 @@ def main() -> int:
         )
         if c00_r02_implemented_state:
             c00_r02_expected_paths = c00_r02_base_paths
+        elif c00_r02_blocked_state:
+            c00_r02_expected_paths = c00_r02_base_paths + [
+                c00_r02_outputs["contract_report"],
+                c00_r02_runner_audit_record["path"],
+                c00_r02_registration_failure["path"],
+            ]
         elif c00_r02_ready_state:
             c00_r02_expected_paths = c00_r02_base_paths + [c00_r02_outputs["contract_report"]]
         elif c00_r02_runner_state:
@@ -10505,12 +10604,13 @@ def main() -> int:
             and "c00-active-load-inverter-r02-check:" in makefile_source
             and (
                 c00_r02_implemented_state
+                or c00_r02_blocked_state
                 or c00_r02_ready_state
                 or c00_r02_runner_state
                 or c00_r02_verified_state
             )
             and c00_r02_scope_ok,
-            f"implemented={c00_r02_implemented_state} ready={c00_r02_ready_state} "
+            f"implemented={c00_r02_implemented_state} blocked={c00_r02_blocked_state} ready={c00_r02_ready_state} "
             f"runner={c00_r02_runner_state} verified={c00_r02_verified_state} "
             f"source_bindings={c00_r02_source_hashes_ok} r01_binding={c00_r01_binding_ok}",
         )

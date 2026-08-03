@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "C00",
+  "audit_id": "C00_ACTIVE_LOAD_INVERTER_R02_RUNNER_GATE_SELF_REFERENCE_AUDIT",
+  "status": "BLOCKED",
+  "evidence_level": "E0",
+  "static_contract": {
+    "path": "results/reports/c00_active_load_inverter_contract_r02.json",
+    "sha256": "e820af3b6a80095a907ddbdc7ddab5461937cd99ff1bc442e03a6ffd07bd1a99",
+    "status": "PASS",
+    "evidence_level": "E3",
+    "summary": {
+      "passed": 50,
+      "failed": 0,
+      "total": 50
+    }
+  },
+  "audited_runner": {
+    "path": "scripts/run_c00_active_load_inverter_r02.py",
+    "sha256": "c2845714490eb9be5ed675c8b3a0a73b5a6355954b7550762826b5bf3459698b",
+    "registered_predicate": "head == origin == machine.static_pass_commit",
+    "source_lines": [
+      231,
+      232,
+      233
+    ]
+  },
+  "audit_basis_commit": "216c6a7cda148888eac8102a99ff371f0fa2c6be",
+  "audit_basis_origin_main": "216c6a7cda148888eac8102a99ff371f0fa2c6be",
+  "failure_category": "STATIC_PASS_COMMIT_SELF_REFERENCE_UNSATISFIABLE",
+  "reason": "A tracked machine.static_pass_commit value cannot equal the hash of the same commit that introduces that value: changing the tracked value changes the commit object and therefore its hash. Registering the already-created static report in a later commit also makes HEAD differ from the earlier implementation commit. The R02 runner predicate therefore cannot prove a committed static-PASS state without an uncommitted machine edit or history manipulation.",
+  "prohibited_workarounds": [
+    "run with uncommitted machine state",
+    "move or rewrite Git refs",
+    "amend or force-push published history",
+    "edit the hash-bound R02 runner after its static PASS",
+    "rerun the R02 static checker"
+  ],
+  "runner_invoked": false,
+  "circuit_netlists_created": 0,
+  "simulator_processes_invoked": 0,
+  "numerical_outputs_created": 0,
+  "required_recovery": "Create C00 revision-3 in a new config/source/output namespace. Bind the immutable R02 50/50 report and this audit, and replace only the self-referential equality with a committed-state rule that requires synchronized HEAD/origin plus an already published static-pass registration commit. Keep all circuit inputs, checks, thresholds, budgets and failure retention unchanged.",
+  "evidence_boundary": "This is a pre-execution Git-gate audit, not a runner invocation, circuit simulation, topology failure, convergence result, VTC, delay, power, physical parameter, experimental calibration or downstream evidence. R02 remains immutable and no circuit execution is permitted."
+}

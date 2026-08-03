@@ -16,6 +16,26 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | C00 R02 静态 50/50 PASS 与 runner Git 门阻塞
+
+### 静态执行
+
+- R02 实现提交 `216c6a7` 已推送且与 `origin/main` 同步后，唯一执行 `make c00-active-load-inverter-r02-contract-check`，返回 50/50 PASS、E3。报告 SHA-256 为 `e820af3b6a80095a907ddbdc7ddab5461937cd99ff1bc442e03a6ffd07bd1a99`。
+- 50 项验证 R01 五源与 46/48 报告不可变、R02 仅把禁止范围改为 ASCII 标识符整词比较、2-TFT 拓扑、18/36 案例、锚点、提取、阈值、两路线、四进程预算、失败保留和零输出边界。报告记录 0 个模拟器进程和 0 个电路网表。
+
+### 执行前阻塞
+
+- runner 启动前审计发现其 Git 门为 `HEAD == origin == machine.static_pass_commit`。由于 `machine.static_pass_commit` 是 tracked 字段，把目标提交哈希写入同一提交会改变该提交哈希；而在后续提交登记又会使 HEAD 不等于旧哈希，因此该门无法诚实证明已提交静态 PASS。
+- 没有运行 runner，也没有生成 R02 运行目录、网表、日志、raw/PRN、表、图或独立报告。结构化阻塞报告 `results/reports/c00_active_load_inverter_r02_runner_gate_self_reference_blocked.json` SHA-256 为 `9c8106232b530a07d5efdcbfc204509ffb2d914b69734742c8388d95cde6ea51`，明确禁止未提交机器状态、移动引用、改写历史、修改 R02 runner 或重跑 R02。
+
+### 状态与下一门
+
+- C00 登记 `static_contract_passed_runner_gate_blocked/E3`，但 `circuit_execution_permitted=false`；R01 失败与 R02 PASS 均不改写。更新 STATUS、README、AI 上下文、架构、计划、ADR-086、报告第 5/6/9/10 章和证据矩阵。
+- 登记后的首次 `make check` 返回 764/765，唯一失败是历史 M01 收口检查的 C00 根状态枚举未接受 `static_contract_passed_runner_gate_blocked/E3`。报告 `results/reports/project_check_c00_r02_static_blocked_m01_scope_stale_failed.json` SHA-256 为 `e6fb9087b38b4aad7949eeb52fd962722fe4479e81bc882fac6777e49043f4c6` 并已保留；修正只补该枚举和归档绑定，未改 R02 源码、报告、输入、阈值或权限。修正后的 `make check` 返回 765/765 PASS。
+- 下一门先提交推送 R02 PASS/阻塞状态，再建立 C00 R03 新命名空间，只修正 committed-state Git 绑定并绑定两份 R02 报告。全部输入、50/36/29 门、阈值、四进程预算和失败保留不变；R03 静态 PASS 提交前不运行电路。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 实现 C00 R02 token-safe 静态合同链
 
 ### 目标与输入

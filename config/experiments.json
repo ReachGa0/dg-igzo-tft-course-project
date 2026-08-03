@@ -2129,8 +2129,8 @@
       "id": "C00",
       "track": "circuit",
       "name": "dual_gate_igzo_active_load_inverter",
-      "status": "contract_implemented",
-      "current_evidence": "E0",
+      "status": "static_contract_passed_runner_gate_blocked",
+      "current_evidence": "E3",
       "depends_on": ["M01", "T02"],
       "parameter_group_ids": ["P6"],
       "purpose": "Create the smallest device-to-circuit bridge.",
@@ -2148,7 +2148,7 @@
         "contract_planning_permitted": true,
         "circuit_execution_permitted": false,
         "downstream_permitted": false,
-        "next_gate": "The C00 R02 token-safe recovery contract implementation is present, but circuit execution remains closed until its 50-check static PASS is committed and pushed."
+        "next_gate": "The C00 R02 static contract passed 50/50, but its runner Git gate is self-referential and circuit execution remains closed. Preserve R02 and establish revision-3 with only a committed-state binding correction."
       },
       "active_load_inverter_r01": {
         "contract_id": "C00_ACTIVE_LOAD_INVERTER_R01",
@@ -2203,8 +2203,8 @@
       "active_load_inverter_r02": {
         "contract_id": "C00_ACTIVE_LOAD_INVERTER_R02",
         "revision": 2,
-        "status": "contract_implemented",
-        "current_evidence": "E0",
+        "status": "static_contract_passed_runner_gate_blocked",
+        "current_evidence": "E3",
         "config_path": "config/c00_active_load_inverter_r02.json",
         "config_sha256": "e51a30524e1073e01b95646a40bc0ae158f4d55f266f584dd52988b87d02f3f4",
         "common_path": "scripts/c00_active_load_inverter_r02_common.py",
@@ -2218,8 +2218,12 @@
         "expected_contract_check_count": 50,
         "expected_runner_check_count": 36,
         "expected_independent_check_count": 29,
-        "contract_check_completed": false,
-        "contract_check_status": "NOT_RUN",
+        "contract_check_completed": true,
+        "contract_check_status": "PASS",
+        "contract_checks_passed": 50,
+        "contract_checks_failed": 0,
+        "contract_report_path": "results/reports/c00_active_load_inverter_contract_r02.json",
+        "contract_report_sha256": "e820af3b6a80095a907ddbdc7ddab5461937cd99ff1bc442e03a6ffd07bd1a99",
         "formal_run_completed": false,
         "formal_run_status": "NOT_RUN",
         "independent_check_completed": false,
@@ -2238,16 +2242,37 @@
         "r01_failure_report_path": "results/reports/c00_active_load_inverter_contract_r01.json",
         "r01_failure_report_sha256": "53f408e870e5f84993dd635cf95086c9b4db263ea5b8bead6cc2f5ed44a08493",
         "correction_scope": "Replace arbitrary substring matching with case-insensitive exact equality over ASCII identifiers; retain all circuit inputs, extraction rules, thresholds and process budgets.",
+        "runner_gate_audit": {
+          "status": "BLOCKED",
+          "path": "results/reports/c00_active_load_inverter_r02_runner_gate_self_reference_blocked.json",
+          "sha256": "9c8106232b530a07d5efdcbfc204509ffb2d914b69734742c8388d95cde6ea51",
+          "failure_category": "STATIC_PASS_COMMIT_SELF_REFERENCE_UNSATISFIABLE",
+          "runner_invoked": false,
+          "simulator_processes_invoked": 0,
+          "circuit_netlists_created": 0,
+          "preserved": true
+        },
+        "static_pass_registration_project_check_failure": {
+          "path": "results/reports/project_check_c00_r02_static_blocked_m01_scope_stale_failed.json",
+          "sha256": "e6fb9087b38b4aad7949eeb52fd962722fe4479e81bc882fac6777e49043f4c6",
+          "failure_category": "historical_m01_c00_root_state_allowlist_stale_after_r02_blocker",
+          "failed_checks": 1,
+          "simulator_processes_invoked": 0,
+          "preserved": true
+        },
         "result_paths": [
           "config/c00_active_load_inverter_r02.json",
           "scripts/c00_active_load_inverter_r02_common.py",
           "scripts/check_c00_active_load_inverter_r02_contract.py",
           "scripts/run_c00_active_load_inverter_r02.py",
           "scripts/check_c00_active_load_inverter_r02.py",
-          "results/reports/c00_active_load_inverter_contract_r01.json"
+          "results/reports/c00_active_load_inverter_contract_r01.json",
+          "results/reports/c00_active_load_inverter_contract_r02.json",
+          "results/reports/c00_active_load_inverter_r02_runner_gate_self_reference_blocked.json",
+          "results/reports/project_check_c00_r02_static_blocked_m01_scope_stale_failed.json"
         ],
-        "evidence_boundary": "R02 is an E0 implementation state. It hash-binds the immutable R01 46/48 E0 lexical failure and changes only forbidden-scope matching from arbitrary substrings to case-insensitive exact ASCII identifier equality. The two-TFT topology, 18/36 planned cases, fixed anchor, extraction, acceptance thresholds, open-source routes, four-process serial budget and failure retention are unchanged. No R02 static checker, simulator, circuit netlist, numerical circuit output or independent checker has run. This is not circuit performance, physical IGZO parameter, experimental calibration, native Level 15/61, equation identity, C01+, layout, PEX or HZO evidence.",
-        "next_gate": "Commit and push the R02 implementation, then run its 50-check zero-process static contract exactly once. Do not execute a circuit netlist before that static PASS is separately committed and pushed."
+        "evidence_boundary": "R02 static contract ran exactly once and passed 50/50 at E3 with zero simulator processes and zero circuit netlists. It confirms the immutable R01 failure binding and token-safe-only correction. A subsequent source audit found the hash-bound runner predicate head == origin == machine.static_pass_commit is self-referential: committing the tracked static_pass_commit value changes HEAD, so it cannot honestly prove the same commit. The runner was not invoked and no R02 run directory, numerical output or independent report exists. This is a Git gate defect, not circuit performance, topology, convergence, physical IGZO parameter, experimental calibration, native Level 15/61, equation identity, C01+, layout, PEX or HZO evidence.",
+        "next_gate": "Commit and preserve the R02 50/50 E3 static PASS and pre-run Git-gate blocker, then establish C00 revision-3 in a new namespace. Revision-3 may correct only committed-state binding; do not rerun R02 or execute a circuit netlist."
       }
     },
     {

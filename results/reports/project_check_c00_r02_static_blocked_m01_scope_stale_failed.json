@@ -1,8 +1,8 @@
 {
   "project": "DG-IGZO-TFT-PDK",
-  "status": "PASS",
+  "status": "FAIL",
   "checks": 765,
-  "failures": 0,
+  "failures": 1,
   "results": [
     {
       "name": "directory:config",
@@ -322,7 +322,7 @@
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=222566"
+      "detail": "bytes=222066"
     },
     {
       "name": "file:PROJECT_PLAN.md",
@@ -332,12 +332,12 @@
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=132548"
+      "detail": "bytes=132172"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=76662"
+      "detail": "bytes=76235"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=65191"
+      "detail": "bytes=64515"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=147333"
+      "detail": "bytes=146779"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2207,7 +2207,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=96066"
+      "detail": "bytes=95153"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3641,7 +3641,7 @@
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "checks=32/32 future_absent=10/10"
     },
     {
