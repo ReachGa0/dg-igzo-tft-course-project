@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_DEVICE_DC_R02_CONTRACT_IMPLEMENTED_E0_NEXT_STATIC`
+- 当前阶段：`M01_DEVICE_DC_R02_STATIC_READY_E3_NEXT_RUNNER`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 只关闭 hash-bound Xyce 工具/parser 预检。正式器件 DC R01 固定为 39/40、E0/FAIL且不重跑。`M01_OPEN_SOURCE_DEVICE_DC_R02` 已在新 config/source/output 命名空间完成 schema-only 实施：只把三处不存在的 R11 顶层进程字段读取改为实际 25/25 summary 与 independence PASS；247 行、候选、命令、两进程预算、网表、提取、阈值和边界不变。R02 当前 E0，静态 checker、两路线和独立 checker 均未运行；正式 M01、C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 只关闭 hash-bound Xyce 工具/parser 预检。正式器件 DC R01 固定为 39/40、E0/FAIL且不重跑。`M01_OPEN_SOURCE_DEVICE_DC_R02` schema-only 静态合同已唯一返回 40/40 PASS、E3；它只验证 247 行、候选、命令、两进程预算、网表生成/提取合同、失败保留和边界，记录零构建/模拟器进程、零器件网表和零数值输出。两路线 runner 与独立 checker 尚未运行；正式 M01、C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -52,10 +52,13 @@
 - [x] 首次 R02 实施态 `make check` 为 1 项 FAIL：总检查器把 R02 静态 checker 为审计未来 runner/independent 而保留的旧字段字符串字面量，误判为 R02 自身仍执行旧字段读取。失败归档 `results/reports/project_check_m01_device_dc_r02_implementation_state_failed.json` SHA-256 为 `bc7fed2c0bf45f5f803a351a41b08eef26434346f80f1a12a069d9ab7eb34221`；修正只禁止旧的可执行条件并保留审计字面量，随后 729/729 PASS。
 - [x] R02 内存网表生成自测仍为 247 行、两路线各 247 个 IGZO 实例，ASCII 字节数 36452/36365；5 个 R02 Python 文件通过 `py_compile`，18/18 R02 正式输出路径缺失。没有启动静态合同或模拟器。
 - [x] R02 实施态最终 `make check` 为 729/729 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位、26 张图片 PASS，`git diff --check` 通过；R02 40 项正式静态合同尚未运行。
+- [x] R02 实施提交 `86c5106` 推送并确认与 `origin/main` 同步后，纯静态合同唯一执行并返回 40/40 PASS、E3。报告 `results/reports/m01_open_source_device_dc_contract_r02.json` SHA-256 为 `0154abfbe5175b91d7622416804561c5bb50bdeeef0792e426d0299a37564d2c`；40 项全部通过，报告记录 0 个 build/simulator process、0 个器件网表、0 个数值输出，18 个预注册路径中仅静态合同报告产生。
+- [x] R02 静态 PASS 只把下一门打开到提交后的双路线 runner；它不是 ngspice/Xyce 器件 DC、路线一致性、物理参数、实验校准、正式 M01 或电路证据。runner 与独立 checker 仍为未运行，R01/R11 和更早 revision 均不重跑。
+- [x] 登记 R02 静态 PASS 后，`make check` 为 730/730 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位、26 张图片 PASS，`git diff --check` 通过；这些检查没有启动 TCAD/SPICE 或其他仿真进程。
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送 R02 E0 实施态，再唯一运行 `make m01-open-source-device-dc-r02-contract-check`。只有 R02 40/40 静态 PASS 状态另行提交并推送后，才允许一次两路线 runner；R01/R11 不重跑，C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。
+- 下一步：提交并推送 R02 40/40 E3 静态 PASS 状态，再唯一运行 `make m01-open-source-device-dc-r02`。runner 必须先运行 ngspice，任一路线失败即保留部分证据并停止；runner PASS 状态另行提交前不运行独立 checker。R01/R11 不重跑，C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。
 - M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败、28/30 干跑失败和 R10 runner 失败均保留。
 

@@ -1,5 +1,15 @@
 # 设计决策记录
 
+## ADR-069：R02 静态 40/40 E3 只开放提交后的两路线 runner
+
+- 日期：2026-08-03
+- 状态：R02 schema-only 静态合同唯一执行 40/40 PASS、E3；两路线 runner 与独立 checker 未运行。
+- 实施提交 `86c5106` 推送并同步后，唯一运行 `make m01-open-source-device-dc-r02-contract-check`。报告 SHA-256 为 `0154abfbe5175b91d7622416804561c5bb50bdeeef0792e426d0299a37564d2c`，40 项全部通过。
+- 报告验证 R11 实际 25/25 summary 与 independence PASS、R01 39/40 不可改写失败、247 行目标、同一 IGZO 候选、工具/命令、两个 247 器件网表合同、提取/指标、两进程预算、失败保留和 no-downstream 边界；记录零 build/simulator process、零器件网表和零数值输出。
+- 该 E3 是静态合同证据，不是 ngspice/Xyce 器件 DC、路线一致性、物理参数、实验校准、正式 M01 或电路结果。必须先提交并推送本 PASS 状态，才允许一次 R02 两路线 runner；runner PASS 状态再提交前，独立 checker、C00、版图、PEX 和 HZO 继续关闭。
+
+---
+
 ## ADR-068：R02 在三组件统一采用 R11 持久化 schema，并保留审计字面量
 
 - 日期：2026-08-03

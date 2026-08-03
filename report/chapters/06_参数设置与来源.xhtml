@@ -35,7 +35,8 @@
       <tr><td>M01 Xyce build/tool R11 independent check</td><td>标准库独立读取合同、runner 报告、日志、manifest、网表和 <code>.prn</code>；复核哈希、命令、观察值、正式输出缺失和 no-downstream 边界</td><td>25/25 PASS、E3；零进程，报告 SHA-256 <code>792a4f6d4be65746fc08ff0c00205acc2f7b64bc5ad2d3f0c370d27c41d2d615</code>。只关闭工具/parser 预检，正式两路线器件 DC 未运行</td></tr>
       <tr><td>M01 open-source device DC R01 contract implementation</td><td>冻结 247 行执行清单（233 scored、14 audit），ngspice/Xyce 各一个含 247 个独立器件的 ASCII 相对路径网表和一个 dummy 单点 DC；每路恰好一个串行进程。电流统一为 <code>abs(I(VDS))/(W_um*1e-4)</code>，输出 247 行/路线、30 行指标、247 行路线差异和两张 PNG</td><td>40/30/24 检查器已实现但尚未执行，E0；结果路径保持缺失。选择清单定义执行顺序，预测表按 <code>row_uid</code> 映射；此前错误的同行序假设失败已保留，未改变模型、数据、阈值或输出定义</td></tr>
       <tr><td>M01 open-source device DC R01 static failure</td><td>冻结输入、工具、候选和 40/30/24 注册均未改变；唯一执行的静态 checker 读取 R11 独立报告 schema</td><td>39/40、E0/FAIL；失败仅为不存在的顶层 <code>processes_invoked</code> 断言。零模拟器、网表和数值输出；R02 只允许 schema-aware 修正</td></tr>
-      <tr><td>M01 open-source device DC R02 schema-only implementation</td><td>同一 247 行、候选、ngspice/Xyce 路径与命令、两进程预算、网表和提取；只把三组件 R11 绑定改为实际 25/25 summary + independence PASS</td><td>40/30/24 已实现但未执行、E0；R01 失败与实现期项目检查失败均哈希绑定，18 个 R02 输出缺失</td></tr>
+      <tr><td>M01 open-source device DC R02 schema-only implementation</td><td>同一 247 行、候选、ngspice/Xyce 路径与命令、两进程预算、网表和提取；只把三组件 R11 绑定改为实际 25/25 summary + independence PASS</td><td>40/30/24 实施态为 E0；R01 失败与实现期项目检查失败均哈希绑定</td></tr>
+      <tr><td>M01 open-source device DC R02 static contract</td><td>同一输入、物理、工具、命令、提取和阈值；实施提交 <code>86c5106</code> 后唯一静态执行</td><td>40/40 PASS、E3；报告 <code>0154abfb...64d2c</code> 记录零 build/simulator process、零网表和零数值输出。runner/独立检查未运行，不是器件、参数或校准结果</td></tr>
       <tr><td>学长 IGZO/VTC 表</td><td>已保留来源行和质量标记</td><td>导入、对数作图和数据质量参考</td><td>缺少完整条件，仅 reference_only</td></tr>
     </tbody>
   </table>

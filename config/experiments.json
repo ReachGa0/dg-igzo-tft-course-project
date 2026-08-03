@@ -855,7 +855,7 @@
         },
         "next_gate": "establish and commit an explicitly open-source second-simulator recovery contract before any device-level numerical execution"
       },
-      "evidence_boundary": "The revision-3 M01 contract, open-source recovery contract and R11 36/32/25 tool/parser chain remain immutable; R11 does not establish formal device DC. The one permitted M01_OPEN_SOURCE_DEVICE_DC_R01 static invocation returned 39/40 E0/FAIL because it required a nonexistent top-level processes_invoked field in the immutable R11 independent report. The R01 report records zero build/simulator processes, zero device netlists and zero numerical outputs. R01 is immutable and no ngspice/Xyce formal route ran. M01_OPEN_SOURCE_DEVICE_DC_R02 is now implemented at E0 in a new config/source/output namespace and hash-binds the R01 failure. Its only logic correction verifies R11 zero-process evidence through the existing 25/25 summary and independence check; all 247 IGZO rows, candidate bytes, commands, process budget, netlists, extraction, thresholds, failure retention and downstream closure are unchanged. The R02 static checker, runner and independent checker have not run, and all 18 R02 output paths are absent. External baselines remain reference-only; unauthorized AIM-Spice, SnO, HZO and circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
+      "evidence_boundary": "The revision-3 M01 contract, open-source recovery contract and R11 36/32/25 tool/parser chain remain immutable; R11 does not establish formal device DC. M01_OPEN_SOURCE_DEVICE_DC_R01 remains 39/40 E0/FAIL with zero simulator/netlist/numerical output and is not rerun. The one permitted M01_OPEN_SOURCE_DEVICE_DC_R02 static invocation returned 40/40 PASS at E3 after implementation commit 86c5106. It hash-bound the R01 failure, verified the R11 persisted 25/25 schema, froze all 247 IGZO rows, candidate bytes, commands, two-process budget, netlists, extraction, metrics, thresholds, failure retention and downstream closure, and recorded zero build/simulator processes, zero device netlists and zero numerical outputs. Only the R02 contract report now exists; the two-route runner and independent checker have not run. This is execution-contract evidence only, not device numerical, route-agreement, physical-parameter or experimental evidence. External baselines remain reference-only; unauthorized AIM-Spice, SnO, HZO and circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
       "open_source_recovery_contract": {
         "status": "contract_ready",
         "revision": 1,
@@ -1676,9 +1676,9 @@
         "next_gate": "Preserve and commit the M01 open-source device DC R01 39/40 static checker failure, then establish and commit revision-2 in a new namespace. Do not execute either route."
       },
       "open_source_device_dc_r02": {
-        "status": "contract_implemented",
+        "status": "contract_ready",
         "revision": 2,
-        "current_evidence": "E0",
+        "current_evidence": "E3",
         "contract_id": "M01_OPEN_SOURCE_DEVICE_DC_R02",
         "contract_path": "config/m01_open_source_device_dc_r02.json",
         "common_path": "scripts/m01_open_source_device_dc_r02_common.py",
@@ -1691,8 +1691,10 @@
         "expected_contract_check_count": 40,
         "expected_runner_check_count": 30,
         "expected_independent_check_count": 24,
-        "contract_check_completed": false,
-        "contract_status": "NOT_RUN",
+        "contract_check_completed": true,
+        "contract_status": "PASS",
+        "contract_checks_passed": 40,
+        "contract_checks_failed": 0,
         "formal_run_completed": false,
         "formal_run_status": "NOT_RUN",
         "independent_check_completed": false,
@@ -1726,11 +1728,14 @@
           "scripts/check_m01_open_source_device_dc_r02_contract.py",
           "scripts/run_m01_open_source_device_dc_r02.py",
           "scripts/check_m01_open_source_device_dc_r02.py",
-          "results/reports/project_check_m01_device_dc_r02_implementation_state_failed.json"
+          "results/reports/project_check_m01_device_dc_r02_implementation_state_failed.json",
+          "results/reports/m01_open_source_device_dc_contract_r02.json"
         ],
-        "future_outputs_absent": true,
-        "evidence_boundary": "E0 schema-only implementation. The R02 static checker, runner and independent checker have not run, and all R02 output paths are absent. R01 remains 39/40 E0/FAIL and immutable. No simulator, device netlist, numerical table, route metric, figure, circuit or downstream output was created. A future R02 static PASS would be execution-contract evidence only, not device numerical, physical-parameter or experimental evidence.",
-        "next_gate": "Commit and push this R02 schema-only implementation, then run the 40-check static contract exactly once. Do not execute either device route until the R02 static PASS state is committed and pushed."
+        "future_outputs_absent": false,
+        "contract_report_sha256": "0154abfbe5175b91d7622416804561c5bb50bdeeef0792e426d0299a37564d2c",
+        "contract_processes_invoked": 0,
+        "evidence_boundary": "The one permitted R02 static checker returned 40/40 PASS at E3 and created only its own report. It invoked zero build/simulator processes and created zero device netlists or numerical outputs. This PASS freezes a reviewable schema-corrected execution contract only; it is not device DC, route agreement, physical-parameter, experimental-calibration, circuit or downstream evidence. R01 remains immutable 39/40 E0/FAIL.",
+        "next_gate": "Execute the committed M01 open-source device DC revision-2 two-route runner exactly once. Do not run the independent checker or C00 before a runner PASS state is committed."
       }
     },
     {

@@ -298,6 +298,7 @@ REQUIRED_FILES = [
     "scripts/run_m01_open_source_device_dc_r02.py",
     "scripts/check_m01_open_source_device_dc_r02.py",
     "results/reports/project_check_m01_device_dc_r02_implementation_state_failed.json",
+    "results/reports/m01_open_source_device_dc_contract_r02.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",

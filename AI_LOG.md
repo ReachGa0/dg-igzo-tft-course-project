@@ -16,6 +16,24 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 正式器件 DC R02 静态合同 40/40 PASS
+
+### 唯一执行与结果
+
+R02 schema-only 实施提交 `86c5106` 已推送并与 `origin/main` 同步；运行前 18 个预注册 R02 输出路径全部缺失。随后唯一执行 `make m01-open-source-device-dc-r02-contract-check`，纯静态 checker 返回 40/40 PASS、E3。报告 `results/reports/m01_open_source_device_dc_contract_r02.json` 的 SHA-256 为 `0154abfbe5175b91d7622416804561c5bb50bdeeef0792e426d0299a37564d2c`。
+
+### 复核范围与证据边界
+
+40 项检查验证 R11 36/32/25 持久化证据、R01 39/40 不可改写失败、R02 40/30/24 注册、247 行/13 曲线、同一 IGZO 候选、ngspice/Xyce 工具指纹、精确 argv/cwd、两个 247 器件网表生成合同、统一提取、两进程预算、排他输出、失败保留和 no-downstream 边界。报告记录 0 个 build/simulator process、0 个器件网表、0 个数值输出；运行后 18 个路径中只存在该静态报告。没有调用 ngspice、Xyce、TCAD、AIM-Spice、电路或下游工具。
+
+登记静态 PASS 后，`make check` 为 730/730 PASS，`make report-check` 为 12 章/5 附录/15 个既有占位/26 张图片 PASS，`git diff --check` 通过；这些验证同样没有启动仿真进程。
+
+### 下一门
+
+该 E3 只关闭 R02 静态合同，不是器件 DC、路线一致性、物理参数、实验校准、正式 M01 或电路证据。先提交并推送本 40/40 PASS 状态，再唯一执行 `make m01-open-source-device-dc-r02`；runner 按合同先运行 ngspice，任一路线失败即保留部分证据并停止。只有 runner PASS 状态另行提交后才允许独立 checker，C00 和下游继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 正式器件 DC R02 schema-only 合同实施
 
 ### 实施内容

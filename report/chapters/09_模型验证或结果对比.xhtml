@@ -120,8 +120,9 @@
       <tr><td>R11 independent persisted-evidence check</td><td>不导入 runner 或调用进程，独立重算 25 项合同/runner/哈希/命令/产物与禁止输出边界</td><td>唯一检查 25/25 PASS、E3；报告 SHA-256 <code>792a4f6d4be65746fc08ff0c00205acc2f7b64bc5ad2d3f0c370d27c41d2d615</code>，零进程。只证明落盘工具/parser 证据完整，不是正式器件 DC 或 M01 数值对照</td></tr>
       <tr><td>formal two-route device DC R01 implementation</td><td>绑定 R11 完整证据与冻结模型/选择清单；注册 40 项静态、30 项 runner 和 24 项独立门，ngspice/Xyce 各一个 247 器件 ASCII 网表与一个串行进程，并冻结原始表、指标表、路线差异和两张图</td><td>仅实现、E0；静态检查未执行，两路线模拟器未启动，正式结果路径不存在。项目检查器同行序假设失败已归档并按 <code>row_uid</code> 修正；不是器件结果、路线一致性、物理参数或实验校准证据</td></tr>
       <tr><td>formal two-route device DC R01 static failure</td><td>提交 <code>b8c3a03</code> 后唯一执行；39 项静态绑定通过，唯一失败是要求 R11 独立报告具有不存在的顶层进程字段</td><td>39/40、E0/FAIL；报告哈希 <code>7baba2fcd7bc186bfa30780882816c27d33708c91957e0a53db51c8c435b16ba</code>，零 simulator/build process、零网表和数值输出。R01 不重跑，R02 只修正 schema</td></tr>
-      <tr><td>formal two-route device DC R02 implementation</td><td>新命名空间哈希绑定 R01 失败；三组件统一使用 R11 实际 25/25 summary/independence schema，保持 40/30/24 与器件/进程/输出合同不变</td><td>仅实施、E0；静态合同与两路线未运行，18 个 R02 输出缺失。项目检查审计字面量误判失败已归档，修正后 729/729</td></tr>
+      <tr><td>formal two-route device DC R02 implementation</td><td>新命名空间哈希绑定 R01 失败；三组件统一使用 R11 实际 25/25 summary/independence schema，保持 40/30/24 与器件/进程/输出合同不变</td><td>实施态 E0；项目检查审计字面量误判失败已归档，修正后 729/729</td></tr>
+      <tr><td>formal two-route device DC R02 static contract</td><td>提交 <code>86c5106</code> 后唯一执行，检查 R11/R01 绑定、247 行、候选、工具、两条命令、网表/提取合同、两进程预算、输出隔离和失败保留</td><td>40/40 PASS、E3；报告 <code>0154abfb...64d2c</code>，零 build/simulator process、零网表和数值输出。runner/独立检查未运行，不是正式器件 DC 或路线对照</td></tr>
     </tbody>
   </table>
-  <p class="boundary">Xyce build/tool 历史与 R11 36/32/25 工具/parser 链均保留。正式双路线器件 DC R01 静态 checker 唯一返回 39/40、E0/FAIL，零 build/simulator process、网表和数值输出。R01 冻结且两路线未启动。R02 已实施持久化 schema-only 修正并绑定 R01 失败，但静态合同尚未运行，不能写成正式器件 DC 或路线对照。C00、电路、版图、PEX 和 HZO 继续关闭。</p>
+  <p class="boundary">Xyce build/tool 历史与 R11 36/32/25 工具/parser 链均保留。正式双路线器件 DC R01 静态 checker 唯一返回 39/40、E0/FAIL，零 build/simulator process、网表和数值输出。R01 冻结且两路线未启动。R02 持久化 schema-only 静态合同已唯一返回 40/40 PASS、E3，仍为零 build/simulator process、零网表和零数值输出；它只开放提交后的 runner，不能写成正式器件 DC 或路线对照。C00、电路、版图、PEX 和 HZO 继续关闭。</p>
 </section>
