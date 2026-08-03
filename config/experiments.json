@@ -1788,9 +1788,9 @@
         "next_gate": "Commit and push the 24/24 E3 independent result, then establish a versioned M01 route-divergence root-cause contract before any new simulator run or C00/downstream work."
       },
       "open_source_device_dc_r03": {
-        "status": "contract_implemented",
+        "status": "contract_ready",
         "revision": 3,
-        "current_evidence": "E0",
+        "current_evidence": "E3",
         "contract_id": "M01_OPEN_SOURCE_DEVICE_DC_R03",
         "contract_path": "config/m01_open_source_device_dc_r03.json",
         "common_path": "scripts/m01_open_source_device_dc_r03_common.py",
@@ -1804,9 +1804,9 @@
         "expected_contract_check_count": 42,
         "expected_runner_check_count": 30,
         "expected_independent_check_count": 24,
-        "contract_check_completed": false,
-        "contract_status": "NOT_RUN",
-        "contract_checks_passed": 0,
+        "contract_check_completed": true,
+        "contract_status": "PASS",
+        "contract_checks_passed": 42,
         "contract_checks_failed": 0,
         "formal_run_completed": false,
         "formal_run_status": "NOT_RUN",
@@ -1850,12 +1850,23 @@
           "scripts/check_m01_open_source_device_dc_r03_contract.py",
           "scripts/run_m01_open_source_device_dc_r03.py",
           "scripts/check_m01_open_source_device_dc_r03.py",
-          "spice/models/igzo_dg_behavioral_r03_portable.inc"
+          "spice/models/igzo_dg_behavioral_r03_portable.inc",
+          "results/reports/project_check_m01_open_source_device_dc_r03_static_pass_next_scope_stale_failed.json",
+          "results/reports/m01_open_source_device_dc_contract_r03.json"
         ],
-        "future_outputs_absent": true,
+        "future_outputs_absent": false,
         "contract_processes_invoked": 0,
-        "evidence_boundary": "E0 implementation only: R03 freezes a portable-expression full-device candidate and a separate 42/30/24 device-only contract bound to immutable R02 divergence and root-cause evidence. No static checker, simulator, netlist, numerical output, route agreement, physical parameter, experimental calibration, P2/T03 closure, C00, circuit, layout, PEX or HZO claim is permitted.",
-        "next_gate": "Commit and push this R03 portable full-device implementation, then run the 42-check static contract exactly once. Do not execute either device route until the R03 static PASS state is committed and pushed."
+        "contract_report_sha256": "a30611ad98941bcc576335e2b47f702c4c210d32d16247f42b65356a07c0237a",
+        "static_pass_project_check_failure": {
+          "path": "results/reports/project_check_m01_open_source_device_dc_r03_static_pass_next_scope_stale_failed.json",
+          "sha256": "b80e696b376fdb087117ca386490a4b6dbb13516d2b1fe209ba92a3b51c87403",
+          "failure_category": "historical_next_scope_allowlists_and_r03_ready_state_registration",
+          "failed_checks": 14,
+          "project_checker_processes_invoked": 0,
+          "preserved": true
+        },
+        "evidence_boundary": "R03 static contract only: the one 42/42 E3 checker PASS freezes a portable-expression full-device candidate and a separate 42/30/24 device-only contract bound to immutable R02 divergence and root-cause evidence. The checker invoked zero build/simulator processes and created no device netlist or numerical output. This state opens only the committed two-route runner; it does not establish device DC, route agreement, physical parameter, experimental calibration, P2/T03 closure, C00, circuit, layout, PEX or HZO evidence.",
+        "next_gate": "Execute the committed M01 open-source device DC revision-3 portable two-route runner exactly once. Do not run the independent checker or C00 before a runner PASS state is committed."
       },
       "route_divergence_root_cause_r01": {
         "status": "contract_failed_static_checker",

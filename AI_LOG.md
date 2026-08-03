@@ -16,6 +16,28 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 完成 M01 R03 可移植完整器件静态合同（E3，42/42 PASS）
+
+### 目标与输入
+
+在已推送的实现提交 `50066b7` 之后，按阶段门唯一运行 `M01_OPEN_SOURCE_DEVICE_DC_R03` 的 42 项纯静态合同。读取 R03 配置、R02 正式器件 40/30/24 与根因 R02 40/30/22 哈希链、项目/实验状态和静态 checker 输出；不运行 ngspice、Xyce、TCAD、AIM-Spice、器件网表或下游流程。
+
+### 结果与登记
+
+- `make m01-open-source-device-dc-r03-contract-check` 唯一返回 `42/42 PASS`、E3，报告为 `results/reports/m01_open_source_device_dc_contract_r03.json`，SHA-256 为 `a30611ad98941bcc576335e2b47f702c4c210d32d16247f42b65356a07c0237a`。
+- 报告记录 0 个 build/simulator process、0 个器件网表、0 个数值输出，且 17 个 runner/独立/数值输出路径仍缺失；R03 机器状态登记为 `contract_ready/E3`，下一门为一次性两路线 runner。
+- 静态门复核了 247 行、13 条曲线、五处候选替换、参数/BIDS 字节一致性、两路命令和进程预算、42/30/24 注册、失败保留及 no-downstream 边界。该 E3 只打开已提交 runner，不证明器件 DC、路线一致、方程身份、物理参数、实验校准、正式敏感性、P2/T03、M01、C00、电路、版图、PEX 或 HZO。
+
+### 修改与验证
+
+- 更新 `config/experiments.json`、`config/project.json`、`scripts/check_project.py`，登记静态报告哈希、E3 状态和 runner 下一门。
+- 更新 `STATUS.md`、`AI_CONTEXT.md`、`README.md`、`ARCHITECTURE.md`、`PROJECT_PLAN.md`、ADR、报告第 5/6/8/9 章及 `report/evidence_matrix.csv`，明确静态 PASS 与执行证据边界。
+- 登记后的首次项目总检查因历史 `next_scope` 白名单和 R03 ready-state 断言滞后返回 14 项失败；报告 `results/reports/project_check_m01_open_source_device_dc_r03_static_pass_next_scope_stale_failed.json` SHA-256 为 `b80e696b376fdb087117ca386490a4b6dbb13516d2b1fe209ba92a3b51c87403`，零项目检查进程，原样保留。修正只扩展已登记的 R03 runner scope、接受状态化 next gate 并绑定该归档，随后 `make check` 恢复 763/763。
+- `make report-check` 返回 12 章、5 附录、15 个占位和 28 张图 PASS，`git diff --check` 通过；没有运行任何 R03 runner、独立 checker、TCAD、SPICE 或下游仿真。
+- 本阶段尚未运行 runner 或独立 checker；下一步需先提交并推送本 E3 状态，再唯一运行 R03 两路线 runner，runner PASS 提交前不得运行独立复核或 C00。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M01 R03 可移植完整器件合同（E0 实施，静态未运行）
 
 ### 目标与输入

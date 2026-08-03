@@ -1,0 +1,257 @@
+{
+  "schema_version": "1.0",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "M01",
+  "contract_id": "M01_OPEN_SOURCE_DEVICE_DC_R03",
+  "status": "PASS",
+  "evidence_level": "E3",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "config": {
+    "path": "config/m01_open_source_device_dc_r03.json",
+    "sha256": "160ffcfaa068bdea52ced7c0ae56c104e38c0bc63b7b9831b8778c476f521b68"
+  },
+  "contract_checker": {
+    "path": "scripts/check_m01_open_source_device_dc_r03_contract.py",
+    "sha256": "a123af592b7ad317177888b7df9fade28e140ce18632371b311cc9782cd53454"
+  },
+  "common": {
+    "path": "scripts/m01_open_source_device_dc_r03_common.py",
+    "sha256": "afd2bbbaa6aab430f3b7fb7c86038e190865ff6cee8efcbdff74d440dd52c6bf"
+  },
+  "runner": {
+    "path": "scripts/run_m01_open_source_device_dc_r03.py",
+    "sha256": "b371ef88d5eba824d2e9d6849f62d673992605142efa109824d2b43003de1017"
+  },
+  "independent_checker": {
+    "path": "scripts/check_m01_open_source_device_dc_r03.py",
+    "sha256": "50ce275ae85f04d158b7f3e4521b00c150b6e44f838071dcc7febb63f3e29f0c"
+  },
+  "summary": {
+    "passed": 42,
+    "failed": 0,
+    "total": 42,
+    "build_processes_invoked": 0,
+    "simulator_processes_invoked": 0,
+    "device_netlists_created": 0,
+    "numerical_outputs_created": 0,
+    "formal_device_dc_invoked": false,
+    "aimspice_invoked": false,
+    "tcad_invoked": false,
+    "circuit_or_downstream_invoked": false
+  },
+  "checks": [
+    {
+      "name": "identity:m01_open_source_device_dc_r03",
+      "status": "PASS",
+      "detail": "contract=M01_OPEN_SOURCE_DEVICE_DC_R03 revision=3"
+    },
+    {
+      "name": "scope:igzo_device_only_laptop",
+      "status": "PASS",
+      "detail": "{\"active_material_scope\": \"IGZO only\", \"circuit_or_transient_permitted\": false, \"execution_scope\": \"compact-model device-only DC cross-check\", \"experimental_calibration_claim_permitted\": false, \"formal_device_dc\": true, \"hzo_or_sno_permitted\": false, \"laptop_target\": true, \"layout_or_pex_permitted\": false, \"physical_parameter_claim_permitted\": false, \"polarity\": \"n-type\", \"upstream_device_model\": \"2D frozen teaching TCAD\"}"
+    },
+    {
+      "name": "machine:implementation_before_static_check",
+      "status": "PASS",
+      "detail": "root=preflight_failed_tool_provenance machine=contract_implemented"
+    },
+    {
+      "name": "registry:42_30_24",
+      "status": "PASS",
+      "detail": "{\"independent\": 24, \"runner\": 30, \"static_contract\": 42}"
+    },
+    {
+      "name": "binding:r11_artifact_hashes",
+      "status": "PASS",
+      "detail": "artifacts=8"
+    },
+    {
+      "name": "binding:r11_36_32_25_pass",
+      "status": "PASS",
+      "detail": "R11 static/runner/independent reports pass"
+    },
+    {
+      "name": "binding:r11_no_formal_or_independent_process",
+      "status": "PASS",
+      "detail": "R11 zero-process evidence uses its persisted 25/25 schema and independence check"
+    },
+    {
+      "name": "binding:historical_contract_hashes",
+      "status": "PASS",
+      "detail": "artifacts=12"
+    },
+    {
+      "name": "binding:historical_contract_statuses",
+      "status": "PASS",
+      "detail": "revision-3/recovery remain E3 and R01 39/40 failure is immutable"
+    },
+    {
+      "name": "binding:r02_device_and_root_cause_hashes",
+      "status": "PASS",
+      "detail": "device=8 root_cause=8"
+    },
+    {
+      "name": "binding:r02_completed_divergence_and_root_cause_boundary",
+      "status": "PASS",
+      "detail": "device R02 divergence retained; root-cause R02 independently supported at bounded probes"
+    },
+    {
+      "name": "targets:files_and_hashes",
+      "status": "PASS",
+      "detail": "rows=247/247"
+    },
+    {
+      "name": "targets:fields_and_row_count",
+      "status": "PASS",
+      "detail": "fields=19/23 rows=247"
+    },
+    {
+      "name": "targets:roles_and_scored_split",
+      "status": "PASS",
+      "detail": "Counter({'scored': 233, 'zero_vds_invariant': 7, 'repeated_low_vds_audit': 7})"
+    },
+    {
+      "name": "targets:curves_geometry_bias_temperature",
+      "status": "PASS",
+      "detail": "13 curves, W=60 um, L=8/10/12 um, 300 K, VDS=0..0.2 V"
+    },
+    {
+      "name": "targets:manifest_prediction_alignment",
+      "status": "PASS",
+      "detail": "selection manifest fixes route order; prediction rows align by row_uid"
+    },
+    {
+      "name": "candidate:hash_ascii_igzo_scope",
+      "status": "PASS",
+      "detail": "dd56c4c5b9f67d628eb2677705139769642b2e0eb66fca5b453b3cc6be351fd6"
+    },
+    {
+      "name": "tool:ngspice_fingerprint",
+      "status": "PASS",
+      "detail": "bytes=8300800"
+    },
+    {
+      "name": "tool:xyce_fingerprint_and_license",
+      "status": "PASS",
+      "detail": "bytes=75498456"
+    },
+    {
+      "name": "routes:same_candidate_separate_identity",
+      "status": "PASS",
+      "detail": "same bytes, separate simulator routes, no equation-identity claim"
+    },
+    {
+      "name": "routes:exact_batch_argv_and_cwd",
+      "status": "PASS",
+      "detail": "one ngspice batch argv and one Xyce batch argv"
+    },
+    {
+      "name": "netlist:two_by_247_dc_contract",
+      "status": "PASS",
+      "detail": "{\"analysis\": \".DC VSWEEP 0 0 1\", \"candidate_include\": \".include \\\"spice/models/igzo_dg_behavioral_r03_portable.inc\\\"\", \"circuit_instance_permitted\": false, \"devices_per_netlist\": 247, \"dummy_sweep_source\": \"VSWEEP SWEEP 0 0\", \"external_include_permitted\": false, \"forbidden_case_insensitive_tokens\": [\"sno\", \"hzo\", \"ferroelectric\", \".tran\", \"ring_oscillator\", \"full_adder\", \"nand\", \"nor\", \"xor\"], \"include_path_mode\": \"repository_relative_ascii\", \"netlist_encoding\": \"ascii\", \"netlists\": 2, \"ngspice_output_method\": \".save I(VDSnnn) plus one ASCII raw write\", \"per_row_elements\": [\"VDSnnn\", \"VTGnnn\", \"VBGnnn\", \"XDEVnnn\"], \"runner_working_directory\": \"project_root\", \"xyce_output_method\": \".PRINT DC FORMAT=NOINDEX PRECISION=17 I(VDSnnn)\"}"
+    },
+    {
+      "name": "netlist:output_extraction_methods",
+      "status": "PASS",
+      "detail": "route-specific persisted raw formats are frozen"
+    },
+    {
+      "name": "extraction:formula_counts_and_diagnostic_policy",
+      "status": "PASS",
+      "detail": "{\"aggregate_weighting\": \"equal weight over complete scored curves, reported separately for train and holdout\", \"current_floor_a_per_cm\": 1e-20, \"current_sign\": \"absolute voltage-source current\", \"curve_linear_nrmse\": \"sqrt(mean((I_route-I_target)^2))/max(max(abs(I_target)),1e-20) over scored rows in each curve\", \"curve_log_rmse_dec\": \"sqrt(mean((log10(max(I_route,1e-20))-log10(max(abs(I_target),1e-20)))^2)) over scored rows\", \"finite_complete_outputs_are_required\": true, \"raw_rows_per_route\": 247, \"route_difference_absolute\": \"abs(I_ngspice-I_xyce) for every row\", \"route_difference_log\": \"abs(log10(max(I_ngspice,1e-20))-log10(max(I_xyce,1e-20))) for every row\", \"route_difference_rows\": 247, \"route_difference_threshold_is_not_a_pass_gate\": true, \"route_metric_rows\": 30, \"route_to_target_thresholds_are_diagnostic_only\": true, \"width_normalization_cm\": \"W_um*1e-4\", \"zero_vds_max_current_a_per_cm\": 1e-18}"
+    },
+    {
+      "name": "resource:exact_two_process_budget",
+      "status": "PASS",
+      "detail": "{\"aimspice_processes\": 0, \"circuit_processes\": 0, \"generated_device_netlists\": 2, \"laptop_target\": true, \"layout_processes\": 0, \"ngspice_processes\": 1, \"parallel_route_execution\": false, \"route_processes\": 2, \"tcad_processes\": 0, \"xyce_processes\": 1}"
+    },
+    {
+      "name": "source:common_standard_library_core",
+      "status": "PASS",
+      "detail": "sha256=afd2bbbaa6aab430f3b7fb7c86038e190865ff6cee8efcbdff74d440dd52c6bf"
+    },
+    {
+      "name": "source:runner_registry",
+      "status": "PASS",
+      "detail": "checks=30"
+    },
+    {
+      "name": "source:runner_only_process_api",
+      "status": "PASS",
+      "detail": "subprocess_calls=1 process_markers=2"
+    },
+    {
+      "name": "source:runner_exact_routes_and_order",
+      "status": "PASS",
+      "detail": "ngspice first; Xyce second; excluded processes false"
+    },
+    {
+      "name": "source:runner_exclusive_failure_retention",
+      "status": "PASS",
+      "detail": "exclusive outputs and structured failure report"
+    },
+    {
+      "name": "source:runner_two_netlist_generation",
+      "status": "PASS",
+      "detail": "two deterministic ASCII netlists"
+    },
+    {
+      "name": "source:runner_parser_metrics_outputs",
+      "status": "PASS",
+      "detail": "raw parsing, extraction, metrics, difference and figures implemented"
+    },
+    {
+      "name": "source:independent_no_runner_or_process",
+      "status": "PASS",
+      "detail": "sha256=50ce275ae85f04d158b7f3e4521b00c150b6e44f838071dcc7febb63f3e29f0c"
+    },
+    {
+      "name": "source:independent_registry",
+      "status": "PASS",
+      "detail": "registered=24"
+    },
+    {
+      "name": "source:independent_recomputation_scope",
+      "status": "PASS",
+      "detail": "independent parser/table/metric/PNG/hash recomputation"
+    },
+    {
+      "name": "make:three_gated_targets",
+      "status": "PASS",
+      "detail": "contract, runner and independent targets registered"
+    },
+    {
+      "name": "outputs:unique_paths",
+      "status": "PASS",
+      "detail": "paths=18 unique=18"
+    },
+    {
+      "name": "outputs:all_future_paths_absent",
+      "status": "PASS",
+      "detail": "absent=18/18"
+    },
+    {
+      "name": "failure:retention_and_no_relaxation",
+      "status": "PASS",
+      "detail": "{\"exclusive_outputs\": true, \"first_route_failure_stops_second_route\": true, \"independent_checker_runs_only_after_runner_pass_commit\": true, \"overwrite_existing_outputs\": false, \"r11_and_historical_evidence_must_not_change\": true, \"retain_failed_route_log\": true, \"retain_failed_route_netlist\": true, \"retain_partial_raw_output\": true, \"retain_partial_tables\": true, \"threshold_relaxation_permitted\": false, \"write_failure_report\": true}"
+    },
+    {
+      "name": "static:no_execution_rules",
+      "status": "PASS",
+      "detail": "{\"aimspice_invocation_permitted\": false, \"circuit_or_downstream_permitted\": false, \"independent_checker_must_not_import_or_call_subprocess\": true, \"independent_checker_must_not_import_runner\": true, \"r11_or_earlier_preflight_rerun_permitted\": false, \"runner_requires_committed_static_pass\": true, \"static_checker_must_not_create_device_netlist\": true, \"static_checker_must_not_create_numerical_output\": true, \"static_checker_must_not_import_or_call_subprocess\": true, \"static_checker_must_not_import_runner\": true}"
+    },
+    {
+      "name": "boundary:static_only_and_prohibited_claims",
+      "status": "PASS",
+      "detail": "This R03 contract is a portable-expression full-device revision bound to immutable commit 2ffac20, the completed R02 40/30/24 device evidence with route divergence, and the completed 40/30/22 root-cause evidence. It retains the same IGZO-only teaching parameters, 247 persisted target rows, commands, exact two-process serial budget, netlist topology, extraction, diagnostics, thresholds, failure retention and no-downstream boundary. The new candidate is exactly the R02 candidate after five registered text replacements: four metadata/subcircuit identity updates and the single semantic replacement limit(x/s,-60,60) to min(max(x/s,-60),60); all parameter and BIDS lines remain byte-identical. The static checker may create only its own R03 report and invokes no simulator, build, TCAD, AIM-Spice, device netlist, circuit or downstream process. A later complete chain may establish portable two-route device-only numerical agreement within pre-registered diagnostics, but it cannot establish equation identity, native HSPICE Level 61, measured or fitted physical IGZO parameters, experimental calibration, external validation, circuit readiness, layout, PEX, HZO or foundry sign-off. M01 and C00 remain closed until the runner and an independent persisted-evidence checker pass in separate committed gates."
+    },
+    {
+      "name": "boundary:next_gate_static_before_routes",
+      "status": "PASS",
+      "detail": "Commit and push this R03 portable full-device implementation, then run the 42-check static contract exactly once. Do not execute either device route until the R03 static PASS state is committed and pushed."
+    }
+  ],
+  "future_outputs_absent_before_report": true,
+  "evidence_boundary": "This R03 contract is a portable-expression full-device revision bound to immutable commit 2ffac20, the completed R02 40/30/24 device evidence with route divergence, and the completed 40/30/22 root-cause evidence. It retains the same IGZO-only teaching parameters, 247 persisted target rows, commands, exact two-process serial budget, netlist topology, extraction, diagnostics, thresholds, failure retention and no-downstream boundary. The new candidate is exactly the R02 candidate after five registered text replacements: four metadata/subcircuit identity updates and the single semantic replacement limit(x/s,-60,60) to min(max(x/s,-60),60); all parameter and BIDS lines remain byte-identical. The static checker may create only its own R03 report and invokes no simulator, build, TCAD, AIM-Spice, device netlist, circuit or downstream process. A later complete chain may establish portable two-route device-only numerical agreement within pre-registered diagnostics, but it cannot establish equation identity, native HSPICE Level 61, measured or fitted physical IGZO parameters, experimental calibration, external validation, circuit readiness, layout, PEX, HZO or foundry sign-off. M01 and C00 remain closed until the runner and an independent persisted-evidence checker pass in separate committed gates.",
+  "next_gate": "Commit and push this 42/42 E3 static PASS before the one permitted R03 portable two-route runner. Do not run the independent checker or C00."
+}

@@ -1,17 +1,19 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_PORTABLE_DEVICE_R03_IMPLEMENTED_E0_NEXT_STATIC`
+- 当前阶段：`M01_PORTABLE_DEVICE_R03_STATIC_READY_E3_NEXT_RUNNER`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 只关闭 hash-bound Xyce 工具/parser 预检。正式器件 DC R01 固定为 39/40、E0/FAIL且不重跑；R02 40/30/24 完整落盘但路线分歧。根因 R02 的 40/30/22 E3/E2/E3 链仅在预注册最小点确认三参数 `limit` 语义问题，完整 247 行路线一致仍为 false。`M01_OPEN_SOURCE_DEVICE_DC_R03` 已完成 E0 实现：新完整器件候选只把该表达式替换为显式 `min(max())` clamp，并冻结独立 42/30/24 合同；静态合同、任一路线和独立检查均未运行。下一门仅为提交后的 42 项静态合同，正式敏感性、P2、T03 及 M01/C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 只关闭 hash-bound Xyce 工具/parser 预检。正式器件 DC R01 固定为 39/40、E0/FAIL且不重跑；R02 40/30/24 完整落盘但路线分歧。根因 R02 的 40/30/22 E3/E2/E3 链仅在预注册最小点确认三参数 `limit` 语义问题，完整 247 行路线一致仍为 false。`M01_OPEN_SOURCE_DEVICE_DC_R03` 的 42/42 静态合同已唯一通过并登记为 E3：新完整器件候选只把该表达式替换为显式 `min(max())` clamp；尚未执行任一路线或独立检查。下一门仅为提交后的 R03 两路线 runner，正式敏感性、P2、T03 及 M01/C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
-- [x] 新增 `M01_OPEN_SOURCE_DEVICE_DC_R03` 配置、common、42 项静态 checker、30 项未来 runner、24 项未来独立 checker 和三个 Make 入口；全部使用独立 R03 输出命名空间，18 个未来输出当前均不存在。
+- [x] 新增 `M01_OPEN_SOURCE_DEVICE_DC_R03` 配置、common、42 项静态 checker、30 项未来 runner、24 项未来独立 checker 和三个 Make 入口；全部使用独立 R03 输出命名空间，静态报告已落盘，其余 17 个 runner/独立/数值输出仍不存在。
 - [x] 新候选 `spice/models/igzo_dg_behavioral_r03_portable.inc` 精确由 R02 五处登记替换得到：四处版本/子电路标识和唯一语义变化 `limit(x/s,-60,60)` -> `min(max(x/s,-60),60)`；所有 `.param` 与 `BIDS` 行逐字节不变。
 - [x] R03 哈希绑定提交 `2ffac20` 下正式器件 R02 40/30/24 与根因 R02 40/30/22 的 16 个配置/源码/报告产物；保持 247 行、两个串行进程、两份 247 器件网表、提取、诊断、失败保留及 no-downstream 边界不变。
-- [x] 本里程碑仅为 E0 实现，没有运行 R03 静态合同、ngspice、Xyce、TCAD、AIM-Spice、器件网表或下游进程；不得表述为器件仿真、路线一致、方程身份、物理参数、实验校准或正式 M01 通过。
-- [x] R03 实施登记后的 `make check` 为 763/763 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 28 张图 PASS，`git diff --check` 通过；这些结构检查没有启动任何仿真。R03 静态合同仍未运行，18 个未来输出路径保持缺失。
+- [x] R03 实施提交 `50066b7` 推送并同步后，唯一运行 `make m01-open-source-device-dc-r03-contract-check` 返回 42/42 PASS、E3；报告 `results/reports/m01_open_source_device_dc_contract_r03.json` 的 SHA-256 为 `a30611ad98941bcc576335e2b47f702c4c210d32d16247f42b65356a07c0237a`。检查记录 0 个 build/simulator process、0 个器件网表和 0 个数值输出；R03 runner 与独立 checker 未运行。
+- [x] 本里程碑只打开提交后的 R03 两路线 runner，不是器件仿真、路线一致、方程身份、物理参数、实验校准或正式 M01 通过；R02 路线分歧、根因 R02 最小点边界和所有历史失败均不可改写。
+- [x] R03 实施登记后的 `make check` 为 763/763 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 28 张图 PASS，`git diff --check` 通过；静态合同没有启动任何仿真，剩余 17 个未来输出路径保持缺失。
+- [x] 静态 PASS 登记后的首次项目总检查因历史 next-scope 白名单和 R03 ready-state 断言滞后返回 14 项失败；归档报告 `results/reports/project_check_m01_open_source_device_dc_r03_static_pass_next_scope_stale_failed.json`、SHA-256 `b80e696b376fdb087117ca386490a4b6dbb13516d2b1fe209ba92a3b51c87403` 已保留。修正只扩展已登记 R03 runner scope 并绑定归档，随后 `make check` 恢复 763/763。
 - [x] 新增 `config/m01_xyce_build_preflight_r01.json`、静态合同检查器、构建 runner、独立落盘检查器和三个 Make 入口；合同 25/25 PASS、E3，runner/独立检查分别冻结 29/20 项。
 - [x] 用户目录已固定 Xyce 7.10.0、Trilinos 14.4、SuiteSparse 7.8.3 和 CMake 3.30.5 官方包；实际 Xyce 归档 SHA-256 为 `b5a883196f0a2b3972fd13c541fecf04735bfabc7d124d7c7e17de707204f4e2`。
 - [x] 明确保留恢复合同中的历史转录串 `...541cfecf...` 和原 30/30 报告，不改写旧证据；新预检合同登记重复重算得到的 `...541fecf...`，只把后者作为构建输入。
@@ -86,7 +88,7 @@
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送 R03 E0 实现后，唯一运行 42 项纯静态合同。只有 42/42 E3 PASS 状态另行提交并推送后，才允许一次 R03 两路线 runner；R01/R11/正式器件 DC R02 和根因 R02 均不重跑，P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 继续关闭。
+- 下一步：提交并推送 R03 42/42 E3 静态 PASS 登记后，唯一运行 R03 两路线 runner。只有 runner PASS 状态另行提交并推送后，才允许 24 项独立落盘复核；R01/R11/正式器件 DC R02 和根因 R02 均不重跑，P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 继续关闭。
 - M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败、28/30 干跑失败和 R10 runner 失败均保留。
 
@@ -230,7 +232,7 @@
 - M00 R01 的聚合误差通过不能覆盖 `L=12 um` holdout gm 门失败。其 11 个系数、预测和图是已计算但未接受的 E0/FAIL 诊断，不是 M00 模型、实验标定、外部独立验证、物理参数提取、双仿真器验证或电路可用性。
 - M00 R02 的 27/27 静态合同、24/24 runner 和 20/20 独立复核只证明结构正则化教学代理对冻结项目数值曲线的局部一致性；`Lref/L` 固定指数、10 个系数及近下界诊断不能写成物理缩放规律、实验拟合、外部验证、原生 Level 61 或电路模型。候选文件尚未执行。
 - M01 R01 的 11/13 只证明 ngspice 版本探针通过且原 AIM-Spice 路线不满足来源/批处理门。它不是 AIM-Spice 或 ngspice 数值失败、Level 15 执行、IGZO 曲线或第二路线通过；开源候选工具在独立合同、提交和正式运行前也不得写成 M01 结果。
-- M01 根因 R01 当前是不可改写的 38/40 E0/FAIL；R02 探针/独立复核为 30/30 E2 与 22/22 E3，只覆盖预注册最小点。R03 当前仅是 E0 合同实现，不能将其写成完整路线一致、物理参数、实验校准或正式器件结果。
+- M01 根因 R01 当前是不可改写的 38/40 E0/FAIL；R02 探针/独立复核为 30/30 E2 与 22/22 E3，只覆盖预注册最小点。R03 当前仅有 42/42 E3 静态合同证据，不能将其写成完整路线一致、物理参数、实验校准或正式器件结果。
 - 尚未生成的有源负载网表、标准单元版图和 LVS 报告。
 
 ## 当前阻塞
@@ -239,8 +241,8 @@
 2. 双栅实测数据缺失时只能做文献约束敏感性。
 3. 需要老师确认 DEVSIM、单极性有源负载逻辑和 KLayout 几何 LVS 的接受度。
 4. 复杂电路跨线层和顶栅实际工艺尚未明确。
-5. M00 R01 的 `L=12 um` holdout gm 相对误差 `0.512384` 超过冻结 `0.50`，该失败永久保留；M01 全部工具/合同历史失败同样保留，未授权 AIM-Spice 永久排除。开源 R02 正式器件 DC 已执行且落盘完整，但 ngspice/Xyce 数值分歧使 M01/C00 继续关闭；R03 目前只实现了可移植候选和静态合同，不能替代正式路线执行、敏感性或物理校准。
+5. M00 R01 的 `L=12 um` holdout gm 相对误差 `0.512384` 超过冻结 `0.50`，该失败永久保留；M01 全部工具/合同历史失败同样保留，未授权 AIM-Spice 永久排除。开源 R02 正式器件 DC 已执行且落盘完整，但 ngspice/Xyce 数值分歧使 M01/C00 继续关闭；R03 目前只完成 42/42 E3 静态合同，不能替代正式路线执行、敏感性或物理校准。
 
 ## 下一步
 
-先提交并推送 `M01_OPEN_SOURCE_DEVICE_DC_R03` E0 实现，再唯一运行 `make m01-open-source-device-dc-r03-contract-check`。静态 PASS 状态另行提交前不执行 ngspice/Xyce 两路线；正式器件 DC R02 247 行和根因 R02 均不重跑，P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 保持关闭。
+提交并推送 `M01_OPEN_SOURCE_DEVICE_DC_R03` 的 42/42 E3 静态 PASS 登记后，唯一运行 `make m01-open-source-device-dc-r03`。在 runner PASS 状态另行提交前不运行 24 项独立 checker；正式器件 DC R02 247 行和根因 R02 均不重跑，P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 保持关闭。

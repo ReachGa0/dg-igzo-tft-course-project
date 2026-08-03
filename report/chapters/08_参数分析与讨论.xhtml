@@ -306,7 +306,7 @@
   <p>独立重算复现了三参数 <code>limit</code> 语义分歧、两路显式 clamp、portable 候选和支路电流哨兵的原结论。因此 `THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH` 在预注册最小点获得 E3 支持，同时报告明确保持完整 R02 247 行路线一致为 false。</p>
       <p class="boundary">该 E3 只关闭最小数值根因诊断，不把诊断副本提升为接受的完整器件模型，也不建立物理 IGZO 参数、实验校准、正式敏感性、P2/T03、正式 M01 或电路证据。下一门必须先建立并提交新可移植完整器件候选及独立正式 247 行静态合同；该合同 PASS 提交前不得运行任一路线。</p>
 
-      <h3>8.29 M01 R03 可移植完整器件合同实现边界</h3>
+      <h3>8.29 M01 R03 可移植完整器件静态合同边界</h3>
       <p>R03 在独立命名空间中冻结了一个新的 IGZO-only 完整器件候选和 42/30/24 三门合同。它把 R02 候选的三参数 <code>limit(x/s,-60,60)</code> 只替换为显式 <code>min(max(x/s,-60),60)</code>，另四处仅更新版本/子电路标识；所有教学参数与 <code>BIDS</code> 行保持逐字节一致，并绑定不可改写的 R02 正式器件与根因诊断链。</p>
-      <p class="boundary">当前只有 E0 实现证据：18 个 R03 输出路径均不存在，静态 checker、ngspice、Xyce、网表、数值表和独立 checker 均未运行。该实现不证明 portable 候选已被接受、不证明 247 行路线一致、方程身份、物理 IGZO 参数、实验校准、正式敏感性、P2/T03、M01/C00、电路、版图、PEX 或 HZO。必须先提交推送实现，再唯一运行 42 项静态合同。</p>
+      <p class="boundary">R03 静态合同在提交 <code>50066b7</code> 推送后唯一返回 42/42 PASS、E3，报告 SHA-256 为 <code>a30611ad...c0237a</code>；它记录 0 个 build/simulator process、0 个网表和 0 个数值输出，静态报告之外的 17 个输出路径仍缺失。登记后的首次项目总检查白名单失败已归档为 <code>project_check_m01_open_source_device_dc_r03_static_pass_next_scope_stale_failed.json</code>（SHA-256 <code>b80e696b...c87403</code>），修正不改变合同或门槛。该 E3 只打开提交后的两路线 runner，不证明 portable 候选已被接受为物理模型、不证明 247 行路线一致、方程身份、物理 IGZO 参数、实验校准、正式敏感性、P2/T03、M01/C00、电路、版图、PEX 或 HZO。runner PASS 提交前不得运行独立 checker。</p>
 </section>
