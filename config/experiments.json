@@ -1512,9 +1512,9 @@
         "next_gate": "Preserve and commit the R10 runner Unicode-path failure without rerunning R10, then establish revision-11 with a new path-safe parser namespace."
       },
       "xyce_build_preflight_r11": {
-        "status": "preflight_passed",
+        "status": "preflight_verified",
         "revision": 11,
-        "current_evidence": "E2",
+        "current_evidence": "E3",
         "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R11",
         "contract_path": "config/m01_xyce_build_preflight_r11.json",
         "contract_checker_path": "scripts/check_m01_xyce_build_preflight_r11_contract.py",
@@ -1533,6 +1533,11 @@
         "runner_checks_passed": 32,
         "runner_checks_failed": 0,
         "process_invocations": 4,
+        "independent_check_run": true,
+        "independent_check_status": "PASS",
+        "independent_checks_passed": 25,
+        "independent_checks_failed": 0,
+        "independent_check_processes_invoked": 0,
         "contract_check_completed": true,
         "contract_status": "PASS",
         "contract_checks_passed": 36,
@@ -1580,7 +1585,8 @@
           "results/compact/m01_xyce_build_preflight_r11/xyce_bsource_self_test.log",
           "results/compact/m01_xyce_build_preflight_r11/device_syntax.cir",
           "results/compact/m01_xyce_build_preflight_r11/device_syntax.log",
-          "results/compact/m01_xyce_build_preflight_r11/xyce_device_syntax.log"
+          "results/compact/m01_xyce_build_preflight_r11/xyce_device_syntax.log",
+          "results/reports/m01_xyce_build_preflight_check_r11.json"
         ],
         "artifact_hashes": {
           "contract_report_sha256": "73ebc2bd650411e91d7bb704a8d2b26938f47e1a0d83332fd1f5b9e37164e400",
@@ -1596,9 +1602,10 @@
           "xyce_version_log_sha256": "22f68108af5f4f605001b97c5bebd0f8170d8c1b0018e7b28b4fa51b7390dad1",
           "xyce_license_log_sha256": "c8d47a1de41711c8944b93cb9923f7fcfdeef8604595a75727e298c7bf06edfc",
           "xyce_bsource_self_test_log_sha256": "16a363ef484e43c2c70999f10ca058436b32ca5536851182d18e51d8a9e417e7",
-          "xyce_device_syntax_log_sha256": "5975657f6b6c2721ebab1269f9c9c332f715925527de4587581a3f774630f777"
+          "xyce_device_syntax_log_sha256": "5975657f6b6c2721ebab1269f9c9c332f715925527de4587581a3f774630f777",
+          "independent_check_report_sha256": "792a4f6d4be65746fc08ff0c00205acc2f7b64bc5ad2d3f0c370d27c41d2d615"
         },
-        "next_gate": "Commit and push the R11 32/32 E2 runner PASS, then run the 25-check independent persisted-evidence checker exactly once. Do not run formal M01 device DC until that independent PASS is committed."
+        "next_gate": "Commit and push the R11 25/25 E3 independent persisted-evidence PASS, then establish a formal M01 two-route device-only DC execution contract. Do not execute either device route until that new static contract passes and its PASS state is committed."
       }
     },
     {

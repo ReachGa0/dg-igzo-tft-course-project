@@ -1,0 +1,154 @@
+{
+  "status": "PASS",
+  "evidence_level": "E3",
+  "stage_id": "M01",
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R11",
+  "checks": [
+    {
+      "name": "result:runner_passed_all_registered_checks",
+      "status": "PASS",
+      "detail": "passed=32/32"
+    },
+    {
+      "name": "result:reuse_tool_only",
+      "status": "PASS",
+      "detail": "R11 reuses complete R07 installs and executes only tool/parser commands"
+    },
+    {
+      "name": "identity:config_runner_hash",
+      "status": "PASS",
+      "detail": "R11 report binds current config, runner and preflight id"
+    },
+    {
+      "name": "binding:historical_failures",
+      "status": "PASS",
+      "detail": "immutable R07 and R10 failures remain hash-bound"
+    },
+    {
+      "name": "binding:historical_artifacts",
+      "status": "PASS",
+      "detail": "artifacts=19/19"
+    },
+    {
+      "name": "identity:revision_11_contract",
+      "status": "PASS",
+      "detail": "stage=M01 revision=11"
+    },
+    {
+      "name": "binding:generator_tree",
+      "status": "PASS",
+      "detail": "fa3d78e39aa7b55608c2dfd85587e6c2778e5d9e0e54aeb54838db017e558a47"
+    },
+    {
+      "name": "binding:xyce_tree",
+      "status": "PASS",
+      "detail": "09b9805db763a6ce93666ad0f63c4e7378d5d1dd756895d91ff615681a417db4"
+    },
+    {
+      "name": "binary:hash_version",
+      "status": "PASS",
+      "detail": "sha256=e98dc88330b0dfd2439dfb19e0e5c108febfaaaee91c748e6e9e127e71afc93f"
+    },
+    {
+      "name": "self_test:netlist_scope",
+      "status": "PASS",
+      "detail": "controlled scalar source only"
+    },
+    {
+      "name": "self_test:prn_value",
+      "status": "PASS",
+      "detail": "observed=1.25 expected=1.25"
+    },
+    {
+      "name": "self_test:prn_artifact",
+      "status": "PASS",
+      "detail": "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.prn"
+    },
+    {
+      "name": "self_test:logs",
+      "status": "PASS",
+      "detail": "Xyce log and command wrapper log persisted"
+    },
+    {
+      "name": "device_syntax:netlist_scope",
+      "status": "PASS",
+      "detail": "frozen IGZO candidate parser input uses a repository-relative ASCII include"
+    },
+    {
+      "name": "device_syntax:parser_pass",
+      "status": "PASS",
+      "detail": "Xyce -syntax parser-only command passed"
+    },
+    {
+      "name": "device_syntax:no_numerical_output",
+      "status": "PASS",
+      "detail": "output_exists=False"
+    },
+    {
+      "name": "execution:only_commands",
+      "status": "PASS",
+      "detail": "commands=4"
+    },
+    {
+      "name": "execution:no_formal",
+      "status": "PASS",
+      "detail": "formal_absent=8/8"
+    },
+    {
+      "name": "execution:no_ngspice",
+      "status": "PASS",
+      "detail": "only the bound Xyce binary was invoked"
+    },
+    {
+      "name": "manifests:reuse_and_execution",
+      "status": "PASS",
+      "detail": "reuse and command manifests match report hashes"
+    },
+    {
+      "name": "manifests:preflight_log",
+      "status": "PASS",
+      "detail": "R11 no-build and path-safe boundaries persisted"
+    },
+    {
+      "name": "config:igzo_candidate_binding",
+      "status": "PASS",
+      "detail": "IGZO-only candidate hash"
+    },
+    {
+      "name": "independence:no_runner_or_process_import",
+      "status": "PASS",
+      "detail": "independent checker only reads persisted evidence"
+    },
+    {
+      "name": "boundary:formal_requires_independent",
+      "status": "PASS",
+      "detail": "Commit and push the R11 implementation, then run its 36-check static contract exactly once. Do not run the R11 tool/parser runner or independent checker until the static contract passes and that PASS state is committed."
+    },
+    {
+      "name": "registry:output_suffix_prn",
+      "status": "PASS",
+      "detail": "R11 binds Xyce fixed-column .prn parsing"
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "check_count": 25,
+    "passed": 25,
+    "failed": 0
+  },
+  "config": {
+    "path": "config/m01_xyce_build_preflight_r11.json",
+    "sha256": "77246fe0f1ab84597869230423ef2ea71745dce6afdc432ee23f0c2ead216305"
+  },
+  "checker": {
+    "path": "scripts/check_m01_xyce_build_preflight_r11.py",
+    "sha256": "b0d3713ababef235032085005fd9a9db45254d2f0fb4d10ac45da337e7a4145d"
+  },
+  "runner_report": {
+    "path": "results/reports/m01_xyce_build_preflight_r11.json",
+    "sha256": "cfe369d5df97217499f207701836447f784f5dbc201ad33b01a0b1765841d552"
+  },
+  "observed_self_test_value_v": 1.25,
+  "evidence_boundary": "R11 is a new path-safe output/parser recovery contract bound to the immutable R10 36/36 E3 static PASS and its preserved E0 runner Unicode-path failure, as well as the older R07/R08/R09 failures. R10 completed exactly three Xyce tool commands and observed the frozen 1.25 V scalar B-source value, then failed before parser-only execution because its ASCII netlist embedded the Chinese absolute project path. R10 config, sources, static report, failure report/log and eight-file partial run tree are hash-bound and must not be modified or rerun. R11 changes only the parser-netlist include representation: it uses the same frozen IGZO candidate through an ASCII repository-relative path while Xyce runs with project_root as cwd. The R07 Xyce binary/install hashes, four-command allowlist, 36/32/25 counts, numerical thresholds, failure retention, no-build/no-ngspice/no-AIM-Spice/no-formal-DC and downstream closure remain unchanged. A passing R11 static contract would establish only a reviewable path-safe tool/output contract, not an IGZO equation, parser execution, device curve, physical parameter, experimental calibration, formal M01, SPICE or circuit result. The R11 runner remains closed until the static PASS is committed; M01 remains E0 until the later formal two-route device-only DC contract passes.",
+  "next_gate": "Formal M01 remains closed; this report is tool/parser evidence only."
+}

@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 Xyce R11 独立检查 25/25 PASS
+
+### 唯一执行与结果
+
+R11 runner PASS 已在提交 `0660dab` 推送并与 `origin/main` 同步，运行前确认独立报告不存在且 runner/config/checker 哈希未变。随后唯一执行 `make m01-xyce-build-preflight-r11-check`，标准库独立 checker 返回 25/25 PASS、E3；报告 `results/reports/m01_xyce_build_preflight_check_r11.json` 的 SHA-256 为 `792a4f6d4be65746fc08ff0c00205acc2f7b64bc5ad2d3f0c370d27c41d2d615`。
+
+### 复核内容与边界
+
+独立 checker 不导入 runner、不导入或调用 `subprocess`，只读并重算 32/32 runner 报告、19 个历史绑定、R07 generator/Xyce 安装树、二进制版本哈希、1.25 V 固定列 `.prn`、相对 ASCII include parser-only 输入/日志、4 命令白名单、manifest 和 8 个正式输出缺失。该命令启动 0 个进程，不产生器件数值。25/25 E3 只关闭 R11 工具/parser 预检，不是正式 IGZO 器件 DC、方程/器件曲线、物理参数、实验校准、正式 M01、SPICE 或电路结果。
+
+### 下一门
+
+登记 `preflight_verified/E3`、独立报告路径/哈希和 no-formal 边界；`make check` 为 715/715 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位符和 26 张图片 PASS，`git diff --check` 通过。提交并推送本状态后，下一阶段只建立正式 M01 两路线器件 DC 执行合同；该静态合同 PASS 状态提交前不执行 ngspice 或 Xyce 器件网表，C00、电路、版图、PEX 和 HZO 继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 Xyce R11 runner 32/32 PASS
 
 ### 唯一执行与结果

@@ -273,6 +273,7 @@ REQUIRED_FILES = [
     "scripts/check_m01_xyce_build_preflight_r11.py",
     "results/reports/m01_xyce_build_preflight_contract_r11.json",
     "results/reports/m01_xyce_build_preflight_r11.json",
+    "results/reports/m01_xyce_build_preflight_check_r11.json",
     "results/compact/m01_xyce_build_preflight_r11/preflight.log",
     "results/compact/m01_xyce_build_preflight_r11/reuse_manifest.json",
     "results/compact/m01_xyce_build_preflight_r11/execution_manifest.json",
@@ -797,6 +798,8 @@ def main() -> int:
             "preserve and commit the M01 Xyce build/tool preflight revision-11"
         ) or current_next_scope.startswith(
             "run independent persisted-evidence checker for M01 Xyce build/tool preflight revision-11"
+        ) or current_next_scope.startswith(
+            "establish and commit a formal M01 two-route device-only DC execution contract"
         )
         dependencies_valid = all(
             set(item.get("depends_on", [])) <= set(experiment_map)
@@ -8053,6 +8056,113 @@ def main() -> int:
             and not (ROOT / r11_outputs["device_syntax_output"]).exists()
             and not (ROOT / r11_outputs["independent_check_report"]).exists()
         )
+        m01_xyce_r11_independent_report_path = (
+            ROOT / r11_outputs["independent_check_report"]
+        )
+        r11_independent_report = (
+            json.loads(
+                m01_xyce_r11_independent_report_path.read_text(encoding="utf-8")
+            )
+            if m01_xyce_r11_independent_report_path.is_file()
+            else {}
+        )
+        r11_verified_result_paths = [
+            "results/reports/m01_xyce_build_preflight_contract_r11.json",
+            "results/reports/m01_xyce_build_preflight_r11.json",
+            "results/compact/m01_xyce_build_preflight_r11/preflight.log",
+            "results/compact/m01_xyce_build_preflight_r11/reuse_manifest.json",
+            "results/compact/m01_xyce_build_preflight_r11/execution_manifest.json",
+            "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.cir",
+            "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.log",
+            "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.prn",
+            "results/compact/m01_xyce_build_preflight_r11/xyce_version.log",
+            "results/compact/m01_xyce_build_preflight_r11/xyce_license.log",
+            "results/compact/m01_xyce_build_preflight_r11/xyce_bsource_self_test.log",
+            "results/compact/m01_xyce_build_preflight_r11/device_syntax.cir",
+            "results/compact/m01_xyce_build_preflight_r11/device_syntax.log",
+            "results/compact/m01_xyce_build_preflight_r11/xyce_device_syntax.log",
+            "results/reports/m01_xyce_build_preflight_check_r11.json",
+        ]
+        r11_verified_state = (
+            r11_static_pass
+            and r11_machine.get("status") == "preflight_verified"
+            and r11_machine.get("revision") == 11
+            and r11_machine.get("current_evidence") == "E3"
+            and r11_machine.get("contract_check_completed") is True
+            and r11_machine.get("contract_status") == "PASS"
+            and r11_machine.get("contract_checks_passed") == 36
+            and r11_machine.get("contract_checks_failed") == 0
+            and r11_machine.get("preflight_run_completed") is True
+            and r11_machine.get("preflight_run_ordinal") == 1
+            and r11_machine.get("preflight_status") == "PASS"
+            and r11_machine.get("runner_checks_passed") == 32
+            and r11_machine.get("runner_checks_failed") == 0
+            and r11_machine.get("process_invocations") == 4
+            and r11_machine.get("independent_check_run") is True
+            and r11_machine.get("independent_check_status") == "PASS"
+            and r11_machine.get("independent_checks_passed") == 25
+            and r11_machine.get("independent_checks_failed") == 0
+            and r11_machine.get("independent_check_processes_invoked") == 0
+            and r11_machine.get("device_syntax_only_invoked") is True
+            and r11_machine.get("formal_device_dc_invoked") is False
+            and r11_machine.get("observed_self_test_value_v") == 1.25
+            and r11_machine.get("result_paths") == r11_verified_result_paths
+            and r11_machine.get("artifact_hashes", {}).get(
+                "preflight_report_sha256"
+            )
+            == sha256(m01_xyce_r11_runner_report_path)
+            and r11_machine.get("artifact_hashes", {}).get(
+                "independent_check_report_sha256"
+            )
+            == sha256(m01_xyce_r11_independent_report_path)
+            and r11_runner_report.get("status") == "PASS"
+            and r11_runner_report.get("preflight_status") == "PASS"
+            and r11_runner_report.get("evidence_level") == "E2"
+            and len(r11_runner_report.get("checks", [])) == 32
+            and all(
+                item.get("status") == "PASS"
+                for item in r11_runner_report.get("checks", [])
+            )
+            and r11_runner_report.get("config", {}).get("sha256")
+            == sha256(m01_xyce_r11_config_path)
+            and r11_runner_report.get("runner", {}).get("sha256")
+            == sha256(m01_xyce_r11_runner_path)
+            and r11_runner_summary.get("process_invocations") == 4
+            and r11_runner_summary.get("build_processes_invoked") == 0
+            and r11_runner_summary.get("device_syntax_only_invoked") is True
+            and r11_runner_summary.get("formal_device_dc_invoked") is False
+            and r11_runner_summary.get("formal_m01_outputs_created") is False
+            and len(r11_runner_report.get("commands", [])) == 4
+            and all(
+                item.get("returncode") == 0
+                for item in r11_runner_report.get("commands", [])
+            )
+            and r11_independent_report.get("status") == "PASS"
+            and r11_independent_report.get("evidence_level") == "E3"
+            and r11_independent_report.get("preflight_id")
+            == "M01_XYCE_BUILD_PREFLIGHT_R11"
+            and len(r11_independent_report.get("checks", [])) == 25
+            and all(
+                item.get("status") == "PASS"
+                for item in r11_independent_report.get("checks", [])
+            )
+            and r11_independent_report.get("summary", {}).get("check_count") == 25
+            and r11_independent_report.get("summary", {}).get("passed") == 25
+            and r11_independent_report.get("summary", {}).get("failed") == 0
+            and r11_independent_report.get("config", {}).get("sha256")
+            == sha256(m01_xyce_r11_config_path)
+            and r11_independent_report.get("checker", {}).get("sha256")
+            == sha256(m01_xyce_r11_checker_path)
+            and r11_independent_report.get("runner_report", {}).get("sha256")
+            == sha256(m01_xyce_r11_runner_report_path)
+            and r11_independent_report.get("observed_self_test_value_v") == 1.25
+            and r11_independent_report.get("next_gate")
+            == "Formal M01 remains closed; this report is tool/parser evidence only."
+            and all(path.is_file() for path in r11_runner_output_paths)
+            and (ROOT / r11_outputs["run_directory"]).is_dir()
+            and not (ROOT / r11_outputs["device_syntax_output"]).exists()
+            and m01_xyce_r11_independent_report_path.is_file()
+        )
         r11_runner_source = m01_xyce_r11_runner_path.read_text(encoding="utf-8")
         r11_checker_source = m01_xyce_r11_checker_path.read_text(encoding="utf-8")
         r11_contract_source = m01_xyce_r11_contract_checker_path.read_text(encoding="utf-8")
@@ -8073,6 +8183,11 @@ def main() -> int:
             and r11_next_scope.startswith(
                 "run independent persisted-evidence checker for M01 Xyce build/tool preflight revision-11"
             )
+        ) or (
+            r11_verified_state
+            and r11_next_scope.startswith(
+                "establish and commit a formal M01 two-route device-only DC execution contract"
+            )
         )
         r11_expected_archive_paths = [
             r11_r10["static_contract_report_path"],
@@ -8089,7 +8204,12 @@ def main() -> int:
             and r11_config.get("scope", {}).get("active_material_scope") == "IGZO only"
             and r11_config.get("scope", {}).get("formal_m01_numerical_run") is False
             and r11_config.get("scope", {}).get("circuit_or_downstream_permitted") is False
-            and (r11_machine_planned or r11_ready_state or r11_runner_pass_state)
+            and (
+                r11_machine_planned
+                or r11_ready_state
+                or r11_runner_pass_state
+                or r11_verified_state
+            )
             and (not r11_contract_exists if r11_machine_planned else r11_contract_exists)
             and (
                 (r11_machine_planned or r11_ready_state)
@@ -8099,6 +8219,11 @@ def main() -> int:
                 and (ROOT / r11_outputs["run_directory"]).is_dir()
                 and not (ROOT / r11_outputs["device_syntax_output"]).exists()
                 and not (ROOT / r11_outputs["independent_check_report"]).exists()
+                or r11_verified_state
+                and all(path.exists() for path in r11_runner_output_paths)
+                and (ROOT / r11_outputs["run_directory"]).is_dir()
+                and not (ROOT / r11_outputs["device_syntax_output"]).exists()
+                and (ROOT / r11_outputs["independent_check_report"]).is_file()
             )
             and all(not path.exists() for path in r11_formal_paths)
             and r11_r10_binding_ok
@@ -8139,7 +8264,7 @@ def main() -> int:
             and r11_machine.get("aimspice_invoked") is False
             and r11_machine.get("build_processes_invoked") == 0
             and r11_machine.get("simulator_processes_invoked")
-            == (4 if r11_runner_pass_state else 0)
+            == (4 if r11_runner_pass_state or r11_verified_state else 0)
             and r11_machine.get("device_netlist_invoked") is False
             and r11_machine.get("numerical_outputs_created") is False
             and r11_machine.get("proprietary_binary_accepted") is False
@@ -8149,7 +8274,8 @@ def main() -> int:
                 "m01_xyce_build_preflight_r11_contract_boundary", ""
             )
             and r11_next_scope_valid,
-            f"planned={r11_machine_planned} ready={r11_ready_state} runner={r11_runner_pass_state} "
+            f"planned={r11_machine_planned} ready={r11_ready_state} "
+            f"runner={r11_runner_pass_state} verified={r11_verified_state} "
             f"r10_binding={r11_r10_binding_ok} "
             f"future_absent={sum(not path.exists() for path in r11_future_paths)}/{len(r11_future_paths)}",
         )

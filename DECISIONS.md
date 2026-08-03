@@ -1,5 +1,15 @@
 # 设计决策记录
 
+## ADR-065：R11 独立 25/25 E3 关闭工具/parser 预检，不直接开放器件执行
+
+- 日期：2026-08-03
+- 状态：R11 静态 36/36 E3、runner 32/32 E2、独立检查 25/25 E3 全部 PASS；正式 M01 器件 DC 尚未建立执行合同。
+- runner PASS 提交 `0660dab` 推送并同步后，唯一执行 `make m01-xyce-build-preflight-r11-check`。独立 checker 不导入 runner 或 `subprocess`，只读重算已落盘证据并返回 25/25 PASS；报告 SHA-256 为 `792a4f6d4be65746fc08ff0c00205acc2f7b64bc5ad2d3f0c370d27c41d2d615`。
+- 复核覆盖 runner 32/32、19 个历史绑定、R07 完整 generator/Xyce 安装树和二进制、1.25 V 固定列 `.prn`、相对 ASCII include parser-only 输入/日志、4 条命令、manifest、正式输出缺失和无进程独立性。该 E3 只关闭工具/parser 预检，不验证 IGZO 方程、器件曲线、物理参数、实验校准、正式 SPICE 数值或电路。
+- 下一阶段必须先用新命名空间建立并提交正式 M01 两路线器件 DC 执行合同，冻结 ngspice/Xyce 工具绑定、247 行目标、网表生成、输出解析、指标、失败保留、进程预算和证据边界。静态合同 PASS 再提交前不得执行任一路线；R11/R10 和更早预检不重跑，C00 与全部下游继续关闭。
+
+---
+
 ## ADR-064：R11 runner 32/32 E2 PASS 后仅开放独立落盘检查
 
 - 日期：2026-08-03
