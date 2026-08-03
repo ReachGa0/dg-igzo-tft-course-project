@@ -855,6 +855,8 @@ def main() -> int:
             "establish and commit a versioned M01 route-divergence root-cause contract"
         ) or current_next_scope.startswith(
             "establish and commit M01 route-divergence root-cause revision-2"
+        ) or current_next_scope.startswith(
+            "execute the committed M01 route-divergence root-cause revision-2 probe"
         )
         dependencies_valid = all(
             set(item.get("depends_on", [])) <= set(experiment_map)
@@ -8271,6 +8273,9 @@ def main() -> int:
                 or r11_next_scope.startswith(
                     "establish and commit M01 route-divergence root-cause revision-2"
                 )
+                or r11_next_scope.startswith(
+                    "execute the committed M01 route-divergence root-cause revision-2 probe"
+                )
             )
         )
         r11_expected_archive_paths = [
@@ -8692,6 +8697,9 @@ def main() -> int:
                 )
                 or device_dc_next_scope.startswith(
                     "establish and commit M01 route-divergence root-cause revision-2"
+                )
+                or device_dc_next_scope.startswith(
+                    "execute the committed M01 route-divergence root-cause revision-2 probe"
                 )
             )
         ) or (
@@ -9580,7 +9588,10 @@ def main() -> int:
             and rca_next_scope.startswith("run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-1")
         ) or (
             rca_failed_state
-            and rca_next_scope.startswith("establish and commit M01 route-divergence root-cause revision-2")
+            and (
+                rca_next_scope.startswith("establish and commit M01 route-divergence root-cause revision-2")
+                or rca_next_scope.startswith("execute the committed M01 route-divergence root-cause revision-2 probe")
+            )
         ) or rca_verified_state
         contract_source = m01_rca_r01_contract_path.read_text(encoding="ascii")
         runner_source = m01_rca_r01_runner_path.read_text(encoding="ascii")
@@ -9682,6 +9693,26 @@ def main() -> int:
             "scripts/run_m01_route_divergence_root_cause_r02.py",
             "scripts/check_m01_route_divergence_root_cause_r02.py",
         ]
+        rca_r02_static_pass_failure = rca_r02_machine.get(
+            "static_pass_next_scope_project_check_failure", {}
+        )
+        rca_r02_static_pass_failure_path = ROOT / rca_r02_static_pass_failure.get(
+            "path", "__missing_r02_static_pass_project_check_failure__"
+        )
+        rca_r02_static_pass_failure_ok = (
+            rca_r02_static_pass_failure.get("path")
+            == "results/reports/project_check_m01_route_divergence_r02_static_pass_next_scope_stale_failed.json"
+            and rca_r02_static_pass_failure.get("sha256")
+            == "518df893d4ee6a42ec3dd030957a62151eb752828f9d974a54633da921d8d23c"
+            and rca_r02_static_pass_failure.get("failure_category")
+            == "historical_next_scope_allowlist_not_accepting_execute_r02_probe"
+            and rca_r02_static_pass_failure.get("failed_checks") == 13
+            and rca_r02_static_pass_failure.get("simulator_processes_invoked_by_project_check") == 0
+            and rca_r02_static_pass_failure.get("preserved") is True
+            and rca_r02_static_pass_failure_path.is_file()
+            and sha256(rca_r02_static_pass_failure_path)
+            == rca_r02_static_pass_failure.get("sha256")
+        )
         rca_r02_all_output_paths = [ROOT / value for value in rca_r02_outputs.values()]
         rca_r02_run_keys = [
             "ngspice_netlist", "xyce_netlist", "ngspice_log", "xyce_log",
@@ -9759,7 +9790,13 @@ def main() -> int:
             and rca_r02_machine.get("contract_checks_failed") == 0
             and rca_r02_machine.get("runner_completed") is False
             and rca_r02_machine.get("processes_invoked") == 0
-            and rca_r02_machine.get("result_paths") == rca_r02_source_paths + [rca_r02_outputs["contract_report"]]
+            and rca_r02_static_pass_failure_ok
+            and rca_r02_machine.get("result_paths")
+            == rca_r02_source_paths
+            + [
+                rca_r02_outputs["contract_report"],
+                rca_r02_static_pass_failure["path"],
+            ]
             and all(path == rca_r02_contract_report_path or not path.exists() for path in rca_r02_all_output_paths)
         )
         rca_r02_runner_state = (

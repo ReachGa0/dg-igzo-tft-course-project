@@ -16,6 +16,24 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 路线分歧根因 R02 静态合同 40/40 PASS（E3）
+
+### 唯一静态执行与结果
+
+R02 实施提交 `91fe397` 已推送并与 `origin/main` 同步；随后唯一执行 `make m01-route-divergence-r02-contract-check`，返回 `40/40`、E3。报告 `results/reports/m01_route_divergence_root_cause_contract_r02.json` SHA-256 为 `2870566c9bd6b3f5b0b4db796492afc75a55a5500d630dfa291e81a9ddb21169`。40 项全部通过，静态 checker 只读取配置、源码、不可改写 R01 失败报告和三份哈希绑定诊断 CSV。
+
+### 证据边界
+
+报告记录 `NOT_RUN_BY_CONTRACT_CHECK`、0 个模拟器进程、0 个网表和 0 个数值输出。R02 runner、独立 checker、探针网表、探针表、日志和原始输出均未生成；R01、正式器件 DC R02、P2/T03 和所有下游均不重跑。该 E3 只证明 schema-only 静态执行合同可审查，不确认三参数 `limit` 根因、路线一致、物理参数、实验校准、正式敏感性、P2/T03、M01 或电路证据。
+
+### 登记与下一门
+
+更新 `config/experiments.json` 为 `contract_ready/E3`，登记报告哈希和零进程边界；`config/project.json` 下一门改为已提交的两进程探针。随后需更新状态、报告第 5/6/8/9 章、ADR-075 和证据矩阵，运行 `make check`、`make report-check` 与 `git diff --check`，提交推送后才能运行一次探针。P3、P5、SPICE 电路、版图、PEX 和 HZO 继续关闭。
+
+登记后的首次 `make check` 返回 756 总检查、13 项失败，均为历史状态链未接受新的 execute-R02-probe scope；失败报告 `results/reports/project_check_m01_route_divergence_r02_static_pass_next_scope_stale_failed.json` SHA-256 为 `518df893d4ee6a42ec3dd030957a62151eb752828f9d974a54633da921d8d23c`，记录零模拟器进程并已保留。修正只扩展 `scripts/check_project.py` 的已登记 scope 白名单，随后总检查恢复 756/756；未改变静态报告或运行任何探针。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M01 路线分歧根因 R02 schema-only 合同（静态未执行）
 
 ### 目标与边界

@@ -287,5 +287,11 @@
   <p class="boundary">报告记录 0 个模拟器进程、0 个网表和 0 个数值输出，根因 runner/独立 checker 未运行。R01 不重跑；R02 只能在新命名空间修正证据来源，不能改变探针、候选、工具、阈值或范围。该失败不确认也不否定三参数 <code>limit</code> 假设，不是器件、路线一致、物理参数、实验校准、正式 M01 或电路证据。</p>
   <h3>8.23 M01 路线分歧根因 R02 实施边界</h3>
   <p>R02 在独立命名空间绑定提交 <code>203acaa</code>、R01 38/40 失败报告，以及正式器件 R02 已落盘的 ngspice/Xyce 原始表和路线差异表。静态 checker 直接校验三份 CSV 的 SHA-256、247 行结构并重算最大路线电流、最大绝对差和最大对数差，不再假定不可改写 runner 报告具有顶层诊断字段。R02 同时让静态报告的下一门提示随 PASS/FAIL 状态生成。</p>
-  <p class="boundary">当前 40/30/22 只是 E0 实施注册；R02 静态报告、探针网表、两个模拟器进程、探针表和独立报告均不存在。表达式点、支路哨兵、原始/可移植候选、工具、预算、阈值和失败保留未变。该实现不能确认三参数 <code>limit</code> 根因，也不建立路线一致、物理参数、实验校准、正式敏感性、P2/T03、M01 或电路证据；只有提交后的 40/40 E3 静态 PASS 才能打开一次最小探针。</p>
+  <p class="boundary">在 R02 实施提交时，40/30/22 只是 E0 注册；表达式点、支路哨兵、原始/可移植候选、工具、预算、阈值和失败保留未变。该实现不能确认三参数 <code>limit</code> 根因，也不建立路线一致、物理参数、实验校准、正式敏感性、P2/T03、M01 或电路证据。</p>
+  <h3>8.24 M01 路线分歧根因 R02 静态 PASS 边界</h3>
+  <p>R02 静态合同在提交 <code>91fe397</code> 推送并同步后唯一执行，返回 40/40 PASS、E3；报告 <code>results/reports/m01_route_divergence_root_cause_contract_r02.json</code> SHA-256 为 <code>2870566c9bd6b3f5b0b4db796492afc75a55a5500d630dfa291e81a9ddb21169</code>。checker 绑定 R01 38/40 失败和三份实际诊断 CSV，重算 247 行结构与路线最大值，记录 0 个模拟器进程、0 个网表和 0 个数值输出。</p>
+  <p class="boundary">该 E3 只证明 schema-only 静态执行合同完整，不能确认三参数 <code>limit</code> 根因、路线一致、方程身份、物理参数、实验校准、正式敏感性、P2/T03、正式 M01 或电路证据。R02 runner、独立 checker、探针表和所有探针输出仍未运行；只有本 PASS 状态提交推送后，才允许一次一个 ngspice 加一个 Xyce 的串行最小探针，随后必须运行 22 项独立复核。</p>
+  <h3>8.25 R02 静态 PASS 后项目检查失败保留</h3>
+  <p>登记 R02 40/40 E3 后，首次项目总检查返回 756 总检查、13 项失败。失败均来自历史 M00/M01 状态链的 `next_scope` 白名单仍未接受合法的“execute the committed R02 probe”范围；不是 R02 静态 checker、输入、工具或数值门失败。</p>
+  <p class="boundary">失败报告 <code>results/reports/project_check_m01_route_divergence_r02_static_pass_next_scope_stale_failed.json</code> SHA-256 为 <code>518df893d4ee6a42ec3dd030957a62151eb752828f9d974a54633da921d8d23c</code>，记录零模拟器进程并原样保留。修正只扩展已登记的状态白名单，随后 `make check` 恢复 756/756；R02 静态报告、候选、阈值、探针预算和所有未运行边界未改变。</p>
 </section>

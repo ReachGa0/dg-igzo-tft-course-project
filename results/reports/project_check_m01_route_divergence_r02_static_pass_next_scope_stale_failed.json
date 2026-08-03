@@ -1,8 +1,8 @@
 {
   "project": "DG-IGZO-TFT-PDK",
-  "status": "PASS",
+  "status": "FAIL",
   "checks": 756,
-  "failures": 0,
+  "failures": 13,
   "results": [
     {
       "name": "directory:config",
@@ -322,7 +322,7 @@
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=198647"
+      "detail": "bytes=198130"
     },
     {
       "name": "file:PROJECT_PLAN.md",
@@ -332,12 +332,12 @@
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=116308"
+      "detail": "bytes=115969"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=63460"
+      "detail": "bytes=62903"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=53073"
+      "detail": "bytes=52317"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=124087"
+      "detail": "bytes=123487"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2177,7 +2177,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=82039"
+      "detail": "bytes=81034"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3606,7 +3606,7 @@
     },
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "execute the committed M01 route-divergence root-cause revision-2 probe with exactly one serial ngspice and one serial Xyce process after static PASS commit; preserve all probe outputs and failures, then run the 22-check independent persisted-evidence checker, while keeping P2, T03, C00, circuit, layout, PEX and HZO closed"
     },
     {
@@ -3651,57 +3651,57 @@
     },
     {
       "name": "m01_xyce_preflight_r02:static_contract_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "contract_checks=22/25 future_absent=12/12"
     },
     {
       "name": "m01_xyce_preflight_r03:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False failed=True future_absent=12/12"
     },
     {
       "name": "m01_xyce_preflight_r04:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False failed=True future_absent=12/12"
     },
     {
       "name": "m01_xyce_preflight_r05:contract_and_runner_state",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False failed=True future_absent=7/12"
     },
     {
       "name": "m01_xyce_preflight_r06:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False failed=True future_absent=16/16"
     },
     {
       "name": "m01_xyce_preflight_r07:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False failed=True future_absent=5/16"
     },
     {
       "name": "m01_xyce_preflight_r08:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "failed=True ready=False future_absent=16/16"
     },
     {
       "name": "m01_xyce_preflight_r09:implementation_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False failed=True r08_binding=True future_absent=16/16"
     },
     {
       "name": "m01_xyce_preflight_r10:implementation_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False failed=True r08_binding=True r09_binding=True future_absent=7/7"
     },
     {
       "name": "m01_xyce_preflight_r11:path_safe_contract_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False runner=False verified=True r10_binding=True future_absent=1/16"
     },
     {
       "name": "m01_open_source_device_dc_r01:contract_runner_independent_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "implemented=False failed=True ready=False runner=False verified=False future_absent=17/18"
     },
     {
@@ -3711,7 +3711,7 @@
     },
     {
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "implemented=False ready=False failed=True runner=False verified=False r02_binding=True implementation_failure=True source_scan_failure=True future_absent=12/13"
     },
     {
