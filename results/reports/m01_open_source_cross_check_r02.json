@@ -1,0 +1,233 @@
+{
+  "schema_version": "1.0",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "M01",
+  "contract_id": "M01_OPEN_SOURCE_DEVICE_DC_R02",
+  "status": "PASS",
+  "evidence_level": "E2",
+  "simulation_status": "FORMAL_DEVICE_DC_COMPLETE",
+  "config": {
+    "path": "config/m01_open_source_device_dc_r02.json",
+    "sha256": "4fab2ca4c1266a6f4190c378a928f93f45f20a2830b16a9d6b4f012788a193d7"
+  },
+  "runner": {
+    "path": "scripts/run_m01_open_source_device_dc_r02.py",
+    "sha256": "15ab1ba2413e758bf2ddf39f4d503f95113c4a5b73d9daa4d5034eec49aa8a27"
+  },
+  "contract_report": {
+    "path": "results/reports/m01_open_source_device_dc_contract_r02.json",
+    "sha256": "0154abfbe5175b91d7622416804561c5bb50bdeeef0792e426d0299a37564d2c"
+  },
+  "summary": {
+    "passed": 30,
+    "failed": 0,
+    "total": 30,
+    "process_invocations": 2,
+    "formal_device_dc_invoked": true,
+    "ngspice_invoked": true,
+    "xyce_invoked": true,
+    "aimspice_invoked": false,
+    "tcad_invoked": false,
+    "circuit_or_downstream_invoked": false,
+    "elapsed_seconds": 6.896318674087524
+  },
+  "failure_category": null,
+  "failure_detail": null,
+  "commands": [
+    {
+      "route": "ngspice",
+      "argv": [
+        "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+        "-b",
+        "-o",
+        "results/compact/m01_open_source_cross_check_r02/ngspice.log",
+        "results/compact/m01_open_source_cross_check_r02/ngspice_device_dc.cir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.06994775099883555
+    },
+    {
+      "route": "xyce",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-l",
+        "results/compact/m01_open_source_cross_check_r02/xyce.log",
+        "-o",
+        "results/compact/m01_open_source_cross_check_r02/xyce_values",
+        "results/compact/m01_open_source_cross_check_r02/xyce_device_dc.cir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.19471622700075386
+    }
+  ],
+  "checks": [
+    {
+      "name": "precondition:committed_static_contract_pass",
+      "status": "PASS",
+      "detail": "report=PASS passed=40 machine=contract_ready"
+    },
+    {
+      "name": "identity:config_and_runner_hashes",
+      "status": "PASS",
+      "detail": "contract=M01_OPEN_SOURCE_DEVICE_DC_R02"
+    },
+    {
+      "name": "binding:r11_complete_preflight",
+      "status": "PASS",
+      "detail": "artifacts=8"
+    },
+    {
+      "name": "targets:frozen_files_and_counts",
+      "status": "PASS",
+      "detail": "rows=247 curves=13"
+    },
+    {
+      "name": "candidate:frozen_igzo_bytes",
+      "status": "PASS",
+      "detail": "0a2d626fb37fc4fc9c1af8bdd326d5750eeca22d8b9cd3e570481ef671c47f9d"
+    },
+    {
+      "name": "tools:two_hash_bound_open_source_routes",
+      "status": "PASS",
+      "detail": "ngspice and GPL Xyce fingerprints"
+    },
+    {
+      "name": "outputs:exclusive_absent_before_run",
+      "status": "PASS",
+      "detail": "checked=17"
+    },
+    {
+      "name": "resource:two_process_serial_budget",
+      "status": "PASS",
+      "detail": "{\"aimspice_processes\": 0, \"circuit_processes\": 0, \"generated_device_netlists\": 2, \"laptop_target\": true, \"layout_processes\": 0, \"ngspice_processes\": 1, \"parallel_route_execution\": false, \"route_processes\": 2, \"tcad_processes\": 0, \"xyce_processes\": 1}"
+    },
+    {
+      "name": "targets:row_alignment_and_finite_inputs",
+      "status": "PASS",
+      "detail": "manifest_fields=19 prediction_fields=23"
+    },
+    {
+      "name": "netlists:ascii_generation",
+      "status": "PASS",
+      "detail": "two ASCII netlists"
+    },
+    {
+      "name": "netlists:247_devices_per_route",
+      "status": "PASS",
+      "detail": "ng=247 xyce=247"
+    },
+    {
+      "name": "netlists:igzo_device_dc_scope",
+      "status": "PASS",
+      "detail": "IGZO-only .DC, no transient/circuit assets"
+    },
+    {
+      "name": "ngspice:argv_exact",
+      "status": "PASS",
+      "detail": "[\"/mnt/c/Users/ReachGao/.local/bin/ngspice\", \"-b\", \"-o\", \"results/compact/m01_open_source_cross_check_r02/ngspice.log\", \"results/compact/m01_open_source_cross_check_r02/ngspice_device_dc.cir\"]"
+    },
+    {
+      "name": "ngspice:returncode_zero",
+      "status": "PASS",
+      "detail": "returncode=0"
+    },
+    {
+      "name": "ngspice:raw_output_present",
+      "status": "PASS",
+      "detail": "results/compact/m01_open_source_cross_check_r02/ngspice_values.raw"
+    },
+    {
+      "name": "ngspice:247_finite_currents",
+      "status": "PASS",
+      "detail": "rows=247"
+    },
+    {
+      "name": "ngspice:zero_vds_invariant",
+      "status": "PASS",
+      "detail": "max=0"
+    },
+    {
+      "name": "xyce:argv_exact",
+      "status": "PASS",
+      "detail": "[\"/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce\", \"-l\", \"results/compact/m01_open_source_cross_check_r02/xyce.log\", \"-o\", \"results/compact/m01_open_source_cross_check_r02/xyce_values\", \"results/compact/m01_open_source_cross_check_r02/xyce_device_dc.cir\"]"
+    },
+    {
+      "name": "xyce:returncode_zero",
+      "status": "PASS",
+      "detail": "returncode=0"
+    },
+    {
+      "name": "xyce:raw_output_present",
+      "status": "PASS",
+      "detail": "results/compact/m01_open_source_cross_check_r02/xyce_values.prn"
+    },
+    {
+      "name": "xyce:247_finite_currents",
+      "status": "PASS",
+      "detail": "rows=247"
+    },
+    {
+      "name": "xyce:zero_vds_invariant",
+      "status": "PASS",
+      "detail": "max=0"
+    },
+    {
+      "name": "outputs:two_raw_csvs",
+      "status": "PASS",
+      "detail": "247 rows per route"
+    },
+    {
+      "name": "metrics:thirty_rows",
+      "status": "PASS",
+      "detail": "rows=30 finite=True"
+    },
+    {
+      "name": "differences:247_rows",
+      "status": "PASS",
+      "detail": "rows=247 finite=True"
+    },
+    {
+      "name": "figures:two_pngs",
+      "status": "PASS",
+      "detail": "bytes=324964/263543"
+    },
+    {
+      "name": "artifacts:hash_manifest_complete",
+      "status": "PASS",
+      "detail": "hashes=14/14"
+    },
+    {
+      "name": "execution:exactly_two_route_processes",
+      "status": "PASS",
+      "detail": "processes=2"
+    },
+    {
+      "name": "scope:no_aimspice_tcad_circuit_or_downstream",
+      "status": "PASS",
+      "detail": "only ngspice and Xyce device DC"
+    },
+    {
+      "name": "result:formal_device_dc_complete_with_boundary",
+      "status": "PASS",
+      "detail": "device-only numerical comparison; no physical/calibration/circuit claim"
+    }
+  ],
+  "artifacts": {
+    "ngspice_netlist_sha256": "afaf6eedf813794bb5c3adef7a9d7817fd76879959b22db7e78cac4f5e931f6e",
+    "xyce_netlist_sha256": "00d9a932570b234cd2caad08af7389afb5ea6b59bd52fe10475a679f0e97cc9b",
+    "ngspice_log_sha256": "ba670e4d569846494bd1685bba879108081f10ead77985756848edac1366839b",
+    "xyce_log_sha256": "db17823876e84a5fb3737515ed510e4e0cb8de0f67958b101efbf3d95f5f1e3a",
+    "ngspice_command_log_sha256": "b111672466a63df4946cc4a7505b4206a2493f3a72a9eb5b6f25891844ee62db",
+    "xyce_command_log_sha256": "83d3ebd4932ec1bdcb08bc8421b482dda672525709b2defb4abb51d238fffed1",
+    "ngspice_raw_output_sha256": "47feea6d736187920e8af552fed6ddf6ff470ec44d20cfb82c1413d207e69930",
+    "xyce_raw_output_sha256": "99aa87b5d25bb36f9d47a9f6ad9c519c0d19ca27f750c0e59d4d3f0949e6820d",
+    "ngspice_raw_csv_sha256": "3c9970081503467fab9097c9f0c94a365afc6d2e46a059f60654a22a63af92e1",
+    "xyce_raw_csv_sha256": "dbe356c0af0619f4356a65145214aea1f63c2f8941164d54671f1237f3ad7eef",
+    "route_metrics_csv_sha256": "9860c0dc0c38ed77baf4ebb95aea9e95d203be18983779a5117a8727bcc8378a",
+    "route_difference_csv_sha256": "15c9cc6601432915d9594529c9ed8008e51e9d9efc3691f60e4d7adac97a0525",
+    "overlay_png_sha256": "f9e5e1588e613e0c6dde53e9d1ea97f88b20763ddf496e33f8bdc2e8b53ac7bb",
+    "route_difference_png_sha256": "f3936792d360536e5f17505f6a331e56d87a2ec22fba6c810f6b3be0b3f891c2"
+  },
+  "evidence_boundary": "This R02 contract is a schema-only correction bound to the immutable R01 39/40 static failure. It retains the same two open-source simulator routes, frozen IGZO teaching-kernel candidate, 247 persisted target rows, commands, two-process budget, netlists, extraction, metrics, thresholds, failure retention and no-downstream boundary. The only permitted correction is to verify the R11 independent zero-process evidence through fields and registered checks that actually exist in its persisted 25/25 report, instead of requiring the nonexistent top-level processes_invoked field. The contract checker may create only its own R02 report and invokes no simulator, build, TCAD, AIM-Spice, device netlist, circuit or downstream process. A later runner PASS may establish complete device-only DC execution and explicit route diagnostics, but it cannot establish equation identity, native HSPICE Level 61, measured or fitted physical IGZO parameters, experimental calibration, external validation, circuit readiness, layout, PEX, HZO or foundry sign-off. M01 and C00 remain closed until the runner and an independent persisted-evidence checker pass in separate committed gates.",
+  "next_gate": "Commit and push the E2 runner PASS, then run the 24-check independent persisted-evidence checker exactly once. C00 and downstream remain closed."
+}

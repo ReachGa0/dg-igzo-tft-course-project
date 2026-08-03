@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`M01_DEVICE_DC_R02_STATIC_READY_E3_NEXT_RUNNER`：T01/T02/T03 数值门和 R11 工具/parser 预检已关闭，历史失败保留。正式 R01 固定为 39/40 E0/FAIL。R02 新命名空间的 schema-only 静态合同已唯一返回 40/40 PASS、E3，报告记录零 build/simulator process、零器件网表和零数值输出；物理、数据、路线、进程、提取、阈值和边界不变。下一门是提交该 PASS 状态后唯一执行两路线 runner，独立检查继续关闭。
+`M01_DEVICE_DC_R02_RUNNER_PASS_E2_NEXT_INDEPENDENT`：T01/T02/T03 数值门和 R11 工具/parser 预检已关闭，历史失败保留。正式 R01 固定为 39/40 E0/FAIL。R02 schema-only 静态合同唯一 40/40 PASS、E3，随后两路线 runner 唯一 30/30 PASS、E2，完成 2 个器件网表、247+247 原始行、30 行指标、247 行差异和 2 张图。ngspice 与 Xyce 数值不一致，路线差异仅为预注册诊断；下一门是提交 runner PASS 后唯一独立落盘检查。
 
 ## 截止日期
 
@@ -46,7 +46,7 @@
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
 | M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
-| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；R11 preflight E3；device-DC R02 static E3 | 历史失败全部保留；R11 36/32/25 只关闭工具/parser 预检。R01 静态合同固定 39/40 E0/FAIL；R02 schema-only 静态合同唯一 40/40 PASS、E3，零模拟器/网表/数值输出。两路线 runner 和独立检查尚未运行，正式 M01 未完成 |
+| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；R11 preflight E3；device-DC R02 runner E2 | 历史失败全部保留；R11 36/32/25 只关闭工具/parser 预检。R01 静态合同固定 39/40 E0/FAIL；R02 静态 40/40 E3、runner 30/30 E2，输出完整但路线不一致，独立检查尚未运行，正式 M01 尚未收口 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-M00 与 M01 历史运行均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。先提交并推送 R02 40/40 E3 静态 PASS 状态，再唯一运行 ngspice/Xyce 两路线 runner；runner PASS 状态另行提交前不运行独立 checker。电路、版图、PEX 和 HZO 继续关闭。
+M00 与 M01 历史运行均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。先提交并推送 R02 30/30 E2 runner PASS 状态，再唯一运行 24 项独立落盘检查；独立 PASS 提交前不打开 C00、电路、版图、PEX 和 HZO。

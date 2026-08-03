@@ -298,7 +298,23 @@ REQUIRED_FILES = [
     "scripts/run_m01_open_source_device_dc_r02.py",
     "scripts/check_m01_open_source_device_dc_r02.py",
     "results/reports/project_check_m01_device_dc_r02_implementation_state_failed.json",
+    "results/reports/project_check_m01_device_dc_r02_runner_pass_state_failed.json",
     "results/reports/m01_open_source_device_dc_contract_r02.json",
+    "results/compact/m01_open_source_cross_check_r02/ngspice_device_dc.cir",
+    "results/compact/m01_open_source_cross_check_r02/xyce_device_dc.cir",
+    "results/compact/m01_open_source_cross_check_r02/ngspice.log",
+    "results/compact/m01_open_source_cross_check_r02/xyce.log",
+    "results/compact/m01_open_source_cross_check_r02/ngspice_command.json",
+    "results/compact/m01_open_source_cross_check_r02/xyce_command.json",
+    "results/compact/m01_open_source_cross_check_r02/ngspice_values.raw",
+    "results/compact/m01_open_source_cross_check_r02/xyce_values.prn",
+    "results/tables/m01_ngspice_open_source_r02_raw.csv",
+    "results/tables/m01_xyce_open_source_r02_raw.csv",
+    "results/tables/m01_open_source_route_metrics_r02.csv",
+    "results/tables/m01_open_source_route_difference_r02.csv",
+    "report/assets/m01_open_source_cross_check_r02.png",
+    "report/assets/m01_open_source_route_difference_r02.png",
+    "results/reports/m01_open_source_cross_check_r02.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -9197,6 +9213,21 @@ def main() -> int:
                 )
             )
             == "bc7fed2c0bf45f5f803a351a41b08eef26434346f80f1a12a069d9ab7eb34221"
+            and r02_machine.get("runner_state_project_check_failure", {}).get(
+                "sha256"
+            )
+            == "5e02032f3e4ab4d9d52d87b94482594e952973f4ad07927aecda37e02b85a72d"
+            and r02_machine.get("runner_state_project_check_failure", {}).get(
+                "preserved"
+            )
+            is True
+            and sha256(
+                ROOT
+                / r02_machine.get("runner_state_project_check_failure", {}).get(
+                    "path", "missing"
+                )
+            )
+            == "5e02032f3e4ab4d9d52d87b94482594e952973f4ad07927aecda37e02b85a72d"
             and "m01-open-source-device-dc-r02-contract-check:" in makefile_source
             and "m01-open-source-device-dc-r02:" in makefile_source
             and "m01-open-source-device-dc-r02-check:" in makefile_source

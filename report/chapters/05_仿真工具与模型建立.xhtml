@@ -101,9 +101,10 @@
       <tr><td>M01 正式双路线器件 DC R01 静态失败</td><td>实施提交 <code>b8c3a03</code> 后唯一执行 40 项静态 checker；报告哈希 <code>7baba2fcd7bc186bfa30780882816c27d33708c91957e0a53db51c8c435b16ba</code></td><td>39/40、E0/FAIL；唯一失败为 checker 要求 R11 独立报告存在未定义的顶层 <code>processes_invoked</code>。报告记录零 build/simulator process、零器件网表和零数值输出；R01 不重跑，R02 只修正该 schema 断言</td></tr>
       <tr><td>M01 正式双路线器件 DC R02 schema-only 实现</td><td>新命名空间绑定提交 <code>7d5f079</code> 的 R01 五个源文件与 39/40 报告；静态/runner/独立三组件统一按 R11 实际 <code>25/25/0</code> summary 和 independence PASS 复核零进程，40/30/24 与全部器件合同不变</td><td>实施期 E0；实现期项目检查曾误判审计字面量，失败归档后只收窄为禁止旧可执行条件，随后 729/729 PASS</td></tr>
       <tr><td>M01 正式双路线器件 DC R02 静态合同</td><td>实施提交 <code>86c5106</code> 后唯一执行；复核 247 行、同一 IGZO 候选、工具/argv/cwd、两份 247 器件网表合同、提取/指标、两进程预算、排他输出、失败保留和 no-downstream 边界</td><td>40/40 PASS、E3；报告 SHA-256 <code>0154abfbe5175b91d7622416804561c5bb50bdeeef0792e426d0299a37564d2c</code>，零 build/simulator process、零器件网表和零数值输出。只开放提交后的 runner，不是器件 DC 或正式 M01 证据</td></tr>
+      <tr><td>M01 正式双路线器件 DC R02 runner</td><td>静态 PASS 提交 <code>da7dde8</code> 后唯一执行；ngspice/Xyce 各一个串行进程，两个 247 器件 ASCII 网表使用同一候选字节，按冻结公式提取并生成原始表、指标、差异和图</td><td>30/30 PASS、E2；247+247 行、30 指标行、247 差异行、2 图完整。最大绝对/对数路线差为 <code>4.68252e-4 A/cm</code>/<code>16.6705 decade</code>，预注册为 diagnostic-only；独立检查待运行，不证明路线一致或电路可用</td></tr>
     </tbody>
   </table>
-  <p class="boundary">M01 开源恢复合同、Xyce build/tool 历史失败与 R11 36/32/25 工具/parser 链均保留。正式器件 DC R01 静态 checker 唯一返回 39/40、E0/FAIL；唯一失败是读取 R11 独立报告不存在的顶层进程字段，且报告明确记录零进程/网表/数值输出。R01 冻结不重跑。R02 已在新命名空间实施 schema-only 修正并绑定全部 R01 证据，247 行、候选、命令、两进程预算、网表、提取、阈值和边界不变；R02 40 项静态 checker 尚未运行，PASS 状态提交前不得执行任一路线。</p>
+  <p class="boundary">M01 开源恢复合同、Xyce build/tool 历史失败与 R11 36/32/25 工具/parser 链均保留。正式器件 DC R01 静态 checker 唯一返回 39/40、E0/FAIL并冻结。R02 schema-only 静态合同唯一 40/40 E3 后，runner 唯一 30/30 E2，恰好两个开源模拟器器件级 DC 进程并完整落盘。ngspice 路线接近数值底部、Xyce 跟随冻结候选，两路线不一致；诊断阈值不是 PASS 门。独立 checker 未运行，不能称为路线一致、正式 M01 收口或电路模型验证。</p>
   <table>
     <thead><tr><th>T02-A/B/C 拓扑与偏压合同</th><th>实现</th><th>证据边界</th></tr></thead>
     <tbody>

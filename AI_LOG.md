@@ -16,6 +16,28 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 正式器件 DC R02 runner 30/30 PASS
+
+### 唯一执行与结果
+
+R02 静态合同 40/40 E3 已在提交 `da7dde8` 推送并与 `origin/main` 同步，运行前除静态报告外 17 个 runner/独立输出全部缺失。随后唯一执行 `make m01-open-source-device-dc-r02`，runner 返回 30/30 PASS、E2。恰好一个 ngspice 和一个 GPL Xyce 串行器件级 DC 进程返回 0；报告 `results/reports/m01_open_source_cross_check_r02.json` SHA-256 为 `3dd916bea81caf582757696674c3f1fe41576122a66fef4c24ff3dd204f53cac`。
+
+### 落盘结果与诊断
+
+两个 ASCII 网表各包含 247 个 IGZO 器件，生成两份 247 行有限原始表、30 行曲线/聚合指标、247 行路线差异、两张非空 PNG、两份原生输出、命令记录和原始日志；总 runner 墙钟为 6.8963 s。两个零漏压不变量均为 0，AIM-Spice、TCAD、电路和下游进程均为 0。
+
+两路线没有数值一致：ngspice 最大 `|ID|/W` 为 `2.0417057839146633e-31 A/cm`，Xyce 最大为 `4.6825230492225607e-4 A/cm`；最大绝对差和对数差分别为 `4.6825230492225607e-4 A/cm` 与 `16.670479923821013 decade`。合同预注册 `route_to_target_thresholds_are_diagnostic_only=true` 和 `route_difference_threshold_is_not_a_pass_gate=true`，因此 30/30 只证明完整、有限、两进程受控的器件级执行与诊断落盘，不能写成路线一致、方程身份、物理参数、实验校准、正式 M01 收口或电路可用。
+
+登记 runner PASS 后首次 `make check` 返回 741/745，失败的 recovery、R11、R01、R02 四项来自通用机器状态补丁命中三个历史 JSON 块而未命中 R02。原始报告已保存为 `results/reports/project_check_m01_device_dc_r02_runner_pass_state_failed.json`，SHA-256 `5e02032f3e4ab4d9d52d87b94482594e952973f4ad07927aecda37e02b85a72d`。修正只恢复三个历史状态并在 R02 块登记 `formal_run_passed/E2`，没有运行进程或改变任何数值产物。
+
+推送前比较工作树与 Git blob 时发现四份 CSV 会受全局 `eol=lf` 规范化，导致 blob SHA-256 不等于 runner 报告记录；ngspice/Xyce 日志和 ngspice 原生 raw 又受 `*.log`/`*.raw` ignore 影响。新增仅针对本 R02 hash-bound 产物的 `.gitattributes -text` 规则，并强制纳入三个原生文件，保证提交字节与报告 14 项哈希一致；未改写产物内容或重跑模拟器。
+
+### 下一门
+
+先登记机器状态、报告章节和证据矩阵；修正登记期机器块误匹配后，`make check` 为 746/746 PASS，`make report-check` 为 12 章/5 附录/15 个既有占位/28 张图片 PASS，`git diff --check` 通过。提交推送本 E2 状态后，唯一执行 `make m01-open-source-device-dc-r02-check`。独立 checker 前不重跑任一路线，不打开 C00、版图、PEX 或 HZO。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 正式器件 DC R02 静态合同 40/40 PASS
 
 ### 唯一执行与结果

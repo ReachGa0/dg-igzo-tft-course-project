@@ -122,7 +122,16 @@
       <tr><td>formal two-route device DC R01 static failure</td><td>提交 <code>b8c3a03</code> 后唯一执行；39 项静态绑定通过，唯一失败是要求 R11 独立报告具有不存在的顶层进程字段</td><td>39/40、E0/FAIL；报告哈希 <code>7baba2fcd7bc186bfa30780882816c27d33708c91957e0a53db51c8c435b16ba</code>，零 simulator/build process、零网表和数值输出。R01 不重跑，R02 只修正 schema</td></tr>
       <tr><td>formal two-route device DC R02 implementation</td><td>新命名空间哈希绑定 R01 失败；三组件统一使用 R11 实际 25/25 summary/independence schema，保持 40/30/24 与器件/进程/输出合同不变</td><td>实施态 E0；项目检查审计字面量误判失败已归档，修正后 729/729</td></tr>
       <tr><td>formal two-route device DC R02 static contract</td><td>提交 <code>86c5106</code> 后唯一执行，检查 R11/R01 绑定、247 行、候选、工具、两条命令、网表/提取合同、两进程预算、输出隔离和失败保留</td><td>40/40 PASS、E3；报告 <code>0154abfb...64d2c</code>，零 build/simulator process、零网表和数值输出。runner/独立检查未运行，不是正式器件 DC 或路线对照</td></tr>
+      <tr><td>formal two-route device DC R02 runner</td><td>提交 <code>da7dde8</code> 后唯一执行；两个精确命令均返回 0，逐行解析 247+247 个有限电流，输出 30 行指标、247 行差异和两图</td><td>30/30 PASS、E2；ngspice 近数值底部而 Xyce 跟随候选，最大绝对/对数差 <code>4.68252e-4 A/cm</code>/<code>16.6705 decade</code>。差异阈值按合同只作诊断，不能声称路线一致；独立 checker 未运行</td></tr>
     </tbody>
   </table>
-  <p class="boundary">Xyce build/tool 历史与 R11 36/32/25 工具/parser 链均保留。正式双路线器件 DC R01 静态 checker 唯一返回 39/40、E0/FAIL，零 build/simulator process、网表和数值输出。R01 冻结且两路线未启动。R02 持久化 schema-only 静态合同已唯一返回 40/40 PASS、E3，仍为零 build/simulator process、零网表和零数值输出；它只开放提交后的 runner，不能写成正式器件 DC 或路线对照。C00、电路、版图、PEX 和 HZO 继续关闭。</p>
+  <figure>
+    <img src="assets/m01_open_source_cross_check_r02.png" alt="M01 R02 ngspice Xyce and frozen target device-only DC comparison" />
+    <figcaption>图 9-1 R02 两路线与冻结教学目标的 13 条曲线对照。Xyce 跟随候选输出，ngspice 蓝线接近对数底值；两个进程均完成不等于路线一致。</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/m01_open_source_route_difference_r02.png" alt="M01 R02 per-row logarithmic difference between ngspice and Xyce" />
+    <figcaption>图 9-2 247 行 ngspice-Xyce 对数差。最大差为 16.6705 decade；该量按执行前合同只作诊断，不是 runner PASS 门，也不支持方程身份或物理校准结论。</figcaption>
+  </figure>
+  <p class="boundary">Xyce build/tool 历史与 R11 36/32/25 工具/parser 链均保留。正式双路线器件 DC R01 静态 checker 唯一返回 39/40、E0/FAIL并冻结。R02 schema-only 静态合同唯一 40/40 E3，runner 唯一 30/30 E2；两个模拟器都完成并落盘有限数据，但结果明显分歧。首次 runner 状态登记项目检查因机器 JSON 块误匹配返回 741/745，失败报告 <code>5e02032f...a72d</code> 保留；修正只恢复历史状态并精确登记 R02。30/30 代表执行和证据完整，不代表路线一致、方程身份、物理参数、实验校准或电路模型通过。独立 checker、正式 M01 收口、C00、电路、版图、PEX 和 HZO 继续关闭。</p>
 </section>

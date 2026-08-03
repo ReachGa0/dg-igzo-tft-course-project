@@ -855,7 +855,7 @@
         },
         "next_gate": "establish and commit an explicitly open-source second-simulator recovery contract before any device-level numerical execution"
       },
-      "evidence_boundary": "The revision-3 M01 contract, open-source recovery contract and R11 36/32/25 tool/parser chain remain immutable; R11 does not establish formal device DC. M01_OPEN_SOURCE_DEVICE_DC_R01 remains 39/40 E0/FAIL with zero simulator/netlist/numerical output and is not rerun. The one permitted M01_OPEN_SOURCE_DEVICE_DC_R02 static invocation returned 40/40 PASS at E3 after implementation commit 86c5106. It hash-bound the R01 failure, verified the R11 persisted 25/25 schema, froze all 247 IGZO rows, candidate bytes, commands, two-process budget, netlists, extraction, metrics, thresholds, failure retention and downstream closure, and recorded zero build/simulator processes, zero device netlists and zero numerical outputs. Only the R02 contract report now exists; the two-route runner and independent checker have not run. This is execution-contract evidence only, not device numerical, route-agreement, physical-parameter or experimental evidence. External baselines remain reference-only; unauthorized AIM-Spice, SnO, HZO and circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
+      "evidence_boundary": "The revision-3 M01 contract, open-source recovery contract and R11 36/32/25 tool/parser chain remain immutable; R11 does not establish formal device DC. M01_OPEN_SOURCE_DEVICE_DC_R01 remains 39/40 E0/FAIL and is not rerun. After R02 static 40/40 E3 was committed, the one permitted R02 runner returned 30/30 PASS at E2 with exactly one serial ngspice and one serial GPL Xyce device-only DC process. It persisted two 247-device netlists, 247 finite rows per route, 30 metric rows, 247 route-difference rows and two figures. The diagnostic routes do not agree: ngspice remains near its numerical floor while Xyce follows the frozen candidate; the maximum absolute/log route differences are 4.6825230492225607e-4 A/cm and 16.670479923821013 decade. The contract pre-registered these thresholds as diagnostic-only, so runner PASS means complete bounded execution, not route agreement, equation identity, physical parameters, experimental calibration or circuit readiness. Independent persisted-evidence checking has not run. External baselines remain reference-only; unauthorized AIM-Spice, SnO, HZO and circuit assets are excluded. M01 and C00/downstream remain closed.",
       "open_source_recovery_contract": {
         "status": "contract_ready",
         "revision": 1,
@@ -1676,9 +1676,9 @@
         "next_gate": "Preserve and commit the M01 open-source device DC R01 39/40 static checker failure, then establish and commit revision-2 in a new namespace. Do not execute either route."
       },
       "open_source_device_dc_r02": {
-        "status": "contract_ready",
+        "status": "formal_run_passed",
         "revision": 2,
-        "current_evidence": "E3",
+        "current_evidence": "E2",
         "contract_id": "M01_OPEN_SOURCE_DEVICE_DC_R02",
         "contract_path": "config/m01_open_source_device_dc_r02.json",
         "common_path": "scripts/m01_open_source_device_dc_r02_common.py",
@@ -1695,8 +1695,10 @@
         "contract_status": "PASS",
         "contract_checks_passed": 40,
         "contract_checks_failed": 0,
-        "formal_run_completed": false,
-        "formal_run_status": "NOT_RUN",
+        "formal_run_completed": true,
+        "formal_run_status": "PASS",
+        "runner_checks_passed": 30,
+        "runner_checks_failed": 0,
         "independent_check_completed": false,
         "independent_check_status": "NOT_RUN",
         "target_row_count": 247,
@@ -1704,9 +1706,9 @@
         "route_count": 2,
         "generated_device_netlist_budget": 2,
         "runner_process_budget": 2,
-        "runner_processes_invoked": 0,
-        "ngspice_invoked": false,
-        "xyce_invoked": false,
+        "runner_processes_invoked": 2,
+        "ngspice_invoked": true,
+        "xyce_invoked": true,
         "aimspice_invoked": false,
         "tcad_invoked": false,
         "circuit_or_downstream_permitted": false,
@@ -1722,6 +1724,14 @@
           "simulator_processes_invoked": 0,
           "preserved": true
         },
+        "runner_state_project_check_failure": {
+          "path": "results/reports/project_check_m01_device_dc_r02_runner_pass_state_failed.json",
+          "sha256": "5e02032f3e4ab4d9d52d87b94482594e952973f4ad07927aecda37e02b85a72d",
+          "failure_category": "runner_pass_machine_registration_and_historical_scope_state_mismatch",
+          "failed_checks": 4,
+          "simulator_processes_invoked_by_project_check": 0,
+          "preserved": true
+        },
         "result_paths": [
           "config/m01_open_source_device_dc_r02.json",
           "scripts/m01_open_source_device_dc_r02_common.py",
@@ -1729,13 +1739,48 @@
           "scripts/run_m01_open_source_device_dc_r02.py",
           "scripts/check_m01_open_source_device_dc_r02.py",
           "results/reports/project_check_m01_device_dc_r02_implementation_state_failed.json",
-          "results/reports/m01_open_source_device_dc_contract_r02.json"
+          "results/reports/project_check_m01_device_dc_r02_runner_pass_state_failed.json",
+          "results/reports/m01_open_source_device_dc_contract_r02.json",
+          "results/compact/m01_open_source_cross_check_r02/ngspice_device_dc.cir",
+          "results/compact/m01_open_source_cross_check_r02/xyce_device_dc.cir",
+          "results/compact/m01_open_source_cross_check_r02/ngspice.log",
+          "results/compact/m01_open_source_cross_check_r02/xyce.log",
+          "results/compact/m01_open_source_cross_check_r02/ngspice_command.json",
+          "results/compact/m01_open_source_cross_check_r02/xyce_command.json",
+          "results/compact/m01_open_source_cross_check_r02/ngspice_values.raw",
+          "results/compact/m01_open_source_cross_check_r02/xyce_values.prn",
+          "results/tables/m01_ngspice_open_source_r02_raw.csv",
+          "results/tables/m01_xyce_open_source_r02_raw.csv",
+          "results/tables/m01_open_source_route_metrics_r02.csv",
+          "results/tables/m01_open_source_route_difference_r02.csv",
+          "report/assets/m01_open_source_cross_check_r02.png",
+          "report/assets/m01_open_source_route_difference_r02.png",
+          "results/reports/m01_open_source_cross_check_r02.json"
         ],
         "future_outputs_absent": false,
         "contract_report_sha256": "0154abfbe5175b91d7622416804561c5bb50bdeeef0792e426d0299a37564d2c",
         "contract_processes_invoked": 0,
-        "evidence_boundary": "The one permitted R02 static checker returned 40/40 PASS at E3 and created only its own report. It invoked zero build/simulator processes and created zero device netlists or numerical outputs. This PASS freezes a reviewable schema-corrected execution contract only; it is not device DC, route agreement, physical-parameter, experimental-calibration, circuit or downstream evidence. R01 remains immutable 39/40 E0/FAIL.",
-        "next_gate": "Execute the committed M01 open-source device DC revision-2 two-route runner exactly once. Do not run the independent checker or C00 before a runner PASS state is committed."
+        "runner_report_sha256": "3dd916bea81caf582757696674c3f1fe41576122a66fef4c24ff3dd204f53cac",
+        "runner_elapsed_seconds": 6.896318674087524,
+        "persisted_counts": {
+          "device_netlists": 2,
+          "ngspice_rows": 247,
+          "xyce_rows": 247,
+          "route_metric_rows": 30,
+          "route_difference_rows": 247,
+          "figures": 2
+        },
+        "route_diagnostics": {
+          "agreement_claimed": false,
+          "thresholds_are_pass_gates": false,
+          "ngspice_current_max_a_per_cm": 2.0417057839146633e-31,
+          "xyce_current_max_a_per_cm": 4.6825230492225607e-4,
+          "maximum_absolute_difference_a_per_cm": 4.6825230492225607e-4,
+          "maximum_log_difference_dec": 16.670479923821013,
+          "interpretation": "ngspice remained near its numerical floor while Xyce followed the frozen candidate; preserve for independent verification and later root-cause work"
+        },
+        "evidence_boundary": "The one permitted R02 runner returned 30/30 PASS at E2 after exactly two serial device-only DC processes. All registered numerical outputs are complete and finite, but the routes do not agree: ngspice remains near its numerical floor while Xyce follows the frozen candidate, with maximum absolute/log differences of 4.6825230492225607e-4 A/cm and 16.670479923821013 decade. The contract pre-registered route-to-target and route-difference thresholds as diagnostic-only, so this PASS establishes bounded execution and explicit diagnostics, not route agreement, equation identity, physical parameters, experimental calibration, circuit readiness or downstream evidence. R01 remains immutable 39/40 E0/FAIL; the independent checker has not run.",
+        "next_gate": "Commit and push the E2 runner PASS, then run the 24-check independent persisted-evidence checker exactly once. Do not run C00 or downstream before that checker passes and its result is committed."
       }
     },
     {

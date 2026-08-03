@@ -4,7 +4,7 @@
 
 **基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK**
 
-S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R02 只在冻结 IGZO 教学数值域内关闭，M01 R11 36/32/25 只关闭 hash-bound 工具/parser 预检。正式 R01 静态合同固定为 39/40、E0/FAIL，零模拟器/网表/数值输出。`M01_OPEN_SOURCE_DEVICE_DC_R02` schema-only 静态合同唯一返回 40/40 PASS、E3，零构建/模拟器进程、零器件网表和零数值输出；247 行、候选、命令、两进程预算、提取和阈值不变，两路线 runner 尚未运行。正式器件 DC、电路和版图仍未完成。G0 仍为 `TEACHING_BASELINE_ONLY`，所有 `TODO/E0` 内容都不得写成已完成结果。
+S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R02 只在冻结 IGZO 教学数值域内关闭，M01 R11 36/32/25 只关闭 hash-bound 工具/parser 预检。正式 R01 静态合同固定为 39/40、E0/FAIL，零模拟器/网表/数值输出。`M01_OPEN_SOURCE_DEVICE_DC_R02` 静态合同唯一返回 40/40 PASS、E3；随后两路线 runner 唯一返回 30/30 PASS、E2，生成完整器件级输出，但 ngspice 与 Xyce 数值明显不一致，不能写成路线一致或物理校准。独立 checker、正式 M01 收口、电路和版图仍未完成。G0 仍为 `TEACHING_BASELINE_ONLY`，所有 `TODO/E0` 内容都不得写成已完成结果。
 
 ## 2. 为什么这个题目仍然成立
 
@@ -117,6 +117,7 @@ VTH = 0.21 V
 | M01 Xyce build/tool R08/R09/R10/R11 合同链 | R08/R09 E0/FAIL；R10 static E3、runner E0/FAIL；R11 static/independent E3、runner E2 | R08 30/36 注册缺陷与 R09 34/36 两项断言失败均已保留；R10 静态合同唯一运行 36/36 PASS，runner 的版本/许可证/B-source 三命令通过并观测 1.25 V，但中文绝对路径的 ASCII 写入失败发生在 parser-only 命令前。R11 静态合同 36/36 PASS 后，runner 32/32 PASS，4 个允许的 Xyce 工具/parser 进程均通过并完成相对 ASCII include 的 parser-only syntax；独立检查 25/25 PASS、E3 且零进程。无正式器件 DC、M01 数值或下游证据 |
 | M01 正式开源两路线器件 DC R01 合同 | E0，39/40 FAIL | 实施提交 `b8c3a03` 后唯一静态检查；39 项通过，唯一失败为对 R11 独立报告不存在的顶层 `processes_invoked` 字段断言。报告 `7baba2f...b16ba` 记录 0 个 build/simulator process、0 个器件网表和 0 个数值输出；R01 冻结，两路线未运行，R02 只修正 schema 断言 |
 | M01 正式开源两路线器件 DC R02 静态合同 | E3，40/40 PASS | 实施提交 `86c5106` 后唯一静态检查；按 R11 实际 25/25 summary + independence PASS 修正 schema，40/30/24 注册、247 行、同一 IGZO 候选、命令/两进程/网表/提取/阈值不变。报告 `0154abfb...64d2c` 记录零 build/simulator process、零网表和零数值输出；只开放提交后的 runner，不是正式器件 DC |
+| M01 正式开源两路线器件 DC R02 runner | E2，30/30 PASS | 静态 PASS 提交 `da7dde8` 后唯一运行；ngspice/Xyce 各一个串行进程，2 个 247 器件网表、247+247 原始行、30 行指标、247 行路线差异和 2 张图落盘。两路线差异为 diagnostic-only；最大绝对/对数差 `4.68252e-4 A/cm`、`16.6705 decade`，独立检查待运行 |
 | 有源负载逻辑电路 | E0 | 架构已定，待实现 |
 | IGZO 单管 GDS 外部基线 | E2 | 可复用，需迁入新教学 PDK |
 | 标准单元 DRC/LVS | E0 | 待实现 |
@@ -139,7 +140,7 @@ VTH = 0.21 V
 1. 冻结主 IGZO 数据集、单位和来源。
 2. T03-P1/P2/P3/P4/P5 数值五组已完成，bulk 与 contact 历史失败继续保留；不同时改变多个参数组。
 3. M00 R01 已唯一运行并保持 E0/FAIL；R02 已完成 24/24 runner E2 和 20/20 独立检查 E3，原 split/阈值不改，M00 仅在冻结教学数值域内关闭。
-4. M01 revision-3 与开源恢复静态合同已通过，AIM-Spice 永久排除；R11 以 36/32/25 关闭工具/parser 预检。正式 R01 固定为 39/40 E0/FAIL；R02 schema-only 静态合同已唯一 40/40 PASS、E3。先提交该静态 PASS，再唯一运行 ngspice/Xyce 两路线 runner；runner PASS 提交前不运行独立 checker。R01/R11 及更早 revision 均不得重跑，C00 和下游继续关闭。
+4. M01 revision-3 与开源恢复静态合同已通过，AIM-Spice 永久排除；R11 以 36/32/25 关闭工具/parser 预检。正式 R01 固定为 39/40 E0/FAIL；R02 静态合同 40/40 E3、runner 30/30 E2 已完成，但路线差异仅作诊断。先提交 runner PASS，再唯一运行独立落盘 checker；独立 PASS 提交前不打开 C00 和下游。R01/R11 及更早 revision 均不得重跑。
 5. 只做一个完整 C00 反相器。
 6. 对同一个 INV 建立 GDS、DRC 和几何 LVS 最小闭环。
 7. 扩展基础门、环振和全加器。
