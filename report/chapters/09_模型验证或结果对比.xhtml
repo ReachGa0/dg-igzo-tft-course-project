@@ -60,4 +60,17 @@
   <p>10 个拟合系数全部严格在预注册界内，但 <code>lambda_per_v</code> 的归一化下界距离约为 <code>8.17e-35</code>、<code>log_gmin</code> 约为 <code>4.07e-4</code>；合同没有设置更宽的边界裕量门，因此这两项只作为近边界教学代理诊断记录。该结果不把系数解释为 VTH、迁移率、DOS、接触或温度参数。</p>
   <p>R02 两级结果允许建立 M01 simulator cross-check 合同，但不允许在 M01 合同冻结前执行 ngspice/AIM-Spice。M00 仍只在合格项目数值曲线、固定局部有效域和明确非校准边界内关闭；电路、版图、PEX 和 HZO 继续关闭。</p>
   <p class="boundary">R02 通过不能改写 R01 的 21/24、E0/FAIL，也不能把固定 <code>Lref/L</code> 写成 IGZO 物理反长度定律、实验标定、外部独立验证、原生 HSPICE Level 61 执行或电路可用模型。候选文件是未执行翻译，M01 尚未运行。</p>
+  <h3>9.3 M01 双仿真器对照合同</h3>
+  <p>M01 revision-3 合同只冻结执行边界，不产生模拟器结果。它以 R02 持久化选择清单和预测表为唯一目标输入：247 个选定行中 233 个 scored 行（163 train、70 holdout）进入线性/对数指标，7 个零漏压不变量和 7 个低漏压审计行单独保留；共 13 条曲线。每条路线都必须使用 W=60 um、L=8/10/12 um、300 K、源极 0 V 以及原始 VBG/VTG/VDS，按同一 <code>|ID|/W</code> 口径输出。</p>
+  <table>
+    <thead><tr><th>合同项</th><th>ngspice 路线</th><th>AIM-Spice 路线</th><th>共同边界</th></tr></thead>
+    <tbody>
+      <tr><td>候选</td><td><code>IGZO_DG_BEHAVIORAL_R02</code> 行为等效子电路</td><td><code>IGZO_DG_LEVEL15_R02</code> 与 <code>NMOS LEVEL=15</code></td><td>候选哈希、端口 D/TG/BG/S 和映射冻结；不把两路写成同一方程</td></tr>
+      <tr><td>工具与预检</td><td>固定 ELF 路径和 SHA-256，批处理器件级 DC</td><td>固定 Windows Level-15 可执行文件和 SHA-256；必须有可复现 batch/CLI 入口</td><td>合同检查不调用模拟器；语法、工具指纹和日志先落盘</td></tr>
+      <tr><td>指标</td><td colspan="2">逐行电流、每曲线 linear NRMSE/log RMSE、train/holdout 分开、路线差异绝对/对数表</td><td>路线差异是必须报告的诊断，不通过调参或隐藏差异强行一致</td></tr>
+      <tr><td>排除</td><td colspan="2">SnO、HZO、旧外部电流、旧电路、瞬态和电路网表</td><td>只允许 IGZO 单管器件级 DC；C00 和下游继续关闭</td></tr>
+    </tbody>
+  </table>
+  <p>合同检查共 32/32 PASS、E3，报告为 <code>results/reports/m01_simulator_cross_check_contract_v3.json</code>；revision-1 和 revision-2 的合同检查失败报告分别保留，失败原因是检查器/合同口径修正而非模拟器运行失败。当前没有 ngspice/AIM-Spice 原始输出、叠图、路线差异表或独立数值检查，不能把 M01 写成已完成，也不能打开 C00。</p>
+  <p class="boundary">即使未来两路均运行并通过持久化检查，也只能说明两个不同方程路线在冻结 IGZO 教学目标上的可复现数值对照。不得声称行为模型为原生 HSPICE Level 61、两路方程身份相同、实验拟合、物理参数提取、真实电路可用性或 foundry sign-off。</p>
 </section>

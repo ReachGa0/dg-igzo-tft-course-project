@@ -1,0 +1,197 @@
+{
+  "status": "FAIL",
+  "contract_status": "FAIL",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "fit_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "spice_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "circuit_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "evidence_level": "E0",
+  "contract_id": "M01_SIMULATOR_CROSS_CHECK_R01",
+  "checks": [
+    {
+      "name": "identity:m01_contract",
+      "status": "PASS",
+      "detail": "stage=M01 revision=2"
+    },
+    {
+      "name": "scope:2d_laptop_igzo_only",
+      "status": "PASS",
+      "detail": "{\"contact_model\": \"ideal source/drain contacts\", \"dielectric_k\": 6.8, \"effective_tox_nm\": 10.0, \"equations\": \"Only the two generated R02 candidate routes are compared; no TCAD, trap, contact, temperature, HZO, or circuit equation is added.\", \"length_um_allowed\": [8.0, 10.0, 12.0], \"material\": \"IGZO\", \"physical_al2o3_thickness_nm\": 30.0, \"polarity\": \"n-type\", \"port_mapping\": {\"bottom_gate\": \"VBG relative to source\", \"drain\": \"VDS relative to source\", \"reported_current\": \"absolute drain current divided by W, in A/cm; preserve one sign convention for both routes\", \"single_bottom_gate\": \"Use the frozen row VBG as the active gate and set VTG=0 V exactly.\", \"source\": \"0 V reference\", \"symmetric_dual_gate\": \"Apply both frozen VBG and VTG values without rebalancing or fitting eta_dg.\", \"top_gate\": \"VTG relative to source\"}, \"source_potential_v\": 0.0, \"temperature_k\": 300.0, \"width_um\": 60.0}"
+    },
+    {
+      "name": "dependencies:m00_r02_two_level_pass_and_r01_preserved",
+      "status": "PASS",
+      "detail": "M00=verified runner=PASS checker=PASS"
+    },
+    {
+      "name": "machine_state:m01_is_still_unexecuted_before_contract_commit",
+      "status": "PASS",
+      "detail": "{\"acceptance\": [\"same target conditions used\", \"model boundary stated\", \"both route outputs and route differences persisted\", \"syntax and tool preflight persisted\"], \"changed_variables\": [\"simulator_model_route\"], \"contract_evidence\": {\"aimspice_run_by_contract_check\": false, \"circuit_or_downstream_permitted\": false, \"contract_checks_passed\": 32, \"contract_evidence\": \"E3\", \"holdout_scored_point_count\": 70, \"material_scope\": \"IGZO only\", \"ngspice_run_by_contract_check\": false, \"outputs_created_by_contract\": [\"results/reports/m01_simulator_cross_check_contract_v2.json\"], \"result_paths\": [\"config/m01_simulator_cross_check_contract.json\", \"scripts/check_m01_simulator_cross_check_contract.py\", \"results/reports/m01_simulator_cross_check_contract_v2.json\", \"results/reports/m01_simulator_cross_check_contract.json\"], \"revision\": 1, \"route_count\": 2, \"simulation_run_by_contract_check\": false, \"status\": \"simulator_cross_check_contract_ready\", \"target_curve_count\": 13, \"target_row_count\": 247, \"training_scored_point_count\": 163}, \"controls\": [\"dataset\", \"geometry\", \"bias\", \"metrics\"], \"current_evidence\": \"E3\", \"depends_on\": [\"M00\"], \"evidence_boundary\": \"The 32-check E3 revision-2 contract freezes all 247 selected R02 target rows, of which 233 are scored (163 train and 70 holdout) and 14 are retained zero-VDS/repeated-low-VDS audits, plus 13 curves, W/L/bias/temperature mapping, the R02 ngspice behavioral candidate, the R02 AIM-Spice Level-15 candidate and mapping, tool fingerprints, syntax/preflight rules, route-to-target metrics, route-difference reporting, exclusive outputs, failure retention and the no-circuit boundary. The contract invokes neither simulator. External ngspice/AIM-Spice folders are reference-only, SnO/HZO/old circuit assets are excluded, and generated candidates are not equation-identical or physical parameters. Revision-1 contract failure is preserved as a separate report. A future M01 run may report two executed simulator routes against the frozen IGZO teaching targets; it may not claim experimental calibration, equation identity, native Level 61 behavior for ngspice, circuit readiness or foundry validation. C00 and all downstream stages remain closed until M01 execution and independent persisted-evidence checks pass.\", \"id\": \"M01\", \"name\": \"aimspice_ngspice_cross_check\", \"purpose\": \"Compare two simulator routes under identical targets without claiming equation identity.\", \"required_outputs\": [\"curve_overlay\", \"metric_difference_table\", \"syntax_mapping\"], \"status\": \"contract_ready\", \"track\": \"compact_model\"}"
+    },
+    {
+      "name": "targets:source_files_present",
+      "status": "PASS",
+      "detail": "manifest=True predictions=True"
+    },
+    {
+      "name": "targets:frozen_sha256",
+      "status": "PASS",
+      "detail": "manifest=557315a3fe2cc414d0f4cc1932e4b4841532250e5fb76537c1d3ab9cb68bf924 predictions=e3dcbf2aa159f99f0c1913c7e6b4b3265fd5687417ac98780f50f69ad545fcd2"
+    },
+    {
+      "name": "targets:field_contract",
+      "status": "PASS",
+      "detail": "manifest_fields=19 prediction_fields=23"
+    },
+    {
+      "name": "targets:row_curve_and_split_counts",
+      "status": "PASS",
+      "detail": "rows=247/247 curves=13 split={'train': 173, 'holdout': 74}"
+    },
+    {
+      "name": "targets:all_rows_are_frozen_scored_inputs",
+      "status": "PASS",
+      "detail": "scored=233 audits=14"
+    },
+    {
+      "name": "targets:manifest_prediction_alignment",
+      "status": "PASS",
+      "detail": "uids=247 aligned=True"
+    },
+    {
+      "name": "targets:finite_numeric_rows",
+      "status": "PASS",
+      "detail": "numeric_rows=247"
+    },
+    {
+      "name": "device:geometry_bias_and_temperature_frozen",
+      "status": "PASS",
+      "detail": "W=60 um L=8/10/12 um T=300 K source=0 V"
+    },
+    {
+      "name": "routes:candidate_hashes",
+      "status": "PASS",
+      "detail": "ng=True aim=True mapping=True"
+    },
+    {
+      "name": "routes:mapping_is_unexecuted_r02_candidate",
+      "status": "PASS",
+      "detail": "CANDIDATE_ONLY_M01_EXECUTION_REQUIRED"
+    },
+    {
+      "name": "routes:ngspice_candidate_syntax_boundary",
+      "status": "PASS",
+      "detail": "behavioral subcircuit, pins, fixed length factor and non-Level-61 boundary found"
+    },
+    {
+      "name": "routes:aimspice_candidate_syntax_boundary",
+      "status": "PASS",
+      "detail": "Level-15 model, dual-gate wrapper and physical/effective TOX boundary found"
+    },
+    {
+      "name": "scope:candidates_contain_no_excluded_material_or_circuit_route",
+      "status": "PASS",
+      "detail": "candidate text is IGZO device-only and has no excluded route token"
+    },
+    {
+      "name": "routes:distinct_model_equations_and_port_mapping",
+      "status": "PASS",
+      "detail": "routes are distinct and use the frozen D/TG/BG/S mapping"
+    },
+    {
+      "name": "tools:fingerprints_recorded_without_execution",
+      "status": "PASS",
+      "detail": "ngspice=True aimspice=True"
+    },
+    {
+      "name": "implementation:checker_is_stdlib_and_no_simulator_invocation",
+      "status": "PASS",
+      "detail": "imports=['__future__', 'ast', 'collections', 'csv', 'hashlib', 'json', 'math', 'pathlib', 're', 'typing']"
+    },
+    {
+      "name": "metrics:formulas_split_and_route_difference_frozen",
+      "status": "PASS",
+      "detail": "linear/log formulas, split weighting and non-tunable route difference are explicit"
+    },
+    {
+      "name": "outputs:unique_exclusive_paths_absent_before_contract_report",
+      "status": "FAIL",
+      "detail": "paths=15 absent=False"
+    },
+    {
+      "name": "failure_retention:failed_routes_and_r02_outputs_preserved",
+      "status": "PASS",
+      "detail": "{\"exclusive_outputs\": true, \"failure_status_must_remain_visible\": true, \"overwrite_existing_outputs\": false, \"r02_and_r01_outputs_must_not_change\": true, \"retain_failed_route_logs\": true, \"retain_partial_tables\": true, \"retain_tool_preflight_and_syntax_logs\": true}"
+    },
+    {
+      "name": "failure_retention:revision1_contract_failure_preserved",
+      "status": "PASS",
+      "detail": "historical=FAIL path=m01_simulator_cross_check_contract.json"
+    },
+    {
+      "name": "scope:external_baselines_reference_only_and_sno_excluded",
+      "status": "PASS",
+      "detail": "external folders are reference-only and SnO is explicitly excluded"
+    },
+    {
+      "name": "budget:two_device_only_routes_laptop_bound",
+      "status": "PASS",
+      "detail": "{\"circuit_or_transient_runs\": false, \"hzo_runs\": false, \"laptop_target\": true, \"max_generated_device_netlists\": 2, \"max_route_processes\": 2, \"routes\": 2, \"target_rows_per_route\": 247}"
+    },
+    {
+      "name": "machine_state:project_next_scope_is_m01_contract",
+      "status": "PASS",
+      "detail": "establish the M01 simulator cross-check contract for the passed R02 teaching surrogate; freeze identical geometry, bias, target rows, route mapping, syntax checks, metric differences, failure retention and the no-circuit boundary before any ngspice or AIM-Spice execution"
+    },
+    {
+      "name": "machine_state:downstream_remains_closed",
+      "status": "PASS",
+      "detail": "C00=planned,C01=planned,C02=planned,C03=planned,L00=planned,V00=planned,V01=planned,PEX0=optional,FE0=optional"
+    },
+    {
+      "name": "history:r01_failure_and_r02_artifacts_are_not_reinterpreted",
+      "status": "PASS",
+      "detail": "R01 remains FAIL while R02 remains the only M00 source for M01"
+    },
+    {
+      "name": "implementation:make_contract_target_registered",
+      "status": "PASS",
+      "detail": "M01 static contract target is registered"
+    },
+    {
+      "name": "outputs:contract_report_is_separate_from_future_run_outputs",
+      "status": "PASS",
+      "detail": "results/reports/m01_simulator_cross_check_contract_v2.json"
+    },
+    {
+      "name": "scope:candidates_have_no_external_paths_or_sno_text",
+      "status": "PASS",
+      "detail": "candidate files contain no external or excluded-material path"
+    }
+  ],
+  "summary": {
+    "check_count": 32,
+    "passed": 31,
+    "failed": 1,
+    "target_rows": 247,
+    "target_curves": 13,
+    "routes": 2,
+    "outputs_created_by_contract": false
+  },
+  "config": {
+    "path": "config/m01_simulator_cross_check_contract.json",
+    "sha256": "85ef5ffb294251c18f9e16db885efe4a07975cddb213f64fb9fb25adb5511ed2"
+  },
+  "checker": {
+    "path": "scripts/check_m01_simulator_cross_check_contract.py",
+    "sha256": "0cf4de3d0d78d8fbdf19c80cee7985456090dbb072dcb11a8924e483c93e2870"
+  },
+  "next_gate": "After this revision-2 static contract is committed and pushed, perform only the declared tool preflight and then the two-route device-only M01 run. Any route/tool failure is retained and stops M01; C00 and all downstream stages remain closed.",
+  "failures": [
+    {
+      "name": "outputs:unique_exclusive_paths_absent_before_contract_report",
+      "status": "FAIL",
+      "detail": "paths=15 absent=False"
+    }
+  ]
+}

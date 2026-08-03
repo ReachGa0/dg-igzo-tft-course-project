@@ -174,6 +174,11 @@ REQUIRED_FILES = [
     "report/assets/m00_compact_model_residuals_r02.png",
     "results/reports/m00_compact_model_fit_r02.json",
     "results/reports/m00_compact_model_fit_check_r02.json",
+    "config/m01_simulator_cross_check_contract.json",
+    "scripts/check_m01_simulator_cross_check_contract.py",
+    "results/reports/m01_simulator_cross_check_contract.json",
+    "results/reports/m01_simulator_cross_check_contract_v2.json",
+    "results/reports/m01_simulator_cross_check_contract_v3.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -5217,6 +5222,56 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "m00_contract:static_input_validation", False, str(error))
+
+    m01_contract_path = ROOT / "config" / "m01_simulator_cross_check_contract.json"
+    m01_contract_report_path = ROOT / "results" / "reports" / "m01_simulator_cross_check_contract_v3.json"
+    m01_checker_path = ROOT / "scripts" / "check_m01_simulator_cross_check_contract.py"
+    try:
+        m01_contract = json.loads(m01_contract_path.read_text(encoding="utf-8"))
+        m01_report = json.loads(m01_contract_report_path.read_text(encoding="utf-8"))
+        m01_experiment = experiment_map["M01"]
+        m01_checks = m01_report.get("checks", [])
+        m01_future_paths = [
+            ROOT / value
+            for key, value in m01_contract.get("outputs", {}).items()
+            if key not in {"contract_report", "historical_failed_contract_reports"}
+        ]
+        add_check(
+            checks,
+            "m01_contract:static_boundary_and_no_execution",
+            m01_report.get("status") == "PASS"
+            and m01_report.get("contract_status") == "PASS"
+            and m01_report.get("evidence_level") == "E3"
+            and m01_report.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m01_report.get("spice_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m01_report.get("circuit_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(m01_checks) == 32
+            and all(item.get("status") == "PASS" for item in m01_checks)
+            and m01_experiment.get("status") == "contract_ready"
+            and m01_experiment.get("current_evidence") == "E3"
+            and m01_experiment.get("contract_evidence", {}).get("status")
+            == "simulator_cross_check_contract_ready"
+            and m01_experiment.get("contract_evidence", {}).get("revision") == 3
+            and m01_experiment.get("contract_evidence", {}).get("contract_checks_passed") == 32
+            and m01_experiment.get("contract_evidence", {}).get("target_row_count") == 247
+            and m01_experiment.get("contract_evidence", {}).get("target_curve_count") == 13
+            and m01_experiment.get("contract_evidence", {}).get("simulation_run_by_contract_check") is False
+            and m01_experiment.get("contract_evidence", {}).get("ngspice_run_by_contract_check") is False
+            and m01_experiment.get("contract_evidence", {}).get("aimspice_run_by_contract_check") is False
+            and m01_experiment.get("contract_evidence", {}).get("circuit_or_downstream_permitted") is False
+            and config.get("tcad_track", {}).get("m01_contract_boundary", "").startswith(
+                "The E3 M01 revision-3 contract freezes"
+            )
+            and m01_report.get("config", {}).get("sha256") == sha256(m01_contract_path)
+            and m01_report.get("checker", {}).get("sha256") == sha256(m01_checker_path)
+            and all(not path.exists() for path in m01_future_paths)
+            and m01_contract_path.exists()
+            and m01_contract_report_path.exists(),
+            f"checks={sum(item.get('status') == 'PASS' for item in m01_checks)}/{len(m01_checks)} future_absent="
+            f"{sum(not path.exists() for path in m01_future_paths)}/{len(m01_future_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "m01_contract:static_boundary_and_no_execution", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

@@ -16,6 +16,30 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 建立 M01 双仿真器对照合同
+
+### 用户目标
+
+在 M00 R02 两级验证提交 `c95647a` 后按阶段 DAG 继续。先冻结正式 M01 simulator cross-check 合同，再考虑工具预检和两路器件级 DC；合同前不调用 ngspice/AIM-Spice，不启动电路、版图、PEX 或 HZO。
+
+### 合同与输入
+
+- 新增 `config/m01_simulator_cross_check_contract.json`、`scripts/check_m01_simulator_cross_check_contract.py` 和 Make 入口 `m01-simulator-cross-check-contract-check`。revision-3 冻结 R02 的 247 个选定行、13 条曲线，其中 233 个 scored 行为 163 train/70 holdout，另有 7 个零漏压不变量和 7 个低漏压审计；manifest/predictions 哈希、W/L、300 K、源极 0 V、VBG/VTG/VDS 和 `|ID|/W` 口径均固定。
+- 两条路线分别是 `spice/models/igzo_dg_behavioral_r02.inc` 的 ngspice 行为等效子电路和 `models/level61/igzo_level15_r02.inc` 的 AIM-Spice `NMOS LEVEL=15` 包装，候选/映射/工具可执行文件 SHA-256 已冻结。外部 baseline 目录只作 reference-only，SnO、HZO、旧电路、瞬态和教师外部电流均排除；两路不声称方程相同。
+- 合同冻结逐行有限性/非负性/单调性、train/holdout 分开的 linear/log 误差、路线差异表、语法/工具预检、独立输出和失败保留。路线差异是必须披露的诊断，不以调参强行一致；合同检查本身不得执行模拟器。
+
+### 失败保留与修正
+
+- revision-1 合同检查为 28/32 FAIL：误把 247 个持久化行称为全部 scored，且 AIM-Spice token 检查大小写敏感；没有调用模拟器。报告 `results/reports/m01_simulator_cross_check_contract.json` 保留。
+- revision-2 合同检查为 31/32 FAIL：未来输出缺失断言把应保留的 revision-1 失败报告算作待生成输出；没有调用模拟器。报告 `results/reports/m01_simulator_cross_check_contract_v2.json` 保留。
+- revision-3 只修正 scored/audit 角色、历史归档过滤和断言大小写；R02 目标、候选、物理输入和门槛未改变。合同检查 `32/32 PASS`、E3，唯一新报告为 `results/reports/m01_simulator_cross_check_contract_v3.json`。
+
+### 验证与下一步
+
+- 同步 `config/project.json`、`config/experiments.json`、STATUS/README/AI_CONTEXT/ARCHITECTURE/PROJECT_PLAN/DECISIONS、模型/SPICE README、报告第 5/6/8/9 章和证据矩阵；M01 机器状态为 `contract_ready/E3`，但两路仍未运行，C00 和下游关闭。
+- 最终 `make check`：597/597 PASS；`make report-check`：12 章、5 附录、15 个允许占位、26 张图 PASS；`git diff --check`、2 个检查器 Python 编译、全部合同/配置/报告 JSON、证据矩阵 CSV、12 个报告 XHTML 解析均 PASS。没有调用任何模拟器。
+- 下一步提交并推送 revision-3 合同和两份失败归档；随后仅执行声明的工具/语法预检，再按冻结 247 行做两路器件级 DC。任何路线/工具失败均保留并停止，不能启动 C00。
+
 ## 2026-08-03 | Codex GPT-5 | 完成 M00 R02 正式拟合与独立验证
 
 ### 用户目标

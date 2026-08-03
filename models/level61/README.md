@@ -1,13 +1,13 @@
 # AIM-Spice Level 15 模型合同
 
-本目录将保存 IGZO Level 15 模型卡、参数来源、有效范围和多曲线误差报告。M00 R01 因 holdout gm 门失败，按合同没有生成 Level 15 候选；R02 当前只有 27/27 静态结构合同，执行链和正式拟合未运行，因此也没有 R02 候选或 AIM-Spice 执行。当前不得放入未经验证即标为最终的模型卡。
+本目录保存 IGZO-only Level 15 候选、参数映射和有效范围。M00 R01 因 holdout gm 门失败，失败候选缺失继续保留；R02 已完成正式 runner 24/24 和独立检查 20/20，但本目录中的 `igzo_level15_r02.inc` 仍只是 M01 候选，尚未由 AIM-Spice 执行或验证。M01 revision-3 合同冻结了候选哈希、同一 247 行目标、工具指纹和输出边界；不得把候选写成最终模型卡、实验校准或原生 Level 61 物理参数。
 
 计划文件：
 
 ```text
-igzo_level15_r01.inc
-igzo_level15_r01_parameters.json
-igzo_level15_r01_fit_report.json
+igzo_level15_r02.inc
+igzo_level15_r02_parameters.json
+results/reports/m01_simulator_cross_check_contract_v3.json
 ```
 
-上述 R01 计划文件因数值门失败均不存在；R02 对应文件也尚未生成。未来新 revision 即使生成，在 M01 实际运行 AIM-Spice Level 15 前也只能标记为候选。AIM-Spice Level 15 与 ngspice 行为路线不声称方程同一；30 nm 物理 Al2O3 与 10 nm 有效 TOX 仍必须分开记录。
+R02 候选生成不等于 AIM-Spice 运行。M01 必须使用同一 W/L、VBG/VTG/VDS、300 K、源极 0 V 和 `|ID|/W` 口径，独立报告路线差异；AIM-Spice Level 15 与 ngspice 行为路线不声称方程同一，30 nm 物理 Al2O3 与 10 nm 有效 TOX 仍必须分开记录。SnO、HZO、旧电路和外部教师数据不属于本路线。

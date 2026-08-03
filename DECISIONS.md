@@ -1,5 +1,27 @@
 # 设计决策记录
 
+## ADR-041：冻结 M01 两路 IGZO simulator cross-check 合同
+
+- 日期：2026-08-03
+- 状态：revision-3 静态合同 32/32 PASS、E3；没有调用 ngspice/AIM-Spice，下一步仅允许工具预检和器件级 DC 对照
+
+### 冻结输入与路线
+
+- M01 使用 R02 已落盘的 247 个选定行和 13 条曲线。233 个 `selection_role=scored` 行（163 train、70 holdout）进入线性/对数指标；7 个 `zero_vds_invariant` 和 7 个 `repeated_low_vds_audit` 行单独报告，不混入 scored 聚合。manifest 与 predictions CSV 的 SHA-256 固定，禁止重采样、插值、删点、补外部数据或用 holdout 调参。
+- 两条路线都固定 IGZO n 型、W=60 um、L=8/10/12 um、300 K、源极 0 V、原始 VBG/VTG/VDS 和 `|ID|/W` A/cm 口径。ngspice 使用 `IGZO_DG_BEHAVIORAL_R02` 行为等效子电路；AIM-Spice 使用 `IGZO_DG_LEVEL15_R02` 与原生 `NMOS LEVEL=15` 包装。候选、映射和工具可执行文件均冻结哈希。
+- 外部 ngspice/AIM-Spice 目录仅作 reference-only；SnO/P 型、HZO、教师表、旧电路和瞬态资产全部排除。行为路线不得称原生 Level 61，两条路线不声称方程相同。
+
+### 指标、失败和阶段门
+
+- 每条路线逐行输出电流、有限性/非负性、曲线单调性、linear NRMSE、log RMSE、train/holdout 分开聚合，并生成逐行/逐曲线路线差异表。路线差异是必须披露的诊断，不允许为了“对齐”而调参或隐藏；M01 门是完整、可复现、可审计的双路线执行证据，不是强制方程一致门。
+- 合同检查不执行模拟器，只排他生成 `results/reports/m01_simulator_cross_check_contract_v3.json`。revision-1 因把 247 行误标为全部 scored 而 28/32 FAIL；revision-2 因把历史失败报告算作未来输出而 31/32 FAIL；两份报告都原样保留，修正没有改变 R02 输入或物理口径。
+- 正式运行输出使用独立目录和文件，任一路线工具/语法/收敛失败均保留日志、部分表、预检和失败报告并停止 M01。不得执行电路、瞬态、版图、PEX、HZO 或 C00；只有两路正式执行和独立持久化检查均通过后才允许进入 C00。
+
+### 证据边界
+
+- 即使未来 M01 通过，也只能说明两个不同方程路线在冻结 IGZO 教学目标上的数值对照。不得声称实验拟合、物理参数提取、两路方程身份、ngspice 原生 Level 61、真实器件校准、电路可用性或 foundry sign-off。
+
+
 ## ADR-040：以 R02 两级证据在教学数值域内关闭 M00
 
 - 日期：2026-08-03

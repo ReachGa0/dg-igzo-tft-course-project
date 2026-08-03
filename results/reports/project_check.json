@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 591,
+  "checks": 597,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=21672"
+      "detail": "bytes=22083"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=18472"
+      "detail": "bytes=18937"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=15012"
+      "detail": "bytes=15647"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=125936"
+      "detail": "bytes=128945"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4754"
+      "detail": "bytes=4798"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=63959"
+      "detail": "bytes=66436"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=32695"
+      "detail": "bytes=33510"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=7477"
+      "detail": "bytes=7626"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=15715"
+      "detail": "bytes=16925"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=55000"
+      "detail": "bytes=57337"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1070,6 +1070,31 @@
       "detail": "bytes=6202"
     },
     {
+      "name": "file:config/m01_simulator_cross_check_contract.json",
+      "status": "PASS",
+      "detail": "bytes=11300"
+    },
+    {
+      "name": "file:scripts/check_m01_simulator_cross_check_contract.py",
+      "status": "PASS",
+      "detail": "bytes=21291"
+    },
+    {
+      "name": "file:results/reports/m01_simulator_cross_check_contract.json",
+      "status": "PASS",
+      "detail": "bytes=11087"
+    },
+    {
+      "name": "file:results/reports/m01_simulator_cross_check_contract_v2.json",
+      "status": "PASS",
+      "detail": "bytes=10896"
+    },
+    {
+      "name": "file:results/reports/m01_simulator_cross_check_contract_v3.json",
+      "status": "PASS",
+      "detail": "bytes=10791"
+    },
+    {
       "name": "file:scripts/check_t03_p5_temperature.py",
       "status": "PASS",
       "detail": "bytes=35919"
@@ -1462,7 +1487,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=35426"
+      "detail": "bytes=37898"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -2082,7 +2107,7 @@
     {
       "name": "file:models/level61/README.md",
       "status": "PASS",
-      "detail": "bytes=843"
+      "detail": "bytes=1016"
     },
     {
       "name": "file:spice/models/README.md",
@@ -2893,6 +2918,11 @@
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
       "detail": "establish the M01 simulator cross-check contract for the passed R02 teaching surrogate; freeze identical geometry, bias, target rows, route mapping, syntax checks, metric differences, failure retention and the no-circuit boundary before any ngspice or AIM-Spice execution"
+    },
+    {
+      "name": "m01_contract:static_boundary_and_no_execution",
+      "status": "PASS",
+      "detail": "checks=32/32 future_absent=13/13"
     },
     {
       "name": "tcad:mesh_levels",

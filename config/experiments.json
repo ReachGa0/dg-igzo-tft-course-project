@@ -781,14 +781,39 @@
       "id": "M01",
       "track": "compact_model",
       "name": "aimspice_ngspice_cross_check",
-      "status": "planned",
-      "current_evidence": "E0",
+      "status": "contract_ready",
+      "current_evidence": "E3",
       "depends_on": ["M00"],
       "purpose": "Compare two simulator routes under identical targets without claiming equation identity.",
       "changed_variables": ["simulator_model_route"],
       "controls": ["dataset", "geometry", "bias", "metrics"],
       "required_outputs": ["curve_overlay", "metric_difference_table", "syntax_mapping"],
-      "acceptance": ["same target conditions used", "model boundary stated"]
+      "acceptance": ["same target conditions used", "model boundary stated", "both route outputs and route differences persisted", "syntax and tool preflight persisted"],
+      "contract_evidence": {
+        "status": "simulator_cross_check_contract_ready",
+        "revision": 3,
+        "contract_evidence": "E3",
+        "contract_checks_passed": 32,
+        "target_row_count": 247,
+        "target_curve_count": 13,
+        "training_scored_point_count": 163,
+        "holdout_scored_point_count": 70,
+        "route_count": 2,
+        "material_scope": "IGZO only",
+        "simulation_run_by_contract_check": false,
+        "ngspice_run_by_contract_check": false,
+        "aimspice_run_by_contract_check": false,
+        "circuit_or_downstream_permitted": false,
+        "outputs_created_by_contract": ["results/reports/m01_simulator_cross_check_contract_v3.json"],
+        "result_paths": [
+          "config/m01_simulator_cross_check_contract.json",
+          "scripts/check_m01_simulator_cross_check_contract.py",
+          "results/reports/m01_simulator_cross_check_contract_v3.json",
+          "results/reports/m01_simulator_cross_check_contract_v2.json",
+          "results/reports/m01_simulator_cross_check_contract.json"
+        ]
+      },
+      "evidence_boundary": "The 32-check E3 revision-3 contract freezes all 247 selected R02 target rows, of which 233 are scored (163 train and 70 holdout) and 14 are retained zero-VDS/repeated-low-VDS audits, plus 13 curves, W/L/bias/temperature mapping, the R02 ngspice behavioral candidate, the R02 AIM-Spice Level-15 candidate and mapping, tool fingerprints, syntax/preflight rules, route-to-target metrics, route-difference reporting, exclusive outputs, failure retention and the no-circuit boundary. The contract invokes neither simulator. External ngspice/AIM-Spice folders are reference-only, SnO/HZO/old circuit assets are excluded, and generated candidates are not equation-identical or physical parameters. Revision-1 and revision-2 contract failures are preserved as separate reports. A future M01 run may report two executed simulator routes against the frozen IGZO teaching targets; it may not claim experimental calibration, equation identity, native Level 61 behavior for ngspice, circuit readiness or foundry validation. C00 and all downstream stages remain closed until M01 execution and independent persisted-evidence checks pass."
     },
     {
       "id": "C00",

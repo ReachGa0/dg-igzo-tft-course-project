@@ -1,0 +1,226 @@
+{
+  "schema_version": "m01-simulator-cross-check-contract-v1",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "M01",
+  "revision": 3,
+  "status": "contract_ready",
+  "evidence_level": "E3",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "depends_on": {
+    "m00_experiment_status": "verified",
+    "m00_current_evidence": "E3",
+    "m00_r02_fit_report": "results/reports/m00_compact_model_fit_r02.json",
+    "m00_r02_independent_report": "results/reports/m00_compact_model_fit_check_r02.json",
+    "m00_r02_runner_passes": 24,
+    "m00_r02_independent_passes": 20,
+    "r01_failure_preserved": true
+  },
+  "target_contract": {
+    "selection_manifest": "results/compact/m00_teaching_fit_r02/selected_rows_manifest.csv",
+    "prediction_table": "results/tables/m00_compact_model_predictions_r02.csv",
+    "selection_manifest_sha256": "557315a3fe2cc414d0f4cc1932e4b4841532250e5fb76537c1d3ab9cb68bf924",
+    "prediction_table_sha256": "e3dcbf2aa159f99f0c1913c7e6b4b3265fd5687417ac98780f50f69ad545fcd2",
+    "row_selection": "Use every one of the 247 persisted R02 rows for route execution. Score the 233 rows with selection_role=scored (163 train and 70 holdout); report the seven zero_vds_invariant and seven repeated_low_vds_audit rows separately without adding them to scored aggregates.",
+    "row_count": 247,
+    "curve_count": 13,
+    "scored_row_count": 233,
+    "training_curve_count": 9,
+    "training_scored_point_count": 163,
+    "holdout_curve_count": 4,
+    "holdout_scored_point_count": 70,
+    "target_columns": [
+      "curve_id",
+      "split",
+      "kind",
+      "topology",
+      "vbg_v",
+      "vtg_v",
+      "vds_v",
+      "primary_axis_v",
+      "target_current_a_per_cm",
+      "w_um",
+      "l_um",
+      "temperature_k"
+    ],
+    "zero_vds_invariant_point_count": 7,
+    "repeated_low_vds_audit_point_count": 7,
+    "split_use": "Train and holdout scored rows are reported separately; the 14 audit rows are retained as separate invariants/reproduction checks. Holdout is never used for route tuning, syntax repair, parameter selection, or threshold changes.",
+    "external_data_use": "No external baseline current, teacher spreadsheet, or literature curve may replace or augment the 247 frozen project target rows."
+  },
+  "device_contract": {
+    "material": "IGZO",
+    "polarity": "n-type",
+    "width_um": 60.0,
+    "length_um_allowed": [
+      8.0,
+      10.0,
+      12.0
+    ],
+    "temperature_k": 300.0,
+    "source_potential_v": 0.0,
+    "effective_tox_nm": 10.0,
+    "physical_al2o3_thickness_nm": 30.0,
+    "dielectric_k": 6.8,
+    "contact_model": "ideal source/drain contacts",
+    "equations": "Only the two generated R02 candidate routes are compared; no TCAD, trap, contact, temperature, HZO, or circuit equation is added.",
+    "port_mapping": {
+      "drain": "VDS relative to source",
+      "source": "0 V reference",
+      "bottom_gate": "VBG relative to source",
+      "top_gate": "VTG relative to source",
+      "single_bottom_gate": "Use the frozen row VBG as the active gate and set VTG=0 V exactly.",
+      "symmetric_dual_gate": "Apply both frozen VBG and VTG values without rebalancing or fitting eta_dg.",
+      "reported_current": "absolute drain current divided by W, in A/cm; preserve one sign convention for both routes"
+    }
+  },
+  "routes": {
+    "ngspice_behavioral": {
+      "candidate_path": "spice/models/igzo_dg_behavioral_r02.inc",
+      "candidate_sha256": "0a2d626fb37fc4fc9c1af8bdd326d5750eeca22d8b9cd3e570481ef671c47f9d",
+      "subcircuit": "IGZO_DG_BEHAVIORAL_R02",
+      "route_kind": "ngspice behavioral equivalent",
+      "tool_path": "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+      "tool_sha256": "820658317b0b54035208da41936fd6871ce924036e5ea4113a4168b821b7fc45",
+      "tool_bytes": 8300800,
+      "invocation_contract": "Batch invocation must use the frozen candidate and a generated device-only DC netlist; no interactive edits or circuit netlist reuse.",
+      "equation_identity_with_aimspice": false,
+      "allowed_claim": "Executed behavioral translation comparison only; never native HSPICE Level 61 and never a physical parameter card."
+    },
+    "aimspice_level15": {
+      "candidate_path": "models/level61/igzo_level15_r02.inc",
+      "candidate_sha256": "b31e959396c624f9b739b1a12b27623b920d46c89e61ea16c66d44458802e754",
+      "mapping_path": "models/level61/igzo_level15_r02_parameters.json",
+      "mapping_sha256": "028d0a4800e331371e33996dddfb5fbd684bbb12373cbe88800756630a681d12",
+      "subcircuit": "IGZO_DG_LEVEL15_R02",
+      "model_card": "IGZO_N_L15_R02 NMOS LEVEL=15",
+      "route_kind": "AIM-Spice native Level 15 candidate with explicit dual-gate control wrapper",
+      "tool_path": "/mnt/c/Program Files (x86)/AIM-Software/AIM-Spice/bin64/aimspice.exe",
+      "tool_sha256": "cabb6ccc73dd25f68af92d2751b640ed5a5cf992cc6fb5332b939b756cbf5820",
+      "tool_bytes": 6270976,
+      "invocation_contract": "A documented batch or command-line invocation is required; a GUI-only result or undocumented manual edit is not reproducible formal evidence.",
+      "equation_identity_with_ngspice": false,
+      "allowed_claim": "Executed AIM-Spice Level 15 route comparison only; not equation identity, experimental calibration, or foundry model validation."
+    }
+  },
+  "syntax_and_preflight_contract": {
+    "contract_check_must_not_invoke_simulator": true,
+    "candidate_encoding": "ASCII-compatible text",
+    "required_candidate_tokens": [
+      "IGZO",
+      "R02",
+      "M01_EXECUTION_REQUIRED"
+    ],
+    "forbidden_tokens_case_insensitive": [
+      "sno",
+      "snO",
+      "hzo",
+      "ferroelectric",
+      "ring_oscillator",
+      "full_adder",
+      "inverter",
+      "nand",
+      "nor",
+      "xor",
+      "tran",
+      "noise",
+      "monte"
+    ],
+    "required_route_checks": [
+      "candidate files and mapping hash exactly",
+      "subcircuit and model names match the contract",
+      "both routes expose D/TG/BG/S and use frozen W/L values",
+      "no external baseline path is included in generated netlists",
+      "no SnO or HZO asset is read",
+      "tool executable fingerprint is recorded before execution",
+      "syntax/preflight logs are persisted separately from numerical results"
+    ],
+    "tool_fingerprint_is_not_execution_evidence": true
+  },
+  "metric_contract": {
+    "current_floor_a_per_cm": 1e-20,
+    "point_linear_error": "abs(I_route-I_target)/max(max_abs_target_current_for_curve, current_floor_a_per_cm)",
+    "point_log_error_dec": "abs(log10(max(abs(I_route), current_floor_a_per_cm))-log10(max(abs(I_target), current_floor_a_per_cm)))",
+    "curve_linear_nrmse": "sqrt(mean((I_route-I_target)^2))/max(max_abs_target_current_for_curve, current_floor_a_per_cm)",
+    "curve_log_rmse_dec": "sqrt(mean(point_log_error_dec^2))",
+    "aggregate_weighting": "Equal weight per complete scored curve; report train and holdout separately; audit rows are not added to scored aggregates and no points are pooled to hide a curve.",
+    "route_difference": "For every frozen row and curve report absolute and log route-to-route differences; route disagreement is a required diagnostic, not a tunable pass threshold.",
+    "required_quality_fields": [
+      "row_count",
+      "finite_current",
+      "nonnegative_current",
+      "curve_sample_monotonicity",
+      "linear_nrmse",
+      "log_rmse_dec",
+      "train_holdout_split",
+      "route_difference_absolute",
+      "route_difference_log",
+      "convergence_or_return_status"
+    ],
+    "threshold_policy": "Reuse the frozen M00 descriptive thresholds only as labeled route-to-target diagnostics; do not retune candidates to meet them. M01 acceptance is complete, auditable two-route comparison with explicit differences and limitations, not forced equation agreement."
+  },
+  "failure_retention": {
+    "exclusive_outputs": true,
+    "overwrite_existing_outputs": false,
+    "retain_failed_route_logs": true,
+    "retain_partial_tables": true,
+    "retain_tool_preflight_and_syntax_logs": true,
+    "failure_status_must_remain_visible": true,
+    "r02_and_r01_outputs_must_not_change": true
+  },
+  "resource_budget": {
+    "routes": 2,
+    "target_rows_per_route": 247,
+    "max_generated_device_netlists": 2,
+    "max_route_processes": 2,
+    "laptop_target": true,
+    "circuit_or_transient_runs": false,
+    "hzo_runs": false
+  },
+  "excluded_inputs_and_scope": {
+    "reference_only_roots": [
+      "/mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/数据/ngspice_results",
+      "/mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/数据/AIMSPICE_improved"
+    ],
+    "excluded_assets": [
+      "all SnO files and P-type assets",
+      "external teacher spreadsheet currents",
+      "old circuit netlists and old VTC/oscillator/full-adder outputs",
+      "HZO or ferroelectric models",
+      "TCAD state files and unregistered sensitivity variants"
+    ],
+    "active_material_scope": "IGZO only"
+  },
+  "outputs": {
+    "contract_report": "results/reports/m01_simulator_cross_check_contract_v3.json",
+    "historical_failed_contract_reports": [
+      "results/reports/m01_simulator_cross_check_contract.json",
+      "results/reports/m01_simulator_cross_check_contract_v2.json"
+    ],
+    "run_directory": "results/compact/m01_simulator_cross_check_r01",
+    "preflight_report": "results/reports/m01_simulator_preflight_r01.json",
+    "ngspice_raw_csv": "results/tables/m01_ngspice_r02_raw.csv",
+    "aimspice_raw_csv": "results/tables/m01_aimspice_r02_raw.csv",
+    "route_metrics_csv": "results/tables/m01_route_metrics_r02.csv",
+    "route_difference_csv": "results/tables/m01_route_difference_r02.csv",
+    "syntax_log": "results/compact/m01_simulator_cross_check_r01/syntax_preflight.log",
+    "ngspice_log": "results/compact/m01_simulator_cross_check_r01/ngspice.log",
+    "aimspice_log": "results/compact/m01_simulator_cross_check_r01/aimspice.log",
+    "overlay_png": "report/assets/m01_simulator_cross_check_r02.png",
+    "route_difference_png": "report/assets/m01_route_difference_r02.png",
+    "run_report": "results/reports/m01_simulator_cross_check_r02.json",
+    "independent_check_report": "results/reports/m01_simulator_cross_check_r02_check.json"
+  },
+  "evidence_boundary": {
+    "contract_claim": "E3 static contract only; no simulator was invoked and no M01 numerical result exists. A prior revision-1 checker failure is retained as historical evidence.",
+    "future_pass_allowed_claim": "Two executed simulator routes were compared on the frozen IGZO teaching target rows with explicit route differences and reproducible syntax/tool logs.",
+    "prohibited_claims": [
+      "SnO or complementary-oxide result",
+      "equation identity between behavioral ngspice and native Level 15",
+      "experimental fitting or physical IGZO parameter extraction",
+      "external teacher-data validation",
+      "native Level 61 claim for the behavioral route",
+      "circuit readiness, inverter, ring oscillator, full adder, layout, PEX, HZO, or foundry sign-off"
+    ]
+  },
+  "next_gate": "After this revision-3 static contract is committed and pushed, perform only the declared tool preflight and then the two-route device-only M01 run. Any route/tool failure is retained and stops M01; C00 and all downstream stages remain closed."
+}
