@@ -16,6 +16,23 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 实现 M00 R02 正式拟合执行链
+
+### 用户目标
+
+在已推送 R02 结构合同提交 `b69fcf0` 后继续阶段 DAG；先实现和自测版本化 R02 runner/independent checker，执行链提交推送前不得运行正式 R02，不启动 M01、SPICE 或下游。
+
+### 实现与边界
+
+- 新增 `models/fit_m00_teaching_compact_r02.py`：直接使用固定 `Lref/L`，移除自由 `length_exponent`，只保留合同冻结的 10 个有界系数。正式模式核对 R02 合同、注册表与 13 个源表哈希，只加载 9 条 train/163 点优化，优化日志落盘后才加载 4 条 holdout/70 点；运行目录、表、图、模型、候选和报告均拒绝覆盖。
+- 新增 `scripts/check_m00_compact_model_fit_r02.py`：不导入 runner、NumPy、SciPy、DEVSIM 或 subprocess，独立重建 247 行选择、固定指数核、残差、13 条曲线指标、聚合误差、holdout VTH/gm、10 参数边界、PNG 和候选边界；独立报告改为排他创建，避免重跑覆盖证据。
+- Makefile 新增 R02 self-test/fit/fit-check 三个入口。机器状态明确执行链为 `E2_SYNTHETIC_SELF_TEST_ONLY`，正式 fit、holdout、候选和独立落盘检查仍为未运行；M00 保持 E0，M01 与下游关闭。
+
+### 验证与下一步
+
+- Python/JSON 语法 PASS；`make m00-compact-model-r02-self-test` PASS；15 个 R02 正式输出全部不存在；`make check` 575/575 PASS；`make report-check` 以 12 章、5 附录、15 个允许占位和 24 图 PASS。没有运行 R01/R02 正式拟合、TCAD、ngspice、AIM-Spice、电路、版图、PEX 或 HZO。
+- 先提交并推送本执行链。之后只执行一次 `make m00-compact-model-r02-fit`；只有 runner 24/24 PASS 才执行 20 项独立落盘检查，任一失败原样保留并停止。
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M00 R02 结构恢复合同
 
 ### 用户目标

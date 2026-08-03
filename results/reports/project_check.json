@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 571,
+  "checks": 575,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=21478"
+      "detail": "bytes=21599"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=18264"
+      "detail": "bytes=18393"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=14258"
+      "detail": "bytes=14337"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=120615"
+      "detail": "bytes=122419"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4521"
+      "detail": "bytes=4477"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=59850"
+      "detail": "bytes=61599"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=30553"
+      "detail": "bytes=31440"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=7119"
+      "detail": "bytes=7477"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=13322"
+      "detail": "bytes=14219"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=52459"
+      "detail": "bytes=53632"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -925,6 +925,16 @@
       "detail": "bytes=36390"
     },
     {
+      "name": "file:models/fit_m00_teaching_compact_r02.py",
+      "status": "PASS",
+      "detail": "bytes=53665"
+    },
+    {
+      "name": "file:scripts/check_m00_compact_model_fit_r02.py",
+      "status": "PASS",
+      "detail": "bytes=37828"
+    },
+    {
       "name": "file:results/reports/m00_compact_model_input_contract.json",
       "status": "PASS",
       "detail": "bytes=18128"
@@ -1382,7 +1392,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=32453"
+      "detail": "bytes=33375"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -2742,7 +2752,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "implement and self-test the revisioned R02 formal runner and independent checker against the committed R02 contract; do not optimize formal data or score holdout until that execution chain is committed, and do not rerun R01 or start M01, SPICE, circuit cells, layout, PEX, or HZO"
+      "detail": "run exactly one formal M00 R02 fit from the committed revisioned execution chain; load and score the frozen holdout only after optimizer termination, run the independent persisted-evidence checker only if all 24 runner gates pass, preserve any failure, and do not rerun R01 or start M01, SPICE, circuit cells, layout, PEX, or HZO"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -2790,9 +2800,19 @@
       "detail": "sections=7 parameters=10 fixed_exponent=1.0"
     },
     {
+      "name": "m00_r02_execution_chain:runner_fixed_kernel_and_holdout_isolation",
+      "status": "PASS",
+      "detail": "runner=models/fit_m00_teaching_compact_r02.py outputs_absent=15/15"
+    },
+    {
+      "name": "m00_r02_execution_chain:independent_checker_and_make_targets",
+      "status": "PASS",
+      "detail": "imports=['__future__', 'ast', 'csv', 'hashlib', 'json', 'math', 'pathlib', 'struct', 'sys', 'typing'] checks=20 targets=3"
+    },
+    {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "implement and self-test the revisioned R02 formal runner and independent checker against the committed R02 contract; do not optimize formal data or score holdout until that execution chain is committed, and do not rerun R01 or start M01, SPICE, circuit cells, layout, PEX, or HZO"
+      "detail": "run exactly one formal M00 R02 fit from the committed revisioned execution chain; load and score the frozen holdout only after optimizer termination, run the independent persisted-evidence checker only if all 24 runner gates pass, preserve any failure, and do not rerun R01 or start M01, SPICE, circuit cells, layout, PEX, or HZO"
     },
     {
       "name": "tcad:mesh_levels",

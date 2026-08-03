@@ -145,6 +145,8 @@ REQUIRED_FILES = [
     "scripts/check_m00_compact_model_contract_r02.py",
     "models/fit_m00_teaching_compact.py",
     "scripts/check_m00_compact_model_fit.py",
+    "models/fit_m00_teaching_compact_r02.py",
+    "scripts/check_m00_compact_model_fit_r02.py",
     "results/reports/m00_compact_model_input_contract.json",
     "results/reports/m00_compact_model_input_contract_r02.json",
     "results/reports/m00_compact_model_input_contract_dependency_status_mismatch_failed.json",
@@ -4890,6 +4892,7 @@ def main() -> int:
         m00_machine = m00_experiment.get("contract_evidence", {})
         m00_formal = m00_experiment.get("formal_fit_evidence", {})
         m00_r02_machine = m00_experiment.get("r02_contract_evidence", {})
+        m00_r02_execution = m00_experiment.get("r02_execution_evidence", {})
         m00_prohibited = " ".join(
             m00_config.get("evidence_boundary", {}).get("prohibited_claims", [])
         )
@@ -4982,6 +4985,60 @@ def main() -> int:
                 f"{m00_r02_change.get('fixed_length_geometry_exponent')}"
             ),
         )
+        m00_r02_runner_path = ROOT / "models" / "fit_m00_teaching_compact_r02.py"
+        m00_r02_checker_path = ROOT / "scripts" / "check_m00_compact_model_fit_r02.py"
+        m00_r02_runner_source = m00_r02_runner_path.read_text(encoding="utf-8")
+        m00_r02_checker_source = m00_r02_checker_path.read_text(encoding="utf-8")
+        makefile_source = (ROOT / "Makefile").read_text(encoding="utf-8")
+        add_check(
+            checks,
+            "m00_r02_execution_chain:runner_fixed_kernel_and_holdout_isolation",
+            "compact_m00_input_validation_r02.json" in m00_r02_runner_source
+            and "EXPECTED_RUNNER_CHECK_COUNT = 24" in m00_r02_runner_source
+            and "* (reference_length / lengths)" in m00_r02_runner_source
+            and 'parameters["length_exponent"]' not in m00_r02_runner_source
+            and '"formal_run_revision": 2' in m00_r02_runner_source
+            and '"formal_fit_revision": 2' in m00_r02_runner_source
+            and '"command": "make m00-compact-model-r02-fit"'
+            in m00_r02_runner_source
+            and "if existing_outputs:" in m00_r02_runner_source
+            and "refusing to overwrite R02 formal outputs" in m00_r02_runner_source
+            and m00_r02_runner_source.find("result = least_squares")
+            < m00_r02_runner_source.find("holdout_curves =")
+            and 'run_directory.mkdir(parents=True, exist_ok=False)'
+            in m00_r02_runner_source
+            and 'path.open("x"' in m00_r02_runner_source
+            and "M00_COMPACT_MODEL_R02_SYNTHETIC_SELF_TEST_" in m00_r02_runner_source,
+            (
+                f"runner={m00_r02_runner_path.relative_to(ROOT)} "
+                f"outputs_absent={sum(not path.exists() for path in m00_r02_future_outputs)}/"
+                f"{len(m00_r02_future_outputs)}"
+            ),
+        )
+        checker_import_roots = set(
+            re.findall(
+                r"^(?:from|import)\s+([A-Za-z_][A-Za-z0-9_]*)",
+                m00_r02_checker_source,
+                flags=re.MULTILINE,
+            )
+        )
+        add_check(
+            checks,
+            "m00_r02_execution_chain:independent_checker_and_make_targets",
+            "compact_m00_input_validation_r02.json" in m00_r02_checker_source
+            and "EXPECTED_CHECK_COUNT = 20" in m00_r02_checker_source
+            and "EXPECTED_RUNNER_CHECK_COUNT = 24" in m00_r02_checker_source
+            and "* (reference_length / length)" in m00_r02_checker_source
+            and "len(parameter_rows) == 10" in m00_r02_checker_source
+            and 'report_path.open("x"' in m00_r02_checker_source
+            and checker_import_roots.isdisjoint(
+                {"numpy", "scipy", "devsim", "subprocess", "fit_m00_teaching_compact_r02"}
+            )
+            and "m00-compact-model-r02-self-test:" in makefile_source
+            and "m00-compact-model-r02-fit:" in makefile_source
+            and "m00-compact-model-r02-fit-check:" in makefile_source,
+            f"imports={sorted(checker_import_roots)} checks=20 targets=3",
+        )
         add_check(
             checks,
             "m00_contract:machine_state_next_gate_and_boundary",
@@ -5021,8 +5078,27 @@ def main() -> int:
             is False
             and m00_r02_machine.get("r01_failure_preserved") is True
             and m00_r02_machine.get("m01_or_downstream_permitted") is False
+            and m00_r02_execution.get("status") == "execution_chain_ready"
+            and m00_r02_execution.get("revision") == 2
+            and m00_r02_execution.get("execution_chain_evidence")
+            == "E2_SYNTHETIC_SELF_TEST_ONLY"
+            and m00_r02_execution.get("runner_implemented") is True
+            and m00_r02_execution.get("independent_checker_implemented") is True
+            and m00_r02_execution.get("synthetic_self_test_passed") is True
+            and m00_r02_execution.get("expected_runner_check_count") == 24
+            and m00_r02_execution.get("expected_independent_check_count") == 20
+            and m00_r02_execution.get("formal_fit_run_completed") is False
+            and m00_r02_execution.get("formal_fit_run_ordinal") == 0
+            and m00_r02_execution.get("formal_outputs_present") is False
+            and m00_r02_execution.get("holdout_scored") is False
+            and m00_r02_execution.get("model_candidates_generated") is False
+            and m00_r02_execution.get("m01_or_downstream_permitted") is False
             and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "implement and self-test the revisioned R02 formal runner"
+                "run exactly one formal M00 R02 fit"
+            )
+            and "E2 execution-chain self-test evidence only"
+            in config.get("tcad_track", {}).get(
+                "m00_r02_execution_chain_boundary", ""
             )
             and "experimental fitting" in m00_prohibited
             and "independent external validation" in m00_prohibited

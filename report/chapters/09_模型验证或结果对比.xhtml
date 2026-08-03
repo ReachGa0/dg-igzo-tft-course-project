@@ -26,7 +26,7 @@
   </figure>
   <p>失败报告、输入快照、247 行选择清单、优化日志、预测/残差、13 行曲线指标、11 行系数、有效域和两张图均保留。R01 输出拒绝覆盖；没有执行独立检查、TCAD、ngspice、AIM-Spice 或电路。</p>
   <p class="boundary">R01 保持 E0/FAIL，不得把聚合误差通过写成 M00 通过，也不得把失败系数写成物理 VTH、迁移率、DOS、接触或温度参数。不得重跑 R01、放宽 0.50、改变既有 split 或用 holdout 选择参数。</p>
-  <h3>9.2 R02 结构恢复静态合同</h3>
+  <h3>9.2 R02 结构恢复合同与执行链</h3>
   <table>
     <thead><tr><th>合同项</th><th>R02 冻结内容</th><th>证据状态</th></tr></thead>
     <tbody>
@@ -34,9 +34,9 @@
       <tr><td>唯一结构变化</td><td>固定一阶几何因子 <code>Lref/L</code>、指数 1.0；移除 <code>length_exponent</code>；保留 <code>length_vth_slope_v</code> 为唯一训练拟合长度系数，初值 0.0 V</td><td>计划有界系数从 11 降为 10；只是教学正则化，不是物理缩放律</td></tr>
       <tr><td>不变验收</td><td>13 表、9/163 train、4/70 holdout、7+7 审计点、底值、每曲线权重、确定性无重启优化、全部线性/对数/VTH/gm 门及 0.50 gm 上限</td><td>与 R01 配置逐节相等</td></tr>
       <tr><td>失败与输出隔离</td><td>R01 配置、源码、报告和失败产物保持原样；R02 使用独立运行目录、表、图、模型和候选路径并拒绝覆盖</td><td>R01 仍为 E0/FAIL</td></tr>
-      <tr><td>当前执行状态</td><td><code>make m00-compact-model-r02-contract-check</code> 为 27/27 PASS</td><td>E3 静态合同；fit/TCAD/SPICE/circuit 均为 <code>NOT_RUN_BY_CONTRACT_CHECK</code></td></tr>
+      <tr><td>当前执行状态</td><td><code>make m00-compact-model-r02-contract-check</code> 为 27/27 PASS；版本化 runner/checker 已实现，<code>make m00-compact-model-r02-self-test</code> PASS</td><td>E3 静态合同 + E2 合成执行链；正式 fit、holdout、候选、独立落盘检查、TCAD/SPICE/circuit 均未运行</td></tr>
     </tbody>
   </table>
-  <p>R02 合同只允许下一步实现和合成自测版本化 runner/independent checker。执行链提交前不得优化正式 train 或评分 holdout；提交后也只允许一次正式 R02，且只有 runner PASS 后才运行独立落盘检查。</p>
-  <p class="boundary">27/27 静态 PASS 不能写成 R02 或 M00 拟合通过，也不能把固定 <code>Lref/L</code> 写成 IGZO 物理定律、实验校准或电路可用模型。M01、SPICE、电路、版图、PEX 和 HZO 继续关闭。</p>
+  <p>R02 runner 仅加载 9 条 train/163 点进入确定性优化，优化日志落盘后才加载 4 条 holdout/70 点；独立检查器只用标准库复算固定指数核、残差、指标、VTH/gm 和产物哈希。两者及所有 R02 输出均拒绝覆盖。先提交推送执行链，之后只允许一次正式 R02，且只有 runner 24/24 PASS 后才运行 20 项独立落盘检查。</p>
+  <p class="boundary">27/27 静态 PASS 和合成自测 PASS 都不能写成 R02 或 M00 拟合通过，也不能把固定 <code>Lref/L</code> 写成 IGZO 物理定律、实验校准或电路可用模型。M01、SPICE、电路、版图、PEX 和 HZO 继续关闭。</p>
 </section>

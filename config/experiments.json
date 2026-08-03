@@ -726,8 +726,33 @@
           "results/reports/m00_compact_model_input_contract_r02.json"
         ]
       },
+      "r02_execution_evidence": {
+        "status": "execution_chain_ready",
+        "revision": 2,
+        "execution_chain_evidence": "E2_SYNTHETIC_SELF_TEST_ONLY",
+        "runner_implemented": true,
+        "independent_checker_implemented": true,
+        "synthetic_self_test_passed": true,
+        "expected_runner_check_count": 24,
+        "expected_independent_check_count": 20,
+        "formal_fit_run_completed": false,
+        "formal_fit_run_ordinal": 0,
+        "formal_fit_passed": false,
+        "formal_outputs_present": false,
+        "holdout_scored": false,
+        "model_candidates_generated": false,
+        "tcad_run": false,
+        "spice_run": false,
+        "circuit_run": false,
+        "m01_or_downstream_permitted": false,
+        "implementation_paths": [
+          "models/fit_m00_teaching_compact_r02.py",
+          "scripts/check_m00_compact_model_fit_r02.py",
+          "Makefile"
+        ]
+      },
       "acceptance": ["training and holdout linear/log errors reported separately", "multiple VDS curves included in training and holdout", "parameter provenance and local validity domain complete", "independent persisted-evidence check passes"],
-      "evidence_boundary": "The original E3 contract freezes bytes, selectors, a 9-curve/163-point training set, a 4-curve/70-point whole-condition holdout, seven zero-VDS invariants, the teaching kernel, bounds, optimizer, metrics, outputs and failure rules. The single formal R01 run remains E0/FAIL because the L=12 um holdout gm relative error was 0.512384 versus the frozen 0.50 limit; its complete evidence remains preserved and its PASS-only independent checker did not run. The E3 R02 contract changes only model structure: because the committed training split has eight 10 um curves, one non-reference 8 um curve and two R01 free length coefficients, it fixes the analytic Lref/L geometry exponent at 1.0, removes length_exponent, retains one train-fitted length threshold coefficient and reduces the parameter count to 10. Dataset bytes, split, metrics, all thresholds and validity remain identical. No R01 holdout metric or fitted coefficient selected that structure or any R02 numerical setting. The fixed inverse-length factor is a regularizing teaching assumption, not a physical scaling-law claim. R02 fitting, independent checking, ngspice/AIM-Spice, TCAD, circuit and downstream remain unrun; neither revision is an accepted compact model, experimental calibration, measured or physical parameters, external validation, simulator validation or circuit evidence."
+      "evidence_boundary": "The original E3 contract freezes bytes, selectors, a 9-curve/163-point training set, a 4-curve/70-point whole-condition holdout, seven zero-VDS invariants, the teaching kernel, bounds, optimizer, metrics, outputs and failure rules. The single formal R01 run remains E0/FAIL because the L=12 um holdout gm relative error was 0.512384 versus the frozen 0.50 limit; its complete evidence remains preserved and its PASS-only independent checker did not run. The E3 R02 contract changes only model structure: because the committed training split has eight 10 um curves, one non-reference 8 um curve and two R01 free length coefficients, it fixes the analytic Lref/L geometry exponent at 1.0, removes length_exponent, retains one train-fitted length threshold coefficient and reduces the parameter count to 10. Dataset bytes, split, metrics, all thresholds and validity remain identical. No R01 holdout metric or fitted coefficient selected that structure or any R02 numerical setting. The fixed inverse-length factor is a regularizing teaching assumption, not a physical scaling-law claim. The revisioned runner and standard-library independent checker are now implemented and the synthetic self-test passes, but this is execution-chain E2 only: formal R02 optimization, holdout scoring, model candidates, independent persisted-evidence checking, ngspice/AIM-Spice, TCAD, circuit and downstream remain unrun. M00 remains E0; neither revision is an accepted compact model, experimental calibration, measured or physical parameters, external validation, simulator validation or circuit evidence."
     },
     {
       "id": "M01",
