@@ -2,7 +2,7 @@
   "schema_version": 2,
   "project_id": "DG-IGZO-TFT-PDK",
   "principle": "Each experiment has dependencies, one declared variable group, controls, outputs, acceptance criteria and an evidence boundary.",
-  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified", "limit_regression_verified", "minimal_bias_verified", "bidirectional_verified", "partial_verified", "done_with_limitation", "contract_planning_open", "contract_implemented", "contract_ready", "formal_run_passed"],
+  "status_vocabulary": ["verified", "reference_only", "scaffolded", "planned", "optional", "input_contract_ready", "smoke_verified", "transfer_verified", "limit_regression_verified", "minimal_bias_verified", "bidirectional_verified", "partial_verified", "done_with_limitation", "contract_planning_open", "contract_implemented", "contract_ready", "formal_run_passed", "contract_failed_static_checker"],
   "parameter_groups": [
     {
       "id": "P1",
@@ -2129,7 +2129,7 @@
       "id": "C00",
       "track": "circuit",
       "name": "dual_gate_igzo_active_load_inverter",
-      "status": "contract_implemented",
+      "status": "contract_failed_static_checker",
       "current_evidence": "E0",
       "depends_on": ["M01", "T02"],
       "parameter_group_ids": ["P6"],
@@ -2153,7 +2153,7 @@
       "active_load_inverter_r01": {
         "contract_id": "C00_ACTIVE_LOAD_INVERTER_R01",
         "revision": 1,
-        "status": "contract_implemented",
+        "status": "contract_failed_static_checker",
         "current_evidence": "E0",
         "config_path": "config/c00_active_load_inverter_r01.json",
         "config_sha256": "bad17ed448a0dac92e8158991f8f3427816259cbc01a60dc6549731da27eab82",
@@ -2168,7 +2168,15 @@
         "expected_contract_check_count": 48,
         "expected_runner_check_count": 36,
         "expected_independent_check_count": 29,
-        "contract_check_completed": false,
+        "contract_check_completed": true,
+        "contract_check_status": "FAIL",
+        "contract_checks_passed": 46,
+        "contract_checks_failed": 2,
+        "contract_report_path": "results/reports/c00_active_load_inverter_contract_r01.json",
+        "contract_report_sha256": "53f408e870e5f84993dd635cf95086c9b4db263ea5b8bead6cc2f5ed44a08493",
+        "failed_check": "netlist:forbidden_scopes_absent",
+        "derived_failed_check": "result:static_contract_ready",
+        "failure_category": "FORBIDDEN_TOKEN_SUBSTRING_COLLISION_NOR_IN_NORM",
         "formal_run_completed": false,
         "independent_check_completed": false,
         "simulator_processes_invoked": 0,
@@ -2186,10 +2194,11 @@
           "scripts/c00_active_load_inverter_r01_common.py",
           "scripts/check_c00_active_load_inverter_r01_contract.py",
           "scripts/run_c00_active_load_inverter_r01.py",
-          "scripts/check_c00_active_load_inverter_r01.py"
+          "scripts/check_c00_active_load_inverter_r01.py",
+          "results/reports/c00_active_load_inverter_contract_r01.json"
         ],
-        "evidence_boundary": "E0 implementation only: the versioned topology, P6 grids, extraction, failure retention, four-process serial budget and 48/36/29 gates are registered. No C00 netlist, simulator process, circuit number, physical parameter or calibration evidence exists.",
-        "next_gate": "Run the 48-check zero-process static contract exactly once after this implementation state is committed and pushed."
+        "evidence_boundary": "The committed R01 static contract ran exactly once and returned 46/48 E0/FAIL with zero simulator processes and zero circuit netlists. The sole primary failure is an over-broad substring scope scan: forbidden token 'nor' matched the registered DC node 'NORM'; the result gate failed derivatively. This is not topology, model, threshold, convergence or circuit evidence. R01 is immutable and must not be rerun.",
+        "next_gate": "Commit and push the immutable R01 46/48 failure, then establish C00 R02 with only token-safe forbidden-scope matching in a new namespace."
       }
     },
     {

@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 保留 C00 R01 静态合同 46/48 词法失败
+
+### 执行与失败
+
+- 实现提交 `4097b9d` 已推送并与 `origin/main` 同步后，唯一运行 `make c00-active-load-inverter-r01-contract-check`，返回 46/48、E0/FAIL。报告 SHA-256 为 `53f408e870e5f84993dd635cf95086c9b4db263ea5b8bead6cc2f5ed44a08493`。
+- 主失败 `netlist:forbidden_scopes_absent` 是 checker 词法缺陷：禁止词 `nor` 被普通子串规则匹配到注册 DC 节点 `NORM`；`result:static_contract_ready` 为派生失败。其余 46 项通过。
+- 报告记录 0 个 simulator process、0 个正式电路网表；C00 运行目录、表、图、runner/独立报告均不存在。这不是拓扑、模型、锚点、阈值、收敛或电路性能失败。
+
+### 状态与下一门
+
+- `config/experiments.json` 登记 `contract_failed_static_checker/E0`、报告哈希、两个失败项和 `FORBIDDEN_TOKEN_SUBSTRING_COLLISION_NOR_IN_NORM`；所有执行与下游权限保持 false。
+- R01 配置、源码和报告不修改、不重跑。先提交推送失败状态，再建立独立 R02，只把禁止范围检查改成 ASCII 标识符整词匹配；2-TFT 端口、18/36 案例、锚点、提取、验收阈值和四进程预算保持不变。
+- 失败登记后的 `make check` 为 764/764 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过；这些检查没有启动任何模拟器或创建网表。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 实现 C00 R01 双栅 IGZO 有源负载反相器静态合同链
 
 ### 目标与输入

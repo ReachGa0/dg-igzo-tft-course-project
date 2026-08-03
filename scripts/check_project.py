@@ -831,6 +831,10 @@ def main() -> int:
             "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-1"
         ) or current_next_scope.startswith(
             "commit and close C00 within the teaching-model evidence boundary"
+        ) or current_next_scope.startswith(
+            "preserve and commit the C00 active-load inverter revision-1 46/48 static checker failure"
+        ) or current_next_scope.startswith(
+            "establish C00 active-load inverter revision-2 with token-safe forbidden-scope matching"
         )
         r08_scope_active = current_next_scope.startswith(
             "establish and commit M01 Xyce build/tool preflight revision-8"
@@ -5559,6 +5563,7 @@ def main() -> int:
                 ("contract_ready", "E3"),
                 ("formal_run_passed", "E2"),
                 ("verified", "E3"),
+                ("contract_failed_static_checker", "E0"),
             }
             and c00_entry_gate.get("status") == "PASS"
             and c00_entry_gate.get("source_decision")
@@ -9823,6 +9828,12 @@ def main() -> int:
                 or r03_next_scope.startswith(
                     "commit and close C00 within the teaching-model evidence boundary"
                 )
+                or r03_next_scope.startswith(
+                    "preserve and commit the C00 active-load inverter revision-1 46/48 static checker failure"
+                )
+                or r03_next_scope.startswith(
+                    "establish C00 active-load inverter revision-2 with token-safe forbidden-scope matching"
+                )
             )
         )
         add_check(
@@ -10027,6 +10038,38 @@ def main() -> int:
             and not c00_independent_report_path.exists()
             and all(not path.exists() for path in c00_run_artifact_paths)
         )
+        c00_failed_state = (
+            c00_experiment.get("status") == "contract_failed_static_checker"
+            and c00_experiment.get("current_evidence") == "E0"
+            and c00_machine.get("status") == "contract_failed_static_checker"
+            and c00_machine.get("current_evidence") == "E0"
+            and c00_machine.get("contract_check_completed") is True
+            and c00_machine.get("contract_check_status") == "FAIL"
+            and c00_machine.get("contract_checks_passed") == 46
+            and c00_machine.get("contract_checks_failed") == 2
+            and c00_machine.get("failed_check")
+            == "netlist:forbidden_scopes_absent"
+            and c00_machine.get("derived_failed_check")
+            == "result:static_contract_ready"
+            and c00_machine.get("failure_category")
+            == "FORBIDDEN_TOKEN_SUBSTRING_COLLISION_NOR_IN_NORM"
+            and c00_machine.get("simulator_processes_invoked") == 0
+            and c00_machine.get("circuit_netlists_created") == 0
+            and c00_machine.get("circuit_execution_permitted") is False
+            and c00_machine.get("downstream_permitted") is False
+            and c00_contract_report.get("status") == "FAIL"
+            and c00_contract_report.get("evidence_level") == "E0"
+            and c00_contract_report.get("summary")
+            == {"passed": 46, "failed": 2, "total": 48}
+            and c00_contract_report.get("simulator_processes_invoked") == 0
+            and c00_contract_report.get("circuit_netlists_created") == 0
+            and c00_machine.get("contract_report_sha256")
+            == sha256(c00_contract_report_path)
+            and not (ROOT / c00_outputs["run_directory"]).exists()
+            and all(not path.exists() for path in c00_run_artifact_paths)
+            and not c00_run_report_path.exists()
+            and not c00_independent_report_path.exists()
+        ) if c00_contract_report_path.is_file() else False
         c00_ready_state = (
             c00_experiment.get("status") == "contract_ready"
             and c00_experiment.get("current_evidence") == "E3"
@@ -10080,6 +10123,11 @@ def main() -> int:
             c00_implemented_state
             and c00_next_scope.startswith(
                 "run the 48-check static contract for C00 active-load inverter revision-1"
+            )
+        ) or (
+            c00_failed_state
+            and c00_next_scope.startswith(
+                "preserve and commit the C00 active-load inverter revision-1 46/48 static checker failure"
             )
         ) or (
             c00_ready_state
@@ -10158,12 +10206,13 @@ def main() -> int:
             and "c00-active-load-inverter-r01-check:" in makefile_source
             and (
                 c00_implemented_state
+                or c00_failed_state
                 or c00_ready_state
                 or c00_runner_state
                 or c00_verified_state
             )
             and c00_scope_ok,
-            f"implemented={c00_implemented_state} ready={c00_ready_state} "
+            f"implemented={c00_implemented_state} failed={c00_failed_state} ready={c00_ready_state} "
             f"runner={c00_runner_state} verified={c00_verified_state} "
             f"bindings={c00_source_hashes_ok}",
         )

@@ -3,6 +3,6 @@
   <h3>10.1 C00 R01 执行前合同</h3>
   <p>反相器固定为两个 n 型双栅 IGZO 行为候选：驱动管端口为 <code>VOUT/VIN/0/0</code>，负载管端口为 <code>VDD/V_TOP_LOAD/VDD/VOUT</code>。P6 小网格包含 2 档 VDD、3 档负载顶栅、3 档负载/驱动宽度比和 2 档 Cload；DC/瞬态分别有 18/36 个计划案例。</p>
   <p>锚点 <code>v200_t100_r0125_c1000</code> 在执行前固定。两个路线均须报告并通过锚点的 VOH/VOL、VM、最大增益、单位增益交点、非负噪声裕量及双边 50% 延迟；全部案例报告静态/动态供电功耗。路线差异完整保存但只作诊断。</p>
-  <p class="boundary">当前状态为 <code>contract_implemented/E0</code>。48 项零进程静态 checker 尚未执行，36 项 runner 和 29 项独立 checker 更未执行；正式电路网表、VTC、VOH/VOL、VM、增益、噪声容限、延迟和功耗结果均不存在。18/36 是合同计划量，不能写成电路仿真通过。</p>
+  <p class="boundary">R01 的 48 项零进程静态 checker 已唯一返回 46/48、E0/FAIL：<code>nor</code> 子串误命中 DC 节点 <code>NORM</code>，最终门连带失败；0 进程、0 网表。36 项 runner 和 29 项独立 checker 未执行，正式 VTC、VOH/VOL、VM、增益、噪声容限、延迟和功耗结果均不存在。R01 不重跑，R02 只可修正 token 匹配。</p>
   <p>[待填写INV/NAND/NOR/XOR、五级环振、全加器、版图、DRC/LVS、延迟和功耗]</p>
 </section>

@@ -1,0 +1,268 @@
+{
+  "schema_version": "1.0",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "C00",
+  "contract_id": "C00_ACTIVE_LOAD_INVERTER_R01",
+  "status": "FAIL",
+  "evidence_level": "E0",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "circuit_netlists_created": 0,
+  "simulator_processes_invoked": 0,
+  "config": {
+    "path": "config/c00_active_load_inverter_r01.json",
+    "sha256": "bad17ed448a0dac92e8158991f8f3427816259cbc01a60dc6549731da27eab82"
+  },
+  "checker": {
+    "path": "scripts/check_c00_active_load_inverter_r01_contract.py",
+    "sha256": "561ec0901f221aafb4700e3f3baeeab5e6ee9132d76c22b195bffd2ab60566b6"
+  },
+  "summary": {
+    "passed": 46,
+    "failed": 2,
+    "total": 48
+  },
+  "checks": [
+    {
+      "name": "identity:c00_active_load_inverter_r01",
+      "status": "PASS",
+      "detail": "contract=C00_ACTIVE_LOAD_INVERTER_R01 revision=1"
+    },
+    {
+      "name": "entry:m01_committed_teaching_model_closure",
+      "status": "PASS",
+      "detail": "decision=M01_TEACHING_MODEL_ONLY_PASS"
+    },
+    {
+      "name": "entry:t02_bidirectional_e2",
+      "status": "PASS",
+      "detail": "status=bidirectional_verified evidence=E2"
+    },
+    {
+      "name": "scope:igzo_only_n_type_two_device_inverter",
+      "status": "PASS",
+      "detail": "{\"active_material_scope\": \"IGZO only\", \"analyses\": [\"DC transfer\", \"transient switching\"], \"c01_or_later_permitted\": false, \"circuit\": \"two-device dual-gate active-load ratioed inverter\", \"dimension_source\": \"2D teaching TCAD compact-model bridge\", \"experimental_calibration_claim_permitted\": false, \"formal_c00_circuit\": true, \"hzo_or_ferroelectric_permitted\": false, \"laptop_target\": true, \"layout_or_pex_permitted\": false, \"physical_parameter_claim_permitted\": false, \"polarity\": \"n-type only\", \"resistor_load_permitted\": false, \"routes\": [\"ngspice\", \"GPL Xyce\"], \"sno_permitted\": false}"
+    },
+    {
+      "name": "scope:no_sno_hzo_or_downstream",
+      "status": "PASS",
+      "detail": "SnO/HZO/C01/layout/PEX/calibration disabled"
+    },
+    {
+      "name": "topology:exact_two_tft_port_mapping",
+      "status": "PASS",
+      "detail": "load D/TG/BG/S=VDD/V_TOP_LOAD/VDD/VOUT; driver=VOUT/VIN/0/0"
+    },
+    {
+      "name": "topology:frozen_geometry_and_ratio_rule",
+      "status": "PASS",
+      "detail": "Wdriver=60.0 L=10.0"
+    },
+    {
+      "name": "sweep:registered_p6_grids",
+      "status": "PASS",
+      "detail": "VDD=2, load-bias=3, ratio=3, Cload=2"
+    },
+    {
+      "name": "sweep:dc_grid_and_counts",
+      "status": "PASS",
+      "detail": "cases=18 points=101"
+    },
+    {
+      "name": "sweep:transient_grid_and_counts",
+      "status": "PASS",
+      "detail": "cases=36 step=5e-09"
+    },
+    {
+      "name": "sweep:anchor_preregistered_and_in_grid",
+      "status": "PASS",
+      "detail": "anchor=v200_t100_r0125/v200_t100_r0125_c1000"
+    },
+    {
+      "name": "sweep:registered_measurement_times",
+      "status": "PASS",
+      "detail": "second-cycle samples and crossings frozen"
+    },
+    {
+      "name": "extraction:static_metrics_complete",
+      "status": "PASS",
+      "detail": "VOH/VOL/VM/gain/VIL/VIH/NML/NMH/static power"
+    },
+    {
+      "name": "extraction:transient_metrics_complete",
+      "status": "PASS",
+      "detail": "tPHL/tPLH and second-period power"
+    },
+    {
+      "name": "extraction:missing_values_never_imputed",
+      "status": "PASS",
+      "detail": "Persist an empty CSV field plus an explicit extraction status; never impute a missing crossing."
+    },
+    {
+      "name": "acceptance:anchor_logic_and_gain_thresholds",
+      "status": "PASS",
+      "detail": "VOH/VOL/VM/gain/noise-margin thresholds frozen"
+    },
+    {
+      "name": "acceptance:anchor_transient_thresholds",
+      "status": "PASS",
+      "detail": "both routes require two output crossings and bounded delay"
+    },
+    {
+      "name": "acceptance:all_cases_and_power_reported",
+      "status": "PASS",
+      "detail": "all P6 cases retained"
+    },
+    {
+      "name": "acceptance:route_difference_diagnostic_only",
+      "status": "PASS",
+      "detail": "route differences reported without post-run tuning"
+    },
+    {
+      "name": "model:portable_candidate_hash_bound",
+      "status": "PASS",
+      "detail": "sha256=dd56c4c5b9f67d628eb2677705139769642b2e0eb66fca5b453b3cc6be351fd6 bytes=1103"
+    },
+    {
+      "name": "model:subcircuit_and_valid_domain",
+      "status": "PASS",
+      "detail": "subckt=IGZO_DG_BEHAVIORAL_R03_PORTABLE VDS<=0.2 V"
+    },
+    {
+      "name": "model:no_equation_or_native_model_overclaim",
+      "status": "PASS",
+      "detail": "portable behavioral teaching candidate"
+    },
+    {
+      "name": "tool:ngspice_hash_and_size",
+      "status": "PASS",
+      "detail": "path=/mnt/c/Users/ReachGao/.local/bin/ngspice sha256=820658317b0b54035208da41936fd6871ce924036e5ea4113a4168b821b7fc45 bytes=8300800"
+    },
+    {
+      "name": "tool:xyce_hash_and_size",
+      "status": "PASS",
+      "detail": "path=/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce sha256=e98dc88330b0dfd2439dfb19e0e5c108febfaaaee91c748e6e9e127e71afc93f bytes=75498456"
+    },
+    {
+      "name": "tool:open_source_route_identity",
+      "status": "PASS",
+      "detail": "ngspice 42 and GPL Xyce 7.10.0"
+    },
+    {
+      "name": "tool:four_exact_serial_argv",
+      "status": "PASS",
+      "detail": "ngspice DC/TRAN then Xyce DC/TRAN"
+    },
+    {
+      "name": "resource:four_process_laptop_budget",
+      "status": "PASS",
+      "detail": "{\"aimspice_processes\": 0, \"analyses_per_route\": 2, \"laptop_target\": true, \"layout_processes\": 0, \"max_serial_simulator_processes\": 4, \"ngspice_processes\": 2, \"parallel_simulator_processes\": 0, \"pex_processes\": 0, \"route_count\": 2, \"tcad_processes\": 0, \"xyce_processes\": 2}"
+    },
+    {
+      "name": "failure:exclusive_and_complete_retention",
+      "status": "PASS",
+      "detail": "exclusive outputs and immutable failures"
+    },
+    {
+      "name": "source:all_ascii_and_parseable",
+      "status": "PASS",
+      "detail": "four ASCII Python sources"
+    },
+    {
+      "name": "source:common_has_no_subprocess",
+      "status": "PASS",
+      "detail": "common is deterministic pure helper code"
+    },
+    {
+      "name": "source:contract_checker_has_no_subprocess",
+      "status": "PASS",
+      "detail": "static checker invokes zero processes"
+    },
+    {
+      "name": "source:runner_owns_process_execution",
+      "status": "PASS",
+      "detail": "subprocess_calls=1"
+    },
+    {
+      "name": "source:independent_has_no_process_or_runner_import",
+      "status": "PASS",
+      "detail": "independent checker duplicates regeneration and extraction"
+    },
+    {
+      "name": "netlist:four_ascii_in_memory_only",
+      "status": "PASS",
+      "detail": "no netlist file written"
+    },
+    {
+      "name": "netlist:dc_analysis_and_case_count",
+      "status": "PASS",
+      "detail": "18 DC cases and 36 IGZO devices per route"
+    },
+    {
+      "name": "netlist:transient_analysis_and_case_count",
+      "status": "PASS",
+      "detail": "36 transient cases and 72 IGZO devices per route"
+    },
+    {
+      "name": "netlist:exact_load_and_driver_connections",
+      "status": "PASS",
+      "detail": "generated lines bind load to VD/VT/VD/VO and driver to VO/VI/0/0"
+    },
+    {
+      "name": "netlist:forbidden_scopes_absent",
+      "status": "FAIL",
+      "detail": "forbidden=11"
+    },
+    {
+      "name": "netlist:route_specific_output_contract",
+      "status": "PASS",
+      "detail": "ngspice ASCII raw and Xyce fixed-column PRN"
+    },
+    {
+      "name": "outputs:unique_versioned_paths",
+      "status": "PASS",
+      "detail": "paths=30"
+    },
+    {
+      "name": "outputs:owned_directories_only",
+      "status": "PASS",
+      "detail": "C00-owned result/report namespaces"
+    },
+    {
+      "name": "outputs:no_future_artifact_before_static_check",
+      "status": "PASS",
+      "detail": "absent=28/28"
+    },
+    {
+      "name": "machine:implementation_state_before_static_check",
+      "status": "PASS",
+      "detail": "root=contract_implemented machine=contract_implemented"
+    },
+    {
+      "name": "machine:registered_counts_and_no_execution",
+      "status": "PASS",
+      "detail": "48/36/29, zero processes"
+    },
+    {
+      "name": "project:next_scope_static_contract_only",
+      "status": "PASS",
+      "detail": "run the 48-check static contract for C00 active-load inverter revision-1 after committing and pushing its implementation; do not create or execute a circuit netlist before that static PASS is committed"
+    },
+    {
+      "name": "boundary:no_circuit_evidence_or_downstream_claim",
+      "status": "PASS",
+      "detail": "static structure only; no circuit result"
+    },
+    {
+      "name": "registry:44_36_28",
+      "status": "PASS",
+      "detail": "{\"independent\": 29, \"runner\": 36, \"static_contract\": 48}"
+    },
+    {
+      "name": "result:static_contract_ready",
+      "status": "FAIL",
+      "detail": "pre_result_passed=46"
+    }
+  ],
+  "evidence_boundary": "A versioned IGZO-only C00 active-load inverter topology, scan, extraction, failure-retention and acceptance contract is structurally complete. No circuit netlist or numerical circuit result exists from this check.",
+  "next_gate": "Preserve and commit this static failure. Do not execute a circuit netlist or relax a threshold."
+}

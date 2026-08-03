@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=30782"
+      "detail": "bytes=30432"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=26391"
+      "detail": "bytes=26250"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=23481"
+      "detail": "bytes=23497"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=216231"
+      "detail": "bytes=217715"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4937"
+      "detail": "bytes=4803"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=128041"
+      "detail": "bytes=129157"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=72306"
+      "detail": "bytes=73295"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=62297"
+      "detail": "bytes=62973"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=141142"
+      "detail": "bytes=141960"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -3567,7 +3567,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "run the 48-check static contract for C00 active-load inverter revision-1 after committing and pushing its implementation; do not create or execute a circuit netlist before that static PASS is committed"
+      "detail": "preserve and commit the C00 active-load inverter revision-1 46/48 static checker failure, then establish revision-2 with token-safe forbidden-scope matching; do not execute a circuit netlist"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3637,7 +3637,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "run the 48-check static contract for C00 active-load inverter revision-1 after committing and pushing its implementation; do not create or execute a circuit netlist before that static PASS is committed"
+      "detail": "preserve and commit the C00 active-load inverter revision-1 46/48 static checker failure, then establish revision-2 with token-safe forbidden-scope matching; do not execute a circuit netlist"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3747,7 +3747,7 @@
     {
       "name": "c00_active_load_inverter_r01:versioned_contract_chain",
       "status": "PASS",
-      "detail": "implemented=True ready=False runner=False verified=False bindings=True"
+      "detail": "implemented=False failed=True ready=False runner=False verified=False bindings=True"
     },
     {
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",

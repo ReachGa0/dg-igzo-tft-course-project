@@ -1,11 +1,16 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`C00_R01_CONTRACT_IMPLEMENTED_STATIC_CHECK_NEXT`
+- 当前阶段：`C00_R01_STATIC_FAIL_R02_CONTRACT_NEXT`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R02 与 M01 只在冻结 IGZO 教学数值域内受限关闭，全部历史失败不可改写。C00 R01 已实现版本化合同和 48/36/29 三门，但仍是 E0；T02 entry evidence 只按真实 E2 登记。下一门先提交推送本实现，再唯一运行 48 项零进程静态合同。静态 PASS 状态另行提交前不得生成或运行正式电路网表，C01/C02/C03、版图、PEX 和 HZO 继续关闭。
+- 当前原则：C00 R01 静态合同唯一返回 46/48 E0/FAIL，主失败为 `nor` 子串误命中 DC 节点 `NORM`，最终门连带失败；0 进程、0 网表。R01 不重跑且全部运行权限继续为 false。下一门先提交失败，再以新 R02 命名空间只修正 token-safe 匹配，不改变拓扑、扫描、锚点、提取或验收阈值。
 
 ## 本次里程碑
+
+- [x] 实现提交 `4097b9d` 推送并与 `origin/main` 同步后，唯一运行 `make c00-active-load-inverter-r01-contract-check`，返回 46/48、E0/FAIL；报告 `results/reports/c00_active_load_inverter_contract_r01.json` SHA-256 为 `53f408e870e5f84993dd635cf95086c9b4db263ea5b8bead6cc2f5ed44a08493`。
+- [x] 唯一主失败 `netlist:forbidden_scopes_absent` 来自普通子串规则：禁止词 `nor` 命中 DC 控制节点 `NORM`；`result:static_contract_ready` 为派生失败。其余 46 项通过，未否定拓扑、模型、P6 网格、锚点、提取、阈值、资源或失败保留合同。
+- [x] 静态报告记录 `simulator_processes_invoked=0`、`circuit_netlists_created=0`，C00 结果目录、运行表、图和 runner/独立报告均不存在。R01 报告和源码冻结，不重跑；正式电路、C01+、版图、PEX 与 HZO 继续关闭。
+- [x] R01 失败登记后的 `make check` 为 764/764 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过；检查阶段没有启动模拟器或创建电路网表。
 
 - [x] 新增 `C00_ACTIVE_LOAD_INVERTER_R01` 配置、pure common、48 项零进程静态 checker、36 项未来 runner、29 项未来独立 checker 和三个 Make 入口；所有未来输出使用独立 C00 R01 命名空间并拒绝覆盖。
 - [x] 固定 2-TFT 双栅 IGZO 有源负载拓扑：驱动 `D/TG/BG/S=VOUT/VIN/0/0`，负载 `VDD/V_TOP_LOAD/VDD/VOUT`；`Wdriver=60 um`、`L=10 um`，负载宽度由 `Wload/Wdriver` 决定，不允许电阻负载进入正式结果。
@@ -261,4 +266,4 @@
 
 ## 下一步
 
-提交并推送 C00 R01 `contract_implemented/E0` 状态后，唯一运行 `make c00-active-load-inverter-r01-contract-check`。48/48 静态 PASS 状态另行提交前不生成或运行正式电路网表；R03、正式器件 DC R02 和根因 R02 不重跑，C01/C02/C03、版图、PEX 和 HZO 保持关闭。
+提交并推送 C00 R01 46/48 静态失败后，建立独立 C00 R02 合同，只将禁止范围扫描改为 ASCII 标识符整词匹配并绑定 R01 失败；R02 静态 PASS 状态另行提交前不生成或运行正式电路网表。C01/C02/C03、版图、PEX 和 HZO 保持关闭。
