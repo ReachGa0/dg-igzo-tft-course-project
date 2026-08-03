@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 建立 M01 Xyce R10 断言修复合同（未执行）
+
+### 用户目标与读取
+
+承接已提交的 R09 `34/36` 静态合同断言失败；不重跑 R09/R08/R07，不启动 TCAD、SPICE、Xyce runner、器件网表或任何下游阶段。读取 R09 配置、源文件、失败报告/日志哈希、`config/project.json`、`config/experiments.json`、`Makefile` 和项目级检查器。
+
+### 实施与边界
+
+建立 `config/m01_xyce_build_preflight_r10.json`、`scripts/m01_xyce_r10_common.py`、R10 静态 checker、runner 和独立持久化 checker，并注册三个 Make 入口。R10 继续绑定 R07 42/47、R08 30/36 和 R09 34/36 历史失败；只修正 R09 的历史归档白名单与 independent-check wording 断言，保留 IGZO-only、2D/laptop、Xyce 路径/哈希、`.prn` 解析、36/32/25 注册、失败保留和 no-downstream 边界。
+
+### 当前状态与下一步
+
+R10 静态合同尚未运行，R10 报告、runner/独立报告、输出目录、器件网表和数值结果均不存在。项目级检查器新增 R10 实施状态、R09 失败哈希绑定和未执行链检查；下一步提交并推送 R10 实施后，按门唯一运行 `make m01-xyce-build-preflight-r10-contract-check`。即使静态 PASS，也只表示工具/输出合同证据，不表示 Xyce runner、器件方程、物理参数、实验校准、正式 M01 或电路结果。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R09 静态合同断言失败
 
 ### 唯一执行与根因

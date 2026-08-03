@@ -93,9 +93,10 @@
       <tr><td>M01 Xyce R07 build/tool runner</td><td>沿用 R07 静态合同冻结的官方生成器和 R05 完整依赖树；serial 两任务源码构建 Xyce 7.10.0；先标量 B-source，再 parser-only</td><td>唯一运行 42/47、E0/FAIL。生成器、Xyce、版本/许可证和 B-source 命令成功；Xyce 实际输出 <code>.prn</code>，runner 预注册 <code>.csv</code> 导致 self-test 观察值为空并停止 parser-only。完整日志、manifest、二进制和安装树保留，独立检查未运行</td></tr>
       <tr><td>M01 Xyce R08 输出/parser 合同</td><td>绑定 R07 42/47 失败、真实提交和完整安装树；新根固定 Xyce 固定列 <code>.prn</code> 解析、1.25 V 自测、随后 IGZO 候选 <code>-syntax</code>，禁止重建与正式 DC</td><td>静态 checker 唯一执行在报告生成前因预期 36、实际注册 30 而 E0/FAIL；失败报告/日志保留，runner/独立检查未运行。不是器件曲线、物理参数、实验校准或 M01 结果</td></tr>
       <tr><td>M01 Xyce R09 输出/parser 合同</td><td>新命名空间只修正 R08 checker 注册表缺陷，继续绑定 R08 失败、R07 `.prn` 证据和完整安装树；冻结 36/32/25 项门，并新增失败归档、隔离和无进程静态审计</td><td>唯一静态执行 34/36、E0/FAIL；失败为复用黑名单和 next_gate 断言，报告/日志保留，无 R09 runner/独立检查、器件或数值输出。R10 需新命名空间修正这两项断言</td></tr>
+      <tr><td>M01 Xyce R10 输出/parser 合同</td><td>新命名空间绑定 R09 34/36、R08 30/36 与 R07 42/47 失败；只修正历史归档 allowlist 和 independent-check wording，保持 IGZO 候选、`.prn` 解析与 36/32/25 门不变</td><td>合同已实施，静态 checker 尚未运行，当前 E0。R10 报告/输出不存在，未启动 build、Xyce runner、器件网表或数值输出</td></tr>
     </tbody>
   </table>
-  <p class="boundary">M01 开源恢复合同为 30/30 E3，R01 构建/工具预检合同为 25/25 E3。R01 执行在 SuiteSparse BLAS 门以 runner 14/29、独立 9/20 失败；R02/R03/R04 静态合同分别以 22/25、21/25、25/26 失败。R05 静态合同 27/27 E3 后，runner 在生成器工具链门以 19/29 失败。R06 静态合同唯一返回 36/37；开发期 655/656、正式 36/37 和失败注册后的总检查 653/658 分别归档，均不是 Xyce 构建或器件失败。R07 静态合同唯一返回 39/39 E3，runner 唯一返回 42/47、E0/FAIL；R08 静态 checker 唯一因 36/30 注册表缺陷在报告前中止，R09 静态 checker 唯一返回 34/36、E0/FAIL，两个断言失败已归档；R10 需新命名空间修正，任何工具/parser 运行均保持关闭。</p>
+  <p class="boundary">M01 开源恢复合同为 30/30 E3，R01 构建/工具预检合同为 25/25 E3。R01 执行在 SuiteSparse BLAS 门以 runner 14/29、独立 9/20 失败；R02/R03/R04 静态合同分别以 22/25、21/25、25/26 失败。R05 静态合同 27/27 E3 后，runner 在生成器工具链门以 19/29 失败。R06 静态合同唯一返回 36/37；开发期 655/656、正式 36/37 和失败注册后的总检查 653/658 分别归档，均不是 Xyce 构建或器件失败。R07 静态合同唯一返回 39/39 E3，runner 唯一返回 42/47、E0/FAIL；R08 静态 checker 唯一因 36/30 注册表缺陷在报告前中止，R09 静态 checker 唯一返回 34/36、E0/FAIL，两个断言失败已归档；R10 已建立但静态 checker 尚未运行，任何工具/parser 运行均保持关闭。</p>
   <table>
     <thead><tr><th>T02-A/B/C 拓扑与偏压合同</th><th>实现</th><th>证据边界</th></tr></thead>
     <tbody>

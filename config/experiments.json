@@ -1478,7 +1478,7 @@
         "circuit_or_downstream_permitted": false,
         "result_paths": [],
         "artifact_hashes": {},
-        "next_gate": "Commit and push the R10 implementation, then run its 36-check static contract exactly once. Do not run the R10 tool/parser runner until that PASS state is committed."
+        "next_gate": "Commit and push the R10 implementation, then run its 36-check static contract exactly once. Do not run the R10 tool/parser runner or independent checker until that PASS state is committed."
       }
     },
     {

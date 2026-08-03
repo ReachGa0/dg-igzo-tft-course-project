@@ -4,7 +4,7 @@
 
 **基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK**
 
-S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R01 因 L=12 um holdout gm 相对误差 `0.512384 > 0.50` 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。纯源码 Xyce build/tool R01 合同为 25/25 静态 PASS、E3，但唯一执行在 SuiteSparse BLAS 门为 14/29、独立 9/20 E0/FAIL；R02/R03/R04 静态合同分别为 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同唯一运行 27/27 E3，随后 build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37、E0/FAIL并冻结。R07 静态合同 39/39 E3 后，build/tool runner 唯一返回 42/47、E0/FAIL：源码构建/安装与 B-source 命令本身成功，但 runner 将 Xyce 实际 `.prn` 输出当作 `.csv` 读取并停止 parser-only 门。R08 静态 checker 随后因预期 36、实际注册 30 而在报告生成前失败，失败报告/日志保留，R08 不重跑；R09 静态合同唯一返回 34/36、E0/FAIL，两个断言失败已归档，R09 不重跑；R10 尚未建立。无正式 M01 器件 DC 或数值输出，本机 AIM-Spice 因缺少可审计合法授权来源不再使用。G0 仍为 `TEACHING_BASELINE_ONLY`：实验标定、物理参数验证、正式 M01 器件 DC、电路和版图尚未完成。所有 `TODO/E0` 内容都不得写成已完成结果。
+S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R01 因 L=12 um holdout gm 相对误差 `0.512384 > 0.50` 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。纯源码 Xyce build/tool R01 合同为 25/25 静态 PASS、E3，但唯一执行在 SuiteSparse BLAS 门为 14/29、独立 9/20 E0/FAIL；R02/R03/R04 静态合同分别为 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同唯一运行 27/27 E3，随后 build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37、E0/FAIL并冻结。R07 静态合同 39/39 E3 后，build/tool runner 唯一返回 42/47、E0/FAIL：源码构建/安装与 B-source 命令本身成功，但 runner 将 Xyce 实际 `.prn` 输出当作 `.csv` 读取并停止 parser-only 门。R08 静态 checker 随后因预期 36、实际注册 30 而在报告生成前失败，失败报告/日志保留，R08 不重跑；R09 静态合同唯一返回 34/36、E0/FAIL，两个断言失败已归档，R09 不重跑；R10 已建立独立 36/32/25 合同但尚未运行静态门。无正式 M01 器件 DC 或数值输出，本机 AIM-Spice 因缺少可审计合法授权来源不再使用。G0 仍为 `TEACHING_BASELINE_ONLY`：实验标定、物理参数验证、正式 M01 器件 DC、电路和版图尚未完成。所有 `TODO/E0` 内容都不得写成已完成结果。
 
 ## 2. 为什么这个题目仍然成立
 
@@ -114,6 +114,7 @@ VTH = 0.21 V
 | M01 Xyce build/tool R06 合同失败 | E0/FAIL | 唯一静态检查 36/37；独立 checker 合法绑定 runner 路径，但静态 checker 错误要求该文件名不出现在源码中。其余 36 项通过；无构建、模拟器进程、器件网表或数值输出，报告不可改写 |
 | M01 Xyce build/tool R07 静态合同 | E3，39/39 PASS | 实施提交 `d421277` 后唯一检查；哈希绑定 R06 失败并修正 runner 路径断言，0 个构建/模拟器进程、无器件网表和数值输出。该 PASS 只打开 R07 build/tool 门 |
 | M01 Xyce build/tool R07 runner | E0，42/47 FAIL | M4/Bison/Flex、Xyce 7.10.0 安装、版本/许可证和 B-source 命令返回码通过；Xyce 实际写出 `.prn`，runner 预注册 `.csv` 导致 self-test 观察值为空，停止 parser-only。失败 artifacts 保留，独立检查未运行 |
+| M01 Xyce build/tool R08/R09/R10 静态合同链 | R08/R09 E0/FAIL；R10 未运行 | R08 30/36 注册缺陷与 R09 34/36 两项断言失败均已保留；R10 建立新 36/32/25 命名空间，只修正历史归档白名单和 independent wording，尚未运行静态合同。无 Xyce runner、器件网表、正式 M01 数值或下游证据 |
 | 有源负载逻辑电路 | E0 | 架构已定，待实现 |
 | IGZO 单管 GDS 外部基线 | E2 | 可复用，需迁入新教学 PDK |
 | 标准单元 DRC/LVS | E0 | 待实现 |
@@ -136,7 +137,7 @@ VTH = 0.21 V
 1. 冻结主 IGZO 数据集、单位和来源。
 2. T03-P1/P2/P3/P4/P5 数值五组已完成，bulk 与 contact 历史失败继续保留；不同时改变多个参数组。
 3. M00 R01 已唯一运行并保持 E0/FAIL；R02 已完成 24/24 runner E2 和 20/20 独立检查 E3，原 split/阈值不改，M00 仅在冻结教学数值域内关闭。
-4. M01 revision-3 双轨合同已通过静态门，但原 AIM-Spice 路线在 R01 工具/来源门失败并因授权来源不可审计永久排除；开源恢复合同 30/30、E3 冻结 ngspice + 纯源码 GPL Xyce 7.10.0 路线和同一 IGZO 行为候选。Xyce build/tool R01 执行在 SuiteSparse BLAS 门以 14/29、独立 9/20 失败，R02/R03/R04 静态合同又分别以 22/25、21/25、25/26 在 checker 门失败；R05 合同 27/27 E3 后 runner 以 19/29 在 M4/Bison/Flex 生成器门失败。R06 静态合同 36/37 E0/FAIL 已冻结；R07 静态合同 39/39 E3 后 runner 以 42/47 E0/FAIL 暴露 `.prn`/`.csv` 输出合同缺陷；R08 静态 checker 又以 30/36 在报告前失败并归档；R09 静态 checker 唯一返回 34/36 E0/FAIL，两个合同断言失败已保留。下一步建立 R10 新 parser 合同后唯一运行其 36 项静态门；不得重跑 R07/R08/R09，正式 M01 器件 DC 和独立检查继续关闭。
+4. M01 revision-3 双轨合同已通过静态门，但原 AIM-Spice 路线在 R01 工具/来源门失败并因授权来源不可审计永久排除；开源恢复合同 30/30、E3 冻结 ngspice + 纯源码 GPL Xyce 7.10.0 路线和同一 IGZO 行为候选。Xyce build/tool R01 执行在 SuiteSparse BLAS 门以 14/29、独立 9/20 失败，R02/R03/R04 静态合同又分别以 22/25、21/25、25/26 在 checker 门失败；R05 合同 27/27 E3 后 runner 以 19/29 在 M4/Bison/Flex 生成器门失败。R06 静态合同 36/37 E0/FAIL 已冻结；R07 静态合同 39/39 E3 后 runner 以 42/47 E0/FAIL 暴露 `.prn`/`.csv` 输出合同缺陷；R08 静态 checker 又以 30/36 在报告前失败并归档；R09 静态 checker 唯一返回 34/36 E0/FAIL，两个合同断言失败已保留；R10 新 parser 合同已建立但静态门尚未运行。下一步提交 R10 实施后唯一运行其 36 项静态门；不得重跑 R07/R08/R09，正式 M01 器件 DC 和独立检查继续关闭。
 5. 只做一个完整 C00 反相器。
 6. 对同一个 INV 建立 GDS、DRC 和几何 LVS 最小闭环。
 7. 扩展基础门、环振和全加器。
