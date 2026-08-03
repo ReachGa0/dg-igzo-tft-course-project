@@ -1512,9 +1512,9 @@
         "next_gate": "Preserve and commit the R10 runner Unicode-path failure without rerunning R10, then establish revision-11 with a new path-safe parser namespace."
       },
       "xyce_build_preflight_r11": {
-        "status": "contract_ready",
+        "status": "preflight_passed",
         "revision": 11,
-        "current_evidence": "E3",
+        "current_evidence": "E2",
         "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R11",
         "contract_path": "config/m01_xyce_build_preflight_r11.json",
         "contract_checker_path": "scripts/check_m01_xyce_build_preflight_r11_contract.py",
@@ -1526,7 +1526,13 @@
         "expected_runner_check_count": 32,
         "expected_independent_check_count": 25,
         "formal_run_completed": false,
-        "preflight_run_completed": false,
+        "preflight_run_completed": true,
+        "preflight_run_ordinal": 1,
+        "preflight_status": "PASS",
+        "build_status": "REUSED_HASH_BOUND_R07_INSTALL",
+        "runner_checks_passed": 32,
+        "runner_checks_failed": 0,
+        "process_invocations": 4,
         "contract_check_completed": true,
         "contract_status": "PASS",
         "contract_checks_passed": 36,
@@ -1536,7 +1542,7 @@
         "ngspice_invoked": false,
         "aimspice_invoked": false,
         "build_processes_invoked": 0,
-        "simulator_processes_invoked": 0,
+        "simulator_processes_invoked": 4,
         "r10_runner_failure_preserved": true,
         "r10_failure_bound_commit": "63be6a45e583b61027b18614cec4f83ce93848ad",
         "r10_failure_archive_paths": [
@@ -1556,13 +1562,43 @@
         "r07_independent_checker_run": false,
         "proprietary_binary_accepted": false,
         "circuit_or_downstream_permitted": false,
+        "device_syntax_only_invoked": true,
+        "formal_device_dc_invoked": false,
+        "controlled_bsource_self_test_invoked": true,
+        "observed_self_test_value_v": 1.25,
         "result_paths": [
-          "results/reports/m01_xyce_build_preflight_contract_r11.json"
+          "results/reports/m01_xyce_build_preflight_contract_r11.json",
+          "results/reports/m01_xyce_build_preflight_r11.json",
+          "results/compact/m01_xyce_build_preflight_r11/preflight.log",
+          "results/compact/m01_xyce_build_preflight_r11/reuse_manifest.json",
+          "results/compact/m01_xyce_build_preflight_r11/execution_manifest.json",
+          "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.cir",
+          "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.log",
+          "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.prn",
+          "results/compact/m01_xyce_build_preflight_r11/xyce_version.log",
+          "results/compact/m01_xyce_build_preflight_r11/xyce_license.log",
+          "results/compact/m01_xyce_build_preflight_r11/xyce_bsource_self_test.log",
+          "results/compact/m01_xyce_build_preflight_r11/device_syntax.cir",
+          "results/compact/m01_xyce_build_preflight_r11/device_syntax.log",
+          "results/compact/m01_xyce_build_preflight_r11/xyce_device_syntax.log"
         ],
         "artifact_hashes": {
-          "contract_report_sha256": "73ebc2bd650411e91d7bb704a8d2b26938f47e1a0d83332fd1f5b9e37164e400"
+          "contract_report_sha256": "73ebc2bd650411e91d7bb704a8d2b26938f47e1a0d83332fd1f5b9e37164e400",
+          "preflight_report_sha256": "cfe369d5df97217499f207701836447f784f5dbc201ad33b01a0b1765841d552",
+          "preflight_log_sha256": "7f00f4c140732611e26a9f4ecd41b0a9c5d65928a841978a67acc4839e45acb8",
+          "reuse_manifest_sha256": "f7b995037d6be62153e5d0dde070c4085b539683a8a7b0fa5705f5c8423d9575",
+          "execution_manifest_sha256": "c6fb008841ffc7f1168b20cdfdf2844e0af42cb5bb02df1ff7d937fd9db3e047",
+          "self_test_netlist_sha256": "01584f2b7d50d4ddf6b05b8374e239fadffe95a672d7b47971bdead55b2dd8c9",
+          "self_test_log_sha256": "9ac92245115e3072800d7b6a0c69931f34cf0a814847bae53aca69186356509d",
+          "self_test_output_sha256": "074048f03f02dd937590b060c2568ae63d6969203dda0cd7d885093476f74d36",
+          "device_syntax_netlist_sha256": "a1e66b301ba2bc48ef9c03482aa72f32502e46e2bd65e2d8ef1e30bef5a12644",
+          "device_syntax_log_sha256": "ac5855452a737f7f1fbcc9feb314ac75b290806bf654eae6a848a283611a9a60",
+          "xyce_version_log_sha256": "22f68108af5f4f605001b97c5bebd0f8170d8c1b0018e7b28b4fa51b7390dad1",
+          "xyce_license_log_sha256": "c8d47a1de41711c8944b93cb9923f7fcfdeef8604595a75727e298c7bf06edfc",
+          "xyce_bsource_self_test_log_sha256": "16a363ef484e43c2c70999f10ca058436b32ca5536851182d18e51d8a9e417e7",
+          "xyce_device_syntax_log_sha256": "5975657f6b6c2721ebab1269f9c9c332f715925527de4587581a3f774630f777"
         },
-        "next_gate": "Commit and push the R11 36/36 E3 static PASS, then execute the 32-check tool/parser runner exactly once. Do not run the independent checker unless the runner passes and that PASS state is committed."
+        "next_gate": "Commit and push the R11 32/32 E2 runner PASS, then run the 25-check independent persisted-evidence checker exactly once. Do not run formal M01 device DC until that independent PASS is committed."
       }
     },
     {

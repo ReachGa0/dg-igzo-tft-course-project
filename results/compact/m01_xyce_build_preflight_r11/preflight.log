@@ -1,0 +1,17 @@
+M01 Xyce output/parser recovery preflight R11
+build_invoked=false
+generator_build_invoked=false
+dependency_rebuild_invoked=false
+ngspice_invoked=false
+aimspice_invoked=false
+formal_device_dc_invoked=false
+r07_failure_reused=false
+r10_failure_preserved=true
+r10_runner_rerun=false
+parser_include_path_mode=repository_relative_ascii
+r07_complete_generator_prefix_reused=true
+r07_complete_xyce_prefix_reused=true
+checks_passed=32/32
+preflight_status=PASS
+build_invoked=false
+formal_device_dc_invoked=false

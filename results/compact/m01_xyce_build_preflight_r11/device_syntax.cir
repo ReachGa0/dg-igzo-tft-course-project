@@ -1,0 +1,9 @@
+* R11 parser-only frozen IGZO candidate; no numerical solve
+.include "spice/models/igzo_dg_behavioral_r02.inc"
+VDS D S 0.1
+VTG TG S 0.5
+VBG BG S 0
+XIGZO D TG BG S IGZO_DG_BEHAVIORAL_R02
+.DC VTG 0.5 0.5 1
+.PRINT DC FORMAT=CSV V(TG) I(VDS)
+.END

@@ -272,6 +272,19 @@ REQUIRED_FILES = [
     "scripts/run_m01_xyce_build_preflight_r11.py",
     "scripts/check_m01_xyce_build_preflight_r11.py",
     "results/reports/m01_xyce_build_preflight_contract_r11.json",
+    "results/reports/m01_xyce_build_preflight_r11.json",
+    "results/compact/m01_xyce_build_preflight_r11/preflight.log",
+    "results/compact/m01_xyce_build_preflight_r11/reuse_manifest.json",
+    "results/compact/m01_xyce_build_preflight_r11/execution_manifest.json",
+    "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.cir",
+    "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.log",
+    "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.prn",
+    "results/compact/m01_xyce_build_preflight_r11/xyce_version.log",
+    "results/compact/m01_xyce_build_preflight_r11/xyce_license.log",
+    "results/compact/m01_xyce_build_preflight_r11/xyce_bsource_self_test.log",
+    "results/compact/m01_xyce_build_preflight_r11/device_syntax.cir",
+    "results/compact/m01_xyce_build_preflight_r11/device_syntax.log",
+    "results/compact/m01_xyce_build_preflight_r11/xyce_device_syntax.log",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -782,6 +795,8 @@ def main() -> int:
             "execute M01 Xyce build/tool preflight revision-11"
         ) or current_next_scope.startswith(
             "preserve and commit the M01 Xyce build/tool preflight revision-11"
+        ) or current_next_scope.startswith(
+            "run independent persisted-evidence checker for M01 Xyce build/tool preflight revision-11"
         )
         dependencies_valid = all(
             set(item.get("depends_on", [])) <= set(experiment_map)
@@ -7165,6 +7180,8 @@ def main() -> int:
             and r08_next_scope.startswith(
                 "preserve and commit the M01 Xyce build/tool preflight revision-11"
             )
+        ) or (
+            r08_failed_state and r08_scope_active
         )
         r08_runner_source = m01_xyce_r08_runner_path.read_text(encoding="utf-8")
         r08_checker_source = m01_xyce_r08_checker_path.read_text(encoding="utf-8")
@@ -7385,6 +7402,8 @@ def main() -> int:
             and r09_next_scope.startswith(
                 "preserve and commit the M01 Xyce build/tool preflight revision-11"
             )
+        ) or (
+            r09_failed_state and r08_scope_active
         )
         add_check(
             checks,
@@ -7756,6 +7775,8 @@ def main() -> int:
             and r10_next_scope.startswith(
                 "preserve and commit the M01 Xyce build/tool preflight revision-11"
             )
+        ) or (
+            r10_failed_state and r08_scope_active
         )
         add_check(
             checks,
@@ -7945,6 +7966,93 @@ def main() -> int:
             and r11_machine.get("artifact_hashes", {}).get("contract_report_sha256")
             == sha256(m01_xyce_r11_contract_report_path)
         )
+        m01_xyce_r11_runner_report_path = ROOT / r11_outputs["preflight_report"]
+        r11_runner_report = (
+            json.loads(m01_xyce_r11_runner_report_path.read_text(encoding="utf-8"))
+            if m01_xyce_r11_runner_report_path.is_file()
+            else {}
+        )
+        r11_runner_summary = r11_runner_report.get("summary", {})
+        r11_runner_output_paths = [
+            ROOT / value
+            for key, value in r11_outputs.items()
+            if key
+            not in {
+                "contract_report",
+                "run_directory",
+                "preflight_report",
+                "device_syntax_output",
+                "independent_check_report",
+            }
+        ]
+        r11_runner_pass_state = (
+            r11_static_pass
+            and r11_machine.get("status") == "preflight_passed"
+            and r11_machine.get("revision") == 11
+            and r11_machine.get("current_evidence") == "E2"
+            and r11_machine.get("contract_check_completed") is True
+            and r11_machine.get("contract_status") == "PASS"
+            and r11_machine.get("contract_checks_passed") == 36
+            and r11_machine.get("contract_checks_failed") == 0
+            and r11_machine.get("preflight_run_completed") is True
+            and r11_machine.get("preflight_run_ordinal") == 1
+            and r11_machine.get("preflight_status") == "PASS"
+            and r11_machine.get("runner_checks_passed") == 32
+            and r11_machine.get("runner_checks_failed") == 0
+            and r11_machine.get("process_invocations") == 4
+            and r11_machine.get("device_syntax_only_invoked") is True
+            and r11_machine.get("formal_device_dc_invoked") is False
+            and r11_machine.get("observed_self_test_value_v") == 1.25
+            and r11_machine.get("result_paths")
+            == [
+                "results/reports/m01_xyce_build_preflight_contract_r11.json",
+                "results/reports/m01_xyce_build_preflight_r11.json",
+                "results/compact/m01_xyce_build_preflight_r11/preflight.log",
+                "results/compact/m01_xyce_build_preflight_r11/reuse_manifest.json",
+                "results/compact/m01_xyce_build_preflight_r11/execution_manifest.json",
+                "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.cir",
+                "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.log",
+                "results/compact/m01_xyce_build_preflight_r11/bsource_self_test.prn",
+                "results/compact/m01_xyce_build_preflight_r11/xyce_version.log",
+                "results/compact/m01_xyce_build_preflight_r11/xyce_license.log",
+                "results/compact/m01_xyce_build_preflight_r11/xyce_bsource_self_test.log",
+                "results/compact/m01_xyce_build_preflight_r11/device_syntax.cir",
+                "results/compact/m01_xyce_build_preflight_r11/device_syntax.log",
+                "results/compact/m01_xyce_build_preflight_r11/xyce_device_syntax.log",
+            ]
+            and r11_machine.get("artifact_hashes", {}).get("preflight_report_sha256")
+            == sha256(m01_xyce_r11_runner_report_path)
+            and r11_runner_report.get("status") == "PASS"
+            and r11_runner_report.get("preflight_status") == "PASS"
+            and r11_runner_report.get("evidence_level") == "E2"
+            and len(r11_runner_report.get("checks", [])) == 32
+            and all(item.get("status") == "PASS" for item in r11_runner_report.get("checks", []))
+            and r11_runner_report.get("config", {}).get("sha256")
+            == sha256(m01_xyce_r11_config_path)
+            and r11_runner_report.get("runner", {}).get("sha256")
+            == sha256(m01_xyce_r11_runner_path)
+            and r11_runner_summary.get("process_invocations") == 4
+            and r11_runner_summary.get("build_processes_invoked") == 0
+            and r11_runner_summary.get("generator_build_invoked") is False
+            and r11_runner_summary.get("dependency_rebuild_invoked") is False
+            and r11_runner_summary.get("ngspice_invoked") is False
+            and r11_runner_summary.get("aimspice_invoked") is False
+            and r11_runner_summary.get("controlled_bsource_self_test_invoked") is True
+            and r11_runner_summary.get("device_syntax_only_invoked") is True
+            and r11_runner_summary.get("formal_device_dc_invoked") is False
+            and r11_runner_summary.get("formal_m01_outputs_created") is False
+            and r11_runner_summary.get("r10_failure_preserved") is True
+            and r11_runner_summary.get("r10_runner_rerun") is False
+            and r11_runner_summary.get("parser_include_path_mode") == "repository_relative_ascii"
+            and {item.get("name") for item in r11_runner_report.get("commands", [])}
+            == {"xyce_version", "xyce_license", "xyce_bsource_self_test", "xyce_device_syntax"}
+            and len(r11_runner_report.get("commands", [])) == 4
+            and all(item.get("returncode") == 0 for item in r11_runner_report.get("commands", []))
+            and all(path.is_file() for path in r11_runner_output_paths)
+            and (ROOT / r11_outputs["run_directory"]).is_dir()
+            and not (ROOT / r11_outputs["device_syntax_output"]).exists()
+            and not (ROOT / r11_outputs["independent_check_report"]).exists()
+        )
         r11_runner_source = m01_xyce_r11_runner_path.read_text(encoding="utf-8")
         r11_checker_source = m01_xyce_r11_checker_path.read_text(encoding="utf-8")
         r11_contract_source = m01_xyce_r11_contract_checker_path.read_text(encoding="utf-8")
@@ -7960,6 +8068,11 @@ def main() -> int:
         ) or (
             r11_ready_state
             and r11_next_scope.startswith("execute M01 Xyce build/tool preflight revision-11")
+        ) or (
+            r11_runner_pass_state
+            and r11_next_scope.startswith(
+                "run independent persisted-evidence checker for M01 Xyce build/tool preflight revision-11"
+            )
         )
         r11_expected_archive_paths = [
             r11_r10["static_contract_report_path"],
@@ -7976,9 +8089,17 @@ def main() -> int:
             and r11_config.get("scope", {}).get("active_material_scope") == "IGZO only"
             and r11_config.get("scope", {}).get("formal_m01_numerical_run") is False
             and r11_config.get("scope", {}).get("circuit_or_downstream_permitted") is False
-            and (r11_machine_planned or r11_ready_state)
+            and (r11_machine_planned or r11_ready_state or r11_runner_pass_state)
             and (not r11_contract_exists if r11_machine_planned else r11_contract_exists)
-            and all(not path.exists() for path in r11_future_paths)
+            and (
+                (r11_machine_planned or r11_ready_state)
+                and all(not path.exists() for path in r11_future_paths)
+                or r11_runner_pass_state
+                and all(path.exists() for path in r11_runner_output_paths)
+                and (ROOT / r11_outputs["run_directory"]).is_dir()
+                and not (ROOT / r11_outputs["device_syntax_output"]).exists()
+                and not (ROOT / r11_outputs["independent_check_report"]).exists()
+            )
             and all(not path.exists() for path in r11_formal_paths)
             and r11_r10_binding_ok
             and r11_machine.get("r10_runner_failure_preserved") is True
@@ -8017,17 +8138,18 @@ def main() -> int:
             and r11_machine.get("ngspice_invoked") is False
             and r11_machine.get("aimspice_invoked") is False
             and r11_machine.get("build_processes_invoked") == 0
-            and r11_machine.get("simulator_processes_invoked") == 0
+            and r11_machine.get("simulator_processes_invoked")
+            == (4 if r11_runner_pass_state else 0)
             and r11_machine.get("device_netlist_invoked") is False
             and r11_machine.get("numerical_outputs_created") is False
             and r11_machine.get("proprietary_binary_accepted") is False
             and r11_machine.get("circuit_or_downstream_permitted") is False
-            and "not parser execution"
+            and "no formal device DC"
             in config.get("tcad_track", {}).get(
                 "m01_xyce_build_preflight_r11_contract_boundary", ""
             )
             and r11_next_scope_valid,
-            f"planned={r11_machine_planned} ready={r11_ready_state} "
+            f"planned={r11_machine_planned} ready={r11_ready_state} runner={r11_runner_pass_state} "
             f"r10_binding={r11_r10_binding_ok} "
             f"future_absent={sum(not path.exists() for path in r11_future_paths)}/{len(r11_future_paths)}",
         )

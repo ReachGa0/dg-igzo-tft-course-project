@@ -1,0 +1,66 @@
+{
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R11",
+  "commands": [
+    {
+      "name": "xyce_version",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-v"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.025186615001075552,
+      "log_path": "results/compact/m01_xyce_build_preflight_r11/xyce_version.log",
+      "log_sha256": "22f68108af5f4f605001b97c5bebd0f8170d8c1b0018e7b28b4fa51b7390dad1"
+    },
+    {
+      "name": "xyce_license",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-license"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0036499630004982464,
+      "log_path": "results/compact/m01_xyce_build_preflight_r11/xyce_license.log",
+      "log_sha256": "c8d47a1de41711c8944b93cb9923f7fcfdeef8604595a75727e298c7bf06edfc"
+    },
+    {
+      "name": "xyce_bsource_self_test",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-l",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/bsource_self_test.log",
+        "-o",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/bsource_self_test",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/bsource_self_test.cir"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.031599580999682075,
+      "log_path": "results/compact/m01_xyce_build_preflight_r11/xyce_bsource_self_test.log",
+      "log_sha256": "16a363ef484e43c2c70999f10ca058436b32ca5536851182d18e51d8a9e417e7"
+    },
+    {
+      "name": "xyce_device_syntax",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-syntax",
+        "-l",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/device_syntax.log",
+        "-o",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/device_syntax",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/device_syntax.cir"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.028533031001643394,
+      "log_path": "results/compact/m01_xyce_build_preflight_r11/xyce_device_syntax.log",
+      "log_sha256": "5975657f6b6c2721ebab1269f9c9c332f715925527de4587581a3f774630f777"
+    }
+  ]
+}

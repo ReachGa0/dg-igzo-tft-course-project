@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_R11_PATH_SAFE_STATIC_CONTRACT_PASS_E3_NEXT_RUNNER`
+- 当前阶段：`M01_R11_RUNNER_PASS_E2_NEXT_INDEPENDENT_CHECK`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同 27/27 E3 后，build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37 E0/FAIL并冻结。R07 静态合同 39/39 E3 后，build/tool runner 唯一运行 42/47 E0/FAIL：M4/Bison/Flex、Xyce 安装、版本/许可证和 B-source 进程均通过，但 runner 误把 Xyce 实际 `.prn` 输出预注册为 `.csv`，停止在 parser-only 门前。R08 静态合同唯一执行在报告生成前因 checker 预期 36 项、实际注册 30 项而中止；R09 静态合同唯一返回 34/36、E0/FAIL。R10 静态合同唯一返回 36/36 PASS、E3；其 runner 随后唯一运行并在前三个 Xyce 工具命令通过后，以中文绝对路径无法按 ASCII 写入 parser-only 网表的 `UnicodeEncodeError` 停止。R10 仅执行 3 个工具进程，B-source 固定列 `.prn` 观测为 1.25 V；没有启动 parser-only、正式器件 DC、ngspice、AIM-Spice 或下游进程。部分目录和零字节 `device_syntax.cir` 均已保留，R10 不重跑。R11 已建立独立 config/common/static-checker/runner/independent-checker 和输出命名空间，只把冻结 IGZO candidate 的 `.include` 改为仓库相对 ASCII 路径并固定 project-root cwd；R10 报告、日志和 8 文件部分树按 SHA-256 绑定。实施提交 `f64dc16` 推送后，R11 静态合同唯一返回 36/36 PASS、E3，记录 0 个 build/simulator process、无器件网表和数值输出；runner 与独立检查仍未运行。C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同 27/27 E3 后，build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37 E0/FAIL并冻结。R07 静态合同 39/39 E3 后，build/tool runner 唯一运行 42/47 E0/FAIL：M4/Bison/Flex、Xyce 安装、版本/许可证和 B-source 进程均通过，但 runner 误把 Xyce 实际 `.prn` 输出预注册为 `.csv`，停止在 parser-only 门前。R08 静态合同唯一执行在报告生成前因 checker 预期 36 项、实际注册 30 项而中止；R09 静态合同唯一返回 34/36、E0/FAIL。R10 静态合同唯一返回 36/36 PASS、E3；其 runner 随后唯一运行并在前三个 Xyce 工具命令通过后，以中文绝对路径无法按 ASCII 写入 parser-only 网表的 `UnicodeEncodeError` 停止。R10 仅执行 3 个工具进程，B-source 固定列 `.prn` 观测为 1.25 V；没有启动 parser-only、正式器件 DC、ngspice、AIM-Spice 或下游进程。部分目录和零字节 `device_syntax.cir` 均已保留，R10 不重跑。R11 静态合同唯一返回 36/36 PASS、E3；随后唯一 runner 返回 32/32 PASS、E2，执行 4 个允许的 Xyce 工具/parser 进程，B-source 观测 1.25 V，仓库相对 ASCII include 的 parser-only syntax 通过。没有构建、正式器件 DC、ngspice、AIM-Spice 或下游进程；独立检查尚未运行。R11 runner 报告、日志、manifest、`.prn` 和 parser 输入均按 SHA-256 保留，正式 M01、C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -37,10 +37,12 @@
 - [x] R11 路径安全合同实施已建立但尚未执行：新增独立配置、公共哈希/固定列解析模块、36 项静态 checker、32 项 runner、25 项独立 checker 和三个 Make 入口。R11 绑定提交 `63be6a4` 下的 R10 配置/源码/36/36 报告/Unicode 失败报告与日志/8 文件部分树；唯一实现变化是用 `spice/models/igzo_dg_behavioral_r02.inc` 仓库相对 ASCII include 配合 project-root cwd，禁止绝对工程路径。所有 R11 输出和正式 M01 输出仍不存在，未启动 build、Xyce、ngspice、AIM-Spice、器件或下游进程。
 - [x] R11 实施状态的项目总检查为 700/700 PASS，报告结构检查为 12 章、5 附录、15 个既有占位、26 张图片 PASS；三个 JSON 与五个 Python 文件语法检查通过。该实施里程碑提交前没有运行 R11 正式静态合同。
 - [x] R11 实施提交 `f64dc16` 推送并确认与 `origin/main` 同步后，36 项纯静态合同唯一执行并返回 36/36 PASS、E3；报告 `results/reports/m01_xyce_build_preflight_contract_r11.json` 的 SHA-256 为 `73ebc2bd650411e91d7bb704a8d2b26938f47e1a0d83332fd1f5b9e37164e400`。它验证 R10 不可变归档、路径安全 include、36/32/25 注册和 no-execution 门，记录 0 个 build/simulator process、无器件网表/数值输出；R11 runner/独立 checker 未运行。
+- [x] R11 runner 在静态 PASS 提交 `b38b319` 推送后唯一运行：`make m01-xyce-build-preflight-r11` 返回 32/32 PASS、E2。版本、许可证、控制 B-source 自测和仓库相对 ASCII include 的 `-syntax` 检查共 4 个 Xyce 工具/parser 进程均返回 0，固定列 `.prn` 观测为 1.25 V；没有构建、正式器件 DC、ngspice、AIM-Spice 或下游进程。报告 `results/reports/m01_xyce_build_preflight_r11.json` SHA-256 为 `cfe369d5df97217499f207701836447f784f5dbc201ad33b01a0b1765841d552`，全部 runner 输出保留，独立检查尚未运行。
+- [x] 注册 R11 runner PASS 后，`make check` 为 714/714 PASS，`make report-check` 为 12 章、5 附录、15 个占位符、26 张图片 PASS，`git diff --check` 通过；这些检查没有启动任何新仿真。
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送 R11 36/36 E3 静态 PASS 状态，然后唯一运行 32 项工具/parser runner；只有 runner PASS 状态再次提交并推送后才允许 25 项独立检查。R10/R09/R08/R07 及其 runner/独立检查均不重跑；正式 M01 器件 DC 和下游继续关闭。
+- 下一步：提交并推送 R11 32/32 E2 runner PASS 状态，然后唯一运行 25 项独立落盘检查；只有独立 E3 PASS 状态再次提交并推送后才建立正式 M01 两路线器件 DC 合同。R10/R09/R08/R07 及其 runner/独立检查均不重跑；正式 M01 器件 DC、SPICE 电路和下游继续关闭。
 - M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败、28/30 干跑失败和 R10 runner 失败均保留。
 

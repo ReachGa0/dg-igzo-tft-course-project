@@ -1,0 +1,48 @@
+{
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R11",
+  "r07_failure_report": {
+    "path": "results/reports/m01_xyce_build_preflight_r07.json",
+    "sha256": "7e2c17794b013c9928e3b707c674d3da4413c98aa2ab4ec25d2d145856d0a6e6"
+  },
+  "r10_failure_archive": {
+    "bound_commit": "63be6a45e583b61027b18614cec4f83ce93848ad",
+    "static_contract_report": {
+      "path": "results/reports/m01_xyce_build_preflight_contract_r10.json",
+      "sha256": "a7dbcf6d639897f6648d25a151d3a29c48c3dc352992a7872104b684b29fe785"
+    },
+    "runner_failure_report": {
+      "path": "results/reports/m01_xyce_build_preflight_r10_runner_unicode_path_failed.json",
+      "sha256": "90e47fc91d58330faa7c53107d19579d51990eb8f17ba05a38d66b931bb40e16"
+    },
+    "partial_run_directory": "results/compact/m01_xyce_build_preflight_r10",
+    "partial_run_tree": {
+      "regular_file_count": 8,
+      "symlink_count": 0,
+      "total_regular_bytes": 5971,
+      "tree_sha256": "5a3d1ac4ff62848fb7132db9211a6281a477b43900e87ddfe6047f6da9fef85e"
+    },
+    "runner_rerun": false
+  },
+  "generator_prefix": {
+    "path": "/home/reachgao/.local/m01-generator-toolchain-r07",
+    "digest": {
+      "regular_file_count": 269,
+      "symlink_count": 3,
+      "total_regular_bytes": 8713323,
+      "tree_sha256": "fa3d78e39aa7b55608c2dfd85587e6c2778e5d9e0e54aeb54838db017e558a47"
+    }
+  },
+  "xyce_prefix": {
+    "path": "/home/reachgao/.local/xyce-7.10-pure-r07",
+    "digest": {
+      "regular_file_count": 131,
+      "symlink_count": 0,
+      "total_regular_bytes": 184088267,
+      "tree_sha256": "09b9805db763a6ce93666ad0f63c4e7378d5d1dd756895d91ff615681a417db4"
+    }
+  },
+  "xyce_binary": {
+    "path": "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+    "sha256": "e98dc88330b0dfd2439dfb19e0e5c108febfaaaee91c748e6e9e127e71afc93f"
+  }
+}

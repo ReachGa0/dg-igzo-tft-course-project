@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 Xyce R11 runner 32/32 PASS
+
+### 唯一执行与结果
+
+静态合同 PASS 已在提交 `b38b319` 推送并与 `origin/main` 同步。随后唯一执行 `make m01-xyce-build-preflight-r11`，R11 runner 返回 32/32 PASS、E2；4 个允许的 Xyce 工具/parser 进程（版本、许可证、控制 B-source、相对路径 `-syntax`）均返回 0，固定列 `.prn` 自测观测为 1.25 V。报告 `results/reports/m01_xyce_build_preflight_r11.json` 的 SHA-256 为 `cfe369d5df97217499f207701836447f784f5dbc201ad33b01a0b1765841d552`。
+
+### 证据与边界
+
+runner 验证了 hash-bound R07 Xyce 安装、冻结 IGZO candidate、仓库相对 ASCII include、project-root cwd、B-source 输出解析和 parser-only syntax；报告、日志、manifest、`.prn` 与 parser 输入全部保留。没有构建、正式器件 DC、ngspice、AIM-Spice、数值 M01 或下游进程。E2 仅是工具/parser 预检证据，不是 IGZO 方程/器件曲线、物理参数、实验校准、正式 M01、SPICE 或电路结果。
+
+### 下一门
+
+登记 runner PASS 后，`make check` 返回 714/714 PASS，`make report-check` 返回 12 章、5 附录、15 个占位符、26 张图片 PASS，`git diff --check` 通过。先提交并推送本状态，再唯一运行 `make m01-xyce-build-preflight-r11-check`。独立检查前不运行 formal M01；R10 与更早 revision 不重跑，P3、P5、SPICE、电路、版图、PEX 和 HZO 继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 Xyce R11 静态合同 36/36 PASS
 
 ### 唯一执行与结果

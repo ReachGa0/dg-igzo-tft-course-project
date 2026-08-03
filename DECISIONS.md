@@ -1,5 +1,15 @@
 # 设计决策记录
 
+## ADR-064：R11 runner 32/32 E2 PASS 后仅开放独立落盘检查
+
+- 日期：2026-08-03
+- 状态：R11 runner 唯一运行 32/32 PASS、E2；独立 checker 尚未运行，正式 M01 器件 DC 继续关闭。
+- 在静态合同 PASS 提交 `b38b319` 推送并与 `origin/main` 同步后，唯一执行 `make m01-xyce-build-preflight-r11`。版本、许可证、控制标量 B-source 和仓库相对 ASCII include 的 `-syntax` 共 4 个允许的 Xyce 工具/parser 进程均返回 0，固定列 `.prn` 观测为 1.25 V；报告 SHA-256 为 `cfe369d5df97217499f207701836447f784f5dbc201ad33b01a0b1765841d552`。
+- 32/32 E2 只证明 hash-bound Xyce 工具、输出解析、自测和路径安全 parser-only 预检通过；它不是正式 IGZO 器件 DC、方程/器件曲线、物理参数、实验校准、SPICE 数值或电路证据。没有构建、formal device DC、ngspice、AIM-Spice、数值 M01 或下游进程。
+- runner 报告、`preflight.log`、两个 manifest、B-source `.cir/.log/.prn`、版本/许可证/命令日志和 parser-only 输入/日志全部按 SHA-256 保留。下一门是提交并推送本 E2 状态后唯一运行 25 项独立持久化检查；只有独立 E3 PASS 再提交后才建立正式 M01 两路线器件 DC 合同，R10 和更早 revision 不重跑。
+
+---
+
 ## ADR-063：R11 静态合同 36/36 E3 后仅开放提交后的 runner
 
 - 日期：2026-08-03

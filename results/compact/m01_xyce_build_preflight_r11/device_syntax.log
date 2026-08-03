@@ -1,0 +1,21 @@
+
+*****
+***** Welcome to the Xyce(TM) Parallel Electronic Simulator
+*****
+***** This is version Xyce Release 7.10.0-opensource
+***** Date: Mon Aug 03 22:16:22 CST 2026
+
+
+***** Executing netlist /mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目/results/compact/m01_xyce_build_preflight_r11/device_syntax.cir
+
+***** Reading and parsing netlist...
+***** Netlist syntax OK
+
+***** Device Type Counts ...
+
+       B               1
+       V               3
+       -----------------
+       Total Devices   4
+
+***** Total Elapsed Run Time: 0.0131109 seconds

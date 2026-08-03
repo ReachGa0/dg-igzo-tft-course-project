@@ -1,0 +1,291 @@
+{
+  "status": "PASS",
+  "preflight_status": "PASS",
+  "evidence_level": "E2",
+  "stage_id": "M01",
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R11",
+  "build_status": "REUSED_HASH_BOUND_R07_INSTALL",
+  "bsource_self_test_status": "PASS",
+  "device_syntax_status": "PASS",
+  "formal_device_simulation_status": "NOT_RUN_BY_PREFLIGHT",
+  "formal_spice_numerical_status": "NOT_RUN_BY_PREFLIGHT",
+  "circuit_status": "NOT_RUN_BY_PREFLIGHT",
+  "checks": [
+    {
+      "name": "identity:revision_11_xyce_parser_recovery",
+      "status": "PASS",
+      "detail": "stage=M01 revision=11"
+    },
+    {
+      "name": "binding:historical_failure_reports",
+      "status": "PASS",
+      "detail": "immutable R07 runner failure and R10 path-encoding failure are bound"
+    },
+    {
+      "name": "binding:historical_artifacts_hash_bound",
+      "status": "PASS",
+      "detail": "r07=11/11 r10=8/8"
+    },
+    {
+      "name": "binding:r07_complete_generator_prefix",
+      "status": "PASS",
+      "detail": "tree=fa3d78e39aa7b55608c2dfd85587e6c2778e5d9e0e54aeb54838db017e558a47"
+    },
+    {
+      "name": "binding:r07_complete_xyce_prefix",
+      "status": "PASS",
+      "detail": "tree=09b9805db763a6ce93666ad0f63c4e7378d5d1dd756895d91ff615681a417db4"
+    },
+    {
+      "name": "scope:igzo_laptop_tool_only",
+      "status": "PASS",
+      "detail": "{\"active_material_scope\": \"IGZO only\", \"circuit_or_downstream_permitted\": false, \"device_netlist_execution\": false, \"dimension\": \"2D project route; this recovery revision is tool/output only\", \"formal_m01_numerical_run\": false, \"fortran_build\": false, \"laptop_target\": true, \"mpi_build\": false, \"serial_build\": false}"
+    },
+    {
+      "name": "reuse:no_build_or_dependency_rebuild",
+      "status": "PASS",
+      "detail": "R11 reuses only complete R07 install prefixes"
+    },
+    {
+      "name": "paths:r11_exclusive_namespace",
+      "status": "PASS",
+      "detail": "future_absent=16/16"
+    },
+    {
+      "name": "binary:version",
+      "status": "PASS",
+      "detail": "Xyce Release 7.10.0-opensource"
+    },
+    {
+      "name": "binary:license",
+      "status": "PASS",
+      "detail": "GPL token present"
+    },
+    {
+      "name": "binary:hash",
+      "status": "PASS",
+      "detail": "sha256=e98dc88330b0dfd2439dfb19e0e5c108febfaaaee91c748e6e9e127e71afc93f"
+    },
+    {
+      "name": "outputs:formal_absent_before_run",
+      "status": "PASS",
+      "detail": "absent=8/8"
+    },
+    {
+      "name": "self_test:netlist_scope",
+      "status": "PASS",
+      "detail": "controlled scalar source only; no project candidate"
+    },
+    {
+      "name": "self_test:command_returncode",
+      "status": "PASS",
+      "detail": "return=True"
+    },
+    {
+      "name": "self_test:prn_output_exists",
+      "status": "PASS",
+      "detail": "path=/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/bsource_self_test.prn bytes=111"
+    },
+    {
+      "name": "self_test:deterministic_prn_value",
+      "status": "PASS",
+      "detail": "observed=1.25 expected=1.25 tolerance=1e-09"
+    },
+    {
+      "name": "self_test:log_persisted",
+      "status": "PASS",
+      "detail": "log=True"
+    },
+    {
+      "name": "device_syntax:netlist_scope_and_candidate_hash",
+      "status": "PASS",
+      "detail": "frozen IGZO candidate only; parser-only gate"
+    },
+    {
+      "name": "device_syntax:parser_returncode",
+      "status": "PASS",
+      "detail": "return=True"
+    },
+    {
+      "name": "device_syntax:log_persisted",
+      "status": "PASS",
+      "detail": "log=True"
+    },
+    {
+      "name": "device_syntax:no_numerical_output",
+      "status": "PASS",
+      "detail": "output_exists=False"
+    },
+    {
+      "name": "execution:no_formal_m01_outputs",
+      "status": "PASS",
+      "detail": "absent=8/8"
+    },
+    {
+      "name": "execution:no_ngspice_aimspice",
+      "status": "PASS",
+      "detail": "xyce,xyce,xyce,xyce"
+    },
+    {
+      "name": "execution:no_formal_device_dc",
+      "status": "PASS",
+      "detail": "only parser-only Xyce device command is permitted"
+    },
+    {
+      "name": "execution:only_expected_commands",
+      "status": "PASS",
+      "detail": "commands=4"
+    },
+    {
+      "name": "artifacts:reuse_manifest",
+      "status": "PASS",
+      "detail": "results/compact/m01_xyce_build_preflight_r11/reuse_manifest.json"
+    },
+    {
+      "name": "artifacts:execution_manifest",
+      "status": "PASS",
+      "detail": "results/compact/m01_xyce_build_preflight_r11/execution_manifest.json"
+    },
+    {
+      "name": "artifacts:preflight_log",
+      "status": "PASS",
+      "detail": "results/compact/m01_xyce_build_preflight_r11/preflight.log"
+    },
+    {
+      "name": "binding:config_hash",
+      "status": "PASS",
+      "detail": "77246fe0f1ab84597869230423ef2ea71745dce6afdc432ee23f0c2ead216305"
+    },
+    {
+      "name": "binding:runner_hash",
+      "status": "PASS",
+      "detail": "d75416c5ad2b13394fa99044dd6d70da2c74a91f3d434a34867bb365f7efdb77"
+    },
+    {
+      "name": "gate:formal_requires_independent",
+      "status": "PASS",
+      "detail": "Commit and push the R11 implementation, then run its 36-check static contract exactly once. Do not run the R11 tool/parser runner or independent checker until the static contract passes and that PASS state is committed."
+    },
+    {
+      "name": "gate:downstream_closed",
+      "status": "PASS",
+      "detail": "formal M01 and downstream remain closed"
+    }
+  ],
+  "failures": [],
+  "commands": [
+    {
+      "name": "xyce_version",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-v"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.025186615001075552,
+      "log_path": "results/compact/m01_xyce_build_preflight_r11/xyce_version.log",
+      "log_sha256": "22f68108af5f4f605001b97c5bebd0f8170d8c1b0018e7b28b4fa51b7390dad1"
+    },
+    {
+      "name": "xyce_license",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-license"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0036499630004982464,
+      "log_path": "results/compact/m01_xyce_build_preflight_r11/xyce_license.log",
+      "log_sha256": "c8d47a1de41711c8944b93cb9923f7fcfdeef8604595a75727e298c7bf06edfc"
+    },
+    {
+      "name": "xyce_bsource_self_test",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-l",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/bsource_self_test.log",
+        "-o",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/bsource_self_test",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/bsource_self_test.cir"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.031599580999682075,
+      "log_path": "results/compact/m01_xyce_build_preflight_r11/xyce_bsource_self_test.log",
+      "log_sha256": "16a363ef484e43c2c70999f10ca058436b32ca5536851182d18e51d8a9e417e7"
+    },
+    {
+      "name": "xyce_device_syntax",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-syntax",
+        "-l",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/device_syntax.log",
+        "-o",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/device_syntax",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r11/device_syntax.cir"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.028533031001643394,
+      "log_path": "results/compact/m01_xyce_build_preflight_r11/xyce_device_syntax.log",
+      "log_sha256": "5975657f6b6c2721ebab1269f9c9c332f715925527de4587581a3f774630f777"
+    }
+  ],
+  "artifacts": {
+    "self_test_netlist_sha256": "01584f2b7d50d4ddf6b05b8374e239fadffe95a672d7b47971bdead55b2dd8c9",
+    "self_test_log_sha256": "9ac92245115e3072800d7b6a0c69931f34cf0a814847bae53aca69186356509d",
+    "self_test_output_sha256": "074048f03f02dd937590b060c2568ae63d6969203dda0cd7d885093476f74d36",
+    "device_syntax_netlist_sha256": "a1e66b301ba2bc48ef9c03482aa72f32502e46e2bd65e2d8ef1e30bef5a12644",
+    "device_syntax_log_sha256": "ac5855452a737f7f1fbcc9feb314ac75b290806bf654eae6a848a283611a9a60",
+    "device_syntax_output_exists": false
+  },
+  "summary": {
+    "check_count": 32,
+    "passed": 32,
+    "failed": 0,
+    "process_invocations": 4,
+    "build_processes_invoked": 0,
+    "generator_build_invoked": false,
+    "dependency_rebuild_invoked": false,
+    "ngspice_invoked": false,
+    "aimspice_invoked": false,
+    "controlled_bsource_self_test_invoked": true,
+    "device_syntax_only_invoked": true,
+    "formal_device_dc_invoked": false,
+    "formal_m01_outputs_created": false,
+    "r07_complete_generator_prefix_reused": true,
+    "r07_complete_xyce_prefix_reused": true,
+    "r10_failure_preserved": true,
+    "r10_runner_rerun": false,
+    "parser_include_path_mode": "repository_relative_ascii"
+  },
+  "config": {
+    "path": "config/m01_xyce_build_preflight_r11.json",
+    "sha256": "77246fe0f1ab84597869230423ef2ea71745dce6afdc432ee23f0c2ead216305"
+  },
+  "runner": {
+    "path": "scripts/run_m01_xyce_build_preflight_r11.py",
+    "sha256": "d75416c5ad2b13394fa99044dd6d70da2c74a91f3d434a34867bb365f7efdb77"
+  },
+  "reuse_manifest": {
+    "path": "results/compact/m01_xyce_build_preflight_r11/reuse_manifest.json",
+    "sha256": "f7b995037d6be62153e5d0dde070c4085b539683a8a7b0fa5705f5c8423d9575"
+  },
+  "execution_manifest": {
+    "path": "results/compact/m01_xyce_build_preflight_r11/execution_manifest.json",
+    "sha256": "c6fb008841ffc7f1168b20cdfdf2844e0af42cb5bb02df1ff7d937fd9db3e047"
+  },
+  "xyce_binary": {
+    "path": "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+    "sha256": "e98dc88330b0dfd2439dfb19e0e5c108febfaaaee91c748e6e9e127e71afc93f",
+    "bytes": 75498456
+  },
+  "observed_self_test_value_v": 1.25,
+  "evidence_boundary": "R11 is a new path-safe output/parser recovery contract bound to the immutable R10 36/36 E3 static PASS and its preserved E0 runner Unicode-path failure, as well as the older R07/R08/R09 failures. R10 completed exactly three Xyce tool commands and observed the frozen 1.25 V scalar B-source value, then failed before parser-only execution because its ASCII netlist embedded the Chinese absolute project path. R10 config, sources, static report, failure report/log and eight-file partial run tree are hash-bound and must not be modified or rerun. R11 changes only the parser-netlist include representation: it uses the same frozen IGZO candidate through an ASCII repository-relative path while Xyce runs with project_root as cwd. The R07 Xyce binary/install hashes, four-command allowlist, 36/32/25 counts, numerical thresholds, failure retention, no-build/no-ngspice/no-AIM-Spice/no-formal-DC and downstream closure remain unchanged. A passing R11 static contract would establish only a reviewable path-safe tool/output contract, not an IGZO equation, parser execution, device curve, physical parameter, experimental calibration, formal M01, SPICE or circuit result. The R11 runner remains closed until the static PASS is committed; M01 remains E0 until the later formal two-route device-only DC contract passes.",
+  "next_gate": "Commit and push the R11 implementation, then run its 36-check static contract exactly once. Do not run the R11 tool/parser runner or independent checker until the static contract passes and that PASS state is committed."
+}
