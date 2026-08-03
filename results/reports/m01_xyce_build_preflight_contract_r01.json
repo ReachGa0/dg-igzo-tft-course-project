@@ -1,0 +1,156 @@
+{
+  "status": "PASS",
+  "contract_status": "PASS",
+  "evidence_level": "E3",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "spice_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "circuit_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "stage_id": "M01",
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R01",
+  "checks": [
+    {
+      "name": "identity:xyce_build_preflight_contract",
+      "status": "PASS",
+      "detail": "stage=M01 revision=1"
+    },
+    {
+      "name": "binding:recovery_contract_is_committed_e3",
+      "status": "PASS",
+      "detail": "config_hash=True report_hash=True"
+    },
+    {
+      "name": "scope:serial_laptop_igzo_only",
+      "status": "PASS",
+      "detail": "{\"active_material_scope\": \"IGZO only\", \"circuit_or_downstream_permitted\": false, \"device_netlist_execution\": false, \"dimension\": \"2D project route; this preflight itself is simulator-tool only\", \"formal_m01_numerical_run\": false, \"fortran_build\": false, \"laptop_target\": true, \"mpi_build\": false, \"serial_build\": true}"
+    },
+    {
+      "name": "sources:official_archives_and_extracted_sources",
+      "status": "PASS",
+      "detail": "xyce/trilinos/suitesparse=PASS/PASS/PASS"
+    },
+    {
+      "name": "sources:cmake_archive_and_binary",
+      "status": "PASS",
+      "detail": "archive=True binary=True"
+    },
+    {
+      "name": "sources:license_and_proprietary_policy",
+      "status": "PASS",
+      "detail": "pure GPL source required; proprietary XyceNF and AIM-Spice are excluded"
+    },
+    {
+      "name": "sources:versions_meet_official_minimums",
+      "status": "PASS",
+      "detail": "Xyce 7.10.0, Trilinos 14.4, SuiteSparse 7.8.3 and CMake 3.30.5"
+    },
+    {
+      "name": "sources:historical_hash_transcription_is_preserved_and_corrected",
+      "status": "PASS",
+      "detail": "old static string is retained; the new build input uses the independently rehashed archive"
+    },
+    {
+      "name": "candidate:frozen_igzo_hash_and_scope",
+      "status": "PASS",
+      "detail": "exists=True bytes=1063"
+    },
+    {
+      "name": "candidate:device_parser_is_not_formal_run",
+      "status": "PASS",
+      "detail": "parser-only device syntax check follows scalar self-test"
+    },
+    {
+      "name": "toolchain:required_local_tools_are_pinned",
+      "status": "PASS",
+      "detail": "cmake/compiler/build/parser paths are explicit; MPI and Fortran are not required"
+    },
+    {
+      "name": "toolchain:serial_cmake_plan",
+      "status": "PASS",
+      "detail": "serial, Fortran-off, MPI-off, two-job build is frozen"
+    },
+    {
+      "name": "toolchain:official_xyce_trilinos_cache",
+      "status": "PASS",
+      "detail": "Xyce-provided Trilinos cache is present"
+    },
+    {
+      "name": "build:external_unique_user_prefixes",
+      "status": "PASS",
+      "detail": "build and install roots are unique, user-owned and outside the repository"
+    },
+    {
+      "name": "sequence:source_build_before_self_test",
+      "status": "PASS",
+      "detail": "build and binary fingerprint precede scalar self-test; parser check is last"
+    },
+    {
+      "name": "self_test:scalar_only_and_deterministic",
+      "status": "PASS",
+      "detail": "one controlled B-source scalar check only"
+    },
+    {
+      "name": "no_execution:formal_routes_and_downstream_closed",
+      "status": "PASS",
+      "detail": "no ngspice/AIM-Spice/device route or downstream work is admitted"
+    },
+    {
+      "name": "outputs:formal_outputs_absent",
+      "status": "PASS",
+      "detail": "absent=8/8"
+    },
+    {
+      "name": "outputs:exclusive_and_unique",
+      "status": "PASS",
+      "detail": "all runner artifacts are append-only and build directories are not cleaned"
+    },
+    {
+      "name": "outputs:historical_failure_retention",
+      "status": "PASS",
+      "detail": "historical M01 failures and future failed logs are retained"
+    },
+    {
+      "name": "boundary:no_physical_or_experimental_claim",
+      "status": "PASS",
+      "detail": "preflight evidence is explicitly tool-only"
+    },
+    {
+      "name": "project:next_scope_matches_preflight",
+      "status": "PASS",
+      "detail": "implement and commit the pure-source Xyce build/tool preflight and self-test chain; do not execute a device netlist until that chain passes"
+    },
+    {
+      "name": "experiment:preflight_is_planned_before_execution",
+      "status": "PASS",
+      "detail": "machine state records an unexecuted preflight chain"
+    },
+    {
+      "name": "runner:contract_is_no_subprocess_checker",
+      "status": "PASS",
+      "detail": "contract checker has no process invocation path"
+    },
+    {
+      "name": "next_gate:formal_two_route_run_only_after_independent_check",
+      "status": "PASS",
+      "detail": "After this preflight and its independent check pass, execute the frozen two-route device-only DC contract once; any route failure is retained and stops M01."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "check_count": 25,
+    "passed": 25,
+    "failed": 0,
+    "simulator_processes_invoked": 0,
+    "device_netlist_created": false,
+    "numerical_outputs_created": false
+  },
+  "config": {
+    "path": "config/m01_xyce_build_preflight_r01.json",
+    "sha256": "1c846f374a2d6ffa480c44e96e90a68f6d1c9346aff3c2a4c338d3d8e5f8465f"
+  },
+  "checker": {
+    "path": "scripts/check_m01_xyce_build_preflight_contract.py",
+    "sha256": "120cc2ecfa42d06aa6d4e640df295faf5ab66ff6a8518289f8d6c6a9a0b9777b"
+  },
+  "evidence_boundary": "This is a committed build/tool preflight contract, not a device simulation result. It preserves the prior recovery contract and report unchanged while explicitly correcting their unverified Xyce archive-hash transcription in the new build input. A passing report can establish only that a reproducible pure-source serial Xyce binary was built from the independently rehashed GPL source and that its scalar B-source self-test plus parser-only frozen IGZO candidate syntax check passed. The self-test is not an IGZO equation, device curve, physical parameter, experimental calibration, route comparison or circuit result. Proprietary binaries are excluded, and Xyce source/build evidence does not replace AIM-Spice Level 15 or HSPICE Level 61. M01 remains E0 until both formal device-only routes and an independent persisted-evidence check pass; P3, P5, C00, circuit, layout, PEX and HZO remain closed.",
+  "next_gate": "After this preflight and its independent check pass, execute the frozen two-route device-only DC contract once; any route failure is retained and stops M01."
+}

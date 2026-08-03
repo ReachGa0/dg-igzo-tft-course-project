@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 607,
+  "checks": 617,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=23184"
+      "detail": "bytes=23121"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=20043"
+      "detail": "bytes=20565"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=17055"
+      "detail": "bytes=17333"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=134994"
+      "detail": "bytes=137492"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=5269"
+      "detail": "bytes=5140"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=71260"
+      "detail": "bytes=73353"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=37175"
+      "detail": "bytes=37468"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=7874"
+      "detail": "bytes=8244"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=19419"
+      "detail": "bytes=20544"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=61087"
+      "detail": "bytes=62513"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1115,6 +1115,51 @@
       "detail": "bytes=827"
     },
     {
+      "name": "file:config/m01_open_source_recovery_contract_r01.json",
+      "status": "PASS",
+      "detail": "bytes=13867"
+    },
+    {
+      "name": "file:scripts/check_m01_open_source_recovery_contract.py",
+      "status": "PASS",
+      "detail": "bytes=23774"
+    },
+    {
+      "name": "file:results/reports/m01_open_source_recovery_contract_r01.json",
+      "status": "PASS",
+      "detail": "bytes=5983"
+    },
+    {
+      "name": "file:results/reports/m01_open_source_recovery_contract_r01_e3.json",
+      "status": "PASS",
+      "detail": "bytes=6735"
+    },
+    {
+      "name": "file:config/m01_xyce_build_preflight_r01.json",
+      "status": "PASS",
+      "detail": "bytes=11238"
+    },
+    {
+      "name": "file:scripts/check_m01_xyce_build_preflight_contract.py",
+      "status": "PASS",
+      "detail": "bytes=17482"
+    },
+    {
+      "name": "file:scripts/run_m01_xyce_build_preflight.py",
+      "status": "PASS",
+      "detail": "bytes=30445"
+    },
+    {
+      "name": "file:scripts/check_m01_xyce_build_preflight.py",
+      "status": "PASS",
+      "detail": "bytes=14240"
+    },
+    {
+      "name": "file:results/reports/m01_xyce_build_preflight_contract_r01.json",
+      "status": "PASS",
+      "detail": "bytes=6550"
+    },
+    {
       "name": "file:scripts/check_t03_p5_temperature.py",
       "status": "PASS",
       "detail": "bytes=35919"
@@ -1507,7 +1552,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=40533"
+      "detail": "bytes=41676"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -2973,6 +3018,11 @@
       "name": "m01_open_source_recovery:static_contract_and_no_execution",
       "status": "PASS",
       "detail": "checks=30/30 future_absent=13/13"
+    },
+    {
+      "name": "m01_xyce_preflight:static_contract_and_unexecuted_chain",
+      "status": "PASS",
+      "detail": "checks=25/25 future_absent=12/12"
     },
     {
       "name": "tcad:mesh_levels",

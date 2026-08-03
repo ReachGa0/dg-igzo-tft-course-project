@@ -19,7 +19,7 @@
 - 题目：基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK。
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
-- S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；历史失败保留。M00 R01 因 L=12 um holdout gm `0.512384 > 0.50` 保持 21/24、E0/FAIL。R02 结构恢复合同 27/27 静态 PASS、E3，原数据/split/指标/阈值不变，只将 `Lref/L` 指数固定为 1.0、移除一个训练不可稳健识别的长度自由度，参数数为 10；唯一正式 runner 24/24 E2、独立检查 20/20 E3。M00 仅在冻结 IGZO 教学数值曲线与局部有效域内关闭；候选已生成未执行。M01 revision-3 合同仍为 32/32 静态 PASS、E3。R01 工具/来源预检唯一运行为 11/13、E0/FAIL：ngspice 版本门通过，AIM-Spice 未启动，失败为未授权来源不可审计和 batch/CLI 未建立；无器件网表或数值曲线。开源恢复合同随后以 30/30、E3 冻结 ngspice + 纯源码 GPL Xyce 7.10.0、同一 IGZO 行为候选、批处理模板和 no-device-execution 边界；Xyce 仅源码审阅、尚未构建或运行。C00/L00/V01 仍未完成，G0 仍为 `TEACHING_BASELINE_ONLY`。
+- S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，仅在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。Xyce 构建/工具预检合同与执行链现为 25/25 静态 PASS、E3，固定 Xyce/Trilinos/SuiteSparse/CMake 官方包的实际哈希、serial 两任务、MPI/Fortran 关闭、标量 B-source 自测和随后 parser-only `-syntax`；历史恢复合同的 archive hash 转录差异已登记而未改写。Xyce 尚未编译或运行，正式 M01 器件 DC、C00/L00/V01 仍未完成，G0 仍为 `TEACHING_BASELINE_ONLY`。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
@@ -82,6 +82,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 - M01 双仿真器对照合同：revision-3 静态 32/32 PASS、E3；冻结 R02 247 个选定行，其中 233 个 scored（163 train/70 holdout）和 14 个零漏压/低漏压审计，13 条曲线、同一 W/L/偏压/300 K/端口映射、ngspice 行为候选、AIM-Spice Level 15 候选、工具指纹、语法/指标/失败保留和 no-circuit 边界。合同只生成 `results/reports/m01_simulator_cross_check_contract_v3.json`，没有执行任一模拟器；v1/v2 检查失败报告保留。
 - M01 R01 工具/来源预检：`make m01-simulator-preflight` 在执行链提交后唯一运行，11/13、E0/FAIL。`ngspice --version` 是唯一子进程且返回 `ngspice-42`，没有网表参数；AIM-Spice 只读指纹、未启动。失败项精确为授权来源可审计和文档化 batch/CLI，报告 `results/reports/m01_simulator_preflight_r01.json` 与原始日志保留。该失败不是数值仿真失败；10 个数值输出全不存在。
 - M01 开源恢复合同：`make m01-open-source-recovery-contract-check` 为 30/30、E3。它绑定 revision-3 合同与 R01 11/13 失败哈希，冻结 ngspice + Xyce 7.10.0 纯源码路线、同一 `IGZO_DG_BEHAVIORAL_R02` 文本、247 行目标、批处理模板、输出/失败保留和 no-device-execution 门。Xyce 源码审阅支持 `limit`/`sgn`/`.func`/B-level 1/`-l`/`-o` 的语法能力，但不代表二进制、器件网表或数值结果；首次 28/30 干跑失败报告保留。
+- M01 Xyce build/tool 合同：`make m01-xyce-build-preflight-contract-check` 为 25/25、E3。它冻结四个官方包的 URL/稳定路径/实际 SHA-256、用户目录 serial 两任务构建、MPI/Fortran 关闭、SuiteSparse AMD -> Trilinos -> Xyce 顺序、版本/GPL 指纹、1.25 V 标量 B-source 自测、随后 `-syntax` 的冻结 IGZO 候选解析、排他输出和 20 项独立检查。旧合同记录的 `...541cfecf...` 与实际重算 `...541fecf...` 差异明确保留；该合同未启动任何模拟器或创建网表，Xyce 尚未构建。
 - 学长 IGZO 曲线：E1/reference_only；元数据不完整。
 - IGZO 单管外部 GDS：E2 基线，可参考但尚未迁入新 PDK。
 - 其余领域任务：E0。

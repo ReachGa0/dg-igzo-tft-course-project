@@ -4,7 +4,7 @@
 
 **基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK**
 
-S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R01 因 L=12 um holdout gm 相对误差 `0.512384 > 0.50` 保持 21/24、E0/FAIL。R02 以 27/27 静态合同 PASS、E3 固定 `Lref/L` 一阶几何因子并把长度自由度从 2 个减为 1 个，同时保持原 split、指标和阈值不变；唯一正式 runner 24/24 E2、独立检查 20/20 E3。M00 只在冻结 IGZO 教学数值曲线与局部有效域内关闭，候选尚未执行。M01 revision-3 合同仍为 32/32 静态 PASS、E3；用户披露本机 AIM-Spice 未授权后，R01 工具/来源预检唯一运行并得到 11/13、E0/FAIL。ngspice 版本探针通过，AIM-Spice 未启动，失败仅为来源不可审计和 batch/CLI 未建立；没有器件网表或数值输出。开源恢复合同随后 30/30、E3 冻结 ngspice + 纯源码 GPL Xyce 7.10.0 和同一 IGZO 行为候选，但 Xyce 尚未构建或运行。下一步先实现 Xyce 构建/工具预检与自测。G0 仍为 `TEACHING_BASELINE_ONLY`：实验标定、物理参数验证、电路和版图尚未完成。所有 `TODO/E0` 内容都不得写成已完成结果。
+S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R01 因 L=12 um holdout gm 相对误差 `0.512384 > 0.50` 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。纯源码 Xyce 构建/工具预检合同与执行链现为 25/25 静态 PASS、E3，固定 Xyce 7.10.0、Trilinos 14.4、SuiteSparse 7.8.3、CMake 3.30.5 的实际哈希、serial 两任务、MPI/Fortran 关闭、标量 B-source 自测及随后 parser-only `-syntax`。旧恢复合同中的 archive 哈希转录串原样保留，新合同用重复重算值作为构建输入。Xyce 尚未编译或运行；下一步在执行链提交推送后唯一运行 build/tool preflight。G0 仍为 `TEACHING_BASELINE_ONLY`：实验标定、物理参数验证、正式 M01 器件 DC、电路和版图尚未完成。所有 `TODO/E0` 内容都不得写成已完成结果。
 
 ## 2. 为什么这个题目仍然成立
 
@@ -21,7 +21,7 @@ S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，
 | 层次 | 研究对象 | 主要输出 |
 |---|---|---|
 | 器件层 | 二维单栅/双栅 IGZO，陷阱、接触、几何和温度 | Id-Vg/Id-Vd、二维电势/载流子、Delta VTH、敏感性 |
-| 模型层 | AIM-Spice Level 15 与 ngspice 行为等效模型 | 参数表、训练/验证误差、适用范围 |
+| 模型层 | ngspice 行为等效与纯源码 Xyce 对照；AIM-Spice 仅保留历史失败边界 | 参数表、训练/验证误差、适用范围 |
 | 电路层 | 双栅 IGZO 有源负载逻辑 | INV、NAND2、NOR2、XOR2、RING5、全加器 |
 | PDK 层 | PCell、GDS、DRC、几何 LVS | 标准单元版图、正常 PASS、故障注入 FAIL |
 

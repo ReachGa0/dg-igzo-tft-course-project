@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`M01_R01_OPEN_SOURCE_RECOVERY_CONTRACT_E3_NEXT_XYCE_PREFLIGHT`：T01/T02/T03 数值门已关闭，历史失败保留。M00 R01 唯一正式运行因 `L=12 um` holdout gm `0.512384 > 0.50` 保持 21/24、E0/FAIL。R02 以 27/27 E3 合同固定 `Lref/L` 指数 1.0、移除 `length_exponent`，原 split、指标和门槛不变；唯一正式 runner 24/24 E2、独立持久化检查 20/20 E3。M00 只在冻结 IGZO 教学数值域内关闭。M01 revision-3 合同 32/32 E3；R01 工具/来源预检唯一运行 11/13、E0/FAIL，AIM-Spice 未启动且无数值网表。开源恢复合同 30/30、E3 已冻结 ngspice + 纯源码 GPL Xyce 7.10.0、同一 IGZO 行为候选、批处理模板和 no-device-execution 边界；Xyce 尚未构建或运行。
+`M01_R01_XYCE_BUILD_PREFLIGHT_CONTRACT_E3_NEXT_EXECUTION`：T01/T02/T03 数值门已关闭，历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。纯源码 Xyce 构建/工具预检合同与执行链 25/25 静态 PASS、E3，固定四个官方包的实际哈希、serial 两任务、MPI/Fortran 关闭、标量 B-source 自测和随后 parser-only `-syntax`；旧恢复合同的 hash 转录串原样保留。Xyce 尚未构建或运行。
 
 ## 截止日期
 
@@ -46,7 +46,7 @@
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
 | M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
-| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；历史合同 E3；开源恢复合同 E3；未运行数值网表 | 32/32 revision-3 合同和 30/30 开源恢复合同冻结 247 行；R01 唯一运行 11/13，ngspice 版本门通过，未授权 AIM-Spice 的来源/batch 两门失败且未启动。下一门为纯源码 Xyce 构建/工具预检与自测 |
+| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；三层静态合同 E3；Xyce 尚未构建或运行 | revision-3 32/32、开源恢复 30/30、Xyce build/tool 25/25；R01 唯一运行 11/13。当前只允许在已提交执行链上唯一运行 Xyce build/tool preflight，随后做独立落盘检查；正式两路线器件 DC 仍关闭 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-M00 R01/R02 和 M01 R01 预检均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。R02 结果仅关闭冻结教学数值域。M01 revision-3 合同已 32/32 E3，R01 工具/来源预检为 11/13、E0/FAIL，开源恢复合同为 30/30、E3；下一步只实现并提交纯源码 Xyce 构建/工具预检与自测链。该链通过并提交前不运行器件网表；M01 数值对照、电路、版图、PEX 和 HZO 继续关闭。
+M00 R01/R02 和 M01 R01 预检均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。M01 revision-3、开源恢复和 Xyce build/tool 合同分别为 32/32、30/30、25/25 E3。下一步先提交并推送 25/25 执行链，确认远端同步后唯一运行 `make m01-xyce-build-preflight`；PASS 后运行独立持久化检查。两级通过前不运行正式 M01 器件 DC；电路、版图、PEX 和 HZO 继续关闭。

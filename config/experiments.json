@@ -855,7 +855,7 @@
         },
         "next_gate": "establish and commit an explicitly open-source second-simulator recovery contract before any device-level numerical execution"
       },
-      "evidence_boundary": "The revision-3 M01 contract remains 32/32 E3 static evidence and its revision-1/revision-2 checker failures remain preserved. After execution-chain commit a6386d2, the R01 tool/provenance preflight ran once and retained an 11/13 E0/FAIL report plus raw log. The fixed ngspice executable fingerprint, no-netlist argv and ngspice-42 version gates passed. AIM-Spice was never invoked; only its file fingerprint was read. Its user-reported unauthorized provenance failed the auditable-license gate and its documented reproducible batch CLI was not established. The only subprocess was ngspice --version, with no netlist argument. All ten declared numerical outputs remain absent, so this is not an ngspice/AIM-Spice numerical failure, IGZO device result, two-route comparison or M01 completion. An explicitly open-source second-simulator recovery contract is the only next gate and must freeze provenance, license, reproducible batch behavior, model mapping, outputs and boundaries before any device netlist execution. External baselines remain reference-only; SnO/HZO/circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
+      "evidence_boundary": "The revision-3 M01 contract remains 32/32 E3 static evidence, the R01 tool/provenance preflight remains an 11/13 E0/FAIL preserved run, and the open-source recovery contract remains 30/30 E3. The pure-source Xyce build/tool preflight contract and execution chain now pass 25/25 static checks at E3, pinning actual Xyce 7.10.0, Trilinos 14.4, SuiteSparse 7.8.3 and CMake 3.30.5 archive hashes, a serial two-job MPI-off/Fortran-off build, a controlled scalar B-source self-test and a later parser-only -syntax check of the frozen IGZO candidate. The prior recovery contract's unverified archive-hash transcription remains unchanged and is explicitly separated from the independently rehashed build input. No Xyce build, Xyce/ngspice device run, formal M01 numerical output, physical parameter, experimental calibration or circuit result exists at this contract stage. The committed build/tool preflight must run once and pass its independent persisted-evidence check before formal two-route device DC. External baselines remain reference-only; SnO/HZO/circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
       "open_source_recovery_contract": {
         "status": "contract_ready",
         "revision": 1,
@@ -886,6 +886,35 @@
         "outputs_created_by_contract": ["results/reports/m01_open_source_recovery_contract_r01_e3.json"],
         "future_device_outputs_absent_at_contract_stage": true,
         "next_gate": "Implement and commit the pure-source Xyce build/tool preflight and self-test chain; do not execute a device netlist until that chain passes."
+      },
+      "xyce_build_preflight": {
+        "status": "preflight_planned",
+        "revision": 1,
+        "current_evidence": "E0",
+        "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R01",
+        "contract_path": "config/m01_xyce_build_preflight_r01.json",
+        "contract_checker_path": "scripts/check_m01_xyce_build_preflight_contract.py",
+        "runner_path": "scripts/run_m01_xyce_build_preflight.py",
+        "independent_checker_path": "scripts/check_m01_xyce_build_preflight.py",
+        "contract_report_path": "results/reports/m01_xyce_build_preflight_contract_r01.json",
+        "expected_contract_check_count": 25,
+        "expected_runner_check_count": 29,
+        "expected_independent_check_count": 20,
+        "formal_run_completed": false,
+        "device_netlist_invoked": false,
+        "numerical_outputs_created": false,
+        "ngspice_invoked": false,
+        "aimspice_invoked": false,
+        "serial_build": true,
+        "mpi_build": false,
+        "fortran_build": false,
+        "xyce_release": "Release-7.10.0",
+        "trilinos_release": "14.4",
+        "suitesparse_release": "7.8.3",
+        "max_parallel_jobs": 2,
+        "proprietary_binary_accepted": false,
+        "circuit_or_downstream_permitted": false,
+        "next_gate": "Commit this chain, then run the pure-source build/tool preflight exactly once. Formal M01 device DC remains closed until the preflight and independent check pass."
       }
     },
     {

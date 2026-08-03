@@ -16,6 +16,26 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 实现 M01 纯源码 Xyce 构建/工具预检执行链
+
+### 用户目标与环境输入
+
+用户允许在未授权 AIM-Spice 阻塞主线时自行采用开源软件，并要求继续按阶段 DAG 自动推进。读取 M01 revision-3 合同、R01 11/13 工具来源失败、30/30 开源恢复合同、Xyce 7.10.0 官方 `INSTALL.md`、本机工具链和依赖状态；本阶段不运行正式器件 DC、ngspice 路线、TCAD、电路、版图、PEX 或 HZO。
+
+### 实现与合同
+
+- 新增 `config/m01_xyce_build_preflight_r01.json`、`scripts/check_m01_xyce_build_preflight_contract.py`、`scripts/run_m01_xyce_build_preflight.py`、`scripts/check_m01_xyce_build_preflight.py` 和三个 Make 入口。静态合同冻结 25 项，未来 runner/独立检查分别冻结 29/20 项；全部输出拒绝覆盖，失败日志和部分构建状态必须保留。
+- 用户目录已固定官方 Xyce 7.10.0、Trilinos 14.4 分支、SuiteSparse 7.8.3、CMake 3.30.5 归档及 bison 3.8.2/flex 2.6.4 工具。构建计划只用串行 C/C++、双任务并行，显式关闭 MPI 和 Fortran，先安装 SuiteSparse AMD，再构建 Trilinos 与 Xyce。
+- 预检顺序固定为来源/工具探针、源码构建、Xyce 版本和 GPL 许可证指纹、无 IGZO 候选的受控标量 B-source 自测，最后才允许以 `-syntax` 对冻结 `IGZO_DG_BEHAVIORAL_R02` 做 parser-only 检查。后者不得求解 DC 或生成正式 M01 表。
+- 复核发现旧恢复合同记录的 Xyce 归档串为 `...541cfecf...`，而 `/tmp` 原包和稳定复制包重复 SHA-256 均为 `...541fecf...`。旧合同和 30/30 E3 报告原样保留；新合同明确登记转录差异并只用实际重算哈希作为构建输入，不把旧静态报告改写为本机包验证。
+
+### 验证与边界
+
+- `make m01-xyce-build-preflight-contract-check`：25/25 PASS、E3；检查器不导入 subprocess，不启动模拟器或创建网表。最终 `make check` 为 617/617 PASS，`make report-check` 为 12 章/5 附录/15 个允许占位/26 图 PASS；`git diff --check`、Python/JSON 和 59 行/10 列证据矩阵解析均 PASS。
+- 当前没有构建或启动 Xyce，没有运行 ngspice/AIM-Spice/TCAD，没有器件 DC、正式 SPICE 数值、双路线结果或电路输出。M01 仍为 `preflight_failed_tool_provenance/E0`。下一步先提交推送执行链，确认远端同步后唯一运行 `make m01-xyce-build-preflight`；PASS 后再执行不调用模拟器的独立落盘检查。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M01 开源第二仿真器恢复合同
 
 ### 用户目标与读取输入

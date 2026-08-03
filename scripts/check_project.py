@@ -183,6 +183,15 @@ REQUIRED_FILES = [
     "scripts/run_m01_simulator_preflight.py",
     "results/reports/m01_simulator_preflight_r01.json",
     "results/compact/m01_simulator_cross_check_r01/syntax_preflight.log",
+    "config/m01_open_source_recovery_contract_r01.json",
+    "scripts/check_m01_open_source_recovery_contract.py",
+    "results/reports/m01_open_source_recovery_contract_r01.json",
+    "results/reports/m01_open_source_recovery_contract_r01_e3.json",
+    "config/m01_xyce_build_preflight_r01.json",
+    "scripts/check_m01_xyce_build_preflight_contract.py",
+    "scripts/run_m01_xyce_build_preflight.py",
+    "scripts/check_m01_xyce_build_preflight.py",
+    "results/reports/m01_xyce_build_preflight_contract_r01.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -5496,6 +5505,92 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "m01_open_source_recovery:static_contract_and_no_execution", False, str(error))
+
+    m01_xyce_preflight_config_path = ROOT / "config" / "m01_xyce_build_preflight_r01.json"
+    m01_xyce_preflight_contract_report_path = (
+        ROOT / "results" / "reports" / "m01_xyce_build_preflight_contract_r01.json"
+    )
+    m01_xyce_preflight_contract_checker_path = (
+        ROOT / "scripts" / "check_m01_xyce_build_preflight_contract.py"
+    )
+    m01_xyce_preflight_runner_path = ROOT / "scripts" / "run_m01_xyce_build_preflight.py"
+    m01_xyce_preflight_checker_path = ROOT / "scripts" / "check_m01_xyce_build_preflight.py"
+    try:
+        xyce_preflight_config = json.loads(
+            m01_xyce_preflight_config_path.read_text(encoding="utf-8")
+        )
+        xyce_contract_report = json.loads(
+            m01_xyce_preflight_contract_report_path.read_text(encoding="utf-8")
+        )
+        xyce_contract_checks = xyce_contract_report.get("checks", [])
+        xyce_machine = experiment_map["M01"].get("xyce_build_preflight", {})
+        xyce_future_paths = [
+            ROOT / value
+            for key, value in xyce_preflight_config.get("outputs", {}).items()
+            if key != "contract_report"
+        ]
+        xyce_runner_source = m01_xyce_preflight_runner_path.read_text(encoding="utf-8")
+        xyce_checker_source = m01_xyce_preflight_checker_path.read_text(encoding="utf-8")
+        makefile_source = (ROOT / "Makefile").read_text(encoding="utf-8")
+        historical_hash = xyce_preflight_config.get("historical_hash_boundary", {})
+        add_check(
+            checks,
+            "m01_xyce_preflight:static_contract_and_unexecuted_chain",
+            xyce_contract_report.get("status") == "PASS"
+            and xyce_contract_report.get("contract_status") == "PASS"
+            and xyce_contract_report.get("evidence_level") == "E3"
+            and xyce_contract_report.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(xyce_contract_checks) == 25
+            and all(item.get("status") == "PASS" for item in xyce_contract_checks)
+            and xyce_contract_report.get("config", {}).get("sha256")
+            == sha256(m01_xyce_preflight_config_path)
+            and xyce_contract_report.get("checker", {}).get("sha256")
+            == sha256(m01_xyce_preflight_contract_checker_path)
+            and xyce_machine.get("status") == "preflight_planned"
+            and xyce_machine.get("current_evidence") == "E0"
+            and xyce_machine.get("expected_contract_check_count") == 25
+            and xyce_machine.get("expected_runner_check_count") == 29
+            and xyce_machine.get("expected_independent_check_count") == 20
+            and xyce_machine.get("formal_run_completed") is False
+            and xyce_machine.get("device_netlist_invoked") is False
+            and xyce_machine.get("numerical_outputs_created") is False
+            and xyce_machine.get("serial_build") is True
+            and xyce_machine.get("mpi_build") is False
+            and xyce_machine.get("fortran_build") is False
+            and xyce_machine.get("proprietary_binary_accepted") is False
+            and all(not path.exists() for path in xyce_future_paths)
+            and historical_hash.get("historical_contract_and_report_must_remain_unchanged")
+            is True
+            and historical_hash.get("historical_recorded_xyce_archive_sha256")
+            != historical_hash.get("actual_rehashed_xyce_archive_sha256")
+            and xyce_preflight_config.get("source_provenance", {})
+            .get("xyce", {})
+            .get("archive_sha256")
+            == "b5a883196f0a2b3972fd13c541fecf04735bfabc7d124d7c7e17de707204f4e2"
+            and "EXPECTED_CHECK_COUNT = 29" in xyce_runner_source
+            and "subprocess.run" in xyce_runner_source
+            and '"-syntax"' in xyce_runner_source
+            and "formal_device_dc_invoked=false" in xyce_runner_source
+            and "EXPECTED_CHECK_COUNT = 20" in xyce_checker_source
+            and "EXPECTED_RUNNER_CHECK_COUNT = 29" in xyce_checker_source
+            and "import subprocess" not in xyce_checker_source
+            and "m01-xyce-build-preflight-contract-check:" in makefile_source
+            and "m01-xyce-build-preflight:" in makefile_source
+            and "m01-xyce-build-preflight-check:" in makefile_source
+            and config.get("tcad_track", {})
+            .get("m01_xyce_build_preflight_contract_boundary", "")
+            .startswith("The revision-1 Xyce build/tool preflight contract pins"),
+            f"checks={sum(item.get('status') == 'PASS' for item in xyce_contract_checks)}/{len(xyce_contract_checks)} future_absent="
+            f"{sum(not path.exists() for path in xyce_future_paths)}/{len(xyce_future_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(
+            checks,
+            "m01_xyce_preflight:static_contract_and_unexecuted_chain",
+            False,
+            str(error),
+        )
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

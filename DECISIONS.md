@@ -1,5 +1,23 @@
 # 设计决策记录
 
+## ADR-044：纯源码 Xyce 采用串行用户目录构建，先过工具自测再开放器件 DC
+
+- 日期：2026-08-03
+- 状态：构建/工具预检合同 25/25 静态 PASS、E3；执行链已实现但尚未运行，M01 保持 E0
+
+### 构建与来源决策
+
+- 固定 Xyce `Release-7.10.0`、Trilinos `trilinos-release-14-4-branch`、SuiteSparse `v7.8.3` 和 CMake `3.30.5` 的官方归档 URL、本机稳定路径与 SHA-256。安装和构建目录全部位于 `/home/reachgao/.local/`，不写入仓库、不要求 root，也不接受 XyceNF 或其他专有二进制。
+- 普通笔记本口径采用 serial C/C++ build、最多 2 个编译任务、`Trilinos_ENABLE_Fortran=OFF`、`TPL_ENABLE_MPI=OFF`。SuiteSparse 只构建 Xyce 所需的 `suitesparse_config;amd`，随后按 Xyce 官方 initial cache 构建 Trilinos 和 Xyce。
+- 旧恢复合同保留的 Xyce 归档字符串为 `b5a883...541cfecf...`；对原下载包和稳定复制包独立重算均得到 `b5a883...541fecf...`。旧配置/报告及其哈希不改写，新预检合同明确登记该转录差异并以实际重算值作为构建输入。因此 ADR-043 的字符串只能解释为未落盘复核的源码审阅记录，不是本机 archive fingerprint。
+
+### 自测与证据边界
+
+- runner 在来源、工具和构建全部通过后，先执行不包含项目候选的标量 B-source 自测，预期 `limit(1,0,2)+sgn(1)*0.25=1.25 V`；只有该自测通过后才生成冻结 IGZO 候选的 parser-only 网表并调用 Xyce `-syntax`。
+- `-syntax` 输入含一条 `.DC` 声明以检查解析完整性，但 runner 明确禁止数值求解并要求无 CSV 产生；它不是正式器件 DC。独立检查器只读取持久化报告、日志、argv、源码/二进制哈希和自测 CSV，不调用任何模拟器。
+- 25/25 合同只构成 E3 结构与边界证据。正式 Xyce 二进制、自测和语法结果要等执行链提交推送后唯一运行；即使预检通过，也必须经独立落盘检查后才允许正式 ngspice/Xyce 两路线器件 DC。C00、电路、版图、PEX 和 HZO 继续关闭。
+
+
 ## ADR-043：以纯源码 Xyce 替代未授权 AIM-Spice，先冻结恢复合同
 
 - 日期：2026-08-03

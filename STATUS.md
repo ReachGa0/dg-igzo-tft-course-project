@@ -1,21 +1,21 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_R01_OPEN_SOURCE_RECOVERY_CONTRACT_E3_NEXT_XYCE_PREFLIGHT`
+- 当前阶段：`M01_R01_XYCE_BUILD_PREFLIGHT_CONTRACT_E3_NEXT_EXECUTION`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 的 27/27 静态合同冻结固定 `Lref/L`、10 个参数及不变的 9/163 train、4/70 holdout、全部指标和 `0.50` gm 门；唯一正式运行的 runner 为 24/24、E2，独立落盘复核为 20/20、E3。M00 仅在冻结、结构正则化的 IGZO 教学数值曲线和局部有效域内关闭。M01 revision-3 双仿真器合同仍是 32/32、E3 静态证据，v1/v2 失败保留。R01 工具/来源预检唯一运行一次并按合同得到 11/13、E0/FAIL：ngspice 指纹、无网表参数和 `ngspice-42` 版本门通过；AIM-Spice 只读文件指纹且未启动，因用户披露的未授权来源不可审计及可复现 batch/CLI 未建立而失败。随后建立的 M01 开源恢复合同为 30/30、E3 静态证据：保留旧合同/失败哈希，冻结 ngspice + 纯源码 GPL Xyce 7.10.0 路线、同一 IGZO 行为候选、批处理模板、失败保留和 no-device-execution 边界；Xyce 仅完成源码能力审阅，尚未构建或运行。没有器件网表、数值曲线、电路输出或物理校准证据。下一步只实现并提交纯源码 Xyce 构建/工具预检与自测链；M01 仍 E0/FAIL，数值执行、C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。当前新增纯源码 Xyce 构建/工具预检合同与完整执行链，25/25 静态 PASS、E3：固定 Xyce 7.10.0、Trilinos 14.4、SuiteSparse 7.8.3、CMake 3.30.5 的用户目录来源和实际哈希，冻结串行双任务、MPI/Fortran 关闭、受控标量 B-source 自测、随后 `-syntax` 解析冻结 IGZO 候选、失败拒绝覆盖和独立 20 项检查。旧恢复合同中的 Xyce 包哈希转录串原样保留，新合同明确登记实际重算哈希差异。Xyce 尚未编译或运行，没有器件 DC、正式 M01 数值、物理参数、实验校准或电路证据。下一步在本执行链提交推送后唯一运行预检；C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
-- [x] 建立 `config/m01_open_source_recovery_contract_r01.json` 与标准库检查器，30/30、E3；同一冻结 `IGZO_DG_BEHAVIORAL_R02` 文本分别作为 ngspice 和 Xyce B-level 1 路线输入，不宣称方程身份。
-- [x] 记录 Xyce 7.10.0 官方源码归档 SHA-256、GPL-3.0-or-later、纯源码构建要求、官方源码能力审阅和 positional netlist/`-l`/`-o` 批处理模板；不接受 XyceNF 专有模型或未授权 AIM-Spice。
-- [x] 保留一次 28/30 干跑失败报告 `results/reports/m01_open_source_recovery_contract_r01.json`，最终 E3 报告为 `results/reports/m01_open_source_recovery_contract_r01_e3.json`；失败不覆盖、不删除。
-- [x] 更新项目机器状态、实验注册、主检查器和报告证据；合同检查只读配置/冻结 CSV/源码，不创建器件网表，不调用 Xyce/ngspice。
+- [x] 新增 `config/m01_xyce_build_preflight_r01.json`、静态合同检查器、构建 runner、独立落盘检查器和三个 Make 入口；合同 25/25 PASS、E3，runner/独立检查分别冻结 29/20 项。
+- [x] 用户目录已固定 Xyce 7.10.0、Trilinos 14.4、SuiteSparse 7.8.3 和 CMake 3.30.5 官方包；实际 Xyce 归档 SHA-256 为 `b5a883196f0a2b3972fd13c541fecf04735bfabc7d124d7c7e17de707204f4e2`。
+- [x] 明确保留恢复合同中的历史转录串 `...541cfecf...` 和原 30/30 报告，不改写旧证据；新预检合同登记重复重算得到的 `...541fecf...`，只把后者作为构建输入。
+- [x] 构建计划为用户目录串行两任务、MPI/Fortran 关闭；先构建 SuiteSparse AMD、Trilinos、Xyce，再做版本/许可证指纹、受控标量 B-source 自测和随后 `-syntax` 的冻结 IGZO 候选解析。正式器件 DC 与 ngspice 路线均未运行。
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送本恢复合同里程碑；之后只实现纯源码 Xyce 构建/工具指纹/版本/许可证/候选语法/受控 B-source 自测链。该链通过并提交前不得执行任何 M01 器件网表。
-- M01 仍为 `preflight_failed_tool_provenance/E0`；30/30 合同是 E3 结构/边界证据，不是器件仿真、SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
+- 下一步：提交并推送本 25/25 构建/预检执行链；确认 `main==origin/main` 后唯一运行 `make m01-xyce-build-preflight`。若 PASS，再运行不调用模拟器的 `make m01-xyce-build-preflight-check`；任一失败均保留并停止 M01。
+- M01 仍为 `preflight_failed_tool_provenance/E0`；25/25 是 E3 静态合同证据，不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5、C00、SPICE 电路、版图、PEX 和 HZO 继续关闭；历史 AIM-Spice 预检、M01 revision-1/2 合同失败和本次 28/30 干跑失败均保留。
 
 ## 已完成
@@ -121,13 +121,14 @@
 - [x] M01 revision-3 静态合同 32/32 PASS、E3：冻结 R02 247 行、13 曲线、163/70 scored split、7+7 审计、同一几何/偏压/温度/端口映射、ngspice 行为候选、AIM-Spice Level 15 候选、工具指纹、语法/预检、指标差异、失败保留和 no-circuit 预算。合同检查只生成 `results/reports/m01_simulator_cross_check_contract_v3.json`，没有 ngspice/AIM-Spice 原始输出或电路结果。
 - [x] M01 R01 工具/来源预检在已推送执行链提交 `a6386d2` 后唯一运行一次，11/13、E0/FAIL。ngspice 三项门全部通过；AIM-Spice 可执行文件指纹通过，但授权来源可审计和文档化 batch/CLI 两项失败。报告与 827 字节原始日志均落盘并哈希；AIM-Spice 未启动，唯一子进程没有网表参数，10 个声明的数值输出全部不存在。此前披露前的帮助/版本探索同样不进入正式证据。
 - [x] M01 开源恢复合同 30/30、E3：绑定 revision-3 合同与 R01 失败哈希，冻结 ngspice + 纯源码 GPL Xyce 7.10.0、同一 IGZO 行为候选、247 行目标、批处理模板、工具/许可证自测、独立输出和失败保留。源码审阅只构成语法能力证据；Xyce 尚未构建或运行。第一次 28/30 干跑报告 `results/reports/m01_open_source_recovery_contract_r01.json` 原样保留，最终报告为 `results/reports/m01_open_source_recovery_contract_r01_e3.json`。
+- [x] M01 Xyce 构建/工具预检合同 25/25、E3：实现排他构建 runner 与标准库独立检查器，固定四个官方源码/工具包的实际哈希、串行两任务、MPI/Fortran 关闭、版本/许可证指纹、标量 B-source 自测和随后 parser-only `-syntax`。旧恢复合同的 Xyce 哈希转录差异明确登记且旧报告不改写；合同检查没有启动 Xyce/ngspice 或创建任何网表/数值输出。
 
 ## 后续领域实现
 
 - [x] T01 单栅 IGZO 漂移扩散（教学参数 E2 数值门完成；不等同实验标定或物理参数验证）。
 - [x] T02 双栅电流与阈值耦合（冻结教学模型数值门完成；不等同实验标定、物理电容比、迟滞或紧凑模型验证）。
 - [x] T03 五组器件参数分析（P1/P2/P3/P4/P5 DONE；P2/P3 历史 FAIL 保留；各完成组均有独立 E3 落盘检查）。
-- [ ] M00/M01 紧凑模型拟合与双轨对照（R01 正式拟合保持 E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，M00 仅在教学数值域内关闭；M01 revision-3 合同 32/32 E3、开源恢复合同 30/30 E3，但 R01 工具/来源预检 11/13、E0/FAIL，Xyce 构建/工具自测和器件级双路线尚未运行）。
+- [ ] M00/M01 紧凑模型拟合与双轨对照（R01 正式拟合保持 E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，M00 仅在教学数值域内关闭；M01 revision-3 合同 32/32 E3、开源恢复合同 30/30 E3、Xyce 构建/预检合同 25/25 E3，但 R01 工具/来源预检 11/13、E0/FAIL，Xyce 尚未编译/自测，器件级双路线尚未运行）。
 - [ ] C00/C01 单极性标准单元。
 - [ ] C02/C03 环振和全加器。
 - [ ] L00/V00/V01 PCell、GDS、DRC、几何 LVS。
@@ -165,8 +166,8 @@
 2. 双栅实测数据缺失时只能做文献约束敏感性。
 3. 需要老师确认 DEVSIM、单极性有源负载逻辑和 KLayout 几何 LVS 的接受度。
 4. 复杂电路跨线层和顶栅实际工艺尚未明确。
-5. M00 R01 的 `L=12 um` holdout gm 相对误差 `0.512384` 超过冻结 `0.50`，该失败永久保留；M01 R01 工具/来源预检也已以 11/13、E0/FAIL 落盘。本机 AIM-Spice 来源不可审计且可复现 batch/CLI 未建立，原第二路线关闭；开源恢复合同已冻结，但 Xyce 构建/工具自测和器件网表仍未执行。
+5. M00 R01 的 `L=12 um` holdout gm 相对误差 `0.512384` 超过冻结 `0.50`，该失败永久保留；M01 R01 工具/来源预检也已以 11/13、E0/FAIL 落盘。本机 AIM-Spice 来源不可审计且可复现 batch/CLI 未建立，原第二路线关闭；Xyce 构建/预检执行链已冻结 25/25，但尚未正式运行，器件网表仍未执行。
 
 ## 下一步
 
-先提交并推送 M01 开源恢复合同 30/30、E3；随后只实现纯源码 Xyce 构建/依赖哈希、版本/许可证指纹、候选语法和受控 B-source 自测链。该链通过并提交前不得运行任何 M01 器件网表；不得重跑 M00 R01/R02 或 M01 R01 预检、改变原 split/阈值，或启动 C00、电路、版图、PEX、HZO。
+先提交并推送 M01 Xyce 构建/预检合同与执行链 25/25、E3；远端同步后只运行 `make m01-xyce-build-preflight` 一次。通过后再运行独立落盘检查；在两级都 PASS 前不得运行正式 M01 器件 DC。不得重跑 M00 R01/R02 或 M01 R01 预检、改变原 split/阈值，或启动 C00、电路、版图、PEX、HZO。
