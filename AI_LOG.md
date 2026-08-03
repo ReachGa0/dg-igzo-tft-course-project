@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 建立 M01 Xyce R09 注册修复合同（未执行）
+
+### 用户目标与读取
+
+承接已提交的 R08 `expected=36 actual=30` 静态 checker 注册失败；不重跑 R08，不启动任何 TCAD/SPICE/Xyce runner、器件网表或下游阶段。读取 `AGENTS.md`、R08 配置/源码/失败归档、R07 hash-bound 失败 artifacts、`config/project.json`、`config/experiments.json` 和 M01 报告章节。
+
+### 实施与边界
+
+建立 `config/m01_xyce_build_preflight_r09.json`、`scripts/m01_xyce_r09_common.py`、R09 36 项静态 checker、32 项 runner、25 项独立 checker，并注册 R09 Make 目标。R09 只修正 R08 checker 注册表缺陷，绑定 R08 配置/源码/失败归档和 R07 固定列 `.prn` 失败证据；物理输入、IGZO 候选、阈值、Xyce 前缀和无下游边界不变。静态合同补充 R08 失败归档完整性、R08 不重跑、R09 输出隔离和静态 checker 无进程调用检查。
+
+### 当前状态与下一步
+
+R09 静态合同尚未运行，R09 合同报告、runner/独立报告、输出目录、器件网表和数值结果均不存在；当前仍为 E0 实施证据。更新了项目总检查器、Makefile、状态/项目配置、决策和报告章节。Python 编译/JSON 解析通过，R09 静态 checker 注册为 36 项；`make check` 返回 677/677 PASS，`make report-check` 返回 12 章/5 附录/26 图 PASS，`git diff --check` 通过。下一步提交并推送本实施状态，再按门唯一执行 R09 36 项静态检查；R09 runner 仍需等待已提交的 36/36 PASS。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R08 静态合同注册失败
 
 ### 唯一执行与根因

@@ -1410,6 +1410,16 @@
         "simulator_processes_invoked": 0,
         "r07_failure_preserved": true,
         "r08_contract_failure_preserved": true,
+        "r08_failure_bound_commit": "95d656324fb5c4a301ed903961512a446b90669a",
+        "r08_failure_archive_paths": [
+          "results/reports/m01_xyce_build_preflight_contract_r08_registry_mismatch_failed.json",
+          "results/compact/m01_xyce_build_preflight_r08_contract_registry_mismatch_failed.log"
+        ],
+        "r08_failure_archive_hashes": {
+          "report_sha256": "283438f5c4dcc53f184a9c85327bc90f2465855266d0ccff0d3afc0e91489189",
+          "log_sha256": "344eb8810a4fdf1c5fc2f870a0e3ca84bdf77383d63f73a0e03d758834fc2b6e"
+        },
+        "r09_output_namespace": "results/compact/m01_xyce_build_preflight_r09",
         "r08_runner_rerun": false,
         "r08_independent_checker_run": false,
         "r07_runner_rerun": false,

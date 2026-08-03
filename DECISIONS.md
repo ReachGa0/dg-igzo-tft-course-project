@@ -970,3 +970,12 @@ S00 审计冻结 `IGZO_T01_TEACHING_BASELINE_V1` 作为 T01 的教学参数输�
 ### 后果
 
 报告结构检查可以提前自动化，但在内容仍为空时不能生成“伪最终版”。所有结论继续通过 `report/evidence_matrix.csv` 追溯到数据、脚本和命令。
+## ADR-057：R09 新命名空间修正 R08 checker 注册缺陷
+
+- 状态：已实施，静态合同尚未运行；当前证据 E0。
+- R08 唯一静态执行在报告生成前以 `expected=36 actual=30` 中止。R09 不修改或重跑 R08，而是复制为独立的 config/common/static-checker/runner/independent-checker 和输出命名空间。
+- R09 继续绑定 R07 42/47 `.prn` 观察、R07 完整 generator/Xyce 安装树和 R08 配置/源码/失败归档的 SHA-256；新增六项静态审计，确保 36/36 注册、R08 失败归档完整、R08 不重跑、R09 输出与失败目录隔离、静态 checker 不启动进程。
+- R09 只允许 `Xyce -v`、`-license`、受控标量 B-source `.prn` 解析和冻结 IGZO 候选 `-syntax` 作为未来 runner 命令；不构建、不调用 ngspice/AIM-Spice、不求解正式器件 DC、不产生 M01 数值或下游证据。
+- 下一门是提交并推送 R09 实施后唯一运行 36 项静态合同；只有已提交 36/36 PASS 才能开启 R09 runner，R07/R08 runner 和独立 checker 永久关闭。
+
+## ADR-056：R08 静态合同注册表失败保留，转入 R09
