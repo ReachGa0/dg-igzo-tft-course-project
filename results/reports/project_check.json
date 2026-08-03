@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=27059"
+      "detail": "bytes=27164"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=23408"
+      "detail": "bytes=23447"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=22355"
+      "detail": "bytes=22452"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=193001"
+      "detail": "bytes=194870"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4776"
+      "detail": "bytes=4872"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=112066"
+      "detail": "bytes=113525"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=60551"
+      "detail": "bytes=61438"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=49959"
+      "detail": "bytes=51083"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=119438"
+      "detail": "bytes=119826"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2177,7 +2177,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=77784"
+      "detail": "bytes=78736"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3537,7 +3537,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "establish and commit a versioned M01 route-divergence root-cause contract revision-1 implementation; after push run its 40-check static checker exactly once, with no simulator run before a separately committed static PASS; keep C00, circuit, layout, PEX and HZO closed"
+      "detail": "establish and commit M01 route-divergence root-cause revision-2 as a schema-only correction bound to the immutable R01 38/40 static failure; correct only the R02 diagnostic evidence source, run no simulator before a separately committed R02 static PASS, and keep C00, circuit, layout, PEX and HZO closed"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3607,7 +3607,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "establish and commit a versioned M01 route-divergence root-cause contract revision-1 implementation; after push run its 40-check static checker exactly once, with no simulator run before a separately committed static PASS; keep C00, circuit, layout, PEX and HZO closed"
+      "detail": "establish and commit M01 route-divergence root-cause revision-2 as a schema-only correction bound to the immutable R01 38/40 static failure; correct only the R02 diagnostic evidence source, run no simulator before a separately committed R02 static PASS, and keep C00, circuit, layout, PEX and HZO closed"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3712,7 +3712,7 @@
     {
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",
       "status": "PASS",
-      "detail": "implemented=True ready=False runner=False verified=False r02_binding=True implementation_failure=True source_scan_failure=True future_absent=13/13"
+      "detail": "implemented=False ready=False failed=True runner=False verified=False r02_binding=True implementation_failure=True source_scan_failure=True future_absent=12/13"
     },
     {
       "name": "tcad:mesh_levels",

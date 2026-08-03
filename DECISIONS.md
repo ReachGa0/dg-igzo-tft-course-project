@@ -1,5 +1,16 @@
 # 设计决策记录
 
+## ADR-073：冻结路线分歧根因 R01 静态 schema 失败并转入 R02
+
+- 日期：2026-08-03
+- 状态：`M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01` 唯一静态检查 38/40、E0/FAIL；R01 不重跑，根因 runner/独立 checker 不开放。
+- 实施提交 `015253f` 推送并同步后，R01 静态报告 `results/reports/m01_route_divergence_root_cause_contract_r01.json` SHA-256 为 `3aba1c829ca3aea4002f7ee285155a26c68837c9833ab88be3f475f336a34378`。报告记录零模拟器进程、零网表和零数值输出。
+- 唯一实质失败是 `observation:r02_divergence_values`：checker 从不可改写的 R02 runner 报告读取不存在的顶层 `route_diagnostics` 字段；`result:static_ready` 仅因前置失败连带失败。该失败是 checker/schema 问题，不是 ngspice、Xyce、器件、路线、物理参数或假设的数值结论。
+- R01 失败报告的 `next_gate` 是 checker 无条件写出的旧提示，不是运行授权；runner 的已提交 40/40 E3 门仍关闭。R02 必须使用新配置/源码/输出命名空间，只修正 R02 诊断证据读取为实际哈希绑定的落盘表或已独立验证的机器字段，并使失败提示与状态一致；不改变表达式点、候选、工具、进程预算、阈值、失败保留、IGZO 范围或下游关闭门。
+- 在新 R02 静态 PASS 提交推送前，不得运行 ngspice/Xyce 根因探针；P3、P5、SPICE、电路、版图、PEX、HZO 和 C00 继续关闭。
+
+---
+
 ## ADR-072：以最小表达式与支路哨兵合同隔离 R02 路线分歧
 
 - 日期：2026-08-03

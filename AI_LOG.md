@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 路线分歧根因 R01 静态合同失败（保留，转 R02）
+
+### 唯一静态执行与失败分类
+
+实现提交 `015253f` 已推送并与 `origin/main` 同步；随后唯一执行 `make m01-route-divergence-r01-contract-check`，返回 `38/40`、E0/FAIL。报告 `results/reports/m01_route_divergence_root_cause_contract_r01.json` SHA-256 为 `3aba1c829ca3aea4002f7ee285155a26c68837c9833ab88be3f475f336a34378`。主失败项是 `observation:r02_divergence_values`：R01 checker 读取 R02 runner 报告的顶层 `route_diagnostics`，但该不可改写报告没有此字段；`result:static_ready` 是连带失败。其余 38 项通过。
+
+### 边界与保留
+
+静态报告明确 `NOT_RUN_BY_CONTRACT_CHECK`、0 个模拟器进程、0 个网表和 0 个数值输出。根因 R01 的 runner、独立 checker、探针目录、表格和运行报告均未生成；R01 配置/源码/失败报告不可改写，不得重跑。报告内 `next_gate` 是 checker 无条件写出的旧提示，不构成 runner 授权；runner 仍要求已提交的 40/40 E3 状态，因此门保持关闭。该结果是 checker/schema 失败，不确认或否定三参数 `limit` 语义假设，也不是器件、路线、物理参数、实验校准或正式 M01 证据。
+
+### 下一门
+
+登记后 `make check` 为 755/755 PASS，`make report-check` 为 12 章/5 附录/15 个既有占位/28 张图 PASS，JSON/Python 语法和 `git diff --check` 通过。先提交并推送本失败状态，再建立 `M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R02` 新命名空间；R02 只修正诊断证据读取到哈希绑定的实际落盘表/既有机器字段，并使失败 `next_gate` 文本与状态一致。R02 静态 PASS 另行提交推送前不运行任何根因探针，正式 247 行器件 DC、C00、SPICE、电路、版图、PEX 和 HZO 均保持关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M01 路线分歧根因 R01 最小合同（未执行）
 
 ### 目标与运行前假设

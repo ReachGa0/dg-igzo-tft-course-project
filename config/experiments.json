@@ -1788,7 +1788,7 @@
         "next_gate": "Commit and push the 24/24 E3 independent result, then establish a versioned M01 route-divergence root-cause contract before any new simulator run or C00/downstream work."
       },
       "route_divergence_root_cause_r01": {
-        "status": "contract_implemented",
+        "status": "contract_failed_static_checker",
         "revision": 1,
         "current_evidence": "E0",
         "contract_id": "M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01",
@@ -1803,8 +1803,10 @@
         "expected_contract_check_count": 40,
         "expected_runner_check_count": 30,
         "expected_independent_check_count": 22,
-        "contract_check_completed": false,
-        "contract_status": "NOT_RUN",
+        "contract_check_completed": true,
+        "contract_status": "FAIL",
+        "contract_checks_passed": 38,
+        "contract_checks_failed": 2,
         "runner_completed": false,
         "runner_status": "NOT_RUN",
         "independent_check_completed": false,
@@ -1838,6 +1840,17 @@
           "simulator_processes_invoked": 0,
           "preserved": true
         },
+        "contract_failure": {
+          "path": "results/reports/m01_route_divergence_root_cause_contract_r01.json",
+          "sha256": "3aba1c829ca3aea4002f7ee285155a26c68837c9833ab88be3f475f336a34378",
+          "primary_failed_check": "observation:r02_divergence_values",
+          "consequential_failed_check": "result:static_ready",
+          "failure_category": "immutable_r02_runner_report_missing_route_diagnostics_field",
+          "simulator_processes_invoked": 0,
+          "netlists_created": 0,
+          "numerical_outputs_created": 0,
+          "preserved": true
+        },
         "result_paths": [
           "config/m01_route_divergence_root_cause_r01.json",
           "scripts/m01_route_divergence_root_cause_r01_common.py",
@@ -1845,11 +1858,12 @@
           "scripts/run_m01_route_divergence_root_cause_r01.py",
           "scripts/check_m01_route_divergence_root_cause_r01.py",
           "results/reports/project_check_m01_route_divergence_r01_implementation_binding_failed.json",
-          "results/reports/project_check_m01_route_divergence_r01_implementation_source_scan_failed.json"
+          "results/reports/project_check_m01_route_divergence_r01_implementation_source_scan_failed.json",
+          "results/reports/m01_route_divergence_root_cause_contract_r01.json"
         ],
-        "future_outputs_absent": true,
-        "evidence_boundary": "R01 is implemented but its static contract, runner and independent checker have not run. It binds immutable R02 40/30/24 evidence, the original candidate limit token, the no-compatibility ngspice log, official documentation URLs and hash-bound local Xyce source. The first implementation-state project check returned 752/753 because the newly transcribed Xyce R02 PRN SHA-256 omitted its final hex digit; the failure report is preserved and the correction only restores that digit. A second implementation-state project check returned 753/754 because a self-referential forbidden-import string scan matched its own audit literal; that failure report is preserved and the correction only matches real line-start import statements. The future probe is limited to three function inputs, one 1 V/1 kOhm branch-current sentinel and three original/portable candidate points with exactly two serial processes. The portable copy changes only identifiers and the clamp expression in generated diagnostic netlists; the committed R02 candidate is not modified or rerun. This E0 implementation is not confirmed root cause, route agreement, an accepted device model, physical parameters, experimental calibration, formal M01 closure, circuit readiness or downstream evidence.",
-        "next_gate": "Commit and push the implementation, then run the 40-check static contract exactly once. Do not run ngspice, Xyce, TCAD, AIM-Spice, circuit or downstream tools before a separately committed static PASS."
+        "future_outputs_absent": false,
+        "evidence_boundary": "The one permitted R01 static checker returned 38/40 E0/FAIL and launched zero simulator processes. The primary failed check read route_diagnostics from the immutable R02 runner report, but that report has no such top-level field; result:static_ready failed only as a consequence. The R02 diagnostics remain reproducible from hash-bound persisted route tables and registered in the independently verified machine record. The failure report is preserved; R01 config and sources are immutable and must not be rerun. No probe netlist, ngspice/Xyce process, numerical probe table, TCAD, AIM-Spice, circuit or downstream output was created. This is a checker-schema failure, not evidence against or for the limit-semantics hypothesis and not route agreement, an accepted model, physical parameters, calibration or formal M01 closure.",
+        "next_gate": "Commit and push the R01 38/40 static checker failure, then establish M01 route-divergence root-cause revision-2 in a new namespace. R02 may correct only the immutable R02 diagnostic evidence source; do not run any root-cause probe before a separately committed static PASS."
       }
     },
     {

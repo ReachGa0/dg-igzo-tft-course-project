@@ -853,6 +853,8 @@ def main() -> int:
             "run the independent persisted-evidence checker for M01 open-source device DC revision-2"
         ) or current_next_scope.startswith(
             "establish and commit a versioned M01 route-divergence root-cause contract"
+        ) or current_next_scope.startswith(
+            "establish and commit M01 route-divergence root-cause revision-2"
         )
         dependencies_valid = all(
             set(item.get("depends_on", [])) <= set(experiment_map)
@@ -8266,6 +8268,9 @@ def main() -> int:
                 or r11_next_scope.startswith(
                     "establish and commit a versioned M01 route-divergence root-cause contract"
                 )
+                or r11_next_scope.startswith(
+                    "establish and commit M01 route-divergence root-cause revision-2"
+                )
             )
         )
         r11_expected_archive_paths = [
@@ -8684,6 +8689,9 @@ def main() -> int:
                 )
                 or device_dc_next_scope.startswith(
                     "establish and commit a versioned M01 route-divergence root-cause contract"
+                )
+                or device_dc_next_scope.startswith(
+                    "establish and commit M01 route-divergence root-cause revision-2"
                 )
             )
         ) or (
@@ -9448,6 +9456,26 @@ def main() -> int:
             and len(rca_contract_report.get("checks", [])) == 40
             and all(item.get("status") == "PASS" for item in rca_contract_report.get("checks", []))
         )
+        rca_failed_names = [
+            item.get("name")
+            for item in rca_contract_report.get("checks", [])
+            if item.get("status") == "FAIL"
+        ]
+        rca_contract_fail = (
+            rca_contract_report.get("status") == "FAIL"
+            and rca_contract_report.get("evidence_level") == "E0"
+            and rca_contract_report.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and rca_contract_report.get("summary", {}).get("passed") == 38
+            and rca_contract_report.get("summary", {}).get("failed") == 2
+            and rca_contract_report.get("summary", {}).get("simulator_processes_invoked") == 0
+            and rca_contract_report.get("summary", {}).get("netlists_created") == 0
+            and rca_contract_report.get("summary", {}).get("numerical_outputs_created") == 0
+            and rca_contract_report.get("config", {}).get("sha256") == sha256(m01_rca_r01_config_path)
+            and rca_contract_report.get("runner", {}).get("sha256") == sha256(m01_rca_r01_runner_path)
+            and len(rca_contract_report.get("checks", [])) == 40
+            and rca_failed_names
+            == ["observation:r02_divergence_values", "result:static_ready"]
+        )
         rca_run_pass = (
             rca_contract_pass
             and rca_run_report.get("status") == "PASS"
@@ -9495,6 +9523,23 @@ def main() -> int:
             and rca_machine.get("result_paths") == rca_source_paths + [rca_outputs["contract_report"]]
             and all(path == rca_contract_report_path or not path.exists() for path in rca_all_output_paths)
         )
+        rca_failed_state = (
+            rca_contract_fail
+            and rca_machine.get("status") == "contract_failed_static_checker"
+            and rca_machine.get("current_evidence") == "E0"
+            and rca_machine.get("contract_check_completed") is True
+            and rca_machine.get("contract_status") == "FAIL"
+            and rca_machine.get("contract_checks_passed") == 38
+            and rca_machine.get("contract_checks_failed") == 2
+            and rca_machine.get("runner_completed") is False
+            and rca_machine.get("independent_check_completed") is False
+            and rca_machine.get("processes_invoked") == 0
+            and rca_machine.get("contract_failure", {}).get("sha256")
+            == sha256(rca_contract_report_path)
+            and rca_machine.get("result_paths")
+            == rca_source_paths + [rca_outputs["contract_report"]]
+            and all(path == rca_contract_report_path or not path.exists() for path in rca_all_output_paths)
+        )
         rca_runner_state = (
             rca_run_pass
             and rca_machine.get("status") == "formal_probe_passed"
@@ -9533,6 +9578,9 @@ def main() -> int:
         ) or (
             rca_runner_state
             and rca_next_scope.startswith("run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-1")
+        ) or (
+            rca_failed_state
+            and rca_next_scope.startswith("establish and commit M01 route-divergence root-cause revision-2")
         ) or rca_verified_state
         contract_source = m01_rca_r01_contract_path.read_text(encoding="ascii")
         runner_source = m01_rca_r01_runner_path.read_text(encoding="ascii")
@@ -9578,10 +9626,16 @@ def main() -> int:
                     "m01-route-divergence-r01-check",
                 )
             )
-            and (rca_implemented_state or rca_ready_state or rca_runner_state or rca_verified_state)
+            and (
+                rca_implemented_state
+                or rca_ready_state
+                or rca_failed_state
+                or rca_runner_state
+                or rca_verified_state
+            )
             and "E0 implementation" in config.get("tcad_track", {}).get("m01_route_divergence_root_cause_r01_contract_boundary", "")
             and rca_next_scope_valid,
-            f"implemented={rca_implemented_state} ready={rca_ready_state} runner={rca_runner_state} "
+            f"implemented={rca_implemented_state} ready={rca_ready_state} failed={rca_failed_state} runner={rca_runner_state} "
             f"verified={rca_verified_state} r02_binding={rca_r02_binding_ok} implementation_failure={implementation_failure_ok} "
             f"source_scan_failure={source_scan_failure_ok} "
             f"future_absent={sum(not path.exists() for path in rca_all_output_paths)}/{len(rca_all_output_paths)}",
