@@ -16,6 +16,24 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce build/tool R02 静态合同失败
+
+### 用户目标与读取输入
+
+在 R01 SuiteSparse BLAS 构建门失败之后建立 revision-2 合同，只补齐显式用户目录 BLAS/LAPACK 路径，不运行 R02 构建或任何器件网表。读取 R01 失败报告/独立报告、R02 配置、包装 runner/checker 和 IGZO 候选。
+
+### 执行与失败保留
+
+- 新增 R02 配置、包装 runner、包装独立 checker、25 项静态合同 checker 和 Make 入口；R02 绑定 R01 14/29、9/20 失败哈希，构建/输出根改为 `r02`，SuiteSparse CMake 显式注册 `libblas.so`/`liblapack.so`。
+- `make m01-xyce-build-preflight-r02-contract-check` 唯一运行返回 `22/25`、E0/FAIL。失败项是候选文本中的英文注释 `translation` 被子串 `tran` 规则误判，以及 R02 wrapper 缺少静态 no-formal 标记；没有运行 configure/build、Xyce、ngspice/AIM-Spice、自测、候选解析、器件网表或数值输出。
+- 失败报告 `results/reports/m01_xyce_build_preflight_contract_r02.json` 原样保留，SHA-256 为 `8f3e2ebe96105ab33246e3d828afba131919538a5b2b37321e58df28539e569f`；R01 失败及其 partial cache 继续保留。机器状态和文档下一门改为 R03。
+
+### 边界与下一步
+
+这不是 BLAS 构建失败或 Xyce 数值失败，而是合同检查器自己的范围/静态标记失败，证据等级为 E0。R03 只修正 token-safe 词法和 wrapper 静态标记，使用新的合同报告/命名空间；不得重跑或覆盖 R01/R02。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce 构建预检 R01 失败并转入 R02 合同
 
 ### 用户目标与读取输入

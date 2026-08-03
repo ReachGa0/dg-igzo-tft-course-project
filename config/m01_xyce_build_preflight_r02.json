@@ -1,0 +1,218 @@
+{
+  "schema_version": "1.0",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "M01",
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R02",
+  "revision": 2,
+  "status": "preflight_planned",
+  "evidence_level_before_run": "E0",
+  "bound_contract": {
+    "path": "config/m01_open_source_recovery_contract_r01.json",
+    "sha256": "b780b18663a4e4bdfa2a135d6db2efa0a89269ce7ef02eb0df9ffd8c992ed17a",
+    "report_path": "results/reports/m01_open_source_recovery_contract_r01_e3.json",
+    "report_sha256": "e0c08dd31964b41420139b54d5ff215e173ea3f43720a4461b7725150c8ab070",
+    "contract_revision": 1,
+    "contract_checks_passed": 30,
+    "bound_commit": "23b983c523e97c50f3b1fbd243f0481c6370cc30"
+  },
+  "scope": {
+    "active_material_scope": "IGZO only",
+    "dimension": "2D project route; this preflight itself is simulator-tool only",
+    "laptop_target": true,
+    "serial_build": true,
+    "mpi_build": false,
+    "fortran_build": false,
+    "device_netlist_execution": false,
+    "formal_m01_numerical_run": false,
+    "circuit_or_downstream_permitted": false
+  },
+  "source_provenance": {
+    "xyce": {
+      "repository_url": "https://github.com/Xyce/Xyce",
+      "release_tag": "Release-7.10.0",
+      "archive_url": "https://github.com/Xyce/Xyce/archive/refs/tags/Release-7.10.0.tar.gz",
+      "archive_path": "/home/reachgao/.local/src/xyce-7.10.0.tar.gz",
+      "archive_sha256": "b5a883196f0a2b3972fd13c541fecf04735bfabc7d124d7c7e17de707204f4e2",
+      "source_dir": "/home/reachgao/.local/src/xyce-7.10.0",
+      "install_prefix": "/home/reachgao/.local/xyce-7.10-pure-r02",
+      "license": "GPL-3.0-or-later",
+      "proprietary_binary_accepted": false
+    },
+    "trilinos": {
+      "repository_url": "https://github.com/trilinos/Trilinos",
+      "release_branch": "trilinos-release-14-4-branch",
+      "archive_url": "https://github.com/trilinos/Trilinos/archive/refs/heads/trilinos-release-14-4-branch.tar.gz",
+      "archive_path": "/home/reachgao/.local/src/trilinos-14.4.tar.gz",
+      "archive_sha256": "17d81f7b825a43d79572de13a0a69374e9e359efa07d66181e2a9e87c06931a9",
+      "source_dir": "/home/reachgao/.local/src/trilinos-14.4",
+      "install_prefix": "/home/reachgao/.local/trilinos-14.4-serial-r02",
+      "minimum_version": "14.4",
+      "license": "BSD-3-Clause"
+    },
+    "suitesparse": {
+      "repository_url": "https://github.com/DrTimothyAldenDavis/SuiteSparse",
+      "release_tag": "v7.8.3",
+      "archive_url": "https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v7.8.3.tar.gz",
+      "archive_path": "/home/reachgao/.local/src/suitesparse-7.8.3.tar.gz",
+      "archive_sha256": "ce39b28d4038a09c14f21e02c664401be73c0cb96a9198418d6a98a7db73a259",
+      "source_dir": "/home/reachgao/.local/src/suitesparse-7.8.3",
+      "install_prefix": "/home/reachgao/.local/suitesparse-7.8.3-r02",
+      "minimum_version": "7.8.3",
+      "license": "mixed; AMD and SuiteSparse_config licenses are retained with source"
+    },
+    "cmake": {
+      "distribution": "Kitware binary archive",
+      "release": "3.30.5",
+      "archive_url": "https://github.com/Kitware/CMake/releases/download/v3.30.5/cmake-3.30.5-linux-x86_64.tar.gz",
+      "archive_path": "/home/reachgao/.local/src/cmake-3.30.5-linux-x86_64.tar.gz",
+      "archive_sha256": "f747d9b23e1a252a8beafb4ed2bc2ddf78cff7f04a8e4de19f4ff88e9b51dc9d",
+      "binary_path": "/home/reachgao/.local/cmake-3.30.5/bin/cmake",
+      "license": "BSD-3-Clause"
+    }
+  },
+  "historical_hash_boundary": {
+    "historical_contract_path": "config/m01_open_source_recovery_contract_r01.json",
+    "historical_recorded_xyce_archive_sha256": "b5a883196f0a2b3972fd13c541cfecf04735bfabc7d124d7c7e17de707204f4e2",
+    "actual_rehashed_xyce_archive_sha256": "b5a883196f0a2b3972fd13c541fecf04735bfabc7d124d7c7e17de707204f4e2",
+    "historical_contract_and_report_must_remain_unchanged": true,
+    "interpretation": "The recovery contract carried a source-review transcription string and did not rehash a stable local archive. This preflight records the independently recomputed local archive hash and does not reinterpret or overwrite the historical E3 static report."
+  },
+  "toolchain": {
+    "cmake": "/home/reachgao/.local/cmake-3.30.5/bin/cmake",
+    "c_compiler": "/usr/bin/gcc",
+    "cxx_compiler": "/usr/bin/g++",
+    "make": "/usr/bin/make",
+    "bison": "/home/reachgao/.local/toolchain/usr/bin/bison",
+    "flex": "/home/reachgao/.local/toolchain/usr/bin/flex",
+    "blas_library_dir": "/home/reachgao/.local/linear-algebra/lib",
+    "lapack_library_dir": "/home/reachgao/.local/linear-algebra/lib",
+    "max_parallel_jobs": 2,
+    "required_commands": ["cmake", "gcc", "g++", "make", "bison", "flex"],
+    "forbidden_required_commands": ["mpirun", "mpicxx", "gfortran"]
+  },
+  "build_directories": {
+    "suitesparse_build": "/home/reachgao/.local/build/suitesparse-7.8.3-r02",
+    "trilinos_build": "/home/reachgao/.local/build/trilinos-14.4-serial-r02",
+    "xyce_build": "/home/reachgao/.local/build/xyce-7.10.0-r02"
+  },
+  "build_plan": {
+    "overwrite_build_directories": false,
+    "parallel_jobs": 2,
+    "configure_and_build_in_runner": true,
+    "suite_sparse_projects": ["suitesparse_config", "amd"],
+    "suitesparse_cmake_options": [
+      "-DBLAS_LIBRARIES=/home/reachgao/.local/linear-algebra/lib/libblas.so",
+      "-DLAPACK_LIBRARIES=/home/reachgao/.local/linear-algebra/lib/liblapack.so"
+    ],
+    "trilinos_initial_cache": "/home/reachgao/.local/src/xyce-7.10.0/cmake/trilinos/trilinos-base.cmake",
+    "trilinos_cmake_options": [
+      "-DTrilinos_ENABLE_Fortran=OFF",
+      "-DTPL_ENABLE_MPI=OFF",
+      "-DTrilinos_ENABLE_TESTS=OFF",
+      "-DBLAS_LIBRARY_NAMES=blas",
+      "-DLAPACK_LIBRARY_NAMES=lapack"
+    ],
+    "xyce_cmake_options": [
+      "-DTrilinos_ENABLE_Fortran=OFF",
+      "-DTPL_ENABLE_MPI=OFF",
+      "-DXyce_ENABLE_TESTS=OFF"
+    ],
+    "commands_are_recorded_as_argv": true
+  },
+  "preflight_sequence": [
+    "verify_archive_and_source_hashes",
+    "verify_toolchain_versions_and_no_proprietary_binary",
+    "configure_build_install_suitesparse_amd_only",
+    "configure_build_install_serial_trilinos_fortran_off",
+    "configure_build_install_serial_xyce",
+    "fingerprint_xyce_binary_license_and_version",
+    "run_controlled_bsource_expression_self_test",
+    "run_xyce_syntax_only_on_generated_device_netlist_after_self_test",
+    "verify_no_formal_m01_outputs_or_downstream_execution"
+  ],
+  "self_test": {
+    "name": "controlled_bsource_expression",
+    "purpose": "Tool syntax and deterministic scalar B-source behavior only; no IGZO candidate and no device model",
+    "netlist_is_device_netlist": false,
+    "dc_analysis_required": true,
+    "expected_print_columns": ["V(nout)", "I(Vsense)"],
+    "expected_value_v": 1.25,
+    "tolerance_v": 1e-9,
+    "forbidden_tokens": ["IGZO", "SnO", "HZO", "ferroelectric", "tran", "noise", "circuit", "ring", "adder"],
+    "must_not_create_formal_m01_tables": true
+  },
+  "device_syntax_check": {
+    "enabled_after_self_test_only": true,
+    "purpose": "Xyce parser-only check of the frozen IGZO B-source candidate and a one-point device-only DC netlist",
+    "netlist_is_formal_device_run": false,
+    "numerical_solution_must_not_be_requested": true,
+    "argv_suffix": ["-syntax"],
+    "candidate_path": "spice/models/igzo_dg_behavioral_r02.inc",
+    "candidate_sha256": "0a2d626fb37fc4fc9c1af8bdd326d5750eeca22d8b9cd3e570481ef671c47f9d",
+    "forbidden_tokens": ["SnO", "HZO", "ferroelectric", "tran", "noise", "ring", "adder", "full_adder"]
+  },
+  "outputs": {
+    "contract_report": "results/reports/m01_xyce_build_preflight_contract_r02.json",
+    "run_directory": "results/compact/m01_xyce_build_preflight_r02",
+    "preflight_report": "results/reports/m01_xyce_build_preflight_r02.json",
+    "preflight_log": "results/compact/m01_xyce_build_preflight_r02/preflight.log",
+    "source_manifest": "results/compact/m01_xyce_build_preflight_r02/source_manifest.json",
+    "build_manifest": "results/compact/m01_xyce_build_preflight_r02/build_manifest.json",
+    "bsource_self_test_netlist": "results/compact/m01_xyce_build_preflight_r02/bsource_self_test.cir",
+    "bsource_self_test_log": "results/compact/m01_xyce_build_preflight_r02/bsource_self_test.log",
+    "bsource_self_test_output": "results/compact/m01_xyce_build_preflight_r02/bsource_self_test.csv",
+    "device_syntax_netlist": "results/compact/m01_xyce_build_preflight_r02/device_syntax.cir",
+    "device_syntax_log": "results/compact/m01_xyce_build_preflight_r02/device_syntax.log",
+    "device_syntax_output": "results/compact/m01_xyce_build_preflight_r02/device_syntax.csv",
+    "independent_check_report": "results/reports/m01_xyce_build_preflight_check_r02.json"
+  },
+  "historical_paths_to_preserve": [
+    "results/reports/m01_simulator_preflight_r01.json",
+    "results/compact/m01_simulator_cross_check_r01/syntax_preflight.log",
+    "results/reports/m01_open_source_recovery_contract_r01.json",
+    "results/reports/m01_open_source_recovery_contract_r01_e3.json",
+    "results/reports/m01_xyce_build_preflight_r01.json",
+    "results/reports/m01_xyce_build_preflight_check_r01.json",
+    "results/compact/m01_xyce_build_preflight_r01/preflight.log"
+  ],
+  "failure_retention": {
+    "exclusive_outputs": true,
+    "overwrite_existing_outputs": false,
+    "retain_build_logs": true,
+    "retain_failed_self_test_logs": true,
+    "retain_failed_syntax_logs": true,
+    "retain_partial_build_manifest": true,
+    "formal_m01_outputs_must_remain_absent": true,
+    "either_self_test_or_syntax_failure_stops_m01": true
+  },
+  "formal_outputs_that_must_remain_absent": [
+    "results/tables/m01_ngspice_open_source_r01_raw.csv",
+    "results/tables/m01_xyce_open_source_r01_raw.csv",
+    "results/tables/m01_open_source_route_metrics_r01.csv",
+    "results/tables/m01_open_source_route_difference_r01.csv",
+    "results/reports/m01_open_source_cross_check_r01.json",
+    "results/reports/m01_open_source_cross_check_r01_check.json",
+    "report/assets/m01_open_source_cross_check_r01.png",
+    "report/assets/m01_open_source_route_difference_r01.png"
+  ],
+  "no_execution_rules": {
+    "runner_must_not_invoke_ngspice": true,
+    "runner_must_not_invoke_aimspice": true,
+    "runner_must_not_invoke_formal_device_dc": true,
+    "controlled_bsource_self_test_is_not_formal_m01": true,
+    "device_syntax_check_must_follow_bsource_self_test": true,
+    "formal_m01_run_requires_this_preflight_report_and_independent_check": true,
+    "circuit_or_downstream_permitted": false
+  },
+  "r01_failure_binding": {
+    "preflight_report": "results/reports/m01_xyce_build_preflight_r01.json",
+    "preflight_report_sha256": "b444a44a96af525b5c5505627f33b62ac3521015d713b85b9ff919354dae8a61",
+    "independent_check_report": "results/reports/m01_xyce_build_preflight_check_r01.json",
+    "independent_check_report_sha256": "e12519f3f22e9944b5a5c99d2b28dbb1bc9877a47f53b4ec4b8922b6146419ba",
+    "runner_checks_passed": 14,
+    "independent_checks_passed": 9,
+    "must_remain_unchanged": true
+  },
+  "evidence_boundary": "This is a revision-2 build/tool preflight contract, not a device simulation result. It preserves the prior recovery contract and the revision-1 Xyce build failure unchanged while explicitly passing the user-local BLAS/LAPACK shared-library paths that R01 omitted. A passing report can establish only that a reproducible pure-source serial Xyce binary was built from the independently rehashed GPL source and that its scalar B-source self-test plus parser-only frozen IGZO candidate syntax check passed. The self-test is not an IGZO equation, device curve, physical parameter, experimental calibration, route comparison or circuit result. Proprietary binaries are excluded, and Xyce source/build evidence does not replace AIM-Spice Level 15 or HSPICE Level 61. M01 remains E0 until both formal device-only routes and an independent persisted-evidence check pass; P3, P5, C00, circuit, layout, PEX and HZO remain closed.",
+  "next_gate": "After this revision-2 preflight and its independent check pass, execute the frozen two-route device-only DC contract once; any route failure is retained and stops M01."
+}

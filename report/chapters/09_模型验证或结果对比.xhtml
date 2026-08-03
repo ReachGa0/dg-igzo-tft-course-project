@@ -106,7 +106,8 @@
       <tr><td>依赖与资源</td><td>SuiteSparse 仅 <code>suitesparse_config;amd</code>，随后使用 Xyce 官方 initial cache 构建 Trilinos，再构建 Xyce；所有路径位于用户目录</td><td>R01 已执行一次并在 SuiteSparse CMake 的 BLAS 发现门停止；用户目录 BLAS/LAPACK 未通过显式 <code>BLAS_LIBRARIES</code>/<code>LAPACK_LIBRARIES</code> 传入。R01 的 14/29、9/20 失败证据和部分 cache 保留，R02 必须换用新的构建/输出根</td></tr>
       <tr><td>受控自测</td><td>无项目候选的标量 B-source 计算 <code>limit(1,0,2)+sgn(1)*0.25=1.25 V</code>；通过后才生成冻结 IGZO 候选输入并调用 <code>-syntax</code></td><td>标量结果只验证工具表达式路径；<code>-syntax</code> 必须无数值 CSV，二者都不是正式器件 DC</td></tr>
       <tr><td>失败保留</td><td>runner 29 项、独立检查 20 项；排他报告、原始命令日志、源码/构建 manifest、自测输入/输出和失败状态均拒绝覆盖</td><td>任一 build/self-test/syntax/独立检查失败即停止 M01，不放宽门槛或删除失败证据</td></tr>
+      <tr><td>R02 合同结果</td><td>显式传入用户目录 BLAS/LAPACK，隔离 R02 构建/输出根并绑定 R01 失败</td><td>静态合同 22/25、E0/FAIL；候选注释的 `translation` 被过宽 `tran` 子串规则误判，wrapper 静态 no-formal marker 缺失。无 R02 构建、Xyce、自测、器件网表或数值输出，报告保留</td></tr>
     </tbody>
   </table>
-  <p class="boundary">25/25 合同检查没有启动模拟器；R01 执行只探测工具并在 SuiteSparse 配置阶段停止，没有生成自测网表、Xyce 二进制、器件网表或数值曲线。R01 runner 14/29、独立检查 9/20 的 E0/FAIL 报告与日志保留，不得重跑或覆盖。下一步须提交 R02 显式 BLAS/LAPACK 合同；其独立检查 PASS 前，正式两路线器件 DC、C00、电路、版图、PEX 和 HZO 继续关闭。</p>
+  <p class="boundary">25/25 R01 合同检查没有启动模拟器；R01 执行只探测工具并在 SuiteSparse 配置阶段停止。R02 静态合同检查也没有启动模拟器或构建，只保留 22/25 的合同失败报告。两级失败证据不得重跑或覆盖；下一步须提交 R03 token-safe 合同。其独立检查 PASS 前，正式两路线器件 DC、C00、电路、版图、PEX 和 HZO 继续关闭。</p>
 </section>

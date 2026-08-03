@@ -20,6 +20,7 @@
       <tr><td>M01 R01 工具/来源门</td><td>ngspice 固定路径、字节数、SHA-256 和 <code>--version</code>；AIM-Spice 仅固定文件指纹，不允许进程调用</td><td>唯一预检 11/13、E0/FAIL；器件网表与数值曲线未运行</td><td>ngspice 版本门通过。用户披露 AIM-Spice 副本未授权，故来源不可审计；batch/CLI 也未建立。这两项是实际失败门，只形成工具/来源失败证据，不能形成 Level 15、器件或 M01 结果。开源替代路线须另建合同</td></tr>
       <tr><td>M01 开源恢复合同</td><td>ngspice + 纯源码 Xyce 7.10.0；同一 <code>IGZO_DG_BEHAVIORAL_R02</code> 文本，247 行/13 曲线，W/L、VBG/VTG/VDS、300 K、源极 0 V 和 <code>|ID|/W</code> 不变</td><td>30/30 静态 E3；记录 GPL-3.0-or-later 源码 URL/归档哈希、B-level 1/<code>.func</code>/<code>limit</code>/<code>sgn</code>/<code>-l</code>/<code>-o</code> 能力审阅、批处理模板和失败保留</td><td>纯源码构建和二进制指纹尚未完成；专有 XyceNF、未授权 AIM-Spice、SnO/HZO/电路排除。合同不是器件仿真、SPICE 数值、方程身份、实验拟合或物理参数证据</td></tr>
       <tr><td>M01 Xyce build/tool 输入</td><td>Xyce 7.10.0、Trilinos 14.4、SuiteSparse 7.8.3、CMake 3.30.5 官方归档；实际 SHA-256、稳定用户目录路径、gcc/g++/bison/flex 和 BLAS/LAPACK 路径固定</td><td>25/25 静态 E3；R01 runner 14/29、独立 9/20 均 E0/FAIL</td><td>旧恢复合同记录的 <code>...541cfecf...</code> 转录串原样保留，新合同以重复重算的 <code>...541fecf...</code> 为构建输入。R01 SuiteSparse CMake 未找到显式用户目录 <code>BLAS_LIBRARIES</code>，失败日志/manifest/cache 保留；未生成 Xyce、器件或数值数据。R02 必须使用新构建/输出根显式注册 BLAS/LAPACK</td></tr>
+      <tr><td>M01 Xyce build/tool R02 合同</td><td>显式注册用户目录 BLAS/LAPACK，隔离 R02 build/output 根，绑定 R01 失败和同一 IGZO 候选</td><td>静态合同 22/25、E0/FAIL；过宽的 <code>tran</code> 子串规则误判候选注释，wrapper no-formal marker 检查失败。未执行 R02 构建或器件网表，R03 待建立</td></tr>
       <tr><td>学长 IGZO/VTC 表</td><td>已保留来源行和质量标记</td><td>导入、对数作图和数据质量参考</td><td>缺少完整条件，仅 reference_only</td></tr>
     </tbody>
   </table>

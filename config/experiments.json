@@ -937,6 +937,49 @@
         },
         "failure_category": "user_local_blas_discovery",
         "next_gate": "Establish and commit M01 Xyce build/tool preflight revision-2 with explicit BLAS/LAPACK paths and unique output roots; do not rerun R01 or execute a device netlist."
+      },
+      "xyce_build_preflight_r02": {
+        "status": "contract_failed_checker",
+        "revision": 2,
+        "current_evidence": "E0",
+        "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R02",
+        "contract_path": "config/m01_xyce_build_preflight_r02.json",
+        "contract_checker_path": "scripts/check_m01_xyce_build_preflight_r02_contract.py",
+        "runner_path": "scripts/run_m01_xyce_build_preflight_r02.py",
+        "independent_checker_path": "scripts/check_m01_xyce_build_preflight_r02.py",
+        "contract_report_path": "results/reports/m01_xyce_build_preflight_contract_r02.json",
+        "expected_contract_check_count": 25,
+        "expected_runner_check_count": 29,
+        "expected_independent_check_count": 20,
+        "contract_check_completed": true,
+        "contract_status": "FAIL",
+        "contract_checks_passed": 22,
+        "contract_checks_failed": 3,
+        "formal_run_completed": false,
+        "preflight_run_completed": false,
+        "device_netlist_invoked": false,
+        "numerical_outputs_created": false,
+        "ngspice_invoked": false,
+        "aimspice_invoked": false,
+        "serial_build": true,
+        "mpi_build": false,
+        "fortran_build": false,
+        "explicit_blas_lapack_paths": true,
+        "xyce_release": "Release-7.10.0",
+        "trilinos_release": "14.4",
+        "suitesparse_release": "7.8.3",
+        "max_parallel_jobs": 2,
+        "proprietary_binary_accepted": false,
+        "circuit_or_downstream_permitted": false,
+        "r01_failure_preserved": true,
+        "result_paths": [
+          "results/reports/m01_xyce_build_preflight_contract_r02.json"
+        ],
+        "artifact_hashes": {
+          "contract_report_sha256": "8f3e2ebe96105ab33246e3d828afba131919538a5b2b37321e58df28539e569f"
+        },
+        "failure_category": "contract_checker_scope_and_wrapper_markers",
+        "next_gate": "Establish and commit M01 Xyce build/tool preflight revision-3 with token-safe scope checks and preserved R01/R02 failures; do not run R02 build or a device netlist."
       }
     },
     {

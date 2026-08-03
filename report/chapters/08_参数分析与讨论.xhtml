@@ -274,5 +274,5 @@
   <p class="boundary">这些趋势只是固定迁移率和全部其他物理输入时改变 <code>V_t</code> 的数值响应，不是实验或物理 IGZO 温度依赖，不支持激活能、迁移率/DOS/接触/陷阱温度律、物理 VTH/SS/Ioff/Ion/gm、工作温区、自热、可靠性或不确定度结论。</p>
 
   <h3>8.20 适用范围和后续阶段门</h3>
-  <p>T03-P4-L、数值 P1、P2、P3 和 P5 已在各自冻结教学模型边界内关闭，其中所有历史失败继续保留，因此五组数值 T03 完成。M00 R01 唯一正式运行保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立落盘复核 20/20 E3，holdout 聚合 linear/log 误差为 0.109299/0.142615 decade，两条 gm 相对误差为 0.363249/0.419248。M00 因而只在冻结教学数值曲线与局部有效域内关闭。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。Xyce build/tool R01 合同为 25/25 E3，但唯一执行在 SuiteSparse CMake 未发现显式用户目录 BLAS/LAPACK 后以 14/29、E0/FAIL 停止，独立检查为 9/20、E0/FAIL；失败报告、日志、manifest 和部分 cache 保留，Xyce 尚未编译或运行。下一步建立并提交 R02 显式 BLAS/LAPACK 合同；实验拟合、物理参数验证、正式 M01 器件 DC、电路、版图、PEX 与 HZO 均未完成。</p>
+  <p>T03-P4-L、数值 P1、P2、P3 和 P5 已在各自冻结教学模型边界内关闭，其中所有历史失败继续保留，因此五组数值 T03 完成。M00 R01 唯一正式运行保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立落盘复核 20/20 E3，holdout 聚合 linear/log 误差为 0.109299/0.142615 decade，两条 gm 相对误差为 0.363249/0.419248。M00 因而只在冻结教学数值曲线与局部有效域内关闭。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。Xyce build/tool R01 合同为 25/25 E3，但执行在 SuiteSparse CMake 未发现显式用户目录 BLAS/LAPACK 后以 14/29、独立 9/20 E0/FAIL 停止；R02 静态合同再以 22/25、E0/FAIL 在候选 token/包装器 marker 门停止。两次失败报告、日志、manifest 和部分 cache 保留，Xyce 尚未编译或运行。下一步建立并提交 R03 token-safe 合同；实验拟合、物理参数验证、正式 M01 器件 DC、电路、版图、PEX 与 HZO 均未完成。</p>
 </section>

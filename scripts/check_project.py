@@ -192,6 +192,10 @@ REQUIRED_FILES = [
     "scripts/run_m01_xyce_build_preflight.py",
     "scripts/check_m01_xyce_build_preflight.py",
     "results/reports/m01_xyce_build_preflight_contract_r01.json",
+    "config/m01_xyce_build_preflight_r02.json",
+    "scripts/check_m01_xyce_build_preflight_r02_contract.py",
+    "scripts/run_m01_xyce_build_preflight_r02.py",
+    "scripts/check_m01_xyce_build_preflight_r02.py",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -5232,6 +5236,9 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "establish and commit M01 Xyce build/tool preflight revision-2"
                 )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "establish and commit M01 Xyce build/tool preflight revision-3"
+                )
             )
             and "M01" in config.get("tcad_track", {}).get(
                 "m00_r02_formal_result_boundary", ""
@@ -5624,6 +5631,69 @@ def main() -> int:
         add_check(
             checks,
             "m01_xyce_preflight:static_contract_and_unexecuted_chain",
+            False,
+            str(error),
+        )
+
+    m01_xyce_r02_config_path = ROOT / "config" / "m01_xyce_build_preflight_r02.json"
+    m01_xyce_r02_contract_report_path = ROOT / "results" / "reports" / "m01_xyce_build_preflight_contract_r02.json"
+    m01_xyce_r02_contract_checker_path = ROOT / "scripts" / "check_m01_xyce_build_preflight_r02_contract.py"
+    m01_xyce_r02_runner_path = ROOT / "scripts" / "run_m01_xyce_build_preflight_r02.py"
+    m01_xyce_r02_checker_path = ROOT / "scripts" / "check_m01_xyce_build_preflight_r02.py"
+    try:
+        r02_config = json.loads(m01_xyce_r02_config_path.read_text(encoding="utf-8"))
+        r02_contract_report = json.loads(m01_xyce_r02_contract_report_path.read_text(encoding="utf-8"))
+        r02_machine = experiment_map["M01"].get("xyce_build_preflight_r02", {})
+        r02_contract_checks = r02_contract_report.get("checks", [])
+        r02_future_paths = [
+            ROOT / value
+            for key, value in r02_config.get("outputs", {}).items()
+            if key != "contract_report"
+        ]
+        r02_formal_paths = [ROOT / value for value in r02_config.get("formal_outputs_that_must_remain_absent", [])]
+        r02_runner_source = m01_xyce_r02_runner_path.read_text(encoding="utf-8")
+        r02_checker_source = m01_xyce_r02_checker_path.read_text(encoding="utf-8")
+        r02_contract_source = m01_xyce_r02_contract_checker_path.read_text(encoding="utf-8")
+        add_check(
+            checks,
+            "m01_xyce_preflight_r02:static_contract_and_unexecuted_chain",
+            r02_contract_report.get("status") == "FAIL"
+            and r02_contract_report.get("contract_status") == "FAIL"
+            and r02_contract_report.get("evidence_level") == "E0"
+            and r02_contract_report.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(r02_contract_checks) == 25
+            and sum(item.get("status") == "PASS" for item in r02_contract_checks) == 22
+            and sum(item.get("status") == "FAIL" for item in r02_contract_checks) == 3
+            and r02_contract_report.get("config", {}).get("sha256") == sha256(m01_xyce_r02_config_path)
+            and r02_contract_report.get("checker", {}).get("sha256") == sha256(m01_xyce_r02_contract_checker_path)
+            and r02_machine.get("status") == "contract_failed_checker"
+            and r02_machine.get("revision") == 2
+            and r02_machine.get("current_evidence") == "E0"
+            and r02_machine.get("contract_check_completed") is True
+            and r02_machine.get("contract_status") == "FAIL"
+            and r02_machine.get("contract_checks_passed") == 22
+            and r02_machine.get("contract_checks_failed") == 3
+            and r02_machine.get("formal_run_completed") is False
+            and r02_machine.get("device_netlist_invoked") is False
+            and r02_machine.get("numerical_outputs_created") is False
+            and r02_machine.get("explicit_blas_lapack_paths") is True
+            and r02_machine.get("r01_failure_preserved") is True
+            and all(not path.exists() for path in r02_future_paths)
+            and all(not path.exists() for path in r02_formal_paths)
+            and r02_config.get("build_plan", {}).get("suitesparse_cmake_options")
+            and "m01-xyce-build-preflight-r02-contract-check:" in makefile_source
+            and "m01-xyce-build-preflight-r02:" in makefile_source
+            and "m01-xyce-build-preflight-r02-check:" in makefile_source
+            and config.get("tcad_track", {}).get("next_scope", "").startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-3"
+            ),
+            f"contract_checks={sum(item.get('status') == 'PASS' for item in r02_contract_checks)}/{len(r02_contract_checks)} future_absent="
+            f"{sum(not path.exists() for path in r02_future_paths)}/{len(r02_future_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(
+            checks,
+            "m01_xyce_preflight_r02:static_contract_and_unexecuted_chain",
             False,
             str(error),
         )
