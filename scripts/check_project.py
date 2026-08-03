@@ -817,6 +817,8 @@ def main() -> int:
         current_next_scope = config.get("tcad_track", {}).get("next_scope", "")
         r03_runner_scope_active = current_next_scope.startswith(
             "execute the committed M01 open-source device DC revision-3 portable two-route runner"
+        ) or current_next_scope.startswith(
+            "run the independent persisted-evidence checker for M01 open-source device DC revision-3 portable"
         )
         r08_scope_active = current_next_scope.startswith(
             "establish and commit M01 Xyce build/tool preflight revision-8"
@@ -9415,6 +9417,39 @@ def main() -> int:
             if r03_contract_report_path.is_file()
             else {}
         )
+        r03_run_report_path = ROOT / r03_outputs["run_report"]
+        r03_run_report = (
+            json.loads(r03_run_report_path.read_text(encoding="utf-8"))
+            if r03_run_report_path.is_file()
+            else {}
+        )
+        r03_independent_report_path = ROOT / r03_outputs["independent_check_report"]
+        r03_independent_report = (
+            json.loads(r03_independent_report_path.read_text(encoding="utf-8"))
+            if r03_independent_report_path.is_file()
+            else {}
+        )
+        r03_run_directory = ROOT / r03_outputs["run_directory"]
+        r03_run_artifact_keys = [
+            "ngspice_netlist",
+            "xyce_netlist",
+            "ngspice_log",
+            "xyce_log",
+            "ngspice_command_log",
+            "xyce_command_log",
+            "ngspice_raw_output",
+            "xyce_raw_output",
+            "ngspice_raw_csv",
+            "xyce_raw_csv",
+            "route_metrics_csv",
+            "route_difference_csv",
+            "overlay_png",
+            "route_difference_png",
+            "run_report",
+        ]
+        r03_run_output_paths = [
+            ROOT / r03_outputs[key] for key in r03_run_artifact_keys
+        ]
         r03_static_failure = r03_machine.get("static_pass_project_check_failure", {})
         r03_static_failure_path = ROOT / r03_static_failure.get("path", "missing")
         r03_contract_source = m01_device_dc_r03_contract_checker_path.read_text(
@@ -9540,6 +9575,56 @@ def main() -> int:
                 for item in r03_contract_report.get("checks", [])
             )
         )
+        r03_run_pass = (
+            r03_contract_pass
+            and r03_run_report.get("status") == "PASS"
+            and r03_run_report.get("evidence_level") == "E2"
+            and r03_run_report.get("simulation_status")
+            == "FORMAL_DEVICE_DC_COMPLETE"
+            and r03_run_report.get("summary", {}).get("passed") == 30
+            and r03_run_report.get("summary", {}).get("failed") == 0
+            and r03_run_report.get("summary", {}).get("total") == 30
+            and r03_run_report.get("summary", {}).get("process_invocations") == 2
+            and r03_run_report.get("summary", {}).get("ngspice_invoked") is True
+            and r03_run_report.get("summary", {}).get("xyce_invoked") is True
+            and r03_run_report.get("summary", {}).get("aimspice_invoked") is False
+            and r03_run_report.get("summary", {}).get("tcad_invoked") is False
+            and r03_run_report.get("summary", {}).get(
+                "circuit_or_downstream_invoked"
+            )
+            is False
+            and r03_run_report.get("config", {}).get("sha256")
+            == sha256(m01_device_dc_r03_config_path)
+            and r03_run_report.get("runner", {}).get("sha256")
+            == sha256(m01_device_dc_r03_runner_path)
+            and r03_run_report.get("contract_report", {}).get("sha256")
+            == sha256(r03_contract_report_path)
+            and len(r03_run_report.get("checks", [])) == 30
+            and all(
+                item.get("status") == "PASS"
+                for item in r03_run_report.get("checks", [])
+            )
+        )
+        r03_verified = (
+            r03_run_pass
+            and r03_independent_report.get("status") == "PASS"
+            and r03_independent_report.get("evidence_level") == "E3"
+            and r03_independent_report.get("summary", {}).get("passed") == 24
+            and r03_independent_report.get("summary", {}).get("failed") == 0
+            and r03_independent_report.get("summary", {}).get("total") == 24
+            and r03_independent_report.get("processes_invoked") == 0
+            and len(r03_independent_report.get("checks", [])) == 24
+            and all(
+                item.get("status") == "PASS"
+                for item in r03_independent_report.get("checks", [])
+            )
+            and r03_independent_report.get("config", {}).get("sha256")
+            == sha256(m01_device_dc_r03_config_path)
+            and r03_independent_report.get("runner", {}).get("sha256")
+            == sha256(m01_device_dc_r03_runner_path)
+            and r03_independent_report.get("runner_report", {}).get("sha256")
+            == sha256(r03_run_report_path)
+        )
         r03_ready_state = (
             r03_contract_pass
             and r03_machine.get("status") == "contract_ready"
@@ -9568,6 +9653,50 @@ def main() -> int:
                 if path != r03_contract_report_path
             )
         )
+        r03_runner_state = (
+            r03_run_pass
+            and r03_machine.get("status") == "formal_run_passed"
+            and r03_machine.get("revision") == 3
+            and r03_machine.get("current_evidence") == "E2"
+            and r03_machine.get("contract_check_completed") is True
+            and r03_machine.get("contract_status") == "PASS"
+            and r03_machine.get("formal_run_completed") is True
+            and r03_machine.get("formal_run_status") == "PASS"
+            and r03_machine.get("runner_checks_passed") == 30
+            and r03_machine.get("runner_checks_failed") == 0
+            and r03_machine.get("runner_processes_invoked") == 2
+            and r03_machine.get("ngspice_invoked") is True
+            and r03_machine.get("xyce_invoked") is True
+            and r03_machine.get("independent_check_completed") is False
+            and r03_machine.get("independent_check_status") == "NOT_RUN"
+            and r03_machine.get("runner_report_sha256")
+            == sha256(r03_run_report_path)
+            and r03_machine.get("result_paths")
+            == r03_source_paths
+            + [r03_static_failure["path"], r03_outputs["contract_report"]]
+            + [r03_outputs[key] for key in r03_run_artifact_keys]
+            and r03_run_directory.is_dir()
+            and all(path.is_file() for path in r03_run_output_paths)
+            and not r03_independent_report_path.exists()
+        )
+        r03_verified_state = (
+            r03_verified
+            and r03_machine.get("status") == "verified"
+            and r03_machine.get("revision") == 3
+            and r03_machine.get("current_evidence") == "E3"
+            and r03_machine.get("formal_run_completed") is True
+            and r03_machine.get("formal_run_status") == "PASS"
+            and r03_machine.get("independent_check_completed") is True
+            and r03_machine.get("independent_check_status") == "PASS"
+            and r03_machine.get("independent_checks_passed") == 24
+            and r03_machine.get("independent_checks_failed") == 0
+            and r03_machine.get("independent_processes_invoked") == 0
+            and r03_machine.get("independent_report_sha256")
+            == sha256(r03_independent_report_path)
+            and r03_run_directory.is_dir()
+            and all(path.is_file() for path in r03_run_output_paths)
+            and r03_independent_report_path.is_file()
+        )
         r03_next_scope = config.get("tcad_track", {}).get("next_scope", "")
         r03_next_scope_valid = (
             r03_implemented_state
@@ -9579,7 +9708,12 @@ def main() -> int:
             and r03_next_scope.startswith(
                 "execute the committed M01 open-source device DC revision-3 portable two-route runner"
             )
-        )
+        ) or (
+            r03_runner_state
+            and r03_next_scope.startswith(
+                "run the independent persisted-evidence checker for M01 open-source device DC revision-3 portable"
+            )
+        ) or r03_verified_state
         add_check(
             checks,
             "m01_open_source_device_dc_r03:portable_contract_implementation",
@@ -9594,7 +9728,12 @@ def main() -> int:
             == "compact-model device-only DC cross-check"
             and r03_config.get("registered_checks")
             == {"static_contract": 42, "runner": 30, "independent": 24}
-            and (r03_implemented_state or r03_ready_state)
+            and (
+                r03_implemented_state
+                or r03_ready_state
+                or r03_runner_state
+                or r03_verified_state
+            )
             and r03_bound_artifacts_ok
             and all((ROOT / path).is_file() for path in r03_source_paths)
             and sha256(source_candidate) == portable["source_candidate_sha256"]
@@ -9652,6 +9791,13 @@ def main() -> int:
                         "Execute the committed M01 open-source device DC revision-3 portable two-route runner"
                     )
                 )
+                or (
+                    r03_runner_state
+                    and r03_machine.get("next_gate", "").startswith(
+                        "Run the 24-check independent persisted-evidence checker for M01 open-source device DC revision-3 portable"
+                    )
+                )
+                or r03_verified_state
             )
             and (
                 (
@@ -9668,10 +9814,19 @@ def main() -> int:
                         "m01_open_source_device_dc_r03_contract_boundary", ""
                     )
                 )
+                or (
+                    r03_runner_state
+                    and "30/30 PASS at E2"
+                    in config.get("tcad_track", {}).get(
+                        "m01_open_source_device_dc_r03_runner_pass_boundary", ""
+                    )
+                )
+                or r03_verified_state
             )
             and r03_next_scope_valid,
             f"implemented={r03_implemented_state} ready={r03_ready_state} "
-            f"static={r03_contract_pass} bindings={r03_bound_artifacts_ok} "
+            f"runner={r03_runner_state} verified={r03_verified_state} "
+            f"static={r03_contract_pass} run={r03_run_pass} bindings={r03_bound_artifacts_ok} "
             f"future_absent={sum(not path.exists() for path in r03_output_paths)}/{len(r03_output_paths)}",
         )
     except Exception as error:  # noqa: BLE001

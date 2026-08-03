@@ -16,6 +16,28 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 完成 M01 R03 可移植完整器件两路线 runner（E2，30/30 PASS）
+
+### 目标与输入
+
+在 R03 静态 PASS 登记提交 `e664629` 已推送并与 `origin/main` 同步后，按阶段门唯一运行 `M01_OPEN_SOURCE_DEVICE_DC_R03` 的两路线器件级 DC runner。输入保持 247 个冻结目标行、同一 IGZO-only 可移植候选、一个 ngspice 与一个 GPL Xyce 串行进程、诊断阈值和 no-downstream 边界不变；不运行 AIM-Spice、TCAD、电路、版图、PEX 或 HZO。
+
+### 执行与落盘
+
+- `make m01-open-source-device-dc-r03` 唯一返回 `30/30 PASS`、E2；恰好两个进程返回 0。报告 `results/reports/m01_open_source_cross_check_r03.json` SHA-256 为 `df188515d5749735fc479998d42d8b4b92ce84d2f40687801c531cc563249c79`，总耗时约 `9.07043 s`。
+- 两份 247 器件 ASCII 网表、ngspice raw、Xyce PRN、两份有限 247 行路线 CSV、30 行指标、247 行差异、两份日志、两份命令记录和两张非空 PNG 共 14 个哈希绑定运行产物均已保留。
+- 最大绝对/对数路线差为 `4.3706900078321897e-19 A/cm`/`2.7533531010703882e-14 decade`；两路最大电流分别为 `4.6825230492225634e-4` 与 `4.6825230492225607e-4 A/cm`。两张图已人工检查为非空，路线曲线在显示精度内重合。
+
+### 登记与证据边界
+
+- 更新 `config/experiments.json` 为 `formal_run_passed/E2`，登记报告哈希、精确两进程、247+247/30/247 行计数、14 个产物和独立检查下一门；更新 `config/project.json` 与项目检查器以识别 R03 implementation/static/runner/verified 状态链。
+- 更新 `STATUS.md`、`AI_CONTEXT.md`、`README.md`、`ARCHITECTURE.md`、`PROJECT_PLAN.md`、ADR-080、报告第 5/6/8/9 章和证据矩阵。机器精度级路线一致只作为本 runner 的诊断观察；24 项独立落盘复核尚未运行。
+- 相关 JSON 解析与 Python 语法检查通过；`make check` 返回 763/763 PASS，`make report-check` 返回 12 章、5 附录、15 个既有占位和 30 张图 PASS，`git diff --check` 通过。这些登记检查没有运行 TCAD/SPICE 或下游仿真。
+- 为 R03 紧凑目录和四份 CSV 增加与 R02 同型的 Git `-text -whitespace` 属性；两份被全局忽略的日志和 ngspice raw 以证据文件显式纳入。提交前逐文件比较工作树与暂存 blob，14/14 runner 产物字节一致，避免换行规范化破坏报告内 SHA-256。
+- 本 E2 不建立方程身份、原生 HSPICE Level 61、物理 IGZO 参数、实验校准、外部验证、正式敏感性、P2/T03、M01/C00、电路、版图、PEX 或 HZO。下一步必须先提交并推送本状态，再唯一运行零进程独立 checker；R03 runner 不重跑。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 完成 M01 R03 可移植完整器件静态合同（E3，42/42 PASS）
 
 ### 目标与输入

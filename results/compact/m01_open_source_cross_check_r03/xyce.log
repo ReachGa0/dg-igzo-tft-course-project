@@ -1,0 +1,169 @@
+
+*****
+***** Welcome to the Xyce(TM) Parallel Electronic Simulator
+*****
+***** This is version Xyce Release 7.10.0-opensource
+***** Date: Tue Aug 04 04:57:15 CST 2026
+
+
+***** Executing netlist results/compact/m01_open_source_cross_check_r03/xyce_device_dc.cir
+
+***** Reading and parsing netlist...
+Netlist warning in file
+ results/compact/m01_open_source_cross_check_r03/xyce_device_dc.cir at or near
+ line 3
+ Option name missing, or SPICE-style option not supported in Xyce
+Netlist warning in file
+ results/compact/m01_open_source_cross_check_r03/xyce_device_dc.cir at or near
+ line 3
+ Unrecognized dot line will be ignored
+***** Setting up topology...
+
+Netlist warning: Voltage Node (BG006) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG008) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG009) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG010) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG010) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG011) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG012) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG012) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG014) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG015) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG016) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG017) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG018) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG018) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG019) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG019) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG020) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG021) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG021) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG022) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG022) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG024) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG024) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG025) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG025) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG028) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG028) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG030) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG030) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG032) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG033) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG034) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG036) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG036) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG037) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG040) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG041) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG042) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG043) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG044) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG005) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG046) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG014) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG020) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG047) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG003) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG050) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG052) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG052) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG054) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG055) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG056) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG057) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG035) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG038) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG058) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG058) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG059) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG042) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG060) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG061) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG061) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG033) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG062) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG065) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG066) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG067) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG068) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG068) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG069) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG069) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG045) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG070) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG071) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG072) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG049) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG073) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG074) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG075) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG075) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG076) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG031) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG077) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG078) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG078) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG046) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG072) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG079) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG080) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG080) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG081) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG082) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG004) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG082) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG083) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG084) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BG085) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TG086) connected to only 1 device Terminal
+Maximum warning count has been exceeded and will no longer be displayed
+***** Device Count Summary ...
+       B level 1 (Expression Based Voltage or Current Source) 247
+       V level 1 (Independent Voltage Source)                 742
+       ----------------------------------------------------------
+       Total Devices                                          989
+***** Setting up matrix structure...
+***** Number of Unknowns = 1484
+***** Initializing...
+
+
+***** Solution Summary *****
+	Number Successful Steps Taken:		1
+	Number Failed Steps Attempted:		0
+	Number Jacobians Evaluated:		3
+	Number Linear Solves:			3
+	Number Failed Linear Solves:		0
+	Number Residual Evaluations:		5
+	Number Nonlinear Convergence Failures:	0
+	Total Residual Load Time:		0.00777721 seconds
+	Total Jacobian Load Time:		8.39233e-05 seconds
+	Total Linear Solution Time:		0.000195742 seconds
+
+
+***** Total Simulation Solvers Run Time: 0.015054 seconds
+***** Total Elapsed Run Time:            0.172834 seconds
+*****
+***** End of Xyce(TM) Simulation
+*****
+
+Timing summary of 1 processor
+                 Stats                   Count       CPU Time              Wall Time
+---------------------------------------- ----- --------------------- ---------------------
+Xyce                                         1        0.043 (100.0%)        0.182 (100.0%)
+  Analysis                                   1        0.009 (21.04%)        0.011 ( 5.93%)
+    DC Sweep                                 1        0.009 (21.03%)        0.011 ( 5.93%)
+      Solve                                  1        0.009 (19.93%)        0.008 ( 4.58%)
+        Residual                             5        0.008 (18.79%)        0.008 ( 4.27%)
+        Jacobian                             3        0.000 ( 0.18%)        0.000 ( 0.05%)
+        Linear Solve                         3        0.000 ( 0.46%)        0.000 ( 0.11%)
+      Successful Step                        1        0.000 ( 0.93%)        0.002 ( 0.98%)
+  Netlist Import                             1        0.033 (75.48%)        0.125 (68.43%)
+    Parse Context                            1        0.000 ( 0.00%)        0.007 ( 4.09%)
+    Distribute Devices                       1        0.032 (74.35%)        0.112 (61.66%)
+    Verify Devices                           1        0.000 (<0.01%)        0.000 (<0.01%)
+    Instantiate                              1        0.000 ( 0.92%)        0.004 ( 2.22%)
+  Late Initialization                        1        0.001 ( 2.38%)        0.031 (17.25%)
+    Global Indices                           1        0.000 ( 0.00%)        0.028 (15.46%)
+  Setup Matrix Structure                     1        0.000 ( 0.39%)        0.001 ( 0.53%)
+

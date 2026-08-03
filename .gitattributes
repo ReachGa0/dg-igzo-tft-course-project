@@ -24,6 +24,13 @@ results/tables/m01_xyce_open_source_r02_raw.csv -text -whitespace
 results/tables/m01_open_source_route_metrics_r02.csv -text -whitespace
 results/tables/m01_open_source_route_difference_r02.csv -text -whitespace
 
+# R03 formal device-DC artifacts are SHA-bound in the runner report.
+results/compact/m01_open_source_cross_check_r03/** -text -whitespace
+results/tables/m01_ngspice_open_source_r03_raw.csv -text -whitespace
+results/tables/m01_xyce_open_source_r03_raw.csv -text -whitespace
+results/tables/m01_open_source_route_metrics_r03.csv -text -whitespace
+results/tables/m01_open_source_route_difference_r03.csv -text -whitespace
+
 # R02 root-cause probe artifacts are SHA-bound and must remain byte-for-byte intact.
 results/compact/m01_route_divergence_root_cause_r02/** -text -whitespace
 results/tables/m01_route_divergence_root_cause_r02.csv -text -whitespace

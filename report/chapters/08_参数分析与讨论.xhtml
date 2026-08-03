@@ -309,4 +309,8 @@
       <h3>8.29 M01 R03 可移植完整器件静态合同边界</h3>
       <p>R03 在独立命名空间中冻结了一个新的 IGZO-only 完整器件候选和 42/30/24 三门合同。它把 R02 候选的三参数 <code>limit(x/s,-60,60)</code> 只替换为显式 <code>min(max(x/s,-60),60)</code>，另四处仅更新版本/子电路标识；所有教学参数与 <code>BIDS</code> 行保持逐字节一致，并绑定不可改写的 R02 正式器件与根因诊断链。</p>
       <p class="boundary">R03 静态合同在提交 <code>50066b7</code> 推送后唯一返回 42/42 PASS、E3，报告 SHA-256 为 <code>a30611ad...c0237a</code>；它记录 0 个 build/simulator process、0 个网表和 0 个数值输出，静态报告之外的 17 个输出路径仍缺失。登记后的首次项目总检查白名单失败已归档为 <code>project_check_m01_open_source_device_dc_r03_static_pass_next_scope_stale_failed.json</code>（SHA-256 <code>b80e696b...c87403</code>），修正不改变合同或门槛。该 E3 只打开提交后的两路线 runner，不证明 portable 候选已被接受为物理模型、不证明 247 行路线一致、方程身份、物理 IGZO 参数、实验校准、正式敏感性、P2/T03、M01/C00、电路、版图、PEX 或 HZO。runner PASS 提交前不得运行独立 checker。</p>
+      <h3>8.30 M01 R03 可移植完整器件两路线 runner 边界</h3>
+      <p>静态 PASS 登记提交 <code>e664629</code> 推送并同步后，R03 runner 唯一启动一个 ngspice 与一个 GPL Xyce 串行器件 DC 进程并返回 30/30 PASS、E2。报告 <code>results/reports/m01_open_source_cross_check_r03.json</code> SHA-256 为 <code>df188515d5749735fc479998d42d8b4b92ce84d2f40687801c531cc563249c79</code>；两份 247 器件 ASCII 网表、两份有限 247 行路线表、30 行指标、247 行差异、14 个哈希绑定运行产物和两张非空图均落盘。</p>
+      <p>两路最大电流分别为 <code>4.6825230492225634e-4</code> 与 <code>4.6825230492225607e-4 A/cm</code>；最大绝对路线差为 <code>4.3706900078321897e-19 A/cm</code>，最大对数差为 <code>2.7533531010703882e-14 decade</code>。因此 runner 在显式 clamp 候选上观察到机器精度级路线一致；R02 的历史路线分歧仍保留且不被改写。</p>
+      <p class="boundary">路线差值按执行前合同只作诊断，不是 PASS 阈值。24 项独立 checker 尚未运行，因此本 E2 只证明完整有限的教学模型器件级执行，不证明方程身份、原生 HSPICE Level 61、物理 IGZO 参数、实验校准、外部验证、正式敏感性、P2/T03、正式 M01、C00、电路、版图、PEX 或 HZO。先提交并推送 E2 状态及全部产物，再唯一运行零进程独立落盘复核；runner 不重跑。</p>
 </section>
