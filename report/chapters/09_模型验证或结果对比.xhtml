@@ -110,7 +110,8 @@
       <tr><td>R03/R04 合同结果</td><td>R03 引入 token-safe 范围和实际 wrapper 标记；R04 绑定 R03 失败并使用独立根</td><td>唯一静态检查分别为 21/25、25/26 E0/FAIL；R04 只剩机器状态字面量断言失败。无对应构建、模拟器、自测、器件网表或数值输出，报告均保留</td></tr>
       <tr><td>R05 合同与执行</td><td>27 项静态检查绑定 R04 报告并明确断言 <code>contract_planned</code>；runner 使用独立 <code>r05</code> 根</td><td>合同唯一检查 27/27 PASS、E3；runner 唯一运行 19/29、E0/FAIL。SuiteSparse/Trilinos 安装和 Xyce 配置通过，Xyce build 因缺失 <code>/usr/bin/m4</code> 与 Bison 默认数据路径停止</td></tr>
       <tr><td>R06 合同失败</td><td>37 项静态合同、47 项 runner、25 项独立检查；官方 M4/Bison/Flex 来源与许可证、R05 成功依赖完整树哈希、独立 <code>r06</code> 根和最小生成器冒烟已冻结</td><td>唯一静态检查 36/37、E0/FAIL；独立 checker 合法登记 runner 路径用于哈希绑定，静态 checker 却禁止该文件名字面量。开发期 655/656 与失败状态注册后的 653/658 总检查也分别归档；修正后 659/659，均不是构建或模拟器结果</td></tr>
+      <tr><td>R07 合同实施</td><td>39 项静态合同、47 项 runner、25 项独立检查；哈希绑定 R06 全部失败证据，允许 runner 路径哈希绑定但禁止 runner import、<code>subprocess</code> 与进程执行；全新 <code>r07</code> 根</td><td>尚未运行静态合同，当前 E0；合同报告、构建根、Xyce、自测、候选解析和数值输出均不存在。总项目检查 665/665，不是合同或模拟器结果</td></tr>
     </tbody>
   </table>
-  <p class="boundary">25/25 R01 合同检查没有启动模拟器；R01 执行只探测工具并在 SuiteSparse 配置阶段停止。R02/R03/R04 静态合同分别以 22/25、21/25、25/26 失败；三次静态检查都没有启动模拟器或构建，失败报告均保留。R05 静态合同唯一检查 27/27 PASS、E3；随后唯一 runner 在生成器工具链门返回 19/29、E0/FAIL。R06 静态合同唯一返回 36/37、E0/FAIL并冻结，0 个构建/模拟器进程，无网表或数值输出；下一步只建立 R07 checker 修正版。未生成新的 Xyce 二进制、B-source 自测、parser-only IGZO 候选、独立检查、ngspice/AIM-Spice、正式器件 DC 或任何数值输出；正式两路线器件 DC、C00、电路、版图、PEX 和 HZO 继续关闭。</p>
+  <p class="boundary">25/25 R01 合同检查没有启动模拟器；R01 执行只探测工具并在 SuiteSparse 配置阶段停止。R02/R03/R04 静态合同分别以 22/25、21/25、25/26 失败；三次静态检查都没有启动模拟器或构建，失败报告均保留。R05 静态合同唯一检查 27/27 PASS、E3；随后唯一 runner 在生成器工具链门返回 19/29、E0/FAIL。R06 静态合同唯一返回 36/37、E0/FAIL并冻结；R07 当前只完成合同实施，先提交后才允许唯一静态检查。未生成新的 Xyce 二进制、B-source 自测、parser-only IGZO 候选、独立检查、ngspice/AIM-Spice、正式器件 DC 或任何数值输出；正式两路线器件 DC、C00、电路、版图、PEX 和 HZO 继续关闭。</p>
 </section>

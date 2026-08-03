@@ -16,6 +16,20 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 实现 M01 Xyce R07 checker 恢复合同
+
+### 修正范围与隔离
+
+在 R06 36/37 失败由提交 `2cbcbf2` 推送并确认同步后，建立 R07 独立配置、公共树哈希模块、39 项静态 checker、47 项 runner、25 项独立 checker 和三个 Make 入口。R07 哈希绑定 R06 配置、静态 checker、失败报告及两份项目检查失败；R06 文件和报告不修改、不重跑。
+
+R07 唯一语义修正是允许独立 checker 在 `RUNNER_PATH` 中登记 R07 runner 文件名用于落盘哈希绑定，同时用源码断言禁止导入 runner、禁止 `subprocess` import/调用和任何进程执行。M4/Bison/Flex 官方归档、解压树、许可证、SuiteSparse/Trilinos 完整树哈希、两任务 serial、MPI/Fortran 关闭、标量自测、parser-only 顺序、失败保留和所有验收门槛不变。
+
+### 当前证据边界
+
+R07 generator/Xyce build/install/report/output 使用全新 `r07` 根；当前合同报告、构建根和全部输出均不存在，源码未再次下载或构建，Xyce/ngspice/AIM-Spice、器件网表和正式 M01 数值均未运行。最终 `make check` 为 665/665 PASS，`make report-check` 为 12 章/5 附录/15 个允许占位/26 图 PASS，JSON/CSV/Python 结构、39/47/25 检查数和 `git diff --check` 通过。下一步先提交推送，再唯一运行 39 项静态合同；静态 PASS 状态再次提交前不得执行 runner。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R06 静态合同失败
 
 ### 唯一执行与失败定位

@@ -14,6 +14,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 from m01_xyce_r06_common import digest_tree as digest_r06_tree
+from m01_xyce_r07_common import digest_tree as digest_r07_tree
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -231,6 +232,11 @@ REQUIRED_FILES = [
     "results/reports/m01_xyce_build_preflight_contract_r06.json",
     "results/reports/project_check_m01_xyce_r06_contract_source_subprocess_literal_failed.json",
     "results/reports/project_check_m01_xyce_r06_failure_next_scope_stale_failed.json",
+    "config/m01_xyce_build_preflight_r07.json",
+    "scripts/m01_xyce_r07_common.py",
+    "scripts/check_m01_xyce_build_preflight_r07_contract.py",
+    "scripts/run_m01_xyce_build_preflight_r07.py",
+    "scripts/check_m01_xyce_build_preflight_r07.py",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -5289,6 +5295,9 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "preserve and commit the M01 Xyce build/tool preflight revision-6 36/37"
                 )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "establish and commit M01 Xyce build/tool preflight revision-7"
+                )
             )
             and "M01" in config.get("tcad_track", {}).get(
                 "m00_r02_formal_result_boundary", ""
@@ -5756,6 +5765,9 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "preserve and commit the M01 Xyce build/tool preflight revision-6 36/37"
                 )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "establish and commit M01 Xyce build/tool preflight revision-7"
+                )
             ),
             f"contract_checks={sum(item.get('status') == 'PASS' for item in r02_contract_checks)}/{len(r02_contract_checks)} future_absent="
             f"{sum(not path.exists() for path in r02_future_paths)}/{len(r02_future_paths)}",
@@ -5858,6 +5870,9 @@ def main() -> int:
                     or next_scope.startswith("establish and commit M01 Xyce build/tool preflight revision-6")
                     or next_scope.startswith(
                         "preserve and commit the M01 Xyce build/tool preflight revision-6 36/37"
+                    )
+                    or next_scope.startswith(
+                        "establish and commit M01 Xyce build/tool preflight revision-7"
                     )
                 )
             )
@@ -5990,6 +6005,9 @@ def main() -> int:
                 )
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "preserve and commit the M01 Xyce build/tool preflight revision-6 36/37"
+                )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "establish and commit M01 Xyce build/tool preflight revision-7"
                 )
             )
         )
@@ -6215,6 +6233,9 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "preserve and commit the M01 Xyce build/tool preflight revision-6 36/37"
                 )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "establish and commit M01 Xyce build/tool preflight revision-7"
+                )
             )
         )
         add_check(
@@ -6435,6 +6456,11 @@ def main() -> int:
             and config.get("tcad_track", {}).get("next_scope", "").startswith(
                 "preserve and commit the M01 Xyce build/tool preflight revision-6 36/37"
             )
+        ) or (
+            r06_failed_state
+            and config.get("tcad_track", {}).get("next_scope", "").startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-7"
+            )
         )
         r06_runner_source = m01_xyce_r06_runner_path.read_text(encoding="utf-8")
         r06_checker_source = m01_xyce_r06_checker_path.read_text(encoding="utf-8")
@@ -6566,6 +6592,228 @@ def main() -> int:
         add_check(
             checks,
             "m01_xyce_preflight_r06:contract_state_and_unexecuted_chain",
+            False,
+            str(error),
+        )
+
+    m01_xyce_r07_config_path = ROOT / "config" / "m01_xyce_build_preflight_r07.json"
+    m01_xyce_r07_contract_report_path = (
+        ROOT / "results" / "reports" / "m01_xyce_build_preflight_contract_r07.json"
+    )
+    m01_xyce_r07_contract_checker_path = (
+        ROOT / "scripts" / "check_m01_xyce_build_preflight_r07_contract.py"
+    )
+    m01_xyce_r07_runner_path = ROOT / "scripts" / "run_m01_xyce_build_preflight_r07.py"
+    m01_xyce_r07_checker_path = ROOT / "scripts" / "check_m01_xyce_build_preflight_r07.py"
+    m01_xyce_r07_common_path = ROOT / "scripts" / "m01_xyce_r07_common.py"
+    try:
+        r07_config = json.loads(m01_xyce_r07_config_path.read_text(encoding="utf-8"))
+        r07_machine = experiment_map["M01"].get("xyce_build_preflight_r07", {})
+        r07_contract_exists = m01_xyce_r07_contract_report_path.is_file()
+        r07_contract_report = (
+            json.loads(m01_xyce_r07_contract_report_path.read_text(encoding="utf-8"))
+            if r07_contract_exists
+            else {}
+        )
+        r07_contract_checks = r07_contract_report.get("checks", [])
+        r07_future_paths = [
+            ROOT / value
+            for key, value in r07_config.get("outputs", {}).items()
+            if key != "contract_report"
+        ]
+        r07_formal_paths = [
+            ROOT / value
+            for value in r07_config.get("formal_outputs_that_must_remain_absent", [])
+        ]
+        r07_sources = r07_config["source_provenance"]
+        r07_tools = r07_config["toolchain"]
+        r07_reuse = r07_config["dependency_reuse"]
+        r07_new_roots = [
+            *(Path(value) for value in r07_config["build_directories"].values()),
+            Path(r07_tools["generator_install_prefix"]),
+            Path(r07_sources["xyce"]["install_prefix"]),
+        ]
+        r07_generator_sources_ok = all(
+            Path(r07_sources[key]["archive_path"]).is_file()
+            and sha256(Path(r07_sources[key]["archive_path"]))
+            == r07_sources[key]["archive_sha256"]
+            and (Path(r07_sources[key]["source_dir"]) / "configure").is_file()
+            and sha256(Path(r07_sources[key]["source_dir"]) / "configure")
+            == r07_sources[key]["configure_sha256"]
+            and (
+                Path(r07_sources[key]["source_dir"])
+                / r07_sources[key]["license_file"]
+            ).is_file()
+            and sha256(
+                Path(r07_sources[key]["source_dir"])
+                / r07_sources[key]["license_file"]
+            )
+            == r07_sources[key]["license_sha256"]
+            for key in ("m4", "bison", "flex")
+        )
+        r07_reuse_actual = {
+            key: digest_r07_tree(Path(r07_reuse[key]["install_prefix"]))
+            for key in ("suitesparse", "trilinos")
+        }
+        r07_reuse_ok = all(
+            all(
+                r07_reuse_actual[key].get(field) == r07_reuse[key].get(field)
+                for field in r07_reuse_actual[key]
+            )
+            for key in ("suitesparse", "trilinos")
+        )
+        r07_r06 = r07_config["r06_contract_failure_binding"]
+        r07_r06_bindings = [
+            (r07_r06["config_path"], r07_r06["config_sha256"]),
+            (
+                r07_r06["contract_checker_path"],
+                r07_r06["contract_checker_sha256"],
+            ),
+            (r07_r06["contract_report_path"], r07_r06["contract_report_sha256"]),
+            (
+                r07_r06["implementation_project_check_failure_path"],
+                r07_r06["implementation_project_check_failure_sha256"],
+            ),
+            (
+                r07_r06["failure_state_project_check_failure_path"],
+                r07_r06["failure_state_project_check_failure_sha256"],
+            ),
+        ]
+        r07_r06_binding_ok = all(
+            (ROOT / relative).is_file() and sha256(ROOT / relative) == expected
+            for relative, expected in r07_r06_bindings
+        )
+        r07_planned_state = (
+            not r07_contract_exists
+            and r07_machine.get("status") == "contract_planned"
+            and r07_machine.get("current_evidence") == "E0"
+            and r07_machine.get("contract_check_completed") is False
+            and r07_machine.get("result_paths") == []
+            and r07_machine.get("artifact_hashes") == {}
+        )
+        r07_ready_state = (
+            r07_contract_exists
+            and r07_contract_report.get("status") == "PASS"
+            and r07_contract_report.get("contract_status") == "PASS"
+            and r07_contract_report.get("evidence_level") == "E3"
+            and r07_contract_report.get("build_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(r07_contract_checks) == 39
+            and all(item.get("status") == "PASS" for item in r07_contract_checks)
+            and r07_contract_report.get("summary", {}).get("simulator_processes_invoked")
+            == 0
+            and r07_contract_report.get("summary", {}).get("build_processes_invoked") == 0
+            and r07_contract_report.get("summary", {}).get("device_netlist_created") is False
+            and r07_contract_report.get("summary", {}).get("numerical_outputs_created") is False
+            and r07_contract_report.get("config", {}).get("sha256")
+            == sha256(m01_xyce_r07_config_path)
+            and r07_contract_report.get("checker", {}).get("sha256")
+            == sha256(m01_xyce_r07_contract_checker_path)
+            and r07_machine.get("status") == "contract_ready"
+            and r07_machine.get("current_evidence") == "E3"
+            and r07_machine.get("contract_check_completed") is True
+            and r07_machine.get("contract_status") == "PASS"
+            and r07_machine.get("contract_checks_passed") == 39
+            and r07_machine.get("contract_checks_failed") == 0
+            and r07_machine.get("artifact_hashes", {}).get("contract_report_sha256")
+            == sha256(m01_xyce_r07_contract_report_path)
+            and r07_machine.get("result_paths")
+            == ["results/reports/m01_xyce_build_preflight_contract_r07.json"]
+        )
+        r07_next_scope_valid = (
+            r07_planned_state
+            and config.get("tcad_track", {}).get("next_scope", "").startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-7"
+            )
+        ) or (
+            r07_ready_state
+            and config.get("tcad_track", {}).get("next_scope", "").startswith(
+                "execute M01 Xyce build/tool preflight revision-7"
+            )
+        )
+        r07_runner_source = m01_xyce_r07_runner_path.read_text(encoding="utf-8")
+        r07_checker_source = m01_xyce_r07_checker_path.read_text(encoding="utf-8")
+        r07_contract_source = m01_xyce_r07_contract_checker_path.read_text(
+            encoding="utf-8"
+        )
+        r07_common_source = m01_xyce_r07_common_path.read_text(encoding="utf-8")
+        add_check(
+            checks,
+            "m01_xyce_preflight_r07:contract_state_and_unexecuted_chain",
+            (r07_planned_state or r07_ready_state)
+            and r07_config.get("preflight_id") == "M01_XYCE_BUILD_PREFLIGHT_R07"
+            and r07_config.get("revision") == 7
+            and r07_config.get("status") == "preflight_planned"
+            and r07_machine.get("revision") == 7
+            and r07_machine.get("expected_contract_check_count") == 39
+            and r07_machine.get("expected_runner_check_count") == 47
+            and r07_machine.get("expected_independent_check_count") == 25
+            and r07_machine.get("formal_run_completed") is False
+            and r07_machine.get("preflight_run_completed") is False
+            and r07_machine.get("device_netlist_invoked") is False
+            and r07_machine.get("numerical_outputs_created") is False
+            and r07_machine.get("ngspice_invoked") is False
+            and r07_machine.get("aimspice_invoked") is False
+            and r07_machine.get("serial_build") is True
+            and r07_machine.get("mpi_build") is False
+            and r07_machine.get("fortran_build") is False
+            and r07_machine.get("source_built_m4_bison_flex") is True
+            and r07_machine.get("reuse_r05_suitesparse") is True
+            and r07_machine.get("reuse_r05_trilinos") is True
+            and r07_machine.get("reuse_r05_partial_xyce") is False
+            and r07_machine.get("reuse_r06_xyce_or_outputs") is False
+            and r07_machine.get("r05_failure_preserved") is True
+            and r07_machine.get("r06_contract_failure_preserved") is True
+            and r07_machine.get("r06_contract_report_sha256")
+            == sha256(ROOT / r07_r06["contract_report_path"])
+            and r07_machine.get("proprietary_binary_accepted") is False
+            and r07_machine.get("circuit_or_downstream_permitted") is False
+            and all(not path.exists() for path in r07_future_paths)
+            and all(not path.exists() for path in r07_formal_paths)
+            and all(not path.exists() for path in r07_new_roots)
+            and len(r07_new_roots) == len(set(r07_new_roots))
+            and r07_generator_sources_ok
+            and r07_reuse_ok
+            and r07_r06_binding_ok
+            and r07_reuse.get("dependency_rebuild_permitted") is False
+            and r07_config["build_plan"].get("generator_build_order")
+            == ["m4", "bison", "flex"]
+            and r07_config["build_plan"].get(
+                "suitesparse_or_trilinos_commands_permitted"
+            )
+            is False
+            and r07_config["build_plan"].get("parallel_jobs") == 2
+            and "EXPECTED_CHECK_COUNT = 47" in r07_runner_source
+            and "formal_device_dc_invoked=false" in r07_runner_source
+            and "r05_partial_xyce_reused=false" in r07_runner_source
+            and "r06_xyce_or_outputs_reused=false" in r07_runner_source
+            and "EXPECTED_CHECK_COUNT = 25" in r07_checker_source
+            and "EXPECTED_RUNNER_CHECK_COUNT = 47" in r07_checker_source
+            and "run_m01_xyce_build_preflight_r07.py" in r07_checker_source
+            and "import subprocess" not in r07_checker_source
+            and "subprocess." not in r07_checker_source
+            and re.search(
+                r"^(?:from\s+run_m01_xyce_build_preflight_r07\s+import|import\s+run_m01_xyce_build_preflight_r07\b)",
+                r07_checker_source,
+                re.MULTILINE,
+            )
+            is None
+            and "EXPECTED_CHECK_COUNT = 39" in r07_contract_source
+            and "r06_contract_failure_binding" in r07_contract_source
+            and re.search(r"^import subprocess\b", r07_contract_source, re.MULTILINE)
+            is None
+            and "def digest_tree" in r07_common_source
+            and "import subprocess" not in r07_common_source
+            and "m01-xyce-build-preflight-r07-contract-check:" in makefile_source
+            and "m01-xyce-build-preflight-r07:" in makefile_source
+            and "m01-xyce-build-preflight-r07-check:" in makefile_source
+            and r07_next_scope_valid,
+            f"planned={r07_planned_state} ready={r07_ready_state} future_absent="
+            f"{sum(not path.exists() for path in r07_future_paths)}/{len(r07_future_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(
+            checks,
+            "m01_xyce_preflight_r07:contract_state_and_unexecuted_chain",
             False,
             str(error),
         )

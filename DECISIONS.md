@@ -1,5 +1,21 @@
 # 设计决策记录
 
+## ADR-053：R07 允许 runner 路径哈希绑定但禁止导入与进程执行
+
+- 日期：2026-08-03
+- 状态：R07 合同、runner 与独立 checker 已实现，静态合同尚未运行，当前 E0
+
+### checker 修正
+
+- 独立落盘检查必须知道 runner 路径，才能比较运行报告中的 runner SHA-256；因此 runner 文件名字面量本身不是执行耦合。R07 允许 `RUNNER_PATH` 登记该路径。
+- 真正的独立性门改为源码可审计条件：独立 checker 不得 `import` R07 runner，不得导入或调用 `subprocess`，不得执行任何进程；只允许标准库读取、解析和哈希持久化证据。该修正不改变 25 项独立检查内容、数值门槛或证据边界。
+
+### 复用与新根
+
+- R07 哈希绑定 R06 配置、checker、36/37 报告和两份项目检查失败；R06 不修改、不重跑。M4/Bison/Flex 继续使用已冻结的官方归档与解压树，SuiteSparse/Trilinos 继续只复用 R05 完整树哈希前缀。
+- generator、Xyce build/install、report 和 output 全部使用新的 `r07` 根；R05 partial Xyce 与所有 R06 Xyce/build/output 根均列入禁用清单。runner 持久化 `r06_xyce_or_outputs_reused=false`，独立 checker 复核该标记和实际 manifest 路径。
+- R07 静态/runner/独立检查分别为 39/47/25 项。实施先提交推送，再唯一运行静态合同；静态 PASS 状态再次提交前不得构建，AIM-Spice 和正式 M01/下游继续关闭。
+
 ## ADR-052：R06 checker 路径字面量失败保留，R07 只修正可执行性断言
 
 - 日期：2026-08-03
