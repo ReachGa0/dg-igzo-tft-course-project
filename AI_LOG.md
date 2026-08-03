@@ -16,6 +16,27 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 实现 C00 R03 非自引用提交快照合同
+
+### 目标与输入
+
+- 从已推送提交 `747f384` 继续，读取 R02 配置、五源、50/50 E3 静态报告、runner Git 自引用阻塞报告和 764/765 项目检查失败归档。R02 runner 未调用，0 网表、0 模拟器进程、0 数值输出。
+- 用户授权按阶段 DAG 自动推进，但要求严格串行门、保留失败、不放宽阈值；R03 静态 PASS 及其报告哈希另行提交前不得执行电路。
+
+### 实现与规则
+
+- 新增 `config/c00_active_load_inverter_r03.json`、R03 common、50 项静态 checker、36 项未来 runner、29 项未来独立 checker 和三个 Make 入口。R03 绑定 R02 实现/保留提交、五源及三份证据，全部输出使用独立 R03 命名空间。
+- 唯一语义修正是 committed-state 证明：静态报告记录检查时已同步的 HEAD/origin 快照；未来 runner 要求当前 HEAD/origin 同步、机器登记的静态报告哈希正确且报告快照同步；未来独立 checker 对 runner 报告采用同一规则。不再要求 tracked 字段等于包含该字段的提交哈希。
+- 2-TFT 拓扑、IGZO 教学候选、token-safe 范围、18/36 案例、固定锚点、提取、阈值、两路线、50/36/29 门、四进程串行预算与失败保留逐项不变。`config/experiments.json` 登记 R03 `contract_implemented/E0`，`circuit_execution_permitted=false`；R02 保持 E3 静态 PASS/runner blocked。
+
+### 验证、边界与下一门
+
+- R03 JSON/Python 语法和纯内存 generator 自检通过，复核 18 个 DC、36 个瞬态案例及四份 ASCII 网表；未落盘网表。`make check` 返回 766/766 PASS，`make report-check` 返回 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过。R03 静态 checker、runner、独立 checker及 TCAD/SPICE/版图进程均未运行。
+- 本实现只证明合同代码与证据链可审查，不是 50/50 静态 PASS，更不是 VTC、VOH/VOL、VM、增益、噪声裕量、延迟、功耗、物理参数、实验校准或下游证据。
+- 下一门先提交并推送本实现，再唯一运行 R03 50 项静态 checker。静态 PASS 报告及哈希必须另行登记、提交并推送后，runner 才可启动四个串行模拟器进程。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | C00 R02 静态 50/50 PASS 与 runner Git 门阻塞
 
 ### 静态执行

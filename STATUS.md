@@ -1,18 +1,25 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`C00_R02_STATIC_PASS_RUNNER_GATE_BLOCKED_R03_NEXT`
+- 当前阶段：`C00_R03_IMPLEMENTED_STATIC_NEXT`
 - 整体状态：`YELLOW`
-- 当前原则：C00 R02 静态合同在实现提交 `216c6a7` 推送后唯一返回 50/50 PASS、E3，记录 0 进程、0 网表。执行前审计发现 runner 的 `HEAD == origin == machine.static_pass_commit` 为不可满足的提交自引用；runner 未运行。R02 冻结，下一门以 R03 新命名空间只修正 committed-state 绑定，电路与下游权限保持关闭。
+- 当前原则：C00 R02 50/50 E3 静态 PASS 与 runner 提交自引用阻塞已由提交 `747f384` 保留。R03 新命名空间已实现，只以同步 HEAD/origin 快照和后续登记报告哈希替代自引用字段；当前为 `contract_implemented/E0`，50 项静态门尚未运行，电路与下游权限保持关闭。
 
 ## 本次里程碑
+
+- [x] 新增 `C00_ACTIVE_LOAD_INVERTER_R03` 配置、pure common、50 项零进程静态 checker、36 项未来 runner、29 项未来独立 checker 和三个 Make 入口；全部未来输出使用独立 R03 路径并拒绝覆盖。
+- [x] R03 哈希绑定 R02 实现提交 `216c6a7`、保留提交 `747f384`、五个源文件、50/50 静态报告 `e820af3b...1a99`、runner 阻塞报告 `9c810623...6ea51` 和项目检查失败 `e6fb9087...f4c6`；R02 不修改、不重跑。
+- [x] 唯一语义修正为：静态 checker 在已推送实施提交上记录同步 HEAD/origin 快照；未来 runner 要求当前 HEAD/origin 同步、静态报告哈希已登记且报告内快照同步；未来独立 checker 对 runner 报告采用同一规则。不存在 tracked 字段等于包含它的提交哈希。
+- [x] 2-TFT 端口、portable IGZO 候选、ASCII 标识符整词范围、18/36 案例、锚点、提取、验收阈值、两条开源路线、50/36/29 三门、四进程串行预算和失败保留均与 R02 不变。
+- [x] JSON/Python 语法与纯内存生成自检通过：18 个 DC、36 个瞬态案例和四份 ASCII 网表结构成立；`make check` 为 766/766 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过。检查没有运行 R03 静态 checker、模拟器或落盘网表，R03 运行目录、报告和数值输出均不存在。
+- [ ] 下一门：提交并推送 R03 实现，确认与 `origin/main` 同步后，唯一运行 `make c00-active-load-inverter-r03-contract-check`。只有 50/50 E3 静态 PASS 及报告哈希另行提交推送后才允许四个串行电路进程。
 
 - [x] R02 实现提交 `216c6a7` 推送并与 `origin/main` 同步后，唯一运行 `make c00-active-load-inverter-r02-contract-check`，返回 50/50 PASS、E3；报告 `results/reports/c00_active_load_inverter_contract_r02.json` SHA-256 为 `e820af3b6a80095a907ddbdc7ddab5461937cd99ff1bc442e03a6ffd07bd1a99`。
 - [x] 50 项静态门验证 R01 五源/46/48 报告不可变、R02 仅作 ASCII 标识符整词修正、2-TFT 拓扑、18/36 案例、锚点、提取、阈值、工具、四进程预算、失败保留和零输出边界；报告记录 `simulator_processes_invoked=0`、`circuit_netlists_created=0`。
 - [x] runner 执行前源码审计发现 `HEAD == origin == machine.static_pass_commit` 不能与已提交的 tracked `static_pass_commit` 登记同时成立：写入该值会改变同一提交的哈希。阻塞报告 `results/reports/c00_active_load_inverter_r02_runner_gate_self_reference_blocked.json` SHA-256 为 `9c810623...6ea51`；runner 未调用，0 网表、0 进程、0 数值输出。
 - [x] 禁止以未提交机器状态、移动 Git 引用、改写历史、修改已哈希绑定 R02 runner 或重跑 R02 绕过该门。R02 状态登记为 `static_contract_passed_runner_gate_blocked/E3`，但 `circuit_execution_permitted=false`。
 - [x] 登记该状态后的首次 `make check` 为 764/765：历史 M01 收口检查未接受新 C00 根状态枚举。失败报告 `results/reports/project_check_c00_r02_static_blocked_m01_scope_stale_failed.json` SHA-256 为 `e6fb9087...f4c6`，记录 0 个模拟器进程；修正只增加该枚举并哈希绑定归档，不改 R02 合同、报告、输入、阈值或权限，随后 `make check` 恢复为 765/765 PASS。
-- [ ] 下一门：先提交并推送 R02 50/50 PASS 与阻塞证据，再建立独立 C00 R03。R03 只可修正 committed-state Git 绑定并绑定 R02 两份报告；全部电路输入、50/36/29 门、阈值、预算和失败保留不变。
+- [x] R02 50/50 PASS 与阻塞证据已由提交 `747f384` 推送，独立 C00 R03 已建立；R03 只修正 committed-state Git 绑定并保持全部电路合同不变。
 
 - [x] 新增 `C00_ACTIVE_LOAD_INVERTER_R02` 配置、pure common、50 项零进程静态 checker、36 项未来 runner、29 项未来独立 checker 和三个 Make 入口；所有 R02 输出使用独立命名空间并拒绝覆盖。
 - [x] R02 哈希绑定实现提交 `4097b9d`、失败登记提交 `60cdcbc`、R01 五个源文件和 46/48 报告 `53f408e...a08493`。静态门新增“R01 不可变失败”与“仅 token-safe 修正”两项检查。

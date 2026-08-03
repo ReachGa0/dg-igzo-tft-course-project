@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`C00_R02_STATIC_PASS_RUNNER_GATE_BLOCKED_R03_NEXT`：C00 R02 已唯一通过 50/50 E3 静态合同，0 进程、0 网表；执行前审计发现 runner Git 提交自引用门不可满足，runner 未运行。R02 冻结，下一门建立 R03，只修正 committed-state 绑定；正式电路执行及下游关闭。
+`C00_R03_IMPLEMENTED_STATIC_NEXT`：C00 R02 50/50 E3 静态 PASS 与 runner Git 自引用阻塞已冻结。R03 只以同步 HEAD/origin 报告快照和登记哈希修正 committed-state 门，当前 `contract_implemented/E0`；50 项静态门尚未运行，正式电路执行及下游关闭。
 
 ## 截止日期
 
@@ -47,7 +47,7 @@
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
 | M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
 | M01 | 双仿真器对照 | DONE_WITH_LIMITATION，R03 independent E3 | R03 42/30/24 E3/E2/E3 满足冻结四项验收；仅关闭 portable IGZO 教学候选、247 行和两条开源行为路线。全部历史失败与 R02 分歧保留；不证明方程身份、物理参数、校准或电路验证 |
-| C00 | 有源负载 INV | R02 STATIC PASS / RUNNER GATE BLOCKED | R01 46/48 失败冻结；R02 50/50 E3、0 进程/网表。runner 的 tracked commit-hash 自引用在执行前阻塞，未调用；R03 只可修正 committed-state 绑定，全部输入、50/36/29 门、阈值和预算不变，`circuit_execution_permitted=false` |
+| C00 | 有源负载 INV | R03 IMPLEMENTED / STATIC NEXT | R01 46/48 与 R02 50/50 E3/runner blocker 冻结；R03 只改同步报告快照和登记哈希，全部输入、50/36/29 门、阈值和预算不变。当前 E0、零 R03 输出，`circuit_execution_permitted=false` |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
 | C03 | 一位全加器 | TODO | 依赖 C01 |

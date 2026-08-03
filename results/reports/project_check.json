@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 765,
+  "checks": 766,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=31527"
+      "detail": "bytes=31945"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=27125"
+      "detail": "bytes=27444"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=23813"
+      "detail": "bytes=23841"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=222566"
+      "detail": "bytes=224862"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4945"
+      "detail": "bytes=4869"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=132548"
+      "detail": "bytes=134162"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=76662"
+      "detail": "bytes=78174"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=15192"
+      "detail": "bytes=15606"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=65191"
+      "detail": "bytes=66238"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=147333"
+      "detail": "bytes=151783"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2207,7 +2207,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=96066"
+      "detail": "bytes=97338"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3567,7 +3567,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "preserve and commit the C00 active-load inverter revision-2 50/50 static PASS and runner Git self-reference blocker, then establish revision-3 with only committed-state binding correction; do not execute a circuit netlist"
+      "detail": "run the 50-check static contract for C00 active-load inverter revision-3 after committing and pushing its implementation; do not execute a circuit netlist before that static PASS and registered report hash are committed"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3637,7 +3637,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "preserve and commit the C00 active-load inverter revision-2 50/50 static PASS and runner Git self-reference blocker, then establish revision-3 with only committed-state binding correction; do not execute a circuit netlist"
+      "detail": "run the 50-check static contract for C00 active-load inverter revision-3 after committing and pushing its implementation; do not execute a circuit netlist before that static PASS and registered report hash are committed"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3753,6 +3753,11 @@
       "name": "c00_active_load_inverter_r02:token_safe_versioned_contract_chain",
       "status": "PASS",
       "detail": "implemented=False blocked=True ready=False runner=False verified=False source_bindings=True r01_binding=True"
+    },
+    {
+      "name": "c00_active_load_inverter_r03:committed_snapshot_versioned_contract_chain",
+      "status": "PASS",
+      "detail": "implemented=True ready=False runner=False verified=False source_bindings=True r02_binding=True"
     },
     {
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",
