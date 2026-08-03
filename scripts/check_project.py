@@ -17,6 +17,7 @@ from m01_xyce_r06_common import digest_tree as digest_r06_tree
 from m01_xyce_r07_common import digest_tree as digest_r07_tree
 from m01_xyce_r08_common import digest_tree as digest_r08_tree
 from m01_xyce_r09_common import digest_tree as digest_r09_tree
+from m01_xyce_r10_common import digest_tree as digest_r10_tree
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -256,6 +257,15 @@ REQUIRED_FILES = [
     "scripts/check_m01_xyce_build_preflight_r10.py",
     "results/reports/m01_xyce_build_preflight_contract_r10.json",
     "results/reports/project_check_m01_xyce_r10_static_pass_r08_next_scope_stale_failed.json",
+    "results/reports/m01_xyce_build_preflight_r10_runner_unicode_path_failed.json",
+    "results/compact/m01_xyce_build_preflight_r10_runner_unicode_path_failed.log",
+    "results/compact/m01_xyce_build_preflight_r10/preflight.log",
+    "results/compact/m01_xyce_build_preflight_r10/bsource_self_test.cir",
+    "results/compact/m01_xyce_build_preflight_r10/bsource_self_test.log",
+    "results/compact/m01_xyce_build_preflight_r10/bsource_self_test.prn",
+    "results/compact/m01_xyce_build_preflight_r10/xyce_version.log",
+    "results/compact/m01_xyce_build_preflight_r10/xyce_license.log",
+    "results/compact/m01_xyce_build_preflight_r10/xyce_bsource_self_test.log",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -760,6 +770,12 @@ def main() -> int:
             "execute M01 Xyce build/tool preflight revision-10"
         ) or current_next_scope.startswith(
             "preserve and commit the M01 Xyce build/tool preflight revision-10"
+        ) or current_next_scope.startswith(
+            "establish and commit M01 Xyce build/tool preflight revision-11"
+        ) or current_next_scope.startswith(
+            "execute M01 Xyce build/tool preflight revision-11"
+        ) or current_next_scope.startswith(
+            "preserve and commit the M01 Xyce build/tool preflight revision-11"
         )
         dependencies_valid = all(
             set(item.get("depends_on", [])) <= set(experiment_map)
@@ -7123,6 +7139,26 @@ def main() -> int:
             and r08_next_scope.startswith(
                 "execute M01 Xyce build/tool preflight revision-10"
             )
+        ) or (
+            r08_failed_state
+            and r08_next_scope.startswith(
+                "preserve and commit the M01 Xyce build/tool preflight revision-10 runner Unicode-path failure"
+            )
+        ) or (
+            r08_failed_state
+            and r08_next_scope.startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-11"
+            )
+        ) or (
+            r08_failed_state
+            and r08_next_scope.startswith(
+                "execute M01 Xyce build/tool preflight revision-11"
+            )
+        ) or (
+            r08_failed_state
+            and r08_next_scope.startswith(
+                "preserve and commit the M01 Xyce build/tool preflight revision-11"
+            )
         )
         r08_runner_source = m01_xyce_r08_runner_path.read_text(encoding="utf-8")
         r08_checker_source = m01_xyce_r08_checker_path.read_text(encoding="utf-8")
@@ -7323,6 +7359,26 @@ def main() -> int:
             and r09_next_scope.startswith(
                 "execute M01 Xyce build/tool preflight revision-10"
             )
+        ) or (
+            r09_failed_state
+            and r09_next_scope.startswith(
+                "preserve and commit the M01 Xyce build/tool preflight revision-10 runner Unicode-path failure"
+            )
+        ) or (
+            r09_failed_state
+            and r09_next_scope.startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-11"
+            )
+        ) or (
+            r09_failed_state
+            and r09_next_scope.startswith(
+                "execute M01 Xyce build/tool preflight revision-11"
+            )
+        ) or (
+            r09_failed_state
+            and r09_next_scope.startswith(
+                "preserve and commit the M01 Xyce build/tool preflight revision-11"
+            )
         )
         add_check(
             checks,
@@ -7396,10 +7452,35 @@ def main() -> int:
             if r10_contract_exists
             else {}
         )
+        r10_failure_report_path = ROOT / r10_machine.get("runner_failure_report_path", "missing")
+        r10_failure_log_path = ROOT / r10_machine.get("runner_failure_log_path", "missing")
+        r10_failure_report = (
+            json.loads(r10_failure_report_path.read_text(encoding="utf-8"))
+            if r10_failure_report_path.is_file()
+            else {}
+        )
+        r10_outputs = r10_config.get("outputs", {})
         r10_future_paths = [
             ROOT / value
-            for key, value in r10_config.get("outputs", {}).items()
+            for key, value in r10_outputs.items()
             if key != "contract_report"
+        ]
+        r10_run_directory = ROOT / r10_outputs["run_directory"]
+        r10_partial_output_keys = [
+            "preflight_log",
+            "bsource_self_test_netlist",
+            "bsource_self_test_log",
+            "bsource_self_test_output",
+            "xyce_version_command_log",
+            "xyce_license_command_log",
+            "bsource_self_test_command_log",
+            "device_syntax_netlist",
+        ]
+        r10_partial_paths = [ROOT / r10_outputs[key] for key in r10_partial_output_keys]
+        r10_uncreated_future_paths = [
+            path
+            for path in r10_future_paths
+            if path != r10_run_directory and path not in r10_partial_paths
         ]
         r10_formal_paths = [
             ROOT / value for value in r10_config.get("formal_outputs_that_must_remain_absent", [])
@@ -7477,7 +7558,7 @@ def main() -> int:
             and r10_machine.get("result_paths") == []
             and r10_machine.get("artifact_hashes") == {}
         )
-        r10_ready_state = (
+        r10_static_pass = (
             r10_contract_exists
             and r10_contract_report.get("status") == "PASS"
             and r10_contract_report.get("contract_status") == "PASS"
@@ -7496,6 +7577,11 @@ def main() -> int:
             and r10_contract_report.get("config", {}).get("sha256") == sha256(m01_xyce_r10_config_path)
             and r10_contract_report.get("checker", {}).get("sha256")
             == sha256(m01_xyce_r10_contract_checker_path)
+            and sha256(m01_xyce_r10_contract_report_path)
+            == "a7dbcf6d639897f6648d25a151d3a29c48c3dc352992a7872104b684b29fe785"
+        )
+        r10_ready_state = (
+            r10_static_pass
             and r10_machine.get("status") == "contract_ready"
             and r10_machine.get("revision") == 10
             and r10_machine.get("current_evidence") == "E3"
@@ -7509,6 +7595,130 @@ def main() -> int:
             and r10_machine.get("result_paths")
             == ["results/reports/m01_xyce_build_preflight_contract_r10.json"]
         )
+        r10_failure_summary = r10_failure_report.get("summary", {})
+        r10_failure_partial = r10_failure_report.get("partial_run", {})
+        r10_failure_static = r10_failure_report.get("static_contract", {})
+        r10_completed_commands = r10_failure_report.get("commands_completed", [])
+        r10_partial_tree = (
+            digest_r10_tree(r10_run_directory)
+            if r10_run_directory.is_dir()
+            else {}
+        )
+        r10_expected_result_paths = [
+            "results/reports/m01_xyce_build_preflight_contract_r10.json",
+            "results/reports/m01_xyce_build_preflight_r10_runner_unicode_path_failed.json",
+            "results/compact/m01_xyce_build_preflight_r10_runner_unicode_path_failed.log",
+            *[r10_outputs[key] for key in r10_partial_output_keys],
+        ]
+        r10_partial_hashes_ok = (
+            all(path.is_file() for path in r10_partial_paths)
+            and sha256(ROOT / r10_outputs["preflight_log"])
+            == r10_failure_partial.get("preflight_log_sha256")
+            and sha256(ROOT / r10_outputs["bsource_self_test_netlist"])
+            == r10_failure_partial.get("self_test_netlist_sha256")
+            and sha256(ROOT / r10_outputs["bsource_self_test_output"])
+            == next(
+                (
+                    item.get("output_sha256")
+                    for item in r10_completed_commands
+                    if item.get("name") == "xyce_bsource_self_test"
+                ),
+                None,
+            )
+            and sha256(ROOT / r10_outputs["device_syntax_netlist"])
+            == r10_failure_partial.get("partial_device_syntax_netlist_sha256")
+            and (ROOT / r10_outputs["device_syntax_netlist"]).stat().st_size == 0
+        )
+        r10_commands_ok = (
+            len(r10_completed_commands) == 3
+            and [item.get("name") for item in r10_completed_commands]
+            == ["xyce_version", "xyce_license", "xyce_bsource_self_test"]
+            and all(item.get("returncode") == 0 for item in r10_completed_commands)
+            and all(
+                (ROOT / item["log_path"]).is_file()
+                and sha256(ROOT / item["log_path"]) == item.get("log_sha256")
+                for item in r10_completed_commands
+            )
+        )
+        r10_failed_state = (
+            r10_static_pass
+            and r10_failure_report_path.is_file()
+            and r10_failure_log_path.is_file()
+            and r10_failure_report.get("status") == "FAIL"
+            and r10_failure_report.get("evidence_level") == "E0"
+            and r10_failure_report.get("stage_id") == "M01"
+            and r10_failure_report.get("preflight_id") == "M01_XYCE_BUILD_PREFLIGHT_R10"
+            and r10_failure_report.get("implementation_commit") == "bd7ebda"
+            and r10_failure_report.get("static_contract_commit") == "8dff9ad"
+            and r10_failure_report.get("failure_category")
+            == "runner_unicode_path_ascii_encoding"
+            and r10_failure_report.get("failure_phase")
+            == "device_syntax_netlist_write_before_parser_only_command"
+            and r10_failure_report.get("exception", {}).get("type") == "UnicodeEncodeError"
+            and r10_failure_report.get("exception", {}).get("source")
+            == "scripts/run_m01_xyce_build_preflight_r10.py:336"
+            and r10_failure_static.get("status") == "PASS"
+            and r10_failure_static.get("evidence_level") == "E3"
+            and r10_failure_static.get("check_count") == 36
+            and r10_failure_static.get("passed") == 36
+            and r10_failure_static.get("failed") == 0
+            and r10_failure_static.get("report_sha256")
+            == sha256(m01_xyce_r10_contract_report_path)
+            and r10_commands_ok
+            and r10_failure_summary.get("process_invocations") == 3
+            and r10_failure_summary.get("build_processes_invoked") == 0
+            and r10_failure_summary.get("simulator_processes_invoked") == 3
+            and r10_failure_summary.get("controlled_bsource_self_test_invoked") is True
+            and r10_failure_summary.get("device_syntax_only_invoked") is False
+            and r10_failure_summary.get("formal_device_dc_invoked") is False
+            and r10_failure_summary.get("device_netlist_invoked") is False
+            and r10_failure_summary.get("partial_device_syntax_file_created") is True
+            and r10_failure_summary.get("partial_device_syntax_file_bytes") == 0
+            and r10_failure_summary.get("formal_m01_outputs_created") is False
+            and r10_failure_summary.get("numerical_outputs_created") is False
+            and r10_failure_summary.get("ngspice_invoked") is False
+            and r10_failure_summary.get("aimspice_invoked") is False
+            and r10_failure_summary.get("circuit_or_downstream_invoked") is False
+            and r10_failure_partial.get("directory")
+            == "results/compact/m01_xyce_build_preflight_r10"
+            and r10_failure_partial.get("tree_sha256")
+            == "5a3d1ac4ff62848fb7132db9211a6281a477b43900e87ddfe6047f6da9fef85e"
+            and r10_partial_tree.get("tree_sha256") == r10_failure_partial.get("tree_sha256")
+            and r10_partial_tree.get("regular_file_count") == 8
+            and r10_partial_hashes_ok
+            and r10_machine.get("status") == "preflight_failed_runner"
+            and r10_machine.get("revision") == 10
+            and r10_machine.get("current_evidence") == "E0"
+            and r10_machine.get("preflight_run_completed") is True
+            and r10_machine.get("preflight_run_ordinal") == 1
+            and r10_machine.get("preflight_status") == "FAIL"
+            and r10_machine.get("build_status") == "REUSED_HASH_BOUND_R07_INSTALL"
+            and r10_machine.get("runner_checks_registered_before_abort") == 16
+            and r10_machine.get("runner_checks_passed_before_abort") == 16
+            and r10_machine.get("runner_checks_failed_before_abort") == 0
+            and r10_machine.get("runner_failure_category")
+            == "runner_unicode_path_ascii_encoding"
+            and r10_machine.get("process_invocations") == 3
+            and r10_machine.get("controlled_bsource_self_test_invoked") is True
+            and r10_machine.get("device_syntax_only_invoked") is False
+            and r10_machine.get("formal_device_dc_invoked") is False
+            and r10_machine.get("observed_self_test_value_v") == 1.25
+            and r10_machine.get("partial_run_tree_sha256")
+            == r10_failure_partial.get("tree_sha256")
+            and r10_machine.get("contract_check_completed") is True
+            and r10_machine.get("contract_status") == "PASS"
+            and r10_machine.get("contract_checks_passed") == 36
+            and r10_machine.get("contract_checks_failed") == 0
+            and r10_machine.get("simulator_processes_invoked") == 3
+            and r10_machine.get("result_paths") == r10_expected_result_paths
+            and r10_machine.get("artifact_hashes", {}).get("contract_report_sha256")
+            == sha256(m01_xyce_r10_contract_report_path)
+            and r10_machine.get("artifact_hashes", {}).get("runner_failure_report_sha256")
+            == sha256(r10_failure_report_path)
+            and r10_machine.get("artifact_hashes", {}).get("runner_failure_log_sha256")
+            == sha256(r10_failure_log_path)
+            and all(not path.exists() for path in r10_uncreated_future_paths)
+        )
         r10_next_scope = config.get("tcad_track", {}).get("next_scope", "")
         r10_next_scope_valid = (
             r10_machine_planned
@@ -7520,6 +7730,26 @@ def main() -> int:
             and r10_next_scope.startswith(
                 "execute M01 Xyce build/tool preflight revision-10"
             )
+        ) or (
+            r10_failed_state
+            and r10_next_scope.startswith(
+                "preserve and commit the M01 Xyce build/tool preflight revision-10 runner Unicode-path failure"
+            )
+        ) or (
+            r10_failed_state
+            and r10_next_scope.startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-11"
+            )
+        ) or (
+            r10_failed_state
+            and r10_next_scope.startswith(
+                "execute M01 Xyce build/tool preflight revision-11"
+            )
+        ) or (
+            r10_failed_state
+            and r10_next_scope.startswith(
+                "preserve and commit the M01 Xyce build/tool preflight revision-11"
+            )
         )
         add_check(
             checks,
@@ -7530,9 +7760,16 @@ def main() -> int:
             and r10_config.get("scope", {}).get("active_material_scope") == "IGZO only"
             and r10_config.get("scope", {}).get("formal_m01_numerical_run") is False
             and r10_config.get("scope", {}).get("circuit_or_downstream_permitted") is False
-            and (r10_machine_planned or r10_ready_state)
+            and (r10_machine_planned or r10_ready_state or r10_failed_state)
             and (not r10_contract_exists if r10_machine_planned else r10_contract_exists)
-            and all(not path.exists() for path in r10_future_paths)
+            and (
+                (r10_machine_planned or r10_ready_state)
+                and all(not path.exists() for path in r10_future_paths)
+                or r10_failed_state
+                and r10_run_directory.is_dir()
+                and all(path.is_file() for path in r10_partial_paths)
+                and all(not path.exists() for path in r10_uncreated_future_paths)
+            )
             and all(not path.exists() for path in r10_formal_paths)
             and r10_r08_binding_ok
             and r10_r09_binding_ok
@@ -7562,11 +7799,16 @@ def main() -> int:
             and r10_machine.get("ngspice_invoked") is False
             and r10_machine.get("aimspice_invoked") is False
             and r10_machine.get("build_processes_invoked") == 0
-            and r10_machine.get("simulator_processes_invoked") == 0
+            and (
+                r10_machine.get("simulator_processes_invoked") == 0
+                if not r10_failed_state
+                else r10_machine.get("simulator_processes_invoked") == 3
+            )
             and r10_machine.get("circuit_or_downstream_permitted") is False
             and r10_next_scope_valid,
-            f"planned={r10_machine_planned} ready={r10_ready_state} r08_binding={r10_r08_binding_ok} r09_binding={r10_r09_binding_ok} future_absent="
-            f"{sum(not path.exists() for path in r10_future_paths)}/{len(r10_future_paths)}",
+            f"planned={r10_machine_planned} ready={r10_ready_state} failed={r10_failed_state} "
+            f"r08_binding={r10_r08_binding_ok} r09_binding={r10_r09_binding_ok} "
+            f"future_absent={sum(not path.exists() for path in r10_uncreated_future_paths)}/{len(r10_uncreated_future_paths)}",
         )
     except Exception as error:  # noqa: BLE001
         add_check(

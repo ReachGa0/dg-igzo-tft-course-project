@@ -1,5 +1,16 @@
 # 设计决策记录
 
+## ADR-061：保留 R10 Unicode 路径运行器失败并转入 R11
+
+- 日期：2026-08-03
+- 状态：R10 runner 唯一执行后为 E0/FAIL；parser-only 与独立 checker 未运行，R11 待建立。
+- R10 36/36 E3 静态 PASS 已提交为 `8dff9ad`。随后唯一运行 `make m01-xyce-build-preflight-r10`，Xyce 版本、GPL 许可证和标量 B-source 三条命令均返回 0，固定列 `.prn` 解析得到冻结预期 1.25 V。
+- 失败发生在第四条 Xyce 命令之前：runner 将中文工程绝对路径插入 parser-only `.include` 行，并以 ASCII 写入 `device_syntax.cir`，在 `scripts/run_m01_xyce_build_preflight_r10.py:336` 抛出 `UnicodeEncodeError`。因此这不是 Xyce parser、IGZO 方程、器件收敛、物理参数、实验校准或权限失败。
+- 失败报告、伴随日志和 8 文件部分目录全部保留；目录树 SHA-256 为 `5a3d1ac4ff62848fb7132db9211a6281a477b43900e87ddfe6047f6da9fef85e`，其中 `device_syntax.cir` 是失败写入留下的零字节占位文件。审计记录 0 个 build、3 个 Xyce 工具进程、无 parser-only 进程、无正式 DC、无数值 M01 输出、无 ngspice/AIM-Spice 和无下游进程。
+- R10 配置、源码、静态报告和部分输出不可改写且不得重跑，R10 独立 checker 不运行。R11 必须使用全新 config/source/report/output 命名空间，只把 parser 网表改为不含中文绝对路径的显式路径安全表示，并继续绑定同一 IGZO 候选、R07 Xyce 二进制/安装树、四命令白名单、36/32/25 门和 no-downstream 边界。R11 静态 PASS 提交前不得启动 R11 runner。
+
+---
+
 ## ADR-060：R10 静态合同 36/36 E3 后仅打开提交后的 runner 门
 
 - 日期：2026-08-03

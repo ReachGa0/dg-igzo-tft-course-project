@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R10 runner Unicode 路径失败
+
+### 唯一执行事实与根因
+
+R10 36/36 E3 静态 PASS 已在提交 `8dff9ad` 中冻结。其后唯一命令 `make m01-xyce-build-preflight-r10` 完成 Xyce 版本、GPL 许可证和受控标量 B-source 三个工具进程，三者返回码均为 0，固定列 `bsource_self_test.prn` 解析得到 1.25 V。runner 随后把中文工程绝对路径插入 parser-only `.include` 行，并在 `scripts/run_m01_xyce_build_preflight_r10.py:336` 以 ASCII 写入时抛出 `UnicodeEncodeError`；第四条 parser-only Xyce 命令没有启动。
+
+### 保留、修改与验证
+
+新增 `results/reports/m01_xyce_build_preflight_r10_runner_unicode_path_failed.json` 和伴随日志，并保留 `results/compact/m01_xyce_build_preflight_r10/` 的 8 个文件，含零字节 `device_syntax.cir`；目录树 SHA-256 为 `5a3d1ac4ff62848fb7132db9211a6281a477b43900e87ddfe6047f6da9fef85e`。同步 `config/project.json`、`config/experiments.json`、项目级检查器、`STATUS.md`、README/上下文/架构/计划/ADR、报告第 5/6/8/9 章和证据矩阵；`.gitattributes` 只对 R10 原生固定列 `.prn` 关闭尾随空格告警，以保留原始证据字节。`make check` 为 694/694 PASS，`make report-check` 为 12 章、5 附录、15 占位和 26 图片结构 PASS；未调用任何 TCAD、Xyce runner、ngspice、AIM-Spice、正式器件 DC 或下游流程。
+
+### 证据边界与下一门
+
+审计只记录 0 个 build、3 个 Xyce 工具进程、1.25 V 标量自测和文件编码失败；没有 parser-only 证据、IGZO 方程/器件曲线、正式 M01 数值、物理参数、实验校准或电路证据。R10 配置、源码、静态报告和部分输出不可改写且不得重跑，R10 独立 checker 不运行。先提交并推送该失败归档，再建立全新 R11 路径安全 config/source/report/output 命名空间；R11 静态 PASS 提交前不得启动其 runner，正式 M01、C00、电路、版图、PEX 和 HZO 继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 Xyce R10 静态合同 36/36 PASS
 
 ### 唯一执行与结果

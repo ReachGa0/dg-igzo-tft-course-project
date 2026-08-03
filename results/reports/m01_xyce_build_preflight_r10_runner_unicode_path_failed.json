@@ -1,0 +1,74 @@
+{
+  "status": "FAIL",
+  "evidence_level": "E0",
+  "stage_id": "M01",
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R10",
+  "implementation_commit": "bd7ebda",
+  "static_contract_commit": "8dff9ad",
+  "failure_category": "runner_unicode_path_ascii_encoding",
+  "failure_phase": "device_syntax_netlist_write_before_parser_only_command",
+  "exception": {
+    "type": "UnicodeEncodeError",
+    "message": "'ascii' codec can't encode characters in position 104-105",
+    "source": "scripts/run_m01_xyce_build_preflight_r10.py:336",
+    "operation": "device_syntax_netlist.write_text(device_syntax_text, encoding=ascii)"
+  },
+  "root_cause": "The absolute project path contains Chinese characters and is interpolated into the parser-only .include line before the netlist is written.",
+  "static_contract": {
+    "status": "PASS",
+    "evidence_level": "E3",
+    "check_count": 36,
+    "passed": 36,
+    "failed": 0,
+    "report_path": "results/reports/m01_xyce_build_preflight_contract_r10.json",
+    "report_sha256": "a7dbcf6d639897f6648d25a151d3a29c48c3dc352992a7872104b684b29fe785"
+  },
+  "commands_completed": [
+    {
+      "name": "xyce_version",
+      "returncode": 0,
+      "log_path": "results/compact/m01_xyce_build_preflight_r10/xyce_version.log",
+      "log_sha256": "ca76015cd8fe9c10b389e61c687d6314b5bf4fbef6d6ab146fdd2f393cc25996"
+    },
+    {
+      "name": "xyce_license",
+      "returncode": 0,
+      "log_path": "results/compact/m01_xyce_build_preflight_r10/xyce_license.log",
+      "log_sha256": "06785f55932217b190724603c93286880559e11235aef6848d6803e3850f03a9"
+    },
+    {
+      "name": "xyce_bsource_self_test",
+      "returncode": 0,
+      "observed_self_test_value_v": 1.25,
+      "output_path": "results/compact/m01_xyce_build_preflight_r10/bsource_self_test.prn",
+      "output_sha256": "074048f03f02dd937590b060c2568ae63d6969203dda0cd7d885093476f74d36",
+      "log_path": "results/compact/m01_xyce_build_preflight_r10/xyce_bsource_self_test.log",
+      "log_sha256": "86f5a85657a7dabf3029d2de1cf5677c02cad549991abff845f1ff841f57d5bf"
+    }
+  ],
+  "summary": {
+    "process_invocations": 3,
+    "build_processes_invoked": 0,
+    "simulator_processes_invoked": 3,
+    "controlled_bsource_self_test_invoked": true,
+    "device_syntax_only_invoked": false,
+    "formal_device_dc_invoked": false,
+    "device_netlist_invoked": false,
+    "partial_device_syntax_file_created": true,
+    "partial_device_syntax_file_bytes": 0,
+    "formal_m01_outputs_created": false,
+    "numerical_outputs_created": false,
+    "ngspice_invoked": false,
+    "aimspice_invoked": false,
+    "circuit_or_downstream_invoked": false
+  },
+  "partial_run": {
+    "directory": "results/compact/m01_xyce_build_preflight_r10",
+    "tree_sha256": "5a3d1ac4ff62848fb7132db9211a6281a477b43900e87ddfe6047f6da9fef85e",
+    "preflight_log_sha256": "c38f0c32481fcd9ecfa50849f434dc4b07414d0316eb5fcf64765fce473ea3e4",
+    "self_test_netlist_sha256": "1473935e647a9fcbfee0c0b6fdad94deda330dc85fdb583661a6388a31b80198",
+    "partial_device_syntax_netlist_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence_boundary": "This is a preserved R10 runner file-encoding failure after tool version/license and controlled scalar B-source checks. It is not parser-only device evidence, an IGZO equation result, a device curve, a physical parameter, experimental calibration, formal M01, SPICE or circuit evidence.",
+  "next_gate": "Commit the R10 failure archive, then establish revision-11 with a new namespace and an explicit path-safe parser-netlist contract; do not rerun R10."
+}

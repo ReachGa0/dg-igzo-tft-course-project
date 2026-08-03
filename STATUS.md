@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_R10_XYCE_STATIC_CONTRACT_PASS_E3_NEXT_RUNNER`
+- 当前阶段：`M01_R10_XYCE_RUNNER_FAILURE_E0_NEXT_R11`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同 27/27 E3 后，build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37 E0/FAIL并冻结。R07 静态合同 39/39 E3 后，build/tool runner 唯一运行 42/47 E0/FAIL：M4/Bison/Flex、Xyce 安装、版本/许可证和 B-source 进程均通过，但 runner 误把 Xyce 实际 `.prn` 输出预注册为 `.csv`，停止在 parser-only 门前。R08 静态合同唯一执行在报告生成前因 checker 预期 36 项、实际注册 30 项而中止，属于 E0 checker 注册缺陷；失败报告和日志保留，R08 runner/独立检查未运行。R09 静态合同唯一返回 34/36、E0/FAIL，两个失败是复用黑名单与 next_gate 断言缺陷；报告/日志保留，R09 runner/独立检查未运行。R10 静态合同在实施提交后唯一运行并返回 36/36 PASS、E3，记录 0 个 build/simulator process、无器件网表和数值输出；R10 runner/独立检查尚未运行。无正式 M01 器件 DC、ngspice、AIM-Spice 或下游证据，C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同 27/27 E3 后，build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37 E0/FAIL并冻结。R07 静态合同 39/39 E3 后，build/tool runner 唯一运行 42/47 E0/FAIL：M4/Bison/Flex、Xyce 安装、版本/许可证和 B-source 进程均通过，但 runner 误把 Xyce 实际 `.prn` 输出预注册为 `.csv`，停止在 parser-only 门前。R08 静态合同唯一执行在报告生成前因 checker 预期 36 项、实际注册 30 项而中止；R09 静态合同唯一返回 34/36、E0/FAIL。R10 静态合同唯一返回 36/36 PASS、E3；其 runner 随后唯一运行并在前三个 Xyce 工具命令通过后，以中文绝对路径无法按 ASCII 写入 parser-only 网表的 `UnicodeEncodeError` 停止。R10 仅执行 3 个工具进程，B-source 固定列 `.prn` 观测为 1.25 V；没有启动 parser-only、正式器件 DC、ngspice、AIM-Spice 或下游进程。部分目录和零字节 `device_syntax.cir` 均已保留，R10 不重跑，下一门为新命名空间 R11。C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -33,12 +33,13 @@
 - [x] R10 合同实施已建立：新增独立 config/common/static checker/runner/independent checker、36/32/25 注册和三个 Make 入口。R10 绑定 R09 34/36 报告/日志以及 R08/R07 全部历史失败哈希，只修正 R09 允许保留历史归档和独立检查 wording 两项断言；R10 报告、runner/独立报告、输出目录和正式 M01 输出尚不存在，未启动任何 build、Xyce、SPICE、器件网表或下游进程。
 - [x] R10 静态合同在实施提交 `bd7ebda` 推送后唯一执行并返回 36/36 PASS、E3；报告 `results/reports/m01_xyce_build_preflight_contract_r10.json` 的 SHA-256 为 `a7dbcf6d639897f6648d25a151d3a29c48c3dc352992a7872104b684b29fe785`。报告验证 R09/R08/R07 哈希绑定、36/32/25 注册与 no-execution 门，记录 0 个 build/simulator process、无器件网表和数值输出；R10 runner/独立 checker 未运行。
 - [x] 注册 R10 静态 PASS 后首次项目总检查为 683/684：历史 R08 状态检查尚未接受已合法推进到的 execute-R10 scope。失败报告 `results/reports/project_check_m01_xyce_r10_static_pass_r08_next_scope_stale_failed.json`、SHA-256 `988ae80969aa18a1d8813fd4d883b82ae4b55a3a784258c0f85b6141ae31103d` 已保留；修正仅补入 execute-R10 状态，随后 685/685 PASS，不改合同、门槛、输入或结果。
+- [x] R10 runner 在静态 PASS 提交 `8dff9ad` 后唯一执行。Xyce 版本、GPL 许可证和标量 B-source 三条命令返回 0，固定列 `.prn` 独立解析得到 1.25 V；随后在 `scripts/run_m01_xyce_build_preflight_r10.py:336` 以 ASCII 写入含中文绝对工程路径的 `.include` 行时触发 `UnicodeEncodeError`，parser-only 命令未启动。失败报告 `results/reports/m01_xyce_build_preflight_r10_runner_unicode_path_failed.json`、伴随日志和 8 文件部分目录（树 SHA-256 `5a3d1ac4ff62848fb7132db9211a6281a477b43900e87ddfe6047f6da9fef85e`）保留；0 个 build、3 个 Xyce 工具进程、无正式 DC/数值输出，R10 独立 checker 未运行且 R10 不重跑。
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送 R10 36/36 E3 静态 PASS 状态，然后唯一运行 R10 32 项工具/parser runner；只有 runner PASS 状态提交后才运行 25 项独立持久化检查。R09/R08/R07 及其 runner/独立检查不重跑，正式 M01 器件 DC 和下游继续关闭。
+- 下一步：提交并推送 R10 runner Unicode 路径失败归档，然后在全新 R11 config/source/output 命名空间冻结路径安全的 parser-only 网表合同。R10/R09/R08/R07 及其 runner/独立检查均不重跑；R11 静态合同通过并提交前不得运行 R11 runner，正式 M01 器件 DC 和下游继续关闭。
 - M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
-- P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败和本次 28/30 干跑失败均保留。
+- P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败、28/30 干跑失败和 R10 runner 失败均保留。
 
 ## 已完成
 

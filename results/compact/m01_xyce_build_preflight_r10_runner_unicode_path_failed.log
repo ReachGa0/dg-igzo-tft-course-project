@@ -1,0 +1,29 @@
+M01 Xyce build/tool preflight R10 runner failure archive
+command=make m01-xyce-build-preflight-r10
+implementation_commit=bd7ebda
+static_contract_commit=8dff9ad
+preflight_id=M01_XYCE_BUILD_PREFLIGHT_R10
+runner=scripts/run_m01_xyce_build_preflight_r10.py
+
+classification=runner_contract_unicode_path_ascii_encoding
+failure_phase=device_syntax_netlist_write_before_parser_only_command
+exception=UnicodeEncodeError: 'ascii' codec can't encode characters in position 104-105
+traceback=run_m01_xyce_build_preflight_r10.py:336 device_syntax_netlist.write_text(device_syntax_text, encoding="ascii")
+root_cause=the absolute project path contains Chinese characters and is interpolated into the .include line before the parser-only netlist is written
+
+commands_completed=xyce_version,xyce_license,xyce_bsource_self_test
+command_results=3 Xyce tool processes returned 0; controlled B-source .prn observed V(NOUT)=1.25 V
+build_processes_invoked=0
+formal_device_dc_invoked=false
+device_syntax_process_invoked=false
+ngspice_invoked=false
+aimspice_invoked=false
+formal_m01_outputs_created=false
+numerical_outputs_created=false
+partial_device_syntax_file_created=true
+partial_device_syntax_file_bytes=0
+
+partial_run_directory=results/compact/m01_xyce_build_preflight_r10
+partial_run_tree_sha256=5a3d1ac4ff62848fb7132db9211a6281a477b43900e87ddfe6047f6da9fef85e
+retention=all partial logs, self-test netlist/log/.prn, preflight log and zero-byte syntax placeholder are retained; no cleanup or rerun is permitted
+next_gate=commit this R10 runner failure archive, then establish R11 with a new namespace and an explicit path-safe parser-netlist contract; do not rerun R10

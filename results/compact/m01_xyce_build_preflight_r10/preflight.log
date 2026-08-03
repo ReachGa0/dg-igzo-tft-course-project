@@ -1,0 +1,10 @@
+M01 Xyce output/parser recovery preflight R10
+build_invoked=false
+generator_build_invoked=false
+dependency_rebuild_invoked=false
+ngspice_invoked=false
+aimspice_invoked=false
+formal_device_dc_invoked=false
+r07_failure_reused=false
+r07_complete_generator_prefix_reused=true
+r07_complete_xyce_prefix_reused=true

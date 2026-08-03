@@ -855,7 +855,7 @@
         },
         "next_gate": "establish and commit an explicitly open-source second-simulator recovery contract before any device-level numerical execution"
       },
-      "evidence_boundary": "The revision-3 M01 contract remains 32/32 E3 static evidence, the R01 tool/provenance preflight remains an 11/13 E0/FAIL preserved run, and the open-source recovery contract remains 30/30 E3. The pure-source Xyce build/tool preflight contract and execution chain now pass 25/25 static checks at E3, pinning actual Xyce 7.10.0, Trilinos 14.4, SuiteSparse 7.8.3 and CMake 3.30.5 archive hashes, a serial two-job MPI-off/Fortran-off build, a controlled scalar B-source self-test and a later parser-only -syntax check of the frozen IGZO candidate. The prior recovery contract's unverified archive-hash transcription remains unchanged and is explicitly separated from the independently rehashed build input. No Xyce build, Xyce/ngspice device run, formal M01 numerical output, physical parameter, experimental calibration or circuit result exists at this contract stage. The committed build/tool preflight must run once and pass its independent persisted-evidence check before formal two-route device DC. External baselines remain reference-only; SnO/HZO/circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
+      "evidence_boundary": "The revision-3 M01 contract remains 32/32 E3 static evidence, the R01 tool/provenance preflight remains an 11/13 E0/FAIL preserved run, and the open-source recovery contract remains 30/30 E3. The pure-source Xyce build chain produced a hash-bound GPL Xyce 7.10.0 installation in R07, but the R07 runner remains 42/47 E0/FAIL because its output contract expected CSV instead of the fixed-column PRN that contained 1.25 V. R08 and R09 static checker failures remain preserved. R10 then passed its one 36/36 E3 static contract invocation; its one runner invocation completed version, license and controlled scalar B-source tool commands and independently parsed 1.25 V, but failed before parser-only Xyce because an ASCII netlist write contained the Chinese absolute project path. The R10 failure report and eight-file partial tree are retained; R10 is not rerun and revision-11 must use a new path-safe namespace. No R10 parser-only process, independent checker, formal two-route device DC, formal M01 numerical output, ngspice/AIM-Spice numerical route, physical parameter, experimental calibration or circuit result exists. External baselines remain reference-only; SnO/HZO/circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
       "open_source_recovery_contract": {
         "status": "contract_ready",
         "revision": 1,
@@ -1440,9 +1440,9 @@
         "next_gate": "Preserve and commit the R09 34/36 static contract assertion failure without rerunning R09; then establish revision-10 with a new contract namespace."
       },
       "xyce_build_preflight_r10": {
-        "status": "contract_ready",
+        "status": "preflight_failed_runner",
         "revision": 10,
-        "current_evidence": "E3",
+        "current_evidence": "E0",
         "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R10",
         "contract_path": "config/m01_xyce_build_preflight_r10.json",
         "contract_checker_path": "scripts/check_m01_xyce_build_preflight_r10_contract.py",
@@ -1454,7 +1454,20 @@
         "expected_runner_check_count": 32,
         "expected_independent_check_count": 25,
         "formal_run_completed": false,
-        "preflight_run_completed": false,
+        "preflight_run_completed": true,
+        "preflight_run_ordinal": 1,
+        "preflight_status": "FAIL",
+        "build_status": "REUSED_HASH_BOUND_R07_INSTALL",
+        "runner_checks_registered_before_abort": 16,
+        "runner_checks_passed_before_abort": 16,
+        "runner_checks_failed_before_abort": 0,
+        "runner_failure_category": "runner_unicode_path_ascii_encoding",
+        "process_invocations": 3,
+        "controlled_bsource_self_test_invoked": true,
+        "device_syntax_only_invoked": false,
+        "formal_device_dc_invoked": false,
+        "observed_self_test_value_v": 1.25,
+        "partial_run_tree_sha256": "5a3d1ac4ff62848fb7132db9211a6281a477b43900e87ddfe6047f6da9fef85e",
         "contract_check_completed": true,
         "contract_status": "PASS",
         "contract_checks_passed": 36,
@@ -1464,7 +1477,7 @@
         "ngspice_invoked": false,
         "aimspice_invoked": false,
         "build_processes_invoked": 0,
-        "simulator_processes_invoked": 0,
+        "simulator_processes_invoked": 3,
         "r07_failure_preserved": true,
         "r08_contract_failure_preserved": true,
         "r09_contract_failure_preserved": true,
@@ -1476,13 +1489,27 @@
         "r07_independent_checker_run": false,
         "proprietary_binary_accepted": false,
         "circuit_or_downstream_permitted": false,
+        "runner_failure_report_path": "results/reports/m01_xyce_build_preflight_r10_runner_unicode_path_failed.json",
+        "runner_failure_log_path": "results/compact/m01_xyce_build_preflight_r10_runner_unicode_path_failed.log",
         "result_paths": [
-          "results/reports/m01_xyce_build_preflight_contract_r10.json"
+          "results/reports/m01_xyce_build_preflight_contract_r10.json",
+          "results/reports/m01_xyce_build_preflight_r10_runner_unicode_path_failed.json",
+          "results/compact/m01_xyce_build_preflight_r10_runner_unicode_path_failed.log",
+          "results/compact/m01_xyce_build_preflight_r10/preflight.log",
+          "results/compact/m01_xyce_build_preflight_r10/bsource_self_test.cir",
+          "results/compact/m01_xyce_build_preflight_r10/bsource_self_test.log",
+          "results/compact/m01_xyce_build_preflight_r10/bsource_self_test.prn",
+          "results/compact/m01_xyce_build_preflight_r10/xyce_version.log",
+          "results/compact/m01_xyce_build_preflight_r10/xyce_license.log",
+          "results/compact/m01_xyce_build_preflight_r10/xyce_bsource_self_test.log",
+          "results/compact/m01_xyce_build_preflight_r10/device_syntax.cir"
         ],
         "artifact_hashes": {
-          "contract_report_sha256": "a7dbcf6d639897f6648d25a151d3a29c48c3dc352992a7872104b684b29fe785"
+          "contract_report_sha256": "a7dbcf6d639897f6648d25a151d3a29c48c3dc352992a7872104b684b29fe785",
+          "runner_failure_report_sha256": "90e47fc91d58330faa7c53107d19579d51990eb8f17ba05a38d66b931bb40e16",
+          "runner_failure_log_sha256": "31e7c34bf98dd6104799c3e031dd5ac91b0fd6980ea8ff8f989a0939879bda3d"
         },
-        "next_gate": "Commit and push the R10 36/36 E3 static PASS, then run the R10 tool/parser runner exactly once. Do not run the R10 independent checker until the runner PASS state is committed."
+        "next_gate": "Preserve and commit the R10 runner Unicode-path failure without rerunning R10, then establish revision-11 with a new path-safe parser namespace."
       }
     },
     {
