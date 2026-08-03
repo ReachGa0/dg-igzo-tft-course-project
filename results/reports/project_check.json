@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 665,
+  "checks": 671,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=25448"
+      "detail": "bytes=25522"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=23628"
+      "detail": "bytes=23702"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=19560"
+      "detail": "bytes=19472"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=160565"
+      "detail": "bytes=162246"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=5524"
+      "detail": "bytes=5660"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=88215"
+      "detail": "bytes=89547"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=44526"
+      "detail": "bytes=44997"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=10680"
+      "detail": "bytes=11086"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=31418"
+      "detail": "bytes=32256"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=86970"
+      "detail": "bytes=88848"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1370,6 +1370,31 @@
       "detail": "bytes=19737"
     },
     {
+      "name": "file:config/m01_xyce_build_preflight_r08.json",
+      "status": "PASS",
+      "detail": "bytes=10177"
+    },
+    {
+      "name": "file:scripts/m01_xyce_r08_common.py",
+      "status": "PASS",
+      "detail": "bytes=3021"
+    },
+    {
+      "name": "file:scripts/check_m01_xyce_build_preflight_r08_contract.py",
+      "status": "PASS",
+      "detail": "bytes=18061"
+    },
+    {
+      "name": "file:scripts/run_m01_xyce_build_preflight_r08.py",
+      "status": "PASS",
+      "detail": "bytes=22418"
+    },
+    {
+      "name": "file:scripts/check_m01_xyce_build_preflight_r08.py",
+      "status": "PASS",
+      "detail": "bytes=13292"
+    },
+    {
       "name": "file:scripts/check_t03_p5_temperature.py",
       "status": "PASS",
       "detail": "bytes=35919"
@@ -1762,7 +1787,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=54086"
+      "detail": "bytes=55055"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3122,7 +3147,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "preserve and commit the M01 Xyce build/tool preflight revision-7 42/47 E0 runner failure, then establish revision-8 with a new Xyce output/parser contract; do not rerun R07 or run its independent checker"
+      "detail": "establish and commit M01 Xyce build/tool preflight revision-8 output/parser recovery contract bound to the R07 42/47 failure; do not rerun R07 or run its independent checker"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3192,7 +3217,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "preserve and commit the M01 Xyce build/tool preflight revision-7 42/47 E0 runner failure, then establish revision-8 with a new Xyce output/parser contract; do not rerun R07 or run its independent checker"
+      "detail": "establish and commit M01 Xyce build/tool preflight revision-8 output/parser recovery contract bound to the R07 42/47 failure; do not rerun R07 or run its independent checker"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3263,6 +3288,11 @@
       "name": "m01_xyce_preflight_r07:contract_state_and_unexecuted_chain",
       "status": "PASS",
       "detail": "planned=False ready=False failed=True future_absent=5/16"
+    },
+    {
+      "name": "m01_xyce_preflight_r08:contract_state_and_unexecuted_chain",
+      "status": "PASS",
+      "detail": "planned=True ready=False future_absent=16/16"
     },
     {
       "name": "tcad:mesh_levels",

@@ -19,7 +19,7 @@
 - 题目：基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK。
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
-- S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，仅在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。Xyce 构建/工具预检合同与执行链现为 25/25 静态 PASS、E3，固定 Xyce/Trilinos/SuiteSparse/CMake 官方包的实际哈希、serial 两任务、MPI/Fortran 关闭、标量 B-source 自测和随后 parser-only `-syntax`；历史恢复合同的 archive hash 转录差异已登记而未改写。Xyce 尚未编译或运行，正式 M01 器件 DC、C00/L00/V01 仍未完成，G0 仍为 `TEACHING_BASELINE_ONLY`。
+- S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，仅在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。R07 build/tool runner 唯一返回 42/47、E0/FAIL，实际固定列 `.prn` 输出已保留；R08 已建立 36/32/25 项 `.prn` output/parser 恢复链，静态检查尚未运行。Xyce 二进制和完整安装树只能按 R08 哈希绑定复用，正式 M01 器件 DC、C00/L00/V01 仍未完成，G0 仍为 `TEACHING_BASELINE_ONLY`。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实

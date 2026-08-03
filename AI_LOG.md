@@ -16,6 +16,26 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 建立 M01 Xyce R08 输出/parser 恢复合同（未执行）
+
+### 用户目标
+
+承接 R07 的 42/47、E0/FAIL runner 结果，只修正 Xyce 实际固定列 `.prn` 输出与解析合同；不重跑 R07，不调用 AIM-Spice，不启动正式 M01 器件 DC 或任何下游阶段。
+
+### 读取与修改
+
+读取 R07 失败报告、R07 配置及全部哈希绑定 artifacts，确认真实提交为 `9a7375ef30ae90adf5214b3c7421a5f7a8cab726`，保留 Xyce 7.10.0 二进制和 generator/Xyce 安装树。新增 `config/m01_xyce_build_preflight_r08.json`、`scripts/m01_xyce_r08_common.py`、36 项静态合同 checker、32 项专用 runner、25 项独立 checker；注册 R08 实验机器状态和三个 Make 入口。runner 报告增加命令清单与 self-test/syntax artifact 哈希字段，独立 checker 只读取持久化证据。
+
+### 验证边界
+
+本记录阶段只完成源码、配置、路径隔离和哈希绑定，R08 静态合同尚未运行，因此没有新增 Xyce 进程、网表、`.prn`、数值结果或模拟器证据。预期输出根 `results/compact/m01_xyce_build_preflight_r08/`、R08 runner/independent 报告均不存在；正式 M01 输出保持缺失。后续必须先提交并推送实现，再唯一运行 36 项静态合同；静态 PASS 提交后才可唯一运行 R08 工具/parser runner。
+
+### 当前决策
+
+R08 只允许复用哈希匹配的完整 R07 安装前缀，禁止任何重建、ngspice、AIM-Spice、正式器件 DC、SPICE 数值、电路、版图、PEX 和 HZO。通过 R08 最多证明工具/输出合同，不得写成 IGZO 方程、器件曲线、物理参数、实验校准或 M01 完成。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R07 build/tool 失败
 
 ### 唯一执行与根因

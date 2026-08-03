@@ -15,6 +15,7 @@ from xml.etree import ElementTree as ET
 
 from m01_xyce_r06_common import digest_tree as digest_r06_tree
 from m01_xyce_r07_common import digest_tree as digest_r07_tree
+from m01_xyce_r08_common import digest_tree as digest_r08_tree
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -237,6 +238,11 @@ REQUIRED_FILES = [
     "scripts/check_m01_xyce_build_preflight_r07_contract.py",
     "scripts/run_m01_xyce_build_preflight_r07.py",
     "scripts/check_m01_xyce_build_preflight_r07.py",
+    "config/m01_xyce_build_preflight_r08.json",
+    "scripts/m01_xyce_r08_common.py",
+    "scripts/check_m01_xyce_build_preflight_r08_contract.py",
+    "scripts/run_m01_xyce_build_preflight_r08.py",
+    "scripts/check_m01_xyce_build_preflight_r08.py",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -722,6 +728,14 @@ def main() -> int:
             str(experiments.get("project_id")),
         )
         experiment_map = {item["id"]: item for item in experiments["experiments"]}
+        current_next_scope = config.get("tcad_track", {}).get("next_scope", "")
+        r08_scope_active = current_next_scope.startswith(
+            "establish and commit M01 Xyce build/tool preflight revision-8"
+        ) or current_next_scope.startswith(
+            "execute M01 Xyce build/tool preflight revision-8"
+        ) or current_next_scope.startswith(
+            "preserve and commit the M01 Xyce build/tool preflight revision-8"
+        )
         dependencies_valid = all(
             set(item.get("depends_on", [])) <= set(experiment_map)
             for item in experiments["experiments"]
@@ -5304,6 +5318,7 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "preserve and commit the M01 Xyce build/tool preflight revision-7 42/47"
                 )
+                or r08_scope_active
             )
             and "M01" in config.get("tcad_track", {}).get(
                 "m00_r02_formal_result_boundary", ""
@@ -5780,6 +5795,7 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "preserve and commit the M01 Xyce build/tool preflight revision-7 42/47"
                 )
+                or r08_scope_active
             ),
             f"contract_checks={sum(item.get('status') == 'PASS' for item in r02_contract_checks)}/{len(r02_contract_checks)} future_absent="
             f"{sum(not path.exists() for path in r02_future_paths)}/{len(r02_future_paths)}",
@@ -5892,6 +5908,7 @@ def main() -> int:
                     or next_scope.startswith(
                         "preserve and commit the M01 Xyce build/tool preflight revision-7 42/47"
                     )
+                    or r08_scope_active
                 )
             )
         )
@@ -6033,6 +6050,7 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "preserve and commit the M01 Xyce build/tool preflight revision-7 42/47"
                 )
+                or r08_scope_active
             )
         )
         add_check(
@@ -6266,6 +6284,7 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "preserve and commit the M01 Xyce build/tool preflight revision-7 42/47"
                 )
+                or r08_scope_active
             )
         )
         add_check(
@@ -6501,6 +6520,8 @@ def main() -> int:
             and config.get("tcad_track", {}).get("next_scope", "").startswith(
                 "preserve and commit the M01 Xyce build/tool preflight revision-7 42/47"
             )
+        ) or (
+            r06_failed_state and r08_scope_active
         )
         r06_runner_source = m01_xyce_r06_runner_path.read_text(encoding="utf-8")
         r06_checker_source = m01_xyce_r06_checker_path.read_text(encoding="utf-8")
@@ -6860,6 +6881,8 @@ def main() -> int:
             and config.get("tcad_track", {}).get("next_scope", "").startswith(
                 "preserve and commit the M01 Xyce build/tool preflight revision-7 42/47"
             )
+        ) or (
+            r07_failed_state and r08_scope_active
         )
         r07_runner_source = m01_xyce_r07_runner_path.read_text(encoding="utf-8")
         r07_checker_source = m01_xyce_r07_checker_path.read_text(encoding="utf-8")
@@ -6945,6 +6968,155 @@ def main() -> int:
         add_check(
             checks,
             "m01_xyce_preflight_r07:contract_state_and_unexecuted_chain",
+            False,
+            str(error),
+        )
+
+    m01_xyce_r08_config_path = ROOT / "config" / "m01_xyce_build_preflight_r08.json"
+    m01_xyce_r08_contract_report_path = (
+        ROOT / "results" / "reports" / "m01_xyce_build_preflight_contract_r08.json"
+    )
+    m01_xyce_r08_contract_checker_path = (
+        ROOT / "scripts" / "check_m01_xyce_build_preflight_r08_contract.py"
+    )
+    m01_xyce_r08_runner_path = ROOT / "scripts" / "run_m01_xyce_build_preflight_r08.py"
+    m01_xyce_r08_checker_path = ROOT / "scripts" / "check_m01_xyce_build_preflight_r08.py"
+    m01_xyce_r08_common_path = ROOT / "scripts" / "m01_xyce_r08_common.py"
+    try:
+        r08_config = json.loads(m01_xyce_r08_config_path.read_text(encoding="utf-8"))
+        r08_machine = experiment_map["M01"].get("xyce_build_preflight_r08", {})
+        r08_contract_exists = m01_xyce_r08_contract_report_path.is_file()
+        r08_contract_report = (
+            json.loads(m01_xyce_r08_contract_report_path.read_text(encoding="utf-8"))
+            if r08_contract_exists
+            else {}
+        )
+        r08_contract_checks = r08_contract_report.get("checks", [])
+        r08_future_paths = [
+            ROOT / value
+            for key, value in r08_config.get("outputs", {}).items()
+            if key != "contract_report"
+        ]
+        r08_formal_paths = [
+            ROOT / value for value in r08_config.get("formal_outputs_that_must_remain_absent", [])
+        ]
+        r08 = r08_config["r07_failure_binding"]
+        r08_r07_bindings = [
+            (r08["config_path"], r08["config_sha256"]),
+            (r08["contract_checker_path"], r08["contract_checker_sha256"]),
+            (r08["contract_report_path"], r08["contract_report_sha256"]),
+            (r08["runner_path"], r08["runner_sha256"]),
+            (r08["independent_checker_path"], r08["independent_checker_sha256"]),
+            (r08["preflight_report_path"], r08["preflight_report_sha256"]),
+            (r08["preflight_log_path"], r08["preflight_log_sha256"]),
+            (r08["source_manifest_path"], r08["source_manifest_sha256"]),
+            (r08["build_manifest_path"], r08["build_manifest_sha256"]),
+            (r08["self_test_output_path"], r08["self_test_output_sha256"]),
+            (r08["xyce_build_log_path"], r08["xyce_build_log_sha256"]),
+        ]
+        r08_r07_binding_ok = (
+            r08["bound_commit"] == "9a7375ef30ae90adf5214b3c7421a5f7a8cab726"
+            and all(
+                (ROOT / path).is_file() and sha256(ROOT / path) == expected
+                for path, expected in r08_r07_bindings
+            )
+        )
+        r08_planned_state = (
+            not r08_contract_exists
+            and r08_machine.get("status") == "contract_planned"
+            and r08_machine.get("current_evidence") == "E0"
+            and r08_machine.get("contract_check_completed") is False
+            and r08_machine.get("result_paths") == []
+            and r08_machine.get("artifact_hashes") == {}
+        )
+        r08_ready_state = (
+            r08_contract_exists
+            and r08_contract_report.get("status") == "PASS"
+            and r08_contract_report.get("contract_status") == "PASS"
+            and r08_contract_report.get("evidence_level") == "E3"
+            and r08_contract_report.get("build_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(r08_contract_checks) == 36
+            and all(item.get("status") == "PASS" for item in r08_contract_checks)
+            and r08_contract_report.get("summary", {}).get("build_processes_invoked") == 0
+            and r08_contract_report.get("summary", {}).get("simulator_processes_invoked") == 0
+            and r08_contract_report.get("summary", {}).get("device_netlist_created") is False
+            and r08_contract_report.get("summary", {}).get("numerical_outputs_created") is False
+            and r08_contract_report.get("config", {}).get("sha256") == sha256(m01_xyce_r08_config_path)
+            and r08_contract_report.get("checker", {}).get("sha256") == sha256(m01_xyce_r08_contract_checker_path)
+            and r08_machine.get("status") == "contract_ready"
+            and r08_machine.get("current_evidence") == "E3"
+            and r08_machine.get("contract_check_completed") is True
+            and r08_machine.get("contract_status") == "PASS"
+            and r08_machine.get("contract_checks_passed") == 36
+            and r08_machine.get("contract_checks_failed") == 0
+            and r08_machine.get("artifact_hashes", {}).get("contract_report_sha256") == sha256(m01_xyce_r08_contract_report_path)
+            and r08_machine.get("result_paths") == ["results/reports/m01_xyce_build_preflight_contract_r08.json"]
+        )
+        r08_next_scope = config.get("tcad_track", {}).get("next_scope", "")
+        r08_next_scope_valid = (
+            r08_planned_state
+            and r08_next_scope.startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-8 output/parser recovery contract"
+            )
+        ) or (
+            r08_ready_state
+            and r08_next_scope.startswith(
+                "execute M01 Xyce build/tool preflight revision-8"
+            )
+        )
+        r08_runner_source = m01_xyce_r08_runner_path.read_text(encoding="utf-8")
+        r08_checker_source = m01_xyce_r08_checker_path.read_text(encoding="utf-8")
+        r08_contract_source = m01_xyce_r08_contract_checker_path.read_text(encoding="utf-8")
+        r08_common_source = m01_xyce_r08_common_path.read_text(encoding="utf-8")
+        r08_tools = r08_config["toolchain"]
+        r08_binary = Path(r08_tools["xyce_binary"])
+        r08_candidate = ROOT / r08_config["device_syntax_check"]["candidate_path"]
+        add_check(
+            checks,
+            "m01_xyce_preflight_r08:contract_state_and_unexecuted_chain",
+            (r08_planned_state or r08_ready_state)
+            and r08_config.get("preflight_id") == "M01_XYCE_BUILD_PREFLIGHT_R08"
+            and r08_config.get("revision") == 8
+            and r08_config.get("status") == "preflight_planned"
+            and r08_machine.get("revision") == 8
+            and r08_machine.get("expected_contract_check_count") == 36
+            and r08_machine.get("expected_runner_check_count") == 32
+            and r08_machine.get("expected_independent_check_count") == 25
+            and r08_machine.get("formal_run_completed") is False
+            and r08_machine.get("device_netlist_invoked") is False
+            and r08_machine.get("numerical_outputs_created") is False
+            and r08_machine.get("ngspice_invoked") is False
+            and r08_machine.get("aimspice_invoked") is False
+            and r08_machine.get("r07_failure_preserved") is True
+            and r08_machine.get("r07_runner_rerun") is False
+            and r08_machine.get("r07_independent_checker_run") is False
+            and r08_machine.get("proprietary_binary_accepted") is False
+            and r08_machine.get("circuit_or_downstream_permitted") is False
+            and r08_r07_binding_ok
+            and r08_binary.is_file()
+            and sha256(r08_binary) == r08["xyce_binary_sha256"]
+            and r08_candidate.is_file()
+            and sha256(r08_candidate) == r08_config["device_syntax_check"]["candidate_sha256"]
+            and all(not path.exists() for path in r08_future_paths)
+            and all(not path.exists() for path in r08_formal_paths)
+            and "EXPECTED_CHECK_COUNT = 32" in r08_runner_source
+            and "EXPECTED_CHECK_COUNT = 25" in r08_checker_source
+            and "EXPECTED_RUNNER_CHECK_COUNT = 32" in r08_checker_source
+            and "EXPECTED_CHECK_COUNT = 36" in r08_contract_source
+            and "def read_xyce_prn" in r08_common_source
+            and "import subprocess" not in r08_checker_source
+            and "import subprocess" not in r08_common_source
+            and "m01-xyce-build-preflight-r08-contract-check:" in makefile_source
+            and "m01-xyce-build-preflight-r08:" in makefile_source
+            and "m01-xyce-build-preflight-r08-check:" in makefile_source
+            and r08_next_scope_valid,
+            f"planned={r08_planned_state} ready={r08_ready_state} future_absent="
+            f"{sum(not path.exists() for path in r08_future_paths)}/{len(r08_future_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(
+            checks,
+            "m01_xyce_preflight_r08:contract_state_and_unexecuted_chain",
             False,
             str(error),
         )
