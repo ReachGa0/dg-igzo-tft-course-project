@@ -85,7 +85,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 - M01 Xyce build/tool 合同：`make m01-xyce-build-preflight-contract-check` 为 25/25、E3。它冻结四个官方包的 URL/稳定路径/实际 SHA-256、用户目录 serial 两任务构建、MPI/Fortran 关闭、SuiteSparse AMD -> Trilinos -> Xyce 顺序、版本/GPL 指纹、1.25 V 标量 B-source 自测、随后 `-syntax` 的冻结 IGZO 候选解析、排他输出和 20 项独立检查。旧合同记录的 `...541cfecf...` 与实际重算 `...541fecf...` 差异明确保留；该合同未启动任何模拟器或创建网表，Xyce 尚未构建。
 - M01 Xyce build/tool R01 执行：提交 `ee5116e` 后唯一运行在 SuiteSparse CMake 因未显式传入用户目录 `BLAS_LIBRARIES` 停止，runner 14/29、独立落盘检查 9/20，均 E0/FAIL。报告、日志、manifest 和部分 build cache 保留；没有 Xyce 二进制、自测、候选解析、器件 DC 或正式数值输出。R01 不得重跑，后续 revision 必须绑定该失败。
 - M01 Xyce build/tool R02/R03/R04 静态合同：唯一检查分别为 22/25、21/25、25/26 E0/FAIL，报告原样保留。R05 静态合同唯一检查 27/27 PASS、E3；随后 runner 唯一运行 19/29 E0/FAIL。SuiteSparse AMD-only、serial MPI/Fortran-off Trilinos 安装和 Xyce 配置通过；Xyce build 在 Bison/Flex 生成步骤因 `/usr/bin/m4` 与默认 `/usr/share/bison` 缺失停止。没有二进制、自测、parser-only 候选、正式器件 DC 或数值输出，独立检查未运行。
-- M01 Xyce build/tool R06：合同、专用 runner 和独立 checker 已实现，分别登记 37/47/25 项，但静态合同尚未运行，当前 `contract_planned/E0`。官方 M4 1.4.19、Bison 3.8.2、Flex 2.6.4 归档只下载/解压并冻结哈希，尚未构建；R05 SuiteSparse/Trilinos 以完整树哈希复用，R05 partial Xyce 禁止复用，全部 R06 build/install/output 根为空。本机 AIM-Spice 因缺少可审计合法授权来源永久排除。下一步提交 R06 实施后只运行静态合同一次。
+- M01 Xyce build/tool R06：静态合同在提交 `ce4687e` 后唯一运行并返回 36/37、E0/FAIL。唯一失败是 checker 自相矛盾地禁止独立 checker 出现其为哈希绑定而必须登记的 runner 路径字面量；其余来源、许可证、R05 失败、依赖树、隔离根和 no-execution 门通过。报告记录 0 个构建/模拟器进程、无器件网表和数值输出；R06 build/install/output 根为空，runner/独立检查未运行。本机 AIM-Spice 因缺少可审计合法授权来源永久排除。下一步提交该失败后建立 R07，只修正此断言并使用新根。
 - 学长 IGZO 曲线：E1/reference_only；元数据不完整。
 - IGZO 单管外部 GDS：E2 基线，可参考但尚未迁入新 PDK。
 - 其余领域任务：E0。
@@ -99,7 +99,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. T02-A/B/C、T03-P1/P2/P3/P4/P5、M00 R02 两级数值门和 M01 revision-3/开源恢复/R05 静态合同已完成，历史失败继续保留。M00 R01/R02、M01 Xyce build/tool R01/R02/R03/R04/R05 和 R05 静态合同均不得重跑；不得放宽阈值、改变 split 或用 holdout 调参。R06 合同实施需先提交推送，再唯一运行 37 项静态检查；该 PASS 状态再次提交前不得运行 R06 build/tool，runner PASS 前不得运行独立检查，两个工具门均通过前不得传入正式器件网表。M01 数值执行、电路、KLayout、PEX 和 HZO 继续关闭。
+8. T02-A/B/C、T03-P1/P2/P3/P4/P5、M00 R02 两级数值门和 M01 revision-3/开源恢复/R05 静态合同已完成，历史失败继续保留。M00 R01/R02、M01 Xyce build/tool R01/R02/R03/R04/R05/R06 和既有静态合同均不得重跑；不得放宽阈值、改变 split 或用 holdout 调参。R06 36/37 checker 失败先提交推送，再建立 R07 新 revision；R07 实施提交前不得运行静态合同，静态 PASS 状态再次提交前不得运行 build/tool，runner PASS 前不得运行独立检查。M01 数值执行、电路、KLayout、PEX 和 HZO 继续关闭。
 
 ## 原始资产路径
 

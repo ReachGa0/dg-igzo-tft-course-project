@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_R06_XYCE_RECOVERY_CONTRACT_IMPLEMENTED_UNCHECKED_E0`
+- 当前阶段：`M01_R06_XYCE_RECOVERY_CONTRACT_FAILED_E0_NEXT_R07`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同 27/27 E3 后，build/tool runner 唯一运行 19/29 E0/FAIL。R06 已实现 37 项静态合同、47 项 runner 和 25 项独立复核，冻结官方 M4/Bison/Flex 源码及 R05 成功依赖的完整树哈希，但 R06 合同尚未运行，仍为 E0。Xyce 二进制、自测、候选解析、正式器件 DC 和 R06 独立检查均未产生；C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同 27/27 E3 后，build/tool runner 唯一运行 19/29 E0/FAIL。R06 静态合同已唯一运行并因 checker 自相矛盾的 runner 路径字面量断言返回 36/37、E0/FAIL；其余来源、依赖树、隔离根和 no-execution 门通过。构建/模拟器进程、器件网表和数值输出均为 0；Xyce 二进制、自测、候选解析、正式器件 DC 和 R06 独立检查均未产生。下一步只允许建立 R07 静态修正版；C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -19,12 +19,14 @@
 - [x] M01 Xyce build/tool R05 静态合同已唯一运行：27/27 PASS、E3，报告 `results/reports/m01_xyce_build_preflight_contract_r05.json`、SHA-256 `4c45dbd06b53aa55b0fcdea88a4e3cc5fdacc889162102cecf4fefecce4b6262`。它绑定 R04 25/26 失败并明确断言 `contract_planned`；检查器启动 0 个模拟器进程，未创建器件网表或数值输出。
 - [x] M01 Xyce build/tool R05 runner 已唯一运行：19/29、E0/FAIL，报告 `results/reports/m01_xyce_build_preflight_r05.json`、SHA-256 `893e890b561298cde332cfcd5f466ab34d706dd46ae26f506701bc3772cc7ffc`。SuiteSparse AMD-only 与 serial MPI/Fortran-off Trilinos 安装通过，Trilinos 编译约 1068.870 s；Xyce 配置通过，但构建在 Bison/Flex 生成阶段因 `/usr/bin/m4` 缺失和 Bison 默认 `/usr/share/bison` 数据路径缺失停止。Xyce 二进制、自测、parser-only 候选、ngspice/AIM-Spice、正式器件 DC 和数值输出均未产生，独立检查按门未运行。
 - [x] R05 失败状态已提交并推送为 `6779aab`；全部原始日志、manifest、结构化报告、成功依赖安装和 partial Xyce build 保留，R05 不重跑。
-- [x] R06 合同实施已完成但尚未运行：官方 GNU M4 1.4.19、GNU Bison 3.8.2、Flex 2.6.4 归档与许可证哈希已冻结；R05 SuiteSparse/Trilinos 完整安装树摘要分别为 `a47a4179...160f` 和 `5d4b574b...afb1`。专用 runner 只源码构建生成器和新根 Xyce，不重建两项依赖，不复用 R05 partial Xyce；静态/runner/独立检查分别登记 37/47/25 项。
+- [x] R06 合同实施在唯一静态检查前已完成：官方 GNU M4 1.4.19、GNU Bison 3.8.2、Flex 2.6.4 归档与许可证哈希已冻结；R05 SuiteSparse/Trilinos 完整安装树摘要分别为 `a47a4179...160f` 和 `5d4b574b...afb1`。专用 runner 只源码构建生成器和新根 Xyce，不重建两项依赖，不复用 R05 partial Xyce；静态/runner/独立检查分别登记 37/47/25 项。
 - [x] 首次开发期 `make check` 为 655/656：总检查器把 R06 合同 checker 内用于审计的字符串 `import subprocess` 误判为真实导入。失败报告已保存为 `results/reports/project_check_m01_xyce_r06_contract_source_subprocess_literal_failed.json`；修正只改为行首 import 匹配，随后 657/657 PASS，不改变 R06 合同或门槛。
+- [x] 提交 `ce4687e` 推送后，R06 静态合同按门唯一运行并返回 36/37、E0/FAIL；报告 `results/reports/m01_xyce_build_preflight_contract_r06.json`、SHA-256 `e9f333f38ad3d1b533b75f29b8574d9cf1bd829a3bdb58215ba4e470f31cbf98` 原样保留。唯一失败为 `checker:r06_independent_standard_library`：独立 checker 为哈希绑定合法登记 runner 路径，静态 checker 却要求该文件名不出现在源码中。没有构建、模拟器进程、器件网表或数值输出。
+- [x] 注册 R06 失败后的首次 `make check` 为 653/658：M00 与 M01 R02/R03/R04/R05 五个历史检查仍把当前下一门限制在 R06 实施前状态。失败报告 `results/reports/project_check_m01_xyce_r06_failure_next_scope_stale_failed.json`、SHA-256 `e1492a11872d20ad3d343e0d66afa4d1e21600feef64e714acc7146bea7f9bbe` 已保留；修正只允许已登记的 R06-failure-to-R07 scope，随后 659/659 PASS，不改历史状态、输入或门槛。
 
 ### 下一步与关闭条件
 
-- 下一步：完成 R06 合同实施的文档/项目/报告检查并提交推送；随后只运行 `make m01-xyce-build-preflight-r06-contract-check` 一次。只有静态合同 37/37 PASS 且该状态再次提交推送后，才允许一次 R06 build/tool runner；runner PASS 时才运行 25 项独立落盘检查。不得重跑 R01/R02/R03/R04/R05 或运行 R05 独立检查。
+- 下一步：完成 R06 36/37 失败的文档/项目/报告检查并提交推送；随后建立 R07 独立静态合同，只把矛盾的 runner 文件名字面量禁令替换为“不得导入 runner、不得含 subprocess、不得执行进程”的可审计断言，并使用全新 R07 build/install/report/output 根。R07 实施提交前不得运行其静态合同；R06 和更早 revision 均不得重跑。
 - M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败和本次 28/30 干跑失败均保留。
 

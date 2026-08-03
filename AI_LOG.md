@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R06 静态合同失败
+
+### 唯一执行与失败定位
+
+R06 合同实施以提交 `ce4687e` 推送并确认 `main`/`origin/main` 同步后，唯一执行 `make m01-xyce-build-preflight-r06-contract-check`。结果为 36/37、E0/FAIL；报告 `results/reports/m01_xyce_build_preflight_contract_r06.json` 的 SHA-256 为 `e9f333f38ad3d1b533b75f29b8574d9cf1bd829a3bdb58215ba4e470f31cbf98`。唯一失败项是 `checker:r06_independent_standard_library`。
+
+独立 checker 合法声明 `RUNNER_PATH`，用于在未来 PASS-only 落盘复核中比较 runner 哈希；R06 静态 checker 同时要求独立 checker 源码完全不含 `run_m01_xyce_build_preflight_r06` 文件名字面量，因此形成自相矛盾的源代码断言。其余 36 项均通过，包括官方源码/许可证哈希、R05 失败绑定、SuiteSparse/Trilinos 完整树哈希、R06 隔离根、失败保留与证据边界。
+
+### 证据边界与下一门
+
+报告明确记录 build/simulator process 均为 0、未创建器件网表或数值输出；R06 generator/Xyce build/install/output 根保持不存在，runner 和独立检查均未运行。这不是 Xyce 构建、器件仿真、SPICE 数值、物理参数、实验校准或电路失败。R06 报告、配置和 checker 不改写且不得重跑；下一步先提交该失败状态，再建立 R07，并仅把文件名字面量禁令改为实际 import/subprocess/invocation 禁令，使用新的 revision 根，不放宽其他门槛。
+
+注册失败状态后的首次项目总检查为 653/658，五项失败均是 M00 与 M01 R02/R03/R04/R05 历史检查的 `next_scope` 允许列表停留在 R06 实施前状态。报告保存为 `results/reports/project_check_m01_xyce_r06_failure_next_scope_stale_failed.json`，SHA-256 `e1492a11872d20ad3d343e0d66afa4d1e21600feef64e714acc7146bea7f9bbe`。修正只允许已登记的 R06-failure-to-R07 scope，不改变历史状态、来源、物理输入或验收门槛；最终 `make check` 为 659/659 PASS，`make report-check` 为 12 章/5 附录/15 个允许占位/26 图 PASS，`git diff --check` 通过。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 实现 M01 Xyce R06 纯源码恢复合同
 
 ### 用户目标与输入

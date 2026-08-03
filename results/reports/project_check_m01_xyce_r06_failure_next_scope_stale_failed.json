@@ -1,8 +1,8 @@
 {
   "project": "DG-IGZO-TFT-PDK",
-  "status": "PASS",
-  "checks": 659,
-  "failures": 0,
+  "status": "FAIL",
+  "checks": 658,
+  "failures": 5,
   "results": [
     {
       "name": "directory:config",
@@ -322,7 +322,7 @@
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=155933"
+      "detail": "bytes=155317"
     },
     {
       "name": "file:PROJECT_PLAN.md",
@@ -332,12 +332,12 @@
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=84922"
+      "detail": "bytes=84650"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=43020"
+      "detail": "bytes=42557"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=29385"
+      "detail": "bytes=28783"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=78795"
+      "detail": "bytes=78229"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1340,11 +1340,6 @@
       "detail": "bytes=107131"
     },
     {
-      "name": "file:results/reports/project_check_m01_xyce_r06_failure_next_scope_stale_failed.json",
-      "status": "PASS",
-      "detail": "bytes=107541"
-    },
-    {
       "name": "file:scripts/check_t03_p5_temperature.py",
       "status": "PASS",
       "detail": "bytes=35919"
@@ -1737,7 +1732,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=51011"
+      "detail": "bytes=50190"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3166,7 +3161,7 @@
     },
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "preserve and commit the M01 Xyce build/tool preflight revision-6 36/37 static checker failure, then establish revision-7 with a corrected independent-checker source assertion and new build/install/report/output roots; do not rerun R06 or execute any build, simulator, device netlist or formal M01 device DC"
     },
     {
@@ -3211,22 +3206,22 @@
     },
     {
       "name": "m01_xyce_preflight_r02:static_contract_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "contract_checks=22/25 future_absent=12/12"
     },
     {
       "name": "m01_xyce_preflight_r03:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False failed=True future_absent=12/12"
     },
     {
       "name": "m01_xyce_preflight_r04:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False failed=True future_absent=12/12"
     },
     {
       "name": "m01_xyce_preflight_r05:contract_and_runner_state",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False failed=True future_absent=7/12"
     },
     {

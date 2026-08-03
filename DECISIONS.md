@@ -1,5 +1,22 @@
 # 设计决策记录
 
+## ADR-052：R06 checker 路径字面量失败保留，R07 只修正可执行性断言
+
+- 日期：2026-08-03
+- 状态：R06 静态合同 36/37、E0/FAIL 已唯一执行并冻结；R07 待建立
+
+### 失败判定
+
+- R06 独立 checker 必须声明 runner 路径，才能对未来落盘 runner 哈希做独立绑定；静态 checker 却要求独立 checker 源码完全不含该 runner 文件名字面量。两项要求不可同时成立，唯一失败属于 checker 合同缺陷。
+- R06 其余 36 项通过，报告记录 0 个 build/simulator process、无器件网表、无数值输出。该结果不说明 M4/Bison/Flex、Xyce、IGZO 候选、器件 DC 或电路失败，也不提升任何器件/物理证据。
+
+### R07 边界
+
+- R06 配置、checker 和 36/37 报告保持不可改写且不得重跑。R07 使用全新配置、checker、runner、独立 checker、build/install/report/output 根，并哈希绑定 R06 失败。
+- R07 只把“源码不得出现 runner 文件名”替换为可审计的实际边界：独立 checker 不导入 runner、不导入或调用 `subprocess`，只读取并哈希持久化文件；其他来源、版本、树哈希、两任务、no-formal-device-DC、失败保留和验收门槛不变。
+- R07 实施先提交推送，再唯一运行静态合同。静态 PASS 状态再次提交前不得构建生成器或 Xyce；AIM-Spice 永久排除，正式 M01 数值与下游继续关闭。
+- 注册 R06 失败状态后的项目总检查首次为 653/658，原因仅是五个历史门的 `next_scope` 允许列表过期；失败报告保留。修正只加入已登记的 R06-failure-to-R07 scope，随后 659/659 PASS，不改变任何历史门状态或阈值。
+
 ## ADR-051：R06 采用纯源码生成器工具链并完整哈希复用 R05 依赖
 
 - 日期：2026-08-03

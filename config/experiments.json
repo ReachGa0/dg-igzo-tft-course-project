@@ -1148,7 +1148,7 @@
         "next_gate": "Establish and commit M01 Xyce build/tool preflight revision-6 that hash-binds the R05 19/29 failure, reuses only the successful immutable R05 SuiteSparse/Trilinos installs, registers a complete M4/Bison/Flex toolchain, and uses new Xyce build/install/output roots. Do not rerun R05 or execute formal M01 device DC."
       },
       "xyce_build_preflight_r06": {
-        "status": "contract_planned",
+        "status": "contract_failed_checker",
         "revision": 6,
         "current_evidence": "E0",
         "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R06",
@@ -1163,7 +1163,12 @@
         "expected_independent_check_count": 25,
         "formal_run_completed": false,
         "preflight_run_completed": false,
-        "contract_check_completed": false,
+        "contract_check_completed": true,
+        "contract_status": "FAIL",
+        "contract_checks_passed": 36,
+        "contract_checks_failed": 1,
+        "contract_failure_category": "independent_checker_runner_path_literal_false_positive",
+        "contract_failure_detail": "The independent checker correctly names the R06 runner path so it can hash-bind persisted evidence, but the R06 static checker incorrectly required the entire runner filename literal to be absent from that checker source.",
         "device_netlist_invoked": false,
         "numerical_outputs_created": false,
         "ngspice_invoked": false,
@@ -1193,9 +1198,25 @@
           "fixed_checks_passed": 657,
           "failure_preserved": true
         },
-        "result_paths": [],
-        "artifact_hashes": {},
-        "next_gate": "Commit and push the R06 implementation, then run its 37-check static contract exactly once. Do not build the generator toolchain or Xyce until the static contract passes and that PASS state is committed."
+        "failure_state_project_check_history": {
+          "failed_report_path": "results/reports/project_check_m01_xyce_r06_failure_next_scope_stale_failed.json",
+          "failed_report_sha256": "e1492a11872d20ad3d343e0d66afa4d1e21600feef64e714acc7146bea7f9bbe",
+          "failed_checks_passed": 653,
+          "failed_checks_failed": 5,
+          "failure_category": "historical_next_scope_allowlists_stale_after_r06_contract_failure",
+          "fixed_check_status": "PASS",
+          "fixed_checks_passed": 659,
+          "failure_preserved": true
+        },
+        "result_paths": [
+          "results/reports/m01_xyce_build_preflight_contract_r06.json"
+        ],
+        "artifact_hashes": {
+          "contract_config_sha256": "988e7fa62ee539868ff06301edc4c35b3ed4088b33d16602217713c0e92443b8",
+          "contract_checker_sha256": "18d900ea33e128b4848ef5efa1058ff95bb3609d4ec101802fc35d2d452209f3",
+          "contract_report_sha256": "e9f333f38ad3d1b533b75f29b8574d9cf1bd829a3bdb58215ba4e470f31cbf98"
+        },
+        "next_gate": "Preserve and commit the R06 36/37 E0 static checker failure, then establish revision-7 with a new config/checker/runner/output namespace. R07 may replace only the contradictory runner-path-literal assertion with an import-and-invocation prohibition; do not run the R06 runner or any simulator."
       }
     },
     {
