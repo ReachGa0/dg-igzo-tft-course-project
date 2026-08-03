@@ -1,0 +1,242 @@
+{
+  "status": "PASS",
+  "contract_status": "PASS",
+  "evidence_level": "E3",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "spice_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "circuit_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "build_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "stage_id": "M01",
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R07",
+  "checks": [
+    {
+      "name": "identity:revision_7_xyce_build_preflight",
+      "status": "PASS",
+      "detail": "stage=M01 revision=7"
+    },
+    {
+      "name": "binding:recovery_contract_e3_unchanged",
+      "status": "PASS",
+      "detail": "open-source recovery contract and E3 report are hash-bound"
+    },
+    {
+      "name": "binding:r05_artifacts_hash_bound",
+      "status": "PASS",
+      "detail": "artifacts=8/8"
+    },
+    {
+      "name": "binding:r05_contract_and_runner_states",
+      "status": "PASS",
+      "detail": "R05 contract passed, runner failed 19/29 and independent check did not run"
+    },
+    {
+      "name": "binding:r05_generator_failure_root_cause",
+      "status": "PASS",
+      "detail": "R05 failed at missing M4/Bison data before Xyce compilation"
+    },
+    {
+      "name": "binding:r06_failure_artifacts_hash_bound",
+      "status": "PASS",
+      "detail": "artifacts=5/5"
+    },
+    {
+      "name": "binding:r06_checker_failure_state_and_root_cause",
+      "status": "PASS",
+      "detail": "R06 failed only because its checker prohibited the required runner-path literal"
+    },
+    {
+      "name": "scope:serial_laptop_igzo_only",
+      "status": "PASS",
+      "detail": "{\"active_material_scope\": \"IGZO only\", \"circuit_or_downstream_permitted\": false, \"device_netlist_execution\": false, \"dimension\": \"2D project route; this preflight itself is simulator-tool only\", \"formal_m01_numerical_run\": false, \"fortran_build\": false, \"laptop_target\": true, \"mpi_build\": false, \"serial_build\": true}"
+    },
+    {
+      "name": "sources:xyce_and_cmake_rehashed",
+      "status": "PASS",
+      "detail": "Xyce source and CMake binary archive remain pinned"
+    },
+    {
+      "name": "sources:generator_archives_rehashed",
+      "status": "PASS",
+      "detail": "archives=3/3"
+    },
+    {
+      "name": "sources:generator_trees_and_license_files",
+      "status": "PASS",
+      "detail": "sources=3/3"
+    },
+    {
+      "name": "sources:generator_versions_licenses_and_official_urls",
+      "status": "PASS",
+      "detail": "GNU and westes release sources only"
+    },
+    {
+      "name": "candidate:frozen_igzo_scope_and_hash",
+      "status": "PASS",
+      "detail": "exists=True bytes=1063"
+    },
+    {
+      "name": "toolchain:bootstrap_paths_and_hashes",
+      "status": "PASS",
+      "detail": "bootstrap=6/6"
+    },
+    {
+      "name": "toolchain:source_built_generator_paths_are_future",
+      "status": "PASS",
+      "detail": "R07 generator prefix is absent before execution"
+    },
+    {
+      "name": "reuse:r05_dependency_tree_hashes",
+      "status": "PASS",
+      "detail": "suitesparse=a47a4179b7e02550fb5f243a81ba367f02206adc77bff9bf9f0ddd4ba168160f trilinos=5d4b574b82f90da30537bf3a649d6977a550cdb527eeadbf2d29a21dc949afb1"
+    },
+    {
+      "name": "reuse:allowlist_and_partial_xyce_denylist",
+      "status": "PASS",
+      "detail": "only complete R05 SuiteSparse and Trilinos prefixes are reusable; R05/R06 Xyce roots are denied"
+    },
+    {
+      "name": "reuse:r05_install_command_audit",
+      "status": "PASS",
+      "detail": "R05 dependency installs passed before the Xyce generator failure"
+    },
+    {
+      "name": "build:unique_external_r07_roots_absent",
+      "status": "PASS",
+      "detail": "all R07 build and install roots are unique and absent"
+    },
+    {
+      "name": "build:r07_roots_are_isolated_from_r05_r06_xyce",
+      "status": "PASS",
+      "detail": "R05 partial and unused R06 Xyce roots are never reused"
+    },
+    {
+      "name": "build:generator_order_and_environment",
+      "status": "PASS",
+      "detail": "M4 precedes Bison and Flex with explicit runtime data paths"
+    },
+    {
+      "name": "build:no_dependency_rebuild_and_two_job_budget",
+      "status": "PASS",
+      "detail": "R05 dependencies are immutable and no more than two jobs are used"
+    },
+    {
+      "name": "build:xyce_serial_options_and_reused_prefixes",
+      "status": "PASS",
+      "detail": "serial Xyce configure uses the R07 generator prefix"
+    },
+    {
+      "name": "sequence:recovery_before_xyce_before_self_test",
+      "status": "PASS",
+      "detail": "generator smoke and Xyce fingerprints precede parser-only IGZO syntax"
+    },
+    {
+      "name": "generator:smoke_paths_registered_and_future",
+      "status": "PASS",
+      "detail": "minimal Bison/Flex smoke inputs and generated C outputs are future R07 artifacts"
+    },
+    {
+      "name": "self_test:scalar_only_contract",
+      "status": "PASS",
+      "detail": "controlled 1.25 V B-source self-test only"
+    },
+    {
+      "name": "no_execution:formal_routes_and_downstream_closed",
+      "status": "PASS",
+      "detail": "no formal simulator route or downstream work is admitted"
+    },
+    {
+      "name": "outputs:formal_outputs_absent",
+      "status": "PASS",
+      "detail": "absent=8/8"
+    },
+    {
+      "name": "outputs:exclusive_unique_r07_namespace",
+      "status": "PASS",
+      "detail": "R07 artifacts are unique, future and append-only"
+    },
+    {
+      "name": "outputs:failure_retention_and_no_threshold_relaxation",
+      "status": "PASS",
+      "detail": "failed logs and partial manifests are retained"
+    },
+    {
+      "name": "boundary:no_physical_or_simulation_claim",
+      "status": "PASS",
+      "detail": "R07 evidence remains tool-only"
+    },
+    {
+      "name": "boundary:unaudited_aimspice_is_excluded",
+      "status": "PASS",
+      "detail": "only open-source simulator routes remain eligible"
+    },
+    {
+      "name": "project:next_scope_is_r07_contract",
+      "status": "PASS",
+      "detail": "establish and commit M01 Xyce build/tool preflight revision-7 with the immutable R06 36/37 checker failure bound, a corrected independent-checker import/process assertion and new build/install/report/output roots; do not rerun R06 or execute any build, simulator, device netlist or formal M01 device DC"
+    },
+    {
+      "name": "experiment:r07_is_planned_and_prior_failures_preserved",
+      "status": "PASS",
+      "detail": "R07 is unexecuted while the R05 and R06 failures remain machine-recorded"
+    },
+    {
+      "name": "runner:r07_dedicated_recovery_and_no_formal_execution",
+      "status": "PASS",
+      "detail": "R07 has a dedicated generator recovery runner and no formal device path"
+    },
+    {
+      "name": "checker:r07_independent_standard_library",
+      "status": "PASS",
+      "detail": "independent checker may hash-bind the runner path but cannot import it or execute a process"
+    },
+    {
+      "name": "make:r07_targets_registered",
+      "status": "PASS",
+      "detail": "contract, runner and independent-check targets are registered"
+    },
+    {
+      "name": "gate:formal_m01_requires_r07_independent_pass",
+      "status": "PASS",
+      "detail": "After this R07 static contract report passes and its state is committed and pushed, execute the R07 build/tool runner exactly once. Run the independent persisted-evidence check only if the runner passes. Any failure is retained without changing the registered thresholds; formal M01 device DC and all downstream stages remain closed."
+    },
+    {
+      "name": "history:registered_failure_artifacts_present",
+      "status": "PASS",
+      "detail": "present=19/19"
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "check_count": 39,
+    "passed": 39,
+    "failed": 0,
+    "simulator_processes_invoked": 0,
+    "build_processes_invoked": 0,
+    "device_netlist_created": false,
+    "numerical_outputs_created": false
+  },
+  "config": {
+    "path": "config/m01_xyce_build_preflight_r07.json",
+    "sha256": "be400b354a32f8c2a42143b9b7cce6f4ab1bbe88c026f36b7924f9314efb33cd"
+  },
+  "checker": {
+    "path": "scripts/check_m01_xyce_build_preflight_r07_contract.py",
+    "sha256": "157ee85f5dfa165b9c079a28cd7ae0f0830ca97c9c76bb4150a9c7c04a78caa6"
+  },
+  "reuse_tree_hashes": {
+    "suitesparse": {
+      "regular_file_count": 23,
+      "symlink_count": 4,
+      "total_regular_bytes": 345258,
+      "tree_sha256": "a47a4179b7e02550fb5f243a81ba367f02206adc77bff9bf9f0ddd4ba168160f"
+    },
+    "trilinos": {
+      "regular_file_count": 4556,
+      "symlink_count": 12,
+      "total_regular_bytes": 359196044,
+      "tree_sha256": "5d4b574b82f90da30537bf3a649d6977a550cdb527eeadbf2d29a21dc949afb1"
+    }
+  },
+  "evidence_boundary": "This is a revision-7 build/tool recovery contract, not a device simulation result. It preserves and hash-binds the committed R05 19/29 build failure and the immutable R06 36/37 static checker failure. R07 changes only the contradictory independent-checker runner-path-literal assertion: the independent checker may name the R07 runner for hash binding, but it may not import the runner, import or invoke subprocess, or execute any process. R07 reuses the same pinned open-source M4/Bison/Flex source trees and only the complete tree-hashed R05 SuiteSparse and Trilinos prefixes; it must not reuse the partial R05 Xyce build or any R05/R06 build or output namespace. The local AIM-Spice executable is excluded because auditable lawful license provenance is absent. A passing static contract establishes only that the recovery chain is frozen and reviewable. A later passing runner plus independent persisted-evidence check can establish only a reproducible pure-source serial Xyce binary, a scalar B-source tool self-test and parser-only frozen IGZO candidate syntax. These are not an IGZO equation, device curve, SPICE route comparison, physical parameter, experimental calibration or circuit result. M01 remains E0 until both formal open-source device-only routes and their independent persisted-evidence gate pass; C00, circuit, layout, PEX and HZO remain closed.",
+  "next_gate": "After this R07 static contract report passes and its state is committed and pushed, execute the R07 build/tool runner exactly once. Run the independent persisted-evidence check only if the runner passes. Any failure is retained without changing the registered thresholds; formal M01 device DC and all downstream stages remain closed."
+}

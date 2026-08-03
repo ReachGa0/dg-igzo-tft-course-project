@@ -16,6 +16,20 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 关闭 M01 Xyce R07 静态合同门
+
+### 唯一执行与结果
+
+R07 合同实施以提交 `d421277` 推送并确认 `main`/`origin/main` 同步后，唯一执行 `make m01-xyce-build-preflight-r07-contract-check`。结果为 39/39 PASS、E3；报告 `results/reports/m01_xyce_build_preflight_contract_r07.json` 的 SHA-256 为 `2d8cfe605dd86f8313043e42834b4acbd916c165d8d1765758fa609aba0b7fdd`。R06 配置/checker/36/37 报告与两份项目检查失败、R05 失败及成功依赖树、官方 M4/Bison/Flex 来源、R07 隔离根、失败保留和 no-execution 边界全部通过。
+
+### 证据边界与下一门
+
+静态检查只读取并哈希文件，报告记录 build/simulator process 均为 0，未创建器件网表或数值输出；R07 generator/Xyce build/install/output 根保持不存在，runner 与独立检查均未运行。这只是恢复合同 E3，不是 Xyce 二进制、自测、IGZO 候选解析、SPICE 数值、物理参数、实验校准或电路证据。
+
+当前只登记 `contract_ready/E3` 状态并更新项目、状态、决策、报告章节和证据矩阵。最终 `make check` 为 665/665 PASS，`make report-check` 为 12 章/5 附录/15 个允许占位/26 图 PASS，JSON/CSV/XHTML 解析和 `git diff --check` 通过。该状态提交推送前不得运行 R07 runner；之后 runner 只允许一次，且仅在 47/47 PASS 时运行 25 项独立落盘复核。AIM-Spice、正式 M01 器件 DC 和全部下游阶段继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 实现 M01 Xyce R07 checker 恢复合同
 
 ### 修正范围与隔离

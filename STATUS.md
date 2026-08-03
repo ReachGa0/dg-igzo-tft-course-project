@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_R07_XYCE_RECOVERY_CONTRACT_IMPLEMENTED_UNCHECKED_E0`
+- 当前阶段：`M01_R07_XYCE_CONTRACT_READY_E3_NEXT_BUILD_PREFLIGHT`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同 27/27 E3 后，build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37 E0/FAIL并冻结。R07 已实现 39 项静态合同、47 项 runner 和 25 项独立复核，哈希绑定 R06 失败，只修正 runner 路径字面量矛盾并使用全新 R07 根；静态合同尚未运行，仍为 E0。Xyce 二进制、自测、候选解析、正式器件 DC 和独立检查均未产生；C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同 27/27 E3 后，build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37 E0/FAIL并冻结。R07 静态合同在实施提交 `d421277` 推送后唯一运行并返回 39/39 PASS、E3；它只打开 R07 build/tool 预检门。检查器启动 0 个构建/模拟器进程且未创建器件网表或数值输出，Xyce 二进制、自测、候选解析、正式器件 DC 和独立检查均未产生；C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -24,10 +24,11 @@
 - [x] 提交 `ce4687e` 推送后，R06 静态合同按门唯一运行并返回 36/37、E0/FAIL；报告 `results/reports/m01_xyce_build_preflight_contract_r06.json`、SHA-256 `e9f333f38ad3d1b533b75f29b8574d9cf1bd829a3bdb58215ba4e470f31cbf98` 原样保留。唯一失败为 `checker:r06_independent_standard_library`：独立 checker 为哈希绑定合法登记 runner 路径，静态 checker 却要求该文件名不出现在源码中。没有构建、模拟器进程、器件网表或数值输出。
 - [x] 注册 R06 失败后的首次 `make check` 为 653/658：M00 与 M01 R02/R03/R04/R05 五个历史检查仍把当前下一门限制在 R06 实施前状态。失败报告 `results/reports/project_check_m01_xyce_r06_failure_next_scope_stale_failed.json`、SHA-256 `e1492a11872d20ad3d343e0d66afa4d1e21600feef64e714acc7146bea7f9bbe` 已保留；修正只允许已登记的 R06-failure-to-R07 scope，随后 659/659 PASS，不改历史状态、输入或门槛。
 - [x] R07 合同实施已完成但尚未运行：新增独立配置、公共树哈希模块、39 项静态 checker、47 项 runner、25 项独立 checker 和三个 Make 入口。R07 哈希绑定 R06 配置/checker/36/37 报告及两份项目检查失败；独立 checker 可登记 runner 路径，但不得导入 runner、导入/调用 `subprocess` 或执行进程。官方源码继续复用原哈希路径，build/install/output 全部换为新的 `r07` 根且当前不存在。
+- [x] R07 实施提交 `d421277` 推送并确认与 `origin/main` 同步后，静态合同按门唯一运行：39/39 PASS、E3。报告 `results/reports/m01_xyce_build_preflight_contract_r07.json` 的 SHA-256 为 `2d8cfe605dd86f8313043e42834b4acbd916c165d8d1765758fa609aba0b7fdd`；报告记录 0 个 build/simulator process、无器件网表和数值输出，全部 R07 build/install/output 根仍为空。
 
 ### 下一步与关闭条件
 
-- 下一步：完成 R07 实施的文档/项目/报告检查并提交推送；随后只运行 `make m01-xyce-build-preflight-r07-contract-check` 一次。只有静态合同 39/39 PASS 且该状态再次提交推送后，才允许一次 R07 build/tool runner；runner PASS 时才运行 25 项独立落盘检查。R06 和更早 revision 均不得重跑。
+- 下一步：完成 R07 39/39 E3 静态合同状态的文档/项目/报告检查并提交推送；随后只运行 `make m01-xyce-build-preflight-r07` 一次。仅当 47 项 runner PASS 时才运行 25 项独立落盘检查；任何失败均原样保留且不重跑。R07 静态合同、R06 和更早 revision 均不得重跑。
 - M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败和本次 28/30 干跑失败均保留。
 

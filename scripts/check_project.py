@@ -5298,6 +5298,9 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "establish and commit M01 Xyce build/tool preflight revision-7"
                 )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "execute M01 Xyce build/tool preflight revision-7"
+                )
             )
             and "M01" in config.get("tcad_track", {}).get(
                 "m00_r02_formal_result_boundary", ""
@@ -5768,6 +5771,9 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "establish and commit M01 Xyce build/tool preflight revision-7"
                 )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "execute M01 Xyce build/tool preflight revision-7"
+                )
             ),
             f"contract_checks={sum(item.get('status') == 'PASS' for item in r02_contract_checks)}/{len(r02_contract_checks)} future_absent="
             f"{sum(not path.exists() for path in r02_future_paths)}/{len(r02_future_paths)}",
@@ -5873,6 +5879,9 @@ def main() -> int:
                     )
                     or next_scope.startswith(
                         "establish and commit M01 Xyce build/tool preflight revision-7"
+                    )
+                    or next_scope.startswith(
+                        "execute M01 Xyce build/tool preflight revision-7"
                     )
                 )
             )
@@ -6008,6 +6017,9 @@ def main() -> int:
                 )
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "establish and commit M01 Xyce build/tool preflight revision-7"
+                )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "execute M01 Xyce build/tool preflight revision-7"
                 )
             )
         )
@@ -6236,6 +6248,9 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "establish and commit M01 Xyce build/tool preflight revision-7"
                 )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "execute M01 Xyce build/tool preflight revision-7"
+                )
             )
         )
         add_check(
@@ -6460,6 +6475,11 @@ def main() -> int:
             r06_failed_state
             and config.get("tcad_track", {}).get("next_scope", "").startswith(
                 "establish and commit M01 Xyce build/tool preflight revision-7"
+            )
+        ) or (
+            r06_failed_state
+            and config.get("tcad_track", {}).get("next_scope", "").startswith(
+                "execute M01 Xyce build/tool preflight revision-7"
             )
         )
         r06_runner_source = m01_xyce_r06_runner_path.read_text(encoding="utf-8")

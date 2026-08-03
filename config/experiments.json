@@ -1219,9 +1219,9 @@
         "next_gate": "Preserve and commit the R06 36/37 E0 static checker failure, then establish revision-7 with a new config/checker/runner/output namespace. R07 may replace only the contradictory runner-path-literal assertion with an import-and-invocation prohibition; do not run the R06 runner or any simulator."
       },
       "xyce_build_preflight_r07": {
-        "status": "contract_planned",
+        "status": "contract_ready",
         "revision": 7,
-        "current_evidence": "E0",
+        "current_evidence": "E3",
         "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R07",
         "contract_path": "config/m01_xyce_build_preflight_r07.json",
         "contract_checker_path": "scripts/check_m01_xyce_build_preflight_r07_contract.py",
@@ -1234,7 +1234,10 @@
         "expected_independent_check_count": 25,
         "formal_run_completed": false,
         "preflight_run_completed": false,
-        "contract_check_completed": false,
+        "contract_check_completed": true,
+        "contract_status": "PASS",
+        "contract_checks_passed": 39,
+        "contract_checks_failed": 0,
         "device_netlist_invoked": false,
         "numerical_outputs_created": false,
         "ngspice_invoked": false,
@@ -1257,9 +1260,18 @@
         "max_parallel_jobs": 2,
         "proprietary_binary_accepted": false,
         "circuit_or_downstream_permitted": false,
-        "result_paths": [],
-        "artifact_hashes": {},
-        "next_gate": "Commit and push the R07 implementation, then run its 39-check static contract exactly once. Do not build the generator toolchain or Xyce until the static contract passes and that PASS state is committed."
+        "result_paths": [
+          "results/reports/m01_xyce_build_preflight_contract_r07.json"
+        ],
+        "artifact_hashes": {
+          "contract_config_sha256": "be400b354a32f8c2a42143b9b7cce6f4ab1bbe88c026f36b7924f9314efb33cd",
+          "contract_checker_sha256": "157ee85f5dfa165b9c079a28cd7ae0f0830ca97c9c76bb4150a9c7c04a78caa6",
+          "contract_report_sha256": "2d8cfe605dd86f8313043e42834b4acbd916c165d8d1765758fa609aba0b7fdd",
+          "common_hash_helper_sha256": "6259030eb86953ef9a4542bf323ae179a6a55731140d8997fc0b5edd71e3802a",
+          "runner_sha256": "cbdb7daf2b43963c7df92c7fe7b964ffc756743f2709a002ac8333989ac0437f",
+          "independent_checker_sha256": "40269c0e8752bef66a9fd1a66e72e87adc7a3c3d1f499d40119a32bf44ed6582"
+        },
+        "next_gate": "Commit and push the R07 39/39 E3 static contract PASS state, then execute the R07 build/tool preflight exactly once. Run the independent persisted-evidence check only if the runner passes; formal M01 device DC remains closed until both pass."
       }
     },
     {

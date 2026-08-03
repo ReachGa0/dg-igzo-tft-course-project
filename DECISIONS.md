@@ -3,7 +3,7 @@
 ## ADR-053：R07 允许 runner 路径哈希绑定但禁止导入与进程执行
 
 - 日期：2026-08-03
-- 状态：R07 合同、runner 与独立 checker 已实现，静态合同尚未运行，当前 E0
+- 状态：R07 静态合同 39/39、E3 已唯一执行并冻结；runner 与独立 checker 尚未运行
 
 ### checker 修正
 
@@ -14,7 +14,7 @@
 
 - R07 哈希绑定 R06 配置、checker、36/37 报告和两份项目检查失败；R06 不修改、不重跑。M4/Bison/Flex 继续使用已冻结的官方归档与解压树，SuiteSparse/Trilinos 继续只复用 R05 完整树哈希前缀。
 - generator、Xyce build/install、report 和 output 全部使用新的 `r07` 根；R05 partial Xyce 与所有 R06 Xyce/build/output 根均列入禁用清单。runner 持久化 `r06_xyce_or_outputs_reused=false`，独立 checker 复核该标记和实际 manifest 路径。
-- R07 静态/runner/独立检查分别为 39/47/25 项。实施先提交推送，再唯一运行静态合同；静态 PASS 状态再次提交前不得构建，AIM-Spice 和正式 M01/下游继续关闭。
+- R07 静态/runner/独立检查分别为 39/47/25 项。实施提交 `d421277` 推送后，静态合同唯一运行并返回 39/39 PASS、E3；报告 SHA-256 为 `2d8cfe605dd86f8313043e42834b4acbd916c165d8d1765758fa609aba0b7fdd`，记录 0 个构建/模拟器进程、无器件网表和数值输出。该 PASS 状态再次提交前不得构建；随后 runner 只允许一次且 PASS 后才运行独立复核。AIM-Spice 和正式 M01/下游继续关闭。
 
 ## ADR-052：R06 checker 路径字面量失败保留，R07 只修正可执行性断言
 
