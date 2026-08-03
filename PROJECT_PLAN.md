@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`M01_R11_PREFLIGHT_VERIFIED_E3_NEXT_FORMAL_CONTRACT`：T01/T02/T03 数值门已关闭，历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。Xyce build/tool R01/R05/R07/R10 历史 runner 失败和 R02/R03/R04/R06/R08/R09 checker 失败全部保留。R11 静态合同唯一 36/36 PASS、E3，runner 唯一 32/32 PASS、E2，独立检查唯一 25/25 PASS、E3；4 个允许的 Xyce 工具/parser 进程、1.25 V 自测和相对 ASCII include parser-only syntax 均由无进程独立 checker 复核。下一门是建立正式 M01 两路线器件 DC 执行合同；合同静态 PASS 提交前不执行任一路线。
+`M01_DEVICE_DC_R01_CONTRACT_IMPLEMENTED_E0_NEXT_STATIC`：T01/T02/T03 数值门已关闭，历史失败保留。M00 R02 只在冻结教学数值域内关闭。R11 已完成 36/32/25 工具/parser 证据链。正式 `M01_OPEN_SOURCE_DEVICE_DC_R01` 已实施 40/30/24 三门，冻结同一 IGZO 候选、247 行、每路线一个 247 器件 ASCII 单点 DC 网表、ngspice/Xyce 各一进程、提取/指标/失败/输出边界；合同、runner 和独立检查尚未运行。下一门是实施提交后的唯一静态合同，40/40 PASS 状态提交前不执行任一路线。
 
 ## 截止日期
 
@@ -46,7 +46,7 @@
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
 | M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
-| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；历史失败保留；R11 static 36/36 E3、runner 32/32 E2、independent 25/25 E3 | revision-3 32/32、开源恢复 30/30；R01/R05/R07/R10 runner 与 R02/R03/R04/R06/R08/R09 checker 失败均保留。R11 25/25 独立复核只关闭 hash-bound Xyce 工具/parser 预检，不是正式器件 DC 或 M01 数值；下一步建立两路线执行合同，合同静态 PASS 提交前继续关闭器件执行 |
+| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；R11 preflight E3；device-DC R01 implemented E0 | 历史失败全部保留；R11 36/32/25 只关闭工具/parser 预检。R01 正式合同已实施 40/30/24 三门、247 行和两进程预算；静态合同尚未运行，无正式网表/数值输出。首次项目检查排序假设失败已归档，UID 修正后 722/722 PASS |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-M00 R01/R02 和 M01 R01/R02/R03/R04/R05/R06/R07/R08/R09/R10/R11 均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。R11 静态 36/36 E3、runner 32/32 E2、独立 25/25 E3 已完整保留；它只证明工具/parser 预检。下一步提交并推送独立 PASS 状态，再建立新的正式 M01 两路线器件 DC 执行合同，冻结 ngspice/Xyce 工具绑定、247 行目标、网表/解析/指标、失败保留、输出和证据边界。新合同静态 PASS 提交前不得执行任一路线，电路、版图、PEX 和 HZO 继续关闭。
+M00 与 M01 历史运行均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。先提交并推送 `M01_OPEN_SOURCE_DEVICE_DC_R01` E0 实施态，再唯一运行 40 项静态合同；PASS 状态另行提交前不执行 ngspice/Xyce 两路线。电路、版图、PEX 和 HZO 继续关闭。

@@ -286,6 +286,12 @@ REQUIRED_FILES = [
     "results/compact/m01_xyce_build_preflight_r11/device_syntax.cir",
     "results/compact/m01_xyce_build_preflight_r11/device_syntax.log",
     "results/compact/m01_xyce_build_preflight_r11/xyce_device_syntax.log",
+    "config/m01_open_source_device_dc_r01.json",
+    "scripts/m01_open_source_device_dc_r01_common.py",
+    "scripts/check_m01_open_source_device_dc_r01_contract.py",
+    "scripts/run_m01_open_source_device_dc_r01.py",
+    "scripts/check_m01_open_source_device_dc_r01.py",
+    "results/reports/project_check_m01_device_dc_r01_prediction_order_assumption_failed.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -800,6 +806,12 @@ def main() -> int:
             "run independent persisted-evidence checker for M01 Xyce build/tool preflight revision-11"
         ) or current_next_scope.startswith(
             "establish and commit a formal M01 two-route device-only DC execution contract"
+        ) or current_next_scope.startswith(
+            "commit and push the M01 open-source device DC R01 contract implementation"
+        ) or current_next_scope.startswith(
+            "execute the committed M01 open-source device DC R01 two-route runner"
+        ) or current_next_scope.startswith(
+            "run the 24-check independent persisted-evidence checker for M01 open-source device DC R01"
         )
         dependencies_valid = all(
             set(item.get("depends_on", [])) <= set(experiment_map)
@@ -8185,8 +8197,19 @@ def main() -> int:
             )
         ) or (
             r11_verified_state
-            and r11_next_scope.startswith(
-                "establish and commit a formal M01 two-route device-only DC execution contract"
+            and (
+                r11_next_scope.startswith(
+                    "establish and commit a formal M01 two-route device-only DC execution contract"
+                )
+                or r11_next_scope.startswith(
+                    "commit and push the M01 open-source device DC R01 contract implementation"
+                )
+                or r11_next_scope.startswith(
+                    "execute the committed M01 open-source device DC R01 two-route runner"
+                )
+                or r11_next_scope.startswith(
+                    "run the 24-check independent persisted-evidence checker for M01 open-source device DC R01"
+                )
             )
         )
         r11_expected_archive_paths = [
@@ -8283,6 +8306,410 @@ def main() -> int:
         add_check(
             checks,
             "m01_xyce_preflight_r11:path_safe_contract_and_unexecuted_chain",
+            False,
+            str(error),
+        )
+
+    m01_device_dc_config_path = ROOT / "config" / "m01_open_source_device_dc_r01.json"
+    m01_device_dc_common_path = ROOT / "scripts" / "m01_open_source_device_dc_r01_common.py"
+    m01_device_dc_contract_checker_path = (
+        ROOT / "scripts" / "check_m01_open_source_device_dc_r01_contract.py"
+    )
+    m01_device_dc_runner_path = ROOT / "scripts" / "run_m01_open_source_device_dc_r01.py"
+    m01_device_dc_independent_path = (
+        ROOT / "scripts" / "check_m01_open_source_device_dc_r01.py"
+    )
+    try:
+        device_dc_config = json.loads(m01_device_dc_config_path.read_text(encoding="utf-8"))
+        device_dc_machine = experiment_map["M01"].get("open_source_device_dc_r01", {})
+        device_dc_outputs = device_dc_config["outputs"]
+        device_dc_contract_report_path = ROOT / device_dc_outputs["contract_report"]
+        device_dc_run_report_path = ROOT / device_dc_outputs["run_report"]
+        device_dc_independent_report_path = ROOT / device_dc_outputs["independent_check_report"]
+        device_dc_run_directory = ROOT / device_dc_outputs["run_directory"]
+        device_dc_contract_report = (
+            json.loads(device_dc_contract_report_path.read_text(encoding="utf-8"))
+            if device_dc_contract_report_path.is_file()
+            else {}
+        )
+        device_dc_run_report = (
+            json.loads(device_dc_run_report_path.read_text(encoding="utf-8"))
+            if device_dc_run_report_path.is_file()
+            else {}
+        )
+        device_dc_independent_report = (
+            json.loads(device_dc_independent_report_path.read_text(encoding="utf-8"))
+            if device_dc_independent_report_path.is_file()
+            else {}
+        )
+        device_dc_source_paths = [
+            "config/m01_open_source_device_dc_r01.json",
+            "scripts/m01_open_source_device_dc_r01_common.py",
+            "scripts/check_m01_open_source_device_dc_r01_contract.py",
+            "scripts/run_m01_open_source_device_dc_r01.py",
+            "scripts/check_m01_open_source_device_dc_r01.py",
+            "results/reports/project_check_m01_device_dc_r01_prediction_order_assumption_failed.json",
+        ]
+        device_dc_run_artifact_keys = [
+            "ngspice_netlist",
+            "xyce_netlist",
+            "ngspice_log",
+            "xyce_log",
+            "ngspice_command_log",
+            "xyce_command_log",
+            "ngspice_raw_output",
+            "xyce_raw_output",
+            "ngspice_raw_csv",
+            "xyce_raw_csv",
+            "route_metrics_csv",
+            "route_difference_csv",
+            "overlay_png",
+            "route_difference_png",
+            "run_report",
+        ]
+        device_dc_all_output_paths = [ROOT / value for value in device_dc_outputs.values()]
+        device_dc_run_output_paths = [
+            ROOT / device_dc_outputs[key] for key in device_dc_run_artifact_keys
+        ]
+        device_dc_contract_pass = (
+            device_dc_contract_report.get("status") == "PASS"
+            and device_dc_contract_report.get("evidence_level") == "E3"
+            and device_dc_contract_report.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and device_dc_contract_report.get("summary", {}).get("passed") == 40
+            and device_dc_contract_report.get("summary", {}).get("failed") == 0
+            and device_dc_contract_report.get("summary", {}).get("total") == 40
+            and device_dc_contract_report.get("summary", {}).get(
+                "simulator_processes_invoked"
+            )
+            == 0
+            and device_dc_contract_report.get("summary", {}).get(
+                "device_netlists_created"
+            )
+            == 0
+            and device_dc_contract_report.get("summary", {}).get(
+                "formal_device_dc_invoked"
+            )
+            is False
+            and device_dc_contract_report.get("config", {}).get("sha256")
+            == sha256(m01_device_dc_config_path)
+            and device_dc_contract_report.get("contract_checker", {}).get("sha256")
+            == sha256(m01_device_dc_contract_checker_path)
+            and device_dc_contract_report.get("runner", {}).get("sha256")
+            == sha256(m01_device_dc_runner_path)
+            and device_dc_contract_report.get("independent_checker", {}).get("sha256")
+            == sha256(m01_device_dc_independent_path)
+            and len(device_dc_contract_report.get("checks", [])) == 40
+            and all(
+                item.get("status") == "PASS"
+                for item in device_dc_contract_report.get("checks", [])
+            )
+        )
+        device_dc_run_pass = (
+            device_dc_contract_pass
+            and device_dc_run_report.get("status") == "PASS"
+            and device_dc_run_report.get("evidence_level") == "E2"
+            and device_dc_run_report.get("simulation_status")
+            == "FORMAL_DEVICE_DC_COMPLETE"
+            and device_dc_run_report.get("summary", {}).get("passed") == 30
+            and device_dc_run_report.get("summary", {}).get("failed") == 0
+            and device_dc_run_report.get("summary", {}).get("total") == 30
+            and device_dc_run_report.get("summary", {}).get("process_invocations") == 2
+            and device_dc_run_report.get("summary", {}).get("ngspice_invoked") is True
+            and device_dc_run_report.get("summary", {}).get("xyce_invoked") is True
+            and device_dc_run_report.get("summary", {}).get("aimspice_invoked") is False
+            and device_dc_run_report.get("summary", {}).get("tcad_invoked") is False
+            and device_dc_run_report.get("summary", {}).get(
+                "circuit_or_downstream_invoked"
+            )
+            is False
+            and len(device_dc_run_report.get("checks", [])) == 30
+            and all(
+                item.get("status") == "PASS"
+                for item in device_dc_run_report.get("checks", [])
+            )
+            and device_dc_run_report.get("config", {}).get("sha256")
+            == sha256(m01_device_dc_config_path)
+            and device_dc_run_report.get("runner", {}).get("sha256")
+            == sha256(m01_device_dc_runner_path)
+        )
+        device_dc_verified = (
+            device_dc_run_pass
+            and device_dc_independent_report.get("status") == "PASS"
+            and device_dc_independent_report.get("evidence_level") == "E3"
+            and device_dc_independent_report.get("summary", {}).get("passed") == 24
+            and device_dc_independent_report.get("summary", {}).get("failed") == 0
+            and device_dc_independent_report.get("summary", {}).get("total") == 24
+            and device_dc_independent_report.get("processes_invoked") == 0
+            and len(device_dc_independent_report.get("checks", [])) == 24
+            and all(
+                item.get("status") == "PASS"
+                for item in device_dc_independent_report.get("checks", [])
+            )
+            and device_dc_independent_report.get("config", {}).get("sha256")
+            == sha256(m01_device_dc_config_path)
+            and device_dc_independent_report.get("runner", {}).get("sha256")
+            == sha256(m01_device_dc_runner_path)
+            and device_dc_independent_report.get("runner_report", {}).get("sha256")
+            == sha256(m01_device_dc_run_report_path)
+        )
+        device_dc_implemented_state = (
+            device_dc_machine.get("status") == "contract_implemented"
+            and device_dc_machine.get("current_evidence") == "E0"
+            and device_dc_machine.get("contract_check_completed") is False
+            and device_dc_machine.get("contract_status") == "NOT_RUN"
+            and device_dc_machine.get("formal_run_completed") is False
+            and device_dc_machine.get("formal_run_status") == "NOT_RUN"
+            and device_dc_machine.get("independent_check_completed") is False
+            and device_dc_machine.get("independent_check_status") == "NOT_RUN"
+            and device_dc_machine.get("runner_processes_invoked") == 0
+            and device_dc_machine.get("result_paths") == device_dc_source_paths
+            and all(not path.exists() for path in device_dc_all_output_paths)
+        )
+        device_dc_ready_state = (
+            device_dc_contract_pass
+            and device_dc_machine.get("status") == "contract_ready"
+            and device_dc_machine.get("current_evidence") == "E3"
+            and device_dc_machine.get("contract_check_completed") is True
+            and device_dc_machine.get("contract_status") == "PASS"
+            and device_dc_machine.get("contract_checks_passed") == 40
+            and device_dc_machine.get("contract_checks_failed") == 0
+            and device_dc_machine.get("formal_run_completed") is False
+            and device_dc_machine.get("runner_processes_invoked") == 0
+            and device_dc_machine.get("result_paths")
+            == device_dc_source_paths + [device_dc_outputs["contract_report"]]
+            and all(
+                not path.exists()
+                for path in device_dc_all_output_paths
+                if path != device_dc_contract_report_path
+            )
+        )
+        device_dc_runner_state = (
+            device_dc_run_pass
+            and device_dc_machine.get("status") == "formal_run_passed"
+            and device_dc_machine.get("current_evidence") == "E2"
+            and device_dc_machine.get("contract_check_completed") is True
+            and device_dc_machine.get("contract_status") == "PASS"
+            and device_dc_machine.get("formal_run_completed") is True
+            and device_dc_machine.get("formal_run_status") == "PASS"
+            and device_dc_machine.get("runner_checks_passed") == 30
+            and device_dc_machine.get("runner_checks_failed") == 0
+            and device_dc_machine.get("runner_processes_invoked") == 2
+            and device_dc_machine.get("ngspice_invoked") is True
+            and device_dc_machine.get("xyce_invoked") is True
+            and device_dc_machine.get("independent_check_completed") is False
+            and device_dc_run_directory.is_dir()
+            and all(path.is_file() for path in device_dc_run_output_paths)
+            and not device_dc_independent_report_path.exists()
+        )
+        device_dc_verified_state = (
+            device_dc_verified
+            and device_dc_machine.get("status") == "verified"
+            and device_dc_machine.get("current_evidence") == "E3"
+            and device_dc_machine.get("formal_run_completed") is True
+            and device_dc_machine.get("formal_run_status") == "PASS"
+            and device_dc_machine.get("independent_check_completed") is True
+            and device_dc_machine.get("independent_check_status") == "PASS"
+            and device_dc_machine.get("independent_checks_passed") == 24
+            and device_dc_machine.get("independent_checks_failed") == 0
+            and device_dc_machine.get("independent_processes_invoked") == 0
+            and device_dc_run_directory.is_dir()
+            and all(path.is_file() for path in device_dc_run_output_paths)
+            and device_dc_independent_report_path.is_file()
+        )
+        device_dc_common_source = m01_device_dc_common_path.read_text(encoding="ascii")
+        device_dc_contract_source = m01_device_dc_contract_checker_path.read_text(
+            encoding="ascii"
+        )
+        device_dc_runner_source = m01_device_dc_runner_path.read_text(encoding="ascii")
+        device_dc_independent_source = m01_device_dc_independent_path.read_text(
+            encoding="ascii"
+        )
+        target = device_dc_config["target_contract"]
+        manifest_path = ROOT / target["selection_manifest"]
+        prediction_path = ROOT / target["prediction_table"]
+        with manifest_path.open("r", encoding="utf-8", newline="") as stream:
+            manifest_rows = list(csv.DictReader(stream))
+        with prediction_path.open("r", encoding="utf-8", newline="") as stream:
+            prediction_rows = list(csv.DictReader(stream))
+        prediction_by_uid = {row["row_uid"]: row for row in prediction_rows}
+        candidate = ROOT / device_dc_config["device_contract"]["candidate_path"]
+        preflight = device_dc_config["committed_preflight_binding"]
+        preflight_artifacts = [
+            (preflight["r11_config_path"], preflight["r11_config_sha256"]),
+            (preflight["r11_contract_report_path"], preflight["r11_contract_report_sha256"]),
+            (preflight["r11_runner_report_path"], preflight["r11_runner_report_sha256"]),
+            (
+                preflight["r11_independent_report_path"],
+                preflight["r11_independent_report_sha256"],
+            ),
+        ]
+        ng_tool = Path(device_dc_config["routes"]["ngspice"]["tool_path"])
+        xyce_tool = Path(device_dc_config["routes"]["xyce"]["tool_path"])
+        device_dc_next_scope = config.get("tcad_track", {}).get("next_scope", "")
+        device_dc_next_scope_valid = (
+            device_dc_implemented_state
+            and device_dc_next_scope.startswith(
+                "commit and push the M01 open-source device DC R01 contract implementation"
+            )
+        ) or (
+            device_dc_ready_state
+            and device_dc_next_scope.startswith(
+                "execute the committed M01 open-source device DC R01 two-route runner"
+            )
+        ) or (
+            device_dc_runner_state
+            and device_dc_next_scope.startswith(
+                "run the 24-check independent persisted-evidence checker for M01 open-source device DC R01"
+            )
+        ) or device_dc_verified_state
+        add_check(
+            checks,
+            "m01_open_source_device_dc_r01:contract_runner_independent_chain",
+            device_dc_config.get("contract_id") == "M01_OPEN_SOURCE_DEVICE_DC_R01"
+            and device_dc_config.get("revision") == 1
+            and device_dc_config.get("status") == "contract_planned"
+            and device_dc_config.get("simulation_status")
+            == "NOT_RUN_BY_CONTRACT_CHECK"
+            and device_dc_config.get("scope", {}).get("active_material_scope")
+            == "IGZO only"
+            and device_dc_config.get("scope", {}).get("upstream_device_model")
+            == "2D frozen teaching TCAD"
+            and device_dc_config.get("scope", {}).get("execution_scope")
+            == "compact-model device-only DC cross-check"
+            and device_dc_config.get("registered_checks")
+            == {"static_contract": 40, "runner": 30, "independent": 24}
+            and (
+                device_dc_implemented_state
+                or device_dc_ready_state
+                or device_dc_runner_state
+                or device_dc_verified_state
+            )
+            and device_dc_machine.get("revision") == 1
+            and device_dc_machine.get("target_row_count") == 247
+            and device_dc_machine.get("target_curve_count") == 13
+            and device_dc_machine.get("route_count") == 2
+            and device_dc_machine.get("generated_device_netlist_budget") == 2
+            and device_dc_machine.get("runner_process_budget") == 2
+            and device_dc_machine.get("aimspice_invoked") is False
+            and device_dc_machine.get("tcad_invoked") is False
+            and device_dc_machine.get("circuit_or_downstream_permitted") is False
+            and device_dc_machine.get("r11_preflight_bound_commit")
+            == "010a51f30e87602e7935bd55e4ee35c38014e9ff"
+            and device_dc_machine.get("r11_static_runner_independent_passed") is True
+            and device_dc_machine.get("implementation_project_check_failure", {}).get(
+                "sha256"
+            )
+            == "dcf6c2ff89fd6f2d31dfc140c55cbe7d04f77e662370e35698acb926653599a0"
+            and device_dc_machine.get("implementation_project_check_failure", {}).get(
+                "preserved"
+            )
+            is True
+            and all((ROOT / path).is_file() for path in device_dc_source_paths)
+            and "EXPECTED_CHECK_COUNT = 40" in device_dc_contract_source
+            and "EXPECTED_CHECK_COUNT = 30" in device_dc_runner_source
+            and "EXPECTED_CHECK_COUNT = 24" in device_dc_independent_source
+            and "def generate_device_netlist" in device_dc_common_source
+            and "def parse_ngspice_ascii_raw" in device_dc_common_source
+            and "def parse_xyce_prn" in device_dc_common_source
+            and "import subprocess" in device_dc_runner_source
+            and re.search(
+                r"^(?:import|from)\s+subprocess\b",
+                device_dc_contract_source,
+                re.MULTILINE,
+            )
+            is None
+            and re.search(
+                r"^(?:import|from)\s+subprocess\b",
+                device_dc_independent_source,
+                re.MULTILINE,
+            )
+            is None
+            and all(
+                (ROOT / path).is_file() and sha256(ROOT / path) == expected
+                for path, expected in preflight_artifacts
+            )
+            and preflight.get("r11_static_checks_passed") == 36
+            and preflight.get("r11_runner_checks_passed") == 32
+            and preflight.get("r11_independent_checks_passed") == 25
+            and preflight.get("r11_independent_processes") == 0
+            and manifest_path.is_file()
+            and prediction_path.is_file()
+            and sha256(manifest_path) == target["selection_manifest_sha256"]
+            and sha256(prediction_path) == target["prediction_table_sha256"]
+            and len(manifest_rows) == len(prediction_rows) == 247
+            and len({row["row_uid"] for row in manifest_rows}) == len(manifest_rows)
+            and len(prediction_by_uid) == len(prediction_rows)
+            and {row["row_uid"] for row in manifest_rows} == set(prediction_by_uid)
+            and all(
+                row[field] == prediction_by_uid[row["row_uid"]][field]
+                for row in manifest_rows
+                for field in (
+                    "curve_id",
+                    "dataset_id",
+                    "split",
+                    "kind",
+                    "topology",
+                    "selection_role",
+                    "optimizer_input",
+                    "vbg_v",
+                    "vtg_v",
+                    "vds_v",
+                    "primary_axis_v",
+                    "target_current_a_per_cm",
+                    "w_um",
+                    "l_um",
+                    "temperature_k",
+                )
+            )
+            and all(
+                math.isfinite(float(row["model_current_a_per_cm"]))
+                for row in prediction_rows
+            )
+            and len({row["curve_id"] for row in manifest_rows}) == 13
+            and candidate.is_file()
+            and sha256(candidate)
+            == device_dc_config["device_contract"]["candidate_sha256"]
+            and device_dc_config["device_contract"][
+                "same_candidate_bytes_for_both_routes"
+            ]
+            is True
+            and device_dc_config["device_contract"]["equation_identity_claimed"]
+            is False
+            and ng_tool.is_file()
+            and sha256(ng_tool)
+            == device_dc_config["routes"]["ngspice"]["tool_sha256"]
+            and ng_tool.stat().st_size
+            == device_dc_config["routes"]["ngspice"]["tool_bytes"]
+            and xyce_tool.is_file()
+            and sha256(xyce_tool)
+            == device_dc_config["routes"]["xyce"]["tool_sha256"]
+            and xyce_tool.stat().st_size
+            == device_dc_config["routes"]["xyce"]["tool_bytes"]
+            and device_dc_config.get("resource_budget", {}).get("route_processes") == 2
+            and device_dc_config.get("resource_budget", {}).get("parallel_route_execution")
+            is False
+            and device_dc_config.get("failure_retention", {}).get(
+                "threshold_relaxation_permitted"
+            )
+            is False
+            and "E0 implementation"
+            in config.get("tcad_track", {}).get(
+                "m01_open_source_device_dc_r01_contract_boundary", ""
+            )
+            and "40-check static contract"
+            in config.get("tcad_track", {}).get(
+                "m01_open_source_device_dc_r01_contract_boundary", ""
+            )
+            and device_dc_next_scope_valid,
+            f"implemented={device_dc_implemented_state} ready={device_dc_ready_state} "
+            f"runner={device_dc_runner_state} verified={device_dc_verified_state} "
+            f"future_absent={sum(not path.exists() for path in device_dc_all_output_paths)}/{len(device_dc_all_output_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(
+            checks,
+            "m01_open_source_device_dc_r01:contract_runner_independent_chain",
             False,
             str(error),
         )

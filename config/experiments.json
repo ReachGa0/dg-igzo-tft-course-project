@@ -855,7 +855,7 @@
         },
         "next_gate": "establish and commit an explicitly open-source second-simulator recovery contract before any device-level numerical execution"
       },
-      "evidence_boundary": "The revision-3 M01 contract remains 32/32 E3 static evidence, the R01 tool/provenance preflight remains an 11/13 E0/FAIL preserved run, and the open-source recovery contract remains 30/30 E3. The pure-source Xyce build chain produced a hash-bound GPL Xyce 7.10.0 installation in R07, but the R07 runner remains 42/47 E0/FAIL because its output contract expected CSV instead of the fixed-column PRN that contained 1.25 V. R08 and R09 static checker failures remain preserved. R10 then passed its one 36/36 E3 static contract invocation; its one runner invocation completed version, license and controlled scalar B-source tool commands and independently parsed 1.25 V, but failed before parser-only Xyce because an ASCII netlist write contained the Chinese absolute project path. The R10 failure report, companion log and eight-file partial tree are retained and hash-bound; R10 is not rerun. R11 uses a new path-safe namespace with the same frozen IGZO include represented as an ASCII repository-relative path and project-root cwd. Its one permitted static checker invocation returned 36/36 PASS at E3 with zero build/simulator processes, no device netlist and no numerical output; the runner and independent checker have not run. No R10/R11 parser-only result, formal two-route device DC, formal M01 numerical output, ngspice/AIM-Spice numerical route, physical parameter, experimental calibration or circuit result exists. External baselines remain reference-only; SnO/HZO/circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
+      "evidence_boundary": "The revision-3 M01 contract remains 32/32 E3 static evidence, the R01 tool/provenance preflight remains an 11/13 E0/FAIL preserved run, and the open-source recovery contract remains 30/30 E3. All historical Xyce build/checker failures remain preserved. R11 completed its one 36/36 E3 static check, one 32/32 E2 tool/parser runner and one 25/25 E3 independent persisted-evidence check; four allowlisted Xyce tool/parser processes returned zero, the 1.25 V self-test and repository-relative ASCII include syntax passed, and the independent checker started zero processes. R11 therefore closes only the hash-bound Xyce tool/parser preflight, not formal device DC or numerical M01. M01_OPEN_SOURCE_DEVICE_DC_R01 is now implemented at E0 with a 40-check static contract, 30-check future runner and 24-check future independent checker. It freezes the same 247 IGZO rows, one ngspice and one GPL Xyce device-only DC process, exact extraction/metrics, exclusive outputs and failure retention. Its static contract has not run and no formal netlist, raw table, metric, route difference, figure or run report exists. External baselines remain reference-only; unauthorized AIM-Spice, SnO, HZO and circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
       "open_source_recovery_contract": {
         "status": "contract_ready",
         "revision": 1,
@@ -1606,6 +1606,61 @@
           "independent_check_report_sha256": "792a4f6d4be65746fc08ff0c00205acc2f7b64bc5ad2d3f0c370d27c41d2d615"
         },
         "next_gate": "Commit and push the R11 25/25 E3 independent persisted-evidence PASS, then establish a formal M01 two-route device-only DC execution contract. Do not execute either device route until that new static contract passes and its PASS state is committed."
+      },
+      "open_source_device_dc_r01": {
+        "status": "contract_implemented",
+        "revision": 1,
+        "current_evidence": "E0",
+        "contract_id": "M01_OPEN_SOURCE_DEVICE_DC_R01",
+        "contract_path": "config/m01_open_source_device_dc_r01.json",
+        "common_path": "scripts/m01_open_source_device_dc_r01_common.py",
+        "contract_checker_path": "scripts/check_m01_open_source_device_dc_r01_contract.py",
+        "runner_path": "scripts/run_m01_open_source_device_dc_r01.py",
+        "independent_checker_path": "scripts/check_m01_open_source_device_dc_r01.py",
+        "contract_report_path": "results/reports/m01_open_source_device_dc_contract_r01.json",
+        "run_report_path": "results/reports/m01_open_source_cross_check_r01.json",
+        "independent_report_path": "results/reports/m01_open_source_cross_check_r01_check.json",
+        "expected_contract_check_count": 40,
+        "expected_runner_check_count": 30,
+        "expected_independent_check_count": 24,
+        "contract_check_completed": false,
+        "contract_status": "NOT_RUN",
+        "formal_run_completed": false,
+        "formal_run_status": "NOT_RUN",
+        "independent_check_completed": false,
+        "independent_check_status": "NOT_RUN",
+        "target_row_count": 247,
+        "target_curve_count": 13,
+        "route_count": 2,
+        "generated_device_netlist_budget": 2,
+        "runner_process_budget": 2,
+        "runner_processes_invoked": 0,
+        "ngspice_invoked": false,
+        "xyce_invoked": false,
+        "aimspice_invoked": false,
+        "tcad_invoked": false,
+        "circuit_or_downstream_permitted": false,
+        "r11_preflight_bound_commit": "010a51f30e87602e7935bd55e4ee35c38014e9ff",
+        "r11_static_runner_independent_passed": true,
+        "implementation_project_check_failure": {
+          "path": "results/reports/project_check_m01_device_dc_r01_prediction_order_assumption_failed.json",
+          "sha256": "dcf6c2ff89fd6f2d31dfc140c55cbe7d04f77e662370e35698acb926653599a0",
+          "failure_category": "prediction_table_order_assumption_in_project_checker",
+          "failed_checks": 1,
+          "simulator_processes_invoked": 0,
+          "preserved": true
+        },
+        "result_paths": [
+          "config/m01_open_source_device_dc_r01.json",
+          "scripts/m01_open_source_device_dc_r01_common.py",
+          "scripts/check_m01_open_source_device_dc_r01_contract.py",
+          "scripts/run_m01_open_source_device_dc_r01.py",
+          "scripts/check_m01_open_source_device_dc_r01.py",
+          "results/reports/project_check_m01_device_dc_r01_prediction_order_assumption_failed.json"
+        ],
+        "future_outputs_absent": true,
+        "evidence_boundary": "E0 implementation only. The registered static checker, future two-route runner and future independent checker have not run. No simulator, device netlist, numerical table, route metric, route-difference figure, circuit or downstream output was created. A later static PASS would freeze execution only; it would not be device numerical evidence or physical/experimental validation.",
+        "next_gate": "Commit and push this implementation, then run the 40-check static contract exactly once. Do not execute either device route until the static PASS state is committed and pushed."
       }
     },
     {
