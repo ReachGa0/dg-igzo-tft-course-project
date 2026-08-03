@@ -1,0 +1,127 @@
+argv=["/home/reachgao/.local/cmake-3.30.5/bin/cmake", "-S", "/home/reachgao/.local/src/suitesparse-7.8.3", "-B", "/home/reachgao/.local/build/suitesparse-7.8.3-r05", "-DCMAKE_INSTALL_PREFIX=/home/reachgao/.local/suitesparse-7.8.3-r05", "-DSUITESPARSE_ENABLE_PROJECTS=suitesparse_config;amd", "-DSUITESPARSE_USE_FORTRAN=OFF", "-DSUITESPARSE_USE_CUDA=OFF", "-DCMAKE_C_COMPILER=/usr/bin/gcc", "-DCMAKE_CXX_COMPILER=/usr/bin/g++", "-DCMAKE_BUILD_TYPE=Release", "-DBLAS_LIBRARIES=/home/reachgao/.local/linear-algebra/lib/libblas.so", "-DLAPACK_LIBRARIES=/home/reachgao/.local/linear-algebra/lib/liblapack.so"]
+cwd=/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目
+returncode=0
+timed_out=false
+elapsed_seconds=1.719197
+output_begin
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Source:           /home/reachgao/.local/src/suitesparse-7.8.3 
+-- Build:            /home/reachgao/.local/build/suitesparse-7.8.3-r05 
+-- Install lib:      lib
+-- Install include:  include/suitesparse
+-- Install bin:      bin
+-- Install pkg-file: lib
+-- Install rpath:    $ORIGIN
+-- Build   rpath:    
+-- Build type:       Release 
+-- Fortran:          not enabled
+-- CUDA:             not enabled
+-- Building SuiteSparse_config version: v7.8.3 (Oct 10, 2024)
+-- Source:           /home/reachgao/.local/src/suitesparse-7.8.3 
+-- Build:            /home/reachgao/.local/build/suitesparse-7.8.3-r05 
+-- Install lib:      lib
+-- Install include:  include/suitesparse
+-- Install bin:      bin
+-- Install pkg-file: lib
+-- Install rpath:    $ORIGIN
+-- Build   rpath:    
+-- Build type:       Release 
+-- Fortran:          not enabled
+-- CUDA:             not enabled
+-- C to Fortran calling protocol: 
+--     SUITESPARSE_HAS_FORTRAN  : OFF
+--     FortranCInterface_GLOBAL_MACRO  : (name,NAME) name##_
+--     FortranCInterface_GLOBAL__MACRO : (name,NAME) name##_
+-- Found OpenMP_C: -fopenmp (found version "4.5")
+-- Found OpenMP: TRUE (found version "4.5") found components: C
+-- SuiteSparse_config has OpenMP: ON
+-- Looking for clock_gettime
+-- Looking for clock_gettime - found
+-- Using clock_gettime without librt
+-- Found  32-bit BLAS
+-- Looking for fmax
+-- Looking for fmax - not found
+-- OpenMP C libraries:      /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so;/usr/lib/x86_64-linux-gnu/libpthread.a 
+-- OpenMP C include:         
+-- OpenMP C flags:          -fopenmp 
+-- ------------------------------------------------------------------------
+-- SuiteSparse CMAKE report for: SuiteSparseConfig
+-- ------------------------------------------------------------------------
+-- build type:           Release
+-- BUILD_SHARED_LIBS:    ON
+-- BUILD_STATIC_LIBS:    ON
+-- C compiler:           /usr/bin/gcc 
+-- C flags:              
+-- C++ compiler:         /usr/bin/g++
+-- C++ flags:            
+-- C Flags release:      -O3 -DNDEBUG 
+-- C++ Flags release:    -O3 -DNDEBUG 
+-- Fortran compiler:     none
+-- compile definitions:  BLAS_
+-- BLAS integer:         int32_t
+-- ------------------------------------------------------------------------
+-- Building AMD version: v3.3.3 (June 20, 2024)
+-- Source:           /home/reachgao/.local/src/suitesparse-7.8.3 
+-- Build:            /home/reachgao/.local/build/suitesparse-7.8.3-r05 
+-- Install lib:      lib
+-- Install include:  include/suitesparse
+-- Install bin:      bin
+-- Install pkg-file: lib
+-- Install rpath:    $ORIGIN
+-- Build   rpath:    
+-- Build type:       Release 
+-- Fortran:          not enabled
+-- CUDA:             not enabled
+-- Skipping the demos in AMD/Demo
+-- ------------------------------------------------------------------------
+-- SuiteSparse CMAKE report for: AMD
+-- ------------------------------------------------------------------------
+-- build type:           Release
+-- BUILD_SHARED_LIBS:    ON
+-- BUILD_STATIC_LIBS:    ON
+-- C compiler:           /usr/bin/gcc 
+-- C flags:              
+-- C++ compiler:         /usr/bin/g++
+-- C++ flags:            
+-- C Flags release:      -O3 -DNDEBUG 
+-- C++ Flags release:    -O3 -DNDEBUG 
+-- Fortran compiler:     none
+-- compile definitions:  
+-- ------------------------------------------------------------------------
+-- ------------------------------------------------------------------------
+-- SuiteSparse CMAKE report for: SuiteSparse
+-- ------------------------------------------------------------------------
+-- build type:           Release
+-- BUILD_SHARED_LIBS:    ON
+-- BUILD_STATIC_LIBS:    ON
+-- C compiler:           /usr/bin/gcc 
+-- C flags:              
+-- C++ compiler:         /usr/bin/g++
+-- C++ flags:            
+-- C Flags release:      -O3 -DNDEBUG 
+-- C++ Flags release:    -O3 -DNDEBUG 
+-- Fortran compiler:     none
+-- compile definitions:  
+-- ------------------------------------------------------------------------
+-- Configuring done (1.7s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/reachgao/.local/build/suitesparse-7.8.3-r05
+[33mCMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BLAS_LIBRARIES
+    LAPACK_LIBRARIES
+
+[0m
+output_end

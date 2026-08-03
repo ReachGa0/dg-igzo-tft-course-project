@@ -1,0 +1,237 @@
+{
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R05",
+  "serial_build": true,
+  "fortran_enabled": false,
+  "mpi_enabled": false,
+  "parallel_jobs": 2,
+  "commands": [
+    {
+      "name": "tool_probe_cmake",
+      "argv": [
+        "/home/reachgao/.local/cmake-3.30.5/bin/cmake",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.00344685999880312,
+      "log_path": "results/compact/m01_xyce_build_preflight_r05/tool_probe_cmake.log",
+      "log_sha256": "0fefeb760903c4e598afa295a7146854552bd7701354a110008f00a3b7760b9c"
+    },
+    {
+      "name": "tool_probe_gcc",
+      "argv": [
+        "/usr/bin/gcc",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0016956760009634309,
+      "log_path": "results/compact/m01_xyce_build_preflight_r05/tool_probe_gcc.log",
+      "log_sha256": "42e4d54cf68c795cae28644b49f9b4b0a791a32faa377b798c012d80ef73edb0"
+    },
+    {
+      "name": "tool_probe_gxx",
+      "argv": [
+        "/usr/bin/g++",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0015441039977304172,
+      "log_path": "results/compact/m01_xyce_build_preflight_r05/tool_probe_gxx.log",
+      "log_sha256": "6c2a0befcfe84c96758a429b3a10b922c4890b14992213cf64afe35a4d1e7c7b"
+    },
+    {
+      "name": "tool_probe_make",
+      "argv": [
+        "/usr/bin/make",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0015844400004425552,
+      "log_path": "results/compact/m01_xyce_build_preflight_r05/tool_probe_make.log",
+      "log_sha256": "bbd882c1bdf1a758b69fba1c7bea219586fd988446eeac9fafa0570d6e15a602"
+    },
+    {
+      "name": "tool_probe_bison",
+      "argv": [
+        "/home/reachgao/.local/toolchain/usr/bin/bison",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0010531939988140948,
+      "log_path": "results/compact/m01_xyce_build_preflight_r05/tool_probe_bison.log",
+      "log_sha256": "5017639b049af079b2f7f419f8fd37c4bf217a8269d1eba8cb0dbcf96e4c41b8"
+    },
+    {
+      "name": "tool_probe_flex",
+      "argv": [
+        "/home/reachgao/.local/toolchain/usr/bin/flex",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0014154000018606894,
+      "log_path": "results/compact/m01_xyce_build_preflight_r05/tool_probe_flex.log",
+      "log_sha256": "9ce3a5ec2dcb644645e5670875b21bff81e19d8c8327281a8276ec81f4d39e96"
+    },
+    {
+      "name": "suitesparse_configure",
+      "argv": [
+        "/home/reachgao/.local/cmake-3.30.5/bin/cmake",
+        "-S",
+        "/home/reachgao/.local/src/suitesparse-7.8.3",
+        "-B",
+        "/home/reachgao/.local/build/suitesparse-7.8.3-r05",
+        "-DCMAKE_INSTALL_PREFIX=/home/reachgao/.local/suitesparse-7.8.3-r05",
+        "-DSUITESPARSE_ENABLE_PROJECTS=suitesparse_config;amd",
+        "-DSUITESPARSE_USE_FORTRAN=OFF",
+        "-DSUITESPARSE_USE_CUDA=OFF",
+        "-DCMAKE_C_COMPILER=/usr/bin/gcc",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DBLAS_LIBRARIES=/home/reachgao/.local/linear-algebra/lib/libblas.so",
+        "-DLAPACK_LIBRARIES=/home/reachgao/.local/linear-algebra/lib/liblapack.so"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 1.7191971600004763,
+      "log_path": "results/compact/m01_xyce_build_preflight_r05/suitesparse_configure.log",
+      "log_sha256": "357fe49ac717ebe2571b761bae995acd8bbfd0ad7d5563ed02c5e7da8756a473"
+    },
+    {
+      "name": "suitesparse_build_install",
+      "argv": [
+        "/home/reachgao/.local/cmake-3.30.5/bin/cmake",
+        "--build",
+        "/home/reachgao/.local/build/suitesparse-7.8.3-r05",
+        "--parallel",
+        "2",
+        "--target",
+        "install"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 1.2269609159993706,
+      "log_path": "results/compact/m01_xyce_build_preflight_r05/suitesparse_build_install.log",
+      "log_sha256": "c3aa1dba16cbac2a599f2ca9d2e80a5665c1633ed393fcd12ab12ae3d794c590"
+    },
+    {
+      "name": "trilinos_configure",
+      "argv": [
+        "/home/reachgao/.local/cmake-3.30.5/bin/cmake",
+        "-C",
+        "/home/reachgao/.local/src/xyce-7.10.0/cmake/trilinos/trilinos-base.cmake",
+        "-S",
+        "/home/reachgao/.local/src/trilinos-14.4",
+        "-B",
+        "/home/reachgao/.local/build/trilinos-14.4-serial-r05",
+        "-DCMAKE_INSTALL_PREFIX=/home/reachgao/.local/trilinos-14.4-serial-r05",
+        "-DAMD_LIBRARY_DIRS=/home/reachgao/.local/suitesparse-7.8.3-r05/lib",
+        "-DAMD_INCLUDE_DIRS=/home/reachgao/.local/suitesparse-7.8.3-r05/include/suitesparse",
+        "-DBLAS_LIBRARY_DIRS=/home/reachgao/.local/linear-algebra/lib",
+        "-DLAPACK_LIBRARY_DIRS=/home/reachgao/.local/linear-algebra/lib",
+        "-DTrilinos_ENABLE_Fortran=OFF",
+        "-DTPL_ENABLE_MPI=OFF",
+        "-DTrilinos_ENABLE_TESTS=OFF",
+        "-DBLAS_LIBRARY_NAMES=blas",
+        "-DLAPACK_LIBRARY_NAMES=lapack",
+        "-DCMAKE_C_COMPILER=/usr/bin/gcc",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++",
+        "-DCMAKE_BUILD_TYPE=Release"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 8.709839434999594,
+      "log_path": "results/compact/m01_xyce_build_preflight_r05/trilinos_configure.log",
+      "log_sha256": "c9bc3e62c9112798436378cfc9d00e8c187af596e3bffcfe068113cbbdf032ed"
+    },
+    {
+      "name": "trilinos_build_install",
+      "argv": [
+        "/home/reachgao/.local/cmake-3.30.5/bin/cmake",
+        "--build",
+        "/home/reachgao/.local/build/trilinos-14.4-serial-r05",
+        "--parallel",
+        "2",
+        "--target",
+        "install"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 1068.8700223449996,
+      "log_path": "results/compact/m01_xyce_build_preflight_r05/trilinos_build_install.log",
+      "log_sha256": "f090162b99cc4c772e18e44132be90f486d232a72b8a94504ac860226456b4a6"
+    },
+    {
+      "name": "xyce_configure",
+      "argv": [
+        "/home/reachgao/.local/cmake-3.30.5/bin/cmake",
+        "-S",
+        "/home/reachgao/.local/src/xyce-7.10.0",
+        "-B",
+        "/home/reachgao/.local/build/xyce-7.10.0-r05",
+        "-DCMAKE_INSTALL_PREFIX=/home/reachgao/.local/xyce-7.10-pure-r05",
+        "-DCMAKE_PREFIX_PATH=/home/reachgao/.local/trilinos-14.4-serial-r05;/home/reachgao/.local/suitesparse-7.8.3-r05",
+        "-DTrilinos_ROOT=/home/reachgao/.local/trilinos-14.4-serial-r05",
+        "-DAMD_LIBRARY_DIRS=/home/reachgao/.local/suitesparse-7.8.3-r05/lib",
+        "-DAMD_INCLUDE_DIRS=/home/reachgao/.local/suitesparse-7.8.3-r05/include/suitesparse",
+        "-DFLEX_EXECUTABLE=/home/reachgao/.local/toolchain/usr/bin/flex",
+        "-DFLEX_INCLUDE_DIR=/home/reachgao/.local/toolchain/usr/include",
+        "-DBISON_EXECUTABLE=/home/reachgao/.local/toolchain/usr/bin/bison",
+        "-DTrilinos_ENABLE_Fortran=OFF",
+        "-DTPL_ENABLE_MPI=OFF",
+        "-DXyce_ENABLE_TESTS=OFF",
+        "-DCMAKE_C_COMPILER=/usr/bin/gcc",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++",
+        "-DCMAKE_BUILD_TYPE=Release"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 4.013319770998351,
+      "log_path": "results/compact/m01_xyce_build_preflight_r05/xyce_configure.log",
+      "log_sha256": "cc4e341dcfeb4c611a86003c791d35c22da183edc1cd469a0ebd30b834a96446"
+    },
+    {
+      "name": "xyce_build_install",
+      "argv": [
+        "/home/reachgao/.local/cmake-3.30.5/bin/cmake",
+        "--build",
+        "/home/reachgao/.local/build/xyce-7.10.0-r05",
+        "--parallel",
+        "2",
+        "--target",
+        "install"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 2,
+      "timed_out": false,
+      "elapsed_seconds": 0.06599433299925295,
+      "log_path": "results/compact/m01_xyce_build_preflight_r05/xyce_build_install.log",
+      "log_sha256": "45c78db8cb174cd567fe178c22616f8d51f33849366b77eec88ac5f6e216ec3e"
+    }
+  ],
+  "install_prefixes": {
+    "suitesparse": "/home/reachgao/.local/suitesparse-7.8.3-r05",
+    "trilinos": "/home/reachgao/.local/trilinos-14.4-serial-r05",
+    "xyce": "/home/reachgao/.local/xyce-7.10-pure-r05"
+  },
+  "build_directories": {
+    "suitesparse_build": "/home/reachgao/.local/build/suitesparse-7.8.3-r05",
+    "trilinos_build": "/home/reachgao/.local/build/trilinos-14.4-serial-r05",
+    "xyce_build": "/home/reachgao/.local/build/xyce-7.10.0-r05"
+  }
+}

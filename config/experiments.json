@@ -1071,9 +1071,9 @@
         "next_gate": "Establish and commit M01 Xyce build/tool preflight revision-5 with the registered contract_planned machine status; preserve R04 25/26 failure and do not rerun R01/R02/R03/R04 or execute a device netlist."
       },
       "xyce_build_preflight_r05": {
-        "status": "contract_ready",
+        "status": "preflight_failed_build",
         "revision": 5,
-        "current_evidence": "E3",
+        "current_evidence": "E0",
         "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R05",
         "contract_path": "config/m01_xyce_build_preflight_r05.json",
         "contract_checker_path": "scripts/check_m01_xyce_build_preflight_r05_contract.py",
@@ -1084,7 +1084,14 @@
         "expected_runner_check_count": 29,
         "expected_independent_check_count": 20,
         "formal_run_completed": false,
-        "preflight_run_completed": false,
+        "preflight_run_completed": true,
+        "preflight_run_ordinal": 1,
+        "preflight_status": "FAIL",
+        "runner_checks_passed": 19,
+        "runner_checks_failed": 10,
+        "process_invocations": 12,
+        "independent_check_run": false,
+        "independent_check_status": "NOT_RUN_RUNNER_FAILED",
         "contract_check_completed": true,
         "contract_status": "PASS",
         "contract_checks_passed": 27,
@@ -1107,13 +1114,38 @@
         "r02_failure_preserved": true,
         "r03_failure_preserved": true,
         "r04_failure_preserved": true,
+        "suitesparse_install_passed": true,
+        "trilinos_install_passed": true,
+        "trilinos_build_elapsed_seconds": 1068.8700223449996,
+        "xyce_configure_passed": true,
+        "xyce_install_passed": false,
+        "controlled_bsource_self_test_invoked": false,
+        "device_syntax_only_invoked": false,
         "result_paths": [
-          "results/reports/m01_xyce_build_preflight_contract_r05.json"
+          "results/reports/m01_xyce_build_preflight_contract_r05.json",
+          "results/reports/m01_xyce_build_preflight_r05.json",
+          "results/compact/m01_xyce_build_preflight_r05/preflight.log",
+          "results/compact/m01_xyce_build_preflight_r05/source_manifest.json",
+          "results/compact/m01_xyce_build_preflight_r05/build_manifest.json",
+          "results/compact/m01_xyce_build_preflight_r05/suitesparse_configure.log",
+          "results/compact/m01_xyce_build_preflight_r05/suitesparse_build_install.log",
+          "results/compact/m01_xyce_build_preflight_r05/trilinos_configure.log",
+          "results/compact/m01_xyce_build_preflight_r05/trilinos_build_install.log",
+          "results/compact/m01_xyce_build_preflight_r05/xyce_configure.log",
+          "results/compact/m01_xyce_build_preflight_r05/xyce_build_install.log"
         ],
         "artifact_hashes": {
-          "contract_report_sha256": "4c45dbd06b53aa55b0fcdea88a4e3cc5fdacc889162102cecf4fefecce4b6262"
+          "contract_report_sha256": "4c45dbd06b53aa55b0fcdea88a4e3cc5fdacc889162102cecf4fefecce4b6262",
+          "preflight_report_sha256": "893e890b561298cde332cfcd5f466ab34d706dd46ae26f506701bc3772cc7ffc",
+          "preflight_log_sha256": "cc060e2945d09b3a3ae1e67bf546e72c98f38f0fee0927a256f3b9cc305942c4",
+          "source_manifest_sha256": "5c9a571be7f17838bfe32228a71beb633b01a978fcf4e81c99729c68ccb87177",
+          "build_manifest_sha256": "f42ffcf29413d92dc78dac70bd816e7f5fb43d67a49fd268fe25f8a2262ab9c9",
+          "trilinos_build_install_log_sha256": "f090162b99cc4c772e18e44132be90f486d232a72b8a94504ac860226456b4a6",
+          "xyce_build_install_log_sha256": "45c78db8cb174cd567fe178c22616f8d51f33849366b77eec88ac5f6e216ec3e"
         },
-        "next_gate": "Commit the revision-5 contract PASS state, then execute the R05 build/tool preflight exactly once. Run the independent persisted-evidence check only if the runner passes; formal M01 device DC remains closed until both pass."
+        "failure_category": "xyce_generator_toolchain_m4_and_bison_data",
+        "failure_detail": "SuiteSparse and Trilinos installed and Xyce configured, but Xyce build stopped before compilation because /usr/bin/m4 was absent and the user-local Bison binary searched /usr/share/bison instead of its preserved user-local data directory.",
+        "next_gate": "Establish and commit M01 Xyce build/tool preflight revision-6 that hash-binds the R05 19/29 failure, reuses only the successful immutable R05 SuiteSparse/Trilinos installs, registers a complete M4/Bison/Flex toolchain, and uses new Xyce build/install/output roots. Do not rerun R05 or execute formal M01 device DC."
       }
     },
     {

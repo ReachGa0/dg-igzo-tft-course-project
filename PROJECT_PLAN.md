@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`M01_R05_XYCE_CONTRACT_READY_E3_NEXT_BUILD_PREFLIGHT`：T01/T02/T03 数值门已关闭，历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 E0/FAIL；R02/R03/R04 静态合同分别唯一检查 22/25、21/25、25/26 E0/FAIL。R01/R02/R03/R04 失败 artifacts 保留；R05 静态合同唯一检查 27/27 E3，只打开 build/tool 预检门。
+`M01_R05_XYCE_BUILD_FAILED_E0_NEXT_R06_CONTRACT`：T01/T02/T03 数值门已关闭，历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。Xyce build/tool R01 执行 14/29、独立 9/20 E0/FAIL；R02/R03/R04 静态合同分别唯一检查 22/25、21/25、25/26 E0/FAIL。R05 静态合同 27/27 E3 后，runner 唯一运行 19/29 E0/FAIL；成功依赖安装和全部失败 artifacts 保留，下一步建立 R06 完整生成器工具链合同。
 
 ## 截止日期
 
@@ -46,7 +46,7 @@
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
 | M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
-| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；R05 静态合同 E3；Xyce 尚未构建或运行 | revision-3 32/32、开源恢复 30/30、Xyce build/tool R01 合同 25/25；R01 执行 14/29、独立 9/20 E0/FAIL，R02/R03/R04 静态合同 22/25、21/25、25/26 均 E0/FAIL 且保留。R05 静态合同 27/27 E3，正式两路线器件 DC 仍关闭 |
+| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；R05 runner 19/29；Xyce 尚未生成或运行 | revision-3 32/32、开源恢复 30/30；R01 执行 14/29、独立 9/20，R02/R03/R04 静态合同 22/25、21/25、25/26 均 E0/FAIL 且保留。R05 静态合同 27/27 E3，但 runner 在 M4/Bison/Flex 门 19/29 E0/FAIL，独立检查未运行，正式两路线器件 DC 仍关闭 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-M00 R01/R02、M01 R01 预检、R02/R03/R04 静态合同和 R05 静态合同均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。M01 revision-3、开源恢复、Xyce build/tool R01 合同和 R05 合同分别为 32/32、30/30、25/25、27/27 E3；R01 执行/独立检查 14/29、9/20，R02/R03/R04 静态合同 22/25、21/25、25/26，失败均保留。下一步提交 R05 PASS 状态，之后只运行 R05 build/tool 预检一次；runner PASS 后才执行独立检查。两级通过前不运行正式 M01 器件 DC；电路、版图、PEX 和 HZO 继续关闭。
+M00 R01/R02 和 M01 R01/R02/R03/R04/R05 均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。M01 revision-3、开源恢复、Xyce build/tool R01 合同和 R05 合同分别为 32/32、30/30、25/25、27/27 E3；R01 执行/独立检查 14/29、9/20，R02/R03/R04 静态合同 22/25、21/25、25/26，R05 runner 19/29，失败均保留。下一步提交 R05 失败状态并建立 R06 合同，只复用哈希绑定的成功依赖安装，补齐 M4/Bison/Flex 并隔离新 Xyce/输出根。两级通过前不运行正式 M01 器件 DC；电路、版图、PEX 和 HZO 继续关闭。

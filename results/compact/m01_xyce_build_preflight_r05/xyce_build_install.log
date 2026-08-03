@@ -1,0 +1,29 @@
+argv=["/home/reachgao/.local/cmake-3.30.5/bin/cmake", "--build", "/home/reachgao/.local/build/xyce-7.10.0-r05", "--parallel", "2", "--target", "install"]
+cwd=/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目
+returncode=2
+timed_out=false
+elapsed_seconds=0.065994
+output_begin
+gmake[1]: Entering directory '/home/reachgao/.local/build/xyce-7.10.0-r05'
+gmake[2]: Entering directory '/home/reachgao/.local/build/xyce-7.10.0-r05'
+gmake[3]: Entering directory '/home/reachgao/.local/build/xyce-7.10.0-r05'
+gmake[3]: Leaving directory '/home/reachgao/.local/build/xyce-7.10.0-r05'
+gmake[3]: Entering directory '/home/reachgao/.local/build/xyce-7.10.0-r05'
+[  0%] [34m[1mUpdating version string Git SHA and time stamp[0m
+gmake[3]: Leaving directory '/home/reachgao/.local/build/xyce-7.10.0-r05'
+[  0%] Built target TimeStampHeader
+gmake[3]: Entering directory '/home/reachgao/.local/build/xyce-7.10.0-r05'
+[  0%] [34m[1m[BISON][XyceExpressionParser] Building parser with bison 3.8.2[0m
+[  0%] [34m[1m[FLEX][XyceReactionLexer] Building scanner with flex 2.6.4[0m
+gmake[3]: Leaving directory '/home/reachgao/.local/build/xyce-7.10.0-r05'
+gmake[2]: Leaving directory '/home/reachgao/.local/build/xyce-7.10.0-r05'
+gmake[1]: Leaving directory '/home/reachgao/.local/build/xyce-7.10.0-r05'
+/home/reachgao/.local/toolchain/usr/bin/bison: /usr/share/bison/m4sugar/m4sugar.m4: cannot open: No such file or directory
+gmake[3]: *** [src/CMakeFiles/XyceLib.dir/build.make:74: src/UtilityPKG/ExpressionSrc/ExpressionParser.cxx] Error 1
+gmake[3]: *** Waiting for unfinished jobs....
+/home/reachgao/.local/toolchain/usr/bin/flex: fatal internal error, exec of /usr/bin/m4 failed
+gmake[3]: *** [src/CMakeFiles/XyceLib.dir/build.make:92: src/DeviceModelPKG/Core/N_DEV_ReactionLexer.cxx] Error 141
+gmake[3]: *** Deleting file 'src/DeviceModelPKG/Core/N_DEV_ReactionLexer.cxx'
+gmake[2]: *** [CMakeFiles/Makefile2:685: src/CMakeFiles/XyceLib.dir/all] Error 2
+gmake[1]: *** [Makefile:156: all] Error 2
+output_end

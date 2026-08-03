@@ -4,7 +4,7 @@
 
 **基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK**
 
-S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R01 因 L=12 um holdout gm 相对误差 `0.512384 > 0.50` 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。纯源码 Xyce build/tool R01 合同为 25/25 静态 PASS、E3，但唯一执行在 SuiteSparse CMake 因未显式传入用户目录 BLAS/LAPACK 而为 14/29、E0/FAIL，独立检查为 9/20、E0/FAIL；R02/R03/R04 静态合同分别为 22/25、21/25、25/26 E0/FAIL，失败报告及其日志/manifest/cache/边界均保留。R05 静态合同已唯一运行 27/27、E3，零模拟器进程、零器件网表、零数值输出；它只打开 R05 build/tool 预检门。Xyce 尚未编译或运行。G0 仍为 `TEACHING_BASELINE_ONLY`：实验标定、物理参数验证、正式 M01 器件 DC、电路和版图尚未完成。所有 `TODO/E0` 内容都不得写成已完成结果。
+S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R01 因 L=12 um holdout gm 相对误差 `0.512384 > 0.50` 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。纯源码 Xyce build/tool R01 合同为 25/25 静态 PASS、E3，但唯一执行在 SuiteSparse BLAS 门为 14/29、独立 9/20 E0/FAIL；R02/R03/R04 静态合同分别为 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同唯一运行 27/27 E3，随后 build/tool runner 唯一运行 19/29 E0/FAIL：SuiteSparse/Trilinos 安装和 Xyce 配置通过，Xyce build 因缺失 M4 与 Bison 默认数据路径停止。Xyce 尚未生成，自测、候选解析、正式器件 DC 和独立检查均未运行。G0 仍为 `TEACHING_BASELINE_ONLY`：实验标定、物理参数验证、正式 M01 器件 DC、电路和版图尚未完成。所有 `TODO/E0` 内容都不得写成已完成结果。
 
 ## 2. 为什么这个题目仍然成立
 
@@ -110,7 +110,7 @@ VTH = 0.21 V
 | M01 开源第二仿真器恢复合同 | E3 静态 | 30/30 PASS；冻结 ngspice + 纯源码 GPL Xyce 7.10.0、同一 IGZO 行为候选、247 行目标、源码能力审阅、批处理模板、独立输出和失败保留；Xyce 尚未构建或运行，首次 28/30 失败归档保留 |
 | M01 Xyce build/tool R01 | E0/FAIL | 合同 25/25 静态 PASS；执行 14/29、独立 9/20，SuiteSparse CMake 未找到显式用户目录 BLAS/LAPACK，R01 报告/日志/manifest/cache 保留；未生成 Xyce 或器件数值输出 |
 | M01 Xyce build/tool R02/R03/R04 合同 | E0/FAIL | 静态合同唯一检查分别为 22/25、21/25、25/26；失败均为 checker 词法、wrapper 或机器状态断言，报告原样保留，未启动这些 revision 的构建或器件网表 |
-| M01 Xyce build/tool R05 合同 | E3 静态 | 唯一检查 27/27 PASS，绑定 R04 失败并断言实际 `contract_planned` 状态；零模拟器进程、零器件网表和零数值输出。只打开后续 build/tool 预检门 |
+| M01 Xyce build/tool R05 | E0/FAIL | 静态合同 27/27 E3；runner 唯一运行 19/29 E0/FAIL。SuiteSparse/Trilinos 安装和 Xyce 配置通过，Xyce build 因缺失 `/usr/bin/m4` 与 Bison 默认数据路径停止；无二进制、自测、候选解析或数值输出 |
 | 有源负载逻辑电路 | E0 | 架构已定，待实现 |
 | IGZO 单管 GDS 外部基线 | E2 | 可复用，需迁入新教学 PDK |
 | 标准单元 DRC/LVS | E0 | 待实现 |
@@ -133,7 +133,7 @@ VTH = 0.21 V
 1. 冻结主 IGZO 数据集、单位和来源。
 2. T03-P1/P2/P3/P4/P5 数值五组已完成，bulk 与 contact 历史失败继续保留；不同时改变多个参数组。
 3. M00 R01 已唯一运行并保持 E0/FAIL；R02 已完成 24/24 runner E2 和 20/20 独立检查 E3，原 split/阈值不改，M00 仅在冻结教学数值域内关闭。
-4. M01 revision-3 双轨合同已通过静态门，但原 AIM-Spice 路线在 R01 工具/来源门失败；随后建立开源恢复合同 30/30、E3，冻结 ngspice + 纯源码 GPL Xyce 7.10.0 路线和同一 IGZO 行为候选。Xyce build/tool R01 执行在 SuiteSparse BLAS 发现门以 14/29、独立 9/20 失败，R02/R03/R04 静态合同又分别以 22/25、21/25、25/26 在 checker 门失败；报告和部分 cache 保留。R05 静态合同 27/27 E3，下一步只运行一次 build/tool 预检，之前不执行冻结 247 行。
+4. M01 revision-3 双轨合同已通过静态门，但原 AIM-Spice 路线在 R01 工具/来源门失败；随后建立开源恢复合同 30/30、E3，冻结 ngspice + 纯源码 GPL Xyce 7.10.0 路线和同一 IGZO 行为候选。Xyce build/tool R01 执行在 SuiteSparse BLAS 门以 14/29、独立 9/20 失败，R02/R03/R04 静态合同又分别以 22/25、21/25、25/26 在 checker 门失败；R05 合同 27/27 E3 后 runner 以 19/29 在 M4/Bison/Flex 生成器门失败。报告和成功依赖安装保留，下一步建立 R06 工具链恢复合同，之前不执行冻结 247 行。
 5. 只做一个完整 C00 反相器。
 6. 对同一个 INV 建立 GDS、DRC 和几何 LVS 最小闭环。
 7. 扩展基础门、环振和全加器。

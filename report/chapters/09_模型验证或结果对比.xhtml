@@ -108,8 +108,8 @@
       <tr><td>失败保留</td><td>runner 29 项、独立检查 20 项；排他报告、原始命令日志、源码/构建 manifest、自测输入/输出和失败状态均拒绝覆盖</td><td>任一 build/self-test/syntax/独立检查失败即停止 M01，不放宽门槛或删除失败证据</td></tr>
       <tr><td>R02 合同结果</td><td>显式传入用户目录 BLAS/LAPACK，隔离 R02 构建/输出根并绑定 R01 失败</td><td>静态合同 22/25、E0/FAIL；候选注释的 `translation` 被过宽 `tran` 子串规则误判，wrapper 静态 no-formal marker 缺失。无 R02 构建、Xyce、自测、器件网表或数值输出，报告保留</td></tr>
       <tr><td>R03/R04 合同结果</td><td>R03 引入 token-safe 范围和实际 wrapper 标记；R04 绑定 R03 失败并使用独立根</td><td>唯一静态检查分别为 21/25、25/26 E0/FAIL；R04 只剩机器状态字面量断言失败。无对应构建、模拟器、自测、器件网表或数值输出，报告均保留</td></tr>
-      <tr><td>R05 合同状态</td><td>27 项静态检查，绑定 R04 报告并明确断言 <code>contract_planned</code>；独立 <code>r05</code> 根</td><td>唯一检查 27/27 PASS、E3；零模拟器进程、零器件网表/数值输出。不改变物理输入、验收门槛或 no-downstream 边界</td></tr>
+      <tr><td>R05 合同与执行</td><td>27 项静态检查绑定 R04 报告并明确断言 <code>contract_planned</code>；runner 使用独立 <code>r05</code> 根</td><td>合同唯一检查 27/27 PASS、E3；runner 唯一运行 19/29、E0/FAIL。SuiteSparse/Trilinos 安装和 Xyce 配置通过，Xyce build 因缺失 <code>/usr/bin/m4</code> 与 Bison 默认数据路径停止</td></tr>
     </tbody>
   </table>
-  <p class="boundary">25/25 R01 合同检查没有启动模拟器；R01 执行只探测工具并在 SuiteSparse 配置阶段停止。R02/R03/R04 静态合同分别以 22/25、21/25、25/26 失败；三次静态检查都没有启动模拟器或构建，失败报告均保留。R05 静态合同唯一检查 27/27 PASS、E3，也没有启动模拟器或构建；只打开一次 R05 build/tool 预检门。runner 与独立检查均 PASS 前，正式两路线器件 DC、C00、电路、版图、PEX 和 HZO 继续关闭。</p>
+  <p class="boundary">25/25 R01 合同检查没有启动模拟器；R01 执行只探测工具并在 SuiteSparse 配置阶段停止。R02/R03/R04 静态合同分别以 22/25、21/25、25/26 失败；三次静态检查都没有启动模拟器或构建，失败报告均保留。R05 静态合同唯一检查 27/27 PASS、E3；随后唯一 runner 在生成器工具链门返回 19/29、E0/FAIL。R05 未生成 Xyce 二进制，未运行 B-source 自测、parser-only IGZO 候选、独立检查、ngspice/AIM-Spice、正式器件 DC 或任何数值输出。下一步只建立新的 R06 工具链恢复合同；正式两路线器件 DC、C00、电路、版图、PEX 和 HZO 继续关闭。</p>
 </section>

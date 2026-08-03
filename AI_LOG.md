@@ -16,6 +16,26 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R05 build/tool 失败
+
+### 唯一执行与失败定位
+
+在 R05 27/27 E3 合同状态提交 `5441025` 推送后，确认所有 R05 runner 输出和外部 build/install 根不存在，只运行一次 `make m01-xyce-build-preflight-r05`。runner 返回 19/29、E0/FAIL；报告 `results/reports/m01_xyce_build_preflight_r05.json` 的 SHA-256 为 `893e890b561298cde332cfcd5f466ab34d706dd46ae26f506701bc3772cc7ffc`。
+
+SuiteSparse AMD-only 配置/安装通过，serial、MPI/Fortran-off Trilinos 配置/安装通过，Trilinos 编译耗时 1068.870 s；Xyce 配置成功发现 Trilinos、BLAS/LAPACK、AMD、Bison 和 Flex。Xyce build 在 Bison/Flex 生成源码时立即停止：`/usr/bin/m4` 不存在，本地 Bison 数据位于 `/home/reachgao/.local/toolchain/usr/share/bison`，但该二进制搜索默认 `/usr/share/bison`。这是工具链打包失败，不是 Xyce C++、器件或数值求解失败。
+
+### 证据边界与下一步
+
+R05 报告、preflight/source/build manifest、六项工具探针、SuiteSparse/Trilinos/Xyce 配置与构建日志、成功安装前缀和 partial Xyce build 均原样保留。未生成 Xyce 二进制，未运行 B-source 自测、parser-only IGZO 候选、ngspice/AIM-Spice、正式器件 DC 或任何数值输出；余下九个 FAIL 是缺失二进制和 invocation audit 的连锁门，独立检查按合同未运行。
+
+已把机器下一门改为 R06：先提交并推送本失败状态，再建立完整 M4/Bison/Flex 工具链恢复合同；R06 只允许哈希绑定并复用成功的 R05 SuiteSparse/Trilinos 安装，使用新的 Xyce build/install/report/output 根，不重跑 R05。
+
+### 状态同步与验证
+
+已同步 `config/project.json`、`config/experiments.json`、总项目检查器、STATUS/README/AI_CONTEXT/ARCHITECTURE/PROJECT_PLAN/DECISIONS、报告第 5/6/8/9 章和证据矩阵；没有修改物理输入、既有合同、runner、失败日志或历史证据。R05 原始日志按 R01 惯例强制纳入版本；`.gitattributes` 仅对哈希绑定的 `results/compact/**/*.log` 关闭 whitespace 告警，以免为消除机器输出的尾随空格而篡改原始证据。Python/JSON/CSV 结构检查和 `git diff --check` 通过，`make check` 为 650 项 PASS，`make report-check` 为 12 章/5 附录/15 个允许占位/26 图 PASS。R05 独立检查仍按失败门保持未运行；下一步只允许建立并先静态关闭 R06 合同。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 关闭 M01 Xyce R05 静态合同门
 
 ### 唯一静态检查

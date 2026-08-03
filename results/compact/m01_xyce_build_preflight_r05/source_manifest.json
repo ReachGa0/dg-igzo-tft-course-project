@@ -1,0 +1,64 @@
+{
+  "archives": {
+    "xyce": {
+      "path": "/home/reachgao/.local/src/xyce-7.10.0.tar.gz",
+      "expected_sha256": "b5a883196f0a2b3972fd13c541fecf04735bfabc7d124d7c7e17de707204f4e2",
+      "actual_sha256": "b5a883196f0a2b3972fd13c541fecf04735bfabc7d124d7c7e17de707204f4e2",
+      "match": true
+    },
+    "trilinos": {
+      "path": "/home/reachgao/.local/src/trilinos-14.4.tar.gz",
+      "expected_sha256": "17d81f7b825a43d79572de13a0a69374e9e359efa07d66181e2a9e87c06931a9",
+      "actual_sha256": "17d81f7b825a43d79572de13a0a69374e9e359efa07d66181e2a9e87c06931a9",
+      "match": true
+    },
+    "suitesparse": {
+      "path": "/home/reachgao/.local/src/suitesparse-7.8.3.tar.gz",
+      "expected_sha256": "ce39b28d4038a09c14f21e02c664401be73c0cb96a9198418d6a98a7db73a259",
+      "actual_sha256": "ce39b28d4038a09c14f21e02c664401be73c0cb96a9198418d6a98a7db73a259",
+      "match": true
+    },
+    "cmake": {
+      "path": "/home/reachgao/.local/src/cmake-3.30.5-linux-x86_64.tar.gz",
+      "expected_sha256": "f747d9b23e1a252a8beafb4ed2bc2ddf78cff7f04a8e4de19f4ff88e9b51dc9d",
+      "actual_sha256": "f747d9b23e1a252a8beafb4ed2bc2ddf78cff7f04a8e4de19f4ff88e9b51dc9d",
+      "match": true
+    }
+  },
+  "sources": {
+    "xyce": {
+      "path": "/home/reachgao/.local/src/xyce-7.10.0",
+      "key_file": "INSTALL.md",
+      "key_file_sha256": "6fb3830942ae014daad7f5fa220b5981d8d0253f66a649ee64cb4f3f64badce2"
+    },
+    "trilinos": {
+      "path": "/home/reachgao/.local/src/trilinos-14.4",
+      "key_file": "CMakeLists.txt",
+      "key_file_sha256": "0d31189df59deca2ee0bfe9c268416ef5cf1a8b8039c13f0fed2c60a0f6bb26d"
+    },
+    "suitesparse": {
+      "path": "/home/reachgao/.local/src/suitesparse-7.8.3",
+      "key_file": "CMakeLists.txt",
+      "key_file_sha256": "36dfeb443e7d9c26e4eebcb1ae0285a43116c3a9e192e5ff0d041fc3db779daf"
+    }
+  },
+  "config": {
+    "path": "config/m01_xyce_build_preflight_r05.json",
+    "sha256": "58e5dfa5094499ecf6b84d95bf42b3d61b502ae529f73f8b7619cdb3cdbb0a53"
+  },
+  "tool_probes": {
+    "cmake": "cmake version 3.30.5\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+    "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "gxx": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "make": "GNU Make 4.3\nBuilt for x86_64-pc-linux-gnu\nCopyright (C) 1988-2020 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.",
+    "bison": "bison (GNU Bison) 3.8.2\nWritten by Robert Corbett and Richard Stallman.\n\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "flex": "flex 2.6.4"
+  },
+  "binary": {
+    "path": "/home/reachgao/.local/xyce-7.10-pure-r05/bin/Xyce",
+    "sha256": null,
+    "bytes": null,
+    "version_output": "",
+    "license_output_sha256": null
+  }
+}

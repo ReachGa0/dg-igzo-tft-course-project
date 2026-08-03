@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 640,
+  "checks": 650,
   "failures": 0,
   "results": [
     {
@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=24010"
+      "detail": "bytes=24116"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=22728"
+      "detail": "bytes=22676"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=18287"
+      "detail": "bytes=18332"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=148853"
+      "detail": "bytes=151316"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=5278"
+      "detail": "bytes=5347"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=79539"
+      "detail": "bytes=81150"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=39884"
+      "detail": "bytes=40757"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=25342"
+      "detail": "bytes=26512"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=72298"
+      "detail": "bytes=74770"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1255,6 +1255,56 @@
       "detail": "bytes=7192"
     },
     {
+      "name": "file:results/reports/m01_xyce_build_preflight_r05.json",
+      "status": "PASS",
+      "detail": "bytes=9148"
+    },
+    {
+      "name": "file:results/compact/m01_xyce_build_preflight_r05/preflight.log",
+      "status": "PASS",
+      "detail": "bytes=245"
+    },
+    {
+      "name": "file:results/compact/m01_xyce_build_preflight_r05/source_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=3484"
+    },
+    {
+      "name": "file:results/compact/m01_xyce_build_preflight_r05/build_manifest.json",
+      "status": "PASS",
+      "detail": "bytes=10167"
+    },
+    {
+      "name": "file:results/compact/m01_xyce_build_preflight_r05/suitesparse_configure.log",
+      "status": "PASS",
+      "detail": "bytes=5501"
+    },
+    {
+      "name": "file:results/compact/m01_xyce_build_preflight_r05/suitesparse_build_install.log",
+      "status": "PASS",
+      "detail": "bytes=9823"
+    },
+    {
+      "name": "file:results/compact/m01_xyce_build_preflight_r05/trilinos_configure.log",
+      "status": "PASS",
+      "detail": "bytes=63479"
+    },
+    {
+      "name": "file:results/compact/m01_xyce_build_preflight_r05/trilinos_build_install.log",
+      "status": "PASS",
+      "detail": "bytes=1173909"
+    },
+    {
+      "name": "file:results/compact/m01_xyce_build_preflight_r05/xyce_configure.log",
+      "status": "PASS",
+      "detail": "bytes=6279"
+    },
+    {
+      "name": "file:results/compact/m01_xyce_build_preflight_r05/xyce_build_install.log",
+      "status": "PASS",
+      "detail": "bytes=2022"
+    },
+    {
       "name": "file:scripts/check_t03_p5_temperature.py",
       "status": "PASS",
       "detail": "bytes=35919"
@@ -1647,7 +1697,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=46104"
+      "detail": "bytes=47201"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3007,7 +3057,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "execute M01 Xyce build/tool preflight revision-5 exactly once after committing the 27/27 E3 contract PASS; run the independent persisted-evidence check only if the runner passes, and do not run formal M01 device DC"
+      "detail": "establish and commit M01 Xyce build/tool preflight revision-6 with a complete M4/Bison/Flex toolchain, immutable reuse of successful R05 SuiteSparse/Trilinos installs, new Xyce/output roots and preserved R05 19/29 failure; do not rerun R05 or execute formal M01 device DC"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3077,7 +3127,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "execute M01 Xyce build/tool preflight revision-5 exactly once after committing the 27/27 E3 contract PASS; run the independent persisted-evidence check only if the runner passes, and do not run formal M01 device DC"
+      "detail": "establish and commit M01 Xyce build/tool preflight revision-6 with a complete M4/Bison/Flex toolchain, immutable reuse of successful R05 SuiteSparse/Trilinos installs, new Xyce/output roots and preserved R05 19/29 failure; do not rerun R05 or execute formal M01 device DC"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3135,9 +3185,9 @@
       "detail": "planned=False failed=True future_absent=12/12"
     },
     {
-      "name": "m01_xyce_preflight_r05:contract_state_and_unexecuted_chain",
+      "name": "m01_xyce_preflight_r05:contract_and_runner_state",
       "status": "PASS",
-      "detail": "planned=False ready=True future_absent=12/12"
+      "detail": "planned=False ready=False failed=True future_absent=7/12"
     },
     {
       "name": "tcad:mesh_levels",

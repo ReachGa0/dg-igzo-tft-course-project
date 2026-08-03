@@ -1,0 +1,120 @@
+argv=["/home/reachgao/.local/cmake-3.30.5/bin/cmake", "--build", "/home/reachgao/.local/build/suitesparse-7.8.3-r05", "--parallel", "2", "--target", "install"]
+cwd=/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目
+returncode=0
+timed_out=false
+elapsed_seconds=1.226961
+output_begin
+gmake[1]: Entering directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+gmake[2]: Entering directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+gmake[3]: Entering directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+gmake[3]: Entering directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+gmake[3]: Leaving directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+gmake[3]: Leaving directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+gmake[3]: Entering directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+gmake[3]: Entering directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+[  3%] [32mBuilding C object SuiteSparse_config/CMakeFiles/SuiteSparseConfig_static.dir/SuiteSparse_config.c.o[0m
+[  3%] [32mBuilding C object SuiteSparse_config/CMakeFiles/SuiteSparseConfig.dir/SuiteSparse_config.c.o[0m
+[  5%] [32m[1mLinking C shared library libsuitesparseconfig.so[0m
+[  7%] [32m[1mLinking C static library libsuitesparseconfig.a[0m
+gmake[3]: Leaving directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+[  7%] Built target SuiteSparseConfig_static
+gmake[3]: Entering directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+gmake[3]: Leaving directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+gmake[3]: Entering directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+[  8%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_1.c.o[0m
+[ 10%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_2.c.o[0m
+gmake[3]: Leaving directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+[ 10%] Built target SuiteSparseConfig
+gmake[3]: Entering directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+gmake[3]: Leaving directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+gmake[3]: Entering directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+[ 12%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_1.c.o[0m
+[ 14%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_2.c.o[0m
+[ 16%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_aat.c.o[0m
+[ 17%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_control.c.o[0m
+[ 19%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_defaults.c.o[0m
+[ 23%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_dump.c.o[0m
+[ 23%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_aat.c.o[0m
+[ 25%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_info.c.o[0m
+[ 26%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_control.c.o[0m
+[ 28%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_l1.c.o[0m
+[ 30%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_defaults.c.o[0m
+[ 32%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_dump.c.o[0m
+[ 33%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_l2.c.o[0m
+[ 35%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_info.c.o[0m
+[ 37%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_l1.c.o[0m
+[ 39%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_l2.c.o[0m
+[ 41%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_l_aat.c.o[0m
+[ 42%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_l_control.c.o[0m
+[ 44%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_l_defaults.c.o[0m
+[ 48%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_l_dump.c.o[0m
+[ 48%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_l_aat.c.o[0m
+[ 50%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_l_info.c.o[0m
+[ 51%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_l_control.c.o[0m
+[ 53%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_l_order.c.o[0m
+[ 55%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_l_defaults.c.o[0m
+[ 57%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_l_dump.c.o[0m
+[ 58%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_l_post_tree.c.o[0m
+[ 60%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_l_info.c.o[0m
+[ 62%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_l_postorder.c.o[0m
+[ 64%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_l_order.c.o[0m
+[ 66%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_l_preprocess.c.o[0m
+[ 67%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_l_post_tree.c.o[0m
+[ 69%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_l_valid.c.o[0m
+[ 71%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_l_postorder.c.o[0m
+[ 73%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_order.c.o[0m
+[ 75%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_l_preprocess.c.o[0m
+[ 76%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_post_tree.c.o[0m
+[ 78%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_l_valid.c.o[0m
+[ 80%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_postorder.c.o[0m
+[ 82%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_order.c.o[0m
+[ 83%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_preprocess.c.o[0m
+[ 85%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_post_tree.c.o[0m
+[ 87%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_valid.c.o[0m
+[ 89%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_postorder.c.o[0m
+[ 91%] [32mBuilding C object AMD/CMakeFiles/AMD_static.dir/Source/amd_version.c.o[0m
+[ 94%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_preprocess.c.o[0m
+[ 94%] [32m[1mLinking C static library libamd.a[0m
+gmake[3]: Leaving directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+[ 94%] Built target AMD_static
+[ 96%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_valid.c.o[0m
+[ 98%] [32mBuilding C object AMD/CMakeFiles/AMD.dir/Source/amd_version.c.o[0m
+[100%] [32m[1mLinking C shared library libamd.so[0m
+gmake[3]: Leaving directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+[100%] Built target AMD
+gmake[2]: Leaving directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+[36mInstall the project...[0m
+-- Install configuration: "Release"
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/libsuitesparseconfig.so.7.8.3
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/libsuitesparseconfig.so.7
+-- Set non-toolchain portion of runtime path of "/home/reachgao/.local/suitesparse-7.8.3-r05/lib/libsuitesparseconfig.so.7.8.3" to "$ORIGIN"
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/libsuitesparseconfig.so
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/include/suitesparse/SuiteSparse_config.h
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/libsuitesparseconfig.a
+-- Up-to-date: /home/reachgao/.local/suitesparse-7.8.3-r05/include/suitesparse/SuiteSparse_config.h
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/SuiteSparse/SuiteSparseBLAS.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/SuiteSparse/SuiteSparseBLAS32.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/SuiteSparse/SuiteSparseBLAS64.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/SuiteSparse/SuiteSparseLAPACK.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/SuiteSparse/SuiteSparsePolicy.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/SuiteSparse/SuiteSparseReport.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/SuiteSparse/SuiteSparse__thread.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/SuiteSparse_config/SuiteSparse_configTargets.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/SuiteSparse_config/SuiteSparse_configTargets-release.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/SuiteSparse_config/SuiteSparse_configConfig.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/SuiteSparse_config/SuiteSparse_configConfigVersion.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/pkgconfig/SuiteSparse_config.pc
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/libamd.so.3.3.3
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/libamd.so.3
+-- Set non-toolchain portion of runtime path of "/home/reachgao/.local/suitesparse-7.8.3-r05/lib/libamd.so.3.3.3" to "$ORIGIN"
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/libamd.so
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/include/suitesparse/amd.h
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/libamd.a
+-- Up-to-date: /home/reachgao/.local/suitesparse-7.8.3-r05/include/suitesparse/amd.h
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/AMD/AMDTargets.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/AMD/AMDTargets-release.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/AMD/AMDConfig.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/cmake/AMD/AMDConfigVersion.cmake
+-- Installing: /home/reachgao/.local/suitesparse-7.8.3-r05/lib/pkgconfig/AMD.pc
+gmake[1]: Leaving directory '/home/reachgao/.local/build/suitesparse-7.8.3-r05'
+output_end

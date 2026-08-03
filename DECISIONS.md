@@ -1,5 +1,21 @@
 # 设计决策记录
 
+## ADR-050：保留 R05 生成器工具链失败并转入 R06
+
+- 日期：2026-08-03
+- 状态：R05 build/tool runner 唯一运行 19/29、E0/FAIL；独立检查按门未运行
+
+### 失败判定
+
+- SuiteSparse AMD-only 和 serial MPI/Fortran-off Trilinos 均配置、构建、安装成功；Trilinos build/install 耗时 1068.870 s。Xyce 配置成功并发现所需依赖，说明 R02 以来的显式 BLAS/LAPACK 修正有效。
+- Xyce build 在 0% 的 Bison/Flex 生成步骤停止：`/usr/bin/m4` 不存在，用户目录 Bison 的数据文件存在于 `/home/reachgao/.local/toolchain/usr/share/bison`，但二进制默认查找 `/usr/share/bison`。因此这是本地生成器工具链打包/路径失败，不是 Xyce C++ 编译、IGZO 器件或 SPICE 数值失败。
+- 报告 SHA-256 为 `893e890b561298cde332cfcd5f466ab34d706dd46ae26f506701bc3772cc7ffc`。未产生 Xyce 二进制、自测、parser-only 候选调用或数值输出；其余九项失败是前置二进制缺失及 invocation audit 的连锁结果。
+
+### R06 范围
+
+- R05 报告、日志、manifest、成功的 SuiteSparse/Trilinos 安装和 partial Xyce build 全部不可改写。R06 可通过路径与哈希复用成功安装的两项依赖，避免在普通笔记本重复约 17.8 分钟的 Trilinos 构建；不得复用 R05 partial Xyce build。
+- R06 必须先冻结并验证完整 M4/Bison/Flex 工具链及数据目录，使用新的 Xyce build/install/report/output 根，并绑定 R05 19/29 失败。R06 合同通过并提交前不得运行 Xyce build、自测或候选解析；正式 M01 器件 DC 和下游继续关闭。
+
 ## ADR-049：R05 静态合同通过后只打开 build/tool 预检门
 
 - 日期：2026-08-03

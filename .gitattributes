@@ -9,6 +9,9 @@
 *.xhtml text eol=lf
 Makefile text eol=lf
 
+# Raw tool logs are hash-bound evidence and must remain byte-for-byte intact.
+results/compact/**/*.log text eol=lf -whitespace
+
 *.png binary
 *.jpg binary
 *.jpeg binary
