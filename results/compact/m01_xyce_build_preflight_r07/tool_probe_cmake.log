@@ -1,0 +1,10 @@
+argv=["/home/reachgao/.local/cmake-3.30.5/bin/cmake", "--version"]
+cwd=/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目
+returncode=0
+timed_out=false
+elapsed_seconds=0.007094
+output_begin
+cmake version 3.30.5
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+output_end

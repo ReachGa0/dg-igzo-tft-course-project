@@ -1,0 +1,12 @@
+M01 Xyce build/tool preflight R07
+formal_device_dc_invoked=false
+formal_m01_numerical_run=false
+ngspice_invoked=false
+aimspice_invoked=false
+r05_suitesparse_trilinos_reused=true
+r05_partial_xyce_reused=false
+r06_xyce_or_outputs_reused=false
+checks_passed=42/47
+preflight_status=FAIL
+formal_device_dc_invoked=false
+formal_m01_numerical_run=false

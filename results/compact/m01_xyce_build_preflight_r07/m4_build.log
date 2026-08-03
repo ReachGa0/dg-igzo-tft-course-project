@@ -1,0 +1,1087 @@
+argv=["/usr/bin/make", "-j2"]
+cwd=/home/reachgao/.local/build/m4-1.4.19-r07
+returncode=0
+timed_out=false
+elapsed_seconds=4.089722
+output_begin
+make[1]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+/usr/bin/make  all-recursive
+make[2]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+Making all in .
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+Making all in examples
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/examples'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/examples'
+Making all in lib
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/lib'
+  GEN      alloca.h
+  GEN      configmake.h
+  GEN      dirent.h
+  GEN      fcntl.h
+  GEN      iconv.h
+  GEN      inttypes.h
+  GEN      langinfo.h
+  GEN      limits.h
+  GEN      locale.h
+  GEN      math.h
+  GEN      sched.h
+  GEN      signal.h
+  GEN      sigsegv.h
+  GEN      spawn.h
+  GEN      stdio.h
+  GEN      stdlib.h
+  GEN      string.h
+  GEN      sys/random.h
+  GEN      sys/stat.h
+  GEN      sys/types.h
+  GEN      sys/wait.h
+  GEN      time.h
+  GEN      unistd.h
+  GEN      unistr.h
+  GEN      unitypes.h
+  GEN      uniwidth.h
+  GEN      wchar.h
+  GEN      wctype.h
+/usr/bin/make  all-am
+make[4]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/lib'
+  CC       asyncsafe-spin.o
+  CC       openat-proc.o
+  CC       gl_avltree_oset.o
+  CC       basename-lgpl.o
+  CC       binary-io.o
+  CC       bitrotate.o
+  CC       c-ctype.o
+  CC       c-stack.o
+  CC       c-strcasecmp.o
+  CC       c-strncasecmp.o
+  CC       canonicalize.o
+  CC       clean-temp.o
+  CC       clean-temp-simple.o
+  CC       cloexec.o
+  CC       close-stream.o
+  CC       closein.o
+  CC       closeout.o
+  CC       concat-filename.o
+  CC       dirname.o
+  CC       basename.o
+  CC       dirname-lgpl.o
+  CC       stripslash.o
+  CC       execute.o
+  CC       exitfail.o
+  CC       fatal-signal.o
+  CC       fd-hook.o
+  CC       fd-safer-flag.o
+  CC       dup-safer-flag.o
+  CC       file-set.o
+  CC       filenamecat.o
+  CC       filenamecat-lgpl.o
+  CC       findprog-in.o
+  CC       fopen-safer.o
+  CC       freading.o
+  CC       getprogname.o
+  CC       hard-locale.o
+  CC       hash.o
+  CC       hash-pjw.o
+  CC       hash-triple-simple.o
+  CC       gl_linked_list.o
+  CC       gl_linkedhash_list.o
+  CC       gl_list.o
+  CC       localcharset.o
+  CC       localename.o
+  CC       localename-table.o
+  CC       malloca.o
+  CC       math.o
+  CC       mbchar.o
+  CC       mbiter.o
+  CC       mbslen.o
+  CC       mbsstr.o
+  CC       mbuiter.o
+  CC       memchr2.o
+  CC       openat-die.o
+  CC       gl_oset.o
+  CC       pipe2.o
+  CC       pipe2-safer.o
+  CC       printf-frexp.o
+  CC       printf-frexpl.o
+  CC       progname.o
+  CC       propername.o
+  CC       quotearg.o
+  CC       save-cwd.o
+  CC       malloc/scratch_buffer_dupfree.o
+  CC       malloc/scratch_buffer_grow.o
+  CC       malloc/scratch_buffer_grow_preserve.o
+  CC       malloc/scratch_buffer_set_array_size.o
+  CC       setlocale_null.o
+  CC       sig-handler.o
+  CC       sigsegv.o
+  CC       stackvma.o
+  CC       spawn-pipe.o
+  CC       stat-time.o
+  CC       mkstemp-safer.o
+  CC       striconv.o
+  CC       strnlen1.o
+  CC       tempname.o
+  CC       glthread/threadlib.o
+  CC       glthread/tls.o
+  CC       tmpdir.o
+  CC       trim.o
+  CC       unistd.o
+  CC       dup-safer.o
+  CC       fd-safer.o
+  CC       pipe-safer.o
+  CC       verror.o
+  CC       version-etc.o
+  CC       version-etc-fsf.o
+  CC       wait-process.o
+  CC       wctype-h.o
+  CC       xmalloc.o
+  CC       xalloc-die.o
+  CC       gl_xlist.o
+  CC       xmalloca.o
+  CC       gl_xoset.o
+  CC       xprintf.o
+  CC       xsize.o
+  CC       xstriconv.o
+  CC       xstrndup.o
+  CC       xvasprintf.o
+  CC       xasprintf.o
+  CC       asnprintf.o
+  CC       asprintf.o
+  CC       chdir-long.o
+  CC       fclose.o
+  CC       fcntl.o
+  CC       fflush.o
+  CC       fpurge.o
+  CC       freadahead.o
+  CC       fseek.o
+  CC       fseeko.o
+  CC       mbrtowc.o
+  CC       obstack.o
+  CC       printf-args.o
+  CC       printf-parse.o
+  CC       regex.o
+  CC       spawn_faction_addchdir.o
+  CC       vasnprintf.o
+  CC       vasprintf.o
+  CC       malloc/dynarray_at_failure.o
+  CC       malloc/dynarray_emplace_enlarge.o
+  CC       malloc/dynarray_finalize.o
+  CC       malloc/dynarray_resize.o
+  CC       malloc/dynarray_resize_clear.o
+  CC       glthread/lock.o
+  CC       unistr/u8-mbtoucr.o
+  CC       unistr/u8-uctomb.o
+  CC       unistr/u8-uctomb-aux.o
+  CC       uniwidth/width.o
+  AR       libm4.a
+make[4]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/lib'
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/lib'
+Making all in src
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/src'
+  CC       m4.o
+  CC       builtin.o
+  CC       debug.o
+  CC       eval.o
+  CC       format.o
+  CC       freeze.o
+  CC       input.o
+  CC       macro.o
+  CC       output.o
+  CC       path.o
+  CC       symtab.o
+  CCLD     m4
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/src'
+Making all in doc
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/doc'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/doc'
+Making all in checks
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/checks'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/checks'
+Making all in po
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/po'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/po'
+Making all in tests
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+  GEN      ctype.h
+  GEN      arpa/inet.h
+  GEN      test-posix_spawn-dup2-stdout.sh
+  GEN      test-posix_spawn-dup2-stdin.sh
+  GEN      pthread.h
+  GEN      sys/ioctl.h
+  GEN      sys/select.h
+  GEN      sys/socket.h
+  GEN      sys/time.h
+  GEN      sys/uio.h
+/usr/bin/make  all-recursive
+make[4]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+Making all in .
+make[5]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+  CC       locale.o
+  CC       gl_array_list.o
+  CC       gl_array_oset.o
+  CC       findprog.o
+  CC       imaxtostr.o
+  CC       inttostr.o
+  CC       offtostr.o
+  CC       uinttostr.o
+  CC       umaxtostr.o
+  CC       read-file.o
+  CC       sockets.o
+  CC       sys_socket.o
+  CC       vma-iter.o
+  CC       xconcat-filename.o
+  CC       ioctl.o
+  CC       nanosleep.o
+  CC       pthread_sigmask.o
+  CC       strerror_r.o
+  CC       test-localcharset.o
+  CC       glthread/thread.o
+  AR       libtests.a
+  CCLD     current-locale
+  CCLD     test-localcharset
+make[5]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+make[4]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+make[2]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+make[1]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/openat-proc.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/asyncsafe-spin.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/gl_avltree_oset.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/basename-lgpl.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/binary-io.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/bitrotate.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/c-ctype.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/c-stack.c:36:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/c-strcasecmp.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/c-strncasecmp.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/canonicalize.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/clean-temp.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+/home/reachgao/.local/src/m4-1.4.19-r06/lib/canonicalize.c: In function 'canonicalize_filename_mode':
+/home/reachgao/.local/src/m4-1.4.19-r06/lib/canonicalize.c:484:5: warning: #warning "GCC might issue a bogus -Wreturn-local-addr warning here." [-Wcpp]
+  484 |    #warning "GCC might issue a bogus -Wreturn-local-addr warning here."
+      |     ^~~~~~~
+/home/reachgao/.local/src/m4-1.4.19-r06/lib/canonicalize.c:485:5: warning: #warning "See <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=93644>." [-Wcpp]
+  485 |    #warning "See <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=93644>."
+      |     ^~~~~~~
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/clean-temp-simple.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/cloexec.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/close-stream.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/closein.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/closeout.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/concat-filename.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/dirname.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/basename.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/dirname-lgpl.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/stripslash.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/execute.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/exitfail.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/fatal-signal.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/fd-hook.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/fd-safer-flag.c:21:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/dup-safer-flag.c:21:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/filenamecat.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/file-set.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/filenamecat-lgpl.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/findprog-in.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/fopen-safer.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/freading.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/getprogname.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/hard-locale.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/hash.c:25:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/hash-pjw.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/hash-triple-simple.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/gl_linked_list.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/gl_linkedhash_list.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/gl_list.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/localcharset.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/localename.c:21:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/localename-table.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/malloca.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/math.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/mbchar.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/mbiter.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/mbslen.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/mbsstr.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/mbuiter.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/memchr2.c:24:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/openat-die.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/gl_oset.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/pipe2.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/pipe2-safer.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/printf-frexp.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/printf-frexpl.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/progname.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/propername.c:24:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/quotearg.c:27:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/save-cwd.c:21:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/libc-config.h:33,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/lib/malloc/scratch_buffer_dupfree.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/libc-config.h:33,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/lib/malloc/scratch_buffer_grow.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/libc-config.h:33,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/lib/malloc/scratch_buffer_grow_preserve.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/libc-config.h:33,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/lib/malloc/scratch_buffer_set_array_size.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/setlocale_null.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/sig-handler.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/sigsegv.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/stackvma.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/spawn-pipe.c:24:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/stat-time.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/mkstemp-safer.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/striconv.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/strnlen1.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/libc-config.h:33,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/lib/tempname.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/glthread/threadlib.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/glthread/tls.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/tmpdir.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/trim.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/unistd.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/dup-safer.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/fd-safer.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/pipe-safer.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/verror.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/version-etc.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/version-etc-fsf.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/wait-process.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/wctype-h.c:2:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/xmalloc.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/xalloc-die.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/xmalloca.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/gl_xlist.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/gl_xoset.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/xprintf.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/xsize.c:1:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/xstriconv.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/xstrndup.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/xvasprintf.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/xasprintf.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/asnprintf.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/asprintf.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/chdir-long.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/fclose.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/fcntl.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/fflush.c:19:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/fpurge.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/freadahead.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/fseek.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/fseeko.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/mbrtowc.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/obstack.c:23:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/printf-args.c:24:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/printf-parse.c:31:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/libc-config.h:33,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/lib/regex.c:23:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/spawn_faction_addchdir.c:16:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/vasnprintf.c:61:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/vasprintf.c:17:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/libc-config.h:33,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/lib/malloc/dynarray_at_failure.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/libc-config.h:33,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/lib/malloc/dynarray_emplace_enlarge.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/libc-config.h:33,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/lib/malloc/dynarray_finalize.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/libc-config.h:33,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/lib/malloc/dynarray_resize.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/libc-config.h:33,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/lib/malloc/dynarray_resize_clear.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/glthread/lock.c:20:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/unistr/u8-mbtoucr.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/unistr/u8-uctomb.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/unistr/u8-uctomb-aux.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/lib/uniwidth/width.c:18:
+./config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/src/m4.h:26,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/src/builtin.c:25:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/src/m4.h:26,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/src/m4.c:22:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/src/m4.h:26,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/src/debug.c:22:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/src/m4.h:26,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/src/eval.c:27:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/src/m4.h:26,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/src/format.c:24:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/src/m4.h:26,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/src/freeze.c:24:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/src/m4.h:26,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/src/input.c:24:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/src/m4.h:26,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/src/macro.c:25:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/src/m4.h:26,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/src/output.c:22:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/src/m4.h:26,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/src/path.c:25:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/src/m4.h:26,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/src/symtab.c:34:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/locale.c:19:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/gl_array_list.c:18:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/gl_array_oset.c:18:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/findprog.c:19:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/anytostr.c:27,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/tests/imaxtostr.c:3:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/anytostr.c:27,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/tests/inttostr.c:3:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/anytostr.c:27,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/tests/offtostr.c:3:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/anytostr.c:27,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/tests/uinttostr.c:3:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/anytostr.c:27,
+                 from /home/reachgao/.local/src/m4-1.4.19-r06/tests/umaxtostr.c:3:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/read-file.c:18:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/sockets.c:20:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/sys_socket.c:1:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/vma-iter.c:18:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/xconcat-filename.c:19:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/ioctl.c:20:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/nanosleep.c:21:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/pthread_sigmask.c:17:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/strerror_r.c:20:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/test-localcharset.c:25:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+In file included from /home/reachgao/.local/src/m4-1.4.19-r06/tests/glthread/thread.c:20:
+../lib/config.h:202: warning: "_FORTIFY_SOURCE" redefined
+  202 |    # define _FORTIFY_SOURCE 2
+      | 
+<command-line>: note: this is the location of the previous definition
+output_end

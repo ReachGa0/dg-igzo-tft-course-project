@@ -1,0 +1,5 @@
+%option noyywrap
+%%
+[ \t\n]+ ;
+. ;
+%%

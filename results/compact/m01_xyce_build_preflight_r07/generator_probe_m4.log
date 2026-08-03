@@ -1,0 +1,14 @@
+argv=["/home/reachgao/.local/m01-generator-toolchain-r07/bin/m4", "--version"]
+cwd=/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目
+returncode=0
+timed_out=false
+elapsed_seconds=0.001753
+output_begin
+m4 (GNU M4) 1.4.19
+Copyright (C) 2021 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by René Seindal.
+output_end

@@ -1,0 +1,7 @@
+argv=["/home/reachgao/.local/m01-generator-toolchain-r07/bin/bison", "--output=/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r07/generator_smoke_parser.c", "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r07/generator_smoke.y"]
+cwd=/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目
+returncode=0
+timed_out=false
+elapsed_seconds=0.034228
+output_begin
+output_end

@@ -1,0 +1,8 @@
+* M01 controlled Xyce B-source scalar self-test; not a project device
+Vctrl nin 0 1.0
+Btest nout 0 V={limit(V(nin),0,2)+sgn(V(nin))*0.25}
+Vsense nout nload 0
+Rload nload 0 1k
+.DC Vctrl 1 1 1
+.PRINT DC FORMAT=CSV V(nout) I(Vsense)
+.END

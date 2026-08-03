@@ -1,0 +1,130 @@
+argv=["/home/reachgao/.local/cmake-3.30.5/bin/cmake", "-S", "/home/reachgao/.local/src/xyce-7.10.0", "-B", "/home/reachgao/.local/build/xyce-7.10.0-r07", "-DCMAKE_INSTALL_PREFIX=/home/reachgao/.local/xyce-7.10-pure-r07", "-DCMAKE_PREFIX_PATH=/home/reachgao/.local/trilinos-14.4-serial-r05;/home/reachgao/.local/suitesparse-7.8.3-r05", "-DTrilinos_ROOT=/home/reachgao/.local/trilinos-14.4-serial-r05", "-DAMD_LIBRARY_DIRS=/home/reachgao/.local/suitesparse-7.8.3-r05/lib", "-DAMD_INCLUDE_DIRS=/home/reachgao/.local/suitesparse-7.8.3-r05/include/suitesparse", "-DFLEX_EXECUTABLE=/home/reachgao/.local/m01-generator-toolchain-r07/bin/flex", "-DFLEX_INCLUDE_DIR=/home/reachgao/.local/m01-generator-toolchain-r07/include", "-DBISON_EXECUTABLE=/home/reachgao/.local/m01-generator-toolchain-r07/bin/bison", "-DTrilinos_ENABLE_Fortran=OFF", "-DTPL_ENABLE_MPI=OFF", "-DXyce_ENABLE_TESTS=OFF", "-DCMAKE_C_COMPILER=/usr/bin/gcc", "-DCMAKE_CXX_COMPILER=/usr/bin/g++", "-DCMAKE_BUILD_TYPE=Release"]
+cwd=/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目
+returncode=0
+timed_out=false
+elapsed_seconds=3.996707
+output_begin
+-- The CXX compiler identification is GNU 13.3.0
+-- The C compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Including the /home/reachgao/.local/src/xyce-7.10.0/src/DeviceModelPKG/ADMS model directory
+-- Including the /home/reachgao/.local/src/xyce-7.10.0/src/DeviceModelPKG/NeuronModels model directory
+-- NOT including the /home/reachgao/.local/src/xyce-7.10.0/src/DeviceModelPKG/SandiaModels/ATHENA model directory
+        (Xyce_RAD_MODELS must be enabled to include ATHENA)
+-- Looking for Trilinos
+   Required packages:
+        Amesos Epetra EpetraExt Ifpack NOX Teuchos Sacado
+        Triutils AztecOO Belos TrilinosCouplings
+   Optional packages:
+        Isorropia Zoltan ShyLU ShyLU_DDCore Amesos2 Stokhos ROL MKL
+-- Enabled Kokkos devices: SERIAL
+-- Looking for Trilinos - found
+-- Checking if MPI is enabled in Trilinos
+-- Checking if MPI is enabled in Trilinos - MPI not enabled
+-- Looking for BLAS via Trilinos
+-- Looking for BLAS via Trilinos - found
+-- Looking for LAPACK via Trilinos
+-- Looking for LAPACK via Trilinos - found
+-- Looking for HAVE_AMESOS_KLU
+-- Looking for HAVE_AMESOS_KLU - found
+-- Looking for HAVE_BTF
+-- Looking for HAVE_BTF - found
+-- Looking for HAVE_EXPERIMENTAL
+-- Looking for HAVE_EXPERIMENTAL - found
+-- Looking for HAVE_GRAPH_REORDERINGS
+-- Looking for HAVE_GRAPH_REORDERINGS - found
+-- Looking for HAVE_TEUCHOS_COMPLEX
+-- Looking for HAVE_TEUCHOS_COMPLEX - found
+-- Looking for C++ include Teuchos_SerialDenseMatrix.hpp
+-- Looking for C++ include Teuchos_SerialDenseMatrix.hpp - found
+-- Looking for ShyLU in Trilinos
+-- Looking for ShyLU in Trilinos - not found
+-- Looking for Amesos2 in Trilinos
+-- Looking for Amesos2 in Trilinos - found
+-- Looking for HAVE_AMESOS2_KLU2
+-- Looking for HAVE_AMESOS2_KLU2 - found
+-- Looking for HAVE_AMESOS2_BASKER
+-- Looking for HAVE_AMESOS2_BASKER - found
+-- Looking for HAVE_AMESOS2_SHYLUBASKER
+-- Looking for HAVE_AMESOS2_SHYLUBASKER - not found
+-- Looking for HAVE_AMESOS2_SHYLU_NODEBASKER
+-- Looking for HAVE_AMESOS2_SHYLU_NODEBASKER - not found
+-- Looking for Stokhos in Trilinos
+-- Looking for Stokhos in Trilinos - found
+-- Looking for ROL in Trilinos
+-- Looking for ROL in Trilinos - found
+-- Looking for ParMETIS via Trilinos
+-- Looking for ParMETIS via Trilinos - not found
+-- Looking for AMD via Trilinos
+-- Looking for AMD via Trilinos - found
+-- Looking for PARDISO_MKL via Trilinos
+-- Looking for PARDISO_MKL via Trilinos - not found
+-- Looking for SuperLU via Trilinos
+-- Looking for SuperLU via Trilinos - not found
+-- Looking for SuperLUDist via Trilinos
+-- Looking for SuperLUDist via Trilinos - not found
+-- Looking for FFT libraries
+-- Looking for FFT libraries - Intel Math Kernel Library not found
+-- Found PkgConfig: /usr/bin/pkg-config (found version "1.8.1")
+-- Could NOT find FFTW (missing: FFTW_INCLUDE_DIRS FFTW_LIBRARIES) 
+-- Using basic FFT class for FFT Support.
+-- Looking for flex and Bison
+-- Found FLEX: /home/reachgao/.local/m01-generator-toolchain-r07/bin/flex (found suitable version "2.6.4", minimum required is "2.6")
+-- Found BISON: /home/reachgao/.local/m01-generator-toolchain-r07/bin/bison (found suitable version "3.8.2", minimum required is "3.3")
+-- Usage tracking is not enabled
+-- Found Git: /usr/bin/git (found version "2.43.0")
+-- Looking for C++ include dlfcn.h
+-- Looking for C++ include dlfcn.h - found
+-- Looking for C++ include unistd.h
+-- Looking for C++ include unistd.h - found
+-- Looking for drand48
+-- Looking for drand48 - found
+-- Looking for C++ include sys/resource.h
+-- Looking for C++ include sys/resource.h - found
+-- Looking for C++ include sys/stat.h
+-- Looking for C++ include sys/stat.h - found
+-- Looking for C++ include malloc.h
+-- Looking for C++ include malloc.h - found
+-- Looking for C++ include pwd.h
+-- Looking for C++ include pwd.h - found
+-- Looking for C++ include sys/utsname.h
+-- Looking for C++ include sys/utsname.h - found
+-- Looking for mallinfo
+-- Looking for mallinfo - found
+-- Looking for getpwuid
+-- Looking for getpwuid - found
+-- Looking for gethostname
+-- Looking for gethostname - found
+-- Looking for getdomainname
+-- Looking for getdomainname - found
+-- Looking for uname
+-- Looking for uname - found
+-- Looking for C++ include Windows.h
+-- Looking for C++ include Windows.h - not found
+-- Looking for C++ include direct.h
+-- Looking for C++ include direct.h - not found
+-- Plugin compatibility not enabled
+-- Configuring done (3.9s)
+-- Generating done (0.1s)
+-- Build files have been written to: /home/reachgao/.local/build/xyce-7.10.0-r07
+[0mNeither FFTW, Apple FFT or Intel MKL enabled - disabling the FFT capability[0m
+[33mCMake Warning:
+  Manually-specified variables were not used by the project:
+
+    AMD_INCLUDE_DIRS
+    AMD_LIBRARY_DIRS
+    TPL_ENABLE_MPI
+    Trilinos_ENABLE_Fortran
+    Xyce_ENABLE_TESTS
+
+[0m
+output_end

@@ -1,0 +1,305 @@
+argv=["/usr/bin/make", "-j2"]
+cwd=/home/reachgao/.local/build/flex-2.6.4-r07
+returncode=0
+timed_out=false
+elapsed_seconds=2.999922
+output_begin
+make[1]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07'
+Making all in src
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/src'
+/usr/bin/make  all-am
+make[3]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/src'
+/bin/bash ../libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o libmain.lo /home/reachgao/.local/src/flex-2.6.4-r06/src/libmain.c
+/bin/bash ../libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o libyywrap.lo /home/reachgao/.local/src/flex-2.6.4-r06/src/libyywrap.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\" -g -O2 -c /home/reachgao/.local/src/flex-2.6.4-r06/src/libyywrap.c  -fPIC -DPIC -o .libs/libyywrap.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\" -g -O2 -c /home/reachgao/.local/src/flex-2.6.4-r06/src/libmain.c  -fPIC -DPIC -o .libs/libmain.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\" -g -O2 -c /home/reachgao/.local/src/flex-2.6.4-r06/src/libyywrap.c -o libyywrap.o >/dev/null 2>&1
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\" -g -O2 -c /home/reachgao/.local/src/flex-2.6.4-r06/src/libmain.c -o libmain.o >/dev/null 2>&1
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-buf.o `test -f 'buf.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`buf.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-ccl.o `test -f 'ccl.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`ccl.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-dfa.o `test -f 'dfa.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`dfa.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-ecs.o `test -f 'ecs.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`ecs.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-filter.o `test -f 'filter.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`filter.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-gen.o `test -f 'gen.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`gen.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-main.o `test -f 'main.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`main.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-misc.o `test -f 'misc.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`misc.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-nfa.o `test -f 'nfa.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`nfa.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-options.o `test -f 'options.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`options.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-parse.o `test -f 'parse.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`parse.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-regex.o `test -f 'regex.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`regex.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-scanflags.o `test -f 'scanflags.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`scanflags.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-scanopt.o `test -f 'scanopt.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`scanopt.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-skel.o `test -f 'skel.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`skel.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-sym.o `test -f 'sym.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`sym.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-tables.o `test -f 'tables.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`tables.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-tables_shared.o `test -f 'tables_shared.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`tables_shared.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-tblcmp.o `test -f 'tblcmp.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`tblcmp.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-yylex.o `test -f 'yylex.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`yylex.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-scan.o `test -f 'scan.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`scan.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-buf.o `test -f 'buf.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`buf.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-ccl.o `test -f 'ccl.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`ccl.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-dfa.o `test -f 'dfa.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`dfa.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-ecs.o `test -f 'ecs.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`ecs.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-filter.o `test -f 'filter.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`filter.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-gen.o `test -f 'gen.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`gen.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-main.o `test -f 'main.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`main.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-misc.o `test -f 'misc.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`misc.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-nfa.o `test -f 'nfa.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`nfa.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-options.o `test -f 'options.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`options.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-parse.o `test -f 'parse.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`parse.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-regex.o `test -f 'regex.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`regex.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-scanflags.o `test -f 'scanflags.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`scanflags.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-scanopt.o `test -f 'scanopt.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`scanopt.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-skel.o `test -f 'skel.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`skel.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-sym.o `test -f 'sym.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`sym.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-tables.o `test -f 'tables.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`tables.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-tables_shared.o `test -f 'tables_shared.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`tables_shared.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-tblcmp.o `test -f 'tblcmp.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`tblcmp.c
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"   -g -O2 -c -o stage1flex-yylex.o `test -f 'yylex.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`yylex.c
+/bin/bash ../libtool  --tag=CC   --mode=link gcc  -g -O2 -version-info 2:0:0  -o libfl.la -rpath /home/reachgao/.local/m01-generator-toolchain-r07/lib libmain.lo libyywrap.lo  -lm 
+libtool: link: gcc -shared  -fPIC -DPIC  .libs/libmain.o .libs/libyywrap.o   -lm  -g -O2   -Wl,-soname -Wl,libfl.so.2 -o .libs/libfl.so.2.0.0
+/bin/bash ../libtool  --tag=CC   --mode=link gcc  -g -O2   -o stage1flex stage1flex-scan.o stage1flex-buf.o stage1flex-ccl.o stage1flex-dfa.o stage1flex-ecs.o stage1flex-filter.o stage1flex-gen.o stage1flex-main.o stage1flex-misc.o stage1flex-nfa.o stage1flex-options.o stage1flex-parse.o stage1flex-regex.o stage1flex-scanflags.o stage1flex-scanopt.o stage1flex-skel.o stage1flex-sym.o stage1flex-tables.o stage1flex-tables_shared.o stage1flex-tblcmp.o stage1flex-yylex.o    -lm 
+libtool: link: gcc -g -O2 -o stage1flex stage1flex-scan.o stage1flex-buf.o stage1flex-ccl.o stage1flex-dfa.o stage1flex-ecs.o stage1flex-filter.o stage1flex-gen.o stage1flex-main.o stage1flex-misc.o stage1flex-nfa.o stage1flex-options.o stage1flex-parse.o stage1flex-regex.o stage1flex-scanflags.o stage1flex-scanopt.o stage1flex-skel.o stage1flex-sym.o stage1flex-tables.o stage1flex-tables_shared.o stage1flex-tblcmp.o stage1flex-yylex.o  -lm
+libtool: link: (cd ".libs" && rm -f "libfl.so.2" && ln -s "libfl.so.2.0.0" "libfl.so.2")
+libtool: link: (cd ".libs" && rm -f "libfl.so" && ln -s "libfl.so.2.0.0" "libfl.so")
+libtool: link: ar cru .libs/libfl.a  libmain.o libyywrap.o
+libtool: link: ranlib .libs/libfl.a
+libtool: link: ( cd ".libs" && rm -f "libfl.la" && ln -s "../libfl.la" "libfl.la" )
+./stage1flex   -o stage1scan.c /home/reachgao/.local/src/flex-2.6.4-r06/src/scan.l
+gcc -DHAVE_CONFIG_H -I. -I/home/reachgao/.local/src/flex-2.6.4-r06/src  -DLOCALEDIR=\"/home/reachgao/.local/m01-generator-toolchain-r07/share/locale\"    -g -O2 -c -o flex-stage1scan.o `test -f 'stage1scan.c' || echo '/home/reachgao/.local/src/flex-2.6.4-r06/src/'`stage1scan.c
+/bin/bash ../libtool  --tag=CC   --mode=link gcc   -g -O2   -o flex flex-buf.o flex-ccl.o flex-dfa.o flex-ecs.o flex-filter.o flex-gen.o flex-main.o flex-misc.o flex-nfa.o flex-options.o flex-parse.o flex-regex.o flex-scanflags.o flex-scanopt.o flex-skel.o flex-sym.o flex-tables.o flex-tables_shared.o flex-tblcmp.o flex-yylex.o flex-stage1scan.o   -lm 
+libtool: link: gcc -g -O2 -o flex flex-buf.o flex-ccl.o flex-dfa.o flex-ecs.o flex-filter.o flex-gen.o flex-main.o flex-misc.o flex-nfa.o flex-options.o flex-parse.o flex-regex.o flex-scanflags.o flex-scanopt.o flex-skel.o flex-sym.o flex-tables.o flex-tables_shared.o flex-tblcmp.o flex-yylex.o flex-stage1scan.o  -lm
+make[3]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/src'
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/src'
+Making all in doc
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/doc'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/doc'
+Making all in examples
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples'
+Making all in manual
+make[3]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples/manual'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples/manual'
+Making all in fastwc
+make[3]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples/fastwc'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples/fastwc'
+make[3]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples'
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples'
+Making all in po
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/po'
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/po'
+Making all in tests
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/tests'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/tests'
+Making all in tools
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/tools'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/tools'
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07'
+make[2]: Nothing to be done for 'all-am'.
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07'
+make[1]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07'
+/home/reachgao/.local/src/flex-2.6.4-r06/src/filter.c: In function ‘filter_fix_linedirs’:
+/home/reachgao/.local/src/flex-2.6.4-r06/src/filter.c:393:68: warning: ‘%s’ directive output may be truncated writing up to 2047 bytes into a region of size between 493 and 503 [-Wformat-truncation=]
+  393 |                                 snprintf (buf, readsz, "#line %d \"%s\"\n",
+      |                                                                    ^~
+  394 |                                           lineno, filename);
+      |                                                   ~~~~~~~~          
+In file included from /usr/include/stdio.h:980,
+                 from /home/reachgao/.local/src/flex-2.6.4-r06/src/flexdef.h:42,
+                 from /home/reachgao/.local/src/flex-2.6.4-r06/src/filter.c:24:
+In function ‘snprintf’,
+    inlined from ‘filter_fix_linedirs’ at /home/reachgao/.local/src/flex-2.6.4-r06/src/filter.c:393:5:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 12 and 2069 bytes into a destination of size 512
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+/home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c: In function ‘line_directive_out’:
+/home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c:369:57: warning: ‘%s’ directive output may be truncated writing up to 2047 bytes into a region of size 2039 [-Wformat-truncation=]
+  369 |                 snprintf (directive, sizeof(directive), line_fmt, 0, filename);
+      |                                                         ^~~~~~~~     ~~~~~~~~
+In file included from /usr/include/stdio.h:980,
+                 from /home/reachgao/.local/src/flex-2.6.4-r06/src/flexdef.h:42,
+                 from /home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c:33:
+In function ‘snprintf’,
+    inlined from ‘line_directive_out’ at /home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c:369:3:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 12 and 2059 bytes into a destination of size 2048
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+/home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c: In function ‘line_directive_out’:
+/home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c:367:57: warning: ‘%s’ directive output may be truncated writing up to 2047 bytes into a region of size between 2029 and 2039 [-Wformat-truncation=]
+  367 |                 snprintf (directive, sizeof(directive), line_fmt, linenum, filename);
+      |                                                         ^~~~~~~~           ~~~~~~~~
+In function ‘snprintf’,
+    inlined from ‘line_directive_out’ at /home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c:367:3:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 12 and 2069 bytes into a destination of size 2048
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+In function ‘line_warning’,
+    inlined from ‘line_warning’ at parse.y:1055:6,
+    inlined from ‘lwarn’ at parse.y:1029:2,
+    inlined from ‘format_warn’ at parse.y:1021:2:
+parse.y:1061:39: warning: ‘%s’ directive output may be truncated writing up to 2047 bytes into a region of size 2039 [-Wformat-truncation=]
+......
+In file included from /usr/include/stdio.h:980,
+                 from /home/reachgao/.local/src/flex-2.6.4-r06/src/flexdef.h:42,
+                 from parse.y:66:
+In function ‘snprintf’,
+    inlined from ‘line_warning’ at parse.y:1061:3,
+    inlined from ‘line_warning’ at parse.y:1055:6,
+    inlined from ‘lwarn’ at parse.y:1029:2,
+    inlined from ‘format_warn’ at parse.y:1021:2:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 10 and 2057 bytes into a destination of size 2048
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+In function ‘line_warning’,
+    inlined from ‘line_warning’ at parse.y:1055:6,
+    inlined from ‘lwarn’ at parse.y:1029:2,
+    inlined from ‘yyparse’ at parse.y:805:10:
+parse.y:1061:39: warning: ‘%s’ directive output may be truncated writing up to 2047 bytes into a region of size 2039 [-Wformat-truncation=]
+In function ‘snprintf’,
+    inlined from ‘line_warning’ at parse.y:1061:3,
+    inlined from ‘line_warning’ at parse.y:1055:6,
+    inlined from ‘lwarn’ at parse.y:1029:2,
+    inlined from ‘yyparse’ at parse.y:805:10:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 10 and 2057 bytes into a destination of size 2048
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+parse.y: In function ‘yyparse’:
+parse.y:360:6: warning: ‘%s’ directive output may be truncated writing up to 2047 bytes into a region of size 2021 [-Wformat-truncation=]
+In function ‘snprintf’,
+    inlined from ‘format_pinpoint_message’ at parse.y:1040:2,
+    inlined from ‘yyparse’ at parse.y:359:5:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 28 and 2075 bytes into a destination of size 2048
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+/home/reachgao/.local/src/flex-2.6.4-r06/src/filter.c: In function ‘filter_fix_linedirs’:
+/home/reachgao/.local/src/flex-2.6.4-r06/src/filter.c:393:68: warning: ‘%s’ directive output may be truncated writing up to 2047 bytes into a region of size between 493 and 503 [-Wformat-truncation=]
+  393 |                                 snprintf (buf, readsz, "#line %d \"%s\"\n",
+      |                                                                    ^~
+  394 |                                           lineno, filename);
+      |                                                   ~~~~~~~~          
+In file included from /usr/include/stdio.h:980,
+                 from /home/reachgao/.local/src/flex-2.6.4-r06/src/flexdef.h:42,
+                 from /home/reachgao/.local/src/flex-2.6.4-r06/src/filter.c:24:
+In function ‘snprintf’,
+    inlined from ‘filter_fix_linedirs’ at /home/reachgao/.local/src/flex-2.6.4-r06/src/filter.c:393:5:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 12 and 2069 bytes into a destination of size 512
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+/home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c: In function ‘line_directive_out’:
+/home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c:369:57: warning: ‘%s’ directive output may be truncated writing up to 2047 bytes into a region of size 2039 [-Wformat-truncation=]
+  369 |                 snprintf (directive, sizeof(directive), line_fmt, 0, filename);
+      |                                                         ^~~~~~~~     ~~~~~~~~
+In file included from /usr/include/stdio.h:980,
+                 from /home/reachgao/.local/src/flex-2.6.4-r06/src/flexdef.h:42,
+                 from /home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c:33:
+In function ‘snprintf’,
+    inlined from ‘line_directive_out’ at /home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c:369:3:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 12 and 2059 bytes into a destination of size 2048
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+/home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c: In function ‘line_directive_out’:
+/home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c:367:57: warning: ‘%s’ directive output may be truncated writing up to 2047 bytes into a region of size between 2029 and 2039 [-Wformat-truncation=]
+  367 |                 snprintf (directive, sizeof(directive), line_fmt, linenum, filename);
+      |                                                         ^~~~~~~~           ~~~~~~~~
+In function ‘snprintf’,
+    inlined from ‘line_directive_out’ at /home/reachgao/.local/src/flex-2.6.4-r06/src/misc.c:367:3:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 12 and 2069 bytes into a destination of size 2048
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+In function ‘line_warning’,
+    inlined from ‘line_warning’ at parse.y:1055:6,
+    inlined from ‘lwarn’ at parse.y:1029:2,
+    inlined from ‘format_warn’ at parse.y:1021:2:
+parse.y:1061:39: warning: ‘%s’ directive output may be truncated writing up to 2047 bytes into a region of size 2039 [-Wformat-truncation=]
+......
+In file included from /usr/include/stdio.h:980,
+                 from /home/reachgao/.local/src/flex-2.6.4-r06/src/flexdef.h:42,
+                 from parse.y:66:
+In function ‘snprintf’,
+    inlined from ‘line_warning’ at parse.y:1061:3,
+    inlined from ‘line_warning’ at parse.y:1055:6,
+    inlined from ‘lwarn’ at parse.y:1029:2,
+    inlined from ‘format_warn’ at parse.y:1021:2:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 10 and 2057 bytes into a destination of size 2048
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+In function ‘line_warning’,
+    inlined from ‘line_warning’ at parse.y:1055:6,
+    inlined from ‘lwarn’ at parse.y:1029:2,
+    inlined from ‘yyparse’ at parse.y:805:10:
+parse.y:1061:39: warning: ‘%s’ directive output may be truncated writing up to 2047 bytes into a region of size 2039 [-Wformat-truncation=]
+In function ‘snprintf’,
+    inlined from ‘line_warning’ at parse.y:1061:3,
+    inlined from ‘line_warning’ at parse.y:1055:6,
+    inlined from ‘lwarn’ at parse.y:1029:2,
+    inlined from ‘yyparse’ at parse.y:805:10:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 10 and 2057 bytes into a destination of size 2048
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+parse.y: In function ‘yyparse’:
+parse.y:360:6: warning: ‘%s’ directive output may be truncated writing up to 2047 bytes into a region of size 2021 [-Wformat-truncation=]
+In function ‘snprintf’,
+    inlined from ‘format_pinpoint_message’ at parse.y:1040:2,
+    inlined from ‘yyparse’ at parse.y:359:5:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 28 and 2075 bytes into a destination of size 2048
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+ar: `u' modifier ignored since `D' is the default (see `U')
+Makefile:2917: warning: ignoring prerequisites on suffix rule definition
+Makefile:2920: warning: ignoring prerequisites on suffix rule definition
+Makefile:2947: warning: ignoring prerequisites on suffix rule definition
+output_end

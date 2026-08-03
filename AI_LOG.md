@@ -16,6 +16,20 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R07 build/tool 失败
+
+### 唯一执行与根因
+
+R07 39/39 E3 静态 PASS 以提交 `7d5337a` 推送后，唯一执行 `make m01-xyce-build-preflight-r07`。runner 返回 42/47、E0/FAIL；报告 `results/reports/m01_xyce_build_preflight_r07.json` SHA-256 为 `7e2c17794b013c9928e3b707c674d3da4413c98aa2ab4ec25d2d145856d0a6e6`。GNU M4/Bison/Flex 源码构建、生成器冒烟、串行纯源码 Xyce 7.10.0 构建/安装、版本/许可证和 B-source 命令均成功，命令返回码为 0。
+
+Xyce 对 `-o .../bsource_self_test` 实际写出 `bsource_self_test.prn`，文件末行包含 `V(NOUT)=1.25000000e+00`；R07 runner 却把输出预注册为 `.csv` 并用 `csv.DictReader` 读取，因此观察值为 `None`，self-test 输出/数值两门失败，后续 parser-only 网表、parser 命令和 invocation audit 按停止门失败。该问题是 runner 输出格式合同缺陷，不是 Xyce 构建失败、器件不收敛、IGZO 物理结果或权限问题。
+
+### 证据边界与下一门
+
+R07 失败报告、preflight log、source/build manifest、全部构建日志、`.cir`、`.prn`、完整 generator/Xyce 安装树和二进制哈希均保留；独立 R07 checker 按门未运行，未生成 device syntax 网表、正式 M01 数值、ngspice/AIM-Spice 或电路输出。当前只登记 `preflight_failed_self_test/E0`，最终 `make check` 为 665/665 PASS，`make report-check` 和 `git diff --check` 通过。提交后建立 R08 新输出/parser 合同；R08 只允许修正 `.prn` 解析和失败保留，不重跑 R07，不放宽阈值或范围。AIM-Spice、正式 M01 器件 DC 和全部下游阶段继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 关闭 M01 Xyce R07 静态合同门
 
 ### 唯一执行与结果

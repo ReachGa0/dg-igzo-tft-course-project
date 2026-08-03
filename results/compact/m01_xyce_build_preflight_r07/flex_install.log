@@ -1,0 +1,150 @@
+argv=["/usr/bin/make", "install"]
+cwd=/home/reachgao/.local/build/flex-2.6.4-r07
+returncode=0
+timed_out=false
+elapsed_seconds=0.167306
+output_begin
+make[1]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07'
+Making install in src
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/src'
+make[3]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/src'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/lib'
+ /bin/bash ../libtool   --mode=install /usr/bin/install -c   libfl.la '/home/reachgao/.local/m01-generator-toolchain-r07/lib'
+libtool: install: /usr/bin/install -c .libs/libfl.so.2.0.0 /home/reachgao/.local/m01-generator-toolchain-r07/lib/libfl.so.2.0.0
+libtool: install: (cd /home/reachgao/.local/m01-generator-toolchain-r07/lib && { ln -s -f libfl.so.2.0.0 libfl.so.2 || { rm -f libfl.so.2 && ln -s libfl.so.2.0.0 libfl.so.2; }; })
+libtool: install: (cd /home/reachgao/.local/m01-generator-toolchain-r07/lib && { ln -s -f libfl.so.2.0.0 libfl.so || { rm -f libfl.so && ln -s libfl.so.2.0.0 libfl.so; }; })
+libtool: install: /usr/bin/install -c .libs/libfl.lai /home/reachgao/.local/m01-generator-toolchain-r07/lib/libfl.la
+libtool: install: /usr/bin/install -c .libs/libfl.a /home/reachgao/.local/m01-generator-toolchain-r07/lib/libfl.a
+libtool: install: chmod 644 /home/reachgao/.local/m01-generator-toolchain-r07/lib/libfl.a
+libtool: install: ranlib /home/reachgao/.local/m01-generator-toolchain-r07/lib/libfl.a
+libtool: finish: PATH="/home/reachgao/.local/m01-generator-toolchain-r07/bin:/home/reachgao/.local/cmake-3.30.5/bin:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/reachgao/.codex/tmp/arg0/codex-arg0Y0lTfN:/home/reachgao/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR:/mnt/c/Program Files/dotnet/:/mnt/c/Users/ReachGao/AppData/Local/Programs/Trae CN:/mnt/c/Program Files/Tencent/Weixin:/mnt/c/Users/ReachGao/AppData/Local/Muse Hub/lib:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2026a/bin:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR:/mnt/c/Program Files/dotnet/:/mnt/c/Users/ReachGao/AppData/Local/Programs/Trae CN:/mnt/c/Program Files/Tencent/Weixin:/mnt/c/Users/ReachGao/AppData/Local/Muse Hub/lib:/mnt/c/Program Files/nodejs/:/mnt/c/Users/ReachGao/AppData/Local/Programs/Python/Python314/Scripts/:/mnt/c/Users/ReachGao/AppData/Local/Programs/Python/Python314/:/mnt/c/Users/ReachGao/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/PyCharm 2024.1.7/bin:/mnt/c/Users/ReachGao/AppData/Local/Muse Hub/lib:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2026.1.2/bin:/mnt/c/Users/ReachGao/AppData/Roaming/npm:/mnt/c/Program Files/DeepSeek_TUI/deepseek-tui-windows-x64.exe:/mnt/c/Program Files/DeepSeek_TUI:/home/reachgao/.local/bin:/home/reachgao/.local/bin:/home/reachgao/.local/bin:/sbin" ldconfig -n /home/reachgao/.local/m01-generator-toolchain-r07/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /home/reachgao/.local/m01-generator-toolchain-r07/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the '-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the 'LD_RUN_PATH' environment variable
+     during linking
+   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/bin'
+  /bin/bash ../libtool   --mode=install /usr/bin/install -c flex '/home/reachgao/.local/m01-generator-toolchain-r07/bin'
+libtool: install: /usr/bin/install -c flex /home/reachgao/.local/m01-generator-toolchain-r07/bin/flex
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/include'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/flex-2.6.4-r06/src/FlexLexer.h '/home/reachgao/.local/m01-generator-toolchain-r07/include'
+make[3]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/src'
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/src'
+Making install in doc
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/doc'
+make[3]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/doc'
+make[3]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/info'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/flex-2.6.4-r06/doc/flex.info /home/reachgao/.local/src/flex-2.6.4-r06/doc/flex.info-1 /home/reachgao/.local/src/flex-2.6.4-r06/doc/flex.info-2 '/home/reachgao/.local/m01-generator-toolchain-r07/share/info'
+ install-info --info-dir='/home/reachgao/.local/m01-generator-toolchain-r07/share/info' '/home/reachgao/.local/m01-generator-toolchain-r07/share/info/flex.info'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/man/man1'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/flex-2.6.4-r06/doc/flex.1 '/home/reachgao/.local/m01-generator-toolchain-r07/share/man/man1'
+make[3]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/doc'
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/doc'
+Making install in examples
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples'
+Making install in manual
+make[3]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples/manual'
+make[4]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples/manual'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples/manual'
+make[3]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples/manual'
+Making install in fastwc
+make[3]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples/fastwc'
+make[4]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples/fastwc'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples/fastwc'
+make[3]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples/fastwc'
+make[3]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples'
+make[4]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples'
+make[3]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples'
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/examples'
+Making install in po
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/po'
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/ca.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ca/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/da.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/da/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/de.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/de/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/en@quot.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/en@quot/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/en@boldquot.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/en@boldquot/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/eo.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/eo/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/es.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/es/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/fi.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/fi/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/fr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/fr/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/ga.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ga/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/hr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/hr/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/ko.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ko/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/nl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/nl/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/pl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pl/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/pt_BR.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pt_BR/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/ro.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ro/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/ru.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ru/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/sr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sr/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/sv.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sv/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/tr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/tr/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/vi.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/vi/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/zh_CN.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/zh_CN/LC_MESSAGES/flex.mo
+installing /home/reachgao/.local/src/flex-2.6.4-r06/po/zh_TW.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/zh_TW/LC_MESSAGES/flex.mo
+if test "flex" = "gettext-tools"; then \
+  /usr/bin/mkdir -p /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po; \
+  for file in Makefile.in.in remove-potcdate.sin quot.sed boldquot.sed en@quot.header en@boldquot.header insert-header.sin Rules-quot   Makevars.template; do \
+    /usr/bin/install -c -m 644 /home/reachgao/.local/src/flex-2.6.4-r06/po/$file \
+		    /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po/$file; \
+  done; \
+  for file in Makevars; do \
+    rm -f /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po/$file; \
+  done; \
+else \
+  : ; \
+fi
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/po'
+Making install in tests
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/tests'
+make[3]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/tests'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/tests'
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/tests'
+Making install in tools
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/tools'
+make[3]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07/tools'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/tools'
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07/tools'
+make[2]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07'
+make[3]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07'
+/usr/bin/make  install-exec-hook
+make[4]: Entering directory '/home/reachgao/.local/build/flex-2.6.4-r07'
+cd /home/reachgao/.local/m01-generator-toolchain-r07/bin && \
+	ln -s -f flex flex++
+make[4]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/flex'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/flex-2.6.4-r06/AUTHORS /home/reachgao/.local/src/flex-2.6.4-r06/COPYING /home/reachgao/.local/src/flex-2.6.4-r06/NEWS /home/reachgao/.local/src/flex-2.6.4-r06/ONEWS /home/reachgao/.local/src/flex-2.6.4-r06/README.md '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/flex'
+make[3]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07'
+make[2]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07'
+make[1]: Leaving directory '/home/reachgao/.local/build/flex-2.6.4-r07'
+Makefile:2917: warning: ignoring prerequisites on suffix rule definition
+Makefile:2920: warning: ignoring prerequisites on suffix rule definition
+Makefile:2947: warning: ignoring prerequisites on suffix rule definition
+Makefile:2917: warning: ignoring prerequisites on suffix rule definition
+Makefile:2920: warning: ignoring prerequisites on suffix rule definition
+Makefile:2947: warning: ignoring prerequisites on suffix rule definition
+output_end

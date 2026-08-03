@@ -1,5 +1,22 @@
 # 设计决策记录
 
+## ADR-054：R07 Xyce `.prn` 输出格式失败保留，R08 只修正解析合同
+
+- 日期：2026-08-03
+- 状态：R07 runner 42/47、E0/FAIL 已唯一执行并冻结；R07 独立 checker 未运行；R08 待建立
+
+### 事实与根因
+
+- R07 静态合同 39/39、E3 后，M4/Bison/Flex 和串行纯源码 Xyce 7.10.0 均构建/安装成功；版本、GPL 许可证和 B-source 命令返回码均通过。
+- Xyce 的 `-o` basename 输出为固定列 `.prn` 文件，实际 `bsource_self_test.prn` 含 `V(NOUT)=1.25000000e+00`。R07 配置把 output path 写成 `.csv`，runner 用 `csv.DictReader` 读取，观察值为空，停止 parser-only IGZO 候选门。
+- 失败五项中两项是 self-test 输出/数值门，后续两项是未执行 parser-only 的依赖失败，最后一项是依赖命令未登记的 invocation audit；这不构成 Xyce 构建失败、器件仿真失败或物理参数证据。
+
+### R08 边界
+
+- R07 配置、静态报告、runner、失败报告和全部构建/自测证据保持不可改写，不运行 R07 独立 checker，不重跑 R07。
+- R08 使用新配置、runner、独立 checker、报告/输出根；只修正 Xyce `.prn` 读取和 output suffix 注册，并显式绑定 R07 的完整 generator/Xyce 安装树和二进制 SHA-256。不得改变 IGZO 候选、物理输入、构建任务、数值阈值或正式 M01 门。
+- R08 静态门通过并提交后才允许一次工具/自测 runner；runner PASS 后才允许独立持久化检查。正式 M01 器件 DC、ngspice 对照、电路、版图、PEX 和 HZO 继续关闭。
+
 ## ADR-053：R07 允许 runner 路径哈希绑定但禁止导入与进程执行
 
 - 日期：2026-08-03

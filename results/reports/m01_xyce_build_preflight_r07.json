@@ -1,0 +1,321 @@
+{
+  "status": "FAIL",
+  "preflight_status": "FAIL",
+  "evidence_level": "E0",
+  "stage_id": "M01",
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R07",
+  "build_status": "PASS",
+  "bsource_self_test_status": "FAIL",
+  "device_syntax_status": "FAIL",
+  "formal_device_simulation_status": "NOT_RUN_BY_PREFLIGHT",
+  "formal_spice_numerical_status": "NOT_RUN_BY_PREFLIGHT",
+  "circuit_status": "NOT_RUN_BY_PREFLIGHT",
+  "checks": [
+    {
+      "name": "identity:revision_7_xyce_build_preflight",
+      "status": "PASS",
+      "detail": "stage=M01 revision=7 machine=contract_ready"
+    },
+    {
+      "name": "binding:r07_static_contract_passed",
+      "status": "PASS",
+      "detail": "contract=True status=PASS"
+    },
+    {
+      "name": "binding:open_source_recovery_contract",
+      "status": "PASS",
+      "detail": "recovery config and E3 report remain hash-bound"
+    },
+    {
+      "name": "binding:r05_artifacts_unchanged",
+      "status": "PASS",
+      "detail": "artifacts=8/8"
+    },
+    {
+      "name": "binding:r05_failed_gate_state",
+      "status": "PASS",
+      "detail": "R05 remains 19/29 E0 with no independent check"
+    },
+    {
+      "name": "sources:xyce_and_cmake_rehashed",
+      "status": "PASS",
+      "detail": "xyce=True cmake=True"
+    },
+    {
+      "name": "sources:generator_archives_rehashed",
+      "status": "PASS",
+      "detail": "archives=3/3"
+    },
+    {
+      "name": "sources:generator_trees_and_licenses",
+      "status": "PASS",
+      "detail": "sources=3/3"
+    },
+    {
+      "name": "scope:serial_laptop_igzo_only",
+      "status": "PASS",
+      "detail": "{\"active_material_scope\": \"IGZO only\", \"circuit_or_downstream_permitted\": false, \"device_netlist_execution\": false, \"dimension\": \"2D project route; this preflight itself is simulator-tool only\", \"formal_m01_numerical_run\": false, \"fortran_build\": false, \"laptop_target\": true, \"mpi_build\": false, \"serial_build\": true}"
+    },
+    {
+      "name": "outputs:formal_outputs_absent_before_build",
+      "status": "PASS",
+      "detail": "absent=8/8"
+    },
+    {
+      "name": "reuse:r05_dependency_tree_hashes",
+      "status": "PASS",
+      "detail": "suitesparse=a47a4179b7e02550fb5f243a81ba367f02206adc77bff9bf9f0ddd4ba168160f trilinos=5d4b574b82f90da30537bf3a649d6977a550cdb527eeadbf2d29a21dc949afb1"
+    },
+    {
+      "name": "reuse:r05_successful_install_command_audit",
+      "status": "PASS",
+      "detail": "R05 dependency installs passed and R05 Xyce build failed"
+    },
+    {
+      "name": "build:exclusive_new_r07_roots_absent",
+      "status": "PASS",
+      "detail": "/home/reachgao/.local/build/m4-1.4.19-r07=False, /home/reachgao/.local/build/bison-3.8.2-r07=False, /home/reachgao/.local/build/flex-2.6.4-r07=False, /home/reachgao/.local/build/xyce-7.10.0-r07=False, /home/reachgao/.local/m01-generator-toolchain-r07=False, /home/reachgao/.local/xyce-7.10-pure-r07=False"
+    },
+    {
+      "name": "toolchain:pinned_bootstrap_paths_and_hashes",
+      "status": "PASS",
+      "detail": "pinned=6/6"
+    },
+    {
+      "name": "toolchain:bootstrap_version_probes",
+      "status": "PASS",
+      "detail": "passed=4/4"
+    },
+    {
+      "name": "toolchain:no_mpi_fortran_or_proprietary_requirement",
+      "status": "PASS",
+      "detail": "serial C/C++ open-source build only"
+    },
+    {
+      "name": "generator:m4_configure",
+      "status": "PASS",
+      "detail": "GNU M4 1.4.19 configure"
+    },
+    {
+      "name": "generator:m4_build",
+      "status": "PASS",
+      "detail": "GNU M4 two-job build"
+    },
+    {
+      "name": "generator:m4_install",
+      "status": "PASS",
+      "detail": "binary=/home/reachgao/.local/m01-generator-toolchain-r07/bin/m4"
+    },
+    {
+      "name": "generator:bison_configure",
+      "status": "PASS",
+      "detail": "GNU Bison 3.8.2 configure"
+    },
+    {
+      "name": "generator:bison_build",
+      "status": "PASS",
+      "detail": "GNU Bison two-job build"
+    },
+    {
+      "name": "generator:bison_install",
+      "status": "PASS",
+      "detail": "binary=/home/reachgao/.local/m01-generator-toolchain-r07/bin/bison"
+    },
+    {
+      "name": "generator:flex_configure",
+      "status": "PASS",
+      "detail": "Flex 2.6.4 configure"
+    },
+    {
+      "name": "generator:flex_build",
+      "status": "PASS",
+      "detail": "Flex two-job build"
+    },
+    {
+      "name": "generator:flex_install",
+      "status": "PASS",
+      "detail": "binary=/home/reachgao/.local/m01-generator-toolchain-r07/bin/flex"
+    },
+    {
+      "name": "generator:version_probes",
+      "status": "PASS",
+      "detail": "passed=3/3"
+    },
+    {
+      "name": "generator:data_and_include_paths",
+      "status": "PASS",
+      "detail": "bison_data=/home/reachgao/.local/m01-generator-toolchain-r07/share/bison flex_include=/home/reachgao/.local/m01-generator-toolchain-r07/include"
+    },
+    {
+      "name": "generator:smoke_inputs_scope",
+      "status": "PASS",
+      "detail": "minimal parser/scanner generation only"
+    },
+    {
+      "name": "generator:bison_generation_smoke",
+      "status": "PASS",
+      "detail": "return=True output=True"
+    },
+    {
+      "name": "generator:flex_generation_smoke",
+      "status": "PASS",
+      "detail": "return=True output=True"
+    },
+    {
+      "name": "reuse:dependency_trees_unchanged_after_generator_build",
+      "status": "PASS",
+      "detail": "R05 dependency prefixes remain byte-identical"
+    },
+    {
+      "name": "build:xyce_configure",
+      "status": "PASS",
+      "detail": "Xyce 7.10 R07 configure"
+    },
+    {
+      "name": "build:xyce_install",
+      "status": "PASS",
+      "detail": "binary=/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce"
+    },
+    {
+      "name": "binary:version_fingerprint",
+      "status": "PASS",
+      "detail": "Xyce Release 7.10.0-opensource"
+    },
+    {
+      "name": "binary:license_fingerprint",
+      "status": "PASS",
+      "detail": "GPL token present"
+    },
+    {
+      "name": "binary:installed_executable_hash",
+      "status": "PASS",
+      "detail": "sha256=e98dc88330b0dfd2439dfb19e0e5c108febfaaaee91c748e6e9e127e71afc93f bytes=75498456"
+    },
+    {
+      "name": "self_test:netlist_scope",
+      "status": "PASS",
+      "detail": "controlled scalar source only; no project candidate included"
+    },
+    {
+      "name": "self_test:xyce_process_pass",
+      "status": "FAIL",
+      "detail": "return=True log=True output=False"
+    },
+    {
+      "name": "self_test:deterministic_scalar_value",
+      "status": "FAIL",
+      "detail": "observed=None expected=1.25 tolerance=1e-09"
+    },
+    {
+      "name": "device_syntax:netlist_scope_and_candidate_hash",
+      "status": "FAIL",
+      "detail": "frozen IGZO candidate only; parser-only gate"
+    },
+    {
+      "name": "device_syntax:xyce_parser_pass",
+      "status": "FAIL",
+      "detail": "return=False log=False"
+    },
+    {
+      "name": "device_syntax:no_numerical_output",
+      "status": "PASS",
+      "detail": "numerical_output_exists=False"
+    },
+    {
+      "name": "execution:no_formal_m01_outputs_after_preflight",
+      "status": "PASS",
+      "detail": "absent=8/8"
+    },
+    {
+      "name": "execution:invocation_audit",
+      "status": "FAIL",
+      "detail": "commands=23 dependency_rebuild=false formal_device_dc=false"
+    },
+    {
+      "name": "gate:m01_and_downstream_remain_closed",
+      "status": "PASS",
+      "detail": "formal M01 requires persisted R07 preflight plus independent check"
+    },
+    {
+      "name": "artifacts:source_and_build_manifests",
+      "status": "PASS",
+      "detail": "sources=/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r07/source_manifest.json build=/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r07/build_manifest.json"
+    },
+    {
+      "name": "artifacts:preflight_log_and_exclusive_report",
+      "status": "PASS",
+      "detail": "log=True report_preexisting=False"
+    }
+  ],
+  "failures": [
+    {
+      "name": "self_test:xyce_process_pass",
+      "status": "FAIL",
+      "detail": "return=True log=True output=False"
+    },
+    {
+      "name": "self_test:deterministic_scalar_value",
+      "status": "FAIL",
+      "detail": "observed=None expected=1.25 tolerance=1e-09"
+    },
+    {
+      "name": "device_syntax:netlist_scope_and_candidate_hash",
+      "status": "FAIL",
+      "detail": "frozen IGZO candidate only; parser-only gate"
+    },
+    {
+      "name": "device_syntax:xyce_parser_pass",
+      "status": "FAIL",
+      "detail": "return=False log=False"
+    },
+    {
+      "name": "execution:invocation_audit",
+      "status": "FAIL",
+      "detail": "commands=23 dependency_rebuild=false formal_device_dc=false"
+    }
+  ],
+  "summary": {
+    "check_count": 47,
+    "passed": 42,
+    "failed": 5,
+    "process_invocations": 23,
+    "ngspice_invoked": false,
+    "aimspice_invoked": false,
+    "controlled_generator_smoke_invoked": true,
+    "controlled_bsource_self_test_invoked": true,
+    "device_syntax_only_invoked": false,
+    "formal_device_dc_invoked": false,
+    "formal_m01_outputs_created": false,
+    "r05_dependency_rebuild_invoked": false,
+    "r05_partial_xyce_reused": false,
+    "r06_xyce_or_outputs_reused": false
+  },
+  "config": {
+    "path": "config/m01_xyce_build_preflight_r07.json",
+    "sha256": "be400b354a32f8c2a42143b9b7cce6f4ab1bbe88c026f36b7924f9314efb33cd"
+  },
+  "runner": {
+    "path": "scripts/run_m01_xyce_build_preflight_r07.py",
+    "sha256": "cbdb7daf2b43963c7df92c7fe7b964ffc756743f2709a002ac8333989ac0437f"
+  },
+  "preflight_log": {
+    "path": "results/compact/m01_xyce_build_preflight_r07/preflight.log",
+    "sha256": "3a78960f3960daafacc678d251c930a6dcee242a7e0063d1957f82998a0669fe"
+  },
+  "source_manifest": {
+    "path": "results/compact/m01_xyce_build_preflight_r07/source_manifest.json",
+    "sha256": "71848fe4b3f8dffe5ef79ac4de6d9be785f42bd9bddbce9f138258f8fe94129d"
+  },
+  "build_manifest": {
+    "path": "results/compact/m01_xyce_build_preflight_r07/build_manifest.json",
+    "sha256": "82e583e1ca60914a737acc26b021b7901c69c7af8eb853b82def244d9cf42723"
+  },
+  "xyce_binary": {
+    "path": "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+    "sha256": "e98dc88330b0dfd2439dfb19e0e5c108febfaaaee91c748e6e9e127e71afc93f",
+    "bytes": 75498456
+  },
+  "observed_self_test_value_v": null,
+  "evidence_boundary": "This is a revision-7 build/tool recovery contract, not a device simulation result. It preserves and hash-binds the committed R05 19/29 build failure and the immutable R06 36/37 static checker failure. R07 changes only the contradictory independent-checker runner-path-literal assertion: the independent checker may name the R07 runner for hash binding, but it may not import the runner, import or invoke subprocess, or execute any process. R07 reuses the same pinned open-source M4/Bison/Flex source trees and only the complete tree-hashed R05 SuiteSparse and Trilinos prefixes; it must not reuse the partial R05 Xyce build or any R05/R06 build or output namespace. The local AIM-Spice executable is excluded because auditable lawful license provenance is absent. A passing static contract establishes only that the recovery chain is frozen and reviewable. A later passing runner plus independent persisted-evidence check can establish only a reproducible pure-source serial Xyce binary, a scalar B-source tool self-test and parser-only frozen IGZO candidate syntax. These are not an IGZO equation, device curve, SPICE route comparison, physical parameter, experimental calibration or circuit result. M01 remains E0 until both formal open-source device-only routes and their independent persisted-evidence gate pass; C00, circuit, layout, PEX and HZO remain closed.",
+  "next_gate": "Retain this failed R07 preflight and stop M01; diagnose in a new revision without deleting evidence or weakening the registered gate."
+}

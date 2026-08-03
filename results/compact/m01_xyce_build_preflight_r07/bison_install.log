@@ -1,0 +1,241 @@
+argv=["/usr/bin/make", "install"]
+cwd=/home/reachgao/.local/build/bison-3.8.2-r07
+returncode=0
+timed_out=false
+elapsed_seconds=0.561277
+output_begin
+make[1]: Entering directory '/home/reachgao/.local/build/bison-3.8.2-r07'
+/usr/bin/make  install-recursive
+make[2]: Entering directory '/home/reachgao/.local/build/bison-3.8.2-r07'
+Making install in po
+make[3]: Entering directory '/home/reachgao/.local/build/bison-3.8.2-r07/po'
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/bg.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/bg/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/ca.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ca/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/da.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/da/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/de.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/de/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/el.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/el/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/eo.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/eo/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/es.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/es/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/et.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/et/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/fi.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/fi/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/fr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/fr/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/ga.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ga/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/hr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/hr/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/id.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/id/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/it.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/it/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/ja.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ja/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/ms.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ms/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/nb.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/nb/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/nl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/nl/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/pl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pl/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/pt.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pt/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/pt_BR.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pt_BR/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/ro.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ro/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/ru.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ru/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/sr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sr/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/sv.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sv/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/tr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/tr/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/uk.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/uk/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/vi.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/vi/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/zh_CN.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/zh_CN/LC_MESSAGES/bison.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/po/zh_TW.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/zh_TW/LC_MESSAGES/bison.mo
+if test "bison" = "gettext-tools"; then \
+  /usr/bin/mkdir -p /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po; \
+  for file in Makefile.in.in remove-potcdate.sin quot.sed boldquot.sed en@quot.header en@boldquot.header insert-header.sin Rules-quot   Makevars.template; do \
+    /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/po/$file \
+		    /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po/$file; \
+  done; \
+  for file in Makevars; do \
+    rm -f /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po/$file; \
+  done; \
+else \
+  : ; \
+fi
+make[3]: Leaving directory '/home/reachgao/.local/build/bison-3.8.2-r07/po'
+Making install in runtime-po
+make[3]: Entering directory '/home/reachgao/.local/build/bison-3.8.2-r07/runtime-po'
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/ast.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ast/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/bg.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/bg/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/ca.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ca/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/da.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/da/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/de.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/de/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/el.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/el/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/eo.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/eo/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/es.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/es/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/et.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/et/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/fi.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/fi/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/fr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/fr/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/ga.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ga/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/gl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/gl/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/hr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/hr/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/hu.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/hu/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/ia.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ia/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/id.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/id/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/it.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/it/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/ja.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ja/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/ky.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ky/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/lt.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/lt/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/lv.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/lv/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/ms.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ms/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/nb.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/nb/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/nl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/nl/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/pl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pl/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/pt.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pt/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/pt_BR.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pt_BR/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/ro.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ro/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/ru.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ru/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/sl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sl/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/sq.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sq/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/sr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sr/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/sv.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sv/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/ta.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ta/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/th.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/th/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/tr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/tr/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/uk.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/uk/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/vi.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/vi/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/zh_CN.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/zh_CN/LC_MESSAGES/bison-runtime.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/zh_TW.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/zh_TW/LC_MESSAGES/bison-runtime.mo
+if test "bison" = "gettext-tools"; then \
+  /usr/bin/mkdir -p /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po; \
+  for file in Makefile.in.in remove-potcdate.sin quot.sed boldquot.sed en@quot.header en@boldquot.header insert-header.sin Rules-quot   Makevars.template; do \
+    /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/runtime-po/$file \
+		    /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po/$file; \
+  done; \
+  for file in Makevars; do \
+    rm -f /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po/$file; \
+  done; \
+else \
+  : ; \
+fi
+make[3]: Leaving directory '/home/reachgao/.local/build/bison-3.8.2-r07/runtime-po'
+Making install in gnulib-po
+make[3]: Entering directory '/home/reachgao/.local/build/bison-3.8.2-r07/gnulib-po'
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/af.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/af/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/be.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/be/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/bg.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/bg/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/ca.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ca/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/cs.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/cs/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/da.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/da/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/de.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/de/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/el.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/el/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/eo.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/eo/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/es.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/es/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/et.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/et/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/eu.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/eu/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/fi.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/fi/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/fr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/fr/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/ga.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ga/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/gl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/gl/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/hu.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/hu/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/it.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/it/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/ja.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ja/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/ko.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ko/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/ms.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ms/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/nb.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/nb/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/nl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/nl/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/pl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pl/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/pt.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pt/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/pt_BR.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pt_BR/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/ro.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ro/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/ru.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ru/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/rw.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/rw/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/sk.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sk/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/sl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sl/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/sr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sr/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/sv.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sv/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/tr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/tr/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/uk.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/uk/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/vi.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/vi/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/zh_CN.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/zh_CN/LC_MESSAGES/bison-gnulib.mo
+installing /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/zh_TW.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/zh_TW/LC_MESSAGES/bison-gnulib.mo
+if test "bison" = "gettext-tools"; then \
+  /usr/bin/mkdir -p /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po; \
+  for file in Makefile.in.in remove-potcdate.sin quot.sed boldquot.sed en@quot.header en@boldquot.header insert-header.sin Rules-quot   Makevars.template; do \
+    /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/gnulib-po/$file \
+		    /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po/$file; \
+  done; \
+  for file in Makevars; do \
+    rm -f /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po/$file; \
+  done; \
+else \
+  : ; \
+fi
+make[3]: Leaving directory '/home/reachgao/.local/build/bison-3.8.2-r07/gnulib-po'
+Making install in .
+make[3]: Entering directory '/home/reachgao/.local/build/bison-3.8.2-r07'
+  GEN      /home/reachgao/.local/src/bison-3.8.2-r06/doc/bison.help
+make[4]: Entering directory '/home/reachgao/.local/build/bison-3.8.2-r07'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/bin'
+  /usr/bin/install -c src/bison '/home/reachgao/.local/m01-generator-toolchain-r07/bin'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/lib'
+ /usr/bin/install -c -m 644  lib/liby.a '/home/reachgao/.local/m01-generator-toolchain-r07/lib'
+ ( cd '/home/reachgao/.local/m01-generator-toolchain-r07/lib' && ranlib liby.a )
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/bin'
+ /usr/bin/install -c src/yacc '/home/reachgao/.local/m01-generator-toolchain-r07/bin'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/aclocal'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/m4/bison-i18n.m4 '/home/reachgao/.local/m01-generator-toolchain-r07/share/aclocal'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c++/calc++'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c++/calc++/driver.cc /home/reachgao/.local/src/bison-3.8.2-r06/examples/c++/calc++/driver.hh /home/reachgao/.local/src/bison-3.8.2-r06/examples/c++/calc++/scanner.ll /home/reachgao/.local/src/bison-3.8.2-r06/examples/c++/calc++/calc++.cc /home/reachgao/.local/src/bison-3.8.2-r06/examples/c++/calc++/parser.yy '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c++/calc++'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c++'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c++/simple.yy '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c++'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/bistromathic'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/bistromathic/parse.y /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/bistromathic/Makefile /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/bistromathic/README.md '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/bistromathic'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/README.md '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/calc'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/calc/calc.y /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/calc/Makefile /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/calc/README.md '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/calc'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/d/calc'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/d/calc/calc.y /home/reachgao/.local/src/bison-3.8.2-r06/examples/d/calc/Makefile '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/d/calc'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c++/calc++'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c++/calc++/README.md /home/reachgao/.local/src/bison-3.8.2-r06/examples/c++/calc++/Makefile '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c++/calc++'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c++'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c++/README.md /home/reachgao/.local/src/bison-3.8.2-r06/examples/c++/Makefile /home/reachgao/.local/src/bison-3.8.2-r06/examples/c++/variant.yy /home/reachgao/.local/src/bison-3.8.2-r06/examples/c++/variant-11.yy '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c++'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/d'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/d/README.md '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/d'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/AUTHORS /home/reachgao/.local/src/bison-3.8.2-r06/COPYING /home/reachgao/.local/src/bison-3.8.2-r06/NEWS /home/reachgao/.local/src/bison-3.8.2-r06/README /home/reachgao/.local/src/bison-3.8.2-r06/THANKS /home/reachgao/.local/src/bison-3.8.2-r06/TODO '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/README.md '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/glr'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/glr/c++-types.y /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/glr/Makefile /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/glr/README.md '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/glr'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/java'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/java/README.md '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/java'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/java/calc'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/java/calc/Calc.y /home/reachgao/.local/src/bison-3.8.2-r06/examples/java/calc/Makefile '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/java/calc'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/java/simple'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/java/simple/Calc.y /home/reachgao/.local/src/bison-3.8.2-r06/examples/java/simple/Makefile '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/java/simple'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/lexcalc'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/lexcalc/parse.y /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/lexcalc/scan.l /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/lexcalc/Makefile /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/lexcalc/README.md '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/lexcalc'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/bison/m4sugar'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/data/m4sugar/foreach.m4 /home/reachgao/.local/src/bison-3.8.2-r06/data/m4sugar/m4sugar.m4 '/home/reachgao/.local/m01-generator-toolchain-r07/share/bison/m4sugar'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/mfcalc'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/mfcalc/Makefile '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/mfcalc'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/bison'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/data/README.md /home/reachgao/.local/src/bison-3.8.2-r06/data/bison-default.css '/home/reachgao/.local/m01-generator-toolchain-r07/share/bison'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/pushcalc'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/pushcalc/calc.y /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/pushcalc/Makefile /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/pushcalc/README.md '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/pushcalc'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/reccalc'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/reccalc/parse.y /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/reccalc/scan.l /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/reccalc/Makefile /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/reccalc/README.md '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/reccalc'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/rpcalc'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/rpcalc/Makefile '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/rpcalc'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/d/simple'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/d/simple/calc.y /home/reachgao/.local/src/bison-3.8.2-r06/examples/d/simple/Makefile '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/d/simple'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/bison/skeletons'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/bison.m4 /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/c++-skel.m4 /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/c++.m4 /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/c-like.m4 /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/c-skel.m4 /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/c.m4 /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/glr.c /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/glr.cc /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/glr2.cc /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/java-skel.m4 /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/java.m4 /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/lalr1.cc /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/lalr1.java /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/location.cc /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/stack.hh /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/traceon.m4 /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/variant.hh /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/yacc.c /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/d-skel.m4 /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/d.m4 /home/reachgao/.local/src/bison-3.8.2-r06/data/skeletons/lalr1.d '/home/reachgao/.local/m01-generator-toolchain-r07/share/bison/skeletons'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/bison/xslt'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/data/xslt/bison.xsl /home/reachgao/.local/src/bison-3.8.2-r06/data/xslt/xml2dot.xsl /home/reachgao/.local/src/bison-3.8.2-r06/data/xslt/xml2text.xsl /home/reachgao/.local/src/bison-3.8.2-r06/data/xslt/xml2xhtml.xsl '/home/reachgao/.local/m01-generator-toolchain-r07/share/bison/xslt'
+  GEN      /home/reachgao/.local/src/bison-3.8.2-r06/doc/bison.help
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/info'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/doc/bison.info '/home/reachgao/.local/m01-generator-toolchain-r07/share/info'
+ install-info --info-dir='/home/reachgao/.local/m01-generator-toolchain-r07/share/info' '/home/reachgao/.local/m01-generator-toolchain-r07/share/info/bison.info'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/man/man1'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/doc/bison.1 doc/yacc.1 '/home/reachgao/.local/m01-generator-toolchain-r07/share/man/man1'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/mfcalc'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/mfcalc/calc.h /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/mfcalc/mfcalc.y '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/mfcalc'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/rpcalc'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/bison-3.8.2-r06/examples/c/rpcalc/rpcalc.y '/home/reachgao/.local/m01-generator-toolchain-r07/share/doc/bison/examples/c/rpcalc'
+make[4]: Leaving directory '/home/reachgao/.local/build/bison-3.8.2-r07'
+make[3]: Leaving directory '/home/reachgao/.local/build/bison-3.8.2-r07'
+make[2]: Leaving directory '/home/reachgao/.local/build/bison-3.8.2-r07'
+make[1]: Leaving directory '/home/reachgao/.local/build/bison-3.8.2-r07'
+output_end

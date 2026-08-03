@@ -1,0 +1,356 @@
+{
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R07",
+  "serial_build": true,
+  "fortran_enabled": false,
+  "mpi_enabled": false,
+  "parallel_jobs": 2,
+  "dependency_rebuild_permitted": false,
+  "reused_dependency_prefixes": {
+    "suitesparse": "/home/reachgao/.local/suitesparse-7.8.3-r05",
+    "trilinos": "/home/reachgao/.local/trilinos-14.4-serial-r05"
+  },
+  "generator_install_prefix": "/home/reachgao/.local/m01-generator-toolchain-r07",
+  "xyce_install_prefix": "/home/reachgao/.local/xyce-7.10-pure-r07",
+  "build_directories": {
+    "m4_build": "/home/reachgao/.local/build/m4-1.4.19-r07",
+    "bison_build": "/home/reachgao/.local/build/bison-3.8.2-r07",
+    "flex_build": "/home/reachgao/.local/build/flex-2.6.4-r07",
+    "xyce_build": "/home/reachgao/.local/build/xyce-7.10.0-r07"
+  },
+  "environment_overrides": {
+    "M4": "/home/reachgao/.local/m01-generator-toolchain-r07/bin/m4",
+    "BISON_PKGDATADIR": "/home/reachgao/.local/m01-generator-toolchain-r07/share/bison"
+  },
+  "commands": [
+    {
+      "name": "tool_probe_cmake",
+      "argv": [
+        "/home/reachgao/.local/cmake-3.30.5/bin/cmake",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.007093929998518433,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/tool_probe_cmake.log",
+      "log_sha256": "ad9424497e3ae7164792b6e1d3135be50b4227d94190a25cf7b12ab2000fe103"
+    },
+    {
+      "name": "tool_probe_gcc",
+      "argv": [
+        "/usr/bin/gcc",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0010317870001017582,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/tool_probe_gcc.log",
+      "log_sha256": "1cf98496bc8d8ae2385fd1b3363b1dadd6430c0c7fecb74dd0ded9ef76f816a4"
+    },
+    {
+      "name": "tool_probe_gxx",
+      "argv": [
+        "/usr/bin/g++",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0008860359994287137,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/tool_probe_gxx.log",
+      "log_sha256": "a1a136701e9433ca9f03540d6c9d65bfd7d8967c325078935ae00296d73820fd"
+    },
+    {
+      "name": "tool_probe_make",
+      "argv": [
+        "/usr/bin/make",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0006796460002078675,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/tool_probe_make.log",
+      "log_sha256": "b95d32d36e96ed9bdc5e34ffec2722fe57ee9dda0f181e0c54be24d23bd77fae"
+    },
+    {
+      "name": "m4_configure",
+      "argv": [
+        "/home/reachgao/.local/src/m4-1.4.19-r06/configure",
+        "--prefix=/home/reachgao/.local/m01-generator-toolchain-r07",
+        "--disable-dependency-tracking"
+      ],
+      "cwd": "/home/reachgao/.local/build/m4-1.4.19-r07",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 35.247821959997964,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/m4_configure.log",
+      "log_sha256": "cda09ecbfd25b5e81b5ccc691944b7f24657d9a00bdc176f303810b28badc5ae"
+    },
+    {
+      "name": "m4_build",
+      "argv": [
+        "/usr/bin/make",
+        "-j2"
+      ],
+      "cwd": "/home/reachgao/.local/build/m4-1.4.19-r07",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 4.0897222429994144,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/m4_build.log",
+      "log_sha256": "0a265a74b023f44b7c22ef7105186e0f2458bc8bdda63ef08c834089309803f7"
+    },
+    {
+      "name": "m4_install",
+      "argv": [
+        "/usr/bin/make",
+        "install"
+      ],
+      "cwd": "/home/reachgao/.local/build/m4-1.4.19-r07",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.29040089399859426,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/m4_install.log",
+      "log_sha256": "04282569b41d24527a4adc43fb4827d4a964abb09a502c0ff05ba3518b15350f"
+    },
+    {
+      "name": "bison_configure",
+      "argv": [
+        "/home/reachgao/.local/src/bison-3.8.2-r06/configure",
+        "--prefix=/home/reachgao/.local/m01-generator-toolchain-r07",
+        "--disable-dependency-tracking"
+      ],
+      "cwd": "/home/reachgao/.local/build/bison-3.8.2-r07",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 27.6240674949986,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/bison_configure.log",
+      "log_sha256": "3a184bf4b0f9b07b88797dcb60249dacc6b1289c7979eb9c3962ff838e4a9f05"
+    },
+    {
+      "name": "bison_build",
+      "argv": [
+        "/usr/bin/make",
+        "-j2"
+      ],
+      "cwd": "/home/reachgao/.local/build/bison-3.8.2-r07",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 5.305341130999295,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/bison_build.log",
+      "log_sha256": "babb6b77e65a43f328d03d6f0e7d42219030a403aca7637425700a4638ebc311"
+    },
+    {
+      "name": "bison_install",
+      "argv": [
+        "/usr/bin/make",
+        "install"
+      ],
+      "cwd": "/home/reachgao/.local/build/bison-3.8.2-r07",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.5612767100028577,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/bison_install.log",
+      "log_sha256": "bd0030a25249e7e9b34e8a9969d291c1bde4c5932e2cccc4960b7c4cd1189462"
+    },
+    {
+      "name": "flex_configure",
+      "argv": [
+        "/home/reachgao/.local/src/flex-2.6.4-r06/configure",
+        "--prefix=/home/reachgao/.local/m01-generator-toolchain-r07",
+        "--disable-dependency-tracking"
+      ],
+      "cwd": "/home/reachgao/.local/build/flex-2.6.4-r07",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 5.541875177001202,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/flex_configure.log",
+      "log_sha256": "e9883f77527bc83cf84a554d2605df5e56bcd80b2bd39201291348c91c7bb99d"
+    },
+    {
+      "name": "flex_build",
+      "argv": [
+        "/usr/bin/make",
+        "-j2"
+      ],
+      "cwd": "/home/reachgao/.local/build/flex-2.6.4-r07",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 2.9999221269972622,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/flex_build.log",
+      "log_sha256": "6e2c2c09f2bc08f6ca3e93f056a9ce182ec5e7d9359ebebd527bcfad58a9e4e7"
+    },
+    {
+      "name": "flex_install",
+      "argv": [
+        "/usr/bin/make",
+        "install"
+      ],
+      "cwd": "/home/reachgao/.local/build/flex-2.6.4-r07",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.16730585600089398,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/flex_install.log",
+      "log_sha256": "532c2f62cbadee105709b7abf68c56659a5bc17d1ffb84256ac99f245f2fb3ec"
+    },
+    {
+      "name": "generator_probe_m4",
+      "argv": [
+        "/home/reachgao/.local/m01-generator-toolchain-r07/bin/m4",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.001752561001922004,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/generator_probe_m4.log",
+      "log_sha256": "027be14032c98c54d2f5545bf941e7a203672ef6922dbf680613c5b04cd30775"
+    },
+    {
+      "name": "generator_probe_bison",
+      "argv": [
+        "/home/reachgao/.local/m01-generator-toolchain-r07/bin/bison",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0016399109990743455,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/generator_probe_bison.log",
+      "log_sha256": "8fefc37e554927bbc18d4ed21a6052f1098d6ade958f2913b9cf5549341fba19"
+    },
+    {
+      "name": "generator_probe_flex",
+      "argv": [
+        "/home/reachgao/.local/m01-generator-toolchain-r07/bin/flex",
+        "--version"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0006902810018800665,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/generator_probe_flex.log",
+      "log_sha256": "5b418ac1e8f205de3e05b4deb8fe98fd91c7f7eaf490cf36329a1888c3c94580"
+    },
+    {
+      "name": "generator_bison_smoke",
+      "argv": [
+        "/home/reachgao/.local/m01-generator-toolchain-r07/bin/bison",
+        "--output=/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r07/generator_smoke_parser.c",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r07/generator_smoke.y"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.03422754699931829,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/generator_bison_smoke.log",
+      "log_sha256": "27242a444f841bc508ccf0f482c7b035f7f56c37c89eb5d6721b0b6ec173a905"
+    },
+    {
+      "name": "generator_flex_smoke",
+      "argv": [
+        "/home/reachgao/.local/m01-generator-toolchain-r07/bin/flex",
+        "--outfile=/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r07/generator_smoke_scanner.c",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r07/generator_smoke.l"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.02936937399863382,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/generator_flex_smoke.log",
+      "log_sha256": "5c7e93f089b1aee9bf68a03b5aea388bc9f59196264f1305494301e165b66a50"
+    },
+    {
+      "name": "xyce_configure",
+      "argv": [
+        "/home/reachgao/.local/cmake-3.30.5/bin/cmake",
+        "-S",
+        "/home/reachgao/.local/src/xyce-7.10.0",
+        "-B",
+        "/home/reachgao/.local/build/xyce-7.10.0-r07",
+        "-DCMAKE_INSTALL_PREFIX=/home/reachgao/.local/xyce-7.10-pure-r07",
+        "-DCMAKE_PREFIX_PATH=/home/reachgao/.local/trilinos-14.4-serial-r05;/home/reachgao/.local/suitesparse-7.8.3-r05",
+        "-DTrilinos_ROOT=/home/reachgao/.local/trilinos-14.4-serial-r05",
+        "-DAMD_LIBRARY_DIRS=/home/reachgao/.local/suitesparse-7.8.3-r05/lib",
+        "-DAMD_INCLUDE_DIRS=/home/reachgao/.local/suitesparse-7.8.3-r05/include/suitesparse",
+        "-DFLEX_EXECUTABLE=/home/reachgao/.local/m01-generator-toolchain-r07/bin/flex",
+        "-DFLEX_INCLUDE_DIR=/home/reachgao/.local/m01-generator-toolchain-r07/include",
+        "-DBISON_EXECUTABLE=/home/reachgao/.local/m01-generator-toolchain-r07/bin/bison",
+        "-DTrilinos_ENABLE_Fortran=OFF",
+        "-DTPL_ENABLE_MPI=OFF",
+        "-DXyce_ENABLE_TESTS=OFF",
+        "-DCMAKE_C_COMPILER=/usr/bin/gcc",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++",
+        "-DCMAKE_BUILD_TYPE=Release"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 3.9967072250001365,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/xyce_configure.log",
+      "log_sha256": "6024f7da36191e5e7abc1f0f76feaf71b480a9d414d9b65f5e7c58f1e470efb8"
+    },
+    {
+      "name": "xyce_build_install",
+      "argv": [
+        "/home/reachgao/.local/cmake-3.30.5/bin/cmake",
+        "--build",
+        "/home/reachgao/.local/build/xyce-7.10.0-r07",
+        "--parallel",
+        "2",
+        "--target",
+        "install"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 482.9556138070002,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/xyce_build_install.log",
+      "log_sha256": "daba7a763eeda18ad73ea29d38ffb7672c971c1a40f8892f8f3432282e561577"
+    },
+    {
+      "name": "xyce_version",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-v"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.009239015998900868,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/xyce_version.log",
+      "log_sha256": "724cea49ee633155e8f7c15ede5ec3edebe283e2375cab6d3d7fa1462ffb502f"
+    },
+    {
+      "name": "xyce_license",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-license"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.0058027720006066374,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/xyce_license.log",
+      "log_sha256": "f2e30f9b53660919e80ae5f18db25d075a73a58c6078720ffaf7f0de09030150"
+    },
+    {
+      "name": "xyce_bsource_self_test_command",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-l",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r07/bsource_self_test.log",
+        "-o",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r07/bsource_self_test",
+        "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee/results/compact/m01_xyce_build_preflight_r07/bsource_self_test.cir"
+      ],
+      "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.028694296997855417,
+      "log_path": "results/compact/m01_xyce_build_preflight_r07/xyce_bsource_self_test_command.log",
+      "log_sha256": "970fb0e4a7241d9dd380b84e952e08569dd6e2ecce9897b88e085cbdd88670e4"
+    }
+  ]
+}

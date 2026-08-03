@@ -1,0 +1,116 @@
+argv=["/usr/bin/make", "install"]
+cwd=/home/reachgao/.local/build/m4-1.4.19-r07
+returncode=0
+timed_out=false
+elapsed_seconds=0.290401
+output_begin
+make[1]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+/usr/bin/make  install-recursive
+make[2]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+Making install in .
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+make[4]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+Making install in examples
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/examples'
+make[4]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/examples'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/examples'
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/examples'
+Making install in lib
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/lib'
+/usr/bin/make  install-am
+make[4]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/lib'
+make[5]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/lib'
+make[5]: Nothing to be done for 'install-exec-am'.
+make[5]: Nothing to be done for 'install-data-am'.
+make[5]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/lib'
+make[4]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/lib'
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/lib'
+Making install in src
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/src'
+make[4]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/src'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/bin'
+  /usr/bin/install -c m4 '/home/reachgao/.local/m01-generator-toolchain-r07/bin'
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/src'
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/src'
+Making install in doc
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/doc'
+make[4]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/doc'
+make[4]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/info'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/m4-1.4.19-r06/doc/m4.info /home/reachgao/.local/src/m4-1.4.19-r06/doc/m4.info-1 /home/reachgao/.local/src/m4-1.4.19-r06/doc/m4.info-2 '/home/reachgao/.local/m01-generator-toolchain-r07/share/info'
+ install-info --info-dir='/home/reachgao/.local/m01-generator-toolchain-r07/share/info' '/home/reachgao/.local/m01-generator-toolchain-r07/share/info/m4.info'
+ /usr/bin/mkdir -p '/home/reachgao/.local/m01-generator-toolchain-r07/share/man/man1'
+ /usr/bin/install -c -m 644 /home/reachgao/.local/src/m4-1.4.19-r06/doc/m4.1 '/home/reachgao/.local/m01-generator-toolchain-r07/share/man/man1'
+make[4]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/doc'
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/doc'
+Making install in checks
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/checks'
+make[4]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/checks'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/checks'
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/checks'
+Making install in po
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/po'
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/bg.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/bg/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/cs.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/cs/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/da.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/da/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/de.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/de/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/el.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/el/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/eo.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/eo/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/es.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/es/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/fi.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/fi/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/fr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/fr/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/ga.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ga/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/gl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/gl/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/hr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/hr/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/id.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/id/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/ja.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ja/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/ko.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ko/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/nl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/nl/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/pl.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pl/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/pt_BR.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/pt_BR/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/ro.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ro/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/ru.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/ru/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/sr.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sr/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/sv.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/sv/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/uk.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/uk/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/vi.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/vi/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/zh_CN.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/zh_CN/LC_MESSAGES/m4.mo
+installing /home/reachgao/.local/src/m4-1.4.19-r06/po/zh_TW.gmo as /home/reachgao/.local/m01-generator-toolchain-r07/share/locale/zh_TW/LC_MESSAGES/m4.mo
+if test "m4" = "gettext-tools"; then \
+  /usr/bin/mkdir -p /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po; \
+  for file in Makefile.in.in remove-potcdate.sin quot.sed boldquot.sed en@quot.header en@boldquot.header insert-header.sin Rules-quot   Makevars.template; do \
+    /usr/bin/install -c -m 644 /home/reachgao/.local/src/m4-1.4.19-r06/po/$file \
+		    /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po/$file; \
+  done; \
+  for file in Makevars; do \
+    rm -f /home/reachgao/.local/m01-generator-toolchain-r07/share/gettext/po/$file; \
+  done; \
+else \
+  : ; \
+fi
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/po'
+Making install in tests
+make[3]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+/usr/bin/make  install-recursive
+make[4]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+Making install in .
+make[5]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+make[6]: Entering directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+make[6]: Nothing to be done for 'install-exec-am'.
+make[6]: Nothing to be done for 'install-data-am'.
+make[6]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+make[5]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+make[4]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+make[3]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07/tests'
+make[2]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+make[1]: Leaving directory '/home/reachgao/.local/build/m4-1.4.19-r07'
+output_end

@@ -1,0 +1,154 @@
+{
+  "archives": {
+    "xyce": {
+      "path": "/home/reachgao/.local/src/xyce-7.10.0.tar.gz",
+      "expected_sha256": "b5a883196f0a2b3972fd13c541fecf04735bfabc7d124d7c7e17de707204f4e2",
+      "actual_sha256": "b5a883196f0a2b3972fd13c541fecf04735bfabc7d124d7c7e17de707204f4e2"
+    },
+    "cmake": {
+      "path": "/home/reachgao/.local/src/cmake-3.30.5-linux-x86_64.tar.gz",
+      "expected_sha256": "f747d9b23e1a252a8beafb4ed2bc2ddf78cff7f04a8e4de19f4ff88e9b51dc9d",
+      "actual_sha256": "f747d9b23e1a252a8beafb4ed2bc2ddf78cff7f04a8e4de19f4ff88e9b51dc9d"
+    },
+    "m4": {
+      "path": "/home/reachgao/.local/src/m4-1.4.19-r06.tar.xz",
+      "expected_sha256": "63aede5c6d33b6d9b13511cd0be2cac046f2e70fd0a07aa9573a04a82783af96",
+      "actual_sha256": "63aede5c6d33b6d9b13511cd0be2cac046f2e70fd0a07aa9573a04a82783af96"
+    },
+    "bison": {
+      "path": "/home/reachgao/.local/src/bison-3.8.2-r06.tar.xz",
+      "expected_sha256": "9bba0214ccf7f1079c5d59210045227bcf619519840ebfa80cd3849cff5a5bf2",
+      "actual_sha256": "9bba0214ccf7f1079c5d59210045227bcf619519840ebfa80cd3849cff5a5bf2"
+    },
+    "flex": {
+      "path": "/home/reachgao/.local/src/flex-2.6.4-r06.tar.gz",
+      "expected_sha256": "e87aae032bf07c26f85ac0ed3250998c37621d95f8bd748b31f15b33c45ee995",
+      "actual_sha256": "e87aae032bf07c26f85ac0ed3250998c37621d95f8bd748b31f15b33c45ee995"
+    }
+  },
+  "sources": {
+    "xyce": {
+      "path": "/home/reachgao/.local/src/xyce-7.10.0",
+      "key_file": "INSTALL.md",
+      "key_file_sha256": "6fb3830942ae014daad7f5fa220b5981d8d0253f66a649ee64cb4f3f64badce2"
+    },
+    "m4": {
+      "path": "/home/reachgao/.local/src/m4-1.4.19-r06",
+      "configure_sha256": "c2ba16f2b0e163d2d92518c7a70a3917d952db32dc63651519f6d0967f84de14",
+      "license_file": "COPYING",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    "bison": {
+      "path": "/home/reachgao/.local/src/bison-3.8.2-r06",
+      "configure_sha256": "ff05e98a7309a3887c42b0d387806fab93da4daef11e14d0b1181cfdf357ed8c",
+      "license_file": "COPYING",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    "flex": {
+      "path": "/home/reachgao/.local/src/flex-2.6.4-r06",
+      "configure_sha256": "8dfe6215ded70ada802e2e540b75323575930333cb89bb2b9d2927fb97424a8f",
+      "license_file": "COPYING",
+      "license_sha256": "97fd685958d93be7f8dab939bb8161dbd6afb0718c63bfc337c24321aea44273"
+    }
+  },
+  "r05_binding": {
+    "config": {
+      "path": "config/m01_xyce_build_preflight_r05.json",
+      "expected_sha256": "58e5dfa5094499ecf6b84d95bf42b3d61b502ae529f73f8b7619cdb3cdbb0a53",
+      "actual_sha256": "58e5dfa5094499ecf6b84d95bf42b3d61b502ae529f73f8b7619cdb3cdbb0a53"
+    },
+    "contract": {
+      "path": "results/reports/m01_xyce_build_preflight_contract_r05.json",
+      "expected_sha256": "4c45dbd06b53aa55b0fcdea88a4e3cc5fdacc889162102cecf4fefecce4b6262",
+      "actual_sha256": "4c45dbd06b53aa55b0fcdea88a4e3cc5fdacc889162102cecf4fefecce4b6262"
+    },
+    "preflight": {
+      "path": "results/reports/m01_xyce_build_preflight_r05.json",
+      "expected_sha256": "893e890b561298cde332cfcd5f466ab34d706dd46ae26f506701bc3772cc7ffc",
+      "actual_sha256": "893e890b561298cde332cfcd5f466ab34d706dd46ae26f506701bc3772cc7ffc"
+    },
+    "source_manifest": {
+      "path": "results/compact/m01_xyce_build_preflight_r05/source_manifest.json",
+      "expected_sha256": "5c9a571be7f17838bfe32228a71beb633b01a978fcf4e81c99729c68ccb87177",
+      "actual_sha256": "5c9a571be7f17838bfe32228a71beb633b01a978fcf4e81c99729c68ccb87177"
+    },
+    "build_manifest": {
+      "path": "results/compact/m01_xyce_build_preflight_r05/build_manifest.json",
+      "expected_sha256": "f42ffcf29413d92dc78dac70bd816e7f5fb43d67a49fd268fe25f8a2262ab9c9",
+      "actual_sha256": "f42ffcf29413d92dc78dac70bd816e7f5fb43d67a49fd268fe25f8a2262ab9c9"
+    },
+    "preflight_log": {
+      "path": "results/compact/m01_xyce_build_preflight_r05/preflight.log",
+      "expected_sha256": "cc060e2945d09b3a3ae1e67bf546e72c98f38f0fee0927a256f3b9cc305942c4",
+      "actual_sha256": "cc060e2945d09b3a3ae1e67bf546e72c98f38f0fee0927a256f3b9cc305942c4"
+    },
+    "trilinos_log": {
+      "path": "results/compact/m01_xyce_build_preflight_r05/trilinos_build_install.log",
+      "expected_sha256": "f090162b99cc4c772e18e44132be90f486d232a72b8a94504ac860226456b4a6",
+      "actual_sha256": "f090162b99cc4c772e18e44132be90f486d232a72b8a94504ac860226456b4a6"
+    },
+    "xyce_log": {
+      "path": "results/compact/m01_xyce_build_preflight_r05/xyce_build_install.log",
+      "expected_sha256": "45c78db8cb174cd567fe178c22616f8d51f33849366b77eec88ac5f6e216ec3e",
+      "actual_sha256": "45c78db8cb174cd567fe178c22616f8d51f33849366b77eec88ac5f6e216ec3e"
+    }
+  },
+  "reused_dependencies": {
+    "suitesparse": {
+      "path": "/home/reachgao/.local/suitesparse-7.8.3-r05",
+      "expected": {
+        "regular_file_count": 23,
+        "symlink_count": 4,
+        "total_regular_bytes": 345258,
+        "tree_sha256": "a47a4179b7e02550fb5f243a81ba367f02206adc77bff9bf9f0ddd4ba168160f"
+      },
+      "actual": {
+        "regular_file_count": 23,
+        "symlink_count": 4,
+        "total_regular_bytes": 345258,
+        "tree_sha256": "a47a4179b7e02550fb5f243a81ba367f02206adc77bff9bf9f0ddd4ba168160f"
+      }
+    },
+    "trilinos": {
+      "path": "/home/reachgao/.local/trilinos-14.4-serial-r05",
+      "expected": {
+        "regular_file_count": 4556,
+        "symlink_count": 12,
+        "total_regular_bytes": 359196044,
+        "tree_sha256": "5d4b574b82f90da30537bf3a649d6977a550cdb527eeadbf2d29a21dc949afb1"
+      },
+      "actual": {
+        "regular_file_count": 4556,
+        "symlink_count": 12,
+        "total_regular_bytes": 359196044,
+        "tree_sha256": "5d4b574b82f90da30537bf3a649d6977a550cdb527eeadbf2d29a21dc949afb1"
+      }
+    }
+  },
+  "config": {
+    "path": "config/m01_xyce_build_preflight_r07.json",
+    "sha256": "be400b354a32f8c2a42143b9b7cce6f4ab1bbe88c026f36b7924f9314efb33cd"
+  },
+  "tool_probes": {
+    "cmake": "cmake version 3.30.5\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+    "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "gxx": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "make": "GNU Make 4.3\nBuilt for x86_64-pc-linux-gnu\nCopyright (C) 1988-2020 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.",
+    "m4": "m4 (GNU M4) 1.4.19\nCopyright (C) 2021 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Ren\u00e9 Seindal.",
+    "bison": "bison (GNU Bison) 3.8.2\nWritten by Robert Corbett and Richard Stallman.\n\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "flex": "flex 2.6.4"
+  },
+  "generator_smoke": {
+    "bison_input_sha256": "5b0518f0bbbf9ff950a421bd558a6fb07d2df50ed4c1f63e6a1db552f9d14a45",
+    "bison_output_sha256": "3facae8eef21a1ca19747246a4c2fd73ac782a236cb34d4d27c6e757ed2d4cb7",
+    "flex_input_sha256": "4b4aef422c1db48b7dba915ac0216b3bece9ef1309d9b2d962b5e3540b983546",
+    "flex_output_sha256": "eead868708168b234ef1be8d343fe715991237d91fa72caf192a611d541d4dc1"
+  },
+  "binary": {
+    "path": "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+    "sha256": "e98dc88330b0dfd2439dfb19e0e5c108febfaaaee91c748e6e9e127e71afc93f",
+    "bytes": 75498456,
+    "version_output": "Xyce Release 7.10.0-opensource",
+    "license_output_sha256": "245d4b6ec86ba5278d1500b1f97e519676c040ab6a201721136fe28447307478"
+  }
+}

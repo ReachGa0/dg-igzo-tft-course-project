@@ -11,6 +11,9 @@ Makefile text eol=lf
 
 # Raw tool logs are hash-bound evidence and must remain byte-for-byte intact.
 results/compact/**/*.log text eol=lf -whitespace
+# Generated parser/scanner and fixed-column Xyce output are also hash-bound evidence.
+results/compact/m01_xyce_build_preflight_r07/*.c text eol=lf -whitespace
+results/compact/m01_xyce_build_preflight_r07/*.prn text eol=lf -whitespace
 
 *.png binary
 *.jpg binary

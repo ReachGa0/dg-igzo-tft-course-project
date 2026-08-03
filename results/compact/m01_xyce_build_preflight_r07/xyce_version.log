@@ -1,0 +1,8 @@
+argv=["/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce", "-v"]
+cwd=/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目
+returncode=0
+timed_out=false
+elapsed_seconds=0.009239
+output_begin
+Xyce Release 7.10.0-opensource
+output_end

@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=25090"
+      "detail": "bytes=25448"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=23428"
+      "detail": "bytes=23628"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=19599"
+      "detail": "bytes=19560"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=158875"
+      "detail": "bytes=160565"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=5463"
+      "detail": "bytes=5524"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=86645"
+      "detail": "bytes=88215"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=43801"
+      "detail": "bytes=44526"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=30352"
+      "detail": "bytes=31418"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=81781"
+      "detail": "bytes=86970"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1762,7 +1762,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=53095"
+      "detail": "bytes=54086"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3122,7 +3122,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "execute M01 Xyce build/tool preflight revision-7 exactly once after committing the 39/39 E3 contract PASS; run the independent persisted-evidence check only if the runner passes, and do not run formal M01 device DC"
+      "detail": "preserve and commit the M01 Xyce build/tool preflight revision-7 42/47 E0 runner failure, then establish revision-8 with a new Xyce output/parser contract; do not rerun R07 or run its independent checker"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3192,7 +3192,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "execute M01 Xyce build/tool preflight revision-7 exactly once after committing the 39/39 E3 contract PASS; run the independent persisted-evidence check only if the runner passes, and do not run formal M01 device DC"
+      "detail": "preserve and commit the M01 Xyce build/tool preflight revision-7 42/47 E0 runner failure, then establish revision-8 with a new Xyce output/parser contract; do not rerun R07 or run its independent checker"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3262,7 +3262,7 @@
     {
       "name": "m01_xyce_preflight_r07:contract_state_and_unexecuted_chain",
       "status": "PASS",
-      "detail": "planned=False ready=True future_absent=16/16"
+      "detail": "planned=False ready=False failed=True future_absent=5/16"
     },
     {
       "name": "tcad:mesh_levels",
