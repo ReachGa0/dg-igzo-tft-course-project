@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_DEVICE_DC_R01_STATIC_FAILED_E0_NEXT_R02`
+- 当前阶段：`M01_DEVICE_DC_R02_CONTRACT_IMPLEMENTED_E0_NEXT_STATIC`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 证据链只关闭 hash-bound Xyce 工具/parser 预检。`M01_OPEN_SOURCE_DEVICE_DC_R01` 实施提交 `b8c3a03` 后唯一静态检查返回 39/40、E0/FAIL；唯一失败是 checker 要求 R11 独立报告中不存在的顶层 `processes_invoked` 字段。报告记录 0 个 build/simulator process、0 个器件网表和 0 个数值输出。R01 不重跑；R02 只能在新命名空间修正该持久化 schema 断言，247 行、候选、进程预算、提取、阈值和边界均不得改变。正式 M01、C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 只关闭 hash-bound Xyce 工具/parser 预检。正式器件 DC R01 固定为 39/40、E0/FAIL且不重跑。`M01_OPEN_SOURCE_DEVICE_DC_R02` 已在新 config/source/output 命名空间完成 schema-only 实施：只把三处不存在的 R11 顶层进程字段读取改为实际 25/25 summary 与 independence PASS；247 行、候选、命令、两进程预算、网表、提取、阈值和边界不变。R02 当前 E0，静态 checker、两路线和独立 checker 均未运行；正式 M01、C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -48,10 +48,14 @@
 - [x] 提交前复核：5 个相关 Python 文件通过 `py_compile`；18/18 正式输出路径保持缺失；R11 三份报告与候选模型哈希未变；`make check` 为 722/722 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位、26 张图片 PASS，`git diff --check` 通过。没有启动仿真器。
 - [x] R01 实施提交 `b8c3a03` 推送并确认与 `origin/main` 同步后，40 项静态合同唯一运行并返回 39/40、E0/FAIL。失败报告 `results/reports/m01_open_source_device_dc_contract_r01.json` SHA-256 为 `7baba2fcd7bc186bfa30780882816c27d33708c91957e0a53db51c8c435b16ba`；唯一失败项 `binding:r11_no_formal_or_independent_process` 错误读取 R11 独立报告不存在的顶层 `processes_invoked`。报告自身记录 0 个 build/simulator process、0 个器件网表、0 个数值输出，运行前 18 个未来路径全缺失，运行后仅该静态报告存在；ngspice/Xyce runner 与独立 checker 均未运行。
 - [x] 登记 R01 39/40 失败后，`make check` 为 722/722 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位、26 张图片 PASS，`git diff --check` 通过；没有重跑 R01 或启动模拟器。
+- [x] 建立 `M01_OPEN_SOURCE_DEVICE_DC_R02` 新命名空间：配置、common、40 项静态 checker、30 项 runner、24 项独立 checker、R02 排他输出根和三个 Make 入口均已实现。R02 哈希绑定提交 `7d5f079` 下的 R01 config/common/checker/runner/independent 与 39/40 报告；schema 修正在三个 R02 组件中统一使用 R11 既有 `summary.check_count/passed/failed` 和 `independence:no_runner_or_process_import=PASS`。
+- [x] 首次 R02 实施态 `make check` 为 1 项 FAIL：总检查器把 R02 静态 checker 为审计未来 runner/independent 而保留的旧字段字符串字面量，误判为 R02 自身仍执行旧字段读取。失败归档 `results/reports/project_check_m01_device_dc_r02_implementation_state_failed.json` SHA-256 为 `bc7fed2c0bf45f5f803a351a41b08eef26434346f80f1a12a069d9ab7eb34221`；修正只禁止旧的可执行条件并保留审计字面量，随后 729/729 PASS。
+- [x] R02 内存网表生成自测仍为 247 行、两路线各 247 个 IGZO 实例，ASCII 字节数 36452/36365；5 个 R02 Python 文件通过 `py_compile`，18/18 R02 正式输出路径缺失。没有启动静态合同或模拟器。
+- [x] R02 实施态最终 `make check` 为 729/729 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位、26 张图片 PASS，`git diff --check` 通过；R02 40 项正式静态合同尚未运行。
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送 R01 39/40 静态失败状态，再建立 `M01_OPEN_SOURCE_DEVICE_DC_R02` 新命名空间，只把错误的顶层字段断言替换为对 R11 已落盘 25/25 检查项/summary 的 schema-aware 复核。R01 不重跑；R02 静态 PASS 提交前不得执行两路线，C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。
+- 下一步：提交并推送 R02 E0 实施态，再唯一运行 `make m01-open-source-device-dc-r02-contract-check`。只有 R02 40/40 静态 PASS 状态另行提交并推送后，才允许一次两路线 runner；R01/R11 不重跑，C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。
 - M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败、28/30 干跑失败和 R10 runner 失败均保留。
 

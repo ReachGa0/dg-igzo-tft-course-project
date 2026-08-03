@@ -1,5 +1,15 @@
 # 设计决策记录
 
+## ADR-068：R02 在三组件统一采用 R11 持久化 schema，并保留审计字面量
+
+- 日期：2026-08-03
+- `M01_OPEN_SOURCE_DEVICE_DC_R02` 使用独立 config/common/static-checker/runner/independent-checker/output 命名空间，哈希绑定提交 `7d5f079` 中不可改写的 R01 五个源文件和 39/40 失败报告。
+- 唯一逻辑修正同时应用于 R02 静态 checker、runner 和独立 checker：要求 R11 独立报告 `summary.check_count/passed/failed=25/25/0` 且 `independence:no_runner_or_process_import=PASS`，不再读取不存在的顶层 `processes_invoked`。这样静态门与未来运行前置门使用同一持久化 schema。
+- R02 静态 checker 仍保留旧字段字符串作为 runner/independent 源码审计条件。首次项目总检查误把该审计字面量当成可执行旧读取并失败，报告 `bc7fed2c...34221` 保留；项目检查只改为禁止旧可执行条件，不删除审计能力或放宽任何门。
+- R02 维持 40/30/24 注册、247 行、候选字节、两条 argv、两进程串行预算、两份 247 器件网表、提取/指标/差异/图、阈值、排他输出、失败保留与 no-downstream 边界。实施提交前不执行静态合同，静态 PASS 提交前不执行两路线。
+
+---
+
 ## ADR-067：R01 39/40 schema 断言失败冻结，R02 只修正持久化字段读取
 
 - 日期：2026-08-03

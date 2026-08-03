@@ -16,6 +16,24 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 正式器件 DC R02 schema-only 合同实施
+
+### 实施内容
+
+在提交 `7d5f079` 的 R01 39/40 失败状态上建立 `M01_OPEN_SOURCE_DEVICE_DC_R02`。新增独立配置、common、40 项静态 checker、30 项 runner、24 项独立 checker、R02 输出根和三个 Make 入口，并哈希绑定 R01 config/common/checker/runner/independent 与失败报告。三个 R02 组件统一按 R11 实际持久化 schema 检查 `25/25/0` summary 和 `independence:no_runner_or_process_import=PASS`；这是相对 R01 的唯一逻辑变化。
+
+### 实现期失败与验证
+
+首次 `make check` 的 R02 新状态项 1 项失败：总检查器把 R02 静态 checker 用于审计未来 runner/independent 的旧字段字符串字面量，误判为静态 checker 自身仍执行旧字段读取。失败报告 `results/reports/project_check_m01_device_dc_r02_implementation_state_failed.json` SHA-256 为 `bc7fed2c0bf45f5f803a351a41b08eef26434346f80f1a12a069d9ab7eb34221`，记录 728 项中 1 项 FAIL。修正只把项目断言收窄为禁止旧可执行条件，保留静态源码审计；随后 `make check` 为 729/729 PASS。
+
+R01/R02 差异审计确认 common 只改 revision 标识，runner/独立 checker 只改命名空间、输出根和同一 schema 读取，静态 checker 另增加 R01/实现失败绑定。5 个 Python 文件通过 `py_compile`；内存网表生成自测仍为 247 行、ngspice/Xyce ASCII 字节 36452/36365；18 个 R02 正式输出路径全部缺失。最终 `make check` 为 729/729 PASS，`make report-check` 为 12 章/5 附录/15 个既有占位/26 张图片 PASS，`git diff --check` 通过。没有运行 R02 静态合同、ngspice、Xyce、TCAD、AIM-Spice 或下游工具。
+
+### 下一门
+
+先提交并推送本 E0 实施态，再唯一执行 `make m01-open-source-device-dc-r02-contract-check`。只有 40/40 E3 静态 PASS 状态另行提交后才允许 R02 两路线 runner；R01/R11 不重跑，C00 和下游继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 正式器件 DC R01 静态合同 39/40 失败
 
 ### 唯一执行与结果

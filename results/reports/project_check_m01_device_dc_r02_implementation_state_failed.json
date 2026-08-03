@@ -1,8 +1,8 @@
 {
   "project": "DG-IGZO-TFT-PDK",
-  "status": "PASS",
-  "checks": 729,
-  "failures": 0,
+  "status": "FAIL",
+  "checks": 728,
+  "failures": 1,
   "results": [
     {
       "name": "directory:config",
@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=25758"
+      "detail": "bytes=25558"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=22788"
+      "detail": "bytes=22967"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=21815"
+      "detail": "bytes=21807"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=183698"
+      "detail": "bytes=181698"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4844"
+      "detail": "bytes=4893"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=106199"
+      "detail": "bytes=104938"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=55089"
+      "detail": "bytes=53774"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=43992"
+      "detail": "bytes=43603"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=110891"
+      "detail": "bytes=110336"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1632,7 +1632,7 @@
     {
       "name": "file:config/m01_open_source_device_dc_r02.json",
       "status": "PASS",
-      "detail": "bytes=14858"
+      "detail": "bytes=14406"
     },
     {
       "name": "file:scripts/m01_open_source_device_dc_r02_common.py",
@@ -1642,7 +1642,7 @@
     {
       "name": "file:scripts/check_m01_open_source_device_dc_r02_contract.py",
       "status": "PASS",
-      "detail": "bytes=34420"
+      "detail": "bytes=33761"
     },
     {
       "name": "file:scripts/run_m01_open_source_device_dc_r02.py",
@@ -1653,11 +1653,6 @@
       "name": "file:scripts/check_m01_open_source_device_dc_r02.py",
       "status": "PASS",
       "detail": "bytes=18934"
-    },
-    {
-      "name": "file:results/reports/project_check_m01_device_dc_r02_implementation_state_failed.json",
-      "status": "PASS",
-      "detail": "bytes=117983"
     },
     {
       "name": "file:scripts/check_t03_p5_temperature.py",
@@ -2052,7 +2047,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=70718"
+      "detail": "bytes=68769"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3581,7 +3576,7 @@
     },
     {
       "name": "m01_open_source_device_dc_r02:contract_runner_independent_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "implemented=True ready=False runner=False verified=False r01_binding=True future_absent=18/18"
     },
     {
