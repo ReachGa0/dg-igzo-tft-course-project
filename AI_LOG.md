@@ -16,6 +16,24 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 正式器件 DC R02 独立复核 24/24 PASS
+
+### 唯一执行与结果
+
+R02 runner PASS 提交 `605cbe9` 已推送并与 `origin/main` 同步，随后唯一执行 `make m01-open-source-device-dc-r02-check`。独立 checker 不导入 runner、不调用 subprocess，启动 0 个进程并返回 24/24 PASS、E3；报告 `results/reports/m01_open_source_cross_check_r02_check.json` SHA-256 为 `8afc00cec09ab533b8b3be4fe200529cabf24d35054034d2888e3a9c498e5fac`。
+
+### 复算范围与结论
+
+checker 独立复核静态 40/40 与 runner 30/30 报告、R11 历史绑定、精确两条命令和工具哈希；再生两个 247 器件网表，解析 ngspice raw 与 Xyce PRN，精确重算 247+247 行路线表、30 行指标、247 行差异、两个零漏压不变量集合、14 个 runner 产物哈希和两张 2240x1760 PNG。R02 数值产物、物理输入、候选、阈值和历史证据均未改写，也没有重跑 ngspice、Xyce、TCAD、AIM-Spice 或下游。
+
+独立复算确认路线分歧：ngspice 最大 `|ID|/W` 为 `2.0417057839146633e-31 A/cm`，Xyce 为 `4.6825230492225607e-4 A/cm`，最大绝对/对数差为 `4.6825230492225607e-4 A/cm`/`16.670479923821013 decade`。24/24 E3 只证明落盘器件级数值证据可复算，不证明路线一致、方程身份、物理参数、实验校准、正式 M01 收口或电路可用。M01/C00 因而保持关闭。
+
+### 登记与下一门
+
+机器配置、`STATUS.md`、本日志、ADR-071、报告第 5/6/8/9 章和证据矩阵已登记独立 E3 及边界。`make check` 为 747/747 PASS，`make report-check` 为 12 章/5 附录/15 个既有占位/28 张图片 PASS，JSON/CSV/Python 语法与 `git diff --check` 通过；这些检查均未启动模拟器。先提交并推送本状态，再建立版本化路线分歧根因合同，冻结最小控制、两工具支路电流语义、解析、失败保留和证据边界；合同静态 PASS 提交前不运行新模拟器，R01/R11/R02 不重跑，C00、版图、PEX 和 HZO 继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 正式器件 DC R02 runner 30/30 PASS
 
 ### 唯一执行与结果

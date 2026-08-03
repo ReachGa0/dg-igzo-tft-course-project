@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 746,
+  "checks": 747,
   "failures": 0,
   "results": [
     {
@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=26239"
+      "detail": "bytes=26452"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=22921"
+      "detail": "bytes=22859"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=22155"
+      "detail": "bytes=22000"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=188242"
+      "detail": "bytes=190282"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4803"
+      "detail": "bytes=4712"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=108930"
+      "detail": "bytes=110382"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=58108"
+      "detail": "bytes=59179"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=47163"
+      "detail": "bytes=48083"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=114134"
+      "detail": "bytes=114494"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1745,6 +1745,11 @@
       "detail": "bytes=9242"
     },
     {
+      "name": "file:results/reports/m01_open_source_cross_check_r02_check.json",
+      "status": "PASS",
+      "detail": "bytes=4552"
+    },
+    {
       "name": "file:scripts/check_t03_p5_temperature.py",
       "status": "PASS",
       "detail": "bytes=35919"
@@ -2137,7 +2142,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=74065"
+      "detail": "bytes=75163"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3497,7 +3502,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "run the independent persisted-evidence checker for M01 open-source device DC revision-2 exactly once after committing the runner PASS; do not rerun either route or start C00, circuit, layout, PEX or HZO before the independent result is committed"
+      "detail": "establish and commit a versioned M01 route-divergence root-cause contract that preserves R02 and isolates ngspice/Xyce device-current semantics before any new simulator run; keep C00, circuit, layout, PEX and HZO closed"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3567,7 +3572,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "run the independent persisted-evidence checker for M01 open-source device DC revision-2 exactly once after committing the runner PASS; do not rerun either route or start C00, circuit, layout, PEX or HZO before the independent result is committed"
+      "detail": "establish and commit a versioned M01 route-divergence root-cause contract that preserves R02 and isolates ngspice/Xyce device-current semantics before any new simulator run; keep C00, circuit, layout, PEX and HZO closed"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3667,7 +3672,7 @@
     {
       "name": "m01_open_source_device_dc_r02:contract_runner_independent_chain",
       "status": "PASS",
-      "detail": "implemented=False ready=False runner=True verified=False r01_binding=True future_absent=1/18"
+      "detail": "implemented=False ready=False runner=False verified=True r01_binding=True future_absent=0/18"
     },
     {
       "name": "tcad:mesh_levels",

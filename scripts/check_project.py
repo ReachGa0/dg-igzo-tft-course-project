@@ -315,6 +315,7 @@ REQUIRED_FILES = [
     "report/assets/m01_open_source_cross_check_r02.png",
     "report/assets/m01_open_source_route_difference_r02.png",
     "results/reports/m01_open_source_cross_check_r02.json",
+    "results/reports/m01_open_source_cross_check_r02_check.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -843,6 +844,8 @@ def main() -> int:
             "execute the committed M01 open-source device DC revision-2 two-route runner"
         ) or current_next_scope.startswith(
             "run the independent persisted-evidence checker for M01 open-source device DC revision-2"
+        ) or current_next_scope.startswith(
+            "establish and commit a versioned M01 route-divergence root-cause contract"
         )
         dependencies_valid = all(
             set(item.get("depends_on", [])) <= set(experiment_map)
@@ -8253,6 +8256,9 @@ def main() -> int:
                 or r11_next_scope.startswith(
                     "run the independent persisted-evidence checker for M01 open-source device DC revision-2"
                 )
+                or r11_next_scope.startswith(
+                    "establish and commit a versioned M01 route-divergence root-cause contract"
+                )
             )
         )
         r11_expected_archive_paths = [
@@ -8669,6 +8675,9 @@ def main() -> int:
                 or device_dc_next_scope.startswith(
                     "run the independent persisted-evidence checker for M01 open-source device DC revision-2"
                 )
+                or device_dc_next_scope.startswith(
+                    "establish and commit a versioned M01 route-divergence root-cause contract"
+                )
             )
         ) or (
             device_dc_ready_state
@@ -9050,6 +9059,8 @@ def main() -> int:
             and r02_machine.get("independent_checks_passed") == 24
             and r02_machine.get("independent_checks_failed") == 0
             and r02_machine.get("independent_processes_invoked") == 0
+            and r02_machine.get("independent_report_sha256")
+            == sha256(r02_independent_report_path)
             and r02_run_directory.is_dir()
             and all(path.is_file() for path in r02_run_output_paths)
             and r02_independent_report_path.is_file()
