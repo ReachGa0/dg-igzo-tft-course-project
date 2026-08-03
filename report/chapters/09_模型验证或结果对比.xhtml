@@ -86,4 +86,15 @@
   </table>
   <p>报告记录的唯一子进程是 <code>ngspice --version</code>，且 <code>netlist_argument_supplied=false</code>；AIM-Spice 未启动，器件仿真、SPICE 数值和电路状态均为 <code>NOT_RUN_BY_PREFLIGHT</code>。用户披露前的帮助/版本探索也没有网表或曲线，且不进入正式证据。</p>
   <p class="boundary">R01 的 11/13、E0/FAIL 只说明原 AIM-Spice 路线不满足项目工具来源与可复现批处理门，不说明 ngspice 或 AIM-Spice 的 IGZO 数值失败。开源候选在独立合同、提交、正式运行和持久化检查前同样不是 M01 第二路线证据。</p>
+  <h3>9.5 M01 开源第二仿真器恢复合同</h3>
+  <p>在保留 R01 失败之后，项目建立独立的 <code>M01_OPEN_SOURCE_RECOVERY_R01</code> 合同。合同检查为 30/30 PASS、E3，冻结与 revision-3 相同的 247 行/13 曲线、233 个 scored 行（163 train/70 holdout）、14 个审计行、W/L/300 K/端口映射和 <code>IGZO_DG_BEHAVIORAL_R02</code> 候选哈希。活动路线改为 ngspice 行为等效与纯源码 GPL-3.0-or-later Xyce 7.10.0 B-level 1 表达式源；两路不宣称方程身份，替代路线也不称 AIM-Spice Level 15 或 HSPICE Level 61。</p>
+  <table>
+    <thead><tr><th>恢复合同项</th><th>冻结内容</th><th>当前证据边界</th></tr></thead>
+    <tbody>
+      <tr><td>源码与许可证</td><td>Xyce 官方仓库 <code>Release-7.10.0</code>；GPL-3.0-or-later；源码归档 SHA-256 已记录；构建前需记录 Trilinos 等依赖</td><td>只完成源码/测试/命令解析静态审阅；未构建 Xyce，拒绝 XyceNF 专有二进制</td></tr>
+      <tr><td>语法与批处理</td><td>源码审阅到 <code>limit()</code>、<code>sgn()</code>、<code>.func</code>、B-level 1、位置网表参数、<code>-l</code> 日志和 <code>-o</code> 输出基名；冻结两路线 argv 模板</td><td>必须先通过提交后的版本/许可证/候选语法/受控 B-source 自测；合同不调用模拟器</td></tr>
+      <tr><td>失败与输出</td><td>独立 <code>results/reports/m01_open_source_recovery_contract_r01_e3.json</code>；未来输出使用新目录，任一路线失败保留日志/部分表并停止</td><td>首次 28/30 干跑报告 <code>results/reports/m01_open_source_recovery_contract_r01.json</code> 保留；当前无器件网表、CSV、叠图或数值报告</td></tr>
+    </tbody>
+  </table>
+  <p>因此该 30/30 只证明恢复合同、来源和边界可复核，不证明 Xyce 已安装、候选可运行、两路数值一致、IGZO 物理参数、实验拟合或 M01 完成。下一门是提交后的纯源码 Xyce 构建/工具预检与自测；C00、电路、版图、PEX 和 HZO 继续关闭。</p>
 </section>

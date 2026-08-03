@@ -82,8 +82,10 @@
       <tr><td>R02 结构恢复与两级验证</td><td>训练侧 8 条 L=10 um、1 条 L=8 um，却有两个 R01 长度自由度；固定 <code>Lref/L</code> 指数 1.0、移除 <code>length_exponent</code>，保留一个训练拟合长度系数；版本化 runner/checker 拒绝覆盖并隔离 holdout</td><td>27/27 静态合同 PASS、runner 24/24 E2、独立落盘检查 20/20 E3。原 9/163 train、4/70 holdout、指标和全部门槛不变；两路模型候选仅生成未执行，固定因子不是物理缩放验证</td></tr>
       <tr><td>M01 双仿真器对照合同</td><td>冻结 R02 的 247 个选定行（233 scored：163 train/70 holdout；7 个零漏压不变量和 7 个低漏压审计）、13 条曲线、W/L/偏压/温度、ngspice 行为候选和 AIM-Spice Level 15 候选；外部目录仅 reference-only</td><td>revision-3 静态合同 32/32 PASS、E3；合同不调用模拟器。路线差异必须报告但不强行调参，SnO/HZO/电路/瞬态均关闭；v1/v2 合同检查失败报告保留</td></tr>
       <tr><td>M01 R01 工具/来源预检</td><td>绑定已提交 revision-3 合同和两个 IGZO-only 候选；唯一子进程为 <code>ngspice --version</code>，AIM-Spice 只读文件指纹且未启动；器件网表和数值输出关闭</td><td>唯一运行 11/13、E0/FAIL。ngspice 三门通过；未授权 AIM-Spice 的来源不可审计和 batch/CLI 未建立两门失败。报告/原始日志保留，10 个数值输出全缺失；这不是 SPICE 数值或 IGZO 器件证据</td></tr>
+      <tr><td>M01 开源恢复合同</td><td>以同一 <code>IGZO_DG_BEHAVIORAL_R02</code> 候选文本建立 ngspice 和纯源码 Xyce 7.10.0 B-level 1 两条路线；冻结 247 行、批处理模板、工具指纹、自测和输出/失败保留</td><td>30/30 静态 PASS、E3；GPL-3.0-or-later 源码归档与 SHA-256 已记录，专有 XyceNF 和未授权 AIM-Spice 排除。源码审阅不是 Xyce 二进制、器件网表、SPICE 数值或物理校准证据</td></tr>
     </tbody>
   </table>
+  <p class="boundary">M01 开源恢复合同的检查命令为 <code>make m01-open-source-recovery-contract-check</code>，只读取配置、冻结 CSV、候选文本和源码审阅记录，不创建器件网表、不调用 Xyce/ngspice。下一门是提交后的纯源码 Xyce 构建/工具预检与受控 B-source 自测；在该门通过前不得进行正式 M01 数值执行。</p>
   <table>
     <thead><tr><th>T02-A/B/C 拓扑与偏压合同</th><th>实现</th><th>证据边界</th></tr></thead>
     <tbody>
@@ -99,4 +101,5 @@
     </tbody>
   </table>
   <p>合同检查命令为 <code>make t01-a-check</code>；T01-B 使用 <code>make t01-b-smoke</code>/<code>make t01-b-check</code>，T01-C 使用 <code>make t01-c-transfer</code>/<code>make t01-c-check</code>，T01-D-A 使用 <code>make t01-d-mesh</code>/<code>make t01-d-mesh-check</code>，T01-D-B 使用 <code>make t01-d-idvd</code>/<code>make t01-d-idvd-check</code>，T01-D-C 使用 <code>make t01-d-extract</code>/<code>make t01-d-extract-check</code>。T02-A/B/C 分别使用对应的 contract、run 和 independent-check 目标。T03-P2-DIT 方程门依次使用 <code>make t03-p2-dit-contract-check</code>、<code>make t03-p2-dit-equation-smoke</code> 和 <code>make t03-p2-dit-equation-smoke-check</code>；正式敏感性使用 <code>make t03-p2-dit-formal-contract-check</code>、<code>make t03-p2-dit-formal</code> 和 <code>make t03-p2-dit-formal-check</code>。bulk-trap 方程门依次使用对应合同、运行和独立检查目标；V1/V2 失败保留，V3 通过。P3 与 P5 也按合同、运行器和独立检查顺序完成。M00 R01 静态合同使用 <code>make m00-compact-model-contract-check</code>，25/25 PASS；唯一正式 R01 随后使用 <code>make m00-compact-model-fit</code>，因 L=12 um holdout gm 门为 21/24、E0/FAIL，且没有执行 PASS-only 独立检查。R02 依次使用 <code>make m00-compact-model-r02-contract-check</code>、<code>make m00-compact-model-r02-fit</code> 和 <code>make m00-compact-model-r02-fit-check</code>，得到 27/27 静态合同、24/24 runner 和 20/20 独立检查 PASS。随后 M01 使用 <code>make m01-simulator-cross-check-contract-check</code> 完成 revision-3 的 32/32 静态合同，再在执行链提交后唯一运行 <code>make m01-simulator-preflight</code>，得到 11/13、E0/FAIL。该预检只调用 ngspice 版本探针，不含器件网表。M00 因而只在冻结教学模型曲线与局部有效域内关闭，M01 的数值执行、外部独立验证和电路可用性均尚未验证。</p>
+  <p class="boundary">当前 M01 后续门已经从合同建立推进到纯源码 Xyce 构建/工具预检与自测：`m01-open-source-recovery-contract-check` 已 30/30、E3，但该结果只读配置和源码，不代表 Xyce 已安装、候选可运行或任何 SPICE 数值结果。器件网表、正式双路线对照和电路仍关闭。</p>
 </section>

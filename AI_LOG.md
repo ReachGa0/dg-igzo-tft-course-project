@@ -16,6 +16,26 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 建立 M01 开源第二仿真器恢复合同
+
+### 用户目标与读取输入
+
+用户已确认本机 AIM-Spice 副本未获授权，并要求在不运行 TCAD/SPICE 器件仿真的前提下继续。按 `AGENTS.md`、`STATUS.md`、`ARCHITECTURE.md`、`PROJECT_PLAN.md`、`DECISIONS.md`、M01 历史合同/预检报告和冻结 M00 R02 目标输入执行；GNUCAP 源码审阅发现其当前行为源只接收单一标量输入，不能直接表达冻结的 `VDS/TG/BG` 三端行为核，因此未把 GNUCAP 伪装为等式等价路线。
+
+### 实现与合同
+
+- 新增 `config/m01_open_source_recovery_contract_r01.json`、`scripts/check_m01_open_source_recovery_contract.py` 和 `make m01-open-source-recovery-contract-check`。合同冻结 247 行/13 曲线（233 scored、163 train/70 holdout，14 审计）、W/L/300 K/端口映射、同一 `spice/models/igzo_dg_behavioral_r02.inc` 哈希、ngspice + 纯源码 Xyce 7.10.0 两条路线、GPL-3.0-or-later 和拒绝专有 XyceNF/未授权 AIM-Spice 的策略。
+- 记录官方 Xyce 源码归档 URL/SHA-256 `b5a883196f0a2b3972fd13c541cfecf04735bfabc7d124d7c7e17de707204f4e2`、仓库 tag、源码审阅文件和 B-level 1/`.func`/`limit`/`sgn`/`-l`/`-o` 能力。该审阅只支持工具语法合同，不是已构建二进制或数值结果。
+- 失败保留：第一次 30 检查干跑为 28/30，排他输出 `results/reports/m01_open_source_recovery_contract_r01.json` 已保留；修正后最终报告使用独立 `results/reports/m01_open_source_recovery_contract_r01_e3.json`，没有覆盖失败档案。
+- 同步 `config/project.json`、`config/experiments.json`、`scripts/check_project.py`、`STATUS.md`、`PROJECT_PLAN.md`、`ARCHITECTURE.md`、`AI_CONTEXT.md`、`README.md`、`DECISIONS.md`、报告第 5/6/8/9 章和 `report/evidence_matrix.csv`。
+
+### 验证与边界
+
+- `make m01-open-source-recovery-contract-check`：30/30 PASS、E3；`make check` 和 `make report-check` 将在文档同步后运行。合同检查器仅使用 Python 标准库文件/JSON/CSV 读取，未导入 `subprocess`、NumPy、SciPy 或 DEVSIM。
+- 本次没有运行 Xyce、ngspice、AIM-Spice、TCAD、器件网表、SPICE 数值、C00、电路、版图、PEX 或 HZO；没有生成数值输出。M01 仍 `preflight_failed_tool_provenance/E0`，下一步是提交后实现纯源码 Xyce 构建/工具预检与自测链。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 实现 M01 工具/来源预检执行链
 
 ### 用户目标与新约束

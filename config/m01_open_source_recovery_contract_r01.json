@@ -1,0 +1,241 @@
+{
+  "schema_version": "1.0",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "M01",
+  "contract_id": "M01_OPEN_SOURCE_RECOVERY_R01",
+  "revision": 1,
+  "status": "contract_ready",
+  "evidence_level": "E3",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "fit_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "spice_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "circuit_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "scope": {
+    "dimension": "2D",
+    "laptop_target": true,
+    "active_material_scope": "IGZO only",
+    "polarity": "n-type",
+    "device_only_dc": true,
+    "no_equation_identity_claim": true,
+    "no_physical_calibration_claim": true
+  },
+  "historical_bindings": {
+    "revision3_contract": {
+      "path": "config/m01_simulator_cross_check_contract.json",
+      "sha256": "0fff841f651b8a965d9411f64f58ff02b40c3063f4556616dfca45b42d933bd9",
+      "report_path": "results/reports/m01_simulator_cross_check_contract_v3.json",
+      "report_sha256": "558a13869df1e35e59a6853c95e3105ef4428ee5a74dd80a5d461a4d77a1a204",
+      "revision": 3,
+      "checks_passed": 32,
+      "must_remain_unchanged": true
+    },
+    "r01_preflight_failure": {
+      "config_path": "config/m01_simulator_preflight_r01.json",
+      "config_sha256": "3f26883bf53a83a55ea68765d4a58c8a0c5464b32b8ceaa5d90098880c91aea5",
+      "report_path": "results/reports/m01_simulator_preflight_r01.json",
+      "report_sha256_actual": "26d00daa70172db73754f9b07918dc974d83f367956522f3efeb78d5d02cdfc9",
+      "log_path": "results/compact/m01_simulator_cross_check_r01/syntax_preflight.log",
+      "log_sha256": "a1a98afc7c4ad8eead3940d8ba45b108c1020eb494b53a715efc8ade55fb974a",
+      "status": "FAIL",
+      "evidence_level": "E0",
+      "checks_passed": 11,
+      "checks_total": 13,
+      "failed_checks": [
+        "aimspice:license_provenance_is_auditable",
+        "aimspice:documented_reproducible_batch_cli"
+      ],
+      "aimspice_invoked": false,
+      "device_netlist_invoked": false,
+      "numerical_outputs_created": false,
+      "must_remain_unchanged": true
+    }
+  },
+  "target_contract": {
+    "selection_manifest": "results/compact/m00_teaching_fit_r02/selected_rows_manifest.csv",
+    "prediction_table": "results/tables/m00_compact_model_predictions_r02.csv",
+    "selection_manifest_sha256": "557315a3fe2cc414d0f4cc1932e4b4841532250e5fb76537c1d3ab9cb68bf924",
+    "prediction_table_sha256": "e3dcbf2aa159f99f0c1913c7e6b4b3265fd5687417ac98780f50f69ad545fcd2",
+    "row_count": 247,
+    "curve_count": 13,
+    "scored_row_count": 233,
+    "training_scored_point_count": 163,
+    "holdout_scored_point_count": 70,
+    "zero_vds_invariant_point_count": 7,
+    "repeated_low_vds_audit_point_count": 7,
+    "split_use": "Use all 247 rows for both routes; score only the 233 scored rows; retain the 14 audit rows separately. Holdout is never used for route tuning, syntax repair, parameter selection or threshold changes.",
+    "external_data_use": "No external baseline current, teacher spreadsheet or literature curve may replace or augment the frozen project rows."
+  },
+  "device_contract": {
+    "material": "IGZO",
+    "polarity": "n-type",
+    "width_um": 60.0,
+    "length_um_allowed": [8.0, 10.0, 12.0],
+    "temperature_k": 300.0,
+    "source_potential_v": 0.0,
+    "effective_tox_nm": 10.0,
+    "physical_al2o3_thickness_nm": 30.0,
+    "dielectric_k": 6.8,
+    "contact_model": "ideal source/drain contacts",
+    "equations": "Only the frozen M00 R02 teaching kernel is evaluated through two simulator routes; no TCAD, trap, contact, temperature, HZO or circuit equation is added.",
+    "port_mapping": {
+      "drain": "VDS relative to source",
+      "source": "0 V reference",
+      "bottom_gate": "VBG relative to source",
+      "top_gate": "VTG relative to source",
+      "reported_current": "absolute drain current divided by W, in A/cm, with one sign convention for both routes"
+    }
+  },
+  "routes": {
+    "ngspice_behavioral": {
+      "route_kind": "ngspice behavioral equivalent evaluation of the frozen M00 teaching kernel",
+      "tool_path": "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+      "tool_fingerprint_required_before_run": true,
+      "candidate_path": "spice/models/igzo_dg_behavioral_r02.inc",
+      "candidate_sha256": "0a2d626fb37fc4fc9c1af8bdd326d5750eeca22d8b9cd3e570481ef671c47f9d",
+      "subcircuit": "IGZO_DG_BEHAVIORAL_R02",
+      "equation_identity_with_xyce": false,
+      "allowed_claim": "A separately executed ngspice behavioral route against frozen IGZO teaching targets; not native HSPICE Level 61, physical parameter extraction or experimental calibration."
+    },
+    "xyce_source_behavioral": {
+      "route_kind": "pure-source Xyce B-level 1 expression evaluation of the same frozen M00 teaching kernel",
+      "tool_binary_path": "/home/reachgao/.local/xyce-7.10-pure/bin/Xyce",
+      "tool_fingerprint_required_before_run": true,
+      "build_provenance_required_before_run": true,
+      "binary_status_at_contract_stage": "NOT_BUILT_AT_CONTRACT_STAGE",
+      "candidate_path": "spice/models/igzo_dg_behavioral_r02.inc",
+      "candidate_sha256": "0a2d626fb37fc4fc9c1af8bdd326d5750eeca22d8b9cd3e570481ef671c47f9d",
+      "subcircuit": "IGZO_DG_BEHAVIORAL_R02",
+      "expression_source_type": "B-level 1 expression-based voltage or current source",
+      "equation_identity_with_ngspice": false,
+      "allowed_claim": "A separately executed pure-open-source Xyce evaluation of the frozen IGZO teaching-kernel text; not native AIM-Spice Level 15, HSPICE Level 61, physical calibration or equation identity."
+    }
+  },
+  "active_routes": ["ngspice_behavioral", "xyce_source_behavioral"],
+  "xyce_source_provenance": {
+    "project": "Xyce",
+    "repository_url": "https://github.com/Xyce/Xyce",
+    "release_tag": "Release-7.10.0",
+    "source_archive_url": "https://github.com/Xyce/Xyce/archive/refs/tags/Release-7.10.0.tar.gz",
+    "source_archive_sha256": "b5a883196f0a2b3972fd13c541cfecf04735bfabc7d124d7c7e17de707204f4e2",
+    "official_downloads_url": "https://xyce.sandia.gov/downloads/",
+    "official_build_docs_url": "https://github.com/Xyce/Xyce/blob/Release-7.10.0/INSTALL.md",
+    "official_reference_url": "https://xyce.sandia.gov/files/xyce/Xyce_Reference_Guide_7.6.pdf",
+    "license": "GPL-3.0-or-later",
+    "source_build_required": true,
+    "proprietary_binary_accepted": false,
+    "build_prefix": "/home/reachgao/.local/xyce-7.10-pure",
+    "dependency_policy": "Trilinos and other build dependencies must be recorded by package/version/hash before a binary is admitted; Sandia XyceNF binaries with proprietary models are not accepted for this pure-open-source route.",
+    "source_review": {
+      "status": "STATIC_SOURCE_REVIEW_ONLY",
+      "reviewed_files": [
+        "src/UtilityPKG/ExpressionSrc/ExpressionLexer.l",
+        "src/UtilityPKG/ExpressionSrc/ExpressionParser.yxx",
+        "src/DeviceModelPKG/OpenModels/N_DEV_Bsrc.h",
+        "src/IOInterfacePKG/N_IO_CmdParse.C",
+        "test/CircuitPKG/TestNetlist3.cir"
+      ],
+      "reviewed_capabilities": [
+        "limit(...) token and three-argument parser production",
+        "sgn(...) token and parser production",
+        ".func user-defined functions in official test netlists",
+        "B-level 1 expression-based voltage or current source",
+        "batch positional netlist syntax, -l log path and -o output basename"
+      ],
+      "execution_performed": false
+    }
+  },
+  "batch_contract": {
+    "status": "FROZEN_SYNTAX_TEMPLATE_REQUIRES_EXECUTION_CHAIN_SELF_TEST",
+    "netlist_policy": "Generate one device-only DC netlist per route after the tool/build preflight; include only the frozen candidate, source/drain and two gate bias sources, one DC analysis and explicit CSV print columns.",
+    "ngspice_argv_template": ["{ngspice_path}", "-b", "-o", "{ngspice_log_path}", "{ngspice_netlist_path}"],
+    "xyce_argv_template": ["{xyce_path}", "-l", "{xyce_log_path}", "-o", "{xyce_output_basename}", "{xyce_netlist_path}"],
+    "xyce_cli_source_basis": "Xyce source N_IO_CmdParse.C usage and option registration; exact built-binary fingerprint and -syntax self-test are mandatory before device execution.",
+    "required_preflight_self_tests": [
+      "source archive and build provenance hash",
+      "binary version and license fingerprint",
+      "candidate hash",
+      "device-only generated netlist syntax check",
+      "one controlled B-source expression self-test",
+      "no circuit/transient/HZO/SnO tokens"
+    ],
+    "device_netlist_execution_before_self_test": false
+  },
+  "metric_contract": {
+    "current_floor_a_per_cm": 1e-20,
+    "point_linear_error": "abs(I_route-I_target)/max(max_abs_target_current_for_curve, current_floor_a_per_cm)",
+    "point_log_error_dec": "abs(log10(max(abs(I_route), current_floor_a_per_cm))-log10(max(abs(I_target), current_floor_a_per_cm)))",
+    "curve_linear_nrmse": "sqrt(mean((I_route-I_target)^2))/max(max_abs_target_current_for_curve, current_floor_a_per_cm)",
+    "curve_log_rmse_dec": "sqrt(mean(point_log_error_dec^2))",
+    "aggregate_weighting": "Equal weight per complete scored curve; train and holdout separate; audit rows excluded from scored aggregates.",
+    "route_difference": "Every frozen row and curve gets absolute and logarithmic ngspice-to-Xyce differences; disagreement is diagnostic and not a tunable pass threshold.",
+    "threshold_policy": "Do not retune candidates or alter frozen targets to meet M00 descriptive thresholds."
+  },
+  "outputs": {
+    "contract_report": "results/reports/m01_open_source_recovery_contract_r01_e3.json",
+    "run_directory": "results/compact/m01_open_source_cross_check_r01",
+    "ngspice_raw_csv": "results/tables/m01_ngspice_open_source_r01_raw.csv",
+    "xyce_raw_csv": "results/tables/m01_xyce_open_source_r01_raw.csv",
+    "route_metrics_csv": "results/tables/m01_open_source_route_metrics_r01.csv",
+    "route_difference_csv": "results/tables/m01_open_source_route_difference_r01.csv",
+    "ngspice_log": "results/compact/m01_open_source_cross_check_r01/ngspice.log",
+    "xyce_log": "results/compact/m01_open_source_cross_check_r01/xyce.log",
+    "ngspice_netlist_archive": "results/compact/m01_open_source_cross_check_r01/ngspice_device_dc.cir",
+    "xyce_netlist_archive": "results/compact/m01_open_source_cross_check_r01/xyce_device_dc.cir",
+    "overlay_png": "report/assets/m01_open_source_cross_check_r01.png",
+    "route_difference_png": "report/assets/m01_open_source_route_difference_r01.png",
+    "run_report": "results/reports/m01_open_source_cross_check_r01.json",
+    "independent_check_report": "results/reports/m01_open_source_cross_check_r01_check.json"
+  },
+  "historical_paths_to_preserve": [
+    "results/reports/m01_simulator_cross_check_contract.json",
+    "results/reports/m01_simulator_cross_check_contract_v2.json",
+    "results/reports/m01_simulator_cross_check_contract_v3.json",
+    "config/m01_simulator_preflight_r01.json",
+    "results/reports/m01_simulator_preflight_r01.json",
+    "results/compact/m01_simulator_cross_check_r01/syntax_preflight.log",
+    "results/reports/m01_open_source_recovery_contract_r01.json"
+  ],
+  "failure_retention": {
+    "exclusive_outputs": true,
+    "overwrite_existing_outputs": false,
+    "retain_failed_route_logs": true,
+    "retain_partial_tables": true,
+    "retain_failed_preflight_and_self_test_reports": true,
+    "r02_targets_and_candidates_must_not_change": true,
+    "either_route_failure_stops_m01": true
+  },
+  "resource_budget": {
+    "routes": 2,
+    "target_rows_per_route": 247,
+    "max_generated_device_netlists": 2,
+    "max_route_processes": 2,
+    "laptop_target": true,
+    "circuit_or_transient_runs": false,
+    "hzo_runs": false,
+    "sno_runs": false
+  },
+  "excluded_inputs_and_scope": {
+    "active_material_scope": "IGZO only",
+    "excluded_assets": [
+      "all SnO files and P-type assets",
+      "HZO or ferroelectric models",
+      "circuit, transient, ring oscillator and full-adder netlists",
+      "external baseline currents and teacher spreadsheet values",
+      "proprietary XyceNF or unauthorized AIM-Spice binaries"
+    ],
+    "reference_only_roots": [
+      "/mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/数据/ngspice_results",
+      "/mnt/c/Users/ReachGao/Desktop/deepseek_work/大学课程/氧化物/数据/AIMSPICE_improved"
+    ]
+  },
+  "no_execution_rules": {
+    "contract_checker_must_not_invoke_simulator": true,
+    "contract_checker_must_not_create_device_netlist": true,
+    "contract_checker_must_not_create_numerical_output": true,
+    "formal_device_run_requires_committed_preflight": true,
+    "m01_remains_e0_until_two_route_run_and_independent_check": true,
+    "circuit_or_downstream_permitted": false
+  },
+  "evidence_boundary": "This is an E3 static recovery contract only. It preserves the historical M01 revision-3 E3 contract and the R01 11/13 E0/FAIL AIM-Spice provenance failure without reinterpreting either as numerical evidence. The active replacement routes are ngspice and a pure-source GPL Xyce build; the unauthorized AIM-Spice copy and proprietary XyceNF binaries are excluded. Xyce source review establishes syntax capability only; no Xyce binary, device netlist, SPICE numerical curve, route comparison, physical parameter, physical calibration, experimental calibration or circuit result is created here. The same frozen IGZO teaching-kernel text is mapped to both routes, but equation identity is not claimed and the replacement is not native AIM-Spice Level 15 or HSPICE Level 61. M01 stays E0/FAIL until a committed build/tool preflight, two device-only DC runs and an independent persisted-evidence check pass. P3, P5, C00, SPICE circuit work, layout, PEX and HZO remain closed.",
+  "next_gate": "Implement and commit the pure-source Xyce build/tool preflight and self-test chain; do not execute a device netlist until that chain passes."
+}

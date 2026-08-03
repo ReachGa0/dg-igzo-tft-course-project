@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 606,
+  "checks": 607,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=22578"
+      "detail": "bytes=23184"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=19405"
+      "detail": "bytes=20043"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=16261"
+      "detail": "bytes=17055"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=132588"
+      "detail": "bytes=134994"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4970"
+      "detail": "bytes=5269"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=68594"
+      "detail": "bytes=71260"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=34939"
+      "detail": "bytes=37175"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=7728"
+      "detail": "bytes=7874"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=18386"
+      "detail": "bytes=19419"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=59457"
+      "detail": "bytes=61087"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -1507,7 +1507,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=39625"
+      "detail": "bytes=40533"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -2867,7 +2867,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "establish and commit an M01 open-source second-simulator recovery contract; freeze official package provenance, license, tool fingerprints, reproducible batch syntax, behavioral-model mapping, outputs, failure retention and the no-device-execution boundary before any numerical netlist run"
+      "detail": "implement and commit the pure-source Xyce build/tool preflight and self-test chain; do not execute a device netlist until that chain passes"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -2937,7 +2937,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "establish and commit an M01 open-source second-simulator recovery contract; freeze official package provenance, license, tool fingerprints, reproducible batch syntax, behavioral-model mapping, outputs, failure retention and the no-device-execution boundary before any numerical netlist run"
+      "detail": "implement and commit the pure-source Xyce build/tool preflight and self-test chain; do not execute a device netlist until that chain passes"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -2968,6 +2968,11 @@
       "name": "m01_preflight_result:no_aimspice_netlist_numerical_or_downstream_execution",
       "status": "PASS",
       "detail": "processes=1 numerical_absent=10/10"
+    },
+    {
+      "name": "m01_open_source_recovery:static_contract_and_no_execution",
+      "status": "PASS",
+      "detail": "checks=30/30 future_absent=13/13"
     },
     {
       "name": "tcad:mesh_levels",

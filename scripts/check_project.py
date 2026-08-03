@@ -5213,8 +5213,13 @@ def main() -> int:
             and m00_r02_execution.get("candidate_execution") is False
             and m00_r02_execution.get("m01_contract_permitted") is True
             and m00_r02_execution.get("m01_or_downstream_permitted") is False
-            and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "establish and commit an M01 open-source second-simulator recovery contract"
+            and (
+                config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "establish and commit an M01 open-source second-simulator recovery contract"
+                )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "implement and commit the pure-source Xyce build/tool preflight"
+                )
             )
             and "M01" in config.get("tcad_track", {}).get(
                 "m00_r02_formal_result_boundary", ""
@@ -5444,6 +5449,53 @@ def main() -> int:
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "m01_contract:static_boundary_and_no_execution", False, str(error))
+
+    m01_recovery_config_path = ROOT / "config" / "m01_open_source_recovery_contract_r01.json"
+    m01_recovery_report_path = ROOT / "results" / "reports" / "m01_open_source_recovery_contract_r01_e3.json"
+    m01_recovery_checker_path = ROOT / "scripts" / "check_m01_open_source_recovery_contract.py"
+    try:
+        m01_recovery_config = json.loads(m01_recovery_config_path.read_text(encoding="utf-8"))
+        m01_recovery_report = json.loads(m01_recovery_report_path.read_text(encoding="utf-8"))
+        m01_recovery_experiment = experiment_map["M01"].get("open_source_recovery_contract", {})
+        recovery_checks = m01_recovery_report.get("checks", [])
+        recovery_future_paths = [
+            ROOT / value
+            for key, value in m01_recovery_config.get("outputs", {}).items()
+            if key != "contract_report"
+        ]
+        recovery_failed_archive = ROOT / "results" / "reports" / "m01_open_source_recovery_contract_r01.json"
+        add_check(
+            checks,
+            "m01_open_source_recovery:static_contract_and_no_execution",
+            m01_recovery_report.get("status") == "PASS"
+            and m01_recovery_report.get("contract_status") == "PASS"
+            and m01_recovery_report.get("evidence_level") == "E3"
+            and m01_recovery_report.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m01_recovery_report.get("spice_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m01_recovery_report.get("circuit_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(recovery_checks) == 30
+            and all(item.get("status") == "PASS" for item in recovery_checks)
+            and m01_recovery_report.get("config", {}).get("sha256") == sha256(m01_recovery_config_path)
+            and m01_recovery_report.get("checker", {}).get("sha256") == sha256(m01_recovery_checker_path)
+            and m01_recovery_report.get("config", {}).get("path") == "config/m01_open_source_recovery_contract_r01.json"
+            and m01_recovery_config.get("outputs", {}).get("contract_report") == str(m01_recovery_report_path.relative_to(ROOT))
+            and m01_recovery_experiment.get("status") == "contract_ready"
+            and m01_recovery_experiment.get("evidence_level") == "E3"
+            and m01_recovery_experiment.get("simulation_run_by_contract_check") is False
+            and m01_recovery_experiment.get("device_netlist_created_by_contract_check") is False
+            and m01_recovery_experiment.get("numerical_outputs_created_by_contract_check") is False
+            and m01_recovery_config.get("xyce_source_provenance", {}).get("proprietary_binary_accepted") is False
+            and m01_recovery_config.get("xyce_source_provenance", {}).get("source_build_required") is True
+            and m01_recovery_config.get("scope", {}).get("active_material_scope") == "IGZO only"
+            and m01_recovery_config.get("no_execution_rules", {}).get("circuit_or_downstream_permitted") is False
+            and all(not path.exists() for path in recovery_future_paths)
+            and recovery_failed_archive.is_file()
+            and json.loads(recovery_failed_archive.read_text(encoding="utf-8")).get("status") == "FAIL",
+            f"checks={sum(item.get('status') == 'PASS' for item in recovery_checks)}/{len(recovery_checks)} future_absent="
+            f"{sum(not path.exists() for path in recovery_future_paths)}/{len(recovery_future_paths)}",
+        )
+    except Exception as error:  # noqa: BLE001
+        add_check(checks, "m01_open_source_recovery:static_contract_and_no_execution", False, str(error))
 
     tcad_config_path = ROOT / "config" / "tcad_baseline.json"
     try:

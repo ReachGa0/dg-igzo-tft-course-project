@@ -1,0 +1,165 @@
+{
+  "status": "FAIL",
+  "contract_status": "FAIL",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "fit_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "spice_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "circuit_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "evidence_level": "E0",
+  "contract_id": "M01_OPEN_SOURCE_RECOVERY_R01",
+  "checks": [
+    {
+      "name": "identity:open_source_recovery_contract",
+      "status": "PASS",
+      "detail": "stage=M01 revision=1"
+    },
+    {
+      "name": "scope:igzo_2d_laptop_device_only",
+      "status": "PASS",
+      "detail": "{\"active_material_scope\": \"IGZO only\", \"device_only_dc\": true, \"dimension\": \"2D\", \"laptop_target\": true, \"no_equation_identity_claim\": true, \"no_physical_calibration_claim\": true, \"polarity\": \"n-type\"}"
+    },
+    {
+      "name": "history:revision3_and_preflight_failure_bound",
+      "status": "PASS",
+      "detail": "historical E3 contract and 11/13 E0 failure are explicit bindings"
+    },
+    {
+      "name": "history:files_and_hashes_preserved",
+      "status": "PASS",
+      "detail": "historical configs, reports and raw log match frozen hashes"
+    },
+    {
+      "name": "targets:files_and_hashes",
+      "status": "PASS",
+      "detail": "manifest=247 predictions=247"
+    },
+    {
+      "name": "targets:fields_counts_and_roles",
+      "status": "PASS",
+      "detail": "fields=19/23 roles=Counter({'scored': 233, 'zero_vds_invariant': 7, 'repeated_low_vds_audit': 7})"
+    },
+    {
+      "name": "targets:alignment_finite_geometry",
+      "status": "PASS",
+      "detail": "247 target/prediction rows align and remain within frozen geometry"
+    },
+    {
+      "name": "routes:two_active_routes_same_candidate_hash",
+      "status": "PASS",
+      "detail": "ngspice and Xyce are separate routes over one frozen candidate text"
+    },
+    {
+      "name": "routes:candidate_is_igzo_behavioral_only",
+      "status": "PASS",
+      "detail": "candidate has the frozen IGZO B-source kernel and no excluded route tokens"
+    },
+    {
+      "name": "tools:xyce_source_license_and_binary_policy",
+      "status": "PASS",
+      "detail": "pure GPL source build required; no proprietary binary admitted"
+    },
+    {
+      "name": "tools:xyce_source_review_scope",
+      "status": "PASS",
+      "detail": "Xyce capability evidence is source review only"
+    },
+    {
+      "name": "batch:syntax_templates_and_self_test_gate",
+      "status": "PASS",
+      "detail": "both positional batch templates require a committed preflight self-test"
+    },
+    {
+      "name": "outputs:unique_future_paths_absent",
+      "status": "PASS",
+      "detail": "contract report and all future run paths are exclusive and absent"
+    },
+    {
+      "name": "outputs:historical_paths_not_reused",
+      "status": "PASS",
+      "detail": "new output namespace is separate and failures remain retained"
+    },
+    {
+      "name": "budget:two_routes_no_downstream",
+      "status": "PASS",
+      "detail": "{\"circuit_or_transient_runs\": false, \"hzo_runs\": false, \"laptop_target\": true, \"max_generated_device_netlists\": 2, \"max_route_processes\": 2, \"routes\": 2, \"sno_runs\": false, \"target_rows_per_route\": 247}"
+    },
+    {
+      "name": "scope:excluded_materials_and_external_reference_only",
+      "status": "PASS",
+      "detail": "SnO/HZO/circuit and external baselines are excluded or reference-only"
+    },
+    {
+      "name": "implementation:checker_is_stdlib_no_invocation",
+      "status": "PASS",
+      "detail": "imports=['__future__', 'ast', 'collections', 'csv', 'hashlib', 'json', 'math', 'pathlib', 're', 'sys', 'typing']"
+    },
+    {
+      "name": "implementation:make_target_registered",
+      "status": "PASS",
+      "detail": "new static contract target is registered"
+    },
+    {
+      "name": "machine_state:experiment_and_project_boundary",
+      "status": "PASS",
+      "detail": "M01 remains E0 while the new contract is E3 and preflight is next"
+    },
+    {
+      "name": "machine_state:downstream_closed",
+      "status": "PASS",
+      "detail": "C00=planned,C01=planned,C02=planned,C03=planned,L00=planned,V00=planned,V01=planned,PEX0=optional,FE0=optional"
+    },
+    {
+      "name": "evidence:boundary_not_overstated",
+      "status": "FAIL",
+      "detail": "contract text keeps numerical, physical and downstream claims closed"
+    },
+    {
+      "name": "implementation:historical_failure_not_reinterpreted",
+      "status": "PASS",
+      "detail": "old preflight record remains an immutable E0 failure snapshot"
+    },
+    {
+      "name": "next_gate:build_before_device_netlist",
+      "status": "PASS",
+      "detail": "Implement and commit the pure-source Xyce build/tool preflight and self-test chain; do not execute a device netlist until that chain passes."
+    },
+    {
+      "name": "checker:registered_check_count",
+      "status": "FAIL",
+      "detail": "expected=30 actual=23"
+    }
+  ],
+  "summary": {
+    "check_count": 24,
+    "passed": 22,
+    "failed": 2,
+    "target_rows": 247,
+    "target_curves": 13,
+    "active_routes": [
+      "ngspice_behavioral",
+      "xyce_source_behavioral"
+    ],
+    "outputs_created_by_contract": false
+  },
+  "config": {
+    "path": "config/m01_open_source_recovery_contract_r01.json",
+    "sha256": "61ead4eb5331258ae1a250b9d4ca18482aa2ad17913b4fa151eea690616ce05b"
+  },
+  "checker": {
+    "path": "scripts/check_m01_open_source_recovery_contract.py",
+    "sha256": "6096b95ab99aa751116aa42020833e8fef7ea1b003d2e1a09197ebe2febca7fd"
+  },
+  "next_gate": "Implement and commit the pure-source Xyce build/tool preflight and self-test chain; do not execute a device netlist until that chain passes.",
+  "failures": [
+    {
+      "name": "evidence:boundary_not_overstated",
+      "status": "FAIL",
+      "detail": "contract text keeps numerical, physical and downstream claims closed"
+    },
+    {
+      "name": "checker:registered_check_count",
+      "status": "FAIL",
+      "detail": "expected=30 actual=23"
+    }
+  ]
+}

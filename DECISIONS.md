@@ -1,5 +1,28 @@
 # 设计决策记录
 
+## ADR-043：以纯源码 Xyce 替代未授权 AIM-Spice，先冻结恢复合同
+
+- 日期：2026-08-03
+- 状态：开源恢复合同 30/30 静态 PASS、E3；M01 仍 `preflight_failed_tool_provenance/E0`，下一门只允许提交后的纯源码 Xyce 构建/工具预检与自测
+
+### 路线选择
+
+- R01 预检已按用户披露将 AIM-Spice 授权来源可审计和文档化 batch/CLI 冻结为 FAIL；该副本不得进入正式工具、数值或 M01 证据链。R01 的 11/13 报告、原始日志和所有缺失数值输出状态保持不变。
+- 静态审阅 GNUCAP 0.36 的当前表达式源接口只接收组件的单一标量输入；直接把冻结的 `VDS/TG/BG` 三端 M00 行为核拆成手工网络会改变方程语义，因此 GNUCAP 不被写成第二路线。研究文件在仓外临时目录，未读取项目网表或运行数值。
+- 选择 Xyce 7.10.0 纯源码路线：官方源码归档 SHA-256 为 `b5a883196f0a2b3972fd13c541cfecf04735bfabc7d124d7c7e17de707204f4e2`，许可证为 GPL-3.0-or-later。源码文档/测试和实现审阅到 `limit()`、`sgn()`、`.func`、B-level 1 表达式源、位置网表参数、`-l` 日志和 `-o` 输出基名；这只建立语法能力，不等于构建、语法自测或数值运行。专有 XyceNF 二进制不接受。
+
+### 冻结内容与边界
+
+- 恢复合同 `config/m01_open_source_recovery_contract_r01.json` 固定 247 行/13 曲线、233 scored（163 train/70 holdout）、14 审计行、W/L/300 K/源极/双栅端口映射、同一 `IGZO_DG_BEHAVIORAL_R02` 候选哈希和 ngspice/Xyce 两条独立路线。两路不宣称方程身份；替代路线不称 AIM-Spice Level 15、HSPICE Level 61 或物理参数卡。
+- 合同固定未来的设备级 DC 批处理模板、输出命名、失败日志/部分表保留、两路/247 行笔记本预算和 `no-device-execution` 门。合同检查器只读标准库配置/CSV/源码，不创建网表，不调用仿真器。
+- 首次 30 项干跑得到 28/30 的失败报告 `results/reports/m01_open_source_recovery_contract_r01.json` 原样保留；修正后的 30/30 E3 报告使用 `results/reports/m01_open_source_recovery_contract_r01_e3.json`，没有覆盖失败证据。
+
+### 后续阶段门
+
+- 本合同提交并推送后，下一步只实现纯源码 Xyce 构建/依赖哈希、二进制版本和许可证指纹、候选语法/受控 B-source 自测及 no-circuit 检查。自测链未通过并提交前，不得传入任何正式器件网表。
+- 只有 build/tool preflight 通过后才允许正式两路线器件级 DC；任一路线失败均保留并停止 M01。P3、P5、C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。
+
+
 ## ADR-042：未授权 AIM-Spice 不进入证据链，先运行无网表工具预检
 
 - 日期：2026-08-03
