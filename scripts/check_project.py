@@ -271,6 +271,7 @@ REQUIRED_FILES = [
     "scripts/check_m01_xyce_build_preflight_r11_contract.py",
     "scripts/run_m01_xyce_build_preflight_r11.py",
     "scripts/check_m01_xyce_build_preflight_r11.py",
+    "results/reports/m01_xyce_build_preflight_contract_r11.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",

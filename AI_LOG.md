@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 Xyce R11 静态合同 36/36 PASS
+
+### 唯一执行与结果
+
+R11 实施提交 `f64dc16` 已推送并与 `origin/main` 同步，运行前确认 R11 合同报告、runner 报告、独立报告和输出目录均不存在。随后唯一执行 `make m01-xyce-build-preflight-r11-contract-check`，纯静态 checker 返回 36/36 PASS、E3；报告 `results/reports/m01_xyce_build_preflight_contract_r11.json` 的 SHA-256 为 `73ebc2bd650411e91d7bb704a8d2b26938f47e1a0d83332fd1f5b9e37164e400`。
+
+### 证据与边界
+
+检查验证不可改写的 R10 36/36 静态报告、Unicode 路径失败报告/日志和 8 文件部分树，确认 R10 未重跑；同时验证冻结 IGZO candidate 的仓库相对 ASCII include、project-root cwd、36/32/25 注册、独立 R11 输出和 no-build/no-ngspice/no-AIM-Spice/no-formal-DC/no-downstream 门。报告记录 0 个 build/simulator process、无器件网表和数值输出。该 E3 只证明路径安全工具/输出合同，不是 Xyce parser 执行、IGZO 方程/器件曲线、物理参数、实验校准、正式 M01、SPICE 或电路结果。
+
+### 下一门
+
+先提交并推送本 36/36 E3 状态，再唯一运行 `make m01-xyce-build-preflight-r11`。只有 32/32 runner PASS 状态另行提交并推送后才允许 25 项独立落盘检查；R10 与更早 revision 不重跑，正式器件 DC、电路、版图、PEX 和 HZO 继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M01 Xyce R11 路径安全合同（未执行）
 
 ### 目标与实施

@@ -1,5 +1,16 @@
 # 设计决策记录
 
+## ADR-063：R11 静态合同 36/36 E3 后仅开放提交后的 runner
+
+- 日期：2026-08-03
+- 状态：R11 静态 checker 唯一执行 36/36 PASS、E3；runner 与独立 checker 未运行。
+- R11 实施提交 `f64dc16` 推送并与 `origin/main` 同步后，唯一运行 `make m01-xyce-build-preflight-r11-contract-check`。报告 SHA-256 为 `73ebc2bd650411e91d7bb704a8d2b26938f47e1a0d83332fd1f5b9e37164e400`。
+- 36 项检查验证 R10 静态/失败归档和 8 文件部分树未改变、R10 不重跑、冻结 IGZO candidate 使用仓库相对 ASCII include、runner cwd 为 project root、36/32/25 注册完整以及正式/下游门关闭。
+- 报告记录 0 个 build/simulator process、无器件网表和数值输出。该 PASS 只是路径安全工具/输出合同证据，不是 Xyce parser 执行、IGZO 方程/器件曲线、物理参数、实验校准、正式 M01、SPICE 或电路证据。
+- 先提交并推送 36/36 E3 状态，再唯一运行 32 项 R11 工具/parser runner；只有 runner PASS 状态另行提交并推送后才允许 25 项独立落盘检查。R10 与更早 revision 均不重跑，正式器件 DC 和下游继续关闭。
+
+---
+
 ## ADR-062：R11 只修正 parser include 的 Unicode 路径表示
 
 - 日期：2026-08-03

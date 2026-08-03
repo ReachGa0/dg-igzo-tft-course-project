@@ -855,7 +855,7 @@
         },
         "next_gate": "establish and commit an explicitly open-source second-simulator recovery contract before any device-level numerical execution"
       },
-      "evidence_boundary": "The revision-3 M01 contract remains 32/32 E3 static evidence, the R01 tool/provenance preflight remains an 11/13 E0/FAIL preserved run, and the open-source recovery contract remains 30/30 E3. The pure-source Xyce build chain produced a hash-bound GPL Xyce 7.10.0 installation in R07, but the R07 runner remains 42/47 E0/FAIL because its output contract expected CSV instead of the fixed-column PRN that contained 1.25 V. R08 and R09 static checker failures remain preserved. R10 then passed its one 36/36 E3 static contract invocation; its one runner invocation completed version, license and controlled scalar B-source tool commands and independently parsed 1.25 V, but failed before parser-only Xyce because an ASCII netlist write contained the Chinese absolute project path. The R10 failure report, companion log and eight-file partial tree are retained and hash-bound; R10 is not rerun. R11 is now implemented only as a new path-safe contract namespace that represents the same frozen IGZO include as an ASCII repository-relative path with project-root cwd. No R11 static checker, runner or independent checker has run, and no R10/R11 parser-only result, formal two-route device DC, formal M01 numerical output, ngspice/AIM-Spice numerical route, physical parameter, experimental calibration or circuit result exists. External baselines remain reference-only; SnO/HZO/circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
+      "evidence_boundary": "The revision-3 M01 contract remains 32/32 E3 static evidence, the R01 tool/provenance preflight remains an 11/13 E0/FAIL preserved run, and the open-source recovery contract remains 30/30 E3. The pure-source Xyce build chain produced a hash-bound GPL Xyce 7.10.0 installation in R07, but the R07 runner remains 42/47 E0/FAIL because its output contract expected CSV instead of the fixed-column PRN that contained 1.25 V. R08 and R09 static checker failures remain preserved. R10 then passed its one 36/36 E3 static contract invocation; its one runner invocation completed version, license and controlled scalar B-source tool commands and independently parsed 1.25 V, but failed before parser-only Xyce because an ASCII netlist write contained the Chinese absolute project path. The R10 failure report, companion log and eight-file partial tree are retained and hash-bound; R10 is not rerun. R11 uses a new path-safe namespace with the same frozen IGZO include represented as an ASCII repository-relative path and project-root cwd. Its one permitted static checker invocation returned 36/36 PASS at E3 with zero build/simulator processes, no device netlist and no numerical output; the runner and independent checker have not run. No R10/R11 parser-only result, formal two-route device DC, formal M01 numerical output, ngspice/AIM-Spice numerical route, physical parameter, experimental calibration or circuit result exists. External baselines remain reference-only; SnO/HZO/circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed.",
       "open_source_recovery_contract": {
         "status": "contract_ready",
         "revision": 1,
@@ -1512,9 +1512,9 @@
         "next_gate": "Preserve and commit the R10 runner Unicode-path failure without rerunning R10, then establish revision-11 with a new path-safe parser namespace."
       },
       "xyce_build_preflight_r11": {
-        "status": "contract_planned",
+        "status": "contract_ready",
         "revision": 11,
-        "current_evidence": "E0",
+        "current_evidence": "E3",
         "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R11",
         "contract_path": "config/m01_xyce_build_preflight_r11.json",
         "contract_checker_path": "scripts/check_m01_xyce_build_preflight_r11_contract.py",
@@ -1527,9 +1527,9 @@
         "expected_independent_check_count": 25,
         "formal_run_completed": false,
         "preflight_run_completed": false,
-        "contract_check_completed": false,
-        "contract_status": "NOT_RUN",
-        "contract_checks_passed": 0,
+        "contract_check_completed": true,
+        "contract_status": "PASS",
+        "contract_checks_passed": 36,
         "contract_checks_failed": 0,
         "device_netlist_invoked": false,
         "numerical_outputs_created": false,
@@ -1556,9 +1556,13 @@
         "r07_independent_checker_run": false,
         "proprietary_binary_accepted": false,
         "circuit_or_downstream_permitted": false,
-        "result_paths": [],
-        "artifact_hashes": {},
-        "next_gate": "Commit and push the R11 implementation, then run its 36-check static contract exactly once. Do not run the R11 tool/parser runner or independent checker until the static contract passes and that PASS state is committed."
+        "result_paths": [
+          "results/reports/m01_xyce_build_preflight_contract_r11.json"
+        ],
+        "artifact_hashes": {
+          "contract_report_sha256": "73ebc2bd650411e91d7bb704a8d2b26938f47e1a0d83332fd1f5b9e37164e400"
+        },
+        "next_gate": "Commit and push the R11 36/36 E3 static PASS, then execute the 32-check tool/parser runner exactly once. Do not run the independent checker unless the runner passes and that PASS state is committed."
       }
     },
     {
