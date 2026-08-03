@@ -1,0 +1,166 @@
+{
+  "status": "PASS",
+  "contract_status": "PASS",
+  "evidence_level": "E3",
+  "simulation_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "spice_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "circuit_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "stage_id": "M01",
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R05",
+  "checks": [
+    {
+      "name": "identity:revision_5_xyce_build_preflight",
+      "status": "PASS",
+      "detail": "stage=M01 revision=5"
+    },
+    {
+      "name": "binding:recovery_contract_e3_unchanged",
+      "status": "PASS",
+      "detail": "recovery contract and its E3 report are hash-bound"
+    },
+    {
+      "name": "binding:r01_failed_gate_preserved",
+      "status": "PASS",
+      "detail": "R01 14/29 and 9/20 failure evidence is immutable"
+    },
+    {
+      "name": "binding:r02_contract_failure_preserved",
+      "status": "PASS",
+      "detail": "R02 22/25 contract failure is immutable"
+    },
+    {
+      "name": "binding:r03_contract_failure_preserved",
+      "status": "PASS",
+      "detail": "R03 21/25 contract failure is immutable"
+    },
+    {
+      "name": "binding:r04_contract_failure_preserved",
+      "status": "PASS",
+      "detail": "R04 25/26 contract failure is immutable"
+    },
+    {
+      "name": "scope:serial_laptop_igzo_only",
+      "status": "PASS",
+      "detail": "{\"active_material_scope\": \"IGZO only\", \"circuit_or_downstream_permitted\": false, \"device_netlist_execution\": false, \"dimension\": \"2D project route; this preflight itself is simulator-tool only\", \"formal_m01_numerical_run\": false, \"fortran_build\": false, \"laptop_target\": true, \"mpi_build\": false, \"serial_build\": true}"
+    },
+    {
+      "name": "sources:archives_and_sources_rehashed",
+      "status": "PASS",
+      "detail": "source_trees=3/3 cmake=True"
+    },
+    {
+      "name": "sources:license_versions_policy",
+      "status": "PASS",
+      "detail": "GPL source and pinned releases only"
+    },
+    {
+      "name": "sources:historical_hash_correction_is_explicit",
+      "status": "PASS",
+      "detail": "old transcription retained; independent archive hash is the R05 input"
+    },
+    {
+      "name": "candidate:frozen_igzo_scope_and_hash",
+      "status": "PASS",
+      "detail": "exists=True bytes=1063"
+    },
+    {
+      "name": "toolchain:pinned_local_tools",
+      "status": "PASS",
+      "detail": "C/C++/CMake/parser tools are explicit and serial"
+    },
+    {
+      "name": "toolchain:explicit_blas_lapack_paths",
+      "status": "PASS",
+      "detail": "blas=/home/reachgao/.local/linear-algebra/lib/libblas.so lapack=/home/reachgao/.local/linear-algebra/lib/liblapack.so"
+    },
+    {
+      "name": "build:unique_external_r05_roots",
+      "status": "PASS",
+      "detail": "R05 roots are unique, external and absent before execution"
+    },
+    {
+      "name": "build:serial_cmake_options",
+      "status": "PASS",
+      "detail": "Fortran-off, MPI-off, two-job build remains frozen"
+    },
+    {
+      "name": "sequence:build_before_self_test_before_parser",
+      "status": "PASS",
+      "detail": "build and fingerprints precede scalar self-test and parser-only syntax"
+    },
+    {
+      "name": "self_test:scalar_only_contract",
+      "status": "PASS",
+      "detail": "one controlled 1.25 V B-source self-test only"
+    },
+    {
+      "name": "no_execution:formal_routes_and_downstream_closed",
+      "status": "PASS",
+      "detail": "no simulator route or downstream work is admitted by the contract"
+    },
+    {
+      "name": "outputs:formal_outputs_absent",
+      "status": "PASS",
+      "detail": "absent=8/8"
+    },
+    {
+      "name": "outputs:exclusive_unique_r05_namespace",
+      "status": "PASS",
+      "detail": "R05 run artifacts are unique and append-only"
+    },
+    {
+      "name": "boundary:no_physical_or_simulation_claim",
+      "status": "PASS",
+      "detail": "R05 evidence remains tool-only"
+    },
+    {
+      "name": "project:next_scope_is_r05",
+      "status": "PASS",
+      "detail": "establish and commit M01 Xyce build/tool preflight revision-5 with the registered contract_planned machine status and preserved R04 contract failure; do not rerun R01/R02/R03/R04 or execute a device netlist"
+    },
+    {
+      "name": "experiment:r05_is_planned_and_prior_failures_bound",
+      "status": "PASS",
+      "detail": "R05 is unexecuted while R01/R03/R04 failures remain machine-recorded"
+    },
+    {
+      "name": "runner:r05_wrapper_and_no_formal_execution",
+      "status": "PASS",
+      "detail": "R05 wraps the reviewed runner and injects only registered BLAS/LAPACK options"
+    },
+    {
+      "name": "checker:r05_independent_standard_library",
+      "status": "PASS",
+      "detail": "R05 independent checker has no simulator subprocess path"
+    },
+    {
+      "name": "make:r05_targets_registered",
+      "status": "PASS",
+      "detail": "contract, runner and independent-check targets are registered"
+    },
+    {
+      "name": "gate:formal_m01_requires_r05_independent_pass",
+      "status": "PASS",
+      "detail": "After this revision-5 preflight and its independent check pass, execute the frozen two-route device-only DC contract once; any route failure is retained and stops M01. R03 and R04 remain immutable checker failures."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "check_count": 27,
+    "passed": 27,
+    "failed": 0,
+    "simulator_processes_invoked": 0,
+    "device_netlist_created": false,
+    "numerical_outputs_created": false
+  },
+  "config": {
+    "path": "config/m01_xyce_build_preflight_r05.json",
+    "sha256": "58e5dfa5094499ecf6b84d95bf42b3d61b502ae529f73f8b7619cdb3cdbb0a53"
+  },
+  "checker": {
+    "path": "scripts/check_m01_xyce_build_preflight_r05_contract.py",
+    "sha256": "39a3c4fdaef83c9b5bb999988559f04189adc5b1e4c9963a8f95c198cb6c6d2d"
+  },
+  "evidence_boundary": "This is a revision-5 build/tool preflight contract, not a device simulation result. It preserves the prior recovery contract, the R01 Xyce build failure, the R02/R03 static contract failures and the R04 checker failure unchanged while passing explicit user-local BLAS/LAPACK paths and using token-safe candidate scope matching. A passing static contract report can establish only that the preflight chain is frozen and reviewable. Only a later passing build/tool preflight plus its independent persisted-evidence check can establish that a reproducible pure-source serial Xyce binary was built from the independently rehashed GPL source and that its scalar B-source self-test plus parser-only frozen IGZO candidate syntax check passed. The self-test is not an IGZO equation, device curve, physical parameter, experimental calibration, route comparison or circuit result. Proprietary binaries are excluded, and Xyce source/build evidence does not replace AIM-Spice Level 15 or HSPICE Level 61. M01 remains E0 until both formal device-only routes and an independent persisted-evidence check pass; P3, P5, C00, circuit, layout, PEX and HZO remain closed.",
+  "next_gate": "After this revision-5 preflight and its independent check pass, execute the frozen two-route device-only DC contract once; any route failure is retained and stops M01. R03 and R04 remain immutable checker failures."
+}

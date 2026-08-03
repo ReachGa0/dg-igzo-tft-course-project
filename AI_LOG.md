@@ -16,6 +16,20 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 关闭 M01 Xyce R05 静态合同门
+
+### 唯一静态检查
+
+在提交 `1c95347` 推送并确认 `main` 与 `origin/main` 同步、R05 合同报告和全部未来输出不存在后，只运行一次 `make m01-xyce-build-preflight-r05-contract-check`。结果为 27/27 PASS、E3，报告 `results/reports/m01_xyce_build_preflight_contract_r05.json` 的 SHA-256 为 `4c45dbd06b53aa55b0fcdea88a4e3cc5fdacc889162102cecf4fefecce4b6262`。
+
+### 证据边界与下一步
+
+检查器启动 0 个模拟器进程，未创建器件网表或数值输出；R01/R02/R03/R04 失败绑定、IGZO-only、显式 BLAS/LAPACK、serial 两任务、MPI/Fortran 关闭、实际 wrapper 文件名、独立 `r05` 根和 no-downstream 门全部通过。该 E3 只证明 R05 build/tool 预检链已冻结且可审计，不证明 Xyce 已构建、自测或候选解析通过，也不是器件/SPICE 数值、物理参数、实验校准或电路证据。
+
+已同步项目/实验机器状态、总检查器、STATUS/README/AI_CONTEXT/ARCHITECTURE/PROJECT_PLAN/DECISIONS、报告第 5/6/8/9 章和证据矩阵。收口验证中 Python/JSON/CSV 解析通过，`make check` 为 640 项 PASS，`make report-check` 为 12 章/5 附录/15 个允许占位/26 图 PASS，`git diff --check` 通过。下一步在本里程碑提交并推送后，只运行 R05 build/tool 预检一次；仅当 runner PASS 才执行不调用模拟器的独立落盘检查，正式 M01 器件 DC 和下游继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R04 合同失败并建立 R05
 
 ### 唯一静态检查与失败保留

@@ -1,5 +1,19 @@
 # 设计决策记录
 
+## ADR-049：R05 静态合同通过后只打开 build/tool 预检门
+
+- 日期：2026-08-03
+- 状态：R05 静态合同唯一检查 27/27 PASS、E3；R05 build/tool runner 尚未执行
+
+### 结果与证据边界
+
+- 提交 `1c95347` 推送后唯一运行 R05 checker，报告 SHA-256 为 `4c45dbd06b53aa55b0fcdea88a4e3cc5fdacc889162102cecf4fefecce4b6262`。27 项全部通过，模拟器进程、器件网表和数值输出计数均为零。
+- E3 只证明 R05 合同及失败绑定可审计，不证明 SuiteSparse/Trilinos/Xyce 已构建、B-source 自测或 parser-only 候选检查通过，也不形成器件、SPICE 数值、物理参数、实验校准或电路证据。
+
+### 下一门
+
+- 本状态提交并推送后只允许 R05 build/tool runner 一次。runner 失败则原样保留并停止；只有 runner PASS 才运行不调用模拟器的独立落盘检查。两者均 PASS 前，正式 M01 两路线器件 DC 和全部下游保持关闭。
+
 ## ADR-048：保留 R04 状态断言失败并转入 R05
 
 - 日期：2026-08-03

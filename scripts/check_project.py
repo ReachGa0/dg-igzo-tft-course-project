@@ -210,6 +210,7 @@ REQUIRED_FILES = [
     "scripts/check_m01_xyce_build_preflight_r05_contract.py",
     "scripts/run_m01_xyce_build_preflight_r05.py",
     "scripts/check_m01_xyce_build_preflight_r05.py",
+    "results/reports/m01_xyce_build_preflight_contract_r05.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -5259,6 +5260,9 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "establish and commit M01 Xyce build/tool preflight revision-5"
                 )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "execute M01 Xyce build/tool preflight revision-5"
+                )
             )
             and "M01" in config.get("tcad_track", {}).get(
                 "m00_r02_formal_result_boundary", ""
@@ -5717,6 +5721,9 @@ def main() -> int:
                 or config.get("tcad_track", {}).get("next_scope", "").startswith(
                     "establish and commit M01 Xyce build/tool preflight revision-5"
                 )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "execute M01 Xyce build/tool preflight revision-5"
+                )
             ),
             f"contract_checks={sum(item.get('status') == 'PASS' for item in r02_contract_checks)}/{len(r02_contract_checks)} future_absent="
             f"{sum(not path.exists() for path in r02_future_paths)}/{len(r02_future_paths)}",
@@ -5815,6 +5822,7 @@ def main() -> int:
                 and (
                     next_scope.startswith("establish and commit M01 Xyce build/tool preflight revision-4")
                     or next_scope.startswith("establish and commit M01 Xyce build/tool preflight revision-5")
+                    or next_scope.startswith("execute M01 Xyce build/tool preflight revision-5")
                 )
             )
         )
@@ -5934,8 +5942,13 @@ def main() -> int:
             )
         ) or (
             r04_failed_state
-            and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "establish and commit M01 Xyce build/tool preflight revision-5"
+            and (
+                config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "establish and commit M01 Xyce build/tool preflight revision-5"
+                )
+                or config.get("tcad_track", {}).get("next_scope", "").startswith(
+                    "execute M01 Xyce build/tool preflight revision-5"
+                )
             )
         )
         add_check(
@@ -6000,6 +6013,12 @@ def main() -> int:
         r05_config = json.loads(m01_xyce_r05_config_path.read_text(encoding="utf-8"))
         r05_machine = experiment_map["M01"].get("xyce_build_preflight_r05", {})
         r05_contract_exists = m01_xyce_r05_contract_report_path.is_file()
+        r05_contract_report = (
+            json.loads(m01_xyce_r05_contract_report_path.read_text(encoding="utf-8"))
+            if r05_contract_exists
+            else {}
+        )
+        r05_contract_checks = r05_contract_report.get("checks", [])
         r05_future_paths = [
             ROOT / value
             for key, value in r05_config.get("outputs", {}).items()
@@ -6018,10 +6037,48 @@ def main() -> int:
             and r05_machine.get("current_evidence") == "E0"
             and r05_machine.get("contract_check_completed") is False
         )
+        r05_ready_state = (
+            r05_contract_exists
+            and r05_contract_report.get("status") == "PASS"
+            and r05_contract_report.get("contract_status") == "PASS"
+            and r05_contract_report.get("evidence_level") == "E3"
+            and r05_contract_report.get("simulation_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and r05_contract_report.get("spice_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(r05_contract_checks) == 27
+            and all(item.get("status") == "PASS" for item in r05_contract_checks)
+            and r05_contract_report.get("summary", {}).get("simulator_processes_invoked") == 0
+            and r05_contract_report.get("summary", {}).get("device_netlist_created") is False
+            and r05_contract_report.get("summary", {}).get("numerical_outputs_created") is False
+            and r05_contract_report.get("config", {}).get("sha256")
+            == sha256(m01_xyce_r05_config_path)
+            and r05_contract_report.get("checker", {}).get("sha256")
+            == sha256(m01_xyce_r05_contract_checker_path)
+            and r05_machine.get("status") == "contract_ready"
+            and r05_machine.get("current_evidence") == "E3"
+            and r05_machine.get("contract_check_completed") is True
+            and r05_machine.get("contract_status") == "PASS"
+            and r05_machine.get("contract_checks_passed") == 27
+            and r05_machine.get("contract_checks_failed") == 0
+            and r05_machine.get("artifact_hashes", {}).get("contract_report_sha256")
+            == sha256(m01_xyce_r05_contract_report_path)
+            and r05_machine.get("result_paths")
+            == ["results/reports/m01_xyce_build_preflight_contract_r05.json"]
+        )
+        r05_next_scope_valid = (
+            r05_planned_state
+            and config.get("tcad_track", {}).get("next_scope", "").startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-5"
+            )
+        ) or (
+            r05_ready_state
+            and config.get("tcad_track", {}).get("next_scope", "").startswith(
+                "execute M01 Xyce build/tool preflight revision-5"
+            )
+        )
         add_check(
             checks,
-            "m01_xyce_preflight_r05:contract_planned_and_unexecuted_chain",
-            r05_planned_state
+            "m01_xyce_preflight_r05:contract_state_and_unexecuted_chain",
+            (r05_planned_state or r05_ready_state)
             and r05_config.get("preflight_id") == "M01_XYCE_BUILD_PREFLIGHT_R05"
             and r05_config.get("revision") == 5
             and r05_config.get("status") == "preflight_planned"
@@ -6069,16 +6126,14 @@ def main() -> int:
             and "m01-xyce-build-preflight-r05-contract-check:" in makefile_source
             and "m01-xyce-build-preflight-r05:" in makefile_source
             and "m01-xyce-build-preflight-r05-check:" in makefile_source
-            and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "establish and commit M01 Xyce build/tool preflight revision-5"
-            ),
-            f"planned={r05_planned_state} future_absent="
+            and r05_next_scope_valid,
+            f"planned={r05_planned_state} ready={r05_ready_state} future_absent="
             f"{sum(not path.exists() for path in r05_future_paths)}/{len(r05_future_paths)}",
         )
     except Exception as error:  # noqa: BLE001
         add_check(
             checks,
-            "m01_xyce_preflight_r05:contract_planned_and_unexecuted_chain",
+            "m01_xyce_preflight_r05:contract_state_and_unexecuted_chain",
             False,
             str(error),
         )
