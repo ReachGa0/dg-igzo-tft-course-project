@@ -10,4 +10,4 @@ igzo_level15_r02_parameters.json
 results/reports/m01_simulator_cross_check_contract_v3.json
 ```
 
-R02 候选生成不等于 AIM-Spice 运行。R01 工具/来源预检执行链只静态读取 AIM-Spice 文件指纹并禁止启动，授权来源和 batch/CLI 门预期失败；失败保留后必须另建开源第二路线合同。任何未来 M01 路线仍须使用同一 W/L、VBG/VTG/VDS、300 K、源极 0 V 和 `|ID|/W` 口径并独立报告路线差异；替代路线不得称为原生 AIM-Spice Level 15 或 HSPICE Level 61。30 nm 物理 Al2O3 与 10 nm 有效 TOX 仍必须分开记录，SnO、HZO、旧电路和外部教师数据不属于本路线。
+R02 候选生成不等于 AIM-Spice 运行。R01 工具/来源预检唯一运行 11/13、E0/FAIL：只静态读取 AIM-Spice 文件指纹且未启动，授权来源和 batch/CLI 两门失败；报告/日志已保留，数值输出全缺失。失败提交后必须另建开源第二路线合同。任何未来 M01 路线仍须使用同一 W/L、VBG/VTG/VDS、300 K、源极 0 V 和 `|ID|/W` 口径并独立报告路线差异；替代路线不得称为原生 AIM-Spice Level 15 或 HSPICE Level 61。30 nm 物理 Al2O3 与 10 nm 有效 TOX 仍必须分开记录，SnO、HZO、旧电路和外部教师数据不属于本路线。

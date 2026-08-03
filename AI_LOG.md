@@ -35,6 +35,14 @@
 - 预检目录、预检报告和 10 个声明的数值输出均保持不存在。没有运行 `make m01-simulator-preflight`，没有调用 TCAD、AIM-Spice 或任何 SPICE 器件网表。
 - 下一步先提交并推送本执行链，再唯一运行无网表 R01 预检并保留预期 E0/FAIL；随后更新证据、检查、提交，才建立开源第二仿真器恢复合同。M01 数值执行、C00、电路、版图、PEX 和 HZO 继续关闭。
 
+### 提交后正式预检与失败收口
+
+- 执行链以提交 `a6386d2` 推送并确认 `main==origin/main` 后，唯一执行 `make m01-simulator-preflight`。命令按预注册返回非零，报告为 11/13、E0/FAIL；这是阶段门拒绝，不是 runner 异常。
+- ngspice 路线的可执行文件指纹、无网表 `--version` argv 和 `ngspice-42` 版本三项全部 PASS。AIM-Spice 只读取文件指纹且未启动；失败两项精确为 `license_provenance_is_auditable` 和 `documented_reproducible_batch_cli`。
+- 唯一子进程是 `ngspice --version`，没有网表参数。报告 `results/reports/m01_simulator_preflight_r01.json` 和原始 `syntax_preflight.log` 落盘；后者 827 字节。全部 10 个声明的数值输出继续不存在，没有 TCAD、器件 SPICE、曲线、叠图、电路或下游结果。
+- M01 当前状态改为 `preflight_failed_tool_provenance/E0`，原 revision-3 合同 E3 记录不变。下一门只建立开源第二仿真器恢复合同；既有 M00/M01 正式运行不得重跑。
+- 失败接入后 `make check` 为 606/606 PASS，独立复核报告/日志哈希、13 项结果、唯一 ngspice 版本进程和 10 个数值输出缺失；`make report-check` 为 12 章、5 附录、15 个允许占位、26 张图 PASS。Python/JSON/CSV/XHTML 静态解析和 `git diff --check` 均 PASS，预检未重跑。
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M01 双仿真器对照合同
 
 ### 用户目标

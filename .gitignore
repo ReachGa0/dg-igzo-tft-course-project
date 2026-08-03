@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 *.log
+!results/compact/m01_simulator_cross_check_r01/syntax_preflight.log
 *.raw
 *.tmp
 .venv/

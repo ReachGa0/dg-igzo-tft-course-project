@@ -781,8 +781,8 @@
       "id": "M01",
       "track": "compact_model",
       "name": "aimspice_ngspice_cross_check",
-      "status": "contract_ready",
-      "current_evidence": "E3",
+      "status": "preflight_failed_tool_provenance",
+      "current_evidence": "E0",
       "depends_on": ["M00"],
       "purpose": "Compare two simulator routes under identical targets without claiming equation identity.",
       "changed_variables": ["simulator_model_route"],
@@ -814,24 +814,48 @@
         ]
       },
       "preflight_execution_chain": {
-        "status": "implemented_not_run",
+        "status": "formal_preflight_failed_tool_provenance",
         "revision": 1,
         "current_evidence": "E0",
+        "execution_chain_commit": "a6386d29fe3f970bfd6a85939862c6aa142c421d",
         "expected_check_count": 13,
-        "formal_preflight_run_completed": false,
-        "ngspice_version_probe_permitted_after_commit": true,
+        "formal_preflight_run_completed": true,
+        "formal_preflight_run_ordinal": 1,
+        "formal_preflight_status": "FAIL",
+        "checks_passed": 11,
+        "checks_failed": 2,
+        "ngspice_version_probe_run": true,
+        "ngspice_preflight_status": "PASS",
+        "ngspice_version_token": "ngspice-42",
         "aimspice_process_invocation_permitted": false,
+        "aimspice_process_invoked": false,
+        "aimspice_preflight_status": "FAIL",
+        "failed_checks": [
+          "aimspice:license_provenance_is_auditable",
+          "aimspice:documented_reproducible_batch_cli"
+        ],
         "device_netlist_invocation_permitted": false,
+        "device_netlist_invoked": false,
         "numerical_curve_generation_permitted": false,
+        "numerical_outputs_created": false,
         "reported_aimspice_license_provenance_auditable": false,
         "documented_aimspice_batch_cli_established": false,
         "circuit_or_downstream_permitted": false,
+        "open_source_recovery_contract_permitted_after_failure_commit": true,
+        "open_source_recovery_contract_established": false,
         "result_paths": [
           "config/m01_simulator_preflight_r01.json",
-          "scripts/run_m01_simulator_preflight.py"
-        ]
+          "scripts/run_m01_simulator_preflight.py",
+          "results/reports/m01_simulator_preflight_r01.json",
+          "results/compact/m01_simulator_cross_check_r01/syntax_preflight.log"
+        ],
+        "artifact_hashes": {
+          "preflight_report_sha256": "26d00daa70172db73754f9b07918dc974d83f367956522f3efeb78d5d02cdfc9",
+          "preflight_log_sha256": "a1a98afc7c4ad8eead3940d8ba45b108c1020eb494b53a715efc8ade55fb974a"
+        },
+        "next_gate": "establish and commit an explicitly open-source second-simulator recovery contract before any device-level numerical execution"
       },
-      "evidence_boundary": "The 32-check E3 revision-3 contract freezes all 247 selected R02 target rows, of which 233 are scored (163 train and 70 holdout) and 14 are retained zero-VDS/repeated-low-VDS audits, plus 13 curves, W/L/bias/temperature mapping, the R02 ngspice behavioral candidate, the R02 AIM-Spice Level-15 candidate and mapping, tool fingerprints, syntax/preflight rules, route-to-target metrics, route-difference reporting, exclusive outputs, failure retention and the no-circuit boundary. The contract invokes neither simulator. Revision-1 and revision-2 contract failures are preserved. The R01 tool/provenance preflight execution chain is implemented but not run: it permits only ngspice --version, statically fingerprints but never invokes the reported unauthorized AIM-Spice installation, and forbids all device netlists and numerical curves. The AIM-Spice provenance and documented batch-CLI gates are frozen as unmet, so this implemented-not-run state remains E0 and is not simulator evidence. After the committed preflight preserves that failure, only a separately contracted open-source second route may be considered. External baseline folders remain reference-only, SnO/HZO/old circuit assets are excluded, and generated candidates are not equation-identical or physical parameters. M01, C00 and all downstream stages remain closed."
+      "evidence_boundary": "The revision-3 M01 contract remains 32/32 E3 static evidence and its revision-1/revision-2 checker failures remain preserved. After execution-chain commit a6386d2, the R01 tool/provenance preflight ran once and retained an 11/13 E0/FAIL report plus raw log. The fixed ngspice executable fingerprint, no-netlist argv and ngspice-42 version gates passed. AIM-Spice was never invoked; only its file fingerprint was read. Its user-reported unauthorized provenance failed the auditable-license gate and its documented reproducible batch CLI was not established. The only subprocess was ngspice --version, with no netlist argument. All ten declared numerical outputs remain absent, so this is not an ngspice/AIM-Spice numerical failure, IGZO device result, two-route comparison or M01 completion. An explicitly open-source second-simulator recovery contract is the only next gate and must freeze provenance, license, reproducible batch behavior, model mapping, outputs and boundaries before any device netlist execution. External baselines remain reference-only; SnO/HZO/circuit assets are excluded. M01 stays E0/FAIL and C00/downstream remain closed."
     },
     {
       "id": "C00",

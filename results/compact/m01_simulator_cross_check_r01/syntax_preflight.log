@@ -1,0 +1,21 @@
+M01 simulator preflight R01
+device_netlist_invoked=false
+numerical_curve_generated=false
+ngspice_argv=["/mnt/c/Users/ReachGao/.local/bin/ngspice", "--version"]
+ngspice_returncode=0
+ngspice_output_begin
+******
+** ngspice-42 : Circuit level simulation program
+** Compiled with KLU Direct Linear Solver
+** The U. C. Berkeley CAD Group
+** Copyright 1985-1994, Regents of the University of California.
+** Copyright 2001-2023, The ngspice team.
+** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html
+** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html
+** Creation Date: Sun Mar 31 20:15:14 UTC 2024
+******
+ngspice_output_end
+aimspice_runner_invoked=false
+aimspice_license_status=USER_DISCLOSED_UNAUTHORIZED_COPY
+aimspice_batch_cli_status=NOT_ESTABLISHED
+formal_result=FAIL_STOP_M01

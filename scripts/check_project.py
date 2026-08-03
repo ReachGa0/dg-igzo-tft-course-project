@@ -181,6 +181,8 @@ REQUIRED_FILES = [
     "results/reports/m01_simulator_cross_check_contract_v3.json",
     "config/m01_simulator_preflight_r01.json",
     "scripts/run_m01_simulator_preflight.py",
+    "results/reports/m01_simulator_preflight_r01.json",
+    "results/compact/m01_simulator_cross_check_r01/syntax_preflight.log",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -5212,7 +5214,7 @@ def main() -> int:
             and m00_r02_execution.get("m01_contract_permitted") is True
             and m00_r02_execution.get("m01_or_downstream_permitted") is False
             and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "run the committed M01 R01 tool/provenance preflight only"
+                "establish and commit an M01 open-source second-simulator recovery contract"
             )
             and "M01" in config.get("tcad_track", {}).get(
                 "m00_r02_formal_result_boundary", ""
@@ -5230,6 +5232,7 @@ def main() -> int:
     m01_checker_path = ROOT / "scripts" / "check_m01_simulator_cross_check_contract.py"
     m01_preflight_config_path = ROOT / "config" / "m01_simulator_preflight_r01.json"
     m01_preflight_runner_path = ROOT / "scripts" / "run_m01_simulator_preflight.py"
+    m01_preflight_report_path = ROOT / "results" / "reports" / "m01_simulator_preflight_r01.json"
     try:
         m01_contract = json.loads(m01_contract_path.read_text(encoding="utf-8"))
         m01_report = json.loads(m01_contract_report_path.read_text(encoding="utf-8"))
@@ -5239,7 +5242,10 @@ def main() -> int:
         m01_future_paths = [
             ROOT / value
             for key, value in m01_contract.get("outputs", {}).items()
-            if key not in {"contract_report", "historical_failed_contract_reports"}
+            if key not in {
+                "contract_report", "historical_failed_contract_reports",
+                "run_directory", "preflight_report", "syntax_log",
+            }
         ]
         add_check(
             checks,
@@ -5252,8 +5258,8 @@ def main() -> int:
             and m01_report.get("circuit_status") == "NOT_RUN_BY_CONTRACT_CHECK"
             and len(m01_checks) == 32
             and all(item.get("status") == "PASS" for item in m01_checks)
-            and m01_experiment.get("status") == "contract_ready"
-            and m01_experiment.get("current_evidence") == "E3"
+            and m01_experiment.get("status") == "preflight_failed_tool_provenance"
+            and m01_experiment.get("current_evidence") == "E0"
             and m01_experiment.get("contract_evidence", {}).get("status")
             == "simulator_cross_check_contract_ready"
             and m01_experiment.get("contract_evidence", {}).get("revision") == 3
@@ -5305,10 +5311,10 @@ def main() -> int:
             == sha256(m01_contract_path)
             and m01_preflight_config.get("contract", {}).get("report_sha256")
             == sha256(m01_contract_report_path)
-            and all(not path.exists() for path in preflight_outputs)
+            and all(path.exists() for path in preflight_outputs)
             and all(not path.exists() for path in numerical_outputs),
             (
-                f"outputs_absent={sum(not path.exists() for path in preflight_outputs)}/"
+                f"outputs_present={sum(path.exists() for path in preflight_outputs)}/"
                 f"{len(preflight_outputs)} numerical_absent="
                 f"{sum(not path.exists() for path in numerical_outputs)}/"
                 f"{len(numerical_outputs)}"
@@ -5337,29 +5343,104 @@ def main() -> int:
         add_check(
             checks,
             "m01_preflight_chain:machine_state_boundary_and_make_target",
-            m01_preflight_machine.get("status") == "implemented_not_run"
+            m01_preflight_machine.get("status")
+            == "formal_preflight_failed_tool_provenance"
             and m01_preflight_machine.get("revision") == 1
             and m01_preflight_machine.get("current_evidence") == "E0"
             and m01_preflight_machine.get("expected_check_count") == 13
-            and m01_preflight_machine.get("formal_preflight_run_completed") is False
+            and m01_preflight_machine.get("formal_preflight_run_completed") is True
+            and m01_preflight_machine.get("formal_preflight_run_ordinal") == 1
+            and m01_preflight_machine.get("formal_preflight_status") == "FAIL"
+            and m01_preflight_machine.get("checks_passed") == 11
+            and m01_preflight_machine.get("checks_failed") == 2
             and m01_preflight_machine.get("aimspice_process_invocation_permitted") is False
+            and m01_preflight_machine.get("aimspice_process_invoked") is False
             and m01_preflight_machine.get("device_netlist_invocation_permitted") is False
+            and m01_preflight_machine.get("device_netlist_invoked") is False
             and m01_preflight_machine.get("numerical_curve_generation_permitted") is False
+            and m01_preflight_machine.get("numerical_outputs_created") is False
             and m01_preflight_machine.get("circuit_or_downstream_permitted") is False
             and "m01-simulator-preflight:" in (ROOT / "Makefile").read_text(
                 encoding="utf-8"
             )
-            and config.get("tcad_track", {}).get(
-                "m01_preflight_execution_chain_boundary", ""
-            ).startswith("The revision-1 M01 tool/provenance preflight")
-            and "open-source second-route recovery contract"
+            and "11/13 with E0/FAIL"
             in config.get("tcad_track", {}).get(
-                "m01_preflight_execution_chain_boundary", ""
+                "m01_r01_preflight_failure_boundary", ""
             ),
             (
                 f"status={m01_preflight_machine.get('status')} "
                 f"evidence={m01_preflight_machine.get('current_evidence')}"
             ),
+        )
+        m01_preflight_report = json.loads(
+            m01_preflight_report_path.read_text(encoding="utf-8")
+        )
+        preflight_checks = m01_preflight_report.get("checks", [])
+        preflight_failures = m01_preflight_report.get("failures", [])
+        preflight_failure_names = {
+            item.get("name") for item in preflight_failures
+        }
+        preflight_log_path = ROOT / m01_preflight_report["log"]["path"]
+        preflight_log = preflight_log_path.read_text(encoding="utf-8")
+        add_check(
+            checks,
+            "m01_preflight_result:expected_tool_provenance_failure_preserved",
+            m01_preflight_report.get("status") == "FAIL"
+            and m01_preflight_report.get("preflight_status") == "FAIL"
+            and m01_preflight_report.get("evidence_level") == "E0"
+            and m01_preflight_report.get("ngspice_preflight_status") == "PASS"
+            and m01_preflight_report.get("aimspice_preflight_status") == "FAIL"
+            and len(preflight_checks) == 13
+            and sum(item.get("status") == "PASS" for item in preflight_checks) == 11
+            and preflight_failure_names == {
+                "aimspice:license_provenance_is_auditable",
+                "aimspice:documented_reproducible_batch_cli",
+            }
+            and m01_preflight_report.get("config", {}).get("sha256")
+            == sha256(m01_preflight_config_path)
+            and m01_preflight_report.get("runner", {}).get("sha256")
+            == sha256(m01_preflight_runner_path)
+            and m01_preflight_report.get("log", {}).get("sha256")
+            == sha256(preflight_log_path)
+            and sha256(m01_preflight_report_path)
+            == m01_preflight_machine.get("artifact_hashes", {}).get(
+                "preflight_report_sha256"
+            )
+            and sha256(preflight_log_path)
+            == m01_preflight_machine.get("artifact_hashes", {}).get(
+                "preflight_log_sha256"
+            ),
+            f"checks={sum(item.get('status') == 'PASS' for item in preflight_checks)}/{len(preflight_checks)} failures={sorted(preflight_failure_names)}",
+        )
+        process_invocations = m01_preflight_report.get("summary", {}).get(
+            "simulator_process_invocations", []
+        )
+        add_check(
+            checks,
+            "m01_preflight_result:no_aimspice_netlist_numerical_or_downstream_execution",
+            m01_preflight_report.get("device_simulation_status")
+            == "NOT_RUN_BY_PREFLIGHT"
+            and m01_preflight_report.get("spice_numerical_status")
+            == "NOT_RUN_BY_PREFLIGHT"
+            and m01_preflight_report.get("circuit_status")
+            == "NOT_RUN_BY_PREFLIGHT"
+            and len(process_invocations) == 1
+            and process_invocations[0].get("tool") == "ngspice"
+            and process_invocations[0].get("argv")
+            == ng_preflight.get("allowed_probe_argv")
+            and process_invocations[0].get("netlist_argument_supplied") is False
+            and m01_preflight_report.get("summary", {}).get(
+                "aimspice_invoked_by_runner"
+            ) is False
+            and m01_preflight_report.get("summary", {}).get(
+                "numerical_outputs_created"
+            ) is False
+            and all(not path.exists() for path in numerical_outputs)
+            and "device_netlist_invoked=false" in preflight_log
+            and "numerical_curve_generated=false" in preflight_log
+            and "aimspice_runner_invoked=false" in preflight_log
+            and "formal_result=FAIL_STOP_M01" in preflight_log,
+            f"processes={len(process_invocations)} numerical_absent={sum(not path.exists() for path in numerical_outputs)}/{len(numerical_outputs)}",
         )
     except Exception as error:  # noqa: BLE001
         add_check(checks, "m01_contract:static_boundary_and_no_execution", False, str(error))

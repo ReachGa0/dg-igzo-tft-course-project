@@ -1,0 +1,132 @@
+{
+  "status": "FAIL",
+  "preflight_status": "FAIL",
+  "evidence_level": "E0",
+  "stage_id": "M01",
+  "preflight_id": "M01_SIMULATOR_PREFLIGHT_R01",
+  "ngspice_preflight_status": "PASS",
+  "aimspice_preflight_status": "FAIL",
+  "device_simulation_status": "NOT_RUN_BY_PREFLIGHT",
+  "spice_numerical_status": "NOT_RUN_BY_PREFLIGHT",
+  "circuit_status": "NOT_RUN_BY_PREFLIGHT",
+  "checks": [
+    {
+      "name": "identity:revision_1_preflight",
+      "status": "PASS",
+      "detail": "stage=M01 revision=1"
+    },
+    {
+      "name": "contract:committed_revision_3_pass_is_bound",
+      "status": "PASS",
+      "detail": "contract_revision=3 report=PASS"
+    },
+    {
+      "name": "outputs:numerical_outputs_absent_before_preflight",
+      "status": "PASS",
+      "detail": "absent=10/10"
+    },
+    {
+      "name": "ngspice:executable_fingerprint",
+      "status": "PASS",
+      "detail": "exists=True bytes=8300800"
+    },
+    {
+      "name": "ngspice:version_probe_has_no_netlist_argument",
+      "status": "PASS",
+      "detail": "[\"/mnt/c/Users/ReachGao/.local/bin/ngspice\", \"--version\"]"
+    },
+    {
+      "name": "ngspice:version_identified",
+      "status": "PASS",
+      "detail": "returncode=0 token=ngspice-42"
+    },
+    {
+      "name": "aimspice:executable_fingerprint",
+      "status": "PASS",
+      "detail": "exists=True bytes=6270976"
+    },
+    {
+      "name": "aimspice:license_provenance_is_auditable",
+      "status": "FAIL",
+      "detail": "USER_DISCLOSED_UNAUTHORIZED_COPY"
+    },
+    {
+      "name": "aimspice:documented_reproducible_batch_cli",
+      "status": "FAIL",
+      "detail": "NOT_ESTABLISHED"
+    },
+    {
+      "name": "aimspice:not_invoked_by_formal_runner",
+      "status": "PASS",
+      "detail": "static fingerprint only; no AIM-Spice subprocess call exists in this runner"
+    },
+    {
+      "name": "candidates:frozen_igzo_only_files_unchanged",
+      "status": "PASS",
+      "detail": "ngspice=True aimspice=True"
+    },
+    {
+      "name": "execution:no_device_netlist_or_numerical_result",
+      "status": "PASS",
+      "detail": "only ngspice --version executed; no netlist was supplied"
+    },
+    {
+      "name": "gate:route_failure_stops_m01_and_downstream",
+      "status": "PASS",
+      "detail": "M01 was contract_ready before preflight; all downstream stages remain closed"
+    }
+  ],
+  "failures": [
+    {
+      "name": "aimspice:license_provenance_is_auditable",
+      "status": "FAIL",
+      "detail": "USER_DISCLOSED_UNAUTHORIZED_COPY"
+    },
+    {
+      "name": "aimspice:documented_reproducible_batch_cli",
+      "status": "FAIL",
+      "detail": "NOT_ESTABLISHED"
+    }
+  ],
+  "summary": {
+    "check_count": 13,
+    "passed": 11,
+    "failed": 2,
+    "simulator_processes_invoked_by_runner": 1,
+    "simulator_process_invocations": [
+      {
+        "tool": "ngspice",
+        "purpose": "version probe only",
+        "argv": [
+          "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+          "--version"
+        ],
+        "returncode": 0,
+        "netlist_argument_supplied": false
+      }
+    ],
+    "aimspice_invoked_by_runner": false,
+    "prior_aimspice_exploratory_probe": {
+      "occurred_before_user_disclosure": true,
+      "arguments_limited_to_help_or_version_forms": true,
+      "netlist_argument_supplied": false,
+      "numerical_output_created": false,
+      "formal_evidence_permitted": false
+    },
+    "numerical_outputs_created": false
+  },
+  "config": {
+    "path": "config/m01_simulator_preflight_r01.json",
+    "sha256": "3f26883bf53a83a55ea68765d4a58c8a0c5464b32b8ceaa5d90098880c91aea5"
+  },
+  "runner": {
+    "path": "scripts/run_m01_simulator_preflight.py",
+    "sha256": "b58d7903a14888ce31208eebdba8de8235cb35f6c65affdd1e52238a843f124d"
+  },
+  "log": {
+    "path": "results/compact/m01_simulator_cross_check_r01/syntax_preflight.log",
+    "sha256": "a1a98afc7c4ad8eead3940d8ba45b108c1020eb494b53a715efc8ade55fb974a"
+  },
+  "failure_boundary": "The user disclosed that the installed AIM-Spice copy is unauthorized. Formal project evidence requires auditable software provenance and a documented reproducible batch interface, so the AIM-Spice route must fail preflight even if its executable exists or opens. The runner may invoke only ngspice --version and must not invoke AIM-Spice or any device netlist. This is a tool/provenance gate failure, not a numerical simulator failure and not an IGZO device result.",
+  "next_gate": "Preserve this E0/FAIL report, keep M01 and C00/downstream closed, then establish and commit a new contract for an explicitly open-source second simulator route before any device-level numerical execution. The replacement route must not be described as native AIM-Spice Level 15 or HSPICE Level 61."
+}
