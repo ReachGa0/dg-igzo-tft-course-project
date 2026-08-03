@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 566,
+  "checks": 571,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=21304"
+      "detail": "bytes=21478"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=18083"
+      "detail": "bytes=18264"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=14103"
+      "detail": "bytes=14258"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=118521"
+      "detail": "bytes=120615"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4434"
+      "detail": "bytes=4521"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=57881"
+      "detail": "bytes=59850"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=29276"
+      "detail": "bytes=30553"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=6982"
+      "detail": "bytes=7119"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=12155"
+      "detail": "bytes=13322"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=50700"
+      "detail": "bytes=52459"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -895,6 +895,11 @@
       "detail": "bytes=22714"
     },
     {
+      "name": "file:config/compact_m00_input_validation_r02.json",
+      "status": "PASS",
+      "detail": "bytes=26279"
+    },
+    {
       "name": "file:references/m00_dataset_registry.csv",
       "status": "PASS",
       "detail": "bytes=5633"
@@ -903,6 +908,11 @@
       "name": "file:scripts/check_m00_compact_model_contract.py",
       "status": "PASS",
       "detail": "bytes=27241"
+    },
+    {
+      "name": "file:scripts/check_m00_compact_model_contract_r02.py",
+      "status": "PASS",
+      "detail": "bytes=33980"
     },
     {
       "name": "file:models/fit_m00_teaching_compact.py",
@@ -918,6 +928,11 @@
       "name": "file:results/reports/m00_compact_model_input_contract.json",
       "status": "PASS",
       "detail": "bytes=18128"
+    },
+    {
+      "name": "file:results/reports/m00_compact_model_input_contract_r02.json",
+      "status": "PASS",
+      "detail": "bytes=22225"
     },
     {
       "name": "file:results/reports/m00_compact_model_input_contract_dependency_status_mismatch_failed.json",
@@ -1367,7 +1382,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=31356"
+      "detail": "bytes=32453"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -1987,12 +2002,12 @@
     {
       "name": "file:models/level61/README.md",
       "status": "PASS",
-      "detail": "bytes=708"
+      "detail": "bytes=843"
     },
     {
       "name": "file:spice/models/README.md",
       "status": "PASS",
-      "detail": "bytes=521"
+      "detail": "bytes=595"
     },
     {
       "name": "file:spice/netlists/devices/README.md",
@@ -2727,7 +2742,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "preserve the single formal M00 R01 failure and pause for a research decision before any R02 contract; do not rerun R01, relax its 0.50 holdout-gm threshold, execute the independent PASS-only checker, or start M01, SPICE, circuit cells, layout, PEX, or HZO"
+      "detail": "implement and self-test the revisioned R02 formal runner and independent checker against the committed R02 contract; do not optimize formal data or score holdout until that execution chain is committed, and do not rerun R01 or start M01, SPICE, circuit cells, layout, PEX, or HZO"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -2765,9 +2780,19 @@
       "detail": "absent=4/4"
     },
     {
+      "name": "m00_r02_contract:static_structure_recovery_and_no_execution",
+      "status": "PASS",
+      "detail": "checks=27 parameters=10 fit=NOT_RUN_BY_CONTRACT_CHECK future_absent=15/15"
+    },
+    {
+      "name": "m00_r02_contract:unchanged_split_thresholds_and_holdout_isolation",
+      "status": "PASS",
+      "detail": "sections=7 parameters=10 fixed_exponent=1.0"
+    },
+    {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "preserve the single formal M00 R01 failure and pause for a research decision before any R02 contract; do not rerun R01, relax its 0.50 holdout-gm threshold, execute the independent PASS-only checker, or start M01, SPICE, circuit cells, layout, PEX, or HZO"
+      "detail": "implement and self-test the revisioned R02 formal runner and independent checker against the committed R02 contract; do not optimize formal data or score holdout until that execution chain is committed, and do not rerun R01 or start M01, SPICE, circuit cells, layout, PEX, or HZO"
     },
     {
       "name": "tcad:mesh_levels",

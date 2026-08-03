@@ -15,6 +15,7 @@
       <tr><td>P3 总源漏串联电阻宽度积</td><td><code>R_pair*W=0/0.5/4.5 kOhm*um</code>；非零值换算为 8.333/75 ohm 总电阻并对称分到源漏</td><td>T03-P3 self-consistent lumped series-resistance 教学敏感性；V1 失败保留，V2 运行器与独立检查通过</td><td>DOI 10.1109/IEDM45625.2022.10019488 的 Ni/Ti TLM 数量级只作 E1 锚点；原器件为不同纳米沟道/介质栈/过驱动，项目不继承金属标签或 Rc 定义。V2 结果仍不能提供测量、拟合、金属、势垒或注入参数</td></tr>
       <tr><td>P5 温度与热电压</td><td><code>T=250/300/350 K</code>；NIST CODATA <code>k_B=8.617333262e-5 eV/K</code>；<code>V_t=0.021543333155/0.025851999786/0.030160666417 V</code></td><td>已完成的正式三点 <code>V_t-only</code> 教学数值敏感性</td><td>只改变既有 Scharfetter-Gummel 电流中的 <code>V_t</code>；迁移率固定 35.5 cm2/(V*s)，DOS、能带、介电、接触、陷阱、几何和偏压均固定。runner 14/14 E2、独立检查 15/15 E3 只验证该受控数值响应，不能称物理温度参数、完整温度模型或实验校准</td></tr>
       <tr><td>M00 输入注册与划分</td><td>13 个表的哈希/行数；5 个正式数据集；9 条 train/163 点；4 条 holdout/70 点；7 个零漏压点</td><td>R01 唯一教学紧凑代理拟合的固定输入与验收合同</td><td>合同 25/25 E3；R01 因 L=12 um holdout gm `0.512384 &gt; 0.50` 为 E0/FAIL。所有曲线均来自项目教学模型，失败系数不是物理参数或实验标定</td></tr>
+      <tr><td>M00 R02 长度结构</td><td><code>Lref/L</code> 指数固定 1.0；移除 <code>length_exponent</code>；保留 <code>length_vth_slope_v</code> 零初值训练；计划参数 10 个</td><td>消除“1 个非参考训练长度、2 个长度自由度”的结构混淆</td><td>27/27 仅为静态合同 E3；固定因子不是从 R01 holdout 或拟合系数选择，也不证明物理反长度缩放。原 split、权重、指标和阈值全部不变，正式 R02 尚未运行</td></tr>
       <tr><td>学长 IGZO/VTC 表</td><td>已保留来源行和质量标记</td><td>导入、对数作图和数据质量参考</td><td>缺少完整条件，仅 reference_only</td></tr>
     </tbody>
   </table>

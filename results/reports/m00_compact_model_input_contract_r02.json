@@ -1,0 +1,425 @@
+{
+  "status": "PASS",
+  "contract_status": "PASS",
+  "fit_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "tcad_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "spice_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "circuit_status": "NOT_RUN_BY_CONTRACT_CHECK",
+  "case_id": "IGZO_M00_TEACHING_COMPACT_INPUT_VALIDATION_R02",
+  "stage": "M00",
+  "evidence_level": "E3",
+  "config": {
+    "path": "config/compact_m00_input_validation_r02.json",
+    "sha256": "1f5a169c21e598546338c9845d66663cc985afb2f0d571dbabd5ffc323627359"
+  },
+  "contract_checker": {
+    "path": "scripts/check_m00_compact_model_contract_r02.py",
+    "sha256": "9879a1de1e1d5c61f3aac3766549ce19d3aa5322866cfe864c38b0ae1142c9e4"
+  },
+  "machine_inputs": {
+    "project_config": {
+      "path": "config/project.json",
+      "sha256": "58cd2c222b6c22324352841a24acf9e5ef33f0e87423a9ceaeb513dce5441218"
+    },
+    "experiments_config": {
+      "path": "config/experiments.json",
+      "sha256": "3577ae5c5b1144c0f084bc732ac2b8871c0b40e410febddc6aa9da95dfb243e6"
+    },
+    "s00_report": {
+      "path": "results/reports/s00_data_audit.json",
+      "sha256": "44ea42ff7fd9923cd4c9c2d0156ce3d0029cd59655e3c4086ab7250f78b48e31"
+    },
+    "r01_config": {
+      "path": "config/compact_m00_input_validation.json",
+      "sha256": "407585bca9929dd573665ce6e0c7dcd872aee6cef184ef1cdd25b0b19e1bf27e"
+    },
+    "r01_contract_report": {
+      "path": "results/reports/m00_compact_model_input_contract.json",
+      "sha256": "3a12d232a7cc7dc2c8c2dffb72a66e238b6a6029b5f75414c7dd6b29c0b067f3"
+    },
+    "r01_fit_report": {
+      "path": "results/reports/m00_compact_model_fit.json",
+      "sha256": "88ee7227979abe87fdbb677987b3733ba06087e4f05a6acd8e7cd6b5feec53a5"
+    }
+  },
+  "registry": {
+    "path": "references/m00_dataset_registry.csv",
+    "sha256": "c7a66848430bee7837f0f8d44da52f1e7578b7aa4d8a70222a82803fadb0f840",
+    "dataset_count": 13,
+    "datasets": [
+      {
+        "dataset_id": "T01_D_B_IDVD",
+        "path": "results/tables/tcad_t01_d_idvd_points.csv",
+        "sha256": "5a550fede3cd6db1e9369f9c2783d0899afa274d2e3d130ffb2837e8f12a0ba9",
+        "row_count": 30
+      },
+      {
+        "dataset_id": "T01_D_C_IDVG",
+        "path": "results/tables/tcad_t01_d_extraction_idvg.csv",
+        "sha256": "0eff59db330321d3e5c55d6a51849787d44803e4dc20d863b0acf61d6a2ec2f8",
+        "row_count": 102
+      },
+      {
+        "dataset_id": "T02_C_DG_TRANSFER",
+        "path": "results/tables/tcad_t02_c_bidirectional_families.csv",
+        "sha256": "247d863f6a650545a2a5c407e92f3141113ec21fb0d648c2c9d45024e208f4a9",
+        "row_count": 248
+      },
+      {
+        "dataset_id": "T03_P4_LENGTH_TRANSFER",
+        "path": "results/tables/tcad_t03_p4_l_transfer_curves.csv",
+        "sha256": "3a63699b97ab3fa4e474c077a58e01ed6d9820c4adb2bd86a56fa93dbfdec16d",
+        "row_count": 93
+      },
+      {
+        "dataset_id": "T03_P1_BIAS_TRANSFER",
+        "path": "results/tables/tcad_t03_p1_bias_transfer_curves.csv",
+        "sha256": "0da04b07cecfb63256e664b5262a80cef5810ccc2fc9a46d2370bc488def5eb5",
+        "row_count": 155
+      },
+      {
+        "dataset_id": "T03_P1_CAP_RATIO_TRANSFER",
+        "path": "results/tables/tcad_t03_p1_cap_ratio_transfer_curves.csv",
+        "sha256": "8980c2e627e05acd8ddbb1f77ea4eb398b46a4053713791242b27f346015119a",
+        "row_count": 155
+      },
+      {
+        "dataset_id": "T03_P2_DIT_TRANSFER",
+        "path": "results/tables/tcad_t03_p2_dit_formal_transfer.csv",
+        "sha256": "9cf7e843b22c3bb625945e6abf3e0f1bc5c880e8325b0ea49d877dac9db8f015",
+        "row_count": 124
+      },
+      {
+        "dataset_id": "T03_P2_BULK_V3_TRANSFER",
+        "path": "results/tables/tcad_t03_p2_bulk_traps_formal_v3_transfer.csv",
+        "sha256": "af4eab4d415d3b08701aa290a3d7b796f0471ca258711036937112dbff756414",
+        "row_count": 376
+      },
+      {
+        "dataset_id": "T03_P3_V2_TRANSFER",
+        "path": "results/tables/tcad_t03_p3_contact_v2_transfer.csv",
+        "sha256": "458ea11aa4fc731d9713773c5621d4821830fc400e68c89fad940141e1c32527",
+        "row_count": 93
+      },
+      {
+        "dataset_id": "T03_P3_V2_OUTPUT",
+        "path": "results/tables/tcad_t03_p3_contact_v2_output.csv",
+        "sha256": "74a5f2bf48acd54bb467c8c3622349779c4fb9f130de60213be66c84066b1a82",
+        "row_count": 63
+      },
+      {
+        "dataset_id": "T03_P5_TEMPERATURE_TRANSFER",
+        "path": "results/tables/tcad_t03_p5_temperature_transfer.csv",
+        "sha256": "28fbb62b15c228ca09420764af7dce9f1aca1109269f0b67cf2ff7db2935db9b",
+        "row_count": 93
+      },
+      {
+        "dataset_id": "EXTERNAL_NGSPICE_TRANSFER",
+        "path": "data/raw/baseline/ngspice/data/igzo_transfer.csv",
+        "sha256": "91a390a58775b6c8c534fb66e4d74fc477afaeb9aadcdf3aed54f4f96e702483",
+        "row_count": 635
+      },
+      {
+        "dataset_id": "EXTERNAL_NGSPICE_OUTPUT",
+        "path": "data/raw/baseline/ngspice/data/igzo_output.csv",
+        "sha256": "90f770f523202e99988aaf255107afc5054420e4d7c1cf0d1611d791661c29f5",
+        "row_count": 968
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "identity:m00_r02_contract",
+      "status": "PASS",
+      "detail": "case=IGZO_M00_TEACHING_COMPACT_INPUT_VALIDATION_R02 stage=M00"
+    },
+    {
+      "name": "scope:2d_n_igzo_laptop_only",
+      "status": "PASS",
+      "detail": "2D n-IGZO R02 teaching compact surrogate for single-bottom-gate and symmetric dual-gate DC current"
+    },
+    {
+      "name": "gate:g0_remains_teaching_only",
+      "status": "PASS",
+      "detail": "{\"allowed_claim\": \"Teaching-parameter two-dimensional IGZO simulation\", \"missing_primary_inputs\": [\"condition-complete raw Id-Vg\", \"condition-complete raw Id-Vd\", \"device batch identity\", \"measurement or simulation condition metadata\"], \"prohibited_claim\": \"Accurate experimental fit or calibrated dual-gate prediction\", \"quantitative_fitting_permitted\": false, \"required_primary_fields\": [\"dataset_id\", \"device_id\", \"sweep_id\", \"VGS_V\", \"VDS_V\", \"ID_A\", \"W_um\", \"L_um\", \"temperature_K\", \"sweep_direction\", \"source\", \"source_status\"], \"status\": \"TEACHING_BASELINE_ONLY\", \"t01_permitted\": true}"
+    },
+    {
+      "name": "dependencies:t01_t02_t03_numerical_gates_complete",
+      "status": "PASS",
+      "detail": "T01=complete_e2 T02=bidirectional_verified T03=verified groups=['P1', 'P2', 'P3', 'P4', 'P5']"
+    },
+    {
+      "name": "recovery:r01_contract_failure_and_artifacts_remain_immutable",
+      "status": "PASS",
+      "detail": "r01_contract=PASS r01_fit=FAIL failures=3 artifacts=10/10"
+    },
+    {
+      "name": "registry:schema_and_unique_ids",
+      "status": "PASS",
+      "detail": "rows=13 ids=['EXTERNAL_NGSPICE_OUTPUT', 'EXTERNAL_NGSPICE_TRANSFER', 'T01_D_B_IDVD', 'T01_D_C_IDVG', 'T02_C_DG_TRANSFER', 'T03_P1_BIAS_TRANSFER', 'T03_P1_CAP_RATIO_TRANSFER', 'T03_P2_BULK_V3_TRANSFER', 'T03_P2_DIT_TRANSFER', 'T03_P3_V2_OUTPUT', 'T03_P3_V2_TRANSFER', 'T03_P4_LENGTH_TRANSFER', 'T03_P5_TEMPERATURE_TRANSFER']"
+    },
+    {
+      "name": "registry:bytes_hashes_and_row_counts_frozen",
+      "status": "PASS",
+      "detail": "datasets=13 rows=3135"
+    },
+    {
+      "name": "registry:project_numerical_sources_have_passed_independent_checks",
+      "status": "PASS",
+      "detail": "all project numerical registry rows trace to PASS runner and independent reports"
+    },
+    {
+      "name": "registry:fit_diagnostic_excluded_and_reference_roles_are_disjoint",
+      "status": "PASS",
+      "detail": "formal=['T01_D_B_IDVD', 'T01_D_C_IDVG', 'T02_C_DG_TRANSFER', 'T03_P3_V2_OUTPUT', 'T03_P4_LENGTH_TRANSFER'] forbidden=['EXTERNAL_NGSPICE_OUTPUT', 'EXTERNAL_NGSPICE_TRANSFER', 'T03_P1_BIAS_TRANSFER', 'T03_P1_CAP_RATIO_TRANSFER', 'T03_P2_BULK_V3_TRANSFER', 'T03_P2_DIT_TRANSFER', 'T03_P3_V2_TRANSFER', 'T03_P5_TEMPERATURE_TRANSFER']"
+    },
+    {
+      "name": "split:selectors_resolve_exact_counts_without_overlap",
+      "status": "PASS",
+      "detail": "curves={'train': 9, 'holdout': 4} scored_points={'train': 163, 'holdout': 70}"
+    },
+    {
+      "name": "split:nine_train_four_holdout_and_233_scored_points",
+      "status": "PASS",
+      "detail": "{\"holdout_curve_count\": 4, \"holdout_scored_point_count\": 70, \"repeated_low_vds_audit_point_count\": 7, \"split_policy\": \"fixed whole-condition split registered before fitting\", \"training_curve_count\": 9, \"training_scored_point_count\": 163, \"zero_vds_invariant_point_count\": 7}"
+    },
+    {
+      "name": "split:whole_condition_holdout_is_prefrozen",
+      "status": "PASS",
+      "detail": "holdout contains complete single/dual transfer/output bias or geometry conditions"
+    },
+    {
+      "name": "recovery:r01_bytes_split_metrics_thresholds_and_domain_unchanged",
+      "status": "PASS",
+      "detail": "unchanged_sections=['dataset_contract', 'scored_curves', 'split_summary', 'audit_and_exclusion_contract', 'metric_contract', 'acceptance', 'validity_domain']"
+    },
+    {
+      "name": "split:zero_vds_and_repeated_low_vds_rows_are_separate_audits",
+      "status": "PASS",
+      "detail": "zero_vds=7 repeated_vds_0p01=7"
+    },
+    {
+      "name": "datasets:reproduction_challenge_and_physics_exclusions_are_counted",
+      "status": "PASS",
+      "detail": "audits=5 challenges=4 excluded_physics=2"
+    },
+    {
+      "name": "kernel:r02_fixed_inverse_length_charge_difference_frozen",
+      "status": "PASS",
+      "detail": "I = sign(VDS) * {10^log_beta * (Lref/L) * [Q(U-Vth,s)^gamma - Q(U-Vth-k_d*abs(VDS),s)^gamma] * [1+lambda*abs(VDS)] + 10^log_gmin*abs(VDS)}"
+    },
+    {
+      "name": "parameters:ten_unique_bounded_coefficients_one_free_length_term",
+      "status": "PASS",
+      "detail": "parameters=['log_beta', 'vth_single_v', 'vth_dual_v', 'eta_dg', 'softplus_scale_v', 'transport_exponent', 'drain_coupling', 'lambda_per_v', 'log_gmin', 'length_vth_slope_v']"
+    },
+    {
+      "name": "optimization:deterministic_training_only_equal_curve_objective",
+      "status": "PASS",
+      "detail": "{\"backend\": \"scipy.optimize.least_squares\", \"current_floor_a_per_cm\": 1e-20, \"fixed_length_geometry_exponent\": 1.0, \"free_length_parameter_count\": 1, \"ftol\": 1e-12, \"gtol\": 1e-12, \"holdout_access_during_fit\": false, \"jacobian\": \"2-point finite difference\", \"linear_residual\": \"(I_model-I_target)/max(abs(I_target)) within each scored curve\", \"log_residual\": \"log10(max(abs(I_model),floor))-log10(max(abs(I_target),floor))\", \"loss\": \"linear\", \"max_nfev\": 20000, \"maximum_wall_seconds\": 120.0, \"method\": \"trf\", \"per_curve_weighting\": \"Each training curve contributes equal total squared weight; linear and log residual blocks each contribute 0.5 per curve.\", \"r01_holdout_metrics_or_fitted_parameters_used\": false, \"random_seed_or_restart\": \"none\", \"tcad_or_spice_execution\": false, \"training_only\": true, \"xtol\": 1e-12}"
+    },
+    {
+      "name": "metrics:linear_log_vth_gm_invariants_and_bounds_reported_separately",
+      "status": "PASS",
+      "detail": "reported=9 forbidden=4"
+    },
+    {
+      "name": "acceptance:train_holdout_thresholds_and_invariants_prefrozen",
+      "status": "PASS",
+      "detail": "{\"maximum_holdout_aggregate_linear_nrmse\": 0.2, \"maximum_holdout_aggregate_log_rmse_dec\": 0.6, \"maximum_holdout_gm_relative_error\": 0.5, \"maximum_holdout_per_curve_linear_nrmse\": 0.35, \"maximum_holdout_per_curve_log_rmse_dec\": 1.0, \"maximum_holdout_vth_absolute_error_v\": 0.1, \"maximum_training_aggregate_linear_nrmse\": 0.15, \"maximum_training_aggregate_log_rmse_dec\": 0.45, \"maximum_training_per_curve_linear_nrmse\": 0.3, \"maximum_training_per_curve_log_rmse_dec\": 0.8, \"maximum_zero_vds_abs_current_a_per_cm\": 1e-18, \"require_all_parameters_strictly_inside_bounds\": true, \"require_all_predictions_finite\": true, \"require_multiple_vds_in_training_and_holdout\": true, \"require_nonnegative_current_for_nonnegative_vds\": true, \"require_parameter_provenance_and_validity_domain\": true, \"require_sampled_transfer_and_output_monotonicity\": true, \"require_training_and_holdout_metrics_reported_separately\": true, \"required_holdout_curve_count\": 4, \"required_holdout_scored_point_count\": 70, \"required_training_curve_count\": 9, \"required_training_scored_point_count\": 163, \"required_zero_vds_invariant_point_count\": 7}"
+    },
+    {
+      "name": "routes:reference_ngspice_and_aimspice_boundaries_are_distinct",
+      "status": "PASS",
+      "detail": "Neither simulator route is accepted or circuit-ready until M01 runs the same geometry bias and metrics and reports route differences."
+    },
+    {
+      "name": "validity:nominal_300k_ideal_contact_dc_domain_is_explicit",
+      "status": "PASS",
+      "detail": "{\"analysis_type\": \"DC only\", \"channel_length_um\": [8.0, 12.0], \"contact\": \"ideal ohmic nominal only\", \"dual_gate_primary_v\": [-0.5, 1.0], \"dual_gate_secondary_v\": [-0.3, 0.3], \"dual_gate_stack\": \"symmetric 30 nm physical Al2O3 per gate with k=6.8\", \"evidence_source\": \"qualified project 2D teaching-model numerical curves\", \"excluded\": [\"negative VDS formal accuracy\", \"capacitance transient noise or AC behavior\", \"trap contact temperature ferroelectric stress or reliability laws\", \"experimental process corners uncertainty or extrapolation\", \"quantitative circuit prediction before M01\"], \"material\": \"n-type IGZO only\", \"single_gate_vgs_v\": [-1.0, 1.0], \"source_width_um\": 60.0, \"temperature_k\": [300.0, 300.0], \"traps\": \"none in nominal model\", \"vds_v\": [0.0, 0.2], \"width_scaling\": \"Linear conversion from the 2D per-width current is a teaching assumption and is not a measured width-dependence validation.\"}"
+    },
+    {
+      "name": "failure:immutable_failed_fit_and_no_threshold_relaxation",
+      "status": "PASS",
+      "detail": "Any justified contract change requires a new revision with the failed run preserved; the previous run remains FAIL."
+    },
+    {
+      "name": "outputs:unique_revisioned_r02_paths_and_no_fit_artifacts_exist",
+      "status": "PASS",
+      "detail": "outputs=16 existing_future=[]"
+    },
+    {
+      "name": "implementation:contract_checker_is_standard_library_static_only",
+      "status": "PASS",
+      "detail": "imports=['__future__', 'argparse', 'ast', 'collections', 'csv', 'hashlib', 'json', 'math', 'pathlib', 'sys', 'typing']"
+    },
+    {
+      "name": "boundary:no_fit_simulator_physical_or_circuit_claim",
+      "status": "PASS",
+      "detail": "An E3 R02 static check may verify that one train-unidentifiable length degree is removed while R01 evidence, dataset bytes, selectors, split, metrics, thresholds, outputs and failure rules remain frozen, without fitting a model or running TCAD SPICE or a circuit."
+    },
+    {
+      "name": "machine_state:r02_contract_ready_execution_chain_is_next",
+      "status": "PASS",
+      "detail": "implement and self-test the revisioned R02 formal runner and independent checker against the committed R02 contract; do not optimize formal data or score holdout until that execution chain is committed, and do not rerun R01 or start M01, SPICE, circuit cells, layout, PEX, or HZO"
+    }
+  ],
+  "failures": [],
+  "planned_fit": {
+    "kernel_id": "IGZO_DG_TEACHING_KERNEL_R02",
+    "parameter_count": 10,
+    "training_curves": 9,
+    "holdout_curves": 4,
+    "training_scored_points": 163,
+    "holdout_scored_points": 70,
+    "zero_vds_invariant_points": 7,
+    "fixed_length_geometry_exponent": 1.0,
+    "free_length_parameter_count": 1,
+    "selected_curves": [
+      {
+        "curve_id": "train_t01_single_idvg_l10",
+        "dataset_id": "T01_D_C_IDVG",
+        "split": "train",
+        "selected_points": 51,
+        "scored_points": 51
+      },
+      {
+        "curve_id": "train_t01_single_idvd_vgs_0p0",
+        "dataset_id": "T01_D_B_IDVD",
+        "split": "train",
+        "selected_points": 5,
+        "scored_points": 3
+      },
+      {
+        "curve_id": "holdout_t01_single_idvd_vgs_0p3",
+        "dataset_id": "T01_D_B_IDVD",
+        "split": "holdout",
+        "selected_points": 5,
+        "scored_points": 3
+      },
+      {
+        "curve_id": "train_t01_single_idvd_vgs_0p5",
+        "dataset_id": "T01_D_B_IDVD",
+        "split": "train",
+        "selected_points": 5,
+        "scored_points": 3
+      },
+      {
+        "curve_id": "train_t01_single_idvd_vgs_1p0",
+        "dataset_id": "T01_D_B_IDVD",
+        "split": "train",
+        "selected_points": 5,
+        "scored_points": 3
+      },
+      {
+        "curve_id": "train_t02_dual_secondary_m0p3",
+        "dataset_id": "T02_C_DG_TRANSFER",
+        "split": "train",
+        "selected_points": 31,
+        "scored_points": 31
+      },
+      {
+        "curve_id": "holdout_t02_dual_secondary_0p0",
+        "dataset_id": "T02_C_DG_TRANSFER",
+        "split": "holdout",
+        "selected_points": 31,
+        "scored_points": 31
+      },
+      {
+        "curve_id": "train_t02_dual_secondary_p0p3",
+        "dataset_id": "T02_C_DG_TRANSFER",
+        "split": "train",
+        "selected_points": 31,
+        "scored_points": 31
+      },
+      {
+        "curve_id": "train_t03_dual_length_8",
+        "dataset_id": "T03_P4_LENGTH_TRANSFER",
+        "split": "train",
+        "selected_points": 31,
+        "scored_points": 31
+      },
+      {
+        "curve_id": "holdout_t03_dual_length_12",
+        "dataset_id": "T03_P4_LENGTH_TRANSFER",
+        "split": "holdout",
+        "selected_points": 31,
+        "scored_points": 31
+      },
+      {
+        "curve_id": "train_t03_dual_idvd_vtg_0p3",
+        "dataset_id": "T03_P3_V2_OUTPUT",
+        "split": "train",
+        "selected_points": 7,
+        "scored_points": 5
+      },
+      {
+        "curve_id": "holdout_t03_dual_idvd_vtg_0p5",
+        "dataset_id": "T03_P3_V2_OUTPUT",
+        "split": "holdout",
+        "selected_points": 7,
+        "scored_points": 5
+      },
+      {
+        "curve_id": "train_t03_dual_idvd_vtg_1p0",
+        "dataset_id": "T03_P3_V2_OUTPUT",
+        "split": "train",
+        "selected_points": 7,
+        "scored_points": 5
+      }
+    ]
+  },
+  "structure_recovery_contract": {
+    "trigger": "The preserved R01 holdout-gm failure opened a structure audit; its numerical value does not select the R02 equation, coefficient, initial vector, bounds, restart or threshold.",
+    "pre_fit_identifiability_basis": {
+      "source": "The committed R01 split contains eight reference-length 10 um training curves and only one non-reference 8 um training curve while the R01 kernel exposes two free length coefficients.",
+      "training_reference_length_curve_count": 8,
+      "training_nonreference_length_curve_count": 1,
+      "training_nonreference_lengths_um": [
+        8.0
+      ],
+      "r01_free_length_coefficients": [
+        "length_exponent",
+        "length_vth_slope_v"
+      ],
+      "diagnosis": "One non-reference training condition cannot robustly separate a free amplitude exponent from a free logarithmic threshold shift; the two effects can trade off without changing the frozen training/holdout split.",
+      "r01_holdout_curve_values_or_metrics_used": false,
+      "r01_fitted_parameter_values_used": false
+    },
+    "r02_change": {
+      "fixed_length_geometry_factor": "Lref/L",
+      "fixed_length_geometry_exponent": 1.0,
+      "fixed_value_basis": "First-order channel geometry normalization in the existing charge-difference teaching kernel; it is a regularizing analytic assumption, not a fit to R01 holdout or a claimed physical scaling law.",
+      "removed_free_parameter": "length_exponent",
+      "remaining_train_fitted_length_parameter": "length_vth_slope_v",
+      "remaining_train_fitted_length_parameter_initial": 0.0,
+      "free_length_parameter_count": 1
+    },
+    "unchanged_items": [
+      "13 registered source-table bytes and hashes",
+      "9 training curves with 163 scored points",
+      "4 whole-condition holdout curves with 70 scored points",
+      "7 zero-VDS invariants and 7 repeated low-VDS audits",
+      "all linear, logarithmic, VTH, gm, monotonicity, finite, nonnegative, bound and wall-time gates",
+      "deterministic training-only optimizer and no-restart rule",
+      "local validity domain and non-calibration evidence boundary"
+    ],
+    "prohibited_interpretation": "R02 is a preregistered structural regularization attempt. It does not reinterpret R01, establish inverse-length physics, use holdout feedback for parameter selection, or guarantee R02 PASS."
+  },
+  "evidence_boundary": {
+    "contract_allowed_claim": "An E3 R02 static check may verify that one train-unidentifiable length degree is removed while R01 evidence, dataset bytes, selectors, split, metrics, thresholds, outputs and failure rules remain frozen, without fitting a model or running TCAD SPICE or a circuit.",
+    "future_m00_pass_allowed_claim": "A later R02 two-level PASS may establish an IGZO-only structurally regularized teaching compact surrogate fit to qualified project numerical curves with unchanged condition-held-out numerical errors and an explicit local validity domain.",
+    "prohibited_claims": [
+      "experimental fitting calibration or measured predictive accuracy",
+      "physical VTH SS mobility Ion Ioff DOS contact or temperature parameters",
+      "independent external validation because train and holdout originate from the same frozen teaching model",
+      "AIM-Spice or ngspice validation before M01 execution",
+      "equation identity between native AIM-Spice Level 15 and ngspice behavioral routes",
+      "native HSPICE Level 61 execution",
+      "physical inverse-length scaling or proof that fixed Lref/L is the true IGZO law",
+      "reinterpretation replacement or deletion of the R01 E0/FAIL evidence",
+      "circuit-ready active-load model quantitative circuit results layout PEX or HZO evidence"
+    ],
+    "next_gate": "After this R02 contract passes and is committed, first implement and self-test a revisioned R02 runner and independent checker without formal-data optimization; only after that execution-chain commit may exactly one formal R02 fit run. M01 and all downstream work remain closed until the R02 runner and independent persisted-evidence checks both pass."
+  }
+}

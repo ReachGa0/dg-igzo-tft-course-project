@@ -632,12 +632,12 @@
       "id": "M00",
       "track": "compact_model",
       "name": "igzo_teaching_multicurve_surrogate_fit",
-      "status": "blocked",
+      "status": "in_progress",
       "current_evidence": "E0",
       "depends_on": ["S00", "T01", "T02", "T03"],
       "purpose": "Map qualified project teaching-model terminal curves to an IGZO-only compact surrogate with an untouched whole-condition holdout and explicit non-calibration boundary.",
-      "changed_variables": ["compact_model_parameters"],
-      "controls": ["fixed_fit_holdout_split", "fixed_error_metrics", "training_only_optimizer", "failure_retention", "no_spice_before_m01"],
+      "changed_variables": ["compact_model_structure_revision", "compact_model_parameters"],
+      "controls": ["fixed_fit_holdout_split", "fixed_error_metrics", "training_only_optimizer", "fixed_r02_length_geometry_exponent", "failure_retention", "no_spice_before_m01"],
       "required_outputs": ["fit_holdout_split", "parameter_table", "linear_log_residuals", "validity_domain", "independent_persisted_evidence_check"],
       "contract_evidence": {
         "status": "input_validation_contract_ready",
@@ -697,8 +697,37 @@
           "results/reports/m00_compact_model_fit.json"
         ]
       },
+      "r02_contract_evidence": {
+        "status": "structural_recovery_contract_ready",
+        "revision": 2,
+        "contract_evidence": "E3",
+        "contract_checks_passed": 27,
+        "fit_status": "NOT_RUN_BY_CONTRACT_CHECK",
+        "formal_fit_completed": false,
+        "registry_dataset_count": 13,
+        "formal_fit_dataset_count": 5,
+        "training_curve_count": 9,
+        "training_scored_point_count": 163,
+        "holdout_curve_count": 4,
+        "holdout_scored_point_count": 70,
+        "zero_vds_invariant_point_count": 7,
+        "parameter_count": 10,
+        "fixed_length_geometry_exponent": 1.0,
+        "free_length_parameter_count": 1,
+        "r01_holdout_used_for_structure_or_parameters": false,
+        "r01_failure_preserved": true,
+        "tcad_run_by_contract_check": false,
+        "spice_run_by_contract_check": false,
+        "circuit_run_by_contract_check": false,
+        "m01_or_downstream_permitted": false,
+        "result_paths": [
+          "config/compact_m00_input_validation_r02.json",
+          "scripts/check_m00_compact_model_contract_r02.py",
+          "results/reports/m00_compact_model_input_contract_r02.json"
+        ]
+      },
       "acceptance": ["training and holdout linear/log errors reported separately", "multiple VDS curves included in training and holdout", "parameter provenance and local validity domain complete", "independent persisted-evidence check passes"],
-      "evidence_boundary": "The E3 contract freezes bytes, selectors, a 9-curve/163-point training set, a 4-curve/70-point whole-condition holdout, seven zero-VDS invariants, the teaching kernel, bounds, optimizer, metrics, outputs and failure rules. The single formal R01 run is E0/FAIL: optimization converged and all aggregate/per-curve linear-log, VTH, invariant, monotonic and parameter gates passed, but the L=12 um holdout gm relative error was 0.512384 versus the frozen 0.50 limit. All failure evidence is preserved; the PASS-only independent checker did not run and no ngspice/AIM-Spice candidate was generated or executed. R01 cannot be rerun or relabeled. These failed coefficients are not an accepted compact model, experimental calibration, measured or physical parameters, independent external validation, simulator validation, circuit readiness, layout, PEX or HZO evidence."
+      "evidence_boundary": "The original E3 contract freezes bytes, selectors, a 9-curve/163-point training set, a 4-curve/70-point whole-condition holdout, seven zero-VDS invariants, the teaching kernel, bounds, optimizer, metrics, outputs and failure rules. The single formal R01 run remains E0/FAIL because the L=12 um holdout gm relative error was 0.512384 versus the frozen 0.50 limit; its complete evidence remains preserved and its PASS-only independent checker did not run. The E3 R02 contract changes only model structure: because the committed training split has eight 10 um curves, one non-reference 8 um curve and two R01 free length coefficients, it fixes the analytic Lref/L geometry exponent at 1.0, removes length_exponent, retains one train-fitted length threshold coefficient and reduces the parameter count to 10. Dataset bytes, split, metrics, all thresholds and validity remain identical. No R01 holdout metric or fitted coefficient selected that structure or any R02 numerical setting. The fixed inverse-length factor is a regularizing teaching assumption, not a physical scaling-law claim. R02 fitting, independent checking, ngspice/AIM-Spice, TCAD, circuit and downstream remain unrun; neither revision is an accepted compact model, experimental calibration, measured or physical parameters, external validation, simulator validation or circuit evidence."
     },
     {
       "id": "M01",

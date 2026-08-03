@@ -1,5 +1,6 @@
 <section xmlns="http://www.w3.org/1999/xhtml" id="section-09" class="report-chapter">
   <h2>9. 模型验证或结果对比</h2>
+  <h3>9.1 R01 正式失败</h3>
   <p>M00 R01 已按提交前冻结合同唯一运行一次。优化只读取 9 条 train/163 点，正常终止并落盘日志后才读取 4 条 holdout/70 点。本节如实报告 E0/FAIL：线性/对数误差和 VTH 门通过，不能覆盖一条 holdout gm 门失败。</p>
   <table>
     <thead><tr><th>项目</th><th>预注册门</th><th>R01 结果</th><th>状态</th></tr></thead>
@@ -24,5 +25,18 @@
     <figcaption>图 9-2 每曲线线性 NRMSE 与对数 RMSE。两类误差均通过，但合同还要求单独的 VTH/gm 门，故不能用本图替代 gm 失败。</figcaption>
   </figure>
   <p>失败报告、输入快照、247 行选择清单、优化日志、预测/残差、13 行曲线指标、11 行系数、有效域和两张图均保留。R01 输出拒绝覆盖；没有执行独立检查、TCAD、ngspice、AIM-Spice 或电路。</p>
-  <p class="boundary">R01 保持 E0/FAIL，不得把聚合误差通过写成 M00 通过，也不得把失败系数写成物理 VTH、迁移率、DOS、接触或温度参数。不得重跑 R01、放宽 0.50、改变既有 split 或用 holdout 选择参数。任何 R02 必须先提交新的模型结构合同，并说明独立于本次 holdout 的依据；M01 和下游继续关闭。</p>
+  <p class="boundary">R01 保持 E0/FAIL，不得把聚合误差通过写成 M00 通过，也不得把失败系数写成物理 VTH、迁移率、DOS、接触或温度参数。不得重跑 R01、放宽 0.50、改变既有 split 或用 holdout 选择参数。</p>
+  <h3>9.2 R02 结构恢复静态合同</h3>
+  <table>
+    <thead><tr><th>合同项</th><th>R02 冻结内容</th><th>证据状态</th></tr></thead>
+    <tbody>
+      <tr><td>结构依据</td><td>训练侧 8 条参考长度 10 um 曲线、1 条非参考 8 um 曲线；R01 却同时开放长度指数与长度阈值斜率，幅值和阈值效应缺少独立条件稳健分离</td><td>只由提交前 split 与方程得到；不读取 R01 holdout 数值或拟合系数作选择</td></tr>
+      <tr><td>唯一结构变化</td><td>固定一阶几何因子 <code>Lref/L</code>、指数 1.0；移除 <code>length_exponent</code>；保留 <code>length_vth_slope_v</code> 为唯一训练拟合长度系数，初值 0.0 V</td><td>计划有界系数从 11 降为 10；只是教学正则化，不是物理缩放律</td></tr>
+      <tr><td>不变验收</td><td>13 表、9/163 train、4/70 holdout、7+7 审计点、底值、每曲线权重、确定性无重启优化、全部线性/对数/VTH/gm 门及 0.50 gm 上限</td><td>与 R01 配置逐节相等</td></tr>
+      <tr><td>失败与输出隔离</td><td>R01 配置、源码、报告和失败产物保持原样；R02 使用独立运行目录、表、图、模型和候选路径并拒绝覆盖</td><td>R01 仍为 E0/FAIL</td></tr>
+      <tr><td>当前执行状态</td><td><code>make m00-compact-model-r02-contract-check</code> 为 27/27 PASS</td><td>E3 静态合同；fit/TCAD/SPICE/circuit 均为 <code>NOT_RUN_BY_CONTRACT_CHECK</code></td></tr>
+    </tbody>
+  </table>
+  <p>R02 合同只允许下一步实现和合成自测版本化 runner/independent checker。执行链提交前不得优化正式 train 或评分 holdout；提交后也只允许一次正式 R02，且只有 runner PASS 后才运行独立落盘检查。</p>
+  <p class="boundary">27/27 静态 PASS 不能写成 R02 或 M00 拟合通过，也不能把固定 <code>Lref/L</code> 写成 IGZO 物理定律、实验校准或电路可用模型。M01、SPICE、电路、版图、PEX 和 HZO 继续关闭。</p>
 </section>

@@ -139,11 +139,14 @@ REQUIRED_FILES = [
     "config/tcad_t03_p5_temperature.json",
     "scripts/check_t03_p5_temperature_contract.py",
     "config/compact_m00_input_validation.json",
+    "config/compact_m00_input_validation_r02.json",
     "references/m00_dataset_registry.csv",
     "scripts/check_m00_compact_model_contract.py",
+    "scripts/check_m00_compact_model_contract_r02.py",
     "models/fit_m00_teaching_compact.py",
     "scripts/check_m00_compact_model_fit.py",
     "results/reports/m00_compact_model_input_contract.json",
+    "results/reports/m00_compact_model_input_contract_r02.json",
     "results/reports/m00_compact_model_input_contract_dependency_status_mismatch_failed.json",
     "results/compact/m00_teaching_fit_r01/input_snapshot.json",
     "results/compact/m00_teaching_fit_r01/selected_rows_manifest.csv",
@@ -4616,6 +4619,12 @@ def main() -> int:
             / "m00_compact_model_input_contract_dependency_status_mismatch_failed.json"
         )
         m00_fit_path = ROOT / "results" / "reports" / "m00_compact_model_fit.json"
+        m00_r02_config_path = (
+            ROOT / "config" / "compact_m00_input_validation_r02.json"
+        )
+        m00_r02_report_path = (
+            ROOT / "results" / "reports" / "m00_compact_model_input_contract_r02.json"
+        )
         m00_run_dir = ROOT / "results" / "compact" / "m00_teaching_fit_r01"
         m00_snapshot_path = m00_run_dir / "input_snapshot.json"
         m00_manifest_path = m00_run_dir / "selected_rows_manifest.csv"
@@ -4636,6 +4645,8 @@ def main() -> int:
         m00_report = json.loads(m00_report_path.read_text(encoding="utf-8"))
         m00_failure = json.loads(m00_failure_path.read_text(encoding="utf-8"))
         m00_fit = json.loads(m00_fit_path.read_text(encoding="utf-8"))
+        m00_r02_config = json.loads(m00_r02_config_path.read_text(encoding="utf-8"))
+        m00_r02_report = json.loads(m00_r02_report_path.read_text(encoding="utf-8"))
         m00_snapshot = json.loads(m00_snapshot_path.read_text(encoding="utf-8"))
         m00_optimizer = json.loads(m00_optimizer_path.read_text(encoding="utf-8"))
         m00_validity = json.loads(m00_validity_path.read_text(encoding="utf-8"))
@@ -4878,13 +4889,103 @@ def main() -> int:
         )
         m00_machine = m00_experiment.get("contract_evidence", {})
         m00_formal = m00_experiment.get("formal_fit_evidence", {})
+        m00_r02_machine = m00_experiment.get("r02_contract_evidence", {})
         m00_prohibited = " ".join(
             m00_config.get("evidence_boundary", {}).get("prohibited_claims", [])
+        )
+        m00_r02_checks = m00_r02_report.get("checks", [])
+        m00_r02_plan = m00_r02_report.get("planned_fit", {})
+        m00_r02_recovery = m00_r02_config.get("structure_recovery_contract", {})
+        m00_r02_basis = m00_r02_recovery.get("pre_fit_identifiability_basis", {})
+        m00_r02_change = m00_r02_recovery.get("r02_change", {})
+        m00_r02_future_outputs = [
+            ROOT / value
+            for key, value in m00_r02_config["outputs"].items()
+            if key != "contract_report"
+        ]
+        add_check(
+            checks,
+            "m00_r02_contract:static_structure_recovery_and_no_execution",
+            m00_r02_report.get("status") == "PASS"
+            and m00_r02_report.get("contract_status") == "PASS"
+            and m00_r02_report.get("evidence_level") == "E3"
+            and m00_r02_report.get("fit_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m00_r02_report.get("tcad_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m00_r02_report.get("spice_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m00_r02_report.get("circuit_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and len(m00_r02_checks) == 27
+            and all(item.get("status") == "PASS" for item in m00_r02_checks)
+            and not m00_r02_report.get("failures")
+            and m00_r02_plan.get("parameter_count") == 10
+            and m00_r02_plan.get("training_curves") == 9
+            and m00_r02_plan.get("training_scored_points") == 163
+            and m00_r02_plan.get("holdout_curves") == 4
+            and m00_r02_plan.get("holdout_scored_points") == 70
+            and m00_r02_plan.get("zero_vds_invariant_points") == 7
+            and m00_r02_plan.get("fixed_length_geometry_exponent") == 1.0
+            and m00_r02_plan.get("free_length_parameter_count") == 1
+            and m00_r02_report.get("config", {}).get("sha256")
+            == sha256(m00_r02_config_path)
+            and m00_r02_report.get("contract_checker", {}).get("sha256")
+            == sha256(ROOT / "scripts" / "check_m00_compact_model_contract_r02.py")
+            and all(not path.exists() for path in m00_r02_future_outputs),
+            (
+                f"checks={len(m00_r02_checks)} parameters="
+                f"{m00_r02_plan.get('parameter_count')} fit="
+                f"{m00_r02_report.get('fit_status')} future_absent="
+                f"{sum(not path.exists() for path in m00_r02_future_outputs)}/"
+                f"{len(m00_r02_future_outputs)}"
+            ),
+        )
+        unchanged_r02_sections = (
+            "dataset_contract", "scored_curves", "split_summary",
+            "audit_and_exclusion_contract", "metric_contract", "acceptance",
+            "validity_domain",
+        )
+        m00_r01_parameter_map = {
+            item["name"]: item for item in m00_config["parameter_contract"]
+        }
+        m00_r02_parameter_map = {
+            item["name"]: item for item in m00_r02_config["parameter_contract"]
+        }
+        add_check(
+            checks,
+            "m00_r02_contract:unchanged_split_thresholds_and_holdout_isolation",
+            all(
+                m00_r02_config[name] == m00_config[name]
+                for name in unchanged_r02_sections
+            )
+            and m00_r02_config["acceptance"]["maximum_holdout_gm_relative_error"]
+            == 0.5
+            and set(m00_r02_config["outputs"].values()).isdisjoint(
+                set(m00_config["outputs"].values())
+            )
+            and set(m00_r02_parameter_map)
+            == set(m00_r01_parameter_map) - {"length_exponent"}
+            and all(
+                m00_r02_parameter_map[name] == m00_r01_parameter_map[name]
+                for name in set(m00_r02_parameter_map) - {"length_vth_slope_v"}
+            )
+            and m00_r02_parameter_map["length_vth_slope_v"]["initial"] == 0.0
+            and m00_r02_basis.get("training_reference_length_curve_count") == 8
+            and m00_r02_basis.get("training_nonreference_length_curve_count") == 1
+            and m00_r02_basis.get("r01_holdout_curve_values_or_metrics_used") is False
+            and m00_r02_basis.get("r01_fitted_parameter_values_used") is False
+            and m00_r02_change.get("fixed_length_geometry_exponent") == 1.0
+            and m00_r02_change.get("removed_free_parameter") == "length_exponent"
+            and "regularizing teaching assumption" in config.get(
+                "tcad_track", {}
+            ).get("m00_r02_contract_boundary", ""),
+            (
+                f"sections={len(unchanged_r02_sections)} parameters="
+                f"{len(m00_r02_parameter_map)} fixed_exponent="
+                f"{m00_r02_change.get('fixed_length_geometry_exponent')}"
+            ),
         )
         add_check(
             checks,
             "m00_contract:machine_state_next_gate_and_boundary",
-            m00_experiment.get("status") == "blocked"
+            m00_experiment.get("status") == "in_progress"
             and m00_experiment.get("current_evidence") == "E0"
             and m00_experiment.get("depends_on") == ["S00", "T01", "T02", "T03"]
             and m00_machine.get("status") == "input_validation_contract_ready"
@@ -4907,8 +5008,21 @@ def main() -> int:
             and m00_formal.get("independent_check_run") is False
             and m00_formal.get("model_candidates_generated") is False
             and m00_formal.get("m01_or_downstream_permitted") is False
+            and m00_r02_machine.get("status")
+            == "structural_recovery_contract_ready"
+            and m00_r02_machine.get("revision") == 2
+            and m00_r02_machine.get("contract_evidence") == "E3"
+            and m00_r02_machine.get("contract_checks_passed") == 27
+            and m00_r02_machine.get("fit_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and m00_r02_machine.get("formal_fit_completed") is False
+            and m00_r02_machine.get("parameter_count") == 10
+            and m00_r02_machine.get("fixed_length_geometry_exponent") == 1.0
+            and m00_r02_machine.get("r01_holdout_used_for_structure_or_parameters")
+            is False
+            and m00_r02_machine.get("r01_failure_preserved") is True
+            and m00_r02_machine.get("m01_or_downstream_permitted") is False
             and config.get("tcad_track", {}).get("next_scope", "").startswith(
-                "preserve the single formal M00 R01 failure"
+                "implement and self-test the revisioned R02 formal runner"
             )
             and "experimental fitting" in m00_prohibited
             and "independent external validation" in m00_prohibited

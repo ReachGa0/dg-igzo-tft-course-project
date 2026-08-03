@@ -16,6 +16,28 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 建立 M00 R02 结构恢复合同
+
+### 用户目标
+
+用户授权按保守工程判断处理 R01 阶段门失败。依照 ADR-037，先建立不利用 R01 holdout 调参的新 R02 模型结构合同；合同提交前不运行正式拟合、M01、SPICE 或任何下游。
+
+### 结构审计与决策
+
+- 只读取已提交 R01 split 与参考核：训练侧 8 条曲线为参考长度 `10 um`，只有 1 条为非参考 `8 um`，而 R01 同时拟合长度指数和长度阈值斜率两个自由度。幅值缩放与阈值移动因此缺少独立训练条件来稳健分离。
+- R02 固定一阶几何因子为 `Lref/L`、指数 `1.0` 并移除 `length_exponent`；只保留 `length_vth_slope_v` 为训练拟合长度系数，初值设为 `0.0 V`，总参数数从 11 降为 10。固定值来自教学核的一阶几何归一化，不由 R01 holdout 指标或拟合系数选择，也不声称物理反长度定律。
+- 数据注册表、9/163 train、4/70 holdout、7+7 审计点、选择器、底值、每曲线权重、优化设置、全部误差门、`0.50` gm 门和有效域均逐节保持不变。R01 全部源码与失败证据不修改，R02 输出使用独立路径并拒绝覆盖。
+
+### 实现与验证
+
+- 新增 `config/compact_m00_input_validation_r02.json`、`scripts/check_m00_compact_model_contract_r02.py` 和 Make 目标 `m00-compact-model-r02-contract-check`；同步机器状态、ADR、状态入口、报告和项目总检查。
+- `make m00-compact-model-r02-contract-check`：27/27 PASS、E3；报告明确 `fit/TCAD/SPICE/circuit=NOT_RUN_BY_CONTRACT_CHECK`。该等级只证明合同和失败边界可静态复核，不是 R02 拟合或 M00 PASS。
+- `make check`：571/571 PASS；`make report-check`：12 章、5 附录、15 个允许占位、24 张图 PASS。Python、JSON/CSV/XHTML 与差异格式检查均通过。
+
+### 下一步
+
+先完成项目/报告收口检查并提交推送合同。随后只实现和自测版本化 R02 runner 与独立检查器；执行链再次提交推送前不读取正式 holdout 评分或运行正式优化。
+
 ## 2026-08-02 | Codex GPT-5 | 保留 M00 R01 holdout gm 正式失败
 
 ### 用户目标
