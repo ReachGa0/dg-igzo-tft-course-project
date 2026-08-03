@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_R10_XYCE_STATIC_CONTRACT_IMPLEMENTED_E0_NEXT_STATIC`
+- 当前阶段：`M01_R10_XYCE_STATIC_CONTRACT_PASS_E3_NEXT_RUNNER`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同 27/27 E3 后，build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37 E0/FAIL并冻结。R07 静态合同 39/39 E3 后，build/tool runner 唯一运行 42/47 E0/FAIL：M4/Bison/Flex、Xyce 安装、版本/许可证和 B-source 进程均通过，但 runner 误把 Xyce 实际 `.prn` 输出预注册为 `.csv`，停止在 parser-only 门前。R08 静态合同唯一执行在报告生成前因 checker 预期 36 项、实际注册 30 项而中止，属于 E0 checker 注册缺陷；失败报告和日志保留，R08 runner/独立检查未运行。R09 静态合同唯一返回 34/36、E0/FAIL，两个失败是复用黑名单与 next_gate 断言缺陷；报告/日志保留，R09 runner/独立检查未运行。R10 已建立独立 36/32/25 合同命名空间，静态合同尚未运行；无正式器件网表、M01 数值输出、ngspice、AIM-Spice 或下游证据，C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R01 保持 21/24、E0/FAIL且全部证据不可改写。R02 runner 24/24、E2，独立复核 20/20、E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32、E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30、E3。Xyce build/tool R01 合同 25/25 静态 PASS 但执行 14/29、独立 9/20 均 E0/FAIL；R02/R03/R04 静态合同分别唯一运行 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同 27/27 E3 后，build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37 E0/FAIL并冻结。R07 静态合同 39/39 E3 后，build/tool runner 唯一运行 42/47 E0/FAIL：M4/Bison/Flex、Xyce 安装、版本/许可证和 B-source 进程均通过，但 runner 误把 Xyce 实际 `.prn` 输出预注册为 `.csv`，停止在 parser-only 门前。R08 静态合同唯一执行在报告生成前因 checker 预期 36 项、实际注册 30 项而中止，属于 E0 checker 注册缺陷；失败报告和日志保留，R08 runner/独立检查未运行。R09 静态合同唯一返回 34/36、E0/FAIL，两个失败是复用黑名单与 next_gate 断言缺陷；报告/日志保留，R09 runner/独立检查未运行。R10 静态合同在实施提交后唯一运行并返回 36/36 PASS、E3，记录 0 个 build/simulator process、无器件网表和数值输出；R10 runner/独立检查尚未运行。无正式 M01 器件 DC、ngspice、AIM-Spice 或下游证据，C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -31,10 +31,12 @@
 - [x] R09 输出/parser 合同已建立但尚未执行：新配置绑定 R08 30/36 注册表失败、R07 42/47 `.prn` 观察和完整 hash-bound Xyce 安装树；静态 checker 补齐至 36 项，runner/独立 checker 仍冻结为 32/25 项，所有 R09 报告、输出目录和正式 M01 输出均不存在。该状态只表示 E0 实施链，不表示静态 PASS、Xyce parser 运行、器件曲线或 M01 完成。
 - [x] R09 静态合同在提交 `9285865` 后唯一执行并返回 `34/36`、E0/FAIL。失败项为 `reuse:allowlist_and_namespace_denylist`（未允许保留的 R08 失败归档路径）和 `boundary:evidence_and_next_gate`（R09 next_gate 缺少独立检查字样）；报告 `results/reports/m01_xyce_build_preflight_contract_r09.json` 与日志 `results/compact/m01_xyce_build_preflight_r09_contract_assertions_failed.log` 已保留。检查记录 0 个 build/simulator process、无器件网表/数值输出，R09 runner/独立检查未运行，R10 只修正这两个合同断言。
 - [x] R10 合同实施已建立：新增独立 config/common/static checker/runner/independent checker、36/32/25 注册和三个 Make 入口。R10 绑定 R09 34/36 报告/日志以及 R08/R07 全部历史失败哈希，只修正 R09 允许保留历史归档和独立检查 wording 两项断言；R10 报告、runner/独立报告、输出目录和正式 M01 输出尚不存在，未启动任何 build、Xyce、SPICE、器件网表或下游进程。
+- [x] R10 静态合同在实施提交 `bd7ebda` 推送后唯一执行并返回 36/36 PASS、E3；报告 `results/reports/m01_xyce_build_preflight_contract_r10.json` 的 SHA-256 为 `a7dbcf6d639897f6648d25a151d3a29c48c3dc352992a7872104b684b29fe785`。报告验证 R09/R08/R07 哈希绑定、36/32/25 注册与 no-execution 门，记录 0 个 build/simulator process、无器件网表和数值输出；R10 runner/独立 checker 未运行。
+- [x] 注册 R10 静态 PASS 后首次项目总检查为 683/684：历史 R08 状态检查尚未接受已合法推进到的 execute-R10 scope。失败报告 `results/reports/project_check_m01_xyce_r10_static_pass_r08_next_scope_stale_failed.json`、SHA-256 `988ae80969aa18a1d8813fd4d883b82ae4b55a3a784258c0f85b6141ae31103d` 已保留；修正仅补入 execute-R10 状态，随后 685/685 PASS，不改合同、门槛、输入或结果。
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送 R10 实施，然后唯一运行 R10 36 项静态合同；只有已提交的 36/36 PASS 才能打开 R10 runner，随后才可按门运行独立持久化检查。R09/R08/R07 及其 runner/独立检查不重跑，正式 M01 器件 DC 和下游继续关闭。
+- 下一步：提交并推送 R10 36/36 E3 静态 PASS 状态，然后唯一运行 R10 32 项工具/parser runner；只有 runner PASS 状态提交后才运行 25 项独立持久化检查。R09/R08/R07 及其 runner/独立检查不重跑，正式 M01 器件 DC 和下游继续关闭。
 - M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败和本次 28/30 干跑失败均保留。
 

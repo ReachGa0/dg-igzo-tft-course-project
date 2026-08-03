@@ -1,8 +1,8 @@
 {
   "project": "DG-IGZO-TFT-PDK",
-  "status": "PASS",
-  "checks": 685,
-  "failures": 0,
+  "status": "FAIL",
+  "checks": 684,
+  "failures": 1,
   "results": [
     {
       "name": "directory:config",
@@ -322,7 +322,7 @@
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=169540"
+      "detail": "bytes=169097"
     },
     {
       "name": "file:PROJECT_PLAN.md",
@@ -332,12 +332,12 @@
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=95747"
+      "detail": "bytes=95479"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=48237"
+      "detail": "bytes=47799"
     },
     {
       "name": "file:Makefile",
@@ -347,7 +347,7 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=36747"
+      "detail": "bytes=36014"
     },
     {
       "name": "file:config/experiments.json",
@@ -1450,11 +1450,6 @@
       "detail": "bytes=12384"
     },
     {
-      "name": "file:results/reports/project_check_m01_xyce_r10_static_pass_r08_next_scope_stale_failed.json",
-      "status": "PASS",
-      "detail": "bytes=111094"
-    },
-    {
       "name": "file:scripts/check_t03_p5_temperature.py",
       "status": "PASS",
       "detail": "bytes=35919"
@@ -1847,7 +1842,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=60393"
+      "detail": "bytes=59629"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3351,7 +3346,7 @@
     },
     {
       "name": "m01_xyce_preflight_r08:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "failed=True ready=False future_absent=16/16"
     },
     {

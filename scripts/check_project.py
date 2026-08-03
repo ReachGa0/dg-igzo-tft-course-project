@@ -254,6 +254,8 @@ REQUIRED_FILES = [
     "scripts/check_m01_xyce_build_preflight_r10_contract.py",
     "scripts/run_m01_xyce_build_preflight_r10.py",
     "scripts/check_m01_xyce_build_preflight_r10.py",
+    "results/reports/m01_xyce_build_preflight_contract_r10.json",
+    "results/reports/project_check_m01_xyce_r10_static_pass_r08_next_scope_stale_failed.json",
     "scripts/check_t03_p5_temperature.py",
     "tcad/run_t03_p5_temperature.py",
     "results/reports/tcad_t03_p5_temperature_input_contract.json",
@@ -7116,6 +7118,11 @@ def main() -> int:
             and r08_next_scope.startswith(
                 "establish and commit M01 Xyce build/tool preflight revision-10"
             )
+        ) or (
+            r08_failed_state
+            and r08_next_scope.startswith(
+                "execute M01 Xyce build/tool preflight revision-10"
+            )
         )
         r08_runner_source = m01_xyce_r08_runner_path.read_text(encoding="utf-8")
         r08_checker_source = m01_xyce_r08_checker_path.read_text(encoding="utf-8")
@@ -7311,6 +7318,11 @@ def main() -> int:
             and r09_next_scope.startswith(
                 "establish and commit M01 Xyce build/tool preflight revision-10"
             )
+        ) or (
+            r09_failed_state
+            and r09_next_scope.startswith(
+                "execute M01 Xyce build/tool preflight revision-10"
+            )
         )
         add_check(
             checks,
@@ -7379,6 +7391,11 @@ def main() -> int:
         r10_config = json.loads(m01_xyce_r10_config_path.read_text(encoding="utf-8"))
         r10_machine = experiment_map["M01"].get("xyce_build_preflight_r10", {})
         r10_contract_exists = m01_xyce_r10_contract_report_path.is_file()
+        r10_contract_report = (
+            json.loads(m01_xyce_r10_contract_report_path.read_text(encoding="utf-8"))
+            if r10_contract_exists
+            else {}
+        )
         r10_future_paths = [
             ROOT / value
             for key, value in r10_config.get("outputs", {}).items()
@@ -7460,21 +7477,61 @@ def main() -> int:
             and r10_machine.get("result_paths") == []
             and r10_machine.get("artifact_hashes") == {}
         )
+        r10_ready_state = (
+            r10_contract_exists
+            and r10_contract_report.get("status") == "PASS"
+            and r10_contract_report.get("contract_status") == "PASS"
+            and r10_contract_report.get("evidence_level") == "E3"
+            and r10_contract_report.get("build_status") == "NOT_RUN_BY_CONTRACT_CHECK"
+            and r10_contract_report.get("preflight_id") == "M01_XYCE_BUILD_PREFLIGHT_R10"
+            and len(r10_contract_report.get("checks", [])) == 36
+            and all(item.get("status") == "PASS" for item in r10_contract_report.get("checks", []))
+            and r10_contract_report.get("summary", {}).get("check_count") == 36
+            and r10_contract_report.get("summary", {}).get("passed") == 36
+            and r10_contract_report.get("summary", {}).get("failed") == 0
+            and r10_contract_report.get("summary", {}).get("build_processes_invoked") == 0
+            and r10_contract_report.get("summary", {}).get("simulator_processes_invoked") == 0
+            and r10_contract_report.get("summary", {}).get("device_netlist_created") is False
+            and r10_contract_report.get("summary", {}).get("numerical_outputs_created") is False
+            and r10_contract_report.get("config", {}).get("sha256") == sha256(m01_xyce_r10_config_path)
+            and r10_contract_report.get("checker", {}).get("sha256")
+            == sha256(m01_xyce_r10_contract_checker_path)
+            and r10_machine.get("status") == "contract_ready"
+            and r10_machine.get("revision") == 10
+            and r10_machine.get("current_evidence") == "E3"
+            and r10_machine.get("contract_check_completed") is True
+            and r10_machine.get("contract_status") == "PASS"
+            and r10_machine.get("contract_checks_passed") == 36
+            and r10_machine.get("contract_checks_failed") == 0
+            and r10_machine.get("preflight_run_completed") is False
+            and r10_machine.get("artifact_hashes", {}).get("contract_report_sha256")
+            == sha256(m01_xyce_r10_contract_report_path)
+            and r10_machine.get("result_paths")
+            == ["results/reports/m01_xyce_build_preflight_contract_r10.json"]
+        )
         r10_next_scope = config.get("tcad_track", {}).get("next_scope", "")
-        r10_next_scope_valid = r10_next_scope.startswith(
-            "establish and commit M01 Xyce build/tool preflight revision-10 output/parser recovery contract"
+        r10_next_scope_valid = (
+            r10_machine_planned
+            and r10_next_scope.startswith(
+                "establish and commit M01 Xyce build/tool preflight revision-10 output/parser recovery contract"
+            )
+        ) or (
+            r10_ready_state
+            and r10_next_scope.startswith(
+                "execute M01 Xyce build/tool preflight revision-10"
+            )
         )
         add_check(
             checks,
             "m01_xyce_preflight_r10:implementation_state_and_unexecuted_chain",
-            not r10_contract_exists
-            and r10_config.get("preflight_id") == "M01_XYCE_BUILD_PREFLIGHT_R10"
+            r10_config.get("preflight_id") == "M01_XYCE_BUILD_PREFLIGHT_R10"
             and r10_config.get("revision") == 10
             and r10_config.get("status") == "preflight_planned"
             and r10_config.get("scope", {}).get("active_material_scope") == "IGZO only"
             and r10_config.get("scope", {}).get("formal_m01_numerical_run") is False
             and r10_config.get("scope", {}).get("circuit_or_downstream_permitted") is False
-            and r10_machine_planned
+            and (r10_machine_planned or r10_ready_state)
+            and (not r10_contract_exists if r10_machine_planned else r10_contract_exists)
             and all(not path.exists() for path in r10_future_paths)
             and all(not path.exists() for path in r10_formal_paths)
             and r10_r08_binding_ok
@@ -7508,7 +7565,7 @@ def main() -> int:
             and r10_machine.get("simulator_processes_invoked") == 0
             and r10_machine.get("circuit_or_downstream_permitted") is False
             and r10_next_scope_valid,
-            f"planned={r10_machine_planned} r08_binding={r10_r08_binding_ok} r09_binding={r10_r09_binding_ok} future_absent="
+            f"planned={r10_machine_planned} ready={r10_ready_state} r08_binding={r10_r08_binding_ok} r09_binding={r10_r09_binding_ok} future_absent="
             f"{sum(not path.exists() for path in r10_future_paths)}/{len(r10_future_paths)}",
         )
     except Exception as error:  # noqa: BLE001

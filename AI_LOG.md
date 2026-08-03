@@ -16,6 +16,24 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 Xyce R10 静态合同 36/36 PASS
+
+### 唯一执行与结果
+
+R10 实施提交 `bd7ebda` 推送并与 `origin/main` 同步后，按阶段门唯一执行 `make m01-xyce-build-preflight-r10-contract-check`。静态 checker 返回 36/36 PASS、E3，报告为 `results/reports/m01_xyce_build_preflight_contract_r10.json`，SHA-256 `a7dbcf6d639897f6648d25a151d3a29c48c3dc352992a7872104b684b29fe785`。
+
+### 证据边界
+
+36 项检查验证 R07 42/47、R08 30/36、R09 34/36 历史证据哈希，修正后的历史归档 allowlist、independent-check wording、R10 独立输出根、36/32/25 注册、冻结 IGZO candidate 和 no-execution 门。报告记录 0 个 build/simulator process、无器件网表和数值输出；R10 runner、独立 checker、ngspice、AIM-Spice、正式 M01 DC 和下游均未运行。该 PASS 只是静态工具/输出合同证据，不是 Xyce parser、器件、物理参数、实验校准、正式 SPICE 或电路证据。
+
+注册 PASS 状态后的首次 `make check` 为 683/684，唯一失败是历史 R08 状态允许列表尚未接受 execute-R10 scope。失败报告 `results/reports/project_check_m01_xyce_r10_static_pass_r08_next_scope_stale_failed.json`（SHA-256 `988ae80969aa18a1d8813fd4d883b82ae4b55a3a784258c0f85b6141ae31103d`）已保留；修正只加入该已登记状态，随后 685/685 PASS，不改变合同、物理输入、阈值或阶段门。
+
+### 下一门
+
+先提交并推送本 36/36 E3 状态，再唯一运行 R10 32 项工具/parser runner；只有 runner PASS 状态提交后才允许 25 项独立持久化检查。R09/R08/R07 不重跑，正式 M01 两路线器件 DC 和 C00/电路/版图/PEX/HZO 继续关闭。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M01 Xyce R10 断言修复合同（未执行）
 
 ### 用户目标与读取

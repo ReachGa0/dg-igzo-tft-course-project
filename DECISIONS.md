@@ -1,5 +1,16 @@
 # 设计决策记录
 
+## ADR-060：R10 静态合同 36/36 E3 后仅打开提交后的 runner 门
+
+- 日期：2026-08-03
+- 状态：R10 静态 checker 唯一执行 36/36 PASS、E3；R10 runner 与独立 checker 未运行。
+- R10 实施提交 `bd7ebda` 推送后，唯一命令 `make m01-xyce-build-preflight-r10-contract-check` 验证 R07/R08/R09 历史哈希、allowlist、independent wording、独立命名空间、36/32/25 注册和 no-execution 边界；报告 SHA-256 为 `a7dbcf6d639897f6648d25a151d3a29c48c3dc352992a7872104b684b29fe785`。
+- 报告明确 0 个 build/simulator process、无器件网表和数值输出。该 PASS 只证明静态工具/输出合同可审阅，不证明 Xyce 命令运行、parser-only 通过、IGZO 方程、器件曲线、物理参数、实验校准、正式 M01 或电路结果。
+- 注册 PASS 后首次项目总检查为 683/684，唯一失败是历史 R08 状态允许列表未包含 execute-R10 scope；失败报告与哈希保留。只补入该已登记 scope 后总检查为 685/685，不改变合同、阈值、输入、结果或下游门。
+- 先提交并推送本 36/36 E3 状态，再唯一运行 R10 32 项工具/parser runner；只有 runner PASS 状态提交后才允许 25 项独立持久化检查。R07/R08/R09 不重跑，正式 M01 DC、C00、电路、版图、PEX 和 HZO 继续关闭。
+
+---
+
 ## ADR-059：R10 仅修正 R09 两项静态断言
 
 - 日期：2026-08-03
