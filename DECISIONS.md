@@ -1,5 +1,20 @@
 # 设计决策记录
 
+## ADR-056：R08 静态合同注册表失败保留，转入 R09
+
+- 日期：2026-08-03
+- 状态：R08 静态 checker 唯一执行在报告生成前以 `expected=36 actual=30` 中止，E0/FAIL；R08 runner 与独立 checker 未运行
+
+### 失败判定
+
+- R08 实施提交 `95d6563` 推送并同步后，唯一静态命令 `make m01-xyce-build-preflight-r08-contract-check` 没有启动任何进程，但 checker 在自检注册表时发现实际只构造 30 个检查而预注册 36 个，未生成 R08 合同报告。
+- 该结果是静态 checker 自身的注册缺陷，不是 Xyce 版本/许可证、`.prn` 自测、parser-only、IGZO 方程、器件收敛、权限、物理参数或 M01 数值失败。R08 配置、checker、runner、common 和实现提交均保持不可改写。
+
+### 保留与下一门
+
+- 失败报告 `results/reports/m01_xyce_build_preflight_contract_r08_registry_mismatch_failed.json` 和日志 `results/compact/m01_xyce_build_preflight_r08_contract_registry_mismatch_failed.log` 记录提交、源码哈希、期望/实际计数、0 个 build/simulator process、无网表/数值输出以及 R08 runner/独立检查未运行。
+- R09 必须使用新配置/checker/runner/common/output namespace，只修正注册表缺陷并继续绑定 R08 失败与 R07 固定列 `.prn` 证据；不得重跑 R08/R07、不得放宽 no-execution、IGZO-only、失败保留或 downstream 关闭门。
+
 ## ADR-055：R08 只做 Xyce 固定列 `.prn` 输出/parser 恢复
 
 - 日期：2026-08-03

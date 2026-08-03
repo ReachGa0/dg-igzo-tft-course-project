@@ -1,0 +1,17 @@
+M01 Xyce output/parser recovery R08 static contract invocation
+command=make m01-xyce-build-preflight-r08-contract-check
+implementation_commit=95d656324fb5c4a301ed903961512a446b90669a
+expected_checks=36
+registered_checks=30
+status=FAIL
+contract_report_created=false
+build_processes_invoked=0
+simulator_processes_invoked=0
+device_netlist_created=false
+numerical_outputs_created=false
+r07_runner_rerun=false
+r07_independent_checker_run=false
+r08_runner_run=false
+r08_independent_checker_run=false
+exception=RuntimeError: R08 contract registry mismatch: expected=36 actual=30
+next_gate=preserve R08 unchanged; establish revision-9 with a new namespace

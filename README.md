@@ -4,7 +4,7 @@
 
 **基于双栅 IGZO TFT 的二维器件模型、紧凑模型与可编程单极性逻辑教学 PDK**
 
-S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R01 因 L=12 um holdout gm 相对误差 `0.512384 > 0.50` 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。纯源码 Xyce build/tool R01 合同为 25/25 静态 PASS、E3，但唯一执行在 SuiteSparse BLAS 门为 14/29、独立 9/20 E0/FAIL；R02/R03/R04 静态合同分别为 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同唯一运行 27/27 E3，随后 build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37、E0/FAIL并冻结。R07 静态合同 39/39 E3 后，build/tool runner 唯一返回 42/47、E0/FAIL：源码构建/安装与 B-source 命令本身成功，但 runner 将 Xyce 实际 `.prn` 输出当作 `.csv` 读取并停止 parser-only 门。R08 已建立新 `.prn` output/parser 合同，静态检查尚未运行。失败报告、完整日志、二进制和安装树保留，独立检查未运行；无正式 M01 器件 DC 或数值输出。本机 AIM-Spice 因缺少可审计合法授权来源不再使用。G0 仍为 `TEACHING_BASELINE_ONLY`：实验标定、物理参数验证、正式 M01 器件 DC、电路和版图尚未完成。所有 `TODO/E0` 内容都不得写成已完成结果。
+S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，历史失败继续保留。M00 R01 因 L=12 um holdout gm 相对误差 `0.512384 > 0.50` 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，只在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。纯源码 Xyce build/tool R01 合同为 25/25 静态 PASS、E3，但唯一执行在 SuiteSparse BLAS 门为 14/29、独立 9/20 E0/FAIL；R02/R03/R04 静态合同分别为 22/25、21/25、25/26 E0/FAIL并保留。R05 静态合同唯一运行 27/27 E3，随后 build/tool runner 唯一运行 19/29 E0/FAIL；R06 静态合同唯一返回 36/37、E0/FAIL并冻结。R07 静态合同 39/39 E3 后，build/tool runner 唯一返回 42/47、E0/FAIL：源码构建/安装与 B-source 命令本身成功，但 runner 将 Xyce 实际 `.prn` 输出当作 `.csv` 读取并停止 parser-only 门。R08 静态 checker 随后因预期 36、实际注册 30 而在报告生成前失败，失败报告/日志保留，R08 不重跑；R09 尚未建立。无正式 M01 器件 DC 或数值输出，本机 AIM-Spice 因缺少可审计合法授权来源不再使用。G0 仍为 `TEACHING_BASELINE_ONLY`：实验标定、物理参数验证、正式 M01 器件 DC、电路和版图尚未完成。所有 `TODO/E0` 内容都不得写成已完成结果。
 
 ## 2. 为什么这个题目仍然成立
 

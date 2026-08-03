@@ -7021,13 +7021,28 @@ def main() -> int:
                 for path, expected in r08_r07_bindings
             )
         )
-        r08_planned_state = (
+        r08_failure_report_path = ROOT / r08_machine.get("contract_failure_report_path", "missing")
+        r08_failure_log_path = ROOT / r08_machine.get("contract_failure_log_path", "missing")
+        r08_failed_state = (
             not r08_contract_exists
-            and r08_machine.get("status") == "contract_planned"
+            and r08_machine.get("status") == "contract_failed_checker"
             and r08_machine.get("current_evidence") == "E0"
-            and r08_machine.get("contract_check_completed") is False
-            and r08_machine.get("result_paths") == []
-            and r08_machine.get("artifact_hashes") == {}
+            and r08_machine.get("contract_check_completed") is True
+            and r08_machine.get("contract_status") == "ABORTED_BEFORE_REPORT"
+            and r08_machine.get("registered_checks_before_abort") == 30
+            and r08_machine.get("expected_checks_before_abort") == 36
+            and r08_machine.get("contract_failure_category") == "contract_registry_mismatch"
+            and r08_failure_report_path.is_file()
+            and r08_failure_log_path.is_file()
+            and r08_machine.get("artifact_hashes", {}).get("contract_failure_report_sha256")
+            == sha256(r08_failure_report_path)
+            and r08_machine.get("artifact_hashes", {}).get("contract_failure_log_sha256")
+            == sha256(r08_failure_log_path)
+            and r08_machine.get("result_paths")
+            == [
+                "results/reports/m01_xyce_build_preflight_contract_r08_registry_mismatch_failed.json",
+                "results/compact/m01_xyce_build_preflight_r08_contract_registry_mismatch_failed.log",
+            ]
         )
         r08_ready_state = (
             r08_contract_exists
@@ -7054,14 +7069,14 @@ def main() -> int:
         )
         r08_next_scope = config.get("tcad_track", {}).get("next_scope", "")
         r08_next_scope_valid = (
-            r08_planned_state
-            and r08_next_scope.startswith(
-                "establish and commit M01 Xyce build/tool preflight revision-8 output/parser recovery contract"
-            )
-        ) or (
             r08_ready_state
             and r08_next_scope.startswith(
                 "execute M01 Xyce build/tool preflight revision-8"
+            )
+        ) or (
+            r08_failed_state
+            and r08_next_scope.startswith(
+                "preserve and commit the M01 Xyce build/tool preflight revision-8 30/36"
             )
         )
         r08_runner_source = m01_xyce_r08_runner_path.read_text(encoding="utf-8")
@@ -7074,7 +7089,7 @@ def main() -> int:
         add_check(
             checks,
             "m01_xyce_preflight_r08:contract_state_and_unexecuted_chain",
-            (r08_planned_state or r08_ready_state)
+            (r08_failed_state or r08_ready_state)
             and r08_config.get("preflight_id") == "M01_XYCE_BUILD_PREFLIGHT_R08"
             and r08_config.get("revision") == 8
             and r08_config.get("status") == "preflight_planned"
@@ -7110,7 +7125,7 @@ def main() -> int:
             and "m01-xyce-build-preflight-r08:" in makefile_source
             and "m01-xyce-build-preflight-r08-check:" in makefile_source
             and r08_next_scope_valid,
-            f"planned={r08_planned_state} ready={r08_ready_state} future_absent="
+            f"failed={r08_failed_state} ready={r08_ready_state} future_absent="
             f"{sum(not path.exists() for path in r08_future_paths)}/{len(r08_future_paths)}",
         )
     except Exception as error:  # noqa: BLE001

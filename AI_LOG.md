@@ -16,6 +16,22 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | 保留 M01 Xyce R08 静态合同注册失败
+
+### 唯一执行与根因
+
+提交 `95d6563` 推送并确认同步后，按阶段门唯一执行 `make m01-xyce-build-preflight-r08-contract-check`。checker 在写合同报告前抛出 `RuntimeError: R08 contract registry mismatch: expected=36 actual=30`；因此该 revision 为 E0/FAIL checker 失败，不是 Xyce 构建、自测、parser、器件收敛、权限或物理失败。
+
+### 保留与边界
+
+失败归档为 `results/reports/m01_xyce_build_preflight_contract_r08_registry_mismatch_failed.json` 和 `results/compact/m01_xyce_build_preflight_r08_contract_registry_mismatch_failed.log`，绑定实现提交、R08 配置/checker 哈希，并明确 build/simulator/device/numerical process 均为 0。R08 合同报告未生成，R08 runner 和独立 checker 未运行，R07 不重跑。R09 必须使用新命名空间修正注册缺陷，不放宽 `.prn` 输出、IGZO-only、失败保留或 no-downstream 边界。
+
+### 验证命令
+
+失败前的实现状态通过 `make check` 671/671、`make report-check` 和 `git diff --check`；失败后只做归档和配置登记，不再次执行 R08 checker。下一门是提交 R08 失败归档后建立 R09 合同。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 建立 M01 Xyce R08 输出/parser 恢复合同（未执行）
 
 ### 用户目标

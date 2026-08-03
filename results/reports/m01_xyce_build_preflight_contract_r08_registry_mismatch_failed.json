@@ -1,0 +1,40 @@
+{
+  "status": "FAIL",
+  "contract_status": "ABORTED_BEFORE_REPORT",
+  "evidence_level": "E0",
+  "stage_id": "M01",
+  "preflight_id": "M01_XYCE_BUILD_PREFLIGHT_R08",
+  "revision": 8,
+  "failure_category": "contract_registry_mismatch",
+  "failure_detail": "The one permitted R08 static contract invocation aborted before writing its contract report because the checker expected 36 registered checks but constructed only 30. R08 is not rerun; this is a checker implementation failure, not Xyce, device convergence, SPICE, physical-parameter or permission evidence.",
+  "command": "make m01-xyce-build-preflight-r08-contract-check",
+  "exception": "RuntimeError: R08 contract registry mismatch: expected=36 actual=30",
+  "implementation_commit": "95d656324fb5c4a301ed903961512a446b90669a",
+  "config": {
+    "path": "config/m01_xyce_build_preflight_r08.json",
+    "sha256": "3cf51ab2e23107cf93939857ff235d5fad2f28da5e597f6131c7452ca34c5c63"
+  },
+  "contract_checker": {
+    "path": "scripts/check_m01_xyce_build_preflight_r08_contract.py",
+    "sha256": "dcbbbc7a5c69f8afd0a7b47bd6c31b0ecec59ca6879f58b7b31d7446f113c584"
+  },
+  "registered_checks_before_abort": 30,
+  "expected_checks": 36,
+  "build_processes_invoked": 0,
+  "simulator_processes_invoked": 0,
+  "device_netlist_created": false,
+  "numerical_outputs_created": false,
+  "r07_failure_preserved": true,
+  "r07_runner_rerun": false,
+  "r07_independent_checker_run": false,
+  "r08_runner_run": false,
+  "r08_independent_checker_run": false,
+  "r08_contract_report_created": false,
+  "r08_output_namespace_created": false,
+  "formal_m01_outputs_created": false,
+  "ngspice_invoked": false,
+  "aimspice_invoked": false,
+  "circuit_or_downstream_permitted": false,
+  "evidence_boundary": "This archived failure records only an R08 static-checker registry defect. It is not a tool build, Xyce self-test, parser-only syntax, IGZO equation, device curve, physical parameter, experimental calibration, formal M01, SPICE numerical or circuit result.",
+  "next_gate": "Preserve R08 unchanged and establish revision-9 with a new static checker/config/runner/output namespace; do not rerun R08 or run any R08 runner/checker."
+}
