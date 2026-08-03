@@ -1,8 +1,8 @@
 {
   "project": "DG-IGZO-TFT-PDK",
-  "status": "PASS",
+  "status": "FAIL",
   "checks": 756,
-  "failures": 0,
+  "failures": 3,
   "results": [
     {
       "name": "directory:config",
@@ -322,7 +322,7 @@
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=200607"
+      "detail": "bytes=200074"
     },
     {
       "name": "file:PROJECT_PLAN.md",
@@ -332,12 +332,12 @@
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=117964"
+      "detail": "bytes=117572"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=64909"
+      "detail": "bytes=64347"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=53886"
+      "detail": "bytes=53069"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=127086"
+      "detail": "bytes=126569"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2177,7 +2177,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=84236"
+      "detail": "bytes=83306"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3641,7 +3641,7 @@
     },
     {
       "name": "m01_open_source_recovery:static_contract_and_no_execution",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "checks=30/30 future_absent=13/13"
     },
     {
@@ -3696,8 +3696,8 @@
     },
     {
       "name": "m01_xyce_preflight_r11:path_safe_contract_and_unexecuted_chain",
-      "status": "PASS",
-      "detail": "planned=False ready=False runner=False verified=True r10_binding=True future_absent=1/16"
+      "status": "FAIL",
+      "detail": "planned=False ready=False runner=False verified=False r10_binding=True future_absent=1/16"
     },
     {
       "name": "m01_open_source_device_dc_r01:contract_runner_independent_chain",
@@ -3711,8 +3711,8 @@
     },
     {
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",
-      "status": "PASS",
-      "detail": "implemented=False ready=False failed=True runner=False verified=False r02_binding=True implementation_failure=True source_scan_failure=True future_absent=12/13"
+      "status": "FAIL",
+      "detail": "implemented=False ready=False failed=False runner=False verified=False r02_binding=True implementation_failure=True source_scan_failure=True future_absent=12/13"
     },
     {
       "name": "m01_route_divergence_r02:contract_runner_independent_chain",

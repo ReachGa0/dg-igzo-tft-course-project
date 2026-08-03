@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+    "-b",
+    "-o",
+    "results/compact/m01_route_divergence_root_cause_r02/ngspice.log",
+    "results/compact/m01_route_divergence_root_cause_r02/ngspice_probe.cir"
+  ],
+  "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/\u79d1\u7814/\u6c27\u5316\u7269TFT_\u94c1\u7535\u53cc\u6805\u8bfe\u7a0b\u9879\u76ee",
+  "returncode": 0,
+  "elapsed_seconds": 2.2127461433410645,
+  "stdout": "******\n** ngspice-42 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2023, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sun Mar 31 20:15:14 UTC 2024\n******\n\nBatch mode\n\nComments and warnings go to log-file: results/compact/m01_route_divergence_root_cause_r02/ngspice.log\n\n",
+  "stderr": ""
+}

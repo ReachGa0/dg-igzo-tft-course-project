@@ -1,0 +1,37 @@
+Title: * m01 route-divergence root-cause r02 ngspice
+Date: Tue Aug  4 03:26:21  2026
+Plotname: DC transfer characteristic
+Flags: real
+No. Variables: 14
+No. Points: 1
+Variables:
+	0	v(v-sweep)	voltage
+	1	v(hi_clamp)	voltage
+	2	v(hi_limit)	voltage
+	3	v(lo_clamp)	voltage
+	4	v(lo_limit)	voltage
+	5	v(mid_clamp)	voltage
+	6	v(mid_limit)	voltage
+	7	i(vorig0)	current
+	8	i(vorig1)	current
+	9	i(vorig2)	current
+	10	i(vport0)	current
+	11	i(vport1)	current
+	12	i(vport2)	current
+	13	i(vsense)	current
+Values:
+ 0	0.000000000000000e+00
+	6.000000000000001e+01
+	1.350000000000000e+02
+	-6.000000000000001e+01
+	-1.500000000000000e+01
+	2.500000000000000e-01
+	6.025000000000000e+01
+	-6.125117351743989e-35
+	-1.225023470348798e-33
+	-1.225023470348798e-33
+	-1.301395717634004e-08
+	-1.341862738932433e-06
+	-2.809513829533538e-06
+	-1.000000000000000e-03
+

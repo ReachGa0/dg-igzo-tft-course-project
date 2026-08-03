@@ -24,6 +24,10 @@ results/tables/m01_xyce_open_source_r02_raw.csv -text -whitespace
 results/tables/m01_open_source_route_metrics_r02.csv -text -whitespace
 results/tables/m01_open_source_route_difference_r02.csv -text -whitespace
 
+# R02 root-cause probe artifacts are SHA-bound and must remain byte-for-byte intact.
+results/compact/m01_route_divergence_root_cause_r02/** -text -whitespace
+results/tables/m01_route_divergence_root_cause_r02.csv -text -whitespace
+
 *.png binary
 *.jpg binary
 *.jpeg binary

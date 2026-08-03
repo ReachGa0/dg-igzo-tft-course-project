@@ -1,0 +1,234 @@
+{
+  "schema_version": "1.0",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "M01",
+  "contract_id": "M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R02",
+  "status": "PASS",
+  "evidence_level": "E2",
+  "simulation_status": "MINIMAL_ROOT_CAUSE_PROBE_COMPLETE",
+  "config": {
+    "path": "config/m01_route_divergence_root_cause_r02.json",
+    "sha256": "40d0e53e69c154722cd58c7d1950836785da29511e654719fe530e538ecdca8f"
+  },
+  "runner": {
+    "path": "scripts/run_m01_route_divergence_root_cause_r02.py",
+    "sha256": "3230fa01f895604e3a091b6b992cbc6ff4328f0a408da088068ccc71e01d7d90"
+  },
+  "contract_report": {
+    "path": "results/reports/m01_route_divergence_root_cause_contract_r02.json",
+    "sha256": "2870566c9bd6b3f5b0b4db796492afc75a55a5500d630dfa291e81a9ddb21169"
+  },
+  "summary": {
+    "passed": 30,
+    "failed": 0,
+    "total": 30,
+    "process_invocations": 2,
+    "ngspice_invoked": true,
+    "xyce_invoked": true,
+    "formal_247_row_device_dc_invoked": false,
+    "tcad_invoked": false,
+    "aimspice_invoked": false,
+    "circuit_or_downstream_invoked": false,
+    "elapsed_seconds": 2.4304592609405518
+  },
+  "failure_category": null,
+  "failure_detail": null,
+  "commands": [
+    {
+      "route": "ngspice",
+      "argv": [
+        "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+        "-b",
+        "-o",
+        "results/compact/m01_route_divergence_root_cause_r02/ngspice.log",
+        "results/compact/m01_route_divergence_root_cause_r02/ngspice_probe.cir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 2.2127461433410645
+    },
+    {
+      "route": "xyce",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-l",
+        "results/compact/m01_route_divergence_root_cause_r02/xyce.log",
+        "-o",
+        "results/compact/m01_route_divergence_root_cause_r02/xyce_probe",
+        "results/compact/m01_route_divergence_root_cause_r02/xyce_probe.cir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.0426335334777832
+    }
+  ],
+  "checks": [
+    {
+      "name": "prerequisite:committed_static_pass",
+      "status": "PASS",
+      "detail": "machine=contract_ready"
+    },
+    {
+      "name": "binding:r02_immutable",
+      "status": "PASS",
+      "detail": "bound=7"
+    },
+    {
+      "name": "tools:hash_bound_routes",
+      "status": "PASS",
+      "detail": "ngspice and GPL Xyce"
+    },
+    {
+      "name": "outputs:exclusive_absent_before_run",
+      "status": "PASS",
+      "detail": "absent=12/12"
+    },
+    {
+      "name": "resource:two_process_serial_budget",
+      "status": "PASS",
+      "detail": "{\"aimspice_processes\": 0, \"circuit_processes\": 0, \"layout_processes\": 0, \"ngspice_processes\": 1, \"parallel_route_execution\": false, \"route_processes\": 2, \"tcad_processes\": 0, \"xyce_processes\": 1}"
+    },
+    {
+      "name": "netlists:ascii_generation",
+      "status": "PASS",
+      "detail": "two ASCII netlists"
+    },
+    {
+      "name": "netlists:minimal_scope",
+      "status": "PASS",
+      "detail": "3 original + 3 portable device probes per route"
+    },
+    {
+      "name": "netlists:registered_observables",
+      "status": "PASS",
+      "detail": "13 registered observables"
+    },
+    {
+      "name": "ngspice:argv_exact",
+      "status": "PASS",
+      "detail": "[\"/mnt/c/Users/ReachGao/.local/bin/ngspice\", \"-b\", \"-o\", \"results/compact/m01_route_divergence_root_cause_r02/ngspice.log\", \"results/compact/m01_route_divergence_root_cause_r02/ngspice_probe.cir\"]"
+    },
+    {
+      "name": "ngspice:returncode_zero",
+      "status": "PASS",
+      "detail": "returncode=0"
+    },
+    {
+      "name": "ngspice:raw_output_present",
+      "status": "PASS",
+      "detail": "results/compact/m01_route_divergence_root_cause_r02/ngspice_probe.raw"
+    },
+    {
+      "name": "ngspice:thirteen_finite_observables",
+      "status": "PASS",
+      "detail": "observables=13/13"
+    },
+    {
+      "name": "xyce:argv_exact",
+      "status": "PASS",
+      "detail": "[\"/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce\", \"-l\", \"results/compact/m01_route_divergence_root_cause_r02/xyce.log\", \"-o\", \"results/compact/m01_route_divergence_root_cause_r02/xyce_probe\", \"results/compact/m01_route_divergence_root_cause_r02/xyce_probe.cir\"]"
+    },
+    {
+      "name": "xyce:returncode_zero",
+      "status": "PASS",
+      "detail": "returncode=0"
+    },
+    {
+      "name": "xyce:raw_output_present",
+      "status": "PASS",
+      "detail": "results/compact/m01_route_divergence_root_cause_r02/xyce_probe.prn"
+    },
+    {
+      "name": "xyce:thirteen_finite_observables",
+      "status": "PASS",
+      "detail": "observables=13/13"
+    },
+    {
+      "name": "controls:branch_sentinel_both_routes",
+      "status": "PASS",
+      "detail": "max_abs=0"
+    },
+    {
+      "name": "controls:explicit_clamp_both_routes",
+      "status": "PASS",
+      "detail": "max_abs=7.10543e-15"
+    },
+    {
+      "name": "xyce:three_argument_limit_matches_clamp",
+      "status": "PASS",
+      "detail": "max_abs=0"
+    },
+    {
+      "name": "ngspice:three_argument_limit_mismatch_observed",
+      "status": "PASS",
+      "detail": "max_abs=75"
+    },
+    {
+      "name": "candidate:portable_probe_both_routes",
+      "status": "PASS",
+      "detail": "max_rel=3.17805e-15"
+    },
+    {
+      "name": "xyce:original_candidate_matches_analytic",
+      "status": "PASS",
+      "detail": "max_rel=1.77971e-15"
+    },
+    {
+      "name": "ngspice:original_candidate_mismatch_observed",
+      "status": "PASS",
+      "detail": "max_rel=1"
+    },
+    {
+      "name": "classification:branch_extraction_alternative_eliminated",
+      "status": "PASS",
+      "detail": "known branch and explicit clamp agree in both tools"
+    },
+    {
+      "name": "classification:limit_semantics_hypothesis_supported",
+      "status": "PASS",
+      "detail": "only unqualified limit/original ngspice path diverges"
+    },
+    {
+      "name": "outputs:twenty_six_probe_rows",
+      "status": "PASS",
+      "detail": "rows=26/26"
+    },
+    {
+      "name": "artifacts:hash_manifest_complete",
+      "status": "PASS",
+      "detail": "hashes=9/9"
+    },
+    {
+      "name": "execution:exactly_two_route_processes",
+      "status": "PASS",
+      "detail": "processes=2"
+    },
+    {
+      "name": "scope:no_formal_tcad_circuit_or_downstream",
+      "status": "PASS",
+      "detail": "minimal probe only; all downstream closed"
+    },
+    {
+      "name": "result:root_cause_probe_complete_with_boundary",
+      "status": "PASS",
+      "detail": "numerical root-cause evidence only"
+    }
+  ],
+  "artifacts": {
+    "ngspice_netlist_sha256": "9829142cb0c2a561b86de06a86cef5250727a582fbbfb590d9739d6c371fe83d",
+    "xyce_netlist_sha256": "b5e48472fd4b4a43b58fdbd74ea0273016a6ad9142cae3ac0863c4cfcc5b6127",
+    "ngspice_log_sha256": "b8bc6790e0ca89c2eb32fd70fb90b97c1e98b658096761f1d1a2a88beace663c",
+    "xyce_log_sha256": "e53c875b8a39c6b2e41ee6b0f0e593ade3bd6635dc59c6db351251ac8f57c646",
+    "ngspice_command_log_sha256": "9e4139f4f451c5051e40fa91d601597ae3ab49eb52f714446e9a5a69eae7dd2f",
+    "xyce_command_log_sha256": "74d94404812760fe1a7d4be4df10d893010f1864305c74925b8a830c5c7658e8",
+    "ngspice_raw_output_sha256": "9463471df032a3139ac883e2edef15cd8556e84f404a3d0a5cd2fac9253eb411",
+    "xyce_raw_output_sha256": "58411c43da186970dc78a47e347274c5c6aef845a0c8c8de1c28bbee39a908fb",
+    "probe_table_sha256": "0f062ca805ee8debdffc6f076e34c88ba4cf6f894511e0324b99625f7632c50a"
+  },
+  "diagnosis": {
+    "hypothesis": "THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH",
+    "supported": true,
+    "branch_current_extraction_alternative_eliminated": true,
+    "full_r02_route_agreement_established": false
+  },
+  "evidence_boundary": "R02 is a schema-only revision bound to the immutable R01 38/40 E0 static failure. It changes only the R02 diagnostic evidence source: instead of reading a nonexistent route_diagnostics object from the R02 runner report, the static checker hash-binds and recomputes maxima from the already persisted 247-row ngspice, Xyce and route-difference CSV files that the immutable runner report registered and the 24/24 independent checker reproduced. The hypothesis, three expression points, branch sentinel, three original/portable candidate points, tools, exact two-process serial budget, thresholds, failure retention and all no-downstream rules remain unchanged. Static checking invokes no simulator and creates no probe netlist or numerical output. A future runner may invoke ngspice and Xyce once each only after a separately committed 40/40 E3 PASS. Even a complete chain can establish only the numerical expression-semantics cause and a bounded portable-expression remedy at those probes. It cannot establish physical IGZO parameters, experimental calibration, full 247-row route agreement, formal M01 closure, circuit readiness, layout, PEX or HZO evidence.",
+  "next_gate": "Commit and push this E2 probe result before the 22-check independent persisted-evidence review."
+}

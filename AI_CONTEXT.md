@@ -20,7 +20,7 @@
 - 活动器件只有 n 型 IGZO。
 - 电路采用双栅 IGZO 有源负载有比例逻辑；电阻负载仅作求解/功能降级。
 - S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，仅在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。R07 build/tool runner 唯一返回 42/47、E0/FAIL，实际固定列 `.prn` 输出已保留；R08 静态 checker 唯一执行因 36/30 注册表缺陷中止并已归档，R08 不重跑；R09 静态 checker 唯一返回 34/36、E0/FAIL，两个合同断言失败已归档，R09 不重跑；R10 静态合同唯一返回 36/36 PASS、E3，runner 随后在版本/许可证/B-source 三条 Xyce 命令通过且观测 1.25 V 后，因含中文绝对路径的 parser-only 网表不能按 ASCII 写入而失败。parser-only、独立检查和正式器件 DC 未运行，部分目录已哈希保留，R10 不重跑。R11 静态合同唯一返回 36/36 PASS、E3，runner 唯一返回 32/32 PASS、E2，独立落盘复核唯一返回 25/25 PASS、E3；4 个允许的 Xyce 工具/parser 进程均通过，完成相对 ASCII include 的 parser-only syntax，独立复核零进程。Xyce 二进制和完整安装树只能按新合同哈希绑定复用，正式 M01 器件 DC、C00/L00/V01 仍未完成，G0 仍为 `TEACHING_BASELINE_ONLY`。
-- 正式 R01 静态合同固定为 39/40、E0/FAIL且不重跑。`M01_OPEN_SOURCE_DEVICE_DC_R02` 只修正 R11 持久化 schema，物理/数据/阈值/路线/进程和边界未改；静态 40/40 E3、runner 30/30 E2、独立复核 24/24 E3 均唯一通过。独立 checker 零进程精确重算两份网表、raw/PRN、247+247 行、30 指标、247 差异、14 哈希和两图尺寸。ngspice 近数值底部、Xyce 跟随候选，最大路线绝对/对数差 `4.68252e-4 A/cm`/`16.6705 decade`；E3 验证该诊断，不证明路线一致、方程身份、物理参数或校准。`M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01` 静态合同唯一返回 38/40、E0/FAIL，因为 checker 读取了 R02 runner 报告中不存在的 `route_diagnostics`；零模拟器/网表/数值输出，R01 冻结。R02 静态合同唯一返回 40/40 E3、零模拟器/网表/数值输出，下一门仅为提交后的两进程探针；三参数 `limit` 假设仍未验证。
+- 正式 R01 静态合同固定为 39/40、E0/FAIL且不重跑。`M01_OPEN_SOURCE_DEVICE_DC_R02` 只修正 R11 持久化 schema，物理/数据/阈值/路线/进程和边界未改；静态 40/40 E3、runner 30/30 E2、独立复核 24/24 E3 均唯一通过。独立 checker 零进程精确重算两份网表、raw/PRN、247+247 行、30 指标、247 差异、14 哈希和两图尺寸。ngspice 近数值底部、Xyce 跟随候选，最大路线绝对/对数差 `4.68252e-4 A/cm`/`16.6705 decade`；E3 验证该诊断，不证明路线一致、方程身份、物理参数或校准。`M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01` 静态合同唯一返回 38/40、E0/FAIL，因为 checker 读取了 R02 runner 报告中不存在的 `route_diagnostics`；零模拟器/网表/数值输出，R01 冻结。R02 静态合同 40/40 E3 后最小探针唯一返回 30/30 E2；ngspice 三参数 `limit` 与 Xyce/clamp 分歧，portable 候选及支路哨兵通过，故语义假设只在预注册点得到支持，独立复核仍未运行。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
@@ -102,7 +102,7 @@ INV=2, NAND2=3, NOR2=3, XOR2=12, RING5=10, FULL_ADDER_1BIT=33
 5. LVS 必须从 GDS 几何提取，并有断路/短路/错标故障注入。
 6. 行为模型不能写成 Level 61；教学 PDK 不能写成流片签核。
 7. 有实质修改后更新 `AI_LOG.md` 和 `STATUS.md`。
-8. T02-A/B/C、T03-P1/P2/P3/P4/P5、M00 R02 数值门与 R11 工具/parser 预检已完成，历史失败继续保留且不得重跑。M01 R02 40/30/24 完成但确认路线分歧；E3 不能写成路线一致或物理校准。根因 R01 38/40 E0/FAIL 已冻结；根因 R02 静态合同唯一 40/40 E3，零进程且只打开提交后的两进程探针。不得放宽阈值、改变 split、用 holdout 调参或打开正式敏感性、电路、KLayout、PEX、HZO。
+8. T02-A/B/C、T03-P1/P2/P3/P4/P5、M00 R02 数值门与 R11 工具/parser 预检已完成，历史失败继续保留且不得重跑。M01 R02 40/30/24 完成但确认路线分歧；E3 不能写成路线一致或物理校准。根因 R01 38/40 E0/FAIL 已冻结；根因 R02 静态 40/40 E3、探针 30/30 E2，下一门为提交后的 22 项独立复核。不得放宽阈值、改变 split、用 holdout 调参或打开正式敏感性、电路、KLayout、PEX、HZO。
 
 ## 原始资产路径
 

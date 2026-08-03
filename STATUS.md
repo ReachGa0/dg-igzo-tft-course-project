@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-03
-- 当前阶段：`M01_ROUTE_DIVERGENCE_R02_STATIC_PASS_E3_NEXT_PROBE`
+- 当前阶段：`M01_ROUTE_DIVERGENCE_R02_PROBE_PASS_E2_NEXT_INDEPENDENT`
 - 整体状态：`YELLOW`
-- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 只关闭 hash-bound Xyce 工具/parser 预检。正式器件 DC R01 固定为 39/40、E0/FAIL且不重跑；R02 40/30/24 完整落盘但路线分歧。`M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01` 静态合同唯一返回 38/40、E0/FAIL：checker 错读 R02 runner 报告不存在的 `route_diagnostics` 字段，`result:static_ready` 连带失败；零模拟器、零网表、零数值输出。R01 冻结。R02 静态合同唯一返回 40/40、E3，零模拟器、零网表、零数值输出；它只打开已提交的两进程根因探针门，不能写成根因确认。正式敏感性、P2、T03 及 M01/C00、电路、版图、PEX 和 HZO 继续关闭。
+- 当前原则：M00 R02 只在冻结 IGZO 教学数值域内关闭，全部历史失败不可改写。R11 36/32/25 只关闭 hash-bound Xyce 工具/parser 预检。正式器件 DC R01 固定为 39/40、E0/FAIL且不重跑；R02 40/30/24 完整落盘但路线分歧。`M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01` 静态合同唯一返回 38/40、E0/FAIL：checker 错读 R02 runner 报告不存在的 `route_diagnostics` 字段，`result:static_ready` 连带失败；零模拟器、零网表、零数值输出。R01 冻结。R02 静态合同 40/40 E3 后，唯一探针 30/30 E2 支持三参数 `limit` 语义假设并排除支路提取替代解释，仅限预注册最小点；完整路线一致性仍未建立。下一门为独立落盘复核，正式敏感性、P2、T03 及 M01/C00、电路、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -73,10 +73,13 @@
 - [x] R02 实施态绑定 R01 提交 `203acaa`、R01 38/40 E0/FAIL 报告和三份既有诊断 CSV；静态/runner/独立报告、探针网表、日志和新增数值输出均不存在。`make check` 为 756/756 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位、28 张图 PASS，`git diff --check` 通过；这些是结构/实施证据，不是 R02 静态 PASS 或敏感性结果。
 - [x] R02 静态合同在实施提交 `91fe397` 推送并同步后唯一执行，返回 40/40 PASS、E3；报告 `results/reports/m01_route_divergence_root_cause_contract_r02.json` SHA-256 为 `2870566c9bd6b3f5b0b4db796492afc75a55a5500d630dfa291e81a9ddb21169`。报告记录 0 个模拟器进程、0 个网表和 0 个数值输出；R02 runner/独立检查、探针表和所有探针输出仍缺失。该 PASS 只证明 schema-only 静态执行合同完整，不确认 `limit` 根因、路线一致、物理参数、实验校准、正式敏感性、P2/T03、M01 或电路。
 - [x] 登记 R02 静态 PASS 后首次 `make check` 返回 756 总检查、13 项失败；失败全部是历史状态链尚未接受“execute the committed R02 probe”下一门。报告 `results/reports/project_check_m01_route_divergence_r02_static_pass_next_scope_stale_failed.json` SHA-256 为 `518df893d4ee6a42ec3dd030957a62151eb752828f9d974a54633da921d8d23c`，记录 0 个模拟器进程，已原样保留。修正只扩展已登记的 next_scope 白名单，随后 `make check` 恢复 756/756，不改 R02 合同、输入、阈值或探针预算。
+- [x] R02 最小根因探针在静态 PASS 提交 `283cf32` 推送并同步后唯一运行，返回 30/30 PASS、E2；报告 `results/reports/m01_route_divergence_root_cause_r02.json` SHA-256 为 `7b878ee2e109afb01d998f6a41c38723e5ed3d2f964ca859809dec205a019ddd`。恰好一个 ngspice 和一个 Xyce 串行进程完成 3 个表达式点、1 个 1 V/1 kOhm 支路哨兵、3 个原始候选点和 3 个 portable 点；所有网表、日志、raw/PRN、命令记录和 26 行探针表均已落盘。
+- [x] 探针诊断显示 ngspice 三参数 `limit` 观测为 `-15/60.25/135`，显式 clamp 和 portable 候选分别通过；Xyce 三参数点与 clamp 一致；两路支路电流哨兵均通过。该结果支持预注册表达式语义假设并在这些点排除支路电流提取替代解释，但不建立完整 247 行路线一致、物理 IGZO 参数、实验校准、正式敏感性、P2/T03、M01 或电路证据。
+- [x] 登记 R02 探针状态后的首次 `make check` 返回 756 总检查、3 项失败：一次过宽机器状态补丁临时改动了不可变的开源恢复、R11 和 R01 历史块。失败报告 `results/reports/project_check_m01_route_divergence_r02_probe_registration_scope_failed.json` SHA-256 为 `6821a18e74ae21b433f1e732005391e619c5db7a39540b2f6b6b93df35ee3684`，记录 0 个模拟器进程并已保留。修正只精确恢复三个历史块且仅登记 R02 E2，随后 `make check` 恢复 756/756；探针产物、诊断、输入和阈值未改。
 
 ### 下一步与关闭条件
 
-- 下一步：提交并推送 R02 40/40 E3 静态 PASS 状态，再按已冻结合同唯一运行一次两进程最小根因探针；随后必须独立复核并保留全部失败。R01/R11/正式器件 DC R02 均不重跑，P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 继续关闭。
+- 下一步：提交并推送 R02 30/30 E2 探针结果，再唯一运行 22 项独立落盘复核；保留全部探针输出和失败。R01/R11/正式器件 DC R02 均不重跑，P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 继续关闭。
 - M01 根状态仍为 `preflight_failed_tool_provenance/E0`，其中 Xyce R01/R05 子门均为 `preflight_failed_build`；R01 的 14/29、9/20 和 R05 的 19/29 E0/FAIL 构建门、R02/R03/R04 的 22/25、21/25、25/26 E0/FAIL checker 门，均不是已构建 Xyce、器件仿真、正式 SPICE 数值、双路结果、物理参数、实验拟合或电路证据。
 - P3、P5 已完成并冻结，不得借本阶段重跑；C00、SPICE 电路、版图、PEX 和 HZO 继续关闭。历史 AIM-Spice 预检、M01 revision-1/2 合同失败、28/30 干跑失败和 R10 runner 失败均保留。
 
@@ -220,7 +223,7 @@
 - M00 R01 的聚合误差通过不能覆盖 `L=12 um` holdout gm 门失败。其 11 个系数、预测和图是已计算但未接受的 E0/FAIL 诊断，不是 M00 模型、实验标定、外部独立验证、物理参数提取、双仿真器验证或电路可用性。
 - M00 R02 的 27/27 静态合同、24/24 runner 和 20/20 独立复核只证明结构正则化教学代理对冻结项目数值曲线的局部一致性；`Lref/L` 固定指数、10 个系数及近下界诊断不能写成物理缩放规律、实验拟合、外部验证、原生 Level 61 或电路模型。候选文件尚未执行。
 - M01 R01 的 11/13 只证明 ngspice 版本探针通过且原 AIM-Spice 路线不满足来源/批处理门。它不是 AIM-Spice 或 ngspice 数值失败、Level 15 执行、IGZO 曲线或第二路线通过；开源候选工具在独立合同、提交和正式运行前也不得写成 M01 结果。
-- M01 根因 R01 当前是不可改写的 38/40 E0/FAIL；R02 静态合同为 40/40 E3，但探针尚未运行。未运行的三参数 `limit` 语义探针不能写成已确认根因；未运行的 `min(max(...))` 诊断副本也不是已接受模型、路线一致或物理修正。
+- M01 根因 R01 当前是不可改写的 38/40 E0/FAIL；R02 探针为 30/30 E2，支持预注册语义假设但只覆盖最小点。不能将其写成完整路线一致、物理参数或实验校准；独立复核尚未运行。
 - 尚未生成的有源负载网表、标准单元版图和 LVS 报告。
 
 ## 当前阻塞

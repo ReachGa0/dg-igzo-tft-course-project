@@ -1,0 +1,14 @@
+Note: can't find the initialization file spinit.
+
+Note: No compatibility mode selected!
+
+
+Circuit: * m01 route-divergence root-cause r02 ngspice
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+ASCII raw file "results/compact/m01_route_divergence_root_cause_r02/ngspice_probe.raw"
+ngspice-42 done

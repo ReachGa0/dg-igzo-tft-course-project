@@ -128,6 +128,8 @@
       <tr><td>route-divergence root-cause R02 implementation</td><td>新命名空间绑定 R01 提交 <code>203acaa</code>、38/40 报告和三份实际诊断 CSV；静态 checker 从持久化表重算路线观察值并按状态生成下一门，40/30/22、探针、工具和阈值均不变</td><td>E0，静态未运行；项目检查 756/756、报告结构检查 PASS，零新进程/网表/数值输出。只是 schema-only 实现，不是根因、路线一致、物理参数、校准、正式 M01 或电路证据</td></tr>
       <tr><td>route-divergence root-cause R02 static contract</td><td>提交 <code>91fe397</code> 后唯一执行 40 项静态门；绑定 R01 38/40 失败、三份诊断 CSV 和原有探针注册，状态化失败提示不改变任何输入/阈值</td><td>40/40 PASS、E3；报告 SHA-256 <code>2870566c...21169</code>，零模拟器、零网表、零数值输出。只打开提交后的两进程探针，不能称根因确认、路线一致、物理参数、实验校准、正式敏感性、P2/T03、正式 M01 或电路结果</td></tr>
       <tr><td>route-divergence R02 static-PASS project-check failure</td><td>静态 PASS 登记后的首次总检查，历史状态链只接受旧 next_scope；修正仅扩展已登记的 execute-R02-probe 白名单并保留失败报告</td><td>756 总检查中 13 项 FAIL，报告 SHA-256 <code>518df893...d8d23c</code>，零模拟器进程；随后 756/756 PASS。不是静态合同、探针、器件、物理或阈值失败</td></tr>
+      <tr><td>route-divergence root-cause R02 minimal probe</td><td>静态 PASS 提交 <code>283cf32</code> 后唯一运行；一个 ngspice 与一个 Xyce 串行进程，三表达式点、支路哨兵、原始/portable 候选和 26 行表</td><td>30/30 PASS、E2；ngspice 三参数 <code>limit=-15/60.25/135</code>，Xyce 与 clamp 一致，portable 与支路哨兵通过。支持最小点语义假设，不证明完整路线一致、物理参数、实验校准、正式敏感性或电路；独立复核未运行</td></tr>
+      <tr><td>route-divergence R02 probe-registration project-check failure</td><td>首次 E2 状态登记误改三个不可变历史机器块；归档失败并只恢复历史状态、精确登记 R02</td><td>753/756，E0，零模拟器进程；报告 SHA-256 <code>6821a18e...3684</code>。随后 756/756 PASS；探针结果、物理输入和阈值不变</td></tr>
     </tbody>
   </table>
   <figure>

@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`M01_ROUTE_DIVERGENCE_R02_STATIC_PASS_E3_NEXT_PROBE`：T01/T02/T03 数值门和 R11 工具/parser 预检已关闭，历史失败保留。正式器件 DC R01 固定为 39/40 E0/FAIL；R02 40/30/24 完成并独立重算全部器件级产物，但 ngspice/Xyce 数值不一致。根因 R01 静态合同唯一返回 38/40 E0/FAIL，原因是读取不存在的 R02 runner 诊断字段；R02 静态合同唯一返回 40/40 E3、零模拟器/网表/数值输出，下一门为提交后的两进程探针，M01/C00 不关闭。
+`M01_ROUTE_DIVERGENCE_R02_PROBE_PASS_E2_NEXT_INDEPENDENT`：T01/T02/T03 数值门和 R11 工具/parser 预检已关闭，历史失败保留。正式器件 DC R01 固定为 39/40 E0/FAIL；R02 40/30/24 完成并独立重算全部器件级产物，但 ngspice/Xyce 数值不一致。根因 R01 静态合同唯一返回 38/40 E0/FAIL；根因 R02 静态 40/40 E3 后，最小探针 30/30 E2 支持表达式语义假设，仅限预注册点，下一门为 22 项独立复核，M01/C00 不关闭。
 
 ## 截止日期
 
@@ -46,7 +46,7 @@
 | T02 | 双栅电流与阈值耦合 | DONE，E2 教学模型数值门 | T02-A/B/C 证据完整；双向族、受限代理、回程、互易和六状态均通过，不代表实验标定 |
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
 | M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
-| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；R11 preflight E3；device-DC R02 independent E3；root-cause R01 static E0/FAIL；root-cause R02 static E3 | 历史失败全部保留；正式器件 DC R01 静态固定 39/40 E0/FAIL。R02 40/30/24 完成，器件级执行/落盘完整但路线不一致。根因 R01 静态固定 38/40 E0/FAIL且未运行探针；R02 静态 40/40 E3 只打开提交后的两进程探针，M01/C00 保持关闭 |
+| M01 | 双仿真器对照 | PREFLIGHT E0/FAIL；R11 preflight E3；device-DC R02 independent E3；root-cause R01 static E0/FAIL；root-cause R02 probe E2 | 历史失败全部保留；正式器件 DC R01 静态固定 39/40 E0/FAIL。R02 40/30/24 完成，器件级执行/落盘完整但路线不一致。根因 R01 静态固定 38/40 E0/FAIL；R02 静态 40/40 E3、探针 30/30 E2，只在预注册点支持语义假设，独立复核未运行，M01/C00 保持关闭 |
 | C00 | 有源负载 INV | TODO | 架构与器件数已定 |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-M00 与 M01 历史运行均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。R02 40/40 E3 静态 PASS 已完成登记；先提交并推送本 PASS 状态，再唯一运行两进程最小根因探针并按 22 项独立检查收口。P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 继续关闭。
+M00 与 M01 历史运行均不重跑，不放宽门槛、不改变 split 或用 holdout 选参数。R02 两进程探针已唯一 30/30 E2；先提交并推送本结果，再唯一运行 22 项独立落盘复核。P2/T03 正式敏感性、C00、电路、版图、PEX 和 HZO 继续关闭。

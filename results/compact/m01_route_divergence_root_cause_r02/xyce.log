@@ -1,0 +1,90 @@
+
+*****
+***** Welcome to the Xyce(TM) Parallel Electronic Simulator
+*****
+***** This is version Xyce Release 7.10.0-opensource
+***** Date: Tue Aug 04 03:26:21 CST 2026
+
+
+***** Executing netlist results/compact/m01_route_divergence_root_cause_r02/xyce_probe.cir
+
+***** Reading and parsing netlist...
+Netlist warning in file
+ results/compact/m01_route_divergence_root_cause_r02/xyce_probe.cir at or near
+ line 20
+ Option name missing, or SPICE-style option not supported in Xyce
+Netlist warning in file
+ results/compact/m01_route_divergence_root_cause_r02/xyce_probe.cir at or near
+ line 20
+ Unrecognized dot line will be ignored
+***** Setting up topology...
+
+Netlist warning: Voltage Node (LO_LIMIT) connected to only 1 device Terminal
+Netlist warning: Voltage Node (MID_LIMIT) connected to only 1 device Terminal
+Netlist warning: Voltage Node (MID_CLAMP) connected to only 1 device Terminal
+Netlist warning: Voltage Node (HI_LIMIT) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TORIG2) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TPORT2) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BORIG1) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BORIG2) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TPORT0) connected to only 1 device Terminal
+Netlist warning: Voltage Node (SWEEP) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TPORT1) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TORIG1) connected to only 1 device Terminal
+Netlist warning: Voltage Node (LO_CLAMP) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BPORT0) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BPORT2) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BPORT1) connected to only 1 device Terminal
+Netlist warning: Voltage Node (BORIG0) connected to only 1 device Terminal
+Netlist warning: Voltage Node (TORIG0) connected to only 1 device Terminal
+Netlist warning: Voltage Node (HI_CLAMP) connected to only 1 device Terminal
+***** Device Count Summary ...
+       B level 1 (Expression Based Voltage or Current Source) 12
+       R level 1 (Resistor)                                    1
+       V level 1 (Independent Voltage Source)                 20
+       ---------------------------------------------------------
+       Total Devices                                          33
+***** Setting up matrix structure...
+***** Number of Unknowns = 52
+***** Initializing...
+
+
+***** Solution Summary *****
+	Number Successful Steps Taken:		1
+	Number Failed Steps Attempted:		0
+	Number Jacobians Evaluated:		3
+	Number Linear Solves:			3
+	Number Failed Linear Solves:		0
+	Number Residual Evaluations:		5
+	Number Nonlinear Convergence Failures:	0
+	Total Residual Load Time:		0.000165224 seconds
+	Total Jacobian Load Time:		5.00679e-06 seconds
+	Total Linear Solution Time:		3.24249e-05 seconds
+
+
+***** Total Simulation Solvers Run Time: 0.00543189 seconds
+***** Total Elapsed Run Time:            0.0212588 seconds
+*****
+***** End of Xyce(TM) Simulation
+*****
+
+Timing summary of 1 processor
+                 Stats                   Count       CPU Time              Wall Time
+---------------------------------------- ----- --------------------- ---------------------
+Xyce                                         1        0.002 (100.0%)        0.029 (100.0%)
+  Analysis                                   1        0.001 (31.56%)        0.002 ( 8.37%)
+    DC Sweep                                 1        0.001 (31.25%)        0.002 ( 8.36%)
+      Solve                                  1        0.000 (20.11%)        0.000 ( 1.14%)
+        Residual                             5        0.000 (10.18%)        0.000 ( 0.58%)
+        Jacobian                             3        0.000 ( 0.42%)        0.000 ( 0.02%)
+        Linear Solve                         3        0.000 ( 2.12%)        0.000 ( 0.12%)
+      Successful Step                        1        0.000 ( 6.48%)        0.002 ( 5.35%)
+  Netlist Import                             1        0.000 ( 0.00%)        0.009 (31.68%)
+    Parse Context                            1        0.000 ( 0.00%)        0.004 (15.61%)
+    Distribute Devices                       1        0.000 ( 0.00%)        0.004 (13.56%)
+    Verify Devices                           1        0.000 ( 0.00%)        0.000 (<0.01%)
+    Instantiate                              1        0.000 ( 0.00%)        0.000 ( 0.58%)
+  Late Initialization                        1        0.001 (48.64%)        0.005 (19.03%)
+    Global Indices                           1        0.000 (22.59%)        0.004 (14.61%)
+  Setup Matrix Structure                     1        0.000 ( 5.03%)        0.000 ( 0.96%)
+

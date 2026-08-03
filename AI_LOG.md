@@ -16,6 +16,24 @@
 
 ---
 
+## 2026-08-03 | Codex GPT-5 | M01 路线分歧根因 R02 最小探针 30/30 PASS（E2）
+
+### 唯一探针执行与落盘
+
+静态 PASS 提交 `283cf32` 已推送并同步；随后唯一执行 `make m01-route-divergence-r02`，返回 30/30 PASS、E2。报告 `results/reports/m01_route_divergence_root_cause_r02.json` SHA-256 为 `7b878ee2e109afb01d998f6a41c38723e5ed3d2f964ca859809dec205a019ddd`。恰好一个串行 ngspice 和一个串行 Xyce 进程完成所有预注册点，9 个运行产物和 26 行探针表均已保留。
+
+### 受限诊断结论
+
+ngspice 的三参数 `limit` 在 `-75/0.25/75` 输入上观测为 `-15/60.25/135`，而显式 `min(max(...))` clamp 和 portable 候选通过；Xyce 三参数点与 clamp 一致。两路 1 V/1 kOhm 支路哨兵均通过，故该最小合同支持 `THREE_ARGUMENT_LIMIT_SEMANTICS_MISMATCH` 假设并排除支路电流提取替代解释，仅限这些探针点。完整 R02 247 行路线一致、物理参数、实验校准、正式敏感性、P2/T03、M01 或电路证据仍未建立。
+
+### 登记与下一门
+
+更新 `config/experiments.json` 为 `formal_probe_passed/E2`，登记 runner 报告/产物哈希、2 个进程、诊断和下一门；`config/project.json` 下一门改为 22 项独立落盘复核。更新 STATUS、报告第 5/6/8/9 章、ADR-076 和证据矩阵后，运行总检查并提交推送；在独立复核前不运行其他仿真或下游。
+
+首次登记后的 `make check` 返回 756 总检查、3 项失败：过宽机器状态补丁临时改变了不可变的开源恢复、R11 和 R01 历史块。失败报告 `results/reports/project_check_m01_route_divergence_r02_probe_registration_scope_failed.json` SHA-256 为 `6821a18e74ae21b433f1e732005391e619c5db7a39540b2f6b6b93df35ee3684`，记录零模拟器进程并已保留。修正仅恢复三个历史块并精确登记 R02 E2；随后项目检查恢复 756/756，runner 产物、诊断、输入和门槛均未改变。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | M01 路线分歧根因 R02 静态合同 40/40 PASS（E3）
 
 ### 唯一静态执行与结果

@@ -857,6 +857,8 @@ def main() -> int:
             "establish and commit M01 route-divergence root-cause revision-2"
         ) or current_next_scope.startswith(
             "execute the committed M01 route-divergence root-cause revision-2 probe"
+        ) or current_next_scope.startswith(
+            "run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-2"
         )
         dependencies_valid = all(
             set(item.get("depends_on", [])) <= set(experiment_map)
@@ -8276,6 +8278,9 @@ def main() -> int:
                 or r11_next_scope.startswith(
                     "execute the committed M01 route-divergence root-cause revision-2 probe"
                 )
+                or r11_next_scope.startswith(
+                    "run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-2"
+                )
             )
         )
         r11_expected_archive_paths = [
@@ -8700,6 +8705,9 @@ def main() -> int:
                 )
                 or device_dc_next_scope.startswith(
                     "execute the committed M01 route-divergence root-cause revision-2 probe"
+                )
+                or device_dc_next_scope.startswith(
+                    "run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-2"
                 )
             )
         ) or (
@@ -9591,6 +9599,7 @@ def main() -> int:
             and (
                 rca_next_scope.startswith("establish and commit M01 route-divergence root-cause revision-2")
                 or rca_next_scope.startswith("execute the committed M01 route-divergence root-cause revision-2 probe")
+                or rca_next_scope.startswith("run the 22-check independent persisted-evidence checker for M01 route-divergence root-cause revision-2")
             )
         ) or rca_verified_state
         contract_source = m01_rca_r01_contract_path.read_text(encoding="ascii")
@@ -9713,6 +9722,26 @@ def main() -> int:
             and sha256(rca_r02_static_pass_failure_path)
             == rca_r02_static_pass_failure.get("sha256")
         )
+        rca_r02_probe_registration_failure = rca_r02_machine.get(
+            "probe_registration_project_check_failure", {}
+        )
+        rca_r02_probe_registration_failure_path = ROOT / rca_r02_probe_registration_failure.get(
+            "path", "__missing_r02_probe_registration_project_check_failure__"
+        )
+        rca_r02_probe_registration_failure_ok = (
+            rca_r02_probe_registration_failure.get("path")
+            == "results/reports/project_check_m01_route_divergence_r02_probe_registration_scope_failed.json"
+            and rca_r02_probe_registration_failure.get("sha256")
+            == "6821a18e74ae21b433f1e732005391e619c5db7a39540b2f6b6b93df35ee3684"
+            and rca_r02_probe_registration_failure.get("failure_category")
+            == "broad_machine_state_edit_changed_immutable_historical_blocks"
+            and rca_r02_probe_registration_failure.get("failed_checks") == 3
+            and rca_r02_probe_registration_failure.get("simulator_processes_invoked_by_project_check") == 0
+            and rca_r02_probe_registration_failure.get("preserved") is True
+            and rca_r02_probe_registration_failure_path.is_file()
+            and sha256(rca_r02_probe_registration_failure_path)
+            == rca_r02_probe_registration_failure.get("sha256")
+        )
         rca_r02_all_output_paths = [ROOT / value for value in rca_r02_outputs.values()]
         rca_r02_run_keys = [
             "ngspice_netlist", "xyce_netlist", "ngspice_log", "xyce_log",
@@ -9809,6 +9838,7 @@ def main() -> int:
             and rca_r02_machine.get("runner_checks_failed") == 0
             and rca_r02_machine.get("processes_invoked") == 2
             and rca_r02_machine.get("independent_check_completed") is False
+            and rca_r02_probe_registration_failure_ok
             and all(path.is_file() for path in rca_r02_run_paths)
             and not rca_r02_independent_report_path.exists()
         )
