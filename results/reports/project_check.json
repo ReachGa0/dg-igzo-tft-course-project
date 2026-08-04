@@ -1,7 +1,7 @@
 {
   "project": "DG-IGZO-TFT-PDK",
   "status": "PASS",
-  "checks": 766,
+  "checks": 767,
   "failures": 0,
   "results": [
     {
@@ -307,52 +307,52 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=33038"
+      "detail": "bytes=33420"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=28160"
+      "detail": "bytes=28360"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=24085"
+      "detail": "bytes=23798"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=229708"
+      "detail": "bytes=231881"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=5000"
+      "detail": "bytes=4954"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=137427"
+      "detail": "bytes=138771"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=81818"
+      "detail": "bytes=82928"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=15606"
+      "detail": "bytes=16020"
     },
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=70009"
+      "detail": "bytes=70877"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=158787"
+      "detail": "bytes=163804"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2207,7 +2207,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=102305"
+      "detail": "bytes=103512"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3567,7 +3567,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "preserve and commit the C00 active-load inverter revision-3 24/36 formal runner failure with all native artifacts, then establish revision-4 output-axis parsing without rerunning R03 or changing the anchor, inputs, thresholds or process budget"
+      "detail": "run the 50-check static contract for C00 active-load inverter revision-4 after committing and pushing its output-axis implementation; do not execute a circuit netlist before the static report is separately registered and pushed"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3637,7 +3637,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "preserve and commit the C00 active-load inverter revision-3 24/36 formal runner failure with all native artifacts, then establish revision-4 output-axis parsing without rerunning R03 or changing the anchor, inputs, thresholds or process budget"
+      "detail": "run the 50-check static contract for C00 active-load inverter revision-4 after committing and pushing its output-axis implementation; do not execute a circuit netlist before the static report is separately registered and pushed"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3758,6 +3758,11 @@
       "name": "c00_active_load_inverter_r03:committed_snapshot_versioned_contract_chain",
       "status": "PASS",
       "detail": "implemented=False ready=False runner=False verified=False source_bindings=True r02_binding=True"
+    },
+    {
+      "name": "c00_active_load_inverter_r04:output_axis_versioned_contract_chain",
+      "status": "PASS",
+      "detail": "implemented=True ready=False failed=False runner=False verified=False sources=True r03_binding=True"
     },
     {
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",

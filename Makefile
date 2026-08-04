@@ -8,6 +8,7 @@ DEVSIM_MATH_LIBS ?= liblapack.so.3:libblas.so.3
 .PHONY: c00-active-load-inverter-r01-contract-check c00-active-load-inverter-r01 c00-active-load-inverter-r01-check
 .PHONY: c00-active-load-inverter-r02-contract-check c00-active-load-inverter-r02 c00-active-load-inverter-r02-check
 .PHONY: c00-active-load-inverter-r03-contract-check c00-active-load-inverter-r03 c00-active-load-inverter-r03-check
+.PHONY: c00-active-load-inverter-r04-contract-check c00-active-load-inverter-r04 c00-active-load-inverter-r04-check
 
 all: import-baseline import-senior check
 
@@ -367,6 +368,15 @@ c00-active-load-inverter-r03:
 
 c00-active-load-inverter-r03-check:
 	"$(PYTHON)" scripts/check_c00_active_load_inverter_r03.py
+
+c00-active-load-inverter-r04-contract-check:
+	"$(PYTHON)" scripts/check_c00_active_load_inverter_r04_contract.py
+
+c00-active-load-inverter-r04:
+	"$(PYTHON)" scripts/run_c00_active_load_inverter_r04.py
+
+c00-active-load-inverter-r04-check:
+	"$(PYTHON)" scripts/check_c00_active_load_inverter_r04.py
 
 tcad-smoke:
 	DEVSIM_MATH_LIBS="$(DEVSIM_MATH_LIBS)" "$(TCAD_PYTHON)" tcad/run_dg_electrostatic.py

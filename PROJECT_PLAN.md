@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-`C00_R03_FORMAL_FAILED_R04_OUTPUT_AXIS_NEXT`：C00 R02 50/50 E3 静态 PASS 与 runner Git 自引用阻塞已冻结。R03 committed-snapshot 静态门唯一返回 50/50 E3，随后四进程 runner 唯一返回 24/36 E0/FAIL；16 个原始产物保留，当前建立 R04 输出轴/解析合同，正式电路与下游仍关闭。
+`C00_R04_CONTRACT_IMPLEMENTED_STATIC_NEXT`：C00 R01/R02/R03 历史已冻结，R03 24/36 E0/FAIL 及 16 个原生产物已由 `77d611e` 保留。R04 仅完成输出轴/解析合同实现，为 `contract_implemented/E0`；50 项静态门、36 项 runner 和 29 项独立门均未运行，正式电路与下游仍关闭。
 
 ## 截止日期
 
@@ -47,7 +47,7 @@
 | T03 | 五组器件参数 | DONE，E3；P2/P3 FAILURES PRESERVED | P1/P2/P3/P4/P5 均有正式结果与独立检查；P5 为 3/123/93、runner 14/14、independent 15/15，只关闭冻结教学模型数值门 |
 | M00 | IGZO 教学多曲线代理拟合 | DONE_WITH_LIMITATION，R02 RUN E2 / CHECK E3 | R01 21/24、E0/FAIL永久保留；R02 27/27 静态 PASS、runner 24/24、独立检查 20/20，原 9/163 train、4/70 holdout 和所有门槛不变。仅关闭冻结教学数值域；候选已生成但未执行 |
 | M01 | 双仿真器对照 | DONE_WITH_LIMITATION，R03 independent E3 | R03 42/30/24 E3/E2/E3 满足冻结四项验收；仅关闭 portable IGZO 教学候选、247 行和两条开源行为路线。全部历史失败与 R02 分歧保留；不证明方程身份、物理参数、校准或电路验证 |
-| C00 | 有源负载 INV | R03 24/36 E0/FAIL / R04 OUTPUT AXIS NEXT | R01 46/48、R02 50/50 E3/runner blocker 和 R03 静态 50/50 E3 冻结；R03 runner 报告 `0527fdc5...a82766` 记录四进程全返回 0、原生表解析 101/632/101/230，16 个原始产物保留。R04 只修 Xyce TIME/原生轴覆盖和失败边界，不改输入、锚点、阈值或预算 |
+| C00 | 有源负载 INV | R04 CONTRACT IMPLEMENTED / E0 | R03 24/36 失败已由 `77d611e` 保留。R04 绑定 R03 五源、两报告和 16 原生产物，只修 Xyce 隐式/重复 TIME、原生轴物理覆盖和 PASS/FAIL 边界；不改输入、锚点、提取、阈值或四进程预算。当前静态/runner/independent 均未运行 |
 | C01 | NAND2/NOR2/XOR2 | TODO | 依赖 C00 |
 | C02 | RING5 | TODO | 依赖 C00 |
 | C03 | 一位全加器 | TODO | 依赖 C01 |
@@ -60,4 +60,4 @@
 
 ## 当前下一件事
 
-M00/M01 历史运行均不重跑、不放宽门槛。M01 已仅在冻结教学域 `DONE_WITH_LIMITATION`。C00 R01/R02/R03 静态与 R03 runner 失败均冻结；当前先提交并推送 R03 24/36 失败及原始证据，再建立 R04 输出轴/解析合同。R04 静态门关闭前不重跑模拟器，C01/C02/C03、版图、PEX 和 HZO 继续关闭。
+M00/M01 历史运行均不重跑、不放宽门槛。M01 已仅在冻结教学域 `DONE_WITH_LIMITATION`。C00 R01/R02/R03 均冻结；当前先提交并推送 R04 `contract_implemented/E0`，再唯一运行 50 项零进程静态合同。静态报告未登记提交推送前不执行电路，C01/C02/C03、版图、PEX 和 HZO 继续关闭。

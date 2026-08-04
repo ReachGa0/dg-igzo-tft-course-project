@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-04
-- 当前阶段：`C00_R03_FORMAL_FAILED_R04_OUTPUT_AXIS_NEXT`
+- 当前阶段：`C00_R04_CONTRACT_IMPLEMENTED_STATIC_NEXT`
 - 整体状态：`YELLOW`
-- 当前原则：C00 R03 静态合同 50/50 E3 已冻结；提交 `d0f6ef7` 推送同步后正式 runner 已唯一返回 24/36、E0/FAIL。四个串行进程均返回 0，但原生瞬态表解析门失败，16 个原始产物保留，独立检查和下游权限关闭；C01/C02/C03、版图、PEX 和 HZO 继续关闭。
+- 当前原则：C00 R03 50/50 E3 静态 PASS 与 24/36 E0/FAIL runner 已冻结并由提交 `77d611e` 保留。R04 仅完成输出轴/解析静态合同实现，当前仍为 `contract_implemented/E0`；50 项静态 checker、四进程 runner 和独立 checker 均未运行，C01/C02/C03、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -24,7 +24,12 @@
 - [x] 16 个网表、日志、命令 manifest 和 raw/PRN 产物已哈希登记；归一化 CSV、指标、路线差异、两张图和独立报告均不存在。R03 runner 报告失败分支继承的“完整表/锚点”描述不被接受，不能据此声称电路通过。
 - [x] 只读内存诊断未启动进程、未写入结果，确认去重 TIME 后两路可覆盖 0--3 us；冻结锚点仍显示 VOH 约 0.0912 V、最大增益约 0.884、无单位增益交点和无输出 50% crossing。该诊断不是 R03 正式指标或阈值放宽依据。
 - [x] 失败登记后的 `make check` 为 766/766 PASS，`make report-check` 为 12 章、5 个附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过；R03 不重跑，PASS-only 独立 checker 不运行。
-- [ ] 下一门：提交并推送 R03 24/36 失败及 16 个原始产物，然后建立独立 R04 输出轴/解析合同。R04 只能修正 Xyce 隐式 TIME 处理、原生轴覆盖判定和失败边界文本；不得改变 R03 输入、锚点、提取方法、验收阈值或四进程预算。
+- [x] R03 24/36 失败、16 个原生产物及边界文档已由提交 `77d611e` 推送；报告 SHA-256 保持 `0527fdc5...a82766`，R03 不重跑。
+- [x] 新增 `C00_ACTIVE_LOAD_INVERTER_R04` 独立配置、pure common、50/36/29 三门脚本和 Make 入口；哈希绑定 R03 五源、静态/运行报告、提交 `77d611e` 及 16 个原生产物。
+- [x] R04 只做三类修正：Xyce 瞬态 `.PRINT` 不再显式请求隐式 `TIME`；重复 `TIME` 仅在数值逐行一致时折叠；原生表按向量等长/有限/轴严格递增/覆盖登记端点验收，不再要求原生瞬态点数至少 601。登记的 601 行插值网格不变。
+- [x] runner 现按实际 PASS/FAIL 选择成功/失败证据边界，无异常但验收门失败时记录 `AcceptanceFailure` 和失败检查名。拓扑、模型、18/36 案例、锚点、提取、阈值与四串行进程预算不变。
+- [x] 只读 R03 Xyce 失败产物的 R04 parser 自检得到 115 个物理行、109 个等长有限向量、严格递增且覆盖 0--3 us；未启动任何进程或写入数值结果。`make check` 为 767/767 PASS，`make report-check` 为 12 章/5 附录/15 占位/30 图 PASS，`git diff --check` PASS。
+- [ ] 下一门：提交并推送 R04 `contract_implemented/E0` 后，唯一运行 50 项零进程静态合同。静态报告未单独登记、提交和推送前，不得生成或执行 R04 电路网表。
 
 - [x] R02 实现提交 `216c6a7` 推送并与 `origin/main` 同步后，唯一运行 `make c00-active-load-inverter-r02-contract-check`，返回 50/50 PASS、E3；报告 `results/reports/c00_active_load_inverter_contract_r02.json` SHA-256 为 `e820af3b6a80095a907ddbdc7ddab5461937cd99ff1bc442e03a6ffd07bd1a99`。
 - [x] 50 项静态门验证 R01 五源/46/48 报告不可变、R02 仅作 ASCII 标识符整词修正、2-TFT 拓扑、18/36 案例、锚点、提取、阈值、工具、四进程预算、失败保留和零输出边界；报告记录 `simulator_processes_invoked=0`、`circuit_netlists_created=0`。

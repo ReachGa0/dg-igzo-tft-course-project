@@ -22,12 +22,12 @@
 - S00、T01-A/B/C/D-A/D-B/D-C、T02-A/B/C 和 T03 五组均已完成；历史失败保留。M00 R01 保持 21/24、E0/FAIL；R02 runner 24/24 E2、独立检查 20/20 E3，仅在冻结 IGZO 教学数值域内关闭 M00。M01 revision-3 合同 32/32 E3，R01 工具/来源预检唯一运行 11/13、E0/FAIL，开源恢复合同 30/30 E3。R07 build/tool runner 唯一返回 42/47、E0/FAIL，实际固定列 `.prn` 输出已保留；R08 静态 checker 唯一执行因 36/30 注册表缺陷中止并已归档，R08 不重跑；R09 静态 checker 唯一返回 34/36、E0/FAIL，两个合同断言失败已归档，R09 不重跑；R10 静态合同唯一返回 36/36 PASS、E3，runner 随后在版本/许可证/B-source 三条 Xyce 命令通过且观测 1.25 V 后，因含中文绝对路径的 parser-only 网表不能按 ASCII 写入而失败。parser-only、独立检查和正式器件 DC 未运行，部分目录已哈希保留，R10 不重跑。R11 静态合同唯一返回 36/36 PASS、E3，runner 唯一返回 32/32 PASS、E2，独立落盘复核唯一返回 25/25 PASS、E3；4 个允许的 Xyce 工具/parser 进程均通过，完成相对 ASCII include 的 parser-only syntax，独立复核零进程。Xyce 二进制和完整安装树只能按新合同哈希绑定复用，正式 M01 器件 DC、C00/L00/V01 仍未完成，G0 仍为 `TEACHING_BASELINE_ONLY`。
 - 正式 R01 静态合同固定为 39/40、E0/FAIL且不重跑。`M01_OPEN_SOURCE_DEVICE_DC_R02` 只修正 R11 持久化 schema，物理/数据/阈值/路线/进程和边界未改；静态 40/40 E3、runner 30/30 E2、独立复核 24/24 E3 均唯一通过。独立 checker 零进程精确重算两份网表、raw/PRN、247+247 行、30 指标、247 差异、14 哈希和两图尺寸。ngspice 近数值底部、Xyce 跟随候选，最大路线绝对/对数差 `4.68252e-4 A/cm`/`16.6705 decade`；E3 验证该诊断，不证明路线一致、方程身份、物理参数或校准。`M01_ROUTE_DIVERGENCE_ROOT_CAUSE_R01` 静态合同唯一返回 38/40、E0/FAIL并冻结。R02 静态/探针/独立检查唯一返回 40/40 E3、30/30 E2、22/22 E3；独立 checker 零进程再生两份网表、重算 9 个哈希和 26 行表，确认三参数 `limit` 语义根因和 portable clamp 只在预注册点成立，完整 R02 247 行路线一致仍为 false。R03 新完整候选已完成 42/30/24 E3/E2/E3 链，独立落盘复核复现机器精度级一致；下一门是提交该 E3 后单独判断 M01 教学边界收口与 C00 开放，当前仍关闭。
 - `M01_OPEN_SOURCE_DEVICE_DC_R03` 已完成 42/30/24 E3/E2/E3 链：新候选唯一语义变化为显式 `min(max())` clamp；独立 checker 零进程精确重算 247+247 行、30 指标、247 差异、14 哈希和两图尺寸，复现最大绝对/对数差 `4.37069e-19 A/cm`/`2.75335e-14 decade`。提交 `5d2134c` 后已按冻结四项验收单独记录 `M01_TEACHING_MODEL_ONLY_PASS`，M01 仅在教学域 `DONE_WITH_LIMITATION`。
-- `C00_ACTIVE_LOAD_INVERTER_R01` 静态合同唯一返回 46/48、E0/FAIL，`nor` 子串误命中 `NORM`；0 进程、0 网表，R01 不重跑。`C00_ACTIVE_LOAD_INVERTER_R02` 在实现提交 `216c6a7` 后唯一返回 50/50 PASS、E3；执行前审计发现 runner 的 `HEAD == origin == machine.static_pass_commit` 形成 tracked 提交自引用，故 runner 未运行。提交 `747f384` 已保留静态报告 `e820af3b...1a99`、阻塞报告 `9c810623...6ea51` 和全部零输出边界。`C00_ACTIVE_LOAD_INVERTER_R03` 只以同步 HEAD/origin 报告快照和登记报告哈希替代自引用，拓扑、18/36 案例、锚点、提取、阈值、50/36/29 门和四进程预算不变；静态 50/50 E3 报告 `0e3d20a0...1b39` 后，提交 `d0f6ef7` 上唯一四进程 runner 返回 24/36 E0/FAIL，报告 `0527fdc5...a82766`。16 个原始产物保留，Xyce TIME/原生点数合同缺陷导致归一化输出未到达；独立检查、C01+、版图、PEX 和 HZO 关闭，R04 只修输出轴/解析。
+- `C00_ACTIVE_LOAD_INVERTER_R01` 静态合同唯一返回 46/48、E0/FAIL，`nor` 子串误命中 `NORM`；R02 唯一静态 50/50 PASS、E3，runner 因 tracked 提交自引用未运行。R03 静态 50/50 E3 后，提交 `d0f6ef7` 上唯一四进程 runner 返回 24/36 E0/FAIL，报告 `0527fdc5...a82766`；16 个原生产物由 `77d611e` 保留，R03 不重跑。`C00_ACTIVE_LOAD_INVERTER_R04` 已实现为 `contract_implemented/E0`，只修 Xyce 隐式/重复 TIME、原生轴物理覆盖和 PASS/FAIL 边界；保持拓扑、候选模型、18/36 案例、锚点、提取、阈值、50/36/29 门和四进程预算不变。R04 静态 checker 与电路 runner 均未运行；C01+、版图、PEX 和 HZO 仍关闭。
 - HZO 是可选扩展，不能阻塞基础闭环。
 
 ## 硬性事实
 
-- 当前日期：2026-08-03。
+- 当前日期：2026-08-04。
 - PPT：2026-08-06；报告：2026-08-13。
 - 基础工艺：Si/300 nm SiO2/50 nm Al/30 nm Al2O3/24 nm IGZO/50 nm Ti。
 - IGZO 尺寸：`W/L=60/10 um`。
