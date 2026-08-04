@@ -1,0 +1,305 @@
+{
+  "schema_version": "1.0",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "C00",
+  "contract_id": "C00_ACTIVE_LOAD_INVERTER_R03",
+  "status": "FAIL",
+  "evidence_level": "E0",
+  "simulation_status": "FORMAL_C00_FAILED",
+  "config": {
+    "path": "config/c00_active_load_inverter_r03.json",
+    "sha256": "3fd2f643c90d8733938f37e0b426dd3c811339d44204d15f272cb82fc95be690"
+  },
+  "runner": {
+    "path": "scripts/run_c00_active_load_inverter_r03.py",
+    "sha256": "0f64cbf3a930cdfe7d9ae45ba96869bc6db42a722aabd2f81d9163502852584d"
+  },
+  "contract_report": {
+    "path": "results/reports/c00_active_load_inverter_contract_r03.json",
+    "sha256": "0e3d20a0fa4f40088b6370f171ebdfcdfab30783c344a1484e7b66061f441b39"
+  },
+  "git_state": {
+    "head": "d0f6ef7cd163b09b897636c2afa4c27667d5ede2",
+    "origin_main": "d0f6ef7cd163b09b897636c2afa4c27667d5ede2",
+    "synchronized": true
+  },
+  "summary": {
+    "passed": 24,
+    "failed": 12,
+    "total": 36,
+    "process_invocations": 4,
+    "formal_circuit_invoked": true,
+    "ngspice_processes": 2,
+    "xyce_processes": 2,
+    "aimspice_processes": 0,
+    "tcad_processes": 0,
+    "layout_or_pex_processes": 0,
+    "elapsed_seconds": 2.038843870162964
+  },
+  "native_points": {
+    "ngspice_dc": 101,
+    "ngspice_transient": 632,
+    "xyce_dc": 101,
+    "xyce_transient": 230
+  },
+  "failure_category": "CircuitRunFailure",
+  "failure_detail": "native raw point count failed",
+  "commands": [
+    {
+      "route": "ngspice",
+      "analysis": "dc",
+      "argv": [
+        "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+        "-b",
+        "-o",
+        "results/compact/c00_active_load_inverter_r03/ngspice_dc.log",
+        "results/compact/c00_active_load_inverter_r03/ngspice_dc.cir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.150867643999959
+    },
+    {
+      "route": "ngspice",
+      "analysis": "transient",
+      "argv": [
+        "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+        "-b",
+        "-o",
+        "results/compact/c00_active_load_inverter_r03/ngspice_tran.log",
+        "results/compact/c00_active_load_inverter_r03/ngspice_tran.cir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 1.2558562100000472
+    },
+    {
+      "route": "xyce",
+      "analysis": "dc",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-l",
+        "results/compact/c00_active_load_inverter_r03/xyce_dc.log",
+        "-o",
+        "results/compact/c00_active_load_inverter_r03/xyce_dc",
+        "results/compact/c00_active_load_inverter_r03/xyce_dc.cir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.12830674000008457
+    },
+    {
+      "route": "xyce",
+      "analysis": "transient",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-l",
+        "results/compact/c00_active_load_inverter_r03/xyce_tran.log",
+        "-o",
+        "results/compact/c00_active_load_inverter_r03/xyce_tran",
+        "results/compact/c00_active_load_inverter_r03/xyce_tran.cir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.23355520500001603
+    }
+  ],
+  "checks": [
+    {
+      "name": "precondition:committed_static_contract_pass",
+      "status": "PASS",
+      "detail": "sha256=0e3d20a0fa4f40088b6370f171ebdfcdfab30783c344a1484e7b66061f441b39"
+    },
+    {
+      "name": "identity:config_common_checker_runner",
+      "status": "PASS",
+      "detail": "config=3fd2f643c90d8733938f37e0b426dd3c811339d44204d15f272cb82fc95be690 runner=0f64cbf3a930cdfe7d9ae45ba96869bc6db42a722aabd2f81d9163502852584d"
+    },
+    {
+      "name": "git:head_origin_synced_and_static_snapshot_published",
+      "status": "PASS",
+      "detail": "head=d0f6ef7cd163b09b897636c2afa4c27667d5ede2 origin=d0f6ef7cd163b09b897636c2afa4c27667d5ede2 static_snapshot=d449b2dadf51fc2b675fb954b9d620e3e52317a9"
+    },
+    {
+      "name": "machine:circuit_execution_gate_open",
+      "status": "PASS",
+      "detail": "root=contract_ready machine=contract_ready"
+    },
+    {
+      "name": "model:frozen_portable_candidate",
+      "status": "PASS",
+      "detail": "sha256=dd56c4c5b9f67d628eb2677705139769642b2e0eb66fca5b453b3cc6be351fd6"
+    },
+    {
+      "name": "tools:two_hash_bound_open_source_routes",
+      "status": "PASS",
+      "detail": "ngspice and GPL Xyce hashes match"
+    },
+    {
+      "name": "outputs:exclusive_absent_before_run",
+      "status": "PASS",
+      "detail": "absent=28/28"
+    },
+    {
+      "name": "resource:four_process_serial_budget",
+      "status": "PASS",
+      "detail": "{\"aimspice_processes\": 0, \"analyses_per_route\": 2, \"laptop_target\": true, \"layout_processes\": 0, \"max_serial_simulator_processes\": 4, \"ngspice_processes\": 2, \"parallel_simulator_processes\": 0, \"pex_processes\": 0, \"route_count\": 2, \"tcad_processes\": 0, \"xyce_processes\": 2}"
+    },
+    {
+      "name": "netlists:four_ascii_generated",
+      "status": "PASS",
+      "detail": "four exclusive ASCII netlists"
+    },
+    {
+      "name": "netlists:registered_topology_and_case_counts",
+      "status": "PASS",
+      "detail": "18 DC and 36 transient two-TFT cases per route"
+    },
+    {
+      "name": "netlists:no_forbidden_scope",
+      "status": "PASS",
+      "detail": "forbidden=11 policy=ASCII identifier equality"
+    },
+    {
+      "name": "ngspice_dc:argv_exact",
+      "status": "PASS",
+      "detail": "[\"/mnt/c/Users/ReachGao/.local/bin/ngspice\", \"-b\", \"-o\", \"results/compact/c00_active_load_inverter_r03/ngspice_dc.log\", \"results/compact/c00_active_load_inverter_r03/ngspice_dc.cir\"]"
+    },
+    {
+      "name": "ngspice_dc:returncode_zero",
+      "status": "PASS",
+      "detail": "returncode=0"
+    },
+    {
+      "name": "ngspice_dc:raw_present",
+      "status": "PASS",
+      "detail": "results/compact/c00_active_load_inverter_r03/ngspice_dc.raw"
+    },
+    {
+      "name": "ngspice_tran:argv_exact",
+      "status": "PASS",
+      "detail": "[\"/mnt/c/Users/ReachGao/.local/bin/ngspice\", \"-b\", \"-o\", \"results/compact/c00_active_load_inverter_r03/ngspice_tran.log\", \"results/compact/c00_active_load_inverter_r03/ngspice_tran.cir\"]"
+    },
+    {
+      "name": "ngspice_tran:returncode_zero",
+      "status": "PASS",
+      "detail": "returncode=0"
+    },
+    {
+      "name": "ngspice_tran:raw_present",
+      "status": "PASS",
+      "detail": "results/compact/c00_active_load_inverter_r03/ngspice_tran.raw"
+    },
+    {
+      "name": "xyce_dc:argv_exact",
+      "status": "PASS",
+      "detail": "[\"/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce\", \"-l\", \"results/compact/c00_active_load_inverter_r03/xyce_dc.log\", \"-o\", \"results/compact/c00_active_load_inverter_r03/xyce_dc\", \"results/compact/c00_active_load_inverter_r03/xyce_dc.cir\"]"
+    },
+    {
+      "name": "xyce_dc:returncode_zero",
+      "status": "PASS",
+      "detail": "returncode=0"
+    },
+    {
+      "name": "xyce_dc:raw_present",
+      "status": "PASS",
+      "detail": "results/compact/c00_active_load_inverter_r03/xyce_dc.prn"
+    },
+    {
+      "name": "xyce_tran:argv_exact",
+      "status": "PASS",
+      "detail": "[\"/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce\", \"-l\", \"results/compact/c00_active_load_inverter_r03/xyce_tran.log\", \"-o\", \"results/compact/c00_active_load_inverter_r03/xyce_tran\", \"results/compact/c00_active_load_inverter_r03/xyce_tran.cir\"]"
+    },
+    {
+      "name": "xyce_tran:returncode_zero",
+      "status": "PASS",
+      "detail": "returncode=0"
+    },
+    {
+      "name": "xyce_tran:raw_present",
+      "status": "PASS",
+      "detail": "results/compact/c00_active_load_inverter_r03/xyce_tran.prn"
+    },
+    {
+      "name": "execution:exactly_four_serial_processes",
+      "status": "PASS",
+      "detail": "processes=4"
+    },
+    {
+      "name": "raw:four_native_tables_parse",
+      "status": "FAIL",
+      "detail": "{\"ngspice_dc\": 101, \"ngspice_transient\": 632, \"xyce_dc\": 101, \"xyce_transient\": 230}"
+    },
+    {
+      "name": "tables:two_complete_dc_routes",
+      "status": "FAIL",
+      "detail": "not reached"
+    },
+    {
+      "name": "tables:two_complete_transient_routes",
+      "status": "FAIL",
+      "detail": "not reached"
+    },
+    {
+      "name": "metrics:static_all_cases_and_power",
+      "status": "FAIL",
+      "detail": "not reached"
+    },
+    {
+      "name": "metrics:transient_all_cases_delay_and_power",
+      "status": "FAIL",
+      "detail": "not reached"
+    },
+    {
+      "name": "acceptance:both_routes_anchor_static_qualified",
+      "status": "FAIL",
+      "detail": "not reached"
+    },
+    {
+      "name": "acceptance:both_routes_anchor_transient_qualified",
+      "status": "FAIL",
+      "detail": "not reached"
+    },
+    {
+      "name": "differences:complete_aligned_tables",
+      "status": "FAIL",
+      "detail": "not reached"
+    },
+    {
+      "name": "differences:diagnostic_only_policy_preserved",
+      "status": "FAIL",
+      "detail": "not reached"
+    },
+    {
+      "name": "figures:vtc_and_transient_png",
+      "status": "FAIL",
+      "detail": "not reached"
+    },
+    {
+      "name": "artifacts:all_runner_hashes_persisted",
+      "status": "FAIL",
+      "detail": "not reached"
+    },
+    {
+      "name": "result:formal_c00_complete_with_boundary",
+      "status": "FAIL",
+      "detail": "not reached"
+    }
+  ],
+  "artifacts": {
+    "ngspice_dc_netlist_sha256": "6319dbb4280b1a86b58d48bd641ca5c62e1b1e5638c9ce61aa775f52de4059be",
+    "ngspice_dc_log_sha256": "bf9300e4739bfc4bd422fe59fb82a5d19953deb6c14f2655c849954b0dcc1897",
+    "ngspice_dc_command_sha256": "f039097bac4ca41e3aa40c09905629103386cf69dc47473fcaa5609895217fcc",
+    "ngspice_dc_raw_sha256": "4ef80751793b7e992ded8e3f03235b20ffe749909ca15ac1ec78f4b7042729fa",
+    "ngspice_tran_netlist_sha256": "fd83c70d41a8ba21dc2bc6146dd6e5e5f5ef6298fb17cfcc8b7eaf708bede3af",
+    "ngspice_tran_log_sha256": "7bbfdd3ccff1a763d3e37053708561133bd01430fe2c9e0fcbc51f7a7446cc49",
+    "ngspice_tran_command_sha256": "85221a9ec88a67b4d55b4ba72f9d31ca8689f761e7e22de76cc0a931ba810c7d",
+    "ngspice_tran_raw_sha256": "0d902602c2a47a577efd4185c574c106d0b2a5285e02b6c6dedde7512d5ccf45",
+    "xyce_dc_netlist_sha256": "a40897eaa300b802695e81f815bef10dad09a9dccca0fbd39c5ffb32c388cd85",
+    "xyce_dc_log_sha256": "e7fcfd8e36d79e74902e9a2170cc828758ede7b0b423c39c53a4903caa94bdb4",
+    "xyce_dc_command_sha256": "cc6bf51b1c1ca0f2a8b57602e5bed49cbc4b58765ec8b5d2a029dba60a50f30d",
+    "xyce_dc_raw_sha256": "5b0b47e6e7d99f39385f71d4266661de461e228704702a484c4a210605d465fd",
+    "xyce_tran_netlist_sha256": "5d2b103ad698cdf8ca5a312c2caafbc6cbf04786039eeac0774bd12c4760f23b",
+    "xyce_tran_log_sha256": "a7e6e482de735ab249eb2ab1a931d6b97828ac612d6e395d24687ad19791976e",
+    "xyce_tran_command_sha256": "5ff75f3f186a7240347c9c5fb888cd0f813b7580dd28a3d446afb41fc9cffbda",
+    "xyce_tran_raw_sha256": "9f64f99434bc6903ebc85d98488937ca49c34bbec252750d5d419c7116507672"
+  },
+  "evidence_boundary": "The declared portable teaching model executed the registered inverter cases in ngspice and GPL Xyce, with complete static/transient tables and preregistered anchor acceptance.",
+  "next_gate": "Preserve and commit this formal C00 failure. Do not run the PASS-only independent checker, change the anchor, or relax a threshold."
+}

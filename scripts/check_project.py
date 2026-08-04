@@ -852,6 +852,8 @@ def main() -> int:
         ) or current_next_scope.startswith(
             "execute the committed C00 active-load inverter revision-3 four-process runner"
         ) or current_next_scope.startswith(
+            "preserve and commit the C00 active-load inverter revision-3 24/36 formal runner failure"
+        ) or current_next_scope.startswith(
             "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-3"
         ) or current_next_scope.startswith(
             "commit and close C00 revision-3 within the teaching-model evidence boundary"
@@ -5582,6 +5584,7 @@ def main() -> int:
                 ("contract_implemented", "E0"),
                 ("contract_ready", "E3"),
                 ("formal_run_passed", "E2"),
+                ("formal_run_failed", "E0"),
                 ("verified", "E3"),
                 ("contract_failed_static_checker", "E0"),
                 ("static_contract_passed_runner_gate_blocked", "E3"),
@@ -9880,6 +9883,9 @@ def main() -> int:
                     "execute the committed C00 active-load inverter revision-3 four-process runner"
                 )
                 or r03_next_scope.startswith(
+                    "preserve and commit the C00 active-load inverter revision-3 24/36 formal runner failure"
+                )
+                or r03_next_scope.startswith(
                     "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-3"
                 )
                 or r03_next_scope.startswith(
@@ -10207,6 +10213,9 @@ def main() -> int:
                     "execute the committed C00 active-load inverter revision-3 four-process runner"
                 )
                 or c00_next_scope.startswith(
+                    "preserve and commit the C00 active-load inverter revision-3 24/36 formal runner failure"
+                )
+                or c00_next_scope.startswith(
                     "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-3"
                 )
                 or c00_next_scope.startswith(
@@ -10429,7 +10438,7 @@ def main() -> int:
                 )
                 or (
                     c00_experiment.get("status")
-                    in {"contract_implemented", "contract_ready", "formal_run_passed", "verified"}
+                    in {"contract_implemented", "contract_ready", "formal_run_passed", "formal_run_failed", "verified"}
                     and c00_experiment.get("active_load_inverter_r03", {}).get("revision")
                     == 3
                 )
@@ -10558,6 +10567,9 @@ def main() -> int:
                 )
                 or c00_r02_next_scope.startswith(
                     "execute the committed C00 active-load inverter revision-3 four-process runner"
+                )
+                or c00_r02_next_scope.startswith(
+                    "preserve and commit the C00 active-load inverter revision-3 24/36 formal runner failure"
                 )
                 or c00_r02_next_scope.startswith(
                     "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-3"
@@ -10727,6 +10739,20 @@ def main() -> int:
         c00_r03_artifact_paths = [
             ROOT / c00_r03_outputs[key] for key in c00_r03_artifact_keys
         ]
+        c00_r03_native_artifact_keys = [
+            key
+            for key in c00_r03_artifact_keys
+            if key.endswith(("_netlist", "_log", "_command", "_raw"))
+        ]
+        c00_r03_normalized_artifact_keys = [
+            key for key in c00_r03_artifact_keys if key not in c00_r03_native_artifact_keys
+        ]
+        c00_r03_native_artifact_paths = [
+            ROOT / c00_r03_outputs[key] for key in c00_r03_native_artifact_keys
+        ]
+        c00_r03_normalized_artifact_paths = [
+            ROOT / c00_r03_outputs[key] for key in c00_r03_normalized_artifact_keys
+        ]
         c00_r03_binding = c00_r03_config["r02_static_and_blocker_binding"]
         c00_r03_registration_failure = c00_r03_machine.get(
             "static_pass_registration_project_check_failure", {}
@@ -10890,6 +10916,86 @@ def main() -> int:
             and not c00_r03_run_report_path.exists()
             and not c00_r03_independent_report_path.exists()
         ) if c00_r03_contract_report_path.is_file() else False
+        c00_r03_failed_state = (
+            c00_experiment.get("status") == "formal_run_failed"
+            and c00_experiment.get("current_evidence") == "E0"
+            and c00_r03_machine.get("status") == "formal_run_failed"
+            and c00_r03_machine.get("current_evidence") == "E0"
+            and c00_r03_machine.get("contract_check_completed") is True
+            and c00_r03_machine.get("contract_check_status") == "PASS"
+            and c00_r03_machine.get("contract_checks_passed") == 50
+            and c00_r03_machine.get("contract_checks_failed") == 0
+            and c00_r03_machine.get("formal_run_completed") is True
+            and c00_r03_machine.get("formal_run_status") == "FAIL"
+            and c00_r03_machine.get("runner_checks_passed") == 24
+            and c00_r03_machine.get("runner_checks_failed") == 12
+            and c00_r03_machine.get("runner_process_invocations") == 4
+            and c00_r03_machine.get("runner_commands_returncodes") == [0, 0, 0, 0]
+            and c00_r03_machine.get("simulator_processes_invoked") == 4
+            and c00_r03_machine.get("circuit_netlists_created") == 4
+            and c00_r03_machine.get("circuit_execution_permitted") is False
+            and c00_r03_machine.get("independent_check_permitted") is False
+            and c00_r03_machine.get("downstream_permitted") is False
+            and c00_r03_machine.get("runner_report_sha256")
+            == sha256(c00_r03_run_report_path)
+            and c00_r03_run_report.get("status") == "FAIL"
+            and c00_r03_run_report.get("evidence_level") == "E0"
+            and c00_r03_run_report.get("simulation_status") == "FORMAL_C00_FAILED"
+            and c00_r03_run_report.get("summary", {}).get("passed") == 24
+            and c00_r03_run_report.get("summary", {}).get("failed") == 12
+            and c00_r03_run_report.get("summary", {}).get("total") == 36
+            and c00_r03_run_report.get("summary", {}).get("process_invocations") == 4
+            and c00_r03_run_report.get("summary", {}).get("formal_circuit_invoked") is True
+            and c00_r03_run_report.get("summary", {}).get("ngspice_processes") == 2
+            and c00_r03_run_report.get("summary", {}).get("xyce_processes") == 2
+            and c00_r03_run_report.get("summary", {}).get("aimspice_processes") == 0
+            and c00_r03_run_report.get("summary", {}).get("tcad_processes") == 0
+            and c00_r03_run_report.get("summary", {}).get("layout_or_pex_processes") == 0
+            and c00_r03_run_report.get("git_state", {}).get("head")
+            == c00_r03_run_report.get("git_state", {}).get("origin_main")
+            and c00_r03_run_report.get("git_state", {}).get("synchronized") is True
+            and c00_r03_machine.get("runner_git_snapshot")
+            == c00_r03_run_report.get("git_state")
+            and c00_r03_run_report.get("failure_category") == "CircuitRunFailure"
+            and c00_r03_run_report.get("failure_detail") == "native raw point count failed"
+            and c00_r03_run_report.get("native_points")
+            == {
+                "ngspice_dc": 101,
+                "ngspice_transient": 632,
+                "xyce_dc": 101,
+                "xyce_transient": 230,
+            }
+            and c00_r03_machine.get("native_points") == c00_r03_run_report.get("native_points")
+            and c00_r03_machine.get("runner_native_artifact_count") == 16
+            and c00_r03_machine.get("runner_artifact_hashes")
+            == c00_r03_run_report.get("artifacts")
+            and len(c00_r03_run_report.get("artifacts", {})) == 16
+            and all(path.is_file() for path in c00_r03_native_artifact_paths)
+            and all(
+                c00_r03_run_report["artifacts"].get(f"{key}_sha256")
+                == sha256(ROOT / c00_r03_outputs[key])
+                for key in c00_r03_native_artifact_keys
+            )
+            and not c00_r03_machine.get("runner_normalized_artifacts_created")
+            and all(not path.exists() for path in c00_r03_normalized_artifact_paths)
+            and c00_r03_machine.get("runner_report_boundary_accepted") is False
+            and c00_r03_machine.get("failure_diagnosis")
+            == {
+                "formal_failed_check": "raw:four_native_tables_parse",
+                "dependent_checks_not_reached": 11,
+                "xyce_transient_header_time_columns": 2,
+                "xyce_transient_physical_rows": 115,
+                "xyce_transient_parser_time_values": 230,
+                "ngspice_transient_physical_rows": 632,
+                "registered_interpolation_rows_per_case": 601,
+                "diagnostic_only": True,
+                "diagnostic_simulator_processes_invoked": 0,
+                "diagnostic_outputs_created": 0,
+                "thresholds_changed": False,
+            }
+            and (ROOT / c00_r03_outputs["run_directory"]).is_dir()
+            and not c00_r03_independent_report_path.exists()
+        ) if c00_r03_run_report_path.is_file() else False
         c00_r03_runner_state = (
             c00_experiment.get("status") == "formal_run_passed"
             and c00_experiment.get("current_evidence") == "E2"
@@ -10941,6 +11047,11 @@ def main() -> int:
                 "execute the committed C00 active-load inverter revision-3 four-process runner"
             )
         ) or (
+            c00_r03_failed_state
+            and c00_r03_next_scope.startswith(
+                "preserve and commit the C00 active-load inverter revision-3 24/36 formal runner failure"
+            )
+        ) or (
             c00_r03_runner_state
             and c00_r03_next_scope.startswith(
                 "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-3"
@@ -10960,6 +11071,18 @@ def main() -> int:
                 c00_r03_path_order_failure["path"],
                 c00_r03_archive_binding_failure["path"],
             ]
+        elif c00_r03_failed_state:
+            c00_r03_expected_paths = (
+                c00_r03_base_paths
+                + [
+                    c00_r03_outputs["contract_report"],
+                    c00_r03_registration_failure["path"],
+                    c00_r03_path_order_failure["path"],
+                    c00_r03_archive_binding_failure["path"],
+                ]
+                + [c00_r03_outputs[key] for key in c00_r03_native_artifact_keys]
+                + [c00_r03_outputs["run_report"]]
+            )
         elif c00_r03_runner_state:
             c00_r03_expected_paths = (
                 c00_r03_base_paths
@@ -11056,6 +11179,7 @@ def main() -> int:
             and (
                 c00_r03_implemented_state
                 or c00_r03_ready_state
+                or c00_r03_failed_state
                 or c00_r03_runner_state
                 or c00_r03_verified_state
             )

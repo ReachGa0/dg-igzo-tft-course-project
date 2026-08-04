@@ -35,6 +35,9 @@ results/tables/m01_open_source_route_difference_r03.csv -text -whitespace
 results/compact/m01_route_divergence_root_cause_r02/** -text -whitespace
 results/tables/m01_route_divergence_root_cause_r02.csv -text -whitespace
 
+# C00 R03 failed-run native artifacts are SHA-bound and remain byte-for-byte intact.
+results/compact/c00_active_load_inverter_r03/** -text -whitespace
+
 *.png binary
 *.jpg binary
 *.jpeg binary

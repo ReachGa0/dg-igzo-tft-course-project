@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=32716"
+      "detail": "bytes=33038"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=27798"
+      "detail": "bytes=28160"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=24028"
+      "detail": "bytes=24085"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=227321"
+      "detail": "bytes=229708"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=5032"
+      "detail": "bytes=5000"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=135887"
+      "detail": "bytes=137427"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=80182"
+      "detail": "bytes=81818"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=68546"
+      "detail": "bytes=70009"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=154154"
+      "detail": "bytes=158787"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2207,7 +2207,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=101053"
+      "detail": "bytes=102305"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3567,7 +3567,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "execute the committed C00 active-load inverter revision-3 four-process runner after committing and pushing its 50/50 static report hash; preserve every failure and do not relax thresholds"
+      "detail": "preserve and commit the C00 active-load inverter revision-3 24/36 formal runner failure with all native artifacts, then establish revision-4 output-axis parsing without rerunning R03 or changing the anchor, inputs, thresholds or process budget"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3637,7 +3637,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "execute the committed C00 active-load inverter revision-3 four-process runner after committing and pushing its 50/50 static report hash; preserve every failure and do not relax thresholds"
+      "detail": "preserve and commit the C00 active-load inverter revision-3 24/36 formal runner failure with all native artifacts, then establish revision-4 output-axis parsing without rerunning R03 or changing the anchor, inputs, thresholds or process budget"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3757,7 +3757,7 @@
     {
       "name": "c00_active_load_inverter_r03:committed_snapshot_versioned_contract_chain",
       "status": "PASS",
-      "detail": "implemented=False ready=True runner=False verified=False source_bindings=True r02_binding=True"
+      "detail": "implemented=False ready=False runner=False verified=False source_bindings=True r02_binding=True"
     },
     {
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",

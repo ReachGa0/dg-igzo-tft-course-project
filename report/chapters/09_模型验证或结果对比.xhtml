@@ -142,6 +142,8 @@
       <tr><td>C00 R02 blocked-state project check</td><td>首次机器登记后历史 M01 收口检查未枚举新 C00 根状态；归档失败后只扩展该枚举</td><td>764/765、E0；报告 <code>e6fb9087...f4c6</code>，0 模拟器进程；随后 765/765 PASS。R02 报告、输入、阈值和权限不变</td></tr>
       <tr><td>C00 active-load inverter R03 implementation</td><td>绑定 R02 五源、保留提交 <code>747f384</code> 和三份证据；只以同步 HEAD/origin 报告快照加登记哈希替代 tracked containing-commit 等式</td><td>E0，50/36/29 均未运行；18/36 案例、锚点、提取、阈值和四进程预算不变。无 R03 静态报告、网表、进程或数值输出</td></tr>
       <tr><td>C00 active-load inverter R03 static contract</td><td>实现提交 <code>d449b2d</code> 推送同步后唯一执行；50 项复核 R02 不可变绑定、非自引用 Git 次序和全部不变电路合同</td><td>50/50 PASS、E3；报告 <code>0e3d20a0...1b39</code> 记录同步提交快照、0 模拟器进程和 0 电路网表。runner/数值/独立报告仍缺失</td></tr>
+      <tr><td>C00 active-load inverter R03 formal runner</td><td>登记提交 <code>d0f6ef7</code> 后唯一执行 ngspice DC/TRAN 与 GPL Xyce DC/TRAN；四个返回码均为 0</td><td>24/36、E0/FAIL；报告 <code>0527fdc5...a82766</code> 首个失败为原生表解析 101/632/101/230，Xyce 重复 TIME 与原生自适应点数未满足 R03 gate。16 个原始产物保留，归一化表、指标、图和独立报告不存在</td></tr>
+      <tr><td>C00 R03 read-only post-failure diagnosis</td><td>不启动进程，在内存中去重 Xyce TIME 并使用既有注册网格插值；不写入正式结果</td><td>仅为诊断边界：两路覆盖 0--3 us，但冻结锚点观察到 VOH 约 0.0912 V、最大增益约 0.884、无单位增益/输出 crossing。不是 R03 正式指标、PASS 或阈值放宽依据</td></tr>
       <tr><td>C00 R03 M01-entry registration failure</td><td>首次静态登记误把 R03 子机器执行许可写入 C00 M01 planning-only 入口；归档后只恢复入口为 false</td><td>765/766、E0；报告 <code>e71f0678...4505</code>，0 模拟器进程。R03 静态报告、输入、阈值和子机器许可不变</td></tr>
       <tr><td>C00 R03 result-path-order registration failure</td><td>第二次项目检查的预期路径把登记失败放在静态报告之前，与实际时间顺序不一致；归档后只修正路径次序</td><td>765/766、E0；报告 <code>a8a0438d...6045</code>，0 模拟器进程。不是合同或电路失败</td></tr>
       <tr><td>C00 R03 archive-binding registration failure</td><td>第二份失败记录曾误插入冻结 R02 machine block，导致 R03 ready 绑定为空；归档后移除误插并在 R03 绑定三份失败</td><td>765/766、E0；报告 <code>fd32160b...7b77</code>，0 模拟器进程；随后 766/766 PASS，R02/R03 源与结果不变</td></tr>
@@ -163,5 +165,5 @@
     <img src="assets/m01_open_source_route_difference_r03.png" alt="M01 R03 per-row logarithmic difference between ngspice and Xyce" />
     <figcaption>图 9-8 R03 的 247 行 ngspice-Xyce 对数差，最大值为 <code>2.75335e-14 decade</code>。该 diagnostic-only 机器精度级差异已由 24/24 E3 独立落盘重算复现，但仍不支持方程身份或物理校准结论。</figcaption>
   </figure>
-  <p class="boundary">Xyce build/tool 历史与 R11 36/32/25 工具/parser 链均保留。正式器件 R01 39/40 E0/FAIL、R02 40/30/24 路线分歧和根因链不可改写。R03 42/30/24 E3/E2/E3 满足冻结四项验收，因此 M01 只在教学域 <code>DONE_WITH_LIMITATION</code>。C00 R01 保持 46/48 E0/FAIL；R02 50/50 只建立静态 E3，runner 因 Git 自引用门未运行。C00 R03 静态 50/50 E3 只建立结构合同；报告哈希登记提交推送前不运行电路，C01/C02/C03、版图、PEX 和 HZO 仍关闭。</p>
+  <p class="boundary">Xyce build/tool 历史与 R11 36/32/25 工具/parser 链均保留。正式器件 R01 39/40 E0/FAIL、R02 40/30/24 路线分歧和根因链不可改写。R03 42/30/24 E3/E2/E3 满足冻结四项验收，因此 M01 只在教学域 <code>DONE_WITH_LIMITATION</code>。C00 R01 保持 46/48 E0/FAIL；R02 50/50 为静态 E3；R03 runner 24/36 E0/FAIL 且未生成归一化证据。C00 R04 输出轴/解析静态合同通过前不重跑电路，C01/C02/C03、版图、PEX 和 HZO 仍关闭。</p>
 </section>

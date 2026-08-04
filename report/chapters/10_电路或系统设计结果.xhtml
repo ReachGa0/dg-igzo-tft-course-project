@@ -7,6 +7,7 @@
   <p>R02 静态 checker 在实现提交 <code>216c6a7</code> 后唯一返回 50/50 PASS、E3，且记录 0 个模拟器进程和 0 个网表。执行前审计随后发现 runner 要求 tracked <code>static_pass_commit</code> 等于包含该字段的提交哈希，形成不可满足的自引用；因此没有启动 runner。</p>
   <p>R03 使用独立命名空间并绑定提交 <code>747f384</code> 下 R02 五源、50/50 报告、runner blocker 和项目失败归档。唯一语义修正是让静态与 runner 报告记录检查时同步的 HEAD/origin 快照，后续门同时复核已登记报告哈希；不再要求 tracked 字段等于包含该字段的提交哈希。全部电路输入、50/36/29 门和四进程预算不变。</p>
   <p>R03 实现提交 <code>d449b2d</code> 推送同步后，静态 checker 唯一返回 50/50 PASS、E3。报告 SHA-256 <code>0e3d20a0...1b39</code> 记录同步 HEAD/origin 快照、0 个模拟器进程和 0 个电路网表。随后的三次 765/766 项目检查失败均为机器登记错误，已分别归档并恢复为 766/766，不改变合同或阈值。</p>
-  <p class="boundary">R01 保持 46/48、E0/FAIL且不重跑。R02 与 R03 的 50/50 都是静态结构证据，不是 VTC、VOH/VOL、VM、增益、噪声容限、延迟或功耗结果；这些 R03 数值均不存在。R02 runner、R03 runner 与独立 checker 均未运行。只有 R03 静态 PASS 报告与登记哈希提交推送、且新 HEAD 与远端同步后才允许四个串行电路进程。</p>
+  <p>R03 runner 随后唯一启动四个串行进程，全部返回码为 0，但在 `raw:four_native_tables_parse` 处返回 24/36、E0/FAIL：ngspice DC/TRAN 为 101/632，Xyce DC/TRAN parser 计数为 101/230。Xyce 输出头含重复 TIME，R03 原生点数门又错误要求至少 601，故没有写入归一化表、指标、路线差异或图片。16 个原始产物和报告已保留，PASS-only 独立 checker 未运行。</p>
+  <p class="boundary">R01 保持 46/48、E0/FAIL且不重跑。R02 与 R03 的静态 50/50 是结构合同证据；R03 runner 的 24/36 失败不是 VTC、VOH/VOL、VM、增益、噪声容限、延迟或功耗结果，不能把四个返回码 0 写成电路通过。R04 只可修正输出轴/解析和失败边界文本，不得改变 R03 锚点、输入、提取方法、阈值或预算；C01/C02/C03、版图、PEX 和 HZO 继续关闭。</p>
   <p>[待填写INV/NAND/NOR/XOR、五级环振、全加器、版图、DRC/LVS、延迟和功耗]</p>
 </section>

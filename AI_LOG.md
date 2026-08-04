@@ -16,6 +16,26 @@
 
 ---
 
+## 2026-08-04 | Codex GPT-5 | C00 R03 四进程 runner 24/36 失败保留
+
+### 目标与执行
+
+- 在静态登记提交 `d0f6ef7`（与 `origin/main` 同步，且不同于静态快照 `d449b2d`）后，按门唯一执行 `make c00-active-load-inverter-r03`。输入仍为 2-TFT 双栅 IGZO 有源负载、18 个 DC/36 个瞬态案例、冻结锚点、原提取方法、原阈值和四进程串行预算。
+- runner 报告 `results/reports/c00_active_load_inverter_r03.json` SHA-256 为 `0527fdc5aed413b9cbda065ee1ded34dca705c9a6c0f2cf8865ea6869a82766c`，返回 24/36、E0/FAIL。四个进程严格串行执行：ngspice DC/TRAN 与 GPL Xyce DC/TRAN 全部返回码 0；没有 AIM-Spice、TCAD、版图或 PEX 进程。
+
+### 失败根因与保留
+
+- 首个失败门为 `raw:four_native_tables_parse`，原生 parser 计数为 ngspice DC=101、ngspice TRAN=632、Xyce DC=101、Xyce TRAN=230；后续 11 项表、指标、锚点、差异、图片和哈希门未到达。
+- Xyce `.PRN` 头同时含自动 TIME 和网表显式 TIME，实际 115 个物理时间行被 parser 计成 230；R03 又把“注册 5 ns 网格后插值”错误实现为“原生点数必须至少 601”。这是 R03 输出轴/runner 合同缺陷，不是模拟器退出或收敛失败。
+- 16 个原始网表、日志、命令 manifest 和 raw/PRN 由报告逐项哈希登记并保留；归一化表、指标、路线差异、图片和独立报告不存在。R03 不重跑，PASS-only 独立 checker 不运行。runner 失败分支继承的 future-PASS 边界文本被机器状态明确标为不可接受。
+
+### 只读诊断与边界
+
+- 仅在内存中去重 Xyce TIME 并调用既有提取函数，没有启动进程或写入任何结果。两路可覆盖 0--3 us 并形成 18x101 DC、36x601 瞬态注册网格；冻结锚点的只读观察为 VOH 约 0.0912 V、最大增益约 0.884、无单位增益交点，瞬态无输出 50% crossing。它不是 R03 正式指标、不是电路 PASS，也不授权改锚点或阈值。
+- 失败登记后 `make check` 返回 766/766 PASS，`make report-check` 返回 12 章、5 个附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过。下一门是提交失败及原始证据，再建立新 R04 输出轴/解析合同；R04 只能修正隐式 TIME、原生轴覆盖判定和失败边界文本，不能修改 R03 输入、提取、阈值或预算。
+
+---
+
 ## 2026-08-04 | Codex GPT-5 | C00 R03 静态 50/50 PASS 与登记失败保留
 
 ### 静态执行

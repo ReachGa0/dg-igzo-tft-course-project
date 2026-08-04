@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-04
-- 当前阶段：`C00_R03_STATIC_PASS_REGISTRATION_RUNNER_NEXT`
+- 当前阶段：`C00_R03_FORMAL_FAILED_R04_OUTPUT_AXIS_NEXT`
 - 整体状态：`YELLOW`
-- 当前原则：C00 R03 实现提交 `d449b2d` 已推送并同步，50 项零进程静态合同已唯一返回 50/50 PASS、E3。静态报告哈希和三份登记检查失败归档正在提交登记；只有该登记提交与 `origin/main` 同步后才允许唯一执行四进程 runner，C01/C02/C03、版图、PEX 和 HZO 继续关闭。
+- 当前原则：C00 R03 静态合同 50/50 E3 已冻结；提交 `d0f6ef7` 推送同步后正式 runner 已唯一返回 24/36、E0/FAIL。四个串行进程均返回 0，但原生瞬态表解析门失败，16 个原始产物保留，独立检查和下游权限关闭；C01/C02/C03、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -18,7 +18,13 @@
 - [x] 第二次项目检查仍为 765/766：checker 预期路径次序与实际时间顺序不一致。归档 `results/reports/project_check_c00_r03_static_ready_result_path_order_failed.json` SHA-256 `a8a0438d...6045`；只按“静态报告后接登记失败”修正预期路径。
 - [x] 第三次项目检查仍为 765/766：第二份失败记录曾误插入不可变 R02 machine block，导致 R03 ready 绑定为空。归档 `results/reports/project_check_c00_r03_static_ready_archive_binding_failed.json` SHA-256 `fd32160b...7b77`；已移除误插字段并把三份归档全部绑定到 R03。三次均为登记元数据 E0 失败、0 模拟器进程，不是静态合同、电路、模型或收敛失败；修正后 `make check` 恢复 766/766 PASS。
 - [x] 当前登记复核通过：相关 JSON 可解析、Python 可编译，`make check` 为 766/766 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过；复核没有启动模拟器或创建电路网表。
-- [ ] 下一门：提交并推送 R03 50/50 静态报告哈希及 ready 状态。确认新 HEAD 与 `origin/main` 同步且不同于静态报告中的实施快照后，唯一运行 `make c00-active-load-inverter-r03`；保留任何失败且不放宽阈值。
+- [x] 静态报告登记提交 `d0f6ef7` 已推送并与 `origin/main` 同步；执行前确认新快照不同于静态报告实施快照 `d449b2d`，随后唯一运行 `make c00-active-load-inverter-r03`。
+- [x] R03 runner 唯一返回 24/36、E0/FAIL，报告 `results/reports/c00_active_load_inverter_r03.json` SHA-256 为 `0527fdc5aed413b9cbda065ee1ded34dca705c9a6c0f2cf8865ea6869a82766c`。四个严格串行进程为 2 个 ngspice + 2 个 GPL Xyce，返回码 `[0,0,0,0]`；AIM-Spice、TCAD、版图和 PEX 进程均为 0。
+- [x] 首个失败门为 `raw:four_native_tables_parse`：ngspice DC/瞬态原生点数 101/632，Xyce DC/瞬态 parser 计数 101/230；其余 11 项依赖门未到达。Xyce `.PRN` 头含两个 TIME 列，实际 115 个物理行；R03 又错误要求原生点数至少 601，未进入注册 5 ns 网格插值。
+- [x] 16 个网表、日志、命令 manifest 和 raw/PRN 产物已哈希登记；归一化 CSV、指标、路线差异、两张图和独立报告均不存在。R03 runner 报告失败分支继承的“完整表/锚点”描述不被接受，不能据此声称电路通过。
+- [x] 只读内存诊断未启动进程、未写入结果，确认去重 TIME 后两路可覆盖 0--3 us；冻结锚点仍显示 VOH 约 0.0912 V、最大增益约 0.884、无单位增益交点和无输出 50% crossing。该诊断不是 R03 正式指标或阈值放宽依据。
+- [x] 失败登记后的 `make check` 为 766/766 PASS，`make report-check` 为 12 章、5 个附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过；R03 不重跑，PASS-only 独立 checker 不运行。
+- [ ] 下一门：提交并推送 R03 24/36 失败及 16 个原始产物，然后建立独立 R04 输出轴/解析合同。R04 只能修正 Xyce 隐式 TIME 处理、原生轴覆盖判定和失败边界文本；不得改变 R03 输入、锚点、提取方法、验收阈值或四进程预算。
 
 - [x] R02 实现提交 `216c6a7` 推送并与 `origin/main` 同步后，唯一运行 `make c00-active-load-inverter-r02-contract-check`，返回 50/50 PASS、E3；报告 `results/reports/c00_active_load_inverter_contract_r02.json` SHA-256 为 `e820af3b6a80095a907ddbdc7ddab5461937cd99ff1bc442e03a6ffd07bd1a99`。
 - [x] 50 项静态门验证 R01 五源/46/48 报告不可变、R02 仅作 ASCII 标识符整词修正、2-TFT 拓扑、18/36 案例、锚点、提取、阈值、工具、四进程预算、失败保留和零输出边界；报告记录 `simulator_processes_invoked=0`、`circuit_netlists_created=0`。
