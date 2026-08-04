@@ -2129,8 +2129,8 @@
       "id": "C00",
       "track": "circuit",
       "name": "dual_gate_igzo_active_load_inverter",
-      "status": "contract_implemented",
-      "current_evidence": "E0",
+      "status": "contract_ready",
+      "current_evidence": "E3",
       "depends_on": ["M01", "T02"],
       "parameter_group_ids": ["P6"],
       "purpose": "Create the smallest device-to-circuit bridge.",
@@ -2148,7 +2148,7 @@
         "contract_planning_permitted": true,
         "circuit_execution_permitted": false,
         "downstream_permitted": false,
-        "next_gate": "C00 R03 is implemented with non-self-referential synchronized Git snapshots, but circuit execution remains closed until its 50-check static PASS is committed and pushed."
+        "next_gate": "The M01 entry decision remains planning-only. C00 R03 separately passed its 50-check static gate; its machine-local runner permission becomes effective only after the report hash and ready state are committed, pushed and observed at synchronized HEAD/origin."
       },
       "active_load_inverter_r01": {
         "contract_id": "C00_ACTIVE_LOAD_INVERTER_R01",
@@ -2277,8 +2277,8 @@
       "active_load_inverter_r03": {
         "contract_id": "C00_ACTIVE_LOAD_INVERTER_R03",
         "revision": 3,
-        "status": "contract_implemented",
-        "current_evidence": "E0",
+        "status": "contract_ready",
+        "current_evidence": "E3",
         "config_path": "config/c00_active_load_inverter_r03.json",
         "config_sha256": "3fd2f643c90d8733938f37e0b426dd3c811339d44204d15f272cb82fc95be690",
         "common_path": "scripts/c00_active_load_inverter_r03_common.py",
@@ -2292,15 +2292,51 @@
         "expected_contract_check_count": 50,
         "expected_runner_check_count": 36,
         "expected_independent_check_count": 29,
-        "contract_check_completed": false,
-        "contract_check_status": "NOT_RUN",
+        "contract_check_completed": true,
+        "contract_check_status": "PASS",
+        "contract_checks_passed": 50,
+        "contract_checks_failed": 0,
+        "contract_report_path": "results/reports/c00_active_load_inverter_contract_r03.json",
+        "contract_report_sha256": "0e3d20a0fa4f40088b6370f171ebdfcdfab30783c344a1484e7b66061f441b39",
+        "static_git_snapshot": {
+          "head": "d449b2dadf51fc2b675fb954b9d620e3e52317a9",
+          "origin_main": "d449b2dadf51fc2b675fb954b9d620e3e52317a9",
+          "synchronized": true
+        },
+        "static_pass_registration_project_check_failure": {
+          "path": "results/reports/project_check_c00_r03_static_ready_m01_state_stale_failed.json",
+          "sha256": "e71f06784b6674c5061a19bdc2c252701aeb31f7e5c70aec035e832ec0364505",
+          "failure_category": "c00_m01_entry_gate_execution_boundary_misregistered_after_r03_static_pass",
+          "failed_checks": 1,
+          "total_checks": 766,
+          "simulator_processes_invoked": 0,
+          "preserved": true
+        },
+        "result_path_order_project_check_failure": {
+          "path": "results/reports/project_check_c00_r03_static_ready_result_path_order_failed.json",
+          "sha256": "a8a0438df66256fdbf5a101a54a1dae08d69a099d02c03a1dd71867a151e6045",
+          "failure_category": "c00_r03_static_ready_result_path_order_mismatch",
+          "failed_checks": 1,
+          "total_checks": 766,
+          "simulator_processes_invoked": 0,
+          "preserved": true
+        },
+        "archive_binding_project_check_failure": {
+          "path": "results/reports/project_check_c00_r03_static_ready_archive_binding_failed.json",
+          "sha256": "fd32160bad634768c2684c0453b6e1bebb0ee1e0005e05120e2f2bb24d9b7b77",
+          "failure_category": "c00_r03_result_path_failure_record_inserted_in_r02_machine_block",
+          "failed_checks": 1,
+          "total_checks": 766,
+          "simulator_processes_invoked": 0,
+          "preserved": true
+        },
         "formal_run_completed": false,
         "formal_run_status": "NOT_RUN",
         "independent_check_completed": false,
         "independent_check_status": "NOT_RUN",
         "simulator_processes_invoked": 0,
         "circuit_netlists_created": 0,
-        "circuit_execution_permitted": false,
+        "circuit_execution_permitted": true,
         "independent_check_permitted": false,
         "downstream_permitted": false,
         "dc_case_count": 18,
@@ -2324,10 +2360,14 @@
           "scripts/check_c00_active_load_inverter_r03.py",
           "results/reports/c00_active_load_inverter_contract_r02.json",
           "results/reports/c00_active_load_inverter_r02_runner_gate_self_reference_blocked.json",
-          "results/reports/project_check_c00_r02_static_blocked_m01_scope_stale_failed.json"
+          "results/reports/project_check_c00_r02_static_blocked_m01_scope_stale_failed.json",
+          "results/reports/c00_active_load_inverter_contract_r03.json",
+          "results/reports/project_check_c00_r03_static_ready_m01_state_stale_failed.json",
+          "results/reports/project_check_c00_r03_static_ready_result_path_order_failed.json",
+          "results/reports/project_check_c00_r03_static_ready_archive_binding_failed.json"
         ],
-        "evidence_boundary": "R03 is an E0 implementation state. It hash-binds the immutable R02 five sources, 50/50 E3 static report, pre-run Git-gate blocker and preserved project-check failure. The only semantic correction replaces self-referential equality to a tracked containing-commit field with synchronized HEAD/origin snapshots plus registered report hashes for the static-to-runner and runner-to-independent gates. The two-TFT topology, token-safe scope, 18/36 cases, anchor, extraction, acceptance thresholds, open-source routes, four-process serial budget and failure retention are unchanged. No R03 static checker, simulator, circuit netlist, numerical output or independent checker has run. This is not circuit performance, physical IGZO parameters, experimental calibration, native Level 15/61, equation identity, C01+, layout, PEX or HZO evidence.",
-        "next_gate": "Commit and push the R03 implementation, then run its 50-check zero-process static contract exactly once. Do not execute a circuit netlist before that static PASS and registered report hash are separately committed and pushed."
+        "evidence_boundary": "R03 static contract ran exactly once and passed 50/50 at E3. It hash-verified the immutable R02 five sources, 50/50 report, pre-run Git-gate blocker and preserved project-check failure; confirmed the only semantic correction is synchronized HEAD/origin report snapshots plus registered report hashes; and rechecked the unchanged two-TFT topology, token-safe scope, 18/36 cases, anchor, extraction, thresholds, open-source routes, 50/36/29 gates, four-process serial budget and failure retention. The report records synchronized implementation commit d449b2d, zero simulator processes and zero circuit netlists. No R03 runner, numerical circuit output or independent checker exists. This is static structure evidence, not circuit performance, physical IGZO parameters, experimental calibration, native Level 15/61, equation identity, C01+, layout, PEX or HZO evidence.",
+        "next_gate": "Commit and push this 50/50 E3 static report hash and ready state. Only after HEAD and origin/main synchronize at that later registration commit may the 36-check runner execute exactly four serial simulator processes."
       }
     },
     {

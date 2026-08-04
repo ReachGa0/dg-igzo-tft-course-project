@@ -10728,6 +10728,27 @@ def main() -> int:
             ROOT / c00_r03_outputs[key] for key in c00_r03_artifact_keys
         ]
         c00_r03_binding = c00_r03_config["r02_static_and_blocker_binding"]
+        c00_r03_registration_failure = c00_r03_machine.get(
+            "static_pass_registration_project_check_failure", {}
+        )
+        c00_r03_registration_failure_path = ROOT / c00_r03_registration_failure.get(
+            "path",
+            "results/reports/project_check_c00_r03_static_ready_m01_state_stale_failed.json",
+        )
+        c00_r03_path_order_failure = c00_r03_machine.get(
+            "result_path_order_project_check_failure", {}
+        )
+        c00_r03_path_order_failure_path = ROOT / c00_r03_path_order_failure.get(
+            "path",
+            "results/reports/project_check_c00_r03_static_ready_result_path_order_failed.json",
+        )
+        c00_r03_archive_binding_failure = c00_r03_machine.get(
+            "archive_binding_project_check_failure", {}
+        )
+        c00_r03_archive_binding_failure_path = ROOT / c00_r03_archive_binding_failure.get(
+            "path",
+            "results/reports/project_check_c00_r03_static_ready_archive_binding_failed.json",
+        )
         c00_r03_bound_pairs = (
             ("config_path", "config_sha256"),
             ("common_path", "common_sha256"),
@@ -10837,6 +10858,33 @@ def main() -> int:
             and c00_r03_contract_report.get("git_state", {}).get("synchronized") is True
             and c00_r03_machine.get("contract_report_sha256")
             == sha256(c00_r03_contract_report_path)
+            and c00_r03_registration_failure_path.is_file()
+            and c00_r03_registration_failure.get("sha256")
+            == sha256(c00_r03_registration_failure_path)
+            and c00_r03_registration_failure.get("failure_category")
+            == "c00_m01_entry_gate_execution_boundary_misregistered_after_r03_static_pass"
+            and c00_r03_registration_failure.get("failed_checks") == 1
+            and c00_r03_registration_failure.get("total_checks") == 766
+            and c00_r03_registration_failure.get("simulator_processes_invoked") == 0
+            and c00_r03_registration_failure.get("preserved") is True
+            and c00_r03_path_order_failure_path.is_file()
+            and c00_r03_path_order_failure.get("sha256")
+            == sha256(c00_r03_path_order_failure_path)
+            and c00_r03_path_order_failure.get("failure_category")
+            == "c00_r03_static_ready_result_path_order_mismatch"
+            and c00_r03_path_order_failure.get("failed_checks") == 1
+            and c00_r03_path_order_failure.get("total_checks") == 766
+            and c00_r03_path_order_failure.get("simulator_processes_invoked") == 0
+            and c00_r03_path_order_failure.get("preserved") is True
+            and c00_r03_archive_binding_failure_path.is_file()
+            and c00_r03_archive_binding_failure.get("sha256")
+            == sha256(c00_r03_archive_binding_failure_path)
+            and c00_r03_archive_binding_failure.get("failure_category")
+            == "c00_r03_result_path_failure_record_inserted_in_r02_machine_block"
+            and c00_r03_archive_binding_failure.get("failed_checks") == 1
+            and c00_r03_archive_binding_failure.get("total_checks") == 766
+            and c00_r03_archive_binding_failure.get("simulator_processes_invoked") == 0
+            and c00_r03_archive_binding_failure.get("preserved") is True
             and not (ROOT / c00_r03_outputs["run_directory"]).exists()
             and all(not path.exists() for path in c00_r03_artifact_paths)
             and not c00_r03_run_report_path.exists()
@@ -10907,19 +10955,32 @@ def main() -> int:
             c00_r03_expected_paths = c00_r03_base_paths
         elif c00_r03_ready_state:
             c00_r03_expected_paths = c00_r03_base_paths + [
-                c00_r03_outputs["contract_report"]
+                c00_r03_outputs["contract_report"],
+                c00_r03_registration_failure["path"],
+                c00_r03_path_order_failure["path"],
+                c00_r03_archive_binding_failure["path"],
             ]
         elif c00_r03_runner_state:
             c00_r03_expected_paths = (
                 c00_r03_base_paths
-                + [c00_r03_outputs["contract_report"]]
+                + [
+                    c00_r03_outputs["contract_report"],
+                    c00_r03_registration_failure["path"],
+                    c00_r03_path_order_failure["path"],
+                    c00_r03_archive_binding_failure["path"],
+                ]
                 + [c00_r03_outputs[key] for key in c00_r03_artifact_keys]
                 + [c00_r03_outputs["run_report"]]
             )
         elif c00_r03_verified_state:
             c00_r03_expected_paths = (
                 c00_r03_base_paths
-                + [c00_r03_outputs["contract_report"]]
+                + [
+                    c00_r03_outputs["contract_report"],
+                    c00_r03_registration_failure["path"],
+                    c00_r03_path_order_failure["path"],
+                    c00_r03_archive_binding_failure["path"],
+                ]
                 + [c00_r03_outputs[key] for key in c00_r03_artifact_keys]
                 + [
                     c00_r03_outputs["run_report"],

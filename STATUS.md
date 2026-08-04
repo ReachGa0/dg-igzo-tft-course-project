@@ -1,9 +1,9 @@
 # 项目状态
 
-- 最后更新：2026-08-03
-- 当前阶段：`C00_R03_IMPLEMENTED_STATIC_NEXT`
+- 最后更新：2026-08-04
+- 当前阶段：`C00_R03_STATIC_PASS_REGISTRATION_RUNNER_NEXT`
 - 整体状态：`YELLOW`
-- 当前原则：C00 R02 50/50 E3 静态 PASS 与 runner 提交自引用阻塞已由提交 `747f384` 保留。R03 新命名空间已实现，只以同步 HEAD/origin 快照和后续登记报告哈希替代自引用字段；当前为 `contract_implemented/E0`，50 项静态门尚未运行，电路与下游权限保持关闭。
+- 当前原则：C00 R03 实现提交 `d449b2d` 已推送并同步，50 项零进程静态合同已唯一返回 50/50 PASS、E3。静态报告哈希和三份登记检查失败归档正在提交登记；只有该登记提交与 `origin/main` 同步后才允许唯一执行四进程 runner，C01/C02/C03、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -11,8 +11,14 @@
 - [x] R03 哈希绑定 R02 实现提交 `216c6a7`、保留提交 `747f384`、五个源文件、50/50 静态报告 `e820af3b...1a99`、runner 阻塞报告 `9c810623...6ea51` 和项目检查失败 `e6fb9087...f4c6`；R02 不修改、不重跑。
 - [x] 唯一语义修正为：静态 checker 在已推送实施提交上记录同步 HEAD/origin 快照；未来 runner 要求当前 HEAD/origin 同步、静态报告哈希已登记且报告内快照同步；未来独立 checker 对 runner 报告采用同一规则。不存在 tracked 字段等于包含它的提交哈希。
 - [x] 2-TFT 端口、portable IGZO 候选、ASCII 标识符整词范围、18/36 案例、锚点、提取、验收阈值、两条开源路线、50/36/29 三门、四进程串行预算和失败保留均与 R02 不变。
-- [x] JSON/Python 语法与纯内存生成自检通过：18 个 DC、36 个瞬态案例和四份 ASCII 网表结构成立；`make check` 为 766/766 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过。检查没有运行 R03 静态 checker、模拟器或落盘网表，R03 运行目录、报告和数值输出均不存在。
-- [ ] 下一门：提交并推送 R03 实现，确认与 `origin/main` 同步后，唯一运行 `make c00-active-load-inverter-r03-contract-check`。只有 50/50 E3 静态 PASS 及报告哈希另行提交推送后才允许四个串行电路进程。
+- [x] 历史实施里程碑中 JSON/Python 语法与纯内存生成自检通过：18 个 DC、36 个瞬态案例和四份 ASCII 网表结构成立；`make check` 为 766/766 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过。该实施检查没有运行 R03 静态 checker、模拟器或落盘网表。
+- [x] R03 实现提交 `d449b2d` 推送并与 `origin/main` 同步后，唯一运行 `make c00-active-load-inverter-r03-contract-check`，返回 50/50 PASS、E3；报告 `results/reports/c00_active_load_inverter_contract_r03.json` SHA-256 为 `0e3d20a0fa4f40088b6370f171ebdfcdfab30783c344a1484e7b66061f441b39`。
+- [x] 静态报告记录 `HEAD=origin/main=d449b2dadf51fc2b675fb954b9d620e3e52317a9`、`synchronized=true`、`simulator_processes_invoked=0` 和 `circuit_netlists_created=0`。50 项只确认 R02 不可变绑定、非自引用提交快照规则和全部不变电路合同；R03 运行目录、数值输出和独立报告仍不存在。
+- [x] 首次静态登记项目检查为 765/766：误把仅属 R03 子机器的执行许可写入 C00 的 M01 planning-only 入口。归档 `results/reports/project_check_c00_r03_static_ready_m01_state_stale_failed.json` SHA-256 `e71f0678...4505`；只恢复入口 flag 为 false，R03 子机器许可保持 true。
+- [x] 第二次项目检查仍为 765/766：checker 预期路径次序与实际时间顺序不一致。归档 `results/reports/project_check_c00_r03_static_ready_result_path_order_failed.json` SHA-256 `a8a0438d...6045`；只按“静态报告后接登记失败”修正预期路径。
+- [x] 第三次项目检查仍为 765/766：第二份失败记录曾误插入不可变 R02 machine block，导致 R03 ready 绑定为空。归档 `results/reports/project_check_c00_r03_static_ready_archive_binding_failed.json` SHA-256 `fd32160b...7b77`；已移除误插字段并把三份归档全部绑定到 R03。三次均为登记元数据 E0 失败、0 模拟器进程，不是静态合同、电路、模型或收敛失败；修正后 `make check` 恢复 766/766 PASS。
+- [x] 当前登记复核通过：相关 JSON 可解析、Python 可编译，`make check` 为 766/766 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过；复核没有启动模拟器或创建电路网表。
+- [ ] 下一门：提交并推送 R03 50/50 静态报告哈希及 ready 状态。确认新 HEAD 与 `origin/main` 同步且不同于静态报告中的实施快照后，唯一运行 `make c00-active-load-inverter-r03`；保留任何失败且不放宽阈值。
 
 - [x] R02 实现提交 `216c6a7` 推送并与 `origin/main` 同步后，唯一运行 `make c00-active-load-inverter-r02-contract-check`，返回 50/50 PASS、E3；报告 `results/reports/c00_active_load_inverter_contract_r02.json` SHA-256 为 `e820af3b6a80095a907ddbdc7ddab5461937cd99ff1bc442e03a6ffd07bd1a99`。
 - [x] 50 项静态门验证 R01 五源/46/48 报告不可变、R02 仅作 ASCII 标识符整词修正、2-TFT 拓扑、18/36 案例、锚点、提取、阈值、工具、四进程预算、失败保留和零输出边界；报告记录 `simulator_processes_invoked=0`、`circuit_netlists_created=0`。

@@ -54,7 +54,7 @@
     </tbody>
   </table>
   <p>G0 决策为 <code>TEACHING_BASELINE_ONLY</code>：允许下一阶段开展“教学参数二维 IGZO 仿真”，但没有条件完整的原始 Id-Vg/Id-Vd、批次、温度和接触信息前，不得声称实验拟合、模型精度或校准双栅预测。完整表见 <code>data/processed/s00/</code>，验收报告见 <code>results/reports/s00_data_audit.json</code>。</p>
-  <h3>6.5 C00 R01/R02 反相器预注册参数</h3>
+  <h3>6.5 C00 R01/R02/R03 反相器预注册参数</h3>
   <table>
     <thead><tr><th>项目</th><th>冻结值</th><th>证据边界</th></tr></thead>
     <tbody>
@@ -65,5 +65,5 @@
       <tr><td>R02 词法修正</td><td>按 <code>[A-Za-z_][A-Za-z0-9_]*</code> 提取 ASCII 标识符，不区分大小写精确匹配禁止词</td><td>只避免 <code>nor</code>/<code>NORM</code> 子串误判；本表其他输入和全部阈值与 R01 相同</td></tr>
     </tbody>
   </table>
-  <p class="boundary">T02 上游只按 <code>bidirectional_verified/E2</code> 教学数值证据进入合同。R01 保持 46/48 E0/FAIL；R02 50/50 静态 PASS 只确认这些输入被冻结，runner 因 Git 提交自引用门未运行。R03 只修正提交证明，参数、网格、锚点、提取和阈值逐项不变，且其静态门尚未运行。表中值不是实验拟合、物理 IGZO 参数、真实负载电容或已通过的电路工作点。</p>
+  <p class="boundary">T02 上游只按 <code>bidirectional_verified/E2</code> 教学数值证据进入合同。R01 保持 46/48 E0/FAIL；R02 50/50 静态 PASS 只确认这些输入被冻结，runner 因 Git 提交自引用门未运行。R03 只修正提交证明，参数、网格、锚点、提取和阈值逐项不变；其 50/50 静态 E3 同样只确认合同冻结，报告登记提交推送前 runner 未运行。表中值不是实验拟合、物理 IGZO 参数、真实负载电容或已通过的电路工作点。</p>
 </section>

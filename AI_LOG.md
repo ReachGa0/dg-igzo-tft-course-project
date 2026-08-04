@@ -16,6 +16,26 @@
 
 ---
 
+## 2026-08-04 | Codex GPT-5 | C00 R03 静态 50/50 PASS 与登记失败保留
+
+### 静态执行
+
+- R03 实现提交 `d449b2d` 已推送且与 `origin/main` 同步后，唯一执行 `make c00-active-load-inverter-r03-contract-check`，返回 50/50 PASS、E3。报告 `results/reports/c00_active_load_inverter_contract_r03.json` SHA-256 为 `0e3d20a0fa4f40088b6370f171ebdfcdfab30783c344a1484e7b66061f441b39`。
+- 报告记录同步快照 `HEAD=origin/main=d449b2dadf51fc2b675fb954b9d620e3e52317a9`，复核 R02 不可变证据、同步快照加登记哈希规则及全部不变 2-TFT/18/36/锚点/提取/阈值/两路线/四进程合同。静态 checker 启动 0 个模拟器进程并创建 0 个电路网表。
+
+### 登记失败与修正
+
+- 首次 `make check` 为 765/766，因为 C00 的 M01 planning-only `entry_gate.circuit_execution_permitted` 被误设为 true；失败归档 `project_check_c00_r03_static_ready_m01_state_stale_failed.json` SHA-256 为 `e71f0678...4505`。只恢复该入口为 false，R03 子机器的后续 runner 许可保持 true。
+- 第二次为 765/766，因为项目 checker 把登记失败路径放在 R03 静态报告之前，与机器记录的实际时间顺序不一致；归档 `project_check_c00_r03_static_ready_result_path_order_failed.json` SHA-256 为 `a8a0438d...6045`。只修正预期路径顺序。
+- 第三次为 765/766，因为第二份失败记录误插入冻结 R02 machine block，R03 ready 谓词缺少对应归档；归档 `project_check_c00_r03_static_ready_archive_binding_failed.json` SHA-256 为 `fd32160b...7b77`。已移除 R02 误插字段并将三份失败全部绑定到 R03。三次失败均为 E0 机器登记错误、0 模拟器进程，不改变 R02/R03 源码、静态报告、电路输入、阈值或进程预算。
+
+### 验证、边界与下一门
+
+- 修正后 `make check` 返回 766/766 PASS。R03 runner、独立 checker、正式电路网表、VTC、瞬态、功耗和图片仍不存在；静态 50/50 E3 不是电路性能、物理 IGZO 参数、实验校准、原生 Level 15/61、方程身份或下游证据。
+- 相关 JSON 可解析、Python 可编译；`make check` 返回 766/766 PASS，`make report-check` 返回 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过。只有静态报告哈希与 ready 状态提交推送、且新 HEAD 与 `origin/main` 同步后，才唯一运行四进程 runner；任何失败原样保留，不放宽门槛。
+
+---
+
 ## 2026-08-03 | Codex GPT-5 | 实现 C00 R03 非自引用提交快照合同
 
 ### 目标与输入

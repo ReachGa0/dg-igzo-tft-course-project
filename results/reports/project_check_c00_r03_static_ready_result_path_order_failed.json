@@ -1,8 +1,8 @@
 {
   "project": "DG-IGZO-TFT-PDK",
-  "status": "PASS",
+  "status": "FAIL",
   "checks": 766,
-  "failures": 0,
+  "failures": 1,
   "results": [
     {
       "name": "directory:config",
@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=32716"
+      "detail": "bytes=31945"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=27798"
+      "detail": "bytes=27444"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=24028"
+      "detail": "bytes=23841"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=227321"
+      "detail": "bytes=224862"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=5032"
+      "detail": "bytes=4869"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=135887"
+      "detail": "bytes=134162"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=80182"
+      "detail": "bytes=78174"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=68546"
+      "detail": "bytes=67072"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=154154"
+      "detail": "bytes=153019"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2207,7 +2207,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=101053"
+      "detail": "bytes=97338"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3756,7 +3756,7 @@
     },
     {
       "name": "c00_active_load_inverter_r03:committed_snapshot_versioned_contract_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "implemented=False ready=True runner=False verified=False source_bindings=True r02_binding=True"
     },
     {
