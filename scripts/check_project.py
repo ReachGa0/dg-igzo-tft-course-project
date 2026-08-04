@@ -11398,6 +11398,8 @@ def main() -> int:
             and c00_r04_contract_report.get("git_state", {}).get("head")
             == c00_r04_contract_report.get("git_state", {}).get("origin_main")
             and c00_r04_contract_report.get("git_state", {}).get("synchronized") is True
+            and c00_r04_machine.get("contract_git_snapshot")
+            == c00_r04_contract_report.get("git_state")
             and c00_r04_machine.get("contract_report_sha256")
             == sha256(c00_r04_contract_report_path)
             and not (ROOT / c00_r04_outputs["run_directory"]).exists()

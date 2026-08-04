@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=33420"
+      "detail": "bytes=33670"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=28360"
+      "detail": "bytes=28746"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=23798"
+      "detail": "bytes=24072"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=231881"
+      "detail": "bytes=233798"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=4954"
+      "detail": "bytes=5120"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=138771"
+      "detail": "bytes=140035"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=82928"
+      "detail": "bytes=84007"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=70877"
+      "detail": "bytes=71577"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=163804"
+      "detail": "bytes=164340"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2207,7 +2207,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=103512"
+      "detail": "bytes=104546"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3567,7 +3567,7 @@
     {
       "name": "t03_p5_temperature:documented_completion_boundary",
       "status": "PASS",
-      "detail": "run the 50-check static contract for C00 active-load inverter revision-4 after committing and pushing its output-axis implementation; do not execute a circuit netlist before the static report is separately registered and pushed"
+      "detail": "execute the committed C00 active-load inverter revision-4 four-process runner after committing and pushing its 50/50 static report hash; preserve every failure and do not relax the anchor or thresholds"
     },
     {
       "name": "t03_p5_temperature:p3_next_gate_stale_checker_failure_preserved",
@@ -3637,7 +3637,7 @@
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
       "status": "PASS",
-      "detail": "run the 50-check static contract for C00 active-load inverter revision-4 after committing and pushing its output-axis implementation; do not execute a circuit netlist before the static report is separately registered and pushed"
+      "detail": "execute the committed C00 active-load inverter revision-4 four-process runner after committing and pushing its 50/50 static report hash; preserve every failure and do not relax the anchor or thresholds"
     },
     {
       "name": "m01_contract:static_boundary_and_no_execution",
@@ -3762,7 +3762,7 @@
     {
       "name": "c00_active_load_inverter_r04:output_axis_versioned_contract_chain",
       "status": "PASS",
-      "detail": "implemented=True ready=False failed=False runner=False verified=False sources=True r03_binding=True"
+      "detail": "implemented=False ready=True failed=False runner=False verified=False sources=True r03_binding=True"
     },
     {
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",

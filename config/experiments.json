@@ -2129,8 +2129,8 @@
       "id": "C00",
       "track": "circuit",
       "name": "dual_gate_igzo_active_load_inverter",
-      "status": "contract_implemented",
-      "current_evidence": "E0",
+      "status": "contract_ready",
+      "current_evidence": "E3",
       "depends_on": ["M01", "T02"],
       "parameter_group_ids": ["P6"],
       "purpose": "Create the smallest device-to-circuit bridge.",
@@ -2148,7 +2148,7 @@
         "contract_planning_permitted": true,
         "circuit_execution_permitted": false,
         "downstream_permitted": false,
-        "next_gate": "The M01 entry decision remains planning-only. C00 R03 24/36 E0/FAIL and all 16 native artifacts remain immutable; R04 is implemented only as a static output-axis contract, so circuit execution and all downstream stages remain closed."
+        "next_gate": "The M01 entry decision remains planning-only. C00 R04 passed its 50-check zero-process static contract, but only the R04 sub-machine may execute after this report hash registration is committed and pushed; all downstream stages remain closed."
       },
       "active_load_inverter_r01": {
         "contract_id": "C00_ACTIVE_LOAD_INVERTER_R01",
@@ -2442,8 +2442,8 @@
       "active_load_inverter_r04": {
         "contract_id": "C00_ACTIVE_LOAD_INVERTER_R04",
         "revision": 4,
-        "status": "contract_implemented",
-        "current_evidence": "E0",
+        "status": "contract_ready",
+        "current_evidence": "E3",
         "config_path": "config/c00_active_load_inverter_r04.json",
         "config_sha256": "cdcc5fdcf2ed11bea793c8d3402349f8e997eca8b426e0e76aaeb7392c2ceb24",
         "common_path": "scripts/c00_active_load_inverter_r04_common.py",
@@ -2457,15 +2457,24 @@
         "r03_failure_preservation_commit": "77d611ebc8519b3f43e0ae951592286b60df8eaa",
         "r03_runner_report_sha256": "0527fdc5aed413b9cbda065ee1ded34dca705c9a6c0f2cf8865ea6869a82766c",
         "correction_scope": "Correct only Xyce duplicate-TIME handling, native-axis physical-domain validation and status-selected runner evidence boundaries; retain R03 inputs, anchor, extraction, thresholds, case counts and four-process budget.",
-        "contract_check_completed": false,
-        "contract_check_status": "NOT_RUN",
+        "contract_check_completed": true,
+        "contract_check_status": "PASS",
+        "contract_checks_passed": 50,
+        "contract_checks_failed": 0,
+        "contract_report_path": "results/reports/c00_active_load_inverter_contract_r04.json",
+        "contract_report_sha256": "1ec066117a2ff7c6837a1da603c8519c66ad760196f96f9d1209030f29c3fd56",
+        "contract_git_snapshot": {
+          "head": "fa04d296221e05544c708f21a5089d292a4c49aa",
+          "origin_main": "fa04d296221e05544c708f21a5089d292a4c49aa",
+          "synchronized": true
+        },
         "formal_run_completed": false,
         "formal_run_status": "NOT_RUN",
         "independent_check_completed": false,
         "independent_check_status": "NOT_RUN",
         "simulator_processes_invoked": 0,
         "circuit_netlists_created": 0,
-        "circuit_execution_permitted": false,
+        "circuit_execution_permitted": true,
         "independent_check_permitted": false,
         "downstream_permitted": false,
         "dc_case_count": 18,
@@ -2501,10 +2510,11 @@
           "results/compact/c00_active_load_inverter_r03/xyce_tran.cir",
           "results/compact/c00_active_load_inverter_r03/xyce_tran.log",
           "results/compact/c00_active_load_inverter_r03/xyce_tran_command.json",
-          "results/compact/c00_active_load_inverter_r03/xyce_tran.prn"
+          "results/compact/c00_active_load_inverter_r03/xyce_tran.prn",
+          "results/reports/c00_active_load_inverter_contract_r04.json"
         ],
-        "evidence_boundary": "R04 is an E0 static implementation only. It binds the immutable R03 24/36 formal failure and all 16 native artifacts; removes explicit Xyce TIME output, collapses only numerically identical duplicate TIME columns, requires equal finite native vectors on a strictly increasing axis covering registered endpoints, retains the 601-row registered interpolation grid, and selects success/failure report text from actual status. It changes no circuit input, anchor, extraction rule, acceptance threshold, case count or process budget and has invoked zero simulator processes or circuit netlists.",
-        "next_gate": "Commit and push the R04 implementation at synchronized HEAD/origin, then run its 50-check static contract exactly once. Do not execute a circuit netlist before that static report is separately registered and pushed."
+        "evidence_boundary": "R04 static contract ran exactly once at synchronized implementation commit fa04d29 and passed 50/50 at E3. It binds the immutable R03 24/36 failure and 16 native artifacts; verifies the duplicate-TIME correction, physical native-axis coverage, status-selected runner boundary and unchanged topology/model/18+36 cases/anchor/extraction/thresholds/four-process budget. The report records zero simulator processes and zero circuit netlists. This is static structure evidence, not circuit performance, anchor qualification, physical parameters, calibration or downstream evidence.",
+        "next_gate": "Commit and push this 50/50 E3 static report hash and ready state. Only after HEAD and origin/main synchronize at that later registration commit may the 36-check runner execute exactly four serial simulator processes once."
       }
     },
     {

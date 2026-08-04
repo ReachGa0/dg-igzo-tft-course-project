@@ -16,6 +16,26 @@
 
 ---
 
+## 2026-08-04 | Codex GPT-5 | C00 R04 静态合同 50/50 PASS
+
+### 唯一执行
+
+- R04 实现提交 `fa04d29` 已推送，执行前确认工作树干净、`HEAD=origin/main=fa04d296221e05544c708f21a5089d292a4c49aa`、五源哈希与机器登记一致，且 R04 静态报告/运行目录/runner 报告不存在。
+- 唯一运行 `make c00-active-load-inverter-r04-contract-check`，返回 50/50 PASS、E3。报告 `results/reports/c00_active_load_inverter_contract_r04.json` SHA-256 为 `1ec066117a2ff7c6837a1da603c8519c66ad760196f96f9d1209030f29c3fd56`。
+
+### 证据边界
+
+- 报告记录同步实现快照 `fa04d29`、`simulator_processes_invoked=0`、`circuit_netlists_created=0` 和 `NOT_RUN_BY_CONTRACT_CHECK`。R04 运行目录、四份网表、原生输出、归一化表、指标、图和独立报告仍不存在。
+- 50 项静态检查确认：R03 24/36 报告及 16 个原生产物哈希不变；R04 Xyce 输出不重复请求 TIME；历史重复 TIME 折叠为 115 物理行；原生轴物理覆盖和 PASS/FAIL 边界选择已冻结；2-TFT、portable IGZO 候选、18/36 案例、锚点、提取、阈值和四进程预算不变。
+- 该 PASS 只是静态结构 E3，不是 VTC、VOH/VOL、增益、噪声容限、延迟、功耗、物理参数或实验校准结果。
+
+### 下一门
+
+- 已在 `config/experiments.json` 登记 `contract_ready/E3`、报告哈希和实施快照，并同步项目配置、状态、ADR、上下文、计划、报告第 5/6/9/10 章与证据矩阵。JSON/Python 语法通过，`make check` 返回 767/767 PASS，`make report-check` 返回 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` PASS；这些检查没有启动模拟器或创建电路网表。
+- 本登记提交推送后，只有新 `HEAD=origin/main` 同步且不同于报告快照 `fa04d29` 时，才可唯一运行 R04 四进程 runner；失败不删除、不改锚点或阈值。
+
+---
+
 ## 2026-08-04 | Codex GPT-5 | C00 R04 输出轴静态合同实现
 
 ### 目标与边界

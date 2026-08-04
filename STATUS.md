@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-04
-- 当前阶段：`C00_R04_CONTRACT_IMPLEMENTED_STATIC_NEXT`
+- 当前阶段：`C00_R04_STATIC_PASS_RUNNER_NEXT`
 - 整体状态：`YELLOW`
-- 当前原则：C00 R03 50/50 E3 静态 PASS 与 24/36 E0/FAIL runner 已冻结并由提交 `77d611e` 保留。R04 仅完成输出轴/解析静态合同实现，当前仍为 `contract_implemented/E0`；50 项静态 checker、四进程 runner 和独立 checker 均未运行，C01/C02/C03、版图、PEX 和 HZO 继续关闭。
+- 当前原则：C00 R03 50/50 E3 静态 PASS 与 24/36 E0/FAIL runner 已冻结并由提交 `77d611e` 保留。R04 零进程静态合同已在同步实现提交 `fa04d29` 上唯一返回 50/50 PASS、E3；四进程 runner 必须等该报告哈希登记提交推送后才可唯一运行，C01/C02/C03、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -29,7 +29,11 @@
 - [x] R04 只做三类修正：Xyce 瞬态 `.PRINT` 不再显式请求隐式 `TIME`；重复 `TIME` 仅在数值逐行一致时折叠；原生表按向量等长/有限/轴严格递增/覆盖登记端点验收，不再要求原生瞬态点数至少 601。登记的 601 行插值网格不变。
 - [x] runner 现按实际 PASS/FAIL 选择成功/失败证据边界，无异常但验收门失败时记录 `AcceptanceFailure` 和失败检查名。拓扑、模型、18/36 案例、锚点、提取、阈值与四串行进程预算不变。
 - [x] 只读 R03 Xyce 失败产物的 R04 parser 自检得到 115 个物理行、109 个等长有限向量、严格递增且覆盖 0--3 us；未启动任何进程或写入数值结果。`make check` 为 767/767 PASS，`make report-check` 为 12 章/5 附录/15 占位/30 图 PASS，`git diff --check` PASS。
-- [ ] 下一门：提交并推送 R04 `contract_implemented/E0` 后，唯一运行 50 项零进程静态合同。静态报告未单独登记、提交和推送前，不得生成或执行 R04 电路网表。
+- [x] R04 实现提交 `fa04d29` 已推送且与 `origin/main` 同步；随后唯一运行 `make c00-active-load-inverter-r04-contract-check`，返回 50/50 PASS、E3。
+- [x] 静态报告 `results/reports/c00_active_load_inverter_contract_r04.json` SHA-256 为 `1ec066117a2ff7c6837a1da603c8519c66ad760196f96f9d1209030f29c3fd56`，记录 `HEAD=origin/main=fa04d296221e05544c708f21a5089d292a4c49aa`、`simulator_processes_invoked=0`、`circuit_netlists_created=0`。R04 运行目录、数值表、图和独立报告仍不存在。
+- [x] 50 项只确认 R03 失败/16 原生产物不可变绑定、重复 TIME 修正、原生轴覆盖、状态边界和不变电路合同；不是电路性能、锚点质量、物理参数或实验校准证据。
+- [x] 静态 PASS 登记后的 JSON/Python 语法检查通过，`make check` 为 767/767 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过；登记检查没有启动模拟器或创建电路网表。
+- [ ] 下一门：提交并推送 R04 50/50 报告哈希和 `contract_ready/E3` 状态。确认新 `HEAD=origin/main` 且不同于报告快照 `fa04d29` 后，唯一运行 36 项、四个严格串行开源模拟器进程；任何失败原样保留，不改锚点或阈值。
 
 - [x] R02 实现提交 `216c6a7` 推送并与 `origin/main` 同步后，唯一运行 `make c00-active-load-inverter-r02-contract-check`，返回 50/50 PASS、E3；报告 `results/reports/c00_active_load_inverter_contract_r02.json` SHA-256 为 `e820af3b6a80095a907ddbdc7ddab5461937cd99ff1bc442e03a6ffd07bd1a99`。
 - [x] 50 项静态门验证 R01 五源/46/48 报告不可变、R02 仅作 ASCII 标识符整词修正、2-TFT 拓扑、18/36 案例、锚点、提取、阈值、工具、四进程预算、失败保留和零输出边界；报告记录 `simulator_processes_invoked=0`、`circuit_netlists_created=0`。
