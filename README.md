@@ -8,7 +8,7 @@ S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，
 
 本次课程提交的有效范围见 [SUBMISSION_ARCHITECTURE.md](SUBMISSION_ARCHITECTURE.md)：主线止于 C00 的正式负结果和 HTML/PDF/PPT 交付。C01--C03、版图、PEX 与 HZO 不属于本次提交，不在封面、摘要、结论或答辩中作为待完成工作承诺。
 
-建议教师阅读 `report/final/项目精简报告.html` 或 PDF：它保留完整的方法、结果、证据等级、失败保留和复现入口；`实验报告` 保留为完整审计版。
+**正式课程报告主体：** `report/final/课程报告.html`（自包含 HTML，26 张关键图；PDF 26 页）及同名 PDF。它包含完整方法、结果、证据等级、失败保留和复现入口。`report/final/实验报告.html`（32 张图、84 页 PDF）保留为审计附件；PPT 仅用于答辩展示，均不替代正式 HTML 报告。
 
 ## 2. 为什么这个题目仍然成立
 

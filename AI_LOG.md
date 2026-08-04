@@ -16,6 +16,20 @@
 
 ---
 
+## 2026-08-04 | Codex GPT-5 | 构建图表完整的 HTML 课程报告主体
+
+### 修改
+
+- 用户澄清最终课程报告以 HTML 为主体，而非 PPT。重新核对 `report/manifest.json`、最终文件和嵌入图片数：完整 `实验报告.html` 含 32 张图但 PDF 达 84 页；原精简版仅 11 张图、14 页，均不适合作为唯一的课程提交主读本。
+- 将 `scripts/build_condensed_report.py`、`项目精简报告.html/PDF` 重命名为 `scripts/build_course_report.py`、`课程报告.html/PDF`。在不添加任何新证据的前提下，加入 T01/T02 状态、P1 电容比、DIT/bulk/P3/P4/P5 状态、M00 残差和 M01 差异图，形成 26 张关键图的自包含 HTML；Edge 导出的 PDF 为 26 页。
+- 更新 README 和 STATUS：`课程报告.html` 与 PDF 是正式提交主体，`实验报告.html`/PDF 是完整审计附件，PPT 只用于答辩。
+
+### 边界
+
+- 本次是交付口径修正，不生成新图、不运行 TCAD/SPICE，也不改变 C00 R04 33/36、E0/FAIL 的结论。
+
+---
+
 ## 2026-08-04 | Codex GPT-5 | 精简报告紧凑排版与精华版移除
 
 ### 修改与验证目标

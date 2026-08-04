@@ -4,14 +4,14 @@
 - 当前阶段：`C00_R04_FORMAL_RUNNER_FAILED_GATE_BLOCKED`
 - 整体状态：`RED`
 - 当前原则：C00 R04 在静态报告登记提交 `017b295` 上唯一运行并返回 33/36、E0/FAIL。四个开源进程及输出轴/完整表门均通过，但冻结锚点在两路线均无单位增益交点和瞬态输出 crossing，故 C00 未通过；R04 不重跑，独立 checker、C01/C02/C03、版图、PEX 和 HZO 继续关闭。
-- 交付状态：已生成自包含 HTML、PDF 和 10 页可编辑 PPTX。报告清除了工程占位符，明确 C00 为负结果；个人学号/班级和指导教师字段因工程中未提供，保留为提交前由本人核对的文字提示。
-- 排版与精简版：最终报告外壳已修正目录重复编号、长表格断词/窄屏滚动和图表分页规则；自包含 `report/final/项目精简报告.html` 与 PDF 已改为连续紧凑排版（打印 14 页），保留器件方法、T01/T02、五组 T03、M00/M01、C00 R04 负结果、复现信息和边界，适合作为课程报告主读本；不替代完整审计报告或新增任何实验结论。
+- 交付状态：正式主体为自包含 `report/final/课程报告.html`（26 张关键图、PDF 26 页）及同名 PDF；`实验报告.html`（32 张图、PDF 84 页）为可追溯审计附件，PPT 仅用于答辩辅助。正式报告清除了工程占位符，明确 C00 为负结果；个人学号/班级和指导教师字段因工程中未提供，保留为提交前由本人核对的文字提示。
+- 课程报告与审计附件：最终报告外壳已修正目录重复编号、长表格断词/窄屏滚动和图表分页规则。课程报告连续紧凑地保留 T01/T02、五组 T03、M00/M01、C00 R04 静态/瞬态负结果、复现信息和边界；不替代完整审计附件或新增任何实验结论。
 - 提交版架构：`S00 -> T01/T02/T03 -> M00/M01 -> C00 R04 FAIL -> R00`。C01--C03、版图、PEX 和 HZO 不纳入本次提交；其空脚手架和计划配置仅为历史归档，不是交付结果。
 
 ## 本次里程碑
 
-- [x] 课程交付包：`report/final/实验报告.html`、`report/final/实验报告.pdf` 与 `ppt/DG_OXIDE_TFT_PDK_2026-08-06_v01.pptx` 已生成。PPT 复用项目二维、紧凑模型、两路线和 C00 失败图，共 10 页；不含未运行的组合逻辑、版图、PEX 或 HZO 结果。
-- [x] 22 页课程精简报告：`scripts/build_condensed_report.py` 从已冻结的 10 张关键图和既有结论生成 `report/final/项目精简报告.html`、`report/final/项目精简报告.pdf`。该版删除冗长 revision 流水，保留方法、结果、失败保留、证据等级和可复现入口；未运行 TCAD、SPICE 或其他下游流程。
+- [x] 课程交付包：`report/final/课程报告.html` 与同名 PDF 是正式报告主体，包含 26 张关键图、打印 26 页；`report/final/实验报告.html` 与 PDF 保留完整审计细节（32 张图、84 页）。`ppt/DG_OXIDE_TFT_PDK_2026-08-06_v01.pptx` 只作答辩辅助，共 10 页；不含未运行的组合逻辑、版图、PEX 或 HZO 结果。
+- [x] 图表完整课程报告：`scripts/build_course_report.py` 从已冻结的 26 张关键图和既有结论生成 `report/final/课程报告.html`、`report/final/课程报告.pdf`。该版删除冗长 revision 流水但保留每个已完成器件/模型/C00 主题的关键曲线与状态图，是正式提交主体；未运行 TCAD、SPICE 或其他下游流程。
 - [x] 报告第 1--4、10--11 章和附录 A/B/C/E 已用可追溯内容替换原有占位符；`make report` 生成 12 章、5 附录、32 图的自包含 HTML，Edge 成功导出 PDF。首次最终 `make check` 因总检查仍错误要求存在占位符而失败，报告已归档为 `results/reports/project_check_final_delivery_placeholder_guard_stale_failed.json`（SHA-256 `faefa8cd...dfd02d`）；仅将该规则改为“最终交付不得有未解决占位符”后，`make check` 恢复 767/767 PASS，`make report-check` 确认 0 个占位符。
 
 - [x] 新增 `C00_ACTIVE_LOAD_INVERTER_R03` 配置、pure common、50 项零进程静态 checker、36 项未来 runner、29 项未来独立 checker 和三个 Make 入口；全部未来输出使用独立 R03 路径并拒绝覆盖。
