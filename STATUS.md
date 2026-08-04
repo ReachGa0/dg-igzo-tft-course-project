@@ -11,6 +11,7 @@
 ## 本次里程碑
 
 - [x] 课程交付包：`report/final/课程报告.html` 与同名 PDF 是正式报告主体，包含 26 张关键图、打印 26 页；`report/final/实验报告.html` 与 PDF 保留完整审计细节（32 张图、84 页）。`ppt/DG_OXIDE_TFT_PDK_2026-08-06_v01.pptx` 只作答辩辅助，共 10 页；不含未运行的组合逻辑、版图、PEX 或 HZO 结果。
+- [x] 答辩演讲稿：`ppt/答辩演讲稿.md` 逐页对应 10 页 PPT，以正式 `课程报告.html` 的 26 图、26 页版本为口径，建议时长约 8 分钟并附 5 个追问答复。讲稿明确 C00 R04 为 33/36、E0/FAIL，不把教学模型或静态检查夸大为实验、器件或电路通过。
 - [x] 图表完整课程报告：`scripts/build_course_report.py` 从已冻结的 26 张关键图和既有结论生成 `report/final/课程报告.html`、`report/final/课程报告.pdf`。该版删除冗长 revision 流水但保留每个已完成器件/模型/C00 主题的关键曲线与状态图，是正式提交主体；未运行 TCAD、SPICE 或其他下游流程。
 - [x] 报告第 1--4、10--11 章和附录 A/B/C/E 已用可追溯内容替换原有占位符；`make report` 生成 12 章、5 附录、32 图的自包含 HTML，Edge 成功导出 PDF。首次最终 `make check` 因总检查仍错误要求存在占位符而失败，报告已归档为 `results/reports/project_check_final_delivery_placeholder_guard_stale_failed.json`（SHA-256 `faefa8cd...dfd02d`）；仅将该规则改为“最终交付不得有未解决占位符”后，`make check` 恢复 767/767 PASS，`make report-check` 确认 0 个占位符。
 
