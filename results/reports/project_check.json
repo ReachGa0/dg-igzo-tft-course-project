@@ -307,12 +307,12 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=34358"
+      "detail": "bytes=34641"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=29452"
+      "detail": "bytes=29888"
     },
     {
       "name": "file:AI_CONTEXT.md",
@@ -322,12 +322,12 @@
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=238403"
+      "detail": "bytes=239525"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=5029"
+      "detail": "bytes=4504"
     },
     {
       "name": "file:DECISIONS.md",
@@ -337,7 +337,7 @@
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=86858"
+      "detail": "bytes=87064"
     },
     {
       "name": "file:Makefile",
