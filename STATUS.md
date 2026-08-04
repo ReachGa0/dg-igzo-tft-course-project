@@ -1,9 +1,9 @@
 # 项目状态
 
 - 最后更新：2026-08-04
-- 当前阶段：`C00_R04_STATIC_PASS_RUNNER_NEXT`
-- 整体状态：`YELLOW`
-- 当前原则：C00 R03 50/50 E3 静态 PASS 与 24/36 E0/FAIL runner 已冻结并由提交 `77d611e` 保留。R04 零进程静态合同已在同步实现提交 `fa04d29` 上唯一返回 50/50 PASS、E3；四进程 runner 必须等该报告哈希登记提交推送后才可唯一运行，C01/C02/C03、版图、PEX 和 HZO 继续关闭。
+- 当前阶段：`C00_R04_FORMAL_RUNNER_FAILED_GATE_BLOCKED`
+- 整体状态：`RED`
+- 当前原则：C00 R04 在静态报告登记提交 `017b295` 上唯一运行并返回 33/36、E0/FAIL。四个开源进程及输出轴/完整表门均通过，但冻结锚点在两路线均无单位增益交点和瞬态输出 crossing，故 C00 未通过；R04 不重跑，独立 checker、C01/C02/C03、版图、PEX 和 HZO 继续关闭。
 
 ## 本次里程碑
 
@@ -33,7 +33,13 @@
 - [x] 静态报告 `results/reports/c00_active_load_inverter_contract_r04.json` SHA-256 为 `1ec066117a2ff7c6837a1da603c8519c66ad760196f96f9d1209030f29c3fd56`，记录 `HEAD=origin/main=fa04d296221e05544c708f21a5089d292a4c49aa`、`simulator_processes_invoked=0`、`circuit_netlists_created=0`。R04 运行目录、数值表、图和独立报告仍不存在。
 - [x] 50 项只确认 R03 失败/16 原生产物不可变绑定、重复 TIME 修正、原生轴覆盖、状态边界和不变电路合同；不是电路性能、锚点质量、物理参数或实验校准证据。
 - [x] 静态 PASS 登记后的 JSON/Python 语法检查通过，`make check` 为 767/767 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 30 图 PASS，`git diff --check` 通过；登记检查没有启动模拟器或创建电路网表。
-- [ ] 下一门：提交并推送 R04 50/50 报告哈希和 `contract_ready/E3` 状态。确认新 `HEAD=origin/main` 且不同于报告快照 `fa04d29` 后，唯一运行 36 项、四个严格串行开源模拟器进程；任何失败原样保留，不改锚点或阈值。
+- [x] R04 静态 PASS 登记提交 `017b295` 已推送且与 `origin/main` 同步；确认该快照不同于静态报告中的 `fa04d29` 后，唯一运行 `make c00-active-load-inverter-r04`，返回 33/36、E0/FAIL，failure category 为 `AcceptanceFailure`。
+- [x] 两个 ngspice 与两个 GPL Xyce 严格串行进程均返回 0；四份原生轴分别为 101/632/101/115 个物理点，向量等长有限、轴严格递增并覆盖登记端点。AIM-Spice、TCAD、版图和 PEX 进程均为 0。
+- [x] 两路线各落盘 1818 行 DC、21636 行瞬态；36 行静态指标、72 行瞬态指标、1818/21636 行路线差异、两张非空图和 26 个产物哈希全部通过。runner 报告 `results/reports/c00_active_load_inverter_r04.json` SHA-256 为 `18ea1e1afc3327170667ea4ec0b80871217b8037f7a7cbe9dfb9a970274ca8f4`。
+- [x] 冻结锚点两路线 VOH 约 `0.0912 V`、VOL 约 `0.0206 V`、最大增益约 `0.884`，均无单位增益交点；瞬态输出仅约 `0.022--0.057 V`，无 rise/fall crossing。静态、瞬态锚点门失败，最终完成门连带失败；这不是工具、收敛、parser、输出轴或路线一致性失败。
+- [x] 首次失败态 `make check` 因 17 个历史 next-scope 白名单滞后返回 750/767；归档 `results/reports/project_check_c00_r04_runner_failure_next_scope_stale_failed.json` SHA-256 `62be137b...c8c8`，0 仿真进程。只扩展 scope 白名单并绑定归档后恢复 767/767，不改变 R04 源、报告、产物、锚点或阈值。
+- [x] 失败登记后的 JSON/Python 语法检查通过，`make check` 为 767/767 PASS，`make report-check` 为 12 章、5 附录、15 个既有占位和 32 图 PASS，`git diff --check` 通过；验证没有启动任何模拟器或下游进程。
+- [ ] 下一门：提交并推送 R04 33/36 失败、全部 26 个哈希产物和边界文档后在此阶段门暂停。R04 不重跑，PASS-only 独立 checker 不运行；任何恢复必须建立单独评审的新合同，不得后验换锚点或放宽阈值。
 
 - [x] R02 实现提交 `216c6a7` 推送并与 `origin/main` 同步后，唯一运行 `make c00-active-load-inverter-r02-contract-check`，返回 50/50 PASS、E3；报告 `results/reports/c00_active_load_inverter_contract_r02.json` SHA-256 为 `e820af3b6a80095a907ddbdc7ddab5461937cd99ff1bc442e03a6ffd07bd1a99`。
 - [x] 50 项静态门验证 R01 五源/46/48 报告不可变、R02 仅作 ASCII 标识符整词修正、2-TFT 拓扑、18/36 案例、锚点、提取、阈值、工具、四进程预算、失败保留和零输出边界；报告记录 `simulator_processes_invoked=0`、`circuit_netlists_created=0`。

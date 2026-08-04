@@ -862,6 +862,8 @@ def main() -> int:
         ) or current_next_scope.startswith(
             "execute the committed C00 active-load inverter revision-4 four-process runner"
         ) or current_next_scope.startswith(
+            "preserve and commit the C00 active-load inverter revision-4 formal runner failure"
+        ) or current_next_scope.startswith(
             "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-4"
         ) or current_next_scope.startswith(
             "commit and close C00 revision-4 within the teaching-model evidence boundary"
@@ -9906,6 +9908,9 @@ def main() -> int:
                     "execute the committed C00 active-load inverter revision-4 four-process runner"
                 )
                 or r03_next_scope.startswith(
+                    "preserve and commit the C00 active-load inverter revision-4 formal runner failure"
+                )
+                or r03_next_scope.startswith(
                     "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-4"
                 )
                 or r03_next_scope.startswith(
@@ -10246,6 +10251,9 @@ def main() -> int:
                 )
                 or c00_next_scope.startswith(
                     "execute the committed C00 active-load inverter revision-4 four-process runner"
+                )
+                or c00_next_scope.startswith(
+                    "preserve and commit the C00 active-load inverter revision-4 formal runner failure"
                 )
                 or c00_next_scope.startswith(
                     "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-4"
@@ -10614,6 +10622,9 @@ def main() -> int:
                 )
                 or c00_r02_next_scope.startswith(
                     "execute the committed C00 active-load inverter revision-4 four-process runner"
+                )
+                or c00_r02_next_scope.startswith(
+                    "preserve and commit the C00 active-load inverter revision-4 formal runner failure"
                 )
                 or c00_r02_next_scope.startswith(
                     "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-4"
@@ -11123,6 +11134,11 @@ def main() -> int:
         ) or (
             c00_r03_failed_state
             and c00_r03_next_scope.startswith(
+                "preserve and commit the C00 active-load inverter revision-4 formal runner failure"
+            )
+        ) or (
+            c00_r03_failed_state
+            and c00_r03_next_scope.startswith(
                 "run the 29-check independent persisted-evidence checker for C00 active-load inverter revision-4"
             )
         ) or (
@@ -11285,6 +11301,35 @@ def main() -> int:
         c00_experiment = experiment_map["C00"]
         c00_r04_machine = c00_experiment.get("active_load_inverter_r04", {})
         c00_r03_machine = c00_experiment.get("active_load_inverter_r03", {})
+        c00_r04_registration_failure = c00_r04_machine.get(
+            "failure_registration_project_check_failure", {}
+        )
+        c00_r04_registration_failure_path = ROOT / c00_r04_registration_failure.get(
+            "path", "__missing_c00_r04_failure_registration_project_check__"
+        )
+        c00_r04_registration_failure_report = (
+            json.loads(c00_r04_registration_failure_path.read_text(encoding="utf-8"))
+            if c00_r04_registration_failure_path.is_file()
+            else {}
+        )
+        c00_r04_registration_failure_ok = (
+            c00_r04_registration_failure.get("path")
+            == "results/reports/project_check_c00_r04_runner_failure_next_scope_stale_failed.json"
+            and c00_r04_registration_failure.get("sha256")
+            == "62be137bf16bdffae7636481b1b64827953fb021dd791c71afa0669e04c7c8c8"
+            and c00_r04_registration_failure.get("failure_category")
+            == "historical_next_scope_allowlists_stale_after_c00_r04_runner_failure"
+            and c00_r04_registration_failure.get("failed_checks") == 17
+            and c00_r04_registration_failure.get("total_checks") == 767
+            and c00_r04_registration_failure.get("simulator_processes_invoked_by_project_check") == 0
+            and c00_r04_registration_failure.get("preserved") is True
+            and c00_r04_registration_failure_path.is_file()
+            and sha256(c00_r04_registration_failure_path)
+            == c00_r04_registration_failure.get("sha256")
+            and c00_r04_registration_failure_report.get("status") == "FAIL"
+            and c00_r04_registration_failure_report.get("checks") == 767
+            and c00_r04_registration_failure_report.get("failures") == 17
+        )
         c00_r04_outputs = c00_r04_config["outputs"]
         c00_r04_contract_report_path = ROOT / c00_r04_outputs["contract_report"]
         c00_r04_run_report_path = ROOT / c00_r04_outputs["run_report"]
@@ -11440,6 +11485,7 @@ def main() -> int:
             and c00_r04_run_report.get("failure_category") is not None
             and c00_r04_run_report.get("evidence_boundary")
             == c00_r04_config["evidence_boundary"]["runner_failure_allowed_claim"]
+            and c00_r04_registration_failure_ok
             and c00_r04_runner_common_state
         )
         c00_r04_runner_state = (
@@ -11502,7 +11548,20 @@ def main() -> int:
             c00_r04_expected_paths = c00_r04_base_paths
         elif c00_r04_ready_state:
             c00_r04_expected_paths = c00_r04_base_paths + [c00_r04_outputs["contract_report"]]
-        elif c00_r04_failed_state or c00_r04_runner_state:
+        elif c00_r04_failed_state:
+            existing_keys = [
+                key
+                for key in c00_r04_artifact_keys
+                if f"{key}_sha256" in c00_r04_run_report.get("artifacts", {})
+            ]
+            c00_r04_expected_paths = (
+                c00_r04_base_paths
+                + [c00_r04_outputs["contract_report"]]
+                + [c00_r04_outputs[key] for key in existing_keys]
+                + [c00_r04_outputs["run_report"]]
+                + [c00_r04_registration_failure["path"]]
+            )
+        elif c00_r04_runner_state:
             existing_keys = [
                 key
                 for key in c00_r04_artifact_keys
@@ -11574,7 +11633,7 @@ def main() -> int:
             f"implemented={c00_r04_implemented_state} ready={c00_r04_ready_state} "
             f"failed={c00_r04_failed_state} runner={c00_r04_runner_state} "
             f"verified={c00_r04_verified_state} sources={c00_r04_source_hashes_ok} "
-            f"r03_binding={c00_r04_binding_ok}",
+            f"r03_binding={c00_r04_binding_ok} registration_failure={c00_r04_registration_failure_ok}",
         )
     except Exception as error:  # noqa: BLE001
         add_check(

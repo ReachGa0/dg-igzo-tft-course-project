@@ -39,6 +39,7 @@ results/tables/m01_route_divergence_root_cause_r02.csv -text -whitespace
 results/compact/c00_active_load_inverter_r03/** -text -whitespace
 # C00 R04 runner artifacts will be SHA-bound and must remain byte-for-byte intact.
 results/compact/c00_active_load_inverter_r04/** -text -whitespace
+results/tables/c00_*_r04.csv -text -eol -whitespace
 
 *.png binary
 *.jpg binary

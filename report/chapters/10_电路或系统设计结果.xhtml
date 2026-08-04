@@ -9,7 +9,18 @@
   <p>R03 实现提交 <code>d449b2d</code> 推送同步后，静态 checker 唯一返回 50/50 PASS、E3。报告 SHA-256 <code>0e3d20a0...1b39</code> 记录同步 HEAD/origin 快照、0 个模拟器进程和 0 个电路网表。随后的三次 765/766 项目检查失败均为机器登记错误，已分别归档并恢复为 766/766，不改变合同或阈值。</p>
   <p>R03 runner 随后唯一启动四个串行进程，全部返回码为 0，但在 `raw:four_native_tables_parse` 处返回 24/36、E0/FAIL：ngspice DC/TRAN 为 101/632，Xyce DC/TRAN parser 计数为 101/230。Xyce 输出头含重复 TIME，R03 原生点数门又错误要求至少 601，故没有写入归一化表、指标、路线差异或图片。16 个原始产物和报告已保留，PASS-only 独立 checker 未运行。</p>
   <p>R04 已建立独立静态合同实现，绑定提交 <code>77d611e</code> 下的 R03 五源、两报告和 16 原生产物。它只取消 Xyce 显式重复 TIME，对历史重复 TIME 做数值一致性折叠，并用向量等长/有限/轴递增/端点覆盖代替错误的原生点数门。</p>
-  <p>实现提交 <code>fa04d29</code> 推送同步后，R04 静态 checker 唯一返回 50/50 PASS、E3。报告 SHA-256 <code>1ec06611...fd56</code> 记录 0 个模拟器进程、0 个电路网表和 <code>NOT_RUN_BY_CONTRACT_CHECK</code>；R04 网表、原生输出、归一化表、指标、图片与独立报告仍不存在。</p>
-  <p class="boundary">R01/R02/R03 历史均冻结。R02、R03 与 R04 的静态 50/50 都是结构合同证据；R03 runner 的 24/36 失败不是 VTC、VOH/VOL、VM、增益、噪声容限、延迟或功耗结果。R04 静态 PASS 同样不是电路通过；其注册插值、锚点、输入、提取、阈值或预算不变。只有报告哈希登记提交推送后才可唯一运行 R04 runner，C01/C02/C03、版图、PEX 和 HZO 继续关闭。</p>
+  <p>实现提交 <code>fa04d29</code> 推送同步后，R04 静态 checker 唯一返回 50/50 PASS、E3。报告 SHA-256 <code>1ec06611...fd56</code> 记录 0 个模拟器进程、0 个电路网表和 <code>NOT_RUN_BY_CONTRACT_CHECK</code>；该时点尚无 R04 电路数值。</p>
+  <p>静态登记提交 <code>017b295</code> 推送同步后，R04 runner 唯一执行两个 ngspice 与两个 GPL Xyce 串行进程，四个返回码均为 0。原生轴覆盖、两路线各 1818 行 DC 与 21636 行瞬态、36 行静态指标、72 行瞬态指标、两份完整差异表、两张图和 26 个产物哈希全部通过。</p>
+  <p>runner 最终为 33/36、E0/FAIL。冻结锚点两路线 VOH 约 <code>0.0912 V</code>、VOL 约 <code>0.0206 V</code>、最大增益约 <code>0.884</code>，没有单位增益交点，故 VIL/VIH 和噪声裕量无法登记提取。瞬态锚点输出仅约 <code>0.022--0.057 V</code>，没有 rise/fall 输出 crossing，无法提取 tPHL/tPLH。静态、瞬态锚点门失败，最终完成门连带失败。</p>
+  <figure>
+    <img src="assets/c00_active_load_inverter_vtc_r04.png" alt="C00 R04 two-route active-load inverter VTC and static power failure evidence" />
+    <figcaption>图 10-1 R04 全部 VTC 与静态功耗。粗线是冻结锚点，两条开源路线近乎重合，但锚点增益小于 1 且输出摆幅不足；路线接近不等于逻辑验收通过。</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/c00_active_load_inverter_transient_r04.png" alt="C00 R04 frozen-anchor transient output and supply power failure evidence" />
+    <figcaption>图 10-2 R04 冻结锚点瞬态。VOUT 未跨越登记输出阈值，因此没有 tPHL/tPLH；曲线只作为 33/36 失败证据，不能写成可用反相器结果。</figcaption>
+  </figure>
+  <p>首次失败态项目检查因 17 个历史 next-scope 白名单滞后返回 750/767；归档报告 <code>62be137b...c8c8</code> 后，只扩展 scope allowlist 并绑定归档，项目检查恢复 767/767。该登记修正不改变 R04 源、数值、锚点、提取或阈值。</p>
+  <p class="boundary">R01/R02/R03 历史均冻结。R04 输出轴修正和完整落盘门已通过，但 33/36 是冻结锚点的正式电路验收失败，不是 C00 PASS、物理 IGZO 参数或实验校准。R04 不重跑，PASS-only 独立 checker 不运行；C01/C02/C03、版图、PEX 和 HZO 继续关闭，恢复必须另建合同评审。</p>
   <p>[待填写INV/NAND/NOR/XOR、五级环振、全加器、版图、DRC/LVS、延迟和功耗]</p>
 </section>

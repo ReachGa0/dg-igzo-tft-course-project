@@ -1,8 +1,8 @@
 {
   "project": "DG-IGZO-TFT-PDK",
-  "status": "PASS",
+  "status": "FAIL",
   "checks": 767,
-  "failures": 0,
+  "failures": 17,
   "results": [
     {
       "name": "directory:config",
@@ -307,37 +307,37 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=34358"
+      "detail": "bytes=33670"
     },
     {
       "name": "file:ARCHITECTURE.md",
       "status": "PASS",
-      "detail": "bytes=29452"
+      "detail": "bytes=28746"
     },
     {
       "name": "file:AI_CONTEXT.md",
       "status": "PASS",
-      "detail": "bytes=24172"
+      "detail": "bytes=24072"
     },
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=236467"
+      "detail": "bytes=233798"
     },
     {
       "name": "file:PROJECT_PLAN.md",
       "status": "PASS",
-      "detail": "bytes=5029"
+      "detail": "bytes=5120"
     },
     {
       "name": "file:DECISIONS.md",
       "status": "PASS",
-      "detail": "bytes=141348"
+      "detail": "bytes=140035"
     },
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=85756"
+      "detail": "bytes=84007"
     },
     {
       "name": "file:Makefile",
@@ -347,12 +347,12 @@
     {
       "name": "file:config/project.json",
       "status": "PASS",
-      "detail": "bytes=73477"
+      "detail": "bytes=72831"
     },
     {
       "name": "file:config/experiments.json",
       "status": "PASS",
-      "detail": "bytes=172206"
+      "detail": "bytes=171601"
     },
     {
       "name": "file:config/s00_data_audit.json",
@@ -2207,7 +2207,7 @@
     {
       "name": "file:report/evidence_matrix.csv",
       "status": "PASS",
-      "detail": "bytes=106638"
+      "detail": "bytes=104546"
     },
     {
       "name": "file:data/processed/s00/source_inventory.csv",
@@ -3636,7 +3636,7 @@
     },
     {
       "name": "m00_contract:machine_state_next_gate_and_boundary",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "preserve and commit the C00 active-load inverter revision-4 formal runner failure; do not rerun R04 or open its independent/downstream gates, and await a separately reviewed recovery contract"
     },
     {
@@ -3681,57 +3681,57 @@
     },
     {
       "name": "m01_xyce_preflight_r02:static_contract_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "contract_checks=22/25 future_absent=12/12"
     },
     {
       "name": "m01_xyce_preflight_r03:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False failed=True future_absent=12/12"
     },
     {
       "name": "m01_xyce_preflight_r04:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False failed=True future_absent=12/12"
     },
     {
       "name": "m01_xyce_preflight_r05:contract_and_runner_state",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False failed=True future_absent=7/12"
     },
     {
       "name": "m01_xyce_preflight_r06:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False failed=True future_absent=16/16"
     },
     {
       "name": "m01_xyce_preflight_r07:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False failed=True future_absent=5/16"
     },
     {
       "name": "m01_xyce_preflight_r08:contract_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "failed=True ready=False future_absent=16/16"
     },
     {
       "name": "m01_xyce_preflight_r09:implementation_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False failed=True r08_binding=True future_absent=16/16"
     },
     {
       "name": "m01_xyce_preflight_r10:implementation_state_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False failed=True r08_binding=True r09_binding=True future_absent=7/7"
     },
     {
       "name": "m01_xyce_preflight_r11:path_safe_contract_and_unexecuted_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "planned=False ready=False runner=False verified=True r10_binding=True future_absent=1/16"
     },
     {
       "name": "m01_open_source_device_dc_r01:contract_runner_independent_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "implemented=False failed=True ready=False runner=False verified=False future_absent=17/18"
     },
     {
@@ -3741,32 +3741,32 @@
     },
     {
       "name": "m01_open_source_device_dc_r03:portable_contract_implementation",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "implemented=False ready=False runner=False verified=True static=True run=True bindings=True future_absent=0/18"
     },
     {
       "name": "c00_active_load_inverter_r01:versioned_contract_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "implemented=False failed=True ready=False runner=False verified=False bindings=True"
     },
     {
       "name": "c00_active_load_inverter_r02:token_safe_versioned_contract_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "implemented=False blocked=True ready=False runner=False verified=False source_bindings=True r01_binding=True"
     },
     {
       "name": "c00_active_load_inverter_r03:committed_snapshot_versioned_contract_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "implemented=False ready=False runner=False verified=False source_bindings=True r02_binding=True"
     },
     {
       "name": "c00_active_load_inverter_r04:output_axis_versioned_contract_chain",
       "status": "PASS",
-      "detail": "implemented=False ready=False failed=True runner=False verified=False sources=True r03_binding=True registration_failure=True"
+      "detail": "implemented=False ready=False failed=True runner=False verified=False sources=True r03_binding=True"
     },
     {
       "name": "m01_route_divergence_r01:contract_runner_independent_chain",
-      "status": "PASS",
+      "status": "FAIL",
       "detail": "implemented=False ready=False failed=True runner=False verified=False r02_binding=True implementation_failure=True source_scan_failure=True future_absent=12/13"
     },
     {

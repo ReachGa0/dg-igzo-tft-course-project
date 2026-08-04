@@ -1,0 +1,420 @@
+
+*****
+***** Welcome to the Xyce(TM) Parallel Electronic Simulator
+*****
+***** This is version Xyce Release 7.10.0-opensource
+***** Date: Tue Aug 04 09:14:23 CST 2026
+
+
+***** Executing netlist results/compact/c00_active_load_inverter_r04/xyce_tran.cir
+
+***** Reading and parsing netlist...
+Netlist warning in file
+ results/compact/c00_active_load_inverter_r04/xyce_tran.cir at or near line 3
+ Option name missing, or SPICE-style option not supported in Xyce
+Netlist warning in file
+ results/compact/c00_active_load_inverter_r04/xyce_tran.cir at or near line 3
+ Unrecognized dot line will be ignored
+***** Setting up topology...
+
+Netlist warning: Voltage Node (VIV100T050R0125C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T050R0125C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T050R0125C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T050R0250C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T050R0250C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T050R0500C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T050R0500C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T050R0500C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T050R0500C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T075R0500C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T075R0250C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T100R0125C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T075R0250C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T075R0250C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T075R0250C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T050R0250C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T075R0500C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T100R0125C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T100R0500C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T075R0125C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T075R0125C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T100R0500C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T100R0250C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T100R0125C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T050R0125C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T100R0500C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T075R0500C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T100R0500C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T075R0125C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T100R0250C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T075R0125C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T100R0500C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T075R0250C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T050R0500C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T100R0250C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T075R0125C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T050R0125C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T075R0500C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T100R0250C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T100R0500C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T050R0250C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T075R0125C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T050R0250C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T050R0500C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T100R0125C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T075R0500C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T100R0250C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T050R0250C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T050R0250C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T050R0250C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T075R0250C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T050R0125C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T050R0125C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T050R0125C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T100R0500C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T100R0500C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T100R0250C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T100R0250C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T050R0500C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV200T075R0250C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T100R0250C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T050R0500C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T100R0125C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T100R0125C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV200T100R0125C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T075R0250C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T100R0125C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T075R0500C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T075R0500C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T075R0125C1000) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VTV100T075R0500C0500) connected to only 1
+ device Terminal
+Netlist warning: Voltage Node (VIV100T075R0125C0500) connected to only 1
+ device Terminal
+***** Device Count Summary ...
+       B level 1 (Expression Based Voltage or Current Source)  72
+       C level 1 (Capacitor)                                   36
+       V level 1 (Independent Voltage Source)                 108
+       ----------------------------------------------------------
+       Total Devices                                          216
+***** Setting up matrix structure...
+***** Number of Unknowns = 252
+***** Initializing...
+
+***** Beginning DC Operating Point Calculation...
+
+***** Beginning Transient Calculation...
+
+***** Percent complete: 1.29167 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 2.95833 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 4.625 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 6.29167 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 7.95833 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 9.08 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 10.36 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 12.0667 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 13.7733 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 15.48 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 18.04 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 19.7467 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 21.4533 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 23.16 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 26.5733 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 29.9867 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 32 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 33.16 %
+***** Current system time: Tue Aug  4 09:14:23 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 35.72 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 37.4267 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 39.1333 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 40.84 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 42.5467 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 45.96 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 50.96 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 55.96 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 58.3333 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 59.5067 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 61.2133 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 62.92 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 64.6267 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 67.1867 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 70.6 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 74.0133 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 77.4267 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 80.84 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 82 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 83.16 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 85.72 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 87.4267 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 89.1333 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 90.84 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 92.5467 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Percent complete: 95.96 %
+***** Current system time: Tue Aug  4 09:14:24 2026
+***** Estimated time to completion:  0 sec.
+
+***** Problem read in and set up time: 0.0547009 seconds
+ ***** DCOP time: 0.00420213 seconds.  Breakdown follows:
+	Number Successful Steps Taken:		1
+	Number Failed Steps Attempted:		0
+	Number Jacobians Evaluated:		7
+	Number Linear Solves:			7
+	Number Failed Linear Solves:		0
+	Number Residual Evaluations:		9
+	Number Nonlinear Convergence Failures:	0
+	Total Residual Load Time:		0.00247502 seconds
+	Total Jacobian Load Time:		3.31402e-05 seconds
+	Total Linear Solution Time:		6.17504e-05 seconds
+
+ ***** Transient Stepping time: 0.135128 seconds.  Breakdown follows:
+	Number Successful Steps Taken:		114
+	Number Failed Steps Attempted:		8
+	Number Jacobians Evaluated:		185
+	Number Linear Solves:			185
+	Number Failed Linear Solves:		0
+	Number Residual Evaluations:		307
+	Number Nonlinear Convergence Failures:	0
+	Total Residual Load Time:		0.0616553 seconds
+	Total Jacobian Load Time:		0.000937939 seconds
+	Total Linear Solution Time:		0.00100446 seconds
+
+
+***** Solution Summary *****
+	Number Successful Steps Taken:		115
+	Number Failed Steps Attempted:		8
+	Number Jacobians Evaluated:		192
+	Number Linear Solves:			192
+	Number Failed Linear Solves:		0
+	Number Residual Evaluations:		316
+	Number Nonlinear Convergence Failures:	0
+	Total Residual Load Time:		0.0641303 seconds
+	Total Jacobian Load Time:		0.000971079 seconds
+	Total Linear Solution Time:		0.00106621 seconds
+
+
+***** Total Simulation Solvers Run Time: 0.146899 seconds
+***** Total Elapsed Run Time:            0.201775 seconds
+*****
+***** End of Xyce(TM) Simulation
+*****
+
+Timing summary of 1 processor
+                 Stats                   Count       CPU Time              Wall Time
+---------------------------------------- ----- --------------------- ---------------------
+Xyce                                         1        0.100 (100.0%)        0.209 (100.0%)
+  Analysis                                   1        0.084 (83.82%)        0.145 (69.01%)
+    Transient                                1        0.084 (83.82%)        0.145 (69.01%)
+      Nonlinear Solve                      123        0.071 (71.12%)        0.068 (32.51%)
+        Residual                           316        0.067 (67.13%)        0.064 (30.73%)
+        Jacobian                           192        0.001 ( 1.07%)        0.001 ( 0.49%)
+        Linear Solve                       192        0.001 ( 1.17%)        0.001 ( 0.53%)
+      Successful DCOP Steps                  1        0.000 ( 0.19%)        0.001 ( 0.58%)
+      Successful Step                      114        0.007 ( 6.60%)        0.032 (15.13%)
+      Failed Steps                           8        0.000 (<0.01%)        0.000 (<0.01%)
+  Netlist Import                             1        0.014 (13.57%)        0.038 (18.02%)
+    Parse Context                            1        0.000 ( 0.00%)        0.004 ( 1.94%)
+    Distribute Devices                       1        0.013 (12.64%)        0.032 (15.23%)
+    Verify Devices                           1        0.000 (<0.01%)        0.000 (<0.01%)
+    Instantiate                              1        0.001 ( 0.86%)        0.001 ( 0.50%)
+  Late Initialization                        1        0.002 ( 2.23%)        0.016 ( 7.60%)
+    Global Indices                           1        0.001 ( 1.22%)        0.014 ( 6.75%)
+  Setup Matrix Structure                     1        0.000 ( 0.20%)        0.000 ( 0.21%)
+

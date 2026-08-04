@@ -1,0 +1,357 @@
+{
+  "schema_version": "1.0",
+  "project_id": "DG-IGZO-TFT-PDK",
+  "stage_id": "C00",
+  "contract_id": "C00_ACTIVE_LOAD_INVERTER_R04",
+  "status": "FAIL",
+  "evidence_level": "E0",
+  "simulation_status": "FORMAL_C00_FAILED",
+  "config": {
+    "path": "config/c00_active_load_inverter_r04.json",
+    "sha256": "cdcc5fdcf2ed11bea793c8d3402349f8e997eca8b426e0e76aaeb7392c2ceb24"
+  },
+  "runner": {
+    "path": "scripts/run_c00_active_load_inverter_r04.py",
+    "sha256": "b0dff3b808f892e6890d4dbe5cd19b91847d0d0a9e856cb6fa4f4f4d861a70b8"
+  },
+  "contract_report": {
+    "path": "results/reports/c00_active_load_inverter_contract_r04.json",
+    "sha256": "1ec066117a2ff7c6837a1da603c8519c66ad760196f96f9d1209030f29c3fd56"
+  },
+  "git_state": {
+    "head": "017b295d35e6b8d1795c24da530b07c82febafc4",
+    "origin_main": "017b295d35e6b8d1795c24da530b07c82febafc4",
+    "synchronized": true
+  },
+  "summary": {
+    "passed": 33,
+    "failed": 3,
+    "total": 36,
+    "process_invocations": 4,
+    "formal_circuit_invoked": true,
+    "ngspice_processes": 2,
+    "xyce_processes": 2,
+    "aimspice_processes": 0,
+    "tcad_processes": 0,
+    "layout_or_pex_processes": 0,
+    "elapsed_seconds": 7.1500396728515625
+  },
+  "native_points": {
+    "ngspice_dc": 101,
+    "xyce_dc": 101,
+    "ngspice_transient": 632,
+    "xyce_transient": 115
+  },
+  "native_axis_summaries": {
+    "ngspice_dc": {
+      "point_count": 101,
+      "vector_count": 38,
+      "all_vectors_same_length": true,
+      "all_values_finite": true,
+      "axis_strictly_increasing": true,
+      "covers_registered_start": true,
+      "covers_registered_stop": true,
+      "valid": true
+    },
+    "xyce_dc": {
+      "point_count": 101,
+      "vector_count": 37,
+      "all_vectors_same_length": true,
+      "all_values_finite": true,
+      "axis_strictly_increasing": true,
+      "covers_registered_start": true,
+      "covers_registered_stop": true,
+      "valid": true
+    },
+    "ngspice_transient": {
+      "point_count": 632,
+      "vector_count": 109,
+      "all_vectors_same_length": true,
+      "all_values_finite": true,
+      "axis_strictly_increasing": true,
+      "covers_registered_start": true,
+      "covers_registered_stop": true,
+      "valid": true
+    },
+    "xyce_transient": {
+      "point_count": 115,
+      "vector_count": 109,
+      "all_vectors_same_length": true,
+      "all_values_finite": true,
+      "axis_strictly_increasing": true,
+      "covers_registered_start": true,
+      "covers_registered_stop": true,
+      "valid": true
+    }
+  },
+  "failure_category": "AcceptanceFailure",
+  "failure_detail": "registered checks failed: acceptance:both_routes_anchor_static_qualified, acceptance:both_routes_anchor_transient_qualified, result:formal_c00_complete_with_boundary",
+  "commands": [
+    {
+      "route": "ngspice",
+      "analysis": "dc",
+      "argv": [
+        "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+        "-b",
+        "-o",
+        "results/compact/c00_active_load_inverter_r04/ngspice_dc.log",
+        "results/compact/c00_active_load_inverter_r04/ngspice_dc.cir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.1480906890001279
+    },
+    {
+      "route": "ngspice",
+      "analysis": "transient",
+      "argv": [
+        "/mnt/c/Users/ReachGao/.local/bin/ngspice",
+        "-b",
+        "-o",
+        "results/compact/c00_active_load_inverter_r04/ngspice_tran.log",
+        "results/compact/c00_active_load_inverter_r04/ngspice_tran.cir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 1.2706205089998548
+    },
+    {
+      "route": "xyce",
+      "analysis": "dc",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-l",
+        "results/compact/c00_active_load_inverter_r04/xyce_dc.log",
+        "-o",
+        "results/compact/c00_active_load_inverter_r04/xyce_dc",
+        "results/compact/c00_active_load_inverter_r04/xyce_dc.cir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.10800157099947683
+    },
+    {
+      "route": "xyce",
+      "analysis": "transient",
+      "argv": [
+        "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+        "-l",
+        "results/compact/c00_active_load_inverter_r04/xyce_tran.log",
+        "-o",
+        "results/compact/c00_active_load_inverter_r04/xyce_tran",
+        "results/compact/c00_active_load_inverter_r04/xyce_tran.cir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.21470463300011033
+    }
+  ],
+  "checks": [
+    {
+      "name": "precondition:committed_static_contract_pass",
+      "status": "PASS",
+      "detail": "sha256=1ec066117a2ff7c6837a1da603c8519c66ad760196f96f9d1209030f29c3fd56"
+    },
+    {
+      "name": "identity:config_common_checker_runner",
+      "status": "PASS",
+      "detail": "config=cdcc5fdcf2ed11bea793c8d3402349f8e997eca8b426e0e76aaeb7392c2ceb24 runner=b0dff3b808f892e6890d4dbe5cd19b91847d0d0a9e856cb6fa4f4f4d861a70b8"
+    },
+    {
+      "name": "git:head_origin_synced_and_static_snapshot_published",
+      "status": "PASS",
+      "detail": "head=017b295d35e6b8d1795c24da530b07c82febafc4 origin=017b295d35e6b8d1795c24da530b07c82febafc4 static_snapshot=fa04d296221e05544c708f21a5089d292a4c49aa"
+    },
+    {
+      "name": "machine:circuit_execution_gate_open",
+      "status": "PASS",
+      "detail": "root=contract_ready machine=contract_ready"
+    },
+    {
+      "name": "model:frozen_portable_candidate",
+      "status": "PASS",
+      "detail": "sha256=dd56c4c5b9f67d628eb2677705139769642b2e0eb66fca5b453b3cc6be351fd6"
+    },
+    {
+      "name": "tools:two_hash_bound_open_source_routes",
+      "status": "PASS",
+      "detail": "ngspice and GPL Xyce hashes match"
+    },
+    {
+      "name": "outputs:exclusive_absent_before_run",
+      "status": "PASS",
+      "detail": "absent=28/28"
+    },
+    {
+      "name": "resource:four_process_serial_budget",
+      "status": "PASS",
+      "detail": "{\"aimspice_processes\": 0, \"analyses_per_route\": 2, \"laptop_target\": true, \"layout_processes\": 0, \"max_serial_simulator_processes\": 4, \"ngspice_processes\": 2, \"parallel_simulator_processes\": 0, \"pex_processes\": 0, \"route_count\": 2, \"tcad_processes\": 0, \"xyce_processes\": 2}"
+    },
+    {
+      "name": "netlists:four_ascii_generated",
+      "status": "PASS",
+      "detail": "four exclusive ASCII netlists"
+    },
+    {
+      "name": "netlists:registered_topology_and_case_counts",
+      "status": "PASS",
+      "detail": "18 DC and 36 transient two-TFT cases per route"
+    },
+    {
+      "name": "netlists:no_forbidden_scope",
+      "status": "PASS",
+      "detail": "forbidden=11 policy=ASCII identifier equality"
+    },
+    {
+      "name": "ngspice_dc:argv_exact",
+      "status": "PASS",
+      "detail": "[\"/mnt/c/Users/ReachGao/.local/bin/ngspice\", \"-b\", \"-o\", \"results/compact/c00_active_load_inverter_r04/ngspice_dc.log\", \"results/compact/c00_active_load_inverter_r04/ngspice_dc.cir\"]"
+    },
+    {
+      "name": "ngspice_dc:returncode_zero",
+      "status": "PASS",
+      "detail": "returncode=0"
+    },
+    {
+      "name": "ngspice_dc:raw_present",
+      "status": "PASS",
+      "detail": "results/compact/c00_active_load_inverter_r04/ngspice_dc.raw"
+    },
+    {
+      "name": "ngspice_tran:argv_exact",
+      "status": "PASS",
+      "detail": "[\"/mnt/c/Users/ReachGao/.local/bin/ngspice\", \"-b\", \"-o\", \"results/compact/c00_active_load_inverter_r04/ngspice_tran.log\", \"results/compact/c00_active_load_inverter_r04/ngspice_tran.cir\"]"
+    },
+    {
+      "name": "ngspice_tran:returncode_zero",
+      "status": "PASS",
+      "detail": "returncode=0"
+    },
+    {
+      "name": "ngspice_tran:raw_present",
+      "status": "PASS",
+      "detail": "results/compact/c00_active_load_inverter_r04/ngspice_tran.raw"
+    },
+    {
+      "name": "xyce_dc:argv_exact",
+      "status": "PASS",
+      "detail": "[\"/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce\", \"-l\", \"results/compact/c00_active_load_inverter_r04/xyce_dc.log\", \"-o\", \"results/compact/c00_active_load_inverter_r04/xyce_dc\", \"results/compact/c00_active_load_inverter_r04/xyce_dc.cir\"]"
+    },
+    {
+      "name": "xyce_dc:returncode_zero",
+      "status": "PASS",
+      "detail": "returncode=0"
+    },
+    {
+      "name": "xyce_dc:raw_present",
+      "status": "PASS",
+      "detail": "results/compact/c00_active_load_inverter_r04/xyce_dc.prn"
+    },
+    {
+      "name": "xyce_tran:argv_exact",
+      "status": "PASS",
+      "detail": "[\"/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce\", \"-l\", \"results/compact/c00_active_load_inverter_r04/xyce_tran.log\", \"-o\", \"results/compact/c00_active_load_inverter_r04/xyce_tran\", \"results/compact/c00_active_load_inverter_r04/xyce_tran.cir\"]"
+    },
+    {
+      "name": "xyce_tran:returncode_zero",
+      "status": "PASS",
+      "detail": "returncode=0"
+    },
+    {
+      "name": "xyce_tran:raw_present",
+      "status": "PASS",
+      "detail": "results/compact/c00_active_load_inverter_r04/xyce_tran.prn"
+    },
+    {
+      "name": "execution:exactly_four_serial_processes",
+      "status": "PASS",
+      "detail": "processes=4"
+    },
+    {
+      "name": "raw:four_native_axes_cover_registered_domains",
+      "status": "PASS",
+      "detail": "{\"ngspice_dc\": {\"all_values_finite\": true, \"all_vectors_same_length\": true, \"axis_strictly_increasing\": true, \"covers_registered_start\": true, \"covers_registered_stop\": true, \"point_count\": 101, \"valid\": true, \"vector_count\": 38}, \"ngspice_transient\": {\"all_values_finite\": true, \"all_vectors_same_length\": true, \"axis_strictly_increasing\": true, \"covers_registered_start\": true, \"covers_registered_stop\": true, \"point_count\": 632, \"valid\": true, \"vector_count\": 109}, \"xyce_dc\": {\"all_values_finite\": true, \"all_vectors_same_length\": true, \"axis_strictly_increasing\": true, \"covers_registered_start\": true, \"covers_registered_stop\": true, \"point_count\": 101, \"valid\": true, \"vector_count\": 37}, \"xyce_transient\": {\"all_values_finite\": true, \"all_vectors_same_length\": true, \"axis_strictly_increasing\": true, \"covers_registered_start\": true, \"covers_registered_stop\": true, \"point_count\": 115, \"valid\": true, \"vector_count\": 109}}"
+    },
+    {
+      "name": "tables:two_complete_dc_routes",
+      "status": "PASS",
+      "detail": "rows=1818/1818"
+    },
+    {
+      "name": "tables:two_complete_transient_routes",
+      "status": "PASS",
+      "detail": "rows=21636/21636"
+    },
+    {
+      "name": "metrics:static_all_cases_and_power",
+      "status": "PASS",
+      "detail": "rows=36"
+    },
+    {
+      "name": "metrics:transient_all_cases_delay_and_power",
+      "status": "PASS",
+      "detail": "rows=72"
+    },
+    {
+      "name": "acceptance:both_routes_anchor_static_qualified",
+      "status": "FAIL",
+      "detail": "[{\"case_id\": \"v200_t100_r0125\", \"extraction_status\": \"missing_registered_crossing\", \"logic_separable\": false, \"max_gain_v_per_v\": 0.8844509306588296, \"monotonic_nonincreasing\": true, \"nmh_v\": null, \"nml_v\": null, \"p_static_input_high_w\": 2.052462761329062e-08, \"p_static_input_low_w\": 9.154365413189192e-09, \"point_count\": 101, \"qualified\": false, \"route\": \"ngspice\", \"unit_gain_crossings\": 0, \"v_top_load_over_vdd\": 1.0, \"v_top_load_v\": 0.2, \"vdd_v\": 0.2, \"vih_v\": null, \"vil_v\": null, \"vm_v\": 0.052139110625857917, \"voh_v\": 0.0912000246178676, \"vol_v\": 0.020601375449351998, \"wload_over_wdriver\": 0.125}, {\"case_id\": \"v200_t100_r0125\", \"extraction_status\": \"missing_registered_crossing\", \"logic_separable\": false, \"max_gain_v_per_v\": 0.8835171227343022, \"monotonic_nonincreasing\": true, \"nmh_v\": null, \"nml_v\": null, \"p_static_input_high_w\": 2.0524371612555277e-08, \"p_static_input_low_w\": 9.154365413266949e-09, \"point_count\": 101, \"qualified\": false, \"route\": \"xyce\", \"unit_gain_crossings\": 0, \"v_top_load_over_vdd\": 1.0, \"v_top_load_v\": 0.2, \"vdd_v\": 0.2, \"vih_v\": null, \"vil_v\": null, \"vm_v\": 0.0521502708818957, \"voh_v\": 0.09120002461603703, \"vol_v\": 0.02060278361238832, \"wload_over_wdriver\": 0.125}]"
+    },
+    {
+      "name": "acceptance:both_routes_anchor_transient_qualified",
+      "status": "FAIL",
+      "detail": "[{\"average_supply_power_w\": 1.7508211895955633e-08, \"case_id\": \"v200_t100_r0125_c1000\", \"cload_f\": 1e-12, \"cycle_energy_j\": 2.6262317843933452e-14, \"dc_case_id\": \"v200_t100_r0125\", \"extraction_status\": \"missing_output_crossing\", \"fall_crossing_found\": false, \"input_high_sample_vout_v\": 0.021960888249787272, \"input_low_sample_vout_v\": 0.05722386428690122, \"peak_supply_power_w\": 2.0340830809548803e-08, \"point_count\": 601, \"qualified\": false, \"rise_crossing_found\": false, \"route\": \"ngspice\", \"tphl_s\": null, \"tplh_s\": null, \"v_top_load_over_vdd\": 1.0, \"v_top_load_v\": 0.2, \"vdd_v\": 0.2, \"wload_over_wdriver\": 0.125}, {\"average_supply_power_w\": 1.7512094395937493e-08, \"case_id\": \"v200_t100_r0125_c1000\", \"cload_f\": 1e-12, \"cycle_energy_j\": 2.626814159390624e-14, \"dc_case_id\": \"v200_t100_r0125\", \"extraction_status\": \"missing_output_crossing\", \"fall_crossing_found\": false, \"input_high_sample_vout_v\": 0.021935019786328704, \"input_low_sample_vout_v\": 0.05721990999057156, \"peak_supply_power_w\": 2.035081886035971e-08, \"point_count\": 601, \"qualified\": false, \"rise_crossing_found\": false, \"route\": \"xyce\", \"tphl_s\": null, \"tplh_s\": null, \"v_top_load_over_vdd\": 1.0, \"v_top_load_v\": 0.2, \"vdd_v\": 0.2, \"wload_over_wdriver\": 0.125}]"
+    },
+    {
+      "name": "differences:complete_aligned_tables",
+      "status": "PASS",
+      "detail": "rows=1818/21636"
+    },
+    {
+      "name": "differences:diagnostic_only_policy_preserved",
+      "status": "PASS",
+      "detail": "no route-difference acceptance threshold"
+    },
+    {
+      "name": "figures:vtc_and_transient_png",
+      "status": "PASS",
+      "detail": "bytes=340614/178889"
+    },
+    {
+      "name": "artifacts:all_runner_hashes_persisted",
+      "status": "PASS",
+      "detail": "hashes=26/26"
+    },
+    {
+      "name": "result:formal_c00_complete_with_boundary",
+      "status": "FAIL",
+      "detail": "teaching-model C00 only; no physical/calibration/downstream claim"
+    }
+  ],
+  "artifacts": {
+    "ngspice_dc_netlist_sha256": "4fe2a1934c9138500ed1b995cc9a519f3db8155a0ce0be466308f99024963f1a",
+    "ngspice_dc_log_sha256": "dcb2749f976d0ccee6f1f3af7a1dd10863fd814c4118facd7a1ef31ba69b64ca",
+    "ngspice_dc_command_sha256": "c37e77aabcb07dbfa1d6741f9d60398be8f5f164e49c09cf2f81c62f2aad6ab6",
+    "ngspice_dc_raw_sha256": "bac97220cb9e28e3ad590476407c0d2b4db8c1bc9a8822e33b5914440e8ff7a0",
+    "ngspice_tran_netlist_sha256": "e052bb8d3461b2a7f999680fbc18b4b65c96fdccfd69c769f8e981fbdb0423dc",
+    "ngspice_tran_log_sha256": "74d78b1b144c35da8ebcb5316bad04a3f709f616b3d5be9fb62aeba468a9c492",
+    "ngspice_tran_command_sha256": "ac0f0f47b7674642cf0555335c2c47cba3509b4f42653741b50b3845c3860a6f",
+    "ngspice_tran_raw_sha256": "f99c6b93f8e128db6af2326ea249ad1677a8aa9d98f9099efb7e74fec7bbf218",
+    "xyce_dc_netlist_sha256": "7ff0805856fd205855c021a511b833aca0cc52fe1caf8be8a0aa16952181d88e",
+    "xyce_dc_log_sha256": "a283bd600a3cf4b25cbfb4300f263222dbd2b3f0fe25aaff4a4fdc5b05943e92",
+    "xyce_dc_command_sha256": "f434788629a08c151d11565278fc915063a6c341bd7abcc5730ec9e183e6b9ce",
+    "xyce_dc_raw_sha256": "5b0b47e6e7d99f39385f71d4266661de461e228704702a484c4a210605d465fd",
+    "xyce_tran_netlist_sha256": "e33ddd736f8f68a74306bcdf269763cca817c8ac54438aaea081666703e38c90",
+    "xyce_tran_log_sha256": "eac463fae6132a391cf888a1859b1bf5d58e07cfa8a7568b68b3fec5a5f148f5",
+    "xyce_tran_command_sha256": "825127059d853a0a73657585e42d32278ba757829bd17b94eb8b4b1966b6f8d7",
+    "xyce_tran_raw_sha256": "5ee5a8ee24cecd867f3f98a36df87a2bb2db63154731c448e41a45697798d5cb",
+    "ngspice_dc_csv_sha256": "a3ee9c481a56a0e66100b6e0ddeb028b2042da022031c47ea7f6df49348178c6",
+    "xyce_dc_csv_sha256": "a3216e1858245bd8804b4b2c8cf40a75706ad410f60ee4b16add0a47f67eccf6",
+    "ngspice_tran_csv_sha256": "aae0fdcc0663bc0998c89a605aed657116799107f3d2175389af8bd936c61520",
+    "xyce_tran_csv_sha256": "48cdaba89794f25f9bb98a3f5a138ddb7bdbd320387de875e873509df43301f7",
+    "static_metrics_csv_sha256": "f45a9cab9296521437f62225aa52097784728e7d468b843e3951d4e4ad8feff4",
+    "transient_metrics_csv_sha256": "1d87bae38ae5044278968fb9dc3312bb7938b8779b38bc8f710635d50923c0e1",
+    "dc_route_difference_csv_sha256": "823d88d54a5e2a0bed85c9e5b132944ce942ddf3ea9c11c27d7a57cd5a7a0d71",
+    "transient_route_difference_csv_sha256": "62b7a2d4aa88c7930c7086e3dd3a7b4ff5b389eeeeebbe416ed588bb1c3e3e57",
+    "vtc_png_sha256": "64efb667d26bb1c686fab200a73bfd1f09e29a4539daf1a2a3f4d99851a04ffc",
+    "transient_png_sha256": "a925274cc7b61d5b919678b5494711975dd0cc6a60737b61d79c09d9987ac75d"
+  },
+  "evidence_boundary": "The R04 formal runner executed only the declared four-process teaching-model scope but failed one or more registered checks; retain all artifacts and do not claim circuit qualification or downstream permission.",
+  "next_gate": "Preserve and commit this formal C00 failure. Do not run the PASS-only independent checker, change the anchor, or relax a threshold."
+}

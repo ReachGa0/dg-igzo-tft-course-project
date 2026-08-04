@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/home/reachgao/.local/xyce-7.10-pure-r07/bin/Xyce",
+    "-l",
+    "results/compact/c00_active_load_inverter_r04/xyce_tran.log",
+    "-o",
+    "results/compact/c00_active_load_inverter_r04/xyce_tran",
+    "results/compact/c00_active_load_inverter_r04/xyce_tran.cir"
+  ],
+  "cwd": "/mnt/c/Users/ReachGao/Desktop/SDU/科研/氧化物TFT_铁电双栅课程项目",
+  "returncode": 0,
+  "elapsed_seconds": 0.21470463300011033,
+  "stdout": "",
+  "stderr": ""
+}

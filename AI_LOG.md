@@ -16,6 +16,29 @@
 
 ---
 
+## 2026-08-04 | Codex GPT-5 | C00 R04 runner 33/36 锚点失败保留
+
+### 唯一执行
+
+- 静态报告登记提交 `017b295` 已推送且与 `origin/main` 同步，执行前工作树干净、R04 五源与静态报告哈希不变、运行输出全不存在；该提交不同于静态报告快照 `fa04d29`。
+- 唯一运行 `make c00-active-load-inverter-r04`，返回 33/36、E0/FAIL，failure category 为 `AcceptanceFailure`。报告 `results/reports/c00_active_load_inverter_r04.json` SHA-256 为 `18ea1e1afc3327170667ea4ec0b80871217b8037f7a7cbe9dfb9a970274ca8f4`；R04 不重跑。
+
+### 通过项与失败根因
+
+- 两个 ngspice 与两个 GPL Xyce 严格串行进程全部返回 0；无 AIM-Spice、TCAD、版图或 PEX 进程。原生轴 101/632/101/115 个物理点均等长有限、严格递增并覆盖登记端点。
+- 两路线各 1818 行 DC、21636 行瞬态，以及 36 行静态指标、72 行瞬态指标、1818/21636 行差异、两张 2520 px 宽非空图和 26 个产物哈希全部通过。这确认 R04 输出轴修正有效，但不等于电路验收通过。
+- 冻结锚点两路线 VOH 约 `0.0912 V`、VOL 约 `0.0206 V`、最大增益约 `0.884`，均无单位增益交点；瞬态输出约 `0.022--0.057 V`，无 rise/fall crossing。`acceptance:both_routes_anchor_static_qualified`、`acceptance:both_routes_anchor_transient_qualified` 失败，最终完成门连带失败。
+- 失败是预注册电路锚点验收失败，不是模拟器、授权、收敛、parser、输出轴或路线一致性失败。不得把已落盘曲线写成 C00 PASS、物理参数或实验校准。
+
+### 登记与下一门
+
+- 首次失败态 `make check` 因 17 个历史 next-scope 白名单未接受新 R04 失败范围而返回 750/767。原报告归档为 `results/reports/project_check_c00_r04_runner_failure_next_scope_stale_failed.json`，SHA-256 `62be137bf16bdffae7636481b1b64827953fb021dd791c71afa0669e04c7c8c8`；检查启动 0 个模拟器进程。
+- 修正只扩展五处共享/历史 scope 接受链，并在 R04 失败谓词绑定归档的路径、哈希和 17/767 摘要；随后 `make check` 恢复 767/767。R04 源、报告、产物、输入、锚点、提取、阈值和权限未改。
+- 已同步状态、ADR、上下文、计划、报告第 5/6/9/10 章和证据矩阵，并把两张失败证据图嵌入第 10 章。JSON/Python 语法通过，`make check` 返回 767/767 PASS，`make report-check` 返回 12 章、5 附录、15 个既有占位和 32 图 PASS，`git diff --check` PASS。
+- 本失败里程碑提交推送后在 G3 暂停；R04 独立 checker、C01+、版图、PEX 和 HZO 不运行，恢复必须另建合同评审。
+
+---
+
 ## 2026-08-04 | Codex GPT-5 | C00 R04 静态合同 50/50 PASS
 
 ### 唯一执行

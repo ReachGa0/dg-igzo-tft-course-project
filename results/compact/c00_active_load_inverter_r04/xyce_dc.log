@@ -1,0 +1,143 @@
+
+*****
+***** Welcome to the Xyce(TM) Parallel Electronic Simulator
+*****
+***** This is version Xyce Release 7.10.0-opensource
+***** Date: Tue Aug 04 09:14:23 CST 2026
+
+
+***** Executing netlist results/compact/c00_active_load_inverter_r04/xyce_dc.cir
+
+***** Reading and parsing netlist...
+Netlist warning in file
+ results/compact/c00_active_load_inverter_r04/xyce_dc.cir at or near line 3
+ Option name missing, or SPICE-style option not supported in Xyce
+Netlist warning in file
+ results/compact/c00_active_load_inverter_r04/xyce_dc.cir at or near line 3
+ Unrecognized dot line will be ignored
+***** Setting up topology...
+
+Netlist warning: Voltage Node (VTV100T050R0125) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV100T050R0125) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV100T050R0250) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV100T050R0250) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV100T050R0500) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV100T050R0500) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV100T075R0125) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV200T075R0250) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV100T100R0125) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV200T075R0250) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV200T075R0500) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV200T100R0125) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV200T075R0500) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV100T100R0500) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV200T100R0250) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV200T100R0125) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV200T100R0250) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV200T100R0500) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV200T050R0500) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV100T100R0500) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV100T100R0250) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV200T075R0125) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV100T100R0250) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV100T100R0125) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV200T075R0125) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV100T075R0250) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV200T050R0125) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV200T050R0250) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV200T050R0125) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV100T075R0500) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV200T050R0500) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VTV100T075R0500) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV200T100R0500) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV100T075R0250) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV200T050R0250) connected to only 1 device
+ Terminal
+Netlist warning: Voltage Node (VIV100T075R0125) connected to only 1 device
+ Terminal
+***** Device Count Summary ...
+       B level 1 (Expression Based Voltage or Current Source) 36
+       E level 1 (Linear Voltage Controlled Voltage Source)   18
+       V level 1 (Independent Voltage Source)                 37
+       ---------------------------------------------------------
+       Total Devices                                          91
+***** Setting up matrix structure...
+***** Number of Unknowns = 128
+***** Initializing...
+
+Netlist warning: Numerically singular matrix found by Amesos, returning zero
+ solution to nonlinear solver!
+
+***** Solution Summary *****
+	Number Successful Steps Taken:		101
+	Number Failed Steps Attempted:		0
+	Number Jacobians Evaluated:		215
+	Number Linear Solves:			215
+	Number Failed Linear Solves:		1
+	Number Residual Evaluations:		328
+	Number Nonlinear Convergence Failures:	0
+	Total Residual Load Time:		0.0284569 seconds
+	Total Jacobian Load Time:		0.000495195 seconds
+	Total Linear Solution Time:		0.000999212 seconds
+
+
+***** Total Simulation Solvers Run Time: 0.060745 seconds
+***** Total Elapsed Run Time:            0.094214 seconds
+*****
+***** End of Xyce(TM) Simulation
+*****
+
+Timing summary of 1 processor
+                 Stats                   Count       CPU Time              Wall Time
+---------------------------------------- ----- --------------------- ---------------------
+Xyce                                         1        0.045 (100.0%)        0.101 (100.0%)
+  Analysis                                   1        0.039 (86.61%)        0.058 (57.13%)
+    DC Sweep                                 1        0.039 (86.61%)        0.058 (57.13%)
+      Solve                                101        0.034 (77.21%)        0.033 (32.44%)
+        Residual                           328        0.031 (68.46%)        0.029 (28.20%)
+        Jacobian                           215        0.001 ( 1.35%)        0.001 ( 0.55%)
+        Linear Solve                       215        0.001 ( 1.96%)        0.001 ( 1.03%)
+      Successful Step                      101        0.003 ( 7.05%)        0.023 (23.19%)
+  Netlist Import                             1        0.005 (11.22%)        0.022 (22.15%)
+    Parse Context                            1        0.000 ( 0.00%)        0.006 ( 6.11%)
+    Distribute Devices                       1        0.005 (10.55%)        0.015 (14.72%)
+    Verify Devices                           1        0.000 (<0.01%)        0.000 (<0.01%)
+    Instantiate                              1        0.000 ( 0.62%)        0.001 ( 0.74%)
+  Late Initialization                        1        0.001 ( 1.31%)        0.010 ( 9.60%)
+    Global Indices                           1        0.000 ( 0.73%)        0.008 ( 7.96%)
+  Setup Matrix Structure                     1        0.000 ( 0.17%)        0.000 ( 0.48%)
+
