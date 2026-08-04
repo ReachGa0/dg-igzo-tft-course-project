@@ -322,7 +322,7 @@
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=239525"
+      "detail": "bytes=240515"
     },
     {
       "name": "file:PROJECT_PLAN.md",
@@ -337,7 +337,7 @@
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=87064"
+      "detail": "bytes=87322"
     },
     {
       "name": "file:Makefile",
@@ -2202,7 +2202,7 @@
     {
       "name": "file:report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
       "status": "PASS",
-      "detail": "bytes=2698"
+      "detail": "bytes=3129"
     },
     {
       "name": "file:report/evidence_matrix.csv",

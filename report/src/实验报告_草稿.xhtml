@@ -7,13 +7,13 @@
     <style>
       body { margin: 0; color: #17202a; background: #eef2f5; font-family: "Microsoft YaHei", Arial, sans-serif; line-height: 1.75; }
       main { width: min(1040px, calc(100% - 40px)); margin: 24px auto; padding: 48px 58px; background: #fff; box-sizing: border-box; }
-      h1 { margin: 0; text-align: center; color: #123c5a; }
+      h1 { margin: 0 auto; max-width: 900px; text-align: center; color: #123c5a; font-size: 28px; line-height: 1.45; overflow-wrap: anywhere; }
       h2 { margin-top: 38px; padding-bottom: 6px; color: #164f73; border-bottom: 2px solid #d8e2e8; }
       h3 { color: #286a63; }
-      table { width: 100%; border-collapse: collapse; margin: 14px 0; }
-      th, td { padding: 8px 10px; border: 1px solid #cbd5dc; vertical-align: top; }
+      table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 14px 0; }
+      th, td { padding: 8px 10px; border: 1px solid #cbd5dc; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
       th { background: #e9f0f4; }
-      figure { margin: 20px 0; }
+      figure { margin: 20px 0; break-inside: avoid; page-break-inside: avoid; }
       img { display: block; max-width: 100%; height: auto; margin: 0 auto; }
       figcaption { margin-top: 8px; color: #4e5f69; text-align: center; }
       code, pre { font-family: Consolas, "Courier New", monospace; }
@@ -21,19 +21,21 @@
       .report-header { padding-bottom: 28px; border-bottom: 3px solid #123c5a; }
       .toc { margin: 32px 0 44px; padding: 20px 26px; border: 1px solid #cbd5dc; }
       .toc h2 { margin-top: 0; }
-      .toc ol { columns: 2; column-gap: 36px; }
+      .toc ol { columns: 2; column-gap: 36px; padding-left: 0; list-style: none; }
       .toc li { break-inside: avoid; margin: 5px 0; }
       .toc a { color: #164f73; text-decoration: none; }
       .meta td:first-child { width: 24%; font-weight: 700; }
       .boundary { padding: 12px 16px; background: #fff5da; border-left: 5px solid #c98b16; }
       .report-chapter, .report-appendix { scroll-margin-top: 20px; }
-      @media (max-width: 720px) { main { width: 100%; margin: 0; padding: 28px 22px; } .toc ol { columns: 1; } }
+      @media (max-width: 720px) { main { width: 100%; margin: 0; padding: 28px 22px; } h1 { font-size: 23px; } .toc ol { columns: 1; } table { display: block; overflow-x: auto; } th, td { min-width: 120px; } }
       @media print {
         body { background: #fff; }
         main { width: auto; margin: 0; padding: 15mm; }
         .toc { break-after: page; }
         .report-chapter, .report-appendix { break-before: page; page-break-before: always; }
         #section-01 { break-before: auto; page-break-before: auto; }
+        h2, h3 { break-after: avoid; page-break-after: avoid; }
+        table { font-size: 9pt; }
       }
     </style>
   </head>

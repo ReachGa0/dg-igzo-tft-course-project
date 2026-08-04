@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>双栅 IGZO TFT 课程项目精华版</title>
+  <style>
+    :root { --ink:#142b3b; --muted:#5d6d78; --teal:#087b78; --line:#d5e0e3; --warn:#b84a32; --paper:#ffffff; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#eef3f4; color:var(--ink); font-family:"Microsoft YaHei",Arial,sans-serif; line-height:1.65; }
+    main { width:min(1100px,calc(100% - 36px)); margin:22px auto; padding:44px 54px; background:var(--paper); }
+    header { border-bottom:3px solid var(--teal); padding-bottom:24px; }
+    h1 { margin:0; max-width:850px; font-size:30px; line-height:1.35; color:#123c5a; }
+    h2 { margin:38px 0 16px; padding-bottom:7px; border-bottom:2px solid var(--line); color:#164f73; font-size:23px; }
+    p { margin:10px 0; }
+    .subtitle,.note { color:var(--muted); }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:16px 0; }
+    .card { padding:16px; border:1px solid var(--line); border-top:4px solid var(--teal); background:#f8fbfb; }
+    .card.warn { border-top-color:var(--warn); background:#fff8f5; }
+    .card h3 { margin:0 0 8px; font-size:17px; }
+    .metric { display:block; margin:5px 0; font-size:22px; font-weight:700; color:var(--teal); }
+    .warn .metric { color:var(--warn); }
+    figure { margin:20px 0; break-inside:avoid; page-break-inside:avoid; }
+    img { display:block; width:100%; height:auto; border:1px solid var(--line); }
+    figcaption { color:var(--muted); font-size:14px; margin-top:7px; }
+    .two { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .boundary { padding:16px 18px; border-left:5px solid #c98b16; background:#fff6dd; }
+    ul { padding-left:22px; }
+    @media (max-width:720px) { main { width:100%; margin:0; padding:28px 22px; } h1 { font-size:24px; } .grid,.two { grid-template-columns:1fr; } }
+    @media print { body { background:#fff; } main { width:auto; margin:0; padding:14mm; } h2 { break-after:avoid; page-break-after:avoid; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>双栅 IGZO TFT 二维模型、教学紧凑模型与单极性逻辑评估</h1>
+    <p class="subtitle">课程项目精华版 | 提交版本 fc6198d | IGZO only | 二维教学模型</p>
+  </header>
+
+  <h2>1. 项目回答的问题</h2>
+  <p>在缺少完整双栅实测 I-V 条件时，项目用可复现的二维 IGZO 教学模型依次完成器件耦合、五组敏感性、紧凑候选与双开源路线对照，并正式评估双栅有源负载反相器是否达到预注册逻辑门。</p>
+  <div class="grid">
+    <div class="card"><h3>器件</h3><span class="metric">T01--T03</span><p>E2/E3 数值证据与独立检查。</p></div>
+    <div class="card"><h3>模型</h3><span class="metric">M00/M01</span><p>受限教学候选与 ngspice/GPL-Xyce 对照。</p></div>
+    <div class="card warn"><h3>电路</h3><span class="metric">C00 FAIL</span><p>完整执行，但冻结锚点不满足逻辑验收。</p></div>
+  </div>
+
+  <h2>2. 双栅基线与敏感性</h2>
+  <div class="two">
+    <figure><img src="assets/tcad_t02_c_bidirectional_families.png" alt="双栅双向偏压曲线" /><figcaption>T02-C：318 次 DC、248 点、6 个状态。双向曲线与耦合提取为冻结教学模型的数值代理。</figcaption></figure>
+    <figure><img src="assets/tcad_t03_p2_bulk_traps_formal_v3_sensitivity.png" alt="体陷阱正式敏感性" /><figcaption>T03-P2：隔离 NTA/NGA 正式 V3。8 个器件、456 次 DC、独立检查 E3。</figcaption></figure>
+  </div>
+  <p>五组 T03 参数均在预注册输入、提取和验收下运行。结果用于比较冻结模型的数值响应，不解释为实验校准、物理 DOS、接触参数或真实温度规律。</p>
+
+  <h2>3. 教学紧凑模型与两路线验证</h2>
+  <div class="two">
+    <figure><img src="assets/m00_compact_model_fit_r02.png" alt="M00 R02 教学紧凑模型拟合" /><figcaption>M00 R02：训练与保留条件分离，runner E2、独立复核 E3。</figcaption></figure>
+    <figure><img src="assets/m01_open_source_cross_check_r03.png" alt="M01 R03 开源两路线对照" /><figcaption>M01 R03：同一冻结目标下 ngspice 与 GPL Xyce 的持久化两路线对照。</figcaption></figure>
+  </div>
+  <p>模型层关闭的只是教学数值域：不主张原生 Level 61、两条路线方程身份、物理参数提取或实验预测能力。</p>
+
+  <h2>4. C00：完整但不合格的反相器评估</h2>
+  <div class="grid">
+    <div class="card"><h3>执行</h3><span class="metric">4/4</span><p>ngspice 与 GPL Xyce 的 DC/瞬态进程均返回 0。</p></div>
+    <div class="card"><h3>完整性</h3><span class="metric">26 hashes</span><p>原始输出、表、指标、路线差异和图全部落盘。</p></div>
+    <div class="card warn"><h3>验收</h3><span class="metric">33/36 FAIL</span><p>不是收敛或工具失败，而是锚点逻辑门失败。</p></div>
+  </div>
+  <figure><img src="assets/c00_active_load_inverter_vtc_r04.png" alt="C00 R04 VTC 与静态功耗" /><figcaption>冻结锚点：VOH 约 0.0912 V、VOL 约 0.0206 V、最大增益约 0.884；没有单位增益交点。</figcaption></figure>
+  <figure><img src="assets/c00_active_load_inverter_transient_r04.png" alt="C00 R04 瞬态输出与功耗" /><figcaption>瞬态输出约 0.022--0.057 V，无输出阈值 crossing，因此不提取或伪造 tPHL/tPLH。</figcaption></figure>
+
+  <h2>5. 结论与提交边界</h2>
+  <div class="boundary"><strong>结论：</strong>二维双栅 IGZO 器件与教学模型主线已形成可复现证据链；冻结有源负载设计点被正式数据判定为不合格，C00 G3 保持关闭。</div>
+  <ul>
+    <li>已交付：HTML、PDF、PPTX、配置、脚本、结果和哈希链。</li>
+    <li>未纳入：C01--C03、版图、DRC/LVS、PEX、HZO。</li>
+    <li>不主张：实验校准、真实器件参数、可流片 PDK 或后续逻辑单元。</li>
+  </ul>
+  <p class="note">完整报告保留全部阶段细节和失败归档；本精华版用于课程汇报与快速审阅。</p>
+</main>
+</body>
+</html>
