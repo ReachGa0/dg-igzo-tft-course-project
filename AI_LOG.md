@@ -16,6 +16,27 @@
 
 ---
 
+## 2026-08-04 | Codex GPT-5 | 课程提交包与答辩 PPT
+
+### 目标与范围
+
+- 用户要求在一天工期内完成报告、PDF 与 PPT 交付，不启动新的 TCAD、SPICE、C00 R05、版图、PEX 或 HZO 工作。
+- 读取 `AGENTS.md`、报告/PPT 说明、C00 R04 失败证据、现有 32 张报告图片和最终阶段状态；交付结论保持为 C00 33/36 E0/FAIL，而非反相器通过。
+
+### 修改与产物
+
+- 新增 `ppt/build_ppt.py`，生成 10 页可编辑 `ppt/DG_OXIDE_TFT_PDK_2026-08-06_v01.pptx`；内容覆盖范围、二维双栅、T03、M00/M01、C00 静态/瞬态失败、限制与结论，全部复用项目图表。
+- 报告第 1--4、10--11 章和附录 A/B/C/E 用现有证据替换 15 个工程占位符。姓名使用仓库标识 ReachGao；学号/班级和指导教师未在工程中提供，明示为提交前由本人核对，未杜撰个人信息。
+- `make report` 成功生成 `report/final/实验报告.html`；Microsoft Edge headless 成功生成 `report/final/实验报告.pdf`。二者为交付格式，不是新的器件或电路证据。
+- 首次最终 `make check` 只在 `report:placeholder_guard` 失败：历史总检查错误要求章节草稿仍含占位符。该报告原样归档为 `results/reports/project_check_final_delivery_placeholder_guard_stale_failed.json`，SHA-256 `faefa8cd7dd30a94d67d9525fb95a34ae0cca04bf1ceb7fd254e670232dfd02d`；只将检查器改为拒绝未解决占位符，随后 `make check` 767/767 PASS，`make report-check` 为 12 章、5 附录、0 占位符、32 图 PASS。
+
+### 边界与后续
+
+- PPT 和报告明确：T03、M00/M01 仅在冻结 IGZO 教学模型边界内成立；C00 R04 是完整两路线负结果，C01/C02/C03、版图、PEX 和 HZO 未开展。
+- 下一步仅为人工核对姓名、学号/班级、指导教师和封面日期，然后提交当前 Git 版本；不应为赶工重复 R04 或建立未经充分审查的 R05。
+
+---
+
 ## 2026-08-04 | Codex GPT-5 | C00 R04 runner 33/36 锚点失败保留
 
 ### 唯一执行

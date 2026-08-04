@@ -4,8 +4,12 @@
 - 当前阶段：`C00_R04_FORMAL_RUNNER_FAILED_GATE_BLOCKED`
 - 整体状态：`RED`
 - 当前原则：C00 R04 在静态报告登记提交 `017b295` 上唯一运行并返回 33/36、E0/FAIL。四个开源进程及输出轴/完整表门均通过，但冻结锚点在两路线均无单位增益交点和瞬态输出 crossing，故 C00 未通过；R04 不重跑，独立 checker、C01/C02/C03、版图、PEX 和 HZO 继续关闭。
+- 交付状态：已生成自包含 HTML、PDF 和 10 页可编辑 PPTX。报告清除了工程占位符，明确 C00 为负结果；个人学号/班级和指导教师字段因工程中未提供，保留为提交前由本人核对的文字提示。
 
 ## 本次里程碑
+
+- [x] 课程交付包：`report/final/实验报告.html`、`report/final/实验报告.pdf` 与 `ppt/DG_OXIDE_TFT_PDK_2026-08-06_v01.pptx` 已生成。PPT 复用项目二维、紧凑模型、两路线和 C00 失败图，共 10 页；不含未运行的组合逻辑、版图、PEX 或 HZO 结果。
+- [x] 报告第 1--4、10--11 章和附录 A/B/C/E 已用可追溯内容替换原有占位符；`make report` 生成 12 章、5 附录、32 图的自包含 HTML，Edge 成功导出 PDF。首次最终 `make check` 因总检查仍错误要求存在占位符而失败，报告已归档为 `results/reports/project_check_final_delivery_placeholder_guard_stale_failed.json`（SHA-256 `faefa8cd...dfd02d`）；仅将该规则改为“最终交付不得有未解决占位符”后，`make check` 恢复 767/767 PASS，`make report-check` 确认 0 个占位符。
 
 - [x] 新增 `C00_ACTIVE_LOAD_INVERTER_R03` 配置、pure common、50 项零进程静态 checker、36 项未来 runner、29 项未来独立 checker 和三个 Make 入口；全部未来输出使用独立 R03 路径并拒绝覆盖。
 - [x] R03 哈希绑定 R02 实现提交 `216c6a7`、保留提交 `747f384`、五个源文件、50/50 静态报告 `e820af3b...1a99`、runner 阻塞报告 `9c810623...6ea51` 和项目检查失败 `e6fb9087...f4c6`；R02 不修改、不重跑。

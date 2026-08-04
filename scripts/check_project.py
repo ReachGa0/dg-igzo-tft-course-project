@@ -12325,8 +12325,8 @@ def main() -> int:
         add_check(
             checks,
             "report:placeholder_guard",
-            "[\u5f85\u586b\u5199" in combined_text,
-            "chapter drafts intentionally remain non-final until placeholders are resolved",
+            "[\u5f85\u586b\u5199" not in combined_text,
+            "final delivery has no unresolved placeholders",
         )
         add_check(
             checks,

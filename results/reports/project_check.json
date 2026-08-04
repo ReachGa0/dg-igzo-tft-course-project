@@ -322,7 +322,7 @@
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=236467"
+      "detail": "bytes=238403"
     },
     {
       "name": "file:PROJECT_PLAN.md",
@@ -337,7 +337,7 @@
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=85756"
+      "detail": "bytes=86858"
     },
     {
       "name": "file:Makefile",
@@ -3832,7 +3832,7 @@
     {
       "name": "report:placeholder_guard",
       "status": "PASS",
-      "detail": "chapter drafts intentionally remain non-final until placeholders are resolved"
+      "detail": "final delivery has no unresolved placeholders"
     },
     {
       "name": "report:current_scope_title",

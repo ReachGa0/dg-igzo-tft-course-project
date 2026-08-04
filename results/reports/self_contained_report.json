@@ -1,0 +1,262 @@
+{
+  "status": "PASS",
+  "authoring_mode": "chapter_sources",
+  "submission_mode": "single_self_contained_html",
+  "source_manifest": "report/manifest.json",
+  "shell": "report/src/\u5b9e\u9a8c\u62a5\u544a_\u8349\u7a3f.xhtml",
+  "output": "report/final/\u5b9e\u9a8c\u62a5\u544a.html",
+  "chapters": 12,
+  "appendices": 5,
+  "source_files": [
+    {
+      "id": "section-01",
+      "type": "chapter",
+      "source": "report/chapters/01_\u9879\u76ee\u540d\u79f0\u4e0e\u57fa\u672c\u4fe1\u606f.xhtml"
+    },
+    {
+      "id": "section-02",
+      "type": "chapter",
+      "source": "report/chapters/02_\u6458\u8981.xhtml"
+    },
+    {
+      "id": "section-03",
+      "type": "chapter",
+      "source": "report/chapters/03_\u7814\u7a76\u80cc\u666f\u4e0e\u9879\u76ee\u76ee\u6807.xhtml"
+    },
+    {
+      "id": "section-04",
+      "type": "chapter",
+      "source": "report/chapters/04_\u7406\u8bba\u57fa\u7840\u4e0e\u6a21\u578b\u539f\u7406.xhtml"
+    },
+    {
+      "id": "section-05",
+      "type": "chapter",
+      "source": "report/chapters/05_\u4eff\u771f\u5de5\u5177\u4e0e\u6a21\u578b\u5efa\u7acb.xhtml"
+    },
+    {
+      "id": "section-06",
+      "type": "chapter",
+      "source": "report/chapters/06_\u53c2\u6570\u8bbe\u7f6e\u4e0e\u6765\u6e90.xhtml"
+    },
+    {
+      "id": "section-07",
+      "type": "chapter",
+      "source": "report/chapters/07_\u57fa\u51c6\u4eff\u771f\u7ed3\u679c.xhtml"
+    },
+    {
+      "id": "section-08",
+      "type": "chapter",
+      "source": "report/chapters/08_\u53c2\u6570\u5206\u6790\u4e0e\u8ba8\u8bba.xhtml"
+    },
+    {
+      "id": "section-09",
+      "type": "chapter",
+      "source": "report/chapters/09_\u6a21\u578b\u9a8c\u8bc1\u6216\u7ed3\u679c\u5bf9\u6bd4.xhtml"
+    },
+    {
+      "id": "section-10",
+      "type": "chapter",
+      "source": "report/chapters/10_\u7535\u8def\u6216\u7cfb\u7edf\u8bbe\u8ba1\u7ed3\u679c.xhtml"
+    },
+    {
+      "id": "section-11",
+      "type": "chapter",
+      "source": "report/chapters/11_\u7ed3\u8bba.xhtml"
+    },
+    {
+      "id": "section-12",
+      "type": "chapter",
+      "source": "report/chapters/12_\u53c2\u8003\u6587\u732e.xhtml"
+    },
+    {
+      "id": "appendix-a",
+      "type": "appendix",
+      "source": "report/appendices/A_\u5b8c\u6574\u53c2\u6570\u8868.xhtml"
+    },
+    {
+      "id": "appendix-b",
+      "type": "appendix",
+      "source": "report/appendices/B_\u539f\u59cb\u6570\u636e\u7d22\u5f15.xhtml"
+    },
+    {
+      "id": "appendix-c",
+      "type": "appendix",
+      "source": "report/appendices/C_\u4eff\u771f\u4ee3\u7801\u4e0e\u8f93\u5165\u6587\u4ef6.xhtml"
+    },
+    {
+      "id": "appendix-d",
+      "type": "appendix",
+      "source": "report/appendices/D_\u8865\u5145\u7ed3\u679c\u4e0e\u5931\u8d25\u6848\u4f8b.xhtml"
+    },
+    {
+      "id": "appendix-e",
+      "type": "appendix",
+      "source": "report/appendices/E_\u8fd0\u884c\u8bf4\u660e\u4e0eAI\u4f7f\u7528\u58f0\u660e.xhtml"
+    }
+  ],
+  "images_embedded": 32,
+  "external_images": 0,
+  "output_bytes": 23079359,
+  "images": [
+    {
+      "source": "report/assets/tcad_t01_d_idvd.png",
+      "bytes": 112217,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t01_dc_extraction.png",
+      "bytes": 150616,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t01_dc_state_maps.png",
+      "bytes": 859334,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t02_b_minimal_bias.png",
+      "bytes": 111482,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t02_c_bidirectional_families.png",
+      "bytes": 329111,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t02_c_state_maps.png",
+      "bytes": 828743,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p4_l_sensitivity.png",
+      "bytes": 308514,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p4_l_state_maps.png",
+      "bytes": 873279,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p1_bias_sensitivity.png",
+      "bytes": 297552,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p1_bias_state_maps.png",
+      "bytes": 1073893,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p1_cap_ratio_sensitivity.png",
+      "bytes": 302230,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p1_cap_ratio_state_maps.png",
+      "bytes": 1314666,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p2_dit_formal_sensitivity.png",
+      "bytes": 313277,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p2_dit_formal_states.png",
+      "bytes": 1136111,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p2_bulk_traps_formal_v3_sensitivity.png",
+      "bytes": 464549,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p2_bulk_traps_formal_v3_states.png",
+      "bytes": 2242748,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p3_contact_v2_sensitivity.png",
+      "bytes": 283676,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p3_contact_v2_states.png",
+      "bytes": 1000628,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p5_temperature_sensitivity.png",
+      "bytes": 322448,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p5_temperature_states.png",
+      "bytes": 881525,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/m00_compact_model_fit.png",
+      "bytes": 265081,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/m00_compact_model_residuals.png",
+      "bytes": 137253,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/m00_compact_model_fit_r02.png",
+      "bytes": 264830,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/m00_compact_model_residuals_r02.png",
+      "bytes": 137236,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/m01_open_source_cross_check_r02.png",
+      "bytes": 324964,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/m01_open_source_route_difference_r02.png",
+      "bytes": 263543,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/m01_open_source_cross_check_r03.png",
+      "bytes": 371570,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/m01_open_source_route_difference_r03.png",
+      "bytes": 386557,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/c00_active_load_inverter_vtc_r04.png",
+      "bytes": 340614,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/c00_active_load_inverter_transient_r04.png",
+      "bytes": 178889,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p3_contact_sensitivity.png",
+      "bytes": 283676,
+      "mime_type": "image/png"
+    },
+    {
+      "source": "report/assets/tcad_t03_p3_contact_states.png",
+      "bytes": 1000628,
+      "mime_type": "image/png"
+    }
+  ]
+}
