@@ -10,6 +10,8 @@ S00、完整 T01/T02 教学模型数值门和全部五组数值 T03 已完成，
 
 **正式课程报告主体：** `report/final/课程报告.html`（自包含 HTML，26 张关键图；PDF 26 页）及同名 PDF。它包含完整方法、结果、证据等级、失败保留和复现入口。`report/final/实验报告.html`（32 张图、84 页 PDF）保留为审计附件；PPT 仅用于答辩展示，均不替代正式 HTML 报告。
 
+**最终提交包：** `submission/` 包含精确文件名 `report.pdf`、`slides.pdf`、环境/安装记录、输入/结果/图表索引、AI_LOG 和最终 PASS/FAIL 摘要。完整 `config/`、`data/`、`scripts/`、`models/`、`results/` 等源与证据仍在项目根目录；从根目录执行 `make submission` 可重建该目录。
+
 ## 2. 为什么这个题目仍然成立
 
 项目核心没有改变：围绕高难度“双栅氧化物 TFT 模型”，建立器件到电路再到版图验证的参数链。范围收敛为单材料 IGZO 后：

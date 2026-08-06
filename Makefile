@@ -6,6 +6,7 @@ DEVSIM_MATH_LIBS ?= liblapack.so.3:libblas.so.3
 
 .PHONY: m01-open-source-device-dc-r03-contract-check m01-open-source-device-dc-r03 m01-open-source-device-dc-r03-check
 .PHONY: c00-active-load-inverter-r01-contract-check c00-active-load-inverter-r01 c00-active-load-inverter-r01-check
+.PHONY: submission
 .PHONY: c00-active-load-inverter-r02-contract-check c00-active-load-inverter-r02 c00-active-load-inverter-r02-check
 .PHONY: c00-active-load-inverter-r03-contract-check c00-active-load-inverter-r03 c00-active-load-inverter-r03-check
 .PHONY: c00-active-load-inverter-r04-contract-check c00-active-load-inverter-r04 c00-active-load-inverter-r04-check
@@ -392,3 +393,6 @@ check:
 
 status:
 	@sed -n '1,220p' STATUS.md
+
+submission:
+	"$(PYTHON)" scripts/build_submission_package.py

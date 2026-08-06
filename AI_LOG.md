@@ -16,6 +16,20 @@
 
 ---
 
+## 2026-08-06 | Codex GPT-5 | 最终报告与提交包整理
+
+### 修改与产物
+
+- 用户要求最终交付明确为“实验报告”和“提交包”。新增 `scripts/build_slides_pdf.py`，按现有 10 页 PPT 内容生成 `ppt/slides.pdf`；Edge headless 导出 10 页并视觉抽检 C00 页面无裁切。
+- 新增 `scripts/build_submission_package.py` 和 `make submission`。`submission/` 包含 `report.pdf`（26 页课程报告）、`slides.pdf`（10 页）、README、环境记录、AI_LOG、最终 PASS/FAIL 摘要、315 个输入文件索引、1352 个结果文件索引和 36 张图索引。
+- 提交包根目录仍依赖项目根目录中的 `config/`、`data/`、`scripts/`、`models/`、`results/` 等完整源与证据；打包命令只组装目录，不启动 TCAD、SPICE、版图或 HZO。
+
+### 最终边界
+
+- C00 R04 保持 `33/36 E0/FAIL`；器件/模型主线只在冻结 IGZO 教学模型内具有 E2/E3 证据。C01--C03、组合逻辑、版图、PEX 和 HZO 关闭。
+
+---
+
 ## 2026-08-04 | Codex GPT-5 | 最终课程报告答辩演讲稿
 
 ### 修改

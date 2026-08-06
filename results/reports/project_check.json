@@ -307,7 +307,7 @@
     {
       "name": "file:README.md",
       "status": "PASS",
-      "detail": "bytes=34997"
+      "detail": "bytes=35337"
     },
     {
       "name": "file:ARCHITECTURE.md",
@@ -322,7 +322,7 @@
     {
       "name": "file:AI_LOG.md",
       "status": "PASS",
-      "detail": "bytes=244285"
+      "detail": "bytes=245290"
     },
     {
       "name": "file:PROJECT_PLAN.md",
@@ -337,12 +337,12 @@
     {
       "name": "file:STATUS.md",
       "status": "PASS",
-      "detail": "bytes=88293"
+      "detail": "bytes=88570"
     },
     {
       "name": "file:Makefile",
       "status": "PASS",
-      "detail": "bytes=16020"
+      "detail": "bytes=16101"
     },
     {
       "name": "file:config/project.json",
